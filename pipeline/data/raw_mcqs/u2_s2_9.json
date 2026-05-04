@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the output of the following code:\n\n```java\nint sum = 0;\nfor (int i = 1; i <= 5; i++) {\n    sum += i;\n}\nSystem.out.println(sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`14`"
+      },
+      {
+        "label": "C",
+        "text": "`15`"
+      },
+      {
+        "label": "D",
+        "text": "`21`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The accumulator adds 1+2+3+4+5 = 15. Distractor A (10) results from the loop stopping at i < 5, missing the last iteration. Distractor B (14) reflects starting at i = 2 instead of i = 1. Distractor D (21) comes from accidentally summing 1 through 6.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the values of `total` and `k` after the following code executes:\n\n```java\nint total = 0;\nint k = 12;\nwhile (k > 0) {\n    total += k;\n    k -= 4;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`total = 20, k = 4`"
+      },
+      {
+        "label": "B",
+        "text": "`total = 24, k = 0`"
+      },
+      {
+        "label": "C",
+        "text": "`total = 24, k = -4`"
+      },
+      {
+        "label": "D",
+        "text": "`total = 28, k = -4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop runs for k=12 (total=12), k=8 (total=20), k=4 (total=24), then k becomes 0 and the condition k>0 is false, so the loop exits with total=24 and k=0. Distractor C has the correct total but wrong exit value\u2014the loop body does not execute when k=0, so k never reaches -4. Distractor D is an off-by-one error reflecting the mistaken belief that the condition is k>=0, which would add one more iteration (total 24+0=24... wait, that still gives 24). Actually distractor D (total=28) would result from a student who adds k=4 one more time (24+4=28) while also decrementing to k=0-4=-4\u2014a confusion about whether the body executes one more time.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the output of the following code:\n\n```java\nint count = 0;\nfor (int n = 1; n <= 20; n++) {\n    if (n % 3 == 0) {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`6`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "`8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The multiples of 3 in [1, 20] are 3, 6, 9, 12, 15, and 18\u2014exactly six values. Distractor A (5) results from stopping the count at 15. Distractor C (7) comes from inadvertently including 21 in the range or using n <= 21 mentally.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the output of the following code:\n\n```java\nint sum = 7;\nint count = 2;\ndouble avg = sum / count;\nSystem.out.println(avg);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`3.5`"
+      },
+      {
+        "label": "C",
+        "text": "`3.0`"
+      },
+      {
+        "label": "D",
+        "text": "`4.0`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Both `sum` and `count` are `int`, so `sum / count` performs integer division: 7/2 = 3 (truncated toward zero). That integer 3 is then widened to 3.0 when stored in `avg`. Calling `System.out.println` on a `double` always includes a decimal point, so it prints `3.0` not `3`. Distractor B (3.5) is the mathematically correct result but requires at least one operand to be cast to `double` before the division. Distractor D (4.0) reflects rounding rather than truncation.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "The following code is intended to find the minimum value among positive multiples of 4 up to 20. What does it actually print?\n\n```java\nint min = 0;\nfor (int i = 4; i <= 20; i += 4) {\n    if (i < min) {\n        min = i;\n    }\n}\nSystem.out.println(min);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`16`"
+      },
+      {
+        "label": "D",
+        "text": "`20`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`min` is initialized to 0, but every loop value (4, 8, 12, 16, 20) is greater than 0, so the condition `i < min` is never true and `min` remains 0. The correct fix would initialize `min` to `Integer.MAX_VALUE` or to the first candidate value. Distractor B (4) is the correct minimum the code should compute. Distractor D (20) is the last value of `i`.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Which variable in the following code segment serves as the accumulator?\n\n```java\nint n = 1;\nint result = 0;\nwhile (n <= 10) {\n    result += n * n;\n    n++;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`n`"
+      },
+      {
+        "label": "B",
+        "text": "`result`"
+      },
+      {
+        "label": "C",
+        "text": "`10`"
+      },
+      {
+        "label": "D",
+        "text": "`n * n`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`result` is the accumulator\u2014it is initialized to 0 before the loop and updated with `+=` on every iteration, building a running total. `n` is the loop control variable that drives iteration. `10` is a literal constant, and `n * n` is a computed expression used as input to the accumulator, not a stored running total.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 0;\nint b = 10;\nwhile (a < b) {\n    a += 2;\n    b -= 1;\n}\nSystem.out.println(a + \" \" + b);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6 7`"
+      },
+      {
+        "label": "B",
+        "text": "`8 7`"
+      },
+      {
+        "label": "C",
+        "text": "`8 6`"
+      },
+      {
+        "label": "D",
+        "text": "`10 5`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Tracing: (0,10)\u2192(2,9)\u2192(4,8)\u2192(6,7)\u2192(8,6). After the fourth update, a=8 and b=6; the condition 8<6 is false so the loop exits and prints '8 6'. Distractor A (6 7) shows the state just before the fourth iteration executes\u2014the student halted one step early. Distractor B (8 7) correctly updates `a` during the fourth iteration but uses the pre-update value of `b`. Distractor D (10 5) represents an erroneous fifth iteration that does not occur because 8<6 is false.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the output of the following code:\n\n```java\nint n = 352;\nint sum = 0;\nwhile (n > 0) {\n    sum += n % 10;\n    n /= 10;\n}\nSystem.out.println(sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`7`"
+      },
+      {
+        "label": "C",
+        "text": "`10`"
+      },
+      {
+        "label": "D",
+        "text": "`352`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop extracts digits right-to-left: 352%10=2 (sum=2, n=35), then 35%10=5 (sum=7, n=3), then 3%10=3 (sum=10, n=0). When n=0 the condition n>0 is false and the loop exits. The digit sum 3+5+2=10. Distractor A (3) is only the leading digit. Distractor B (7) is the partial sum after just two iterations. Distractor D (352) is the original value of n.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Variables `total` and `n` are both of type `int`. Which of the following correctly computes their average as a `double`, avoiding integer division?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`double avg = total / n;`"
+      },
+      {
+        "label": "B",
+        "text": "`double avg = (double) total / n;`"
+      },
+      {
+        "label": "C",
+        "text": "`double avg = (double)(total / n);`"
+      },
+      {
+        "label": "D",
+        "text": "`double avg = total / (int) n;`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Casting `total` to `double` before the `/` operator forces floating-point division, preserving the fractional part. Option A performs integer division first and then widens the truncated result to double\u2014the fraction is already lost. Option C applies the cast after integer division has already occurred inside the parentheses, so the fraction is lost before the cast. Option D redundantly casts `n` (already an `int`) and leaves both operands as `int`, so integer division still occurs.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the value of `max` after the following code executes:\n\n```java\nint max = 0;\nfor (int i = 2; i <= 8; i += 2) {\n    if (i * i > max) {\n        max = i * i;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`8`"
+      },
+      {
+        "label": "B",
+        "text": "`16`"
+      },
+      {
+        "label": "C",
+        "text": "`36`"
+      },
+      {
+        "label": "D",
+        "text": "`64`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The loop visits i=2 (max=4), i=4 (max=16), i=6 (max=36), i=8 (max=64). Each successive i*i is larger than the last, so `max` is updated at every step and ends at 64. Distractor C (36) comes from stopping the trace at i=6. Distractor A (8) confuses the loop variable `i` with the expression `i * i`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the output of the following code:\n\n```java\nint evens = 0;\nint odds = 0;\nfor (int i = 1; i <= 9; i++) {\n    if (i % 2 == 0) {\n        evens++;\n    } else {\n        odds++;\n    }\n}\nSystem.out.println(evens + \" \" + odds);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5 4`"
+      },
+      {
+        "label": "B",
+        "text": "`4 5`"
+      },
+      {
+        "label": "C",
+        "text": "`4 4`"
+      },
+      {
+        "label": "D",
+        "text": "`5 5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Even values in [1, 9]: 2, 4, 6, 8 \u2192 evens=4. Odd values: 1, 3, 5, 7, 9 \u2192 odds=5. The expression `evens + \" \" + odds` concatenates left-to-right, printing '4 5'. Distractor A (5 4) swaps the two counts. Distractor D (5 5) would be correct for the range [1, 10]. Distractor C (4 4) misses that 9 is odd.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "The following code is intended to count integers from 1 to 100 that are divisible by both 3 and 5. Which change would correct the bug?\n\n```java\nint count = 0;\nfor (int i = 1; i <= 100; i++) {\n    if (i % 3 == 0 || i % 5 == 0) {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Change `||` to `&&`"
+      },
+      {
+        "label": "B",
+        "text": "Change `i <= 100` to `i < 100`"
+      },
+      {
+        "label": "C",
+        "text": "Change `count++` to `count += 2`"
+      },
+      {
+        "label": "D",
+        "text": "Initialize `count` to `1` instead of `0`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Using `||` counts numbers divisible by 3 OR 5 (47 values by inclusion-exclusion), but the goal requires divisibility by both\u2014which demands `&&`. Replacing `||` with `&&` correctly restricts the count to multiples of 15 (6 values in [1, 100]). Distractor B merely shrinks the range by one and does not address the logical error. Distractors C and D introduce arithmetic offsets that are irrelevant to the faulty condition.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the output of the following code:\n\n```java\nint sum = 0;\nfor (int k = 1; k <= 4; k++) {\n    sum += k * 2;\n}\nSystem.out.println(sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`12`"
+      },
+      {
+        "label": "C",
+        "text": "`20`"
+      },
+      {
+        "label": "D",
+        "text": "`30`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop runs for k = 1, 2, 3, 4, adding 2, 4, 6, and 8 to sum respectively, giving a total of 20. Option A comes from forgetting the factor of 2 and computing 1+2+3+4 = 10. Option B is the off-by-one result if the condition were k < 4 (only k=1,2,3: 2+4+6=12). Option D is the off-by-one result if the condition were k <= 5 (adding 10 more: 2+4+6+8+10=30).",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "What is the value of `count` after the following code executes?\n\n```java\nint count = 0;\nfor (int i = 10; i <= 30; i += 5) {\n    if (i % 3 == 0) {\n        count++;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop visits i = 10, 15, 20, 25, 30. Only 15 (15 % 3 == 0) and 30 (30 % 3 == 0) satisfy the condition, so count is incremented exactly twice. Option A stops counting after the first match. Option C would require a third multiple of 3, which does not appear; a student might incorrectly believe 25 % 3 == 0. Option D counts total loop iterations (five) rather than matching ones.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the output of the following code:\n\n```java\nint total = 0;\nint count = 0;\nint val = 1;\nwhile (val <= 4) {\n    total += val;\n    count++;\n    val++;\n}\ndouble avg = total / count;\nSystem.out.println(avg);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2.5`"
+      },
+      {
+        "label": "B",
+        "text": "`2.0`"
+      },
+      {
+        "label": "C",
+        "text": "`3.0`"
+      },
+      {
+        "label": "D",
+        "text": "`10.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "After the loop, total = 10 and count = 4. The expression total / count performs integer division because both operands are of type int, yielding 2, which is then widened to the double 2.0. Option A is the mathematically expected average but ignores integer-division truncation. Option C incorrectly applies rounding rather than truncation. Option D omits the division step entirely.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the output of the following code:\n\n```java\nint max = 0;\nint n = 293;\nwhile (n > 0) {\n    int digit = n % 10;\n    if (digit > max) {\n        max = digit;\n    }\n    n /= 10;\n}\nSystem.out.println(max);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`9`"
+      },
+      {
+        "label": "D",
+        "text": "`14`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop extracts digits right-to-left: first 3 (max becomes 3), then 9 (9 > 3, max becomes 9), then 2 (2 is not > 9, max stays 9). Option A is the last digit processed (2); option B is the first digit extracted (3) \u2014 a student who only traces one iteration. Option D is the sum of all digits (2+9+3 = 14), confusing the sum algorithm with the max algorithm.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "The code below is intended to find and print the smallest of five positive integers. Which of the following best describes the error?\n\n```java\nint a = 7, b = 3, c = 9, d = 1, e = 5;\nint min = 0;\nif (a < min) min = a;\nif (b < min) min = b;\nif (c < min) min = c;\nif (d < min) min = d;\nif (e < min) min = e;\nSystem.out.println(min);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The comparisons should use `<=` instead of `<`."
+      },
+      {
+        "label": "B",
+        "text": "`min` is initialized to `0`, but all five values are positive, so none of the conditions are ever true and `min` is never updated."
+      },
+      {
+        "label": "C",
+        "text": "The variables `a` through `e` must be reassigned each time `min` changes."
+      },
+      {
+        "label": "D",
+        "text": "The final `System.out.println` should print `a` instead of `min`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Because every value (7, 3, 9, 1, 5) is greater than 0, each condition x < min evaluates to false, so min is never updated and the code prints 0 instead of the correct minimum 1. The fix is to initialize min to Integer.MAX_VALUE or to a before the comparisons. Option A (using <=) still fails \u2014 7 <= 0 is false. Options C and D are irrelevant to the actual defect.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the output of the following code:\n\n```java\nint sum = 0;\nfor (int k = 1; k <= 6; k++) {\n    if (k % 2 == 0) {\n        sum += k;\n    }\n}\nSystem.out.println(sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`9`"
+      },
+      {
+        "label": "C",
+        "text": "`12`"
+      },
+      {
+        "label": "D",
+        "text": "`21`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop runs for k = 1 through 6; the condition k % 2 == 0 is true only for k = 2, 4, and 6, so sum accumulates 2 + 4 + 6 = 12. A is just the last even value added. B is the sum of the odd values 1+3+5. D ignores the condition and adds all values 1\u20136.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the output of the following code:\n\n```java\nint sum = 0;\nfor (int i = 1; i <= 4; i++) {\n    sum += i;\n}\ndouble avg = sum / 4;\nSystem.out.println(avg);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2.0`"
+      },
+      {
+        "label": "B",
+        "text": "`2.5`"
+      },
+      {
+        "label": "C",
+        "text": "`10.0`"
+      },
+      {
+        "label": "D",
+        "text": "`3.0`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop computes sum = 1+2+3+4 = 10. The expression sum / 4 performs integer division because both operands are int, yielding 2; storing that in a double gives 2.0. B is the correct mathematical average but requires casting one operand to double first (e.g., (double) sum / 4). C would result from printing sum. D represents incorrect rounding of 2.5.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the output of the following code:\n\n```java\nint count = 0;\nfor (int i = 1; i <= 20; i++) {\n    if (i % 3 == 0 || i % 5 == 0) {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`8`"
+      },
+      {
+        "label": "B",
+        "text": "`9`"
+      },
+      {
+        "label": "C",
+        "text": "`10`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Multiples of 3 in [1,20]: 3,6,9,12,15,18 (six values). Multiples of 5 in [1,20]: 5,10,15,20 (four values). Because the condition uses ||, the value 15 satisfies both sub-conditions but increments count only once, giving 6+4\u22121 = 9. C double-counts 15 as if each sub-condition were tallied separately. D counts only multiples of 3. A reflects an off-by-one or missed-value error.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "What is the value of `sum` after the following code executes?\n\n```java\nint n = 237;\nint sum = 0;\nwhile (n > 0) {\n    sum += n % 10;\n    n /= 10;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`7`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`12`"
+      },
+      {
+        "label": "D",
+        "text": "`23`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Each iteration extracts the rightmost digit (n % 10) and removes it (n /= 10). Iteration 1: digit = 7, sum = 7, n = 23. Iteration 2: digit = 3, sum = 10, n = 2. Iteration 3: digit = 2, sum = 12, n = 0; loop exits. A stops after one iteration. B misses the final iteration when n = 2 (since 2 > 0 is still true). D is the intermediate value of n after the first division, not sum.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "What is the value of `min` after the following code executes?\n\n```java\nint min = 1000;\nfor (int i = 1; i <= 4; i++) {\n    int val = i * i - 5 * i + 7;\n    if (val < min) {\n        min = val;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`1`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "`1000`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Evaluating val for each i: i=1 \u2192 1\u22125+7=3 (min updated to 3); i=2 \u2192 4\u221210+7=1 (min updated to 1); i=3 \u2192 9\u221215+7=1 (1 < 1 is false, no update); i=4 \u2192 16\u221220+7=3 (3 < 1 is false). Final min = 1. A (3) is the val at i=1 and i=4. C (7) is the constant term in the expression. D (1000) is the initial value, which would remain only if the condition never fired.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Which of the following best describes the role of the variable `total` in the code below?\n\n```java\nint total = 0;\nfor (int i = 1; i <= n; i++) {\n    total += i;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "It controls the number of times the loop executes."
+      },
+      {
+        "label": "B",
+        "text": "It holds the current value of the loop counter."
+      },
+      {
+        "label": "C",
+        "text": "It stores a running sum that is updated on each iteration."
+      },
+      {
+        "label": "D",
+        "text": "It tracks whether the loop body has executed at least once."
+      }
+    ],
+    "answer": "C",
+    "explanation": "total is initialized to 0 before the loop and grows by i on every iteration \u2014 this is the accumulator (running sum) pattern. The loop counter is i, not total, so A and B describe i's role. D describes a boolean-flag pattern, which total does not implement.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the output of the following code:\n\n```java\nint n = 4805;\nint count = 0;\nint sum = 0;\n\nwhile (n > 0)\n{\n    int digit = n % 10;\n    if (digit % 2 == 0)\n    {\n        count++;\n        sum += digit;\n    }\n    n /= 10;\n}\n\nSystem.out.print(count + \" \" + sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 12`"
+      },
+      {
+        "label": "B",
+        "text": "`3 12`"
+      },
+      {
+        "label": "C",
+        "text": "`3 17`"
+      },
+      {
+        "label": "D",
+        "text": "`2 8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The even digits processed are 0, 8, and 4, so count is 3 and sum is 12. Choice A ignores 0 as an even digit, C adds all digits, and D misses one even digit.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_9",
+    "stem": "Determine the values of `total`, `count`, and `avg` after the following code runs.\n\n```java\nint total = 0;\nint count = 0;\n\nfor (int i = 1; i <= 8; i++)\n{\n    if (i % 3 != 0)\n    {\n        total += i;\n        count++;\n    }\n}\n\ndouble avg = (double) total / count;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`total = 27, count = 6, avg = 4.5`"
+      },
+      {
+        "label": "B",
+        "text": "`total = 36, count = 8, avg = 4.5`"
+      },
+      {
+        "label": "C",
+        "text": "`total = 27, count = 6, avg = 4.0`"
+      },
+      {
+        "label": "D",
+        "text": "`total = 9, count = 2, avg = 4.5`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop adds 1, 2, 4, 5, 7, and 8, giving total 27 and count 6; casting total to double gives avg 4.5. Choice B includes every value, C reflects integer division, and D counts the multiples of 3 instead.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  }
+]

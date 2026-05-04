@@ -1,0 +1,25 @@
+# Dependencies
+**/node_modules/
+**/.venv/
+
+# Build output and caches
+**/.next/
+**/out/
+**/build/
+**/coverage/
+**/__pycache__/
+*.pyc
+*.tsbuildinfo
+
+# Local environment and OS files
+.DS_Store
+.env
+.env.*
+*.pem
+
+# SQLite runtime sidecars. The committed .db files have been checkpointed.
+*.db-shm
+*.db-wal
+
+# Source books are not redistributed in this share package.
+*.epub

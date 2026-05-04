@@ -1,0 +1,626 @@
+[
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Which of the following best describes an algorithm?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A tool that translates Java source code into executable bytecode"
+      },
+      {
+        "label": "B",
+        "text": "A finite, ordered sequence of steps for solving a problem, built from sequencing, selection, and repetition"
+      },
+      {
+        "label": "C",
+        "text": "A naming convention for variables and methods in a Java program"
+      },
+      {
+        "label": "D",
+        "text": "A special class that serves as the entry point for every Java program"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An algorithm is a finite, ordered sequence of steps that solves a problem, composed of sequencing, selection, and repetition. A describes a compiler, C describes naming conventions, and D describes the class containing the main method.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "A programmer sketches the steps of a solution in plain English\u2014without using any particular programming language\u2014before writing Java code. This planning artifact is best described as:",
+    "options": [
+      {
+        "label": "A",
+        "text": "Bytecode"
+      },
+      {
+        "label": "B",
+        "text": "Source code"
+      },
+      {
+        "label": "C",
+        "text": "Pseudocode"
+      },
+      {
+        "label": "D",
+        "text": "Javadoc"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Pseudocode is a simplified, language-agnostic sketch of an algorithm written before coding begins. Bytecode is the compiled output of Java programs. Source code is actual Java code. Javadoc is the formatted API documentation comment style.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Which of the following statements about the Java compiler is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The compiler executes Java programs directly on the hardware without any intermediate step."
+      },
+      {
+        "label": "B",
+        "text": "The compiler translates `.java` source files into `.class` bytecode files and reports syntax errors."
+      },
+      {
+        "label": "C",
+        "text": "The compiler detects and corrects logic errors before the program runs."
+      },
+      {
+        "label": "D",
+        "text": "The compiler converts `.class` bytecode into machine code at run time."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The Java compiler translates .java source files into .class bytecode and reports syntax errors. The JVM (not the compiler) executes programs. Logic errors cannot be detected by the compiler\u2014they require testing. Converting bytecode to machine code at run time is the role of the JVM, not the source-level compiler.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "A student writes a program that compiles and runs successfully but prints the wrong answer because integer division was used where floating-point division was intended. What type of error is this?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Syntax error"
+      },
+      {
+        "label": "B",
+        "text": "Logic error"
+      },
+      {
+        "label": "C",
+        "text": "Run-time error"
+      },
+      {
+        "label": "D",
+        "text": "Compilation error"
+      }
+    ],
+    "answer": "B",
+    "explanation": "A logic error causes incorrect output but does not prevent the program from compiling or running. Syntax errors (equivalent to compilation errors) prevent the program from compiling. Run-time errors crash the program during execution, such as throwing an exception.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Which of the following code segments contains a syntax error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nint x = 5;\nint y = x * 2;\nSystem.out.println(y);\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nint a = 10;\nint b = 0;\nSystem.out.println(a / b);\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint score = 100\nSystem.out.println(score);\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nint total = 5 + 3;\nSystem.out.println(\"total\");\n```"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Option C is missing a semicolon after `int score = 100`, which is a syntax error caught by the compiler. Option A is valid Java. Option B compiles but throws an ArithmeticException at run time when dividing by zero\u2014a run-time error, not a syntax error. Option D compiles and runs but prints the literal text \"total\" rather than the value 8\u2014a logic error, not a syntax error.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Determine the output of the following code:\n\n```java\nSystem.out.print(\"AP \");\nSystem.out.println(\"Computer\");\nSystem.out.print(\"Science\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`AP Computer Science` (all on one line)"
+      },
+      {
+        "label": "B",
+        "text": "`AP Computer` on one line, then `Science` on the next"
+      },
+      {
+        "label": "C",
+        "text": "`AP ` on one line, then `Computer` on the next, then `Science` on the next"
+      },
+      {
+        "label": "D",
+        "text": "`AP` on one line, then ` Computer Science` on the next"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`System.out.print` outputs text without advancing to a new line; `System.out.println` outputs text and then moves to a new line. \"AP \" and \"Computer\" appear together on the first line (the `println` supplies the newline after \"Computer\"), and \"Science\" appears alone on the second line with no trailing newline.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Determine the output of the following code:\n\n```java\nSystem.out.println(\"Value: \" + 2 + 3);\nSystem.out.println(2 + 3 + \" items\");\nSystem.out.println(2 + 3 + 0);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Value: 5` then `5 items` then `5`"
+      },
+      {
+        "label": "B",
+        "text": "`Value: 23` then `5 items` then `5`"
+      },
+      {
+        "label": "C",
+        "text": "`Value: 5` then `23 items` then `5`"
+      },
+      {
+        "label": "D",
+        "text": "`Value: 23` then `23 items` then `5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "String concatenation evaluates left-to-right. Line 1: `\"Value: \" + 2` produces `\"Value: 2\"` (String), so `+ 3` appends to give `\"Value: 23\"`. Line 2: `2 + 3` is int addition (giving 5) before the String `\" items\"`, producing `\"5 items\"`. Line 3: all operands are int, so numeric addition gives 5.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Which of the following is an example of a run-time error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Writing `publc class MyClass` instead of `public class MyClass`"
+      },
+      {
+        "label": "B",
+        "text": "Using `%` (modulo) instead of `/` (division) to compute a quotient"
+      },
+      {
+        "label": "C",
+        "text": "Accessing element `arr[arr.length]` in an array named `arr`"
+      },
+      {
+        "label": "D",
+        "text": "Declaring a local variable `int count` twice in the same block"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Accessing `arr[arr.length]` is out of bounds (valid indices are 0 through length \u2212 1) and throws an `ArrayIndexOutOfBoundsException` at run time. A is a syntax error caught by the compiler. B compiles and runs but produces wrong output\u2014a logic error. D is a compile-time error (duplicate variable declaration in the same scope).",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Which of the following exceptions is thrown when a Java program attempts to divide an `int` by zero?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`NullPointerException`"
+      },
+      {
+        "label": "B",
+        "text": "`IndexOutOfBoundsException`"
+      },
+      {
+        "label": "C",
+        "text": "`ArithmeticException`"
+      },
+      {
+        "label": "D",
+        "text": "`InputMismatchException`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Integer division by zero throws `ArithmeticException` at run time. `NullPointerException` occurs when a method is called on a `null` reference. `IndexOutOfBoundsException` occurs when an invalid array or list index is used. `InputMismatchException` occurs when a Scanner reads input that does not match the expected type.",
+    "difficulty": 2,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 10;\nSystem.out.println(x + \" = \" + x);\nSystem.out.println(\"\" + x + x);\nSystem.out.println(x + x + \"\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10 = 10` then `1010` then `20`"
+      },
+      {
+        "label": "B",
+        "text": "`10 = 10` then `20` then `20`"
+      },
+      {
+        "label": "C",
+        "text": "`10 = 10` then `1010` then `1010`"
+      },
+      {
+        "label": "D",
+        "text": "`20 = 20` then `1010` then `20`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Line 1: `x + \" = \"` converts 10 to `\"10\"` via String concatenation, then `+ x` appends giving `\"10 = 10\"`. Line 2: `\"\" + x` starts a String chain producing `\"10\"`, then `+ x` concatenates giving `\"1010\"`. Line 3: `x + x` is int addition giving 20 before the empty String, then `20 + \"\"` produces `\"20\"`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "A Java source file named `GameScore.java` contains only the class shown below. Which of the following statements about the file is correct?\n\n```java\npublic class GameScore\n{\n    public static void main(String[] args)\n    {\n        System.out.println(\"Score: 0\");\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The file could instead be named `gamescore.java` because Java file names are case-insensitive on all platforms."
+      },
+      {
+        "label": "B",
+        "text": "Compiling the file produces a file named `GameScore.class` containing bytecode that the JVM can execute."
+      },
+      {
+        "label": "C",
+        "text": "The compiler would report an error because `main` must be declared `private`, not `public`."
+      },
+      {
+        "label": "D",
+        "text": "The class name could be changed to `Game` without renaming the file, and the code would still compile."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Compiling a .java source file produces a .class bytecode file with the same base name (GameScore.class), which the JVM runs. Java file names are case-sensitive, so `gamescore.java` would not match the public class `GameScore`. The `main` method must be `public` for the JVM to invoke it. A public class name must match its source file name exactly, so renaming the class to `Game` without renaming the file would cause a compile error.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 7;\nint b = 2;\ndouble result = a / b;\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3.5`"
+      },
+      {
+        "label": "B",
+        "text": "`3.0`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "An `ArithmeticException` is thrown."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The expression `a / b` is integer division (both operands are `int`), producing 3 (the decimal portion is truncated). That integer 3 is then widened to `double` when stored in `result`, giving 3.0\u2014which `println` displays as `3.0`, not `3`. An `ArithmeticException` would require dividing by zero. To obtain 3.5, at least one operand must be promoted to `double` before the division, e.g., `(double)a / b`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Which of the following best describes an algorithm?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A programming language used to write software applications"
+      },
+      {
+        "label": "B",
+        "text": "A finite, ordered sequence of steps that solves a problem"
+      },
+      {
+        "label": "C",
+        "text": "A tool that translates Java source code into machine-readable bytecode"
+      },
+      {
+        "label": "D",
+        "text": "An integrated development environment for writing and running Java code"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An algorithm is defined as a finite, ordered sequence of steps \u2014 built from sequencing, selection, and repetition \u2014 that solves a problem. A programming language (A), a compiler (C), and an IDE (D) are all tools used to implement or execute algorithms, not algorithms themselves.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "A student writes a Java program that compiles successfully and runs to completion without crashing, but prints `50` when the correct answer is `5`. Which type of error does this program contain?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Syntax error"
+      },
+      {
+        "label": "B",
+        "text": "Run-time error"
+      },
+      {
+        "label": "C",
+        "text": "Compile-time error"
+      },
+      {
+        "label": "D",
+        "text": "Logic error"
+      }
+    ],
+    "answer": "D",
+    "explanation": "A logic error occurs when code compiles and runs without crashing but produces incorrect output \u2014 the program's reasoning is flawed. A syntax error (A) or compile-time error (C) would prevent the program from compiling at all. A run-time error (B) would cause the program to crash during execution.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Determine the output of the following code:\n\n```java\nSystem.out.print(\"Java\");\nSystem.out.println(\" is\");\nSystem.out.print(\"fun\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Java is` on the first line and `fun` on the second line"
+      },
+      {
+        "label": "B",
+        "text": "`Java isfun` all on one line"
+      },
+      {
+        "label": "C",
+        "text": "`Java`, ` is`, and `fun` each on their own separate line"
+      },
+      {
+        "label": "D",
+        "text": "`Java is fun` all on one line"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`System.out.print` outputs text without a trailing newline, while `System.out.println` appends a newline after the text. The first `print` outputs `Java` with no newline, the `println` appends ` is` then moves to a new line, and the final `print` outputs `fun` on that new line with no trailing newline. B is wrong because `println` does advance the line. C is wrong because `print` never advances the line on its own. D invents a space before `fun` that does not exist.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 5;\nint y = 3;\nSystem.out.println(\"sum: \" + x + y);\nSystem.out.println(\"sum: \" + (x + y));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`sum: 53` on the first line and `sum: 8` on the second line"
+      },
+      {
+        "label": "B",
+        "text": "`sum: 8` on the first line and `sum: 8` on the second line"
+      },
+      {
+        "label": "C",
+        "text": "`sum: 53` on the first line and `sum: 53` on the second line"
+      },
+      {
+        "label": "D",
+        "text": "`sum: 8` on the first line and `sum: 53` on the second line"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In the first `println`, `+` evaluates left-to-right: `\"sum: \" + x` produces the String `\"sum: 5\"`, then `\"sum: 5\" + y` concatenates \u2014 not adds \u2014 producing `\"sum: 53\"`. In the second `println`, the parentheses force integer addition first: `x + y` evaluates to `8`, then `\"sum: \" + 8` produces `\"sum: 8\"`. B incorrectly applies arithmetic to both lines; C and D swap which line gets which treatment.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Which of the following best describes an algorithm?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A programming language designed for writing object-oriented software"
+      },
+      {
+        "label": "B",
+        "text": "A tool that translates `.java` source files into `.class` bytecode files"
+      },
+      {
+        "label": "C",
+        "text": "A finite, ordered sequence of steps that solves a problem"
+      },
+      {
+        "label": "D",
+        "text": "A named memory location that stores a value that can change"
+      }
+    ],
+    "answer": "C",
+    "explanation": "An algorithm is a finite, ordered sequence of steps built from sequencing, selection, and repetition that solves a problem. A describes a programming language in general. B describes a compiler. D describes a variable.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "A student writes a Java program intended to print the average of two numbers. The program compiles successfully and runs without crashing, but prints `7` instead of the correct answer `7.5`. Which type of error does this represent?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Syntax error"
+      },
+      {
+        "label": "B",
+        "text": "Compiler error"
+      },
+      {
+        "label": "C",
+        "text": "Run-time error"
+      },
+      {
+        "label": "D",
+        "text": "Logic error"
+      }
+    ],
+    "answer": "D",
+    "explanation": "A logic error occurs when code compiles and runs but produces incorrect output. Because the program compiled (ruling out A and B, which are synonymous) and did not crash (ruling out C), the error is a logic error \u2014 the programmer likely used integer division instead of floating-point division.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Determine the output of the following code:\n\n```java\nSystem.out.print(\"AP \");\nSystem.out.println(\"CS\");\nSystem.out.print(\"A\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`AP CS A` (all on one line)"
+      },
+      {
+        "label": "B",
+        "text": "`AP` on one line, `CS` on the next, `A` on the third line"
+      },
+      {
+        "label": "C",
+        "text": "`AP CS` on one line, then `A` on the next line"
+      },
+      {
+        "label": "D",
+        "text": "`AP` on one line, then `CS A` on the next line"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`System.out.print` outputs its argument with no trailing newline, while `System.out.println` outputs its argument and then advances to a new line. The first call prints `AP ` (no newline), the second prints `CS` then moves to the next line, and the third prints `A` with no newline \u2014 producing `AP CS` on the first line and `A` on the second. A is wrong because `println` does advance the line. B is wrong because `print` does not add a newline. D splits incorrectly.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Which of the following correctly describes the role of the Java compiler?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It executes Java bytecode on the Java Virtual Machine at runtime."
+      },
+      {
+        "label": "B",
+        "text": "It provides an integrated editor, compiler, and debugger in a single tool."
+      },
+      {
+        "label": "C",
+        "text": "It translates `.java` source files into `.class` bytecode files and reports syntax errors."
+      },
+      {
+        "label": "D",
+        "text": "It automatically runs the `main` method when the program is launched."
+      }
+    ],
+    "answer": "C",
+    "explanation": "The compiler translates `.java` source code into `.class` bytecode and catches syntax errors that must be fixed before the program can run. A describes the JVM (Java Virtual Machine). B describes an IDE (Integrated Development Environment). D describes what the JVM does when the program is executed.",
+    "difficulty": 2,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 7;\nint b = 2;\nSystem.out.println(a / b);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3.5`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "An `ArithmeticException` is thrown at runtime."
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Because both `a` and `b` are declared as `int`, the `/` operator performs integer division, which truncates toward zero: `7 / 2` yields `3`. A is wrong because floating-point division only occurs when at least one operand is `double`. C is wrong because `ArithmeticException` is only thrown when dividing by zero; `b` is `2`, not `0`. D is wrong because Java truncates rather than rounds.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Determine the output of the following code:\n\n```java\nint score = 95;\nSystem.out.println(\"score\");\nSystem.out.println(\"score = \" + score);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`score` on one line, then `score = 95` on the next line"
+      },
+      {
+        "label": "B",
+        "text": "`95` on one line, then `score = 95` on the next line"
+      },
+      {
+        "label": "C",
+        "text": "`score` on one line, then `score = score` on the next line"
+      },
+      {
+        "label": "D",
+        "text": "`score` on one line, then `score = \"95\"` on the next line"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The first `println` receives the string literal `\"score\"`, so it prints the text `score` \u2014 the variable is not evaluated because it is inside double quotes. The second `println` concatenates the string `\"score = \"` with the `int` value `95`, producing `score = 95`. B is wrong because `\"score\"` is a literal, not a reference to the variable. C is wrong because the `+` operator converts `int` `95` to its textual form. D is wrong because Java omits surrounding quotation marks when converting an `int` to a string via concatenation.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Determine the output of the following program:\n\n```java\npublic class Demo\n{\n    public static void main(String[] args)\n    {\n        System.out.print(\"red\");\n        System.out.println(\"blue\");\n        System.out.print(\"green\");\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nredblue\ngreen\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nred\nblue\ngreen\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nredbluegreen\n```"
+      },
+      {
+        "label": "D",
+        "text": "A compiler error will occur."
+      }
+    ],
+    "answer": "A",
+    "explanation": "`print` does not move to a new line, so `red` and `blue` appear on the same line; `println` moves to the next line before `green` is printed. The other output choices treat `print` or `println` incorrectly, and the program is valid Java.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_1",
+    "stem": "Which of the following best describes the role of a compiler in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It translates Java source code into bytecode and reports syntax errors."
+      },
+      {
+        "label": "B",
+        "text": "It automatically fixes logic errors before the program runs."
+      },
+      {
+        "label": "C",
+        "text": "It is the first method that runs when a Java program starts."
+      },
+      {
+        "label": "D",
+        "text": "It is a simplified English description of an algorithm."
+      }
+    ],
+    "answer": "A",
+    "explanation": "A compiler translates `.java` source into `.class` bytecode and catches syntax errors. Logic errors are found by testing, `main` is the entry point, and a simplified English algorithm sketch is pseudocode.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  }
+]

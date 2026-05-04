@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Which of the following correctly describes a method's *signature* in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method name and its return type"
+      },
+      {
+        "label": "B",
+        "text": "The method name and the ordered list of its parameter types"
+      },
+      {
+        "label": "C",
+        "text": "The method name, return type, and parameter names"
+      },
+      {
+        "label": "D",
+        "text": "The access modifier, return type, and method name"
+      }
+    ],
+    "answer": "B",
+    "explanation": "A method signature consists of the method name plus the ordered list of parameter types only. Return type, parameter names, and access modifiers are not part of the signature \u2014 this is why two methods with the same name and identical parameter types but different return types cannot coexist in the same class.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Which of the following pairs of method headers in the same class correctly demonstrates method overloading?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public int compute(int x)` and `public double compute(int x)`"
+      },
+      {
+        "label": "B",
+        "text": "`public int compute(int x)` and `public int compute(int y)`"
+      },
+      {
+        "label": "C",
+        "text": "`public int compute(int x, double y)` and `public int compute(double x, int y)`"
+      },
+      {
+        "label": "D",
+        "text": "`public void display()` and `public int display()`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Overloading requires the same method name with a different parameter-type list. Option C is valid: `(int, double)` and `(double, int)` are distinct sequences of parameter types. Option A fails because the parameter lists are identical \u2014 return type alone does not create a new signature. Option B fails because parameter names (`x` vs `y`) are irrelevant to the signature; both are `(int)`. Option D fails for the same reason as A: both headers have empty parameter lists, differing only in return type.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "A class contains the following two method headers:\n\n```java\npublic int getValue(int n)\npublic double getValue(int n)\n```\n\nWhy will this code **not** compile?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Two methods in the same class may never share the same name."
+      },
+      {
+        "label": "B",
+        "text": "The parameter name `n` is used in both headers, causing a naming conflict."
+      },
+      {
+        "label": "C",
+        "text": "Java cannot distinguish these methods because they have identical parameter lists; return type alone does not determine the method signature."
+      },
+      {
+        "label": "D",
+        "text": "Both methods must be declared `static` in order to coexist in the same class."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Method overloading is resolved using the signature (name + parameter types), not the return type. Both headers have the signature `getValue(int)`, so the compiler sees a duplicate method and reports an error. Sharing a name is allowed only when the parameter-type lists differ. Parameter names and return types play no role in differentiating overloads.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Determine the output of the following code:\n\n```java\npublic static void doubleIt(int x) {\n    x = x * 2;\n}\n\npublic static void main(String[] args) {\n    int num = 5;\n    doubleIt(num);\n    System.out.println(num);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`0`"
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs because `doubleIt` does not return a value."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java uses call-by-value for primitive types: a copy of `num` (5) is placed into parameter `x`. Doubling `x` modifies only the local copy; `num` in `main` is unaffected and remains 5. Option D is incorrect because a `void` method is perfectly valid as a standalone statement.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Determine the output of the following code:\n\n```java\npublic static int add(int a, int b) {\n    return a + b;\n}\n\npublic static int add(int a, int b, int c) {\n    return add(a, b) + c;\n}\n\npublic static void main(String[] args) {\n    System.out.println(add(2, 3, 4));\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`9`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs because two methods share the name `add`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "`add(2, 3, 4)` matches the three-parameter overload, which computes `add(2, 3) + 4`. The two-parameter overload returns `2 + 3 = 5`, so the final result is `5 + 4 = 9`. Option A reflects evaluating only the inner call and ignoring `+ c`. Option C (7) would follow from incorrectly routing to `add(3, 4)`. Option D is wrong because the two methods have different parameter lists, making them valid overloads.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Which of the following statements about the `return` statement in a Java method is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A `void` method may not contain any `return` statement."
+      },
+      {
+        "label": "B",
+        "text": "Executing a `return` statement sends a value back to the caller and immediately exits the method."
+      },
+      {
+        "label": "C",
+        "text": "A method body may contain at most one `return` statement."
+      },
+      {
+        "label": "D",
+        "text": "A `return` statement exits only the current loop, not the entire method."
+      }
+    ],
+    "answer": "B",
+    "explanation": "A `return` statement both provides the return value (for non-void methods) and exits the method immediately; any code after it in the same block is unreachable. Option A is false: `void` methods may use a bare `return;` for early exit. Option C is false: a method may have multiple `return` statements in different conditional branches. Option D is false: `return` exits the entire method, not just an enclosing loop.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Consider the following method:\n\n```java\npublic static int mystery(int n) {\n    int result = 0;\n    while (n > 0) {\n        result += n % 10;\n        n /= 10;\n    }\n    return result;\n}\n```\n\nWhat value does `mystery(253)` return?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`8`"
+      },
+      {
+        "label": "D",
+        "text": "`25`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Tracing: n=253 \u2192 result+=3, n=25; n=25 \u2192 result+=5, n=2; n=2 \u2192 result+=2, n=0; loop ends, return 10. The method computes the digit sum (2+5+3=10). Option A (3) reflects stopping after one iteration. Option C (8) reflects stopping after two iterations (3+5). Option D (25) reflects confusing n's intermediate value with the return value.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "A class named `Calculator` is defined in a separate file and contains the following method:\n\n```java\npublic static double average(int a, int b) {\n    return (a + b) / 2.0;\n}\n```\n\nWhich of the following correctly calls this method and stores the result?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`double result = Calculator.average(10, 20);`"
+      },
+      {
+        "label": "B",
+        "text": "`double result = average.Calculator(10, 20);`"
+      },
+      {
+        "label": "C",
+        "text": "`double result = Calculator.average(10, 20, 30);`"
+      },
+      {
+        "label": "D",
+        "text": "`int result = Calculator.average(10, 20);`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Static methods are called with `ClassName.methodName(args)`. Option A uses correct syntax and stores the `double` return value in a matching `double` variable. Option B reverses the class name and method name. Option C passes three arguments to a two-parameter method. Option D attempts to store a `double` return value in an `int` variable without an explicit cast \u2014 a narrowing conversion that produces a compile error.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "In the following code, what is the correct term for the value `5` in the call `square(5)`?\n\n```java\npublic static int square(int n) {\n    return n * n;\n}\n\nint result = square(5);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Parameter"
+      },
+      {
+        "label": "B",
+        "text": "Return value"
+      },
+      {
+        "label": "C",
+        "text": "Argument"
+      },
+      {
+        "label": "D",
+        "text": "Local variable"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The value `5` supplied at the call site is an *argument*. The variable `n` declared in the method header is the *parameter*; Java copies the argument's value into the parameter when the call occurs. The return value is `25` (n*n). Local variables are declared inside the method body, not at the call site.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Determine the output of the following code:\n\n```java\npublic static String describe(int n) {\n    if (n > 0) {\n        return \"positive\";\n    }\n    return \"non-positive\";\n}\n\npublic static String describe(double n) {\n    return \"decimal\";\n}\n\npublic static void main(String[] args) {\n    System.out.println(describe(3));\n    System.out.println(describe(3.0));\n    System.out.println(describe(-1));\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "positive\ndecimal\nnon-positive"
+      },
+      {
+        "label": "B",
+        "text": "decimal\ndecimal\nnon-positive"
+      },
+      {
+        "label": "C",
+        "text": "positive\ndecimal\npositive"
+      },
+      {
+        "label": "D",
+        "text": "positive\npositive\nnon-positive"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`describe(3)`: the int literal `3` exactly matches `describe(int)`, and 3 > 0 \u2192 returns \"positive\". `describe(3.0)`: the double literal `3.0` exactly matches `describe(double)` \u2192 returns \"decimal\". `describe(-1)`: the int literal `-1` matches `describe(int)`, -1 > 0 is false \u2192 returns \"non-positive\". Option B wrongly routes `describe(3)` to the double overload. Option C incorrectly evaluates -1 > 0 as true. Option D wrongly routes `describe(3.0)` to the int overload.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Which of the following is a true statement about `void` methods in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A `void` method call can appear on the right side of an assignment statement."
+      },
+      {
+        "label": "B",
+        "text": "A `void` method must have at least one parameter."
+      },
+      {
+        "label": "C",
+        "text": "A `void` method is called as a standalone statement; its call cannot be used as an expression or assigned to a variable."
+      },
+      {
+        "label": "D",
+        "text": "A `void` method cannot contain a loop or conditional statement."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Because a `void` method produces no return value, its call cannot appear where a value is expected \u2014 it must be used as a standalone statement. Option A is false for the same reason: there is no value to assign. Option B is false: `void` methods may have zero parameters (e.g., `main`). Option D is false: any control structure may appear inside a `void` method body.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Consider the following method:\n\n```java\npublic static int multiply(int a, int b) {\n    return a * b;\n}\n```\n\nWhich of the following calls will cause a **compile-time error**?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`int x = multiply(3, 4);`"
+      },
+      {
+        "label": "B",
+        "text": "`double x = multiply(3, 4);`"
+      },
+      {
+        "label": "C",
+        "text": "`int x = multiply(3.0, 4);`"
+      },
+      {
+        "label": "D",
+        "text": "`System.out.println(multiply(3, 4));`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Passing the double literal `3.0` where an `int` parameter is required is a narrowing conversion, which Java does not perform implicitly \u2014 the compiler reports an error. Option A is valid: `int` result stored in an `int`. Option B is valid: the `int` return value is widened to `double`. Option D is valid: the `int` return value is passed directly to `println`.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Which of the following best describes a method's *signature* in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method's return type and name"
+      },
+      {
+        "label": "B",
+        "text": "The method's name and its ordered list of parameter types"
+      },
+      {
+        "label": "C",
+        "text": "The method's access modifier, return type, and name"
+      },
+      {
+        "label": "D",
+        "text": "The method's name, return type, and the names of its parameters"
+      }
+    ],
+    "answer": "B",
+    "explanation": "A method signature consists of the method name plus its ordered list of parameter types \u2014 nothing else. Return type, access modifiers, and parameter names are excluded. This is why two methods with the same name and parameter types but different return types are not valid overloads: their signatures are identical.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "A class already contains the following method:\n\n```java\npublic static double compute(int x)\n```\n\nWhich of the following method headers, if added to the **same class**, would cause a compile-time error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public static double compute(double x)`"
+      },
+      {
+        "label": "B",
+        "text": "`public static int compute(int x)`"
+      },
+      {
+        "label": "C",
+        "text": "`public static double compute(int x, int y)`"
+      },
+      {
+        "label": "D",
+        "text": "`public static void compute(double x, int y)`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`public static int compute(int x)` has the same signature as the existing method \u2014 same name and same single parameter type `int`. Changing only the return type from `double` to `int` does not create a valid overload; Java resolves overloads solely by parameter lists, not return types. Options A, C, and D each introduce a different parameter type or count and are therefore legal overloads.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Consider the following code:\n\n```java\npublic static void addFive(int n)\n{\n    n = n + 5;\n}\n\npublic static void main(String[] args)\n{\n    int score = 10;\n    addFive(score);\n    System.out.println(score);\n}\n```\n\nWhat is printed when this code is executed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`15`"
+      },
+      {
+        "label": "D",
+        "text": "Nothing is printed because `addFive` is a `void` method."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java passes primitives by value: the argument `score` is copied into the parameter `n`. Reassigning `n` inside `addFive` has no effect on `score` in `main`. After the call returns, `score` is still `10`. Option C is the classic call-by-reference trap. Option D is incorrect because `System.out.println(score)` is in `main`, not inside `addFive`, so it executes normally.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "A programmer writes the following method:\n\n```java\npublic static void doubleValue(int n)\n{\n    return n * 2;\n}\n```\n\nWhich of the following best describes the problem with this code?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Logic error: the expression `n * 2` does not correctly double the value."
+      },
+      {
+        "label": "B",
+        "text": "Run-time error: multiplying `n` by `2` can cause an `ArithmeticException`."
+      },
+      {
+        "label": "C",
+        "text": "Compile-time error: a `void` method cannot contain a `return` statement that returns a value."
+      },
+      {
+        "label": "D",
+        "text": "Compile-time error: the parameter must be declared `double` to allow a multiplication result to be returned."
+      }
+    ],
+    "answer": "C",
+    "explanation": "The method is declared `void`, meaning it returns nothing. A `return` statement that carries a value (`return n * 2;`) inside a `void` method is a compile-time error. To fix it, change the return type to `int`. Options A and B are wrong \u2014 the arithmetic is correct and multiplication never throws `ArithmeticException`. Option D is wrong \u2014 the parameter type is irrelevant to whether a value may be returned.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Consider the following code:\n\n```java\npublic static int swap(int a, int b)\n{\n    int temp = a;\n    a = b;\n    b = temp;\n    return a + b;\n}\n\npublic static void main(String[] args)\n{\n    int x = 4;\n    int y = 9;\n    int z = swap(x, y);\n    System.out.println(x + \" \" + y + \" \" + z);\n}\n```\n\nDetermine the values of `x`, `y`, and `z` after this code executes.",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 9, y = 4, z = 13`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 4, y = 9, z = 13`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 4, y = 9, z = 36`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 9, y = 4, z = 36`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Inside `swap`, `a` and `b` are local copies of `x` and `y` (call by value). The method swaps its own copies: `a` becomes 9, `b` becomes 4, and returns `9 + 4 = 13`. Because primitives are passed by value, `x` and `y` in `main` are never modified \u2014 they remain 4 and 9 respectively. `z` receives the return value 13. Option A reflects the trap of assuming the caller's variables are swapped. Option C gives `4 * 9 = 36`, an int-multiplication distractor. Option D combines both errors.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Which of the following best describes a method's **signature** in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method's name, its return type, and its parameter types"
+      },
+      {
+        "label": "B",
+        "text": "The method's name and return type only"
+      },
+      {
+        "label": "C",
+        "text": "The method's name and the ordered list of its parameter types"
+      },
+      {
+        "label": "D",
+        "text": "The method's access modifier and its name"
+      }
+    ],
+    "answer": "C",
+    "explanation": "A method signature consists only of the method name and the ordered list of parameter types. Return type (A, B) and access modifiers (D) are not part of the signature. This distinction matters for overloading: two methods that share a name but differ only in return type cannot coexist in the same class.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Given the method declaration `public static void printInfo(String label, int value)`, which of the following would be a valid **overloaded** version of `printInfo` in the same class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public static void printInfo(String name, int count)`"
+      },
+      {
+        "label": "B",
+        "text": "`public static int printInfo(String label, int value)`"
+      },
+      {
+        "label": "C",
+        "text": "`public static void printInfo(int value, String label)`"
+      },
+      {
+        "label": "D",
+        "text": "`public static void PrintInfo(String label, int value)`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Overloading requires a distinct parameter list. Option C swaps the parameter types to (int, String), producing a different signature \u2014 a valid overload. Option A only renames parameters, which does not change the signature. Option B differs only in return type, which is insufficient to overload. Option D capitalises the name, making it a different method entirely, not an overload of `printInfo`.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Which of the following method declarations could NOT appear in the same class as `public static int add(int a, int b)` without causing a compilation error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public static int add(int a, int b, int c)`"
+      },
+      {
+        "label": "B",
+        "text": "`public static double add(double a, double b)`"
+      },
+      {
+        "label": "C",
+        "text": "`public static double add(int x, int y)`"
+      },
+      {
+        "label": "D",
+        "text": "`public static int add(double a, int b)`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Option C has parameter types (int, int), identical to the original method. Only the return type differs, and return type alone does not distinguish signatures \u2014 this is a duplicate signature and a compile error. Options A, B, and D each introduce a different parameter count or different parameter types, so they are valid overloads.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Determine the output of the following code:\n\n```java\npublic static void addFive(int n) {\n    n += 5;\n}\n\npublic static void main(String[] args) {\n    int x = 10;\n    addFive(x);\n    System.out.println(x);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`15`"
+      },
+      {
+        "label": "D",
+        "text": "The program produces no output because `addFive` returns `void`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java passes primitive arguments by value. The argument `x` is copied into parameter `n`; modifying `n` inside `addFive` has no effect on `x` in `main`. After the call returns, `x` is still 10. Option C reflects the mistaken belief that `x` was updated through the call. Option D is wrong because `System.out.println(x)` in `main` executes regardless of `addFive`'s return type.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "A programmer needs a `static` method named `scale` that accepts a `double` value first and an `int` factor second, and returns a `double`. Which of the following is the correct header for this method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public static double scale(double value, int factor)`"
+      },
+      {
+        "label": "B",
+        "text": "`public static int scale(double value, int factor)`"
+      },
+      {
+        "label": "C",
+        "text": "`public static double scale(int factor, double value)`"
+      },
+      {
+        "label": "D",
+        "text": "`public void double scale(double value, int factor)`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The header must declare the return type `double`, the `static` modifier, the method name `scale`, and the parameters in the specified order: `double` first, `int` second. Option B uses the wrong return type (`int`). Option C reverses the parameter order, changing the signature. Option D lists two apparent return types (`void` and `double`), which is a syntax error.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Determine the output of the following code:\n\n```java\npublic static String build(String first, String second) {\n    return second + first;\n}\n\npublic static void main(String[] args) {\n    System.out.println(build(\"bye\", \"good\"));\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`byegood`"
+      },
+      {
+        "label": "B",
+        "text": "`goodbye`"
+      },
+      {
+        "label": "C",
+        "text": "`good`"
+      },
+      {
+        "label": "D",
+        "text": "`bye`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The call `build(\"bye\", \"good\")` binds `first` to `\"bye\"` and `second` to `\"good\"`. The method returns `second + first`, which evaluates to `\"good\" + \"bye\"` = `\"goodbye\"`. Option A reflects the common mistake of reading the concatenation as `first + second`. Options C and D return only one of the two arguments, ignoring the other.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "Consider the following method headers in the same class.\n\n```java\npublic static int calc(int a, double b)\npublic static int calc(double a, int b)\npublic static String calc(String a, int b)\n```\n\nWhich of the following method calls will cause a compiler error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`calc(3, 4.0);`"
+      },
+      {
+        "label": "B",
+        "text": "`calc(3.0, 4);`"
+      },
+      {
+        "label": "C",
+        "text": "`calc(\"3\", 4);`"
+      },
+      {
+        "label": "D",
+        "text": "`calc(3, 4);`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`calc(3, 4)` could match either `(int, double)` or `(double, int)` by widening one argument, so the call is ambiguous. The other calls each match one listed parameter list exactly.",
+    "difficulty": 3,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_9",
+    "stem": "A class already contains the following method.\n\n```java\npublic static int combine(int x, int y)\n{\n    return x + y;\n}\n```\n\nWhich of the following methods could be added to the same class without causing a compiler error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\npublic static double combine(int x, int y)\n{\n    return x + y + 0.5;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\npublic static int combine(int y, int x)\n{\n    return x + y;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\npublic static int combine(double x, int y)\n{\n    return (int) x + y;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\npublic static int combine(int x, int y)\n{\n    return x * y;\n}\n```"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Method signatures use the method name and ordered parameter types, so `(double, int)` is a different signature. A, B, and D all repeat the existing `combine(int, int)` signature; changing the return type, parameter names, or body does not overload a method.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  }
+]

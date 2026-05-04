@@ -1,0 +1,626 @@
+[
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Which of the following is equivalent to `!(p && q)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`!p && !q`"
+      },
+      {
+        "label": "B",
+        "text": "`!p || !q`"
+      },
+      {
+        "label": "C",
+        "text": "`p || q`"
+      },
+      {
+        "label": "D",
+        "text": "`p && q`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "De Morgan's first law states !(p && q) equals !p || !q \u2014 the negation distributes to each operand and the operator flips from && to ||. Option A incorrectly keeps && instead of flipping it. Options C and D omit the individual negations entirely.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Which of the following is equivalent to `!(p || q)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`!p || !q`"
+      },
+      {
+        "label": "B",
+        "text": "`p && q`"
+      },
+      {
+        "label": "C",
+        "text": "`!p && !q`"
+      },
+      {
+        "label": "D",
+        "text": "`!p || q`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "De Morgan's second law states !(p || q) equals !p && !q \u2014 each operand is negated and || flips to &&. Option A incorrectly keeps || instead of flipping it. Option B omits the individual negations. Option D only negates p, leaving q un-negated.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Consider the following code.\n\n```java\nint x = 5;\nint y = 0;\nif (y != 0 && x / y > 2) {\n    System.out.println(\"yes\");\n} else {\n    System.out.println(\"no\");\n}\n```\n\nWhat is printed when this code executes?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`yes`"
+      },
+      {
+        "label": "B",
+        "text": "`no`"
+      },
+      {
+        "label": "C",
+        "text": "An `ArithmeticException` is thrown at runtime."
+      },
+      {
+        "label": "D",
+        "text": "The code does not compile."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Because y equals 0, the left operand y != 0 evaluates to false. Short-circuit evaluation of && means the right operand x / y > 2 is never evaluated, so no division by zero occurs. The condition is false, so the else branch prints \"no\". Option C is the intended trap for students who do not know short-circuit evaluation prevents the division.",
+    "difficulty": 2,
+    "stem_pattern": "boolean_short_circuit"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Which of the following boolean expressions is equivalent to `!(x >= 10)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x > 10`"
+      },
+      {
+        "label": "B",
+        "text": "`x != 10`"
+      },
+      {
+        "label": "C",
+        "text": "`x <= 10`"
+      },
+      {
+        "label": "D",
+        "text": "`x < 10`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Negating >= flips it to <, so !(x >= 10) is x < 10. Option A is too restrictive \u2014 it excludes x = 10 itself but !(10 >= 10) is false, which is consistent, but x > 10 also excludes x = 9 which should be included. Wait \u2014 actually, !(x >= 10) is true when x < 10, confirming D. Option C (x <= 10) is the complement of x > 10, not x >= 10. Option B (x != 10) includes values like x = 11 where the original expression is false.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Consider the following code excerpt.\n\n```java\nString s1 = new String(\"hello\");\nString s2 = new String(\"hello\");\nSystem.out.println(s1 == s2);\nSystem.out.println(s1.equals(s2));\n```\n\nWhat output is produced?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true` then `true`"
+      },
+      {
+        "label": "B",
+        "text": "`false` then `false`"
+      },
+      {
+        "label": "C",
+        "text": "`true` then `false`"
+      },
+      {
+        "label": "D",
+        "text": "`false` then `true`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "s1 and s2 are created with new, so they are two distinct objects in memory. == compares references and returns false. The .equals() method compares character content, which is identical for both, so it returns true. Option A would be correct only if s2 = s1 (alias). Option B forgets that .equals() performs content comparison.",
+    "difficulty": 2,
+    "stem_pattern": "string_reference_equality"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Which of the following is equivalent to `!(x != y)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x > y`"
+      },
+      {
+        "label": "B",
+        "text": "`x < y`"
+      },
+      {
+        "label": "C",
+        "text": "`x != y`"
+      },
+      {
+        "label": "D",
+        "text": "`x == y`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The negation of the != operator is ==, so !(x != y) simplifies directly to x == y. Options A and B impose an ordering that is not implied by equality. Option C is the original un-negated expression.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Consider the following code.\n\n```java\nint n = 10;\nboolean flag = (n > 5) || (n++ > 100);\nSystem.out.println(n);\n```\n\nWhat value is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`9`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`11`"
+      },
+      {
+        "label": "D",
+        "text": "`101`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The left operand n > 5 evaluates to true. Because || short-circuits on the first true operand, the right side n++ > 100 is never evaluated, so the post-increment never executes and n remains 10. Option C is the short-circuit trap: students who assume both sides always evaluate would increment n and print 11.",
+    "difficulty": 3,
+    "stem_pattern": "boolean_short_circuit"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Which of the following is equivalent to `!(a > 5 || b < 3)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a <= 5 || b >= 3`"
+      },
+      {
+        "label": "B",
+        "text": "`a < 5 && b > 3`"
+      },
+      {
+        "label": "C",
+        "text": "`a <= 5 && b >= 3`"
+      },
+      {
+        "label": "D",
+        "text": "`a > 5 && b < 3`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Applying De Morgan's law: !(a > 5 || b < 3) = !(a > 5) && !(b < 3) = (a <= 5) && (b >= 3). Option A flips || to || instead of &&, violating De Morgan's. Option B uses strict inequalities (< and >) rather than the correct <= and >=. Option D negates the operator but not the individual relational operands.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Determine the value of `result` after the following code executes.\n\n```java\nint x = 8;\nint y = 3;\nboolean result = !(x > 5 && y > 5);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true`"
+      },
+      {
+        "label": "B",
+        "text": "`false`"
+      },
+      {
+        "label": "C",
+        "text": "A compile error occurs because `!` cannot be applied to a compound boolean expression."
+      },
+      {
+        "label": "D",
+        "text": "`true` only when both `x` and `y` exceed 5."
+      }
+    ],
+    "answer": "A",
+    "explanation": "x > 5 is true (8 > 5) and y > 5 is false (3 > 5). true && false = false. Applying ! to false gives true. Option B is wrong because negating false yields true. The ! operator applies to any boolean expression in Java, so Option C is incorrect. Option D describes the un-negated condition x > 5 && y > 5, not the negated one.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Consider the following code.\n\n```java\nboolean a = true;\nboolean b = false;\nboolean c = true;\nif (!(a && b) || c) {\n    System.out.println(\"X\");\n} else {\n    System.out.println(\"Y\");\n}\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`X`"
+      },
+      {
+        "label": "B",
+        "text": "`Y`"
+      },
+      {
+        "label": "C",
+        "text": "`XY`"
+      },
+      {
+        "label": "D",
+        "text": "Nothing is printed."
+      }
+    ],
+    "answer": "A",
+    "explanation": "a && b = true && false = false, so !(a && b) = !(false) = true. Because the left operand of || is already true, short-circuit evaluation makes the entire condition true without checking c. The if body executes and prints X. Option B would require the entire condition to be false, which it is not.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Consider the following code.\n\n```java\nint a = 4;\nint b = 7;\nboolean result1 = !(a < 5 && b > 6);\nboolean result2 = (a >= 5 || b <= 6);\nSystem.out.println(result1 == result2);\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true`"
+      },
+      {
+        "label": "B",
+        "text": "`false`"
+      },
+      {
+        "label": "C",
+        "text": "The output depends on the runtime values of `a` and `b`."
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs."
+      }
+    ],
+    "answer": "A",
+    "explanation": "a < 5 is true and b > 6 is true, so their AND is true, making result1 = !(true) = false. For result2: a >= 5 is false and b <= 6 is false, so false || false = false. result1 == result2 is false == false, which is true. By De Morgan's law, !(p && q) is always equivalent to !p || !q for all input combinations, confirming these two expressions are logically identical.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Which of the following expressions is equivalent to `!(p || q)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`!p || !q`"
+      },
+      {
+        "label": "B",
+        "text": "`!p && !q`"
+      },
+      {
+        "label": "C",
+        "text": "`p && q`"
+      },
+      {
+        "label": "D",
+        "text": "`!p || q`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "By De Morgan's law, !(p || q) is equivalent to !p && !q \u2014 both operands are negated AND the operator flips from || to &&. A keeps the || operator instead of flipping it to &&. C omits the negations entirely. D only negates p.",
+    "difficulty": 2,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Which of the following boolean expressions is equivalent to `!(score < 70)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`score < 70`"
+      },
+      {
+        "label": "B",
+        "text": "`score <= 70`"
+      },
+      {
+        "label": "C",
+        "text": "`score > 70`"
+      },
+      {
+        "label": "D",
+        "text": "`score >= 70`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Negating < flips it to >=, so !(score < 70) is equivalent to score >= 70. C uses strict > which would exclude the value 70 itself, and A and B are not negations of the original.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 4;\nint y = 10;\nboolean flag = !(x > 5 || y < 8);\nif (flag)\n{\n    System.out.print(\"pass\");\n}\nelse\n{\n    System.out.print(\"fail\");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`pass`"
+      },
+      {
+        "label": "B",
+        "text": "`fail`"
+      },
+      {
+        "label": "C",
+        "text": "`passpass`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs."
+      }
+    ],
+    "answer": "A",
+    "explanation": "x > 5 is false (4 > 5) and y < 8 is false (10 < 8), so the || expression is false. !(false) is true, so flag is true and \"pass\" is printed. B results from forgetting to apply the outer ! to the false sub-expression.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Determine the output of the following code:\n\n```java\nint n = 0;\nint k = 4;\nif (n == 0 || k / n > 1)\n{\n    System.out.print(\"yes\");\n}\nelse\n{\n    System.out.print(\"no\");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`yes`"
+      },
+      {
+        "label": "B",
+        "text": "`no`"
+      },
+      {
+        "label": "C",
+        "text": "An `ArithmeticException` is thrown because `k / n` divides by zero."
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because `n` is zero."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Because || short-circuits, Java evaluates n == 0 first; since that is true the entire condition is immediately true and k / n is never evaluated, so no ArithmeticException is thrown. The if-branch executes and prints \"yes\". C is the classic short-circuit distractor: the division is skipped, not executed.",
+    "difficulty": 3,
+    "stem_pattern": "boolean_short_circuit"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Determine the values of `x` and `y` after the following code runs:\n\n```java\nint a = 6;\nint b = 9;\nboolean x = !(a % 2 == 0 && b % 3 == 0);\nboolean y = (a % 2 != 0 || b % 3 != 0);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = true, y = true`"
+      },
+      {
+        "label": "B",
+        "text": "`x = false, y = false`"
+      },
+      {
+        "label": "C",
+        "text": "`x = true, y = false`"
+      },
+      {
+        "label": "D",
+        "text": "`x = false, y = true`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "6 % 2 == 0 is true and 9 % 3 == 0 is true, so (true && true) = true, and !(true) = false, giving x = false. For y: a % 2 != 0 is false and b % 3 != 0 is false, so false || false = false. Both x and y are false \u2014 by De Morgan's law the two expressions are logically equivalent. A results from forgetting to apply !, C and D result from computing one variable correctly but not the other.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Which of the following is equivalent to `!(p || q)` for all boolean values of `p` and `q`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`!p || !q`"
+      },
+      {
+        "label": "B",
+        "text": "`!p && !q`"
+      },
+      {
+        "label": "C",
+        "text": "`p || q`"
+      },
+      {
+        "label": "D",
+        "text": "`p && q`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "De Morgan's law states that !(p || q) equals !p && !q \u2014 negate each operand and flip || to &&. Option A incorrectly keeps || instead of switching to &&. Options C and D drop the negation entirely.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Which of the following is equivalent to `!(x >= 10 || y == 0)` for all `int` values of `x` and `y`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x < 10 || y != 0`"
+      },
+      {
+        "label": "B",
+        "text": "`x <= 10 && y != 0`"
+      },
+      {
+        "label": "C",
+        "text": "`x < 10 && y != 0`"
+      },
+      {
+        "label": "D",
+        "text": "`x > 10 && y != 0`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Applying De Morgan's: !(x >= 10 || y == 0) = !(x >= 10) && !(y == 0) = x < 10 && y != 0. Option A uses || instead of &&. Option B incorrectly negates x >= 10 as x <= 10 rather than x < 10. Option D uses x > 10, also an incorrect negation of >=.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "What is printed as a result of the following code?\n\n```java\nint x = 0;\nint y = 5;\nif (x != 0 && y / x > 1) {\n    System.out.println(\"big\");\n} else {\n    System.out.println(\"small\");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`big`"
+      },
+      {
+        "label": "B",
+        "text": "`small`"
+      },
+      {
+        "label": "C",
+        "text": "An `ArithmeticException` is thrown at runtime."
+      },
+      {
+        "label": "D",
+        "text": "Nothing is printed."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Because x is 0, the left operand x != 0 evaluates to false. The && operator short-circuits: the right operand y / x is never evaluated, so no ArithmeticException occurs. The overall condition is false and the else branch prints \"small\".",
+    "difficulty": 3,
+    "stem_pattern": "boolean_short_circuit"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "What is printed as a result of the following code?\n\n```java\nboolean a = true;\nboolean b = false;\nboolean c = !a || b;\nboolean d = !(a && !b);\nSystem.out.println(c + \" \" + d);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true true`"
+      },
+      {
+        "label": "B",
+        "text": "`true false`"
+      },
+      {
+        "label": "C",
+        "text": "`false true`"
+      },
+      {
+        "label": "D",
+        "text": "`false false`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "c = !true || false = false || false = false. d = !(true && !false) = !(true && true) = !true = false. Both variables are false, so the output is \"false false\". A common trap is computing d as !(true) && !(!false) = false && false = false \u2014 the same result here, but for the wrong reason; the correct path goes through the whole inner conjunction first.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "A programmer writes the following method intended to return `true` when `x` is **not** in the closed range `[low, high]`:\n\n```java\npublic static boolean outOfRange(int x, int low, int high) {\n    return !(x >= low) && !(x <= high);\n}\n```\n\nWhich of the following correctly identifies the bug?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The `&&` operator should be `||`."
+      },
+      {
+        "label": "B",
+        "text": "The `>=` comparison should be `>`."
+      },
+      {
+        "label": "C",
+        "text": "Both `!` operators should be removed."
+      },
+      {
+        "label": "D",
+        "text": "The entire `return` expression should be wrapped in an outer `!`."
+      }
+    ],
+    "answer": "A",
+    "explanation": "De Morgan's law gives !(x >= low && x <= high) = !(x >= low) || !(x <= high) = x < low || x > high. The code uses && instead of ||, requiring x to be simultaneously less than low AND greater than high \u2014 impossible \u2014 so the method always returns false. Replacing && with || fixes the bug.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "What is printed as a result of the following code?\n\n```java\nint count = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (!(i % 2 == 0 || i % 3 == 0)) {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The condition !(i % 2 == 0 || i % 3 == 0) is equivalent (by De Morgan's) to i % 2 != 0 && i % 3 != 0 \u2014 i.e., divisible by neither 2 nor 3. In 1\u201310 those values are 1, 5, and 7, so count reaches 3. Option A (2) omits 1; option C (4) incorrectly includes a value divisible by 2 or 3; option D (5) counts all odd numbers without applying the mod-3 filter.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Which of the following is equivalent to the boolean expression `!(score >= 70 && hasSubmitted)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`score < 70 || !hasSubmitted`"
+      },
+      {
+        "label": "B",
+        "text": "`score < 70 && !hasSubmitted`"
+      },
+      {
+        "label": "C",
+        "text": "`score <= 70 || !hasSubmitted`"
+      },
+      {
+        "label": "D",
+        "text": "`score >= 70 || hasSubmitted`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "By De Morgan's law, the negation of an AND becomes an OR, and `!(score >= 70)` is `score < 70`. Choices B, C, and D either keep the wrong operator, negate the relational test incorrectly, or fail to negate both parts.",
+    "difficulty": 2,
+    "stem_pattern": "boolean_short_circuit"
+  },
+  {
+    "topic_id": "u2_s2_6",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 6;\nint y = 3;\nboolean a = x % 2 == 0;\nboolean b = y > 4;\n\nif (!(a && b))\n{\n    x += 2;\n}\n\nif (!a || b)\n{\n    y += 5;\n}\nelse\n{\n    y--;\n}\n\nSystem.out.println(x + \" \" + y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6 8`"
+      },
+      {
+        "label": "B",
+        "text": "`8 2`"
+      },
+      {
+        "label": "C",
+        "text": "`8 8`"
+      },
+      {
+        "label": "D",
+        "text": "`6 2`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`a` is true and `b` is false, so `!(a && b)` is true and `x` becomes 8. The expression `!a || b` is false, so the else branch runs and `y` becomes 2.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  }
+]

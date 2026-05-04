@@ -1,0 +1,548 @@
+[
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "A `BankAccount` class needs a field `balance` of type `double` that stores a separate balance for each individual account. Which of the following is the proper declaration for this field?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public double balance;`"
+      },
+      {
+        "label": "B",
+        "text": "`private static double balance;`"
+      },
+      {
+        "label": "C",
+        "text": "`private double balance;`"
+      },
+      {
+        "label": "D",
+        "text": "`public static double balance;`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Instance variables should be `private` (encapsulation) and non-`static` so each object has its own copy. `public` exposes internal state to all classes; `static` would share one balance across every `BankAccount` object.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following method inside a class that declares `private int gradeLevel;`:\n\n```java\npublic void setGradeLevel(int gradeLevel)\n{\n    gradeLevel = gradeLevel;\n}\n```\n\nWhat is the result of calling this method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The instance variable `gradeLevel` is correctly updated to the parameter value."
+      },
+      {
+        "label": "B",
+        "text": "A compile-time error occurs because a parameter cannot share a name with an instance variable."
+      },
+      {
+        "label": "C",
+        "text": "The instance variable `gradeLevel` is not updated; the assignment stores the parameter into itself."
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown at runtime."
+      }
+    ],
+    "answer": "C",
+    "explanation": "The parameter `gradeLevel` shadows the instance variable `gradeLevel`. The statement `gradeLevel = gradeLevel` assigns the parameter to itself, leaving the field unchanged. Using `this.gradeLevel = gradeLevel;` would fix the bug.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following class:\n\n```java\npublic class Box\n{\n    private int width;\n    private boolean isEmpty;\n\n    public Box()\n    {\n        width = 5;\n    }\n\n    public boolean getIsEmpty() { return isEmpty; }\n    public int getWidth()      { return width;   }\n}\n```\n\nAfter `Box b = new Box();` executes, what are the values returned by `b.getWidth()` and `b.getIsEmpty()`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`getWidth()` returns `5`; `getIsEmpty()` returns `true`"
+      },
+      {
+        "label": "B",
+        "text": "`getWidth()` returns `5`; `getIsEmpty()` returns `false`"
+      },
+      {
+        "label": "C",
+        "text": "`getWidth()` returns `0`; `getIsEmpty()` returns `false`"
+      },
+      {
+        "label": "D",
+        "text": "`getWidth()` returns `0`; `getIsEmpty()` returns `true`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The constructor explicitly sets `width = 5`. The field `isEmpty` is never assigned, so it keeps its Java default value of `false` for `boolean`. Distractor A assumes uninitialized booleans default to `true`; distractors C and D assume the constructor never ran.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following class definition:\n\n```java\npublic class Counter\n{\n    private int count;\n\n    public static void resetAll()\n    {\n        count = 0;\n    }\n}\n```\n\nWhich of the following best describes what happens when this code is compiled?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The code compiles and runs without error."
+      },
+      {
+        "label": "B",
+        "text": "A compile-time error occurs because `count` is `private` and cannot be accessed inside a static method."
+      },
+      {
+        "label": "C",
+        "text": "A compile-time error occurs because a non-static variable cannot be referenced from a static context."
+      },
+      {
+        "label": "D",
+        "text": "A runtime error occurs because `count` is not initialized before it is assigned."
+      }
+    ],
+    "answer": "C",
+    "explanation": "`count` is an instance variable belonging to individual objects. A `static` method has no implicit `this` reference and therefore cannot access instance variables. The compiler reports \"non-static variable cannot be referenced from a static context.\" Distractor B confuses the cause \u2014 `private` is fine inside the same class; the issue is `static` context.",
+    "difficulty": 3,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Which of the following best describes encapsulation as it applies to a Java class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Breaking a large method into smaller helper methods to reduce complexity"
+      },
+      {
+        "label": "B",
+        "text": "Declaring instance variables `private` and providing `public` methods to access or modify them"
+      },
+      {
+        "label": "C",
+        "text": "Reusing the behavior of one class inside another class without rewriting it"
+      },
+      {
+        "label": "D",
+        "text": "Ensuring all methods depend only on their parameters and never on stored object state"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Encapsulation hides internal data (`private` fields) and controls access through `public` methods, protecting object state from unintended outside modification. Choice A describes method decomposition, C describes code reuse, and D describes stateless utility methods.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following class:\n\n```java\npublic class Point\n{\n    private int x;\n    private int y;\n\n    public Point(int x, int y)\n    {\n        this.x = x;\n        this.y = y;\n    }\n\n    public void shift(int x)\n    {\n        this.x = this.x + x;\n    }\n\n    public int getX() { return x; }\n}\n```\n\nWhat is printed by the following code?\n\n```java\nPoint p = new Point(3, 4);\np.shift(10);\nSystem.out.println(p.getX());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`13`"
+      },
+      {
+        "label": "D",
+        "text": "`14`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The constructor sets the instance field `this.x = 3`. In `shift(10)`, `this.x = this.x + x = 3 + 10 = 13`. `getX()` returns the instance field, which is 13. Distractor A ignores the shift entirely; B returns only the parameter; D adds `y` instead of `x`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "A programmer wants to write a setter for the `name` field in the `Person` class. Which of the following implementations contains a bug that prevents the instance variable from being updated?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\npublic void setName(String newName)\n{\n    name = newName;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\npublic void setName(String name)\n{\n    this.name = name;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\npublic void setName(String name)\n{\n    name = name;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\npublic void setName(String n)\n{\n    name = n;\n}\n```"
+      }
+    ],
+    "answer": "C",
+    "explanation": "In option C, the parameter `name` shadows the instance variable `name`. The assignment `name = name` stores the parameter into itself and never touches the field. Options A and D use a distinct parameter name that does not shadow the field; option B correctly uses `this.name` to disambiguate.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following class:\n\n```java\npublic class Widget\n{\n    private static int count = 0;\n    private int id;\n\n    public Widget()\n    {\n        count++;\n        id = count;\n    }\n\n    public int getId()           { return id;    }\n    public static int getCount() { return count; }\n}\n```\n\nWhat is printed by the following code?\n\n```java\nWidget w1 = new Widget();\nWidget w2 = new Widget();\nWidget w3 = new Widget();\nSystem.out.println(w1.getId() + \" \" + w3.getId() + \" \" + Widget.getCount());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 3 2`"
+      },
+      {
+        "label": "B",
+        "text": "`1 3 3`"
+      },
+      {
+        "label": "C",
+        "text": "`3 3 3`"
+      },
+      {
+        "label": "D",
+        "text": "`1 1 3`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Each constructor call increments the shared static `count` first, then assigns `id = count`. So w1.id=1, w2.id=2, w3.id=3, and count=3. The output is `1 3 3`. Distractor C mistakenly assumes `id` reflects the final value of `count` for all objects; D assumes `count` stops incrementing after the first object.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following class:\n\n```java\npublic class Circle\n{\n    private double radius;\n\n    public Circle(double radius)\n    {\n        this.radius = radius;\n    }\n\n    public boolean isBiggerThan(Circle other)\n    {\n        return this.radius > other.radius;\n    }\n}\n```\n\nWhich of the following statements about the `isBiggerThan` method is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The code will not compile because `radius` is `private` and cannot be accessed via a parameter reference."
+      },
+      {
+        "label": "B",
+        "text": "The code compiles correctly because a method may access the `private` fields of another object of the same class."
+      },
+      {
+        "label": "C",
+        "text": "The code compiles, but `other.radius` always evaluates to `0.0` because private fields of a parameter are inaccessible at runtime."
+      },
+      {
+        "label": "D",
+        "text": "The code will not compile because `other.radius` must be accessed through a public getter method."
+      }
+    ],
+    "answer": "B",
+    "explanation": "In Java, access control operates at the class level, not the object level. Any method declared inside `Circle` may directly read or write the `private` fields of any `Circle` object, including one passed as a parameter. This enables efficient comparison methods without requiring getter calls.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following class:\n\n```java\npublic class Temp\n{\n    private int val;\n\n    public Temp(int val)\n    {\n        this.val = val;\n    }\n\n    public void adjust(int val)\n    {\n        val = val * 2;\n        this.val = this.val + val;\n    }\n\n    public int getVal() { return val; }\n}\n```\n\nWhat is printed by the following code?\n\n```java\nTemp t = new Temp(10);\nt.adjust(3);\nSystem.out.println(t.getVal());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`13`"
+      },
+      {
+        "label": "B",
+        "text": "`16`"
+      },
+      {
+        "label": "C",
+        "text": "`20`"
+      },
+      {
+        "label": "D",
+        "text": "`26`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The constructor sets the instance field `this.val = 10`. In `adjust(3)`, the parameter `val` starts as 3; after `val = val * 2`, the parameter becomes 6 (the instance field is not touched yet). Then `this.val = this.val + val = 10 + 6 = 16`. Distractor A ignores the doubling (10+3). Distractor C doubles the instance field instead (10*2). Distractor D doubles the instance field and then adds the doubled parameter (20+6).",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following class:\n\n```java\npublic class Counter {\n    private int count;\n\n    public Counter(int count) {\n        count = count;\n    }\n\n    public int getCount() {\n        return count;\n    }\n}\n```\n\nWhat value does `new Counter(5).getCount()` return?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`0`"
+      },
+      {
+        "label": "C",
+        "text": "A compile-time error occurs"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown at runtime"
+      }
+    ],
+    "answer": "B",
+    "explanation": "In the constructor body, `count = count` assigns the parameter `count` to itself \u2014 neither side refers to the instance variable, which is shadowed. The instance variable `count` is never set and retains its default `int` value of 0. The fix is `this.count = count;`. Option A is wrong because the instance field was never assigned. Options C and D are wrong because the code compiles and runs without error.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following class definition:\n\n```java\npublic class Box {\n    private int size;\n\n    public Box(int s) {\n        size = s;\n    }\n\n    public static int doubleSize() {\n        return size * 2;\n    }\n}\n```\n\nWhat is the result of attempting to compile this class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The class compiles; `doubleSize()` returns twice the current value of `size`"
+      },
+      {
+        "label": "B",
+        "text": "A compile-time error occurs because a static method cannot directly reference an instance variable"
+      },
+      {
+        "label": "C",
+        "text": "The class compiles; `doubleSize()` always returns `0`"
+      },
+      {
+        "label": "D",
+        "text": "A runtime exception is thrown the first time `doubleSize()` is called"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Static methods belong to the class and have no `this` reference, so they cannot access instance variables. Referencing `size` inside `doubleSize()` produces the compile-time error \"non-static variable size cannot be referenced from a static context.\" Options A and C are wrong because compilation fails. Option D is wrong because the error is caught at compile time, not runtime.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following code segment inside a `main` method:\n\n```java\nint x = 10;\nif (x > 5) {\n    int y = 20;\n}\nSystem.out.println(y);\n```\n\nWhat is the result of attempting to compile and run this code?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`20` is printed"
+      },
+      {
+        "label": "B",
+        "text": "`0` is printed"
+      },
+      {
+        "label": "C",
+        "text": "A compile-time error occurs because `y` is not in scope at the `println` call"
+      },
+      {
+        "label": "D",
+        "text": "A runtime exception is thrown because `y` has not been initialized"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The variable `y` is declared inside the `if` block; its scope ends when that block closes. Referencing `y` after the closing brace causes a compile-time error. Option A is wrong because `y` is out of scope. Option B is wrong because local variables have no default values (defaults apply only to instance fields). Option D is wrong because the compiler catches the error before the code ever runs.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following class:\n\n```java\npublic class Point {\n    private int x;\n    private int y;\n\n    public Point(int x, int y) {\n        this.x = x;\n        this.y = y;\n    }\n\n    public boolean sameLocation(Point other) {\n        return other.x == this.x && other.y == this.y;\n    }\n}\n```\n\nWhich of the following best describes the `sameLocation` method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It does not compile because `other.x` and `other.y` are `private` and cannot be accessed outside their own object"
+      },
+      {
+        "label": "B",
+        "text": "It compiles correctly because a method may access `private` fields of a parameter whose declared type is the same class"
+      },
+      {
+        "label": "C",
+        "text": "It does not compile because `this.x` and `this.y` cannot be referenced inside an instance method"
+      },
+      {
+        "label": "D",
+        "text": "It compiles correctly only if `x` and `y` are declared `public`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "In Java, access control is enforced at the class level, not the object level. Any method inside `Point` may read or write the `private` fields of any `Point` object, including one received as a parameter. Option A is incorrect because the access restriction does not apply to same-class parameters. Option C is incorrect because `this` is perfectly valid in instance methods. Option D is incorrect because no visibility change is needed.",
+    "difficulty": 3,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following class and code segment:\n\n```java\npublic class Rectangle {\n    private int width;\n    private int height;\n\n    public Rectangle(int width, int height) {\n        width = width;\n        height = height;\n    }\n\n    public int getArea() {\n        return width * height;\n    }\n}\n```\n\n```java\nRectangle r = new Rectangle(4, 6);\nSystem.out.println(r.getArea());\n```\n\nWhat is printed when this code is executed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`24`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Inside the constructor, the parameter names `width` and `height` shadow the instance variables of the same names. The assignments `width = width` and `height = height` each assign a parameter to itself, leaving the instance variables at their default `int` value of 0. Thus `getArea()` returns 0 \u00d7 0 = 0. Option C (24) is the result that would be produced if `this.width = width` and `this.height = height` had been written. Option D is wrong because the code compiles without error.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Which of the following best describes **shadowing** as it applies to Java instance variables?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A `private` instance variable cannot be read or written by any method outside the class."
+      },
+      {
+        "label": "B",
+        "text": "A local variable or parameter that has the same name as an instance variable hides the instance variable within that method's scope."
+      },
+      {
+        "label": "C",
+        "text": "A `static` variable is hidden from instance methods when both share the same name."
+      },
+      {
+        "label": "D",
+        "text": "An instance variable is set to its default value when it is declared without an initializer."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Shadowing occurs when a local variable or parameter shares a name with an instance variable; inside that method body, the name resolves to the local, not the field. A describes encapsulation/access control. C confuses the static-vs-instance distinction with shadowing. D describes default initialization, an unrelated concept.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following method inside a class.\n\n```java\npublic String classify(int n) {\n    if (n > 0) {\n        String label = \"positive\";\n    } else {\n        String label = \"non-positive\";\n    }\n    return label;\n}\n```\n\nWhich of the following best describes the problem with this method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A `String` variable cannot be declared inside an `if` or `else` block."
+      },
+      {
+        "label": "B",
+        "text": "The variable `label` is out of scope at the `return` statement because it was declared inside the `if`/`else` blocks."
+      },
+      {
+        "label": "C",
+        "text": "The method should be declared `void` because the return value depends on a conditional."
+      },
+      {
+        "label": "D",
+        "text": "The two declarations of `label` cause a duplicate-variable compile error."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Local variables are scoped to the block in which they are declared. Both declarations of `label` exist only inside their respective `if` and `else` blocks and are invisible at the `return` statement, causing a compile error. The fix is to declare `String label;` before the `if`/`else`. A is false\u2014any type may be declared inside a block. C is wrong\u2014returning a value from a conditional branch is perfectly valid. D is wrong\u2014each `label` is in its own separate block, so there is no duplicate.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following class.\n\n```java\npublic class Student {\n    private String name;\n    private int gradeLevel;\n\n    public Student(String n, int g) {\n        name = n;\n        gradeLevel = g;\n    }\n\n    public boolean sameGrade(Student other) {\n        return gradeLevel == other.gradeLevel;\n    }\n\n    public String getName() { return name; }\n}\n```\n\nWhich of the following statements about the `sameGrade` method is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method will not compile because `other.gradeLevel` accesses a `private` field from outside the declaring object."
+      },
+      {
+        "label": "B",
+        "text": "The method compiles and works correctly because a method may access `private` fields of any object whose declared type is the same class."
+      },
+      {
+        "label": "C",
+        "text": "The method compiles but `other.gradeLevel` always evaluates to `0` at runtime because the field is `private`."
+      },
+      {
+        "label": "D",
+        "text": "The method will not compile because `gradeLevel` must be written as `this.gradeLevel` to avoid ambiguity with `other.gradeLevel`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java's access rules are class-level, not object-level: any method inside `Student` may read or write the `private` fields of *any* `Student` object, not just `this`. So `other.gradeLevel` is valid. A is wrong for this reason. C is wrong\u2014`private` affects who may access a field, not its value. D is wrong\u2014`this.gradeLevel` is optional when there is no name ambiguity.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Consider the following class.\n\n```java\npublic class Tracker {\n    private int id;\n    private static int count = 0;\n\n    public Tracker(int id) {\n        this.id = id;\n        count++;\n    }\n\n    public static int getId() {\n        return id;\n    }\n\n    public static int getCount() {\n        return count;\n    }\n}\n```\n\nWhich of the following best describes the error in this class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`count` cannot be incremented inside a constructor because it is `static`."
+      },
+      {
+        "label": "B",
+        "text": "`getId()` is a `static` method that attempts to return the non-static instance variable `id`."
+      },
+      {
+        "label": "C",
+        "text": "`getCount()` must be declared as an instance method in order to return a `static` variable."
+      },
+      {
+        "label": "D",
+        "text": "`this.id` cannot appear in a constructor; `this` is only valid inside regular instance methods."
+      }
+    ],
+    "answer": "B",
+    "explanation": "`getId()` is declared `static`, so it belongs to the class and has no implicit `this` reference. Accessing the non-static field `id` inside it produces the compile error 'non-static variable id cannot be referenced from a static context.' A is wrong\u2014constructors may freely read and modify static variables. C is wrong\u2014static methods can return static variables without issue. D is wrong\u2014`this` is valid in any instance context, including constructors.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "Determine the output of the following code.\n\n```java\npublic class Counter\n{\n    private int count;\n\n    public Counter(int count)\n    {\n        count = count;\n    }\n\n    public void add(int count)\n    {\n        this.count += count;\n    }\n\n    public int getCount()\n    {\n        return count;\n    }\n}\n\nCounter c = new Counter(5);\nc.add(3);\nSystem.out.println(c.getCount());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The constructor parameter shadows the instance variable, so `count = count;` leaves the field at its default value of 0. The `add` method correctly uses `this.count`, so the field becomes 3.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_8",
+    "stem": "A `Book` class should store its title so that outside code cannot directly change the title field. Which declaration best follows encapsulation?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public String title;`"
+      },
+      {
+        "label": "B",
+        "text": "`private String title;`"
+      },
+      {
+        "label": "C",
+        "text": "`public static String title;`"
+      },
+      {
+        "label": "D",
+        "text": "`private int title;`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An instance variable that stores object state should usually be `private`, and a title should be stored as a `String`. The public choices expose the field directly, and `int` is the wrong type for a title.",
+    "difficulty": 1,
+    "stem_pattern": "oop_design_and_access"
+  }
+]

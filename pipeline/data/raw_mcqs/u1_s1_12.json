@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "Which of the following best describes an **object** in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A blueprint that defines the attributes and behaviors shared by all things of a given category"
+      },
+      {
+        "label": "B",
+        "text": "A specific instance of a class that has its own copy of the instance variable values"
+      },
+      {
+        "label": "C",
+        "text": "A static method that belongs to a class rather than to any individual instance"
+      },
+      {
+        "label": "D",
+        "text": "A keyword used to declare a new variable of a primitive type"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An object is a specific instance created from a class; each object holds its own copy of the instance variables defined in that class. A describes a class (the blueprint), not an object. C describes a static method. D describes syntax, not an object.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "A **constructor** in Java is best described as which of the following?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A static method automatically called every time a class is referenced"
+      },
+      {
+        "label": "B",
+        "text": "A special method with the same name as its class and no return type, invoked by `new` to initialize an object"
+      },
+      {
+        "label": "C",
+        "text": "An accessor method that returns the value of a private instance variable"
+      },
+      {
+        "label": "D",
+        "text": "A `void` method that modifies instance variables without returning a value"
+      }
+    ],
+    "answer": "B",
+    "explanation": "A constructor shares the class name, declares no return type (not even void), and is triggered by `new` to allocate and initialize an object. A describes no real Java mechanism. C describes an accessor/getter method. D describes a void mutator method.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "Which of the following accurately describes what happens when the `new` keyword is used in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It declares a primitive variable and assigns it the default value zero"
+      },
+      {
+        "label": "B",
+        "text": "It imports a class from a package so its methods become available"
+      },
+      {
+        "label": "C",
+        "text": "It allocates memory for a new object, invokes the constructor, and evaluates to a reference to that object"
+      },
+      {
+        "label": "D",
+        "text": "It creates a copy of an existing object by duplicating all of its field values"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`new` allocates heap memory, runs the matching constructor to initialize fields, and returns a reference to the new object. Primitives are not created with `new`. `import` handles packages. Copying object state requires explicit code, not `new` alone.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "A class named `Circle` has an instance method `getRadius()` that returns a `double`. An object is created with `Circle c = new Circle(5.0);`. Which of the following correctly calls `getRadius()` on the object `c`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Circle.getRadius()`"
+      },
+      {
+        "label": "B",
+        "text": "`c.getRadius()`"
+      },
+      {
+        "label": "C",
+        "text": "`getRadius(c)`"
+      },
+      {
+        "label": "D",
+        "text": "`Circle.c.getRadius()`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Instance methods are invoked using the dot operator on an object reference: `c.getRadius()`. `Circle.getRadius()` would be valid only if the method were static. `getRadius(c)` is not valid Java syntax for calling a method on an object. `Circle.c.getRadius()` is also syntactically invalid.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "What is printed by the following code?\n\n```java\nString s = \"Computer\";\nSystem.out.println(s.length());\nSystem.out.println(s.substring(0, 4));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`8` then `Comp`"
+      },
+      {
+        "label": "B",
+        "text": "`8` then `Compu`"
+      },
+      {
+        "label": "C",
+        "text": "`7` then `Comp`"
+      },
+      {
+        "label": "D",
+        "text": "`8` then `ompu`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "\"Computer\" has 8 characters (indices 0\u20137), so `length()` returns 8. `substring(0, 4)` returns characters at indices 0, 1, 2, 3 \u2014 \"Comp\" \u2014 because the second argument is an exclusive upper bound. B results from mentally using `substring(0, 5)`. C miscounts the length as 7. D would come from `substring(1, 5)`.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "Consider the following code segment:\n\n```java\nString word = \"apple\";\nword.substring(1, 4);\nSystem.out.println(word);\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`ppl`"
+      },
+      {
+        "label": "B",
+        "text": "`apple`"
+      },
+      {
+        "label": "C",
+        "text": "`appl`"
+      },
+      {
+        "label": "D",
+        "text": "Nothing; a `NullPointerException` is thrown"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Strings in Java are immutable. `substring(1, 4)` returns a new String \"ppl\" but does not modify `word`. Because the return value is not stored, `word` still references \"apple\". A is the value that would print if the result of `substring` had been stored and printed instead. C is a common off-by-one error.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "What is printed by the following code?\n\n```java\nString p = \"hello\";\nString q = new String(\"hello\");\nif (p == q)\n    System.out.println(\"same reference\");\nelse\n    System.out.println(\"different reference\");\nif (p.equals(q))\n    System.out.println(\"equal content\");\nelse\n    System.out.println(\"different content\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`same reference` then `equal content`"
+      },
+      {
+        "label": "B",
+        "text": "`same reference` then `different content`"
+      },
+      {
+        "label": "C",
+        "text": "`different reference` then `equal content`"
+      },
+      {
+        "label": "D",
+        "text": "`different reference` then `different content`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`p` refers to the string literal \"hello\" held in the pool; `q` refers to a separately allocated object created with `new String(...)`, so `p == q` is `false` and \"different reference\" prints. Both variables hold identical character sequences, so `p.equals(q)` is `true` and \"equal content\" prints. Using `==` on String objects tests reference identity, not character content.",
+    "difficulty": 3,
+    "stem_pattern": "string_reference_equality"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "What are the values of `x` and `result` after the following code runs?\n\n```java\nString str = \"programming\";\nint x = str.indexOf(\"ram\");\nString result = str.substring(x + 1, x + 4);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 4`, `result = \"amm\"`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 3`, `result = \"ram\"`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 4`, `result = \"ramm\"`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 1`, `result = \"rog\"`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In \"programming\" (p=0,r=1,o=2,g=3,r=4,a=5,m=6,m=7,i=8,n=9,g=10), the substring \"ram\" first occurs at index 4, so `x = 4`. Then `substring(5, 8)` returns characters at indices 5, 6, 7: 'a','m','m' \u2192 \"amm\". B places \"ram\" at index 3 (incorrect). C adds an extra character due to an off-by-one error in the substring bounds. D confuses `indexOf(\"ram\")` with `indexOf(\"r\")`, which finds the first 'r' at index 1.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "A student writes the following code intending to print the length of a String:\n\n```java\nString name = null;\nSystem.out.println(name.length());\n```\n\nWhich of the following best describes what happens when this code runs?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0` is printed, because a null String has zero characters"
+      },
+      {
+        "label": "B",
+        "text": "`null` is printed"
+      },
+      {
+        "label": "C",
+        "text": "A compile-time error is reported, because `null` is not a valid value for a String variable"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown at run time"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`name` holds `null`, meaning it does not reference any String object. Calling `.length()` on a null reference throws a `NullPointerException` at run time. The code compiles successfully because `null` is a legal value for any reference variable, so C is wrong. A null reference has no length method to return 0, nor does it print the text \"null\".",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "Consider the following code:\n\n```java\nString a = \"cat\";\nString b = a;\nb = \"dog\";\nSystem.out.println(a);\nSystem.out.println(b);\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`cat` then `cat`"
+      },
+      {
+        "label": "B",
+        "text": "`dog` then `dog`"
+      },
+      {
+        "label": "C",
+        "text": "`cat` then `dog`"
+      },
+      {
+        "label": "D",
+        "text": "`dog` then `cat`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "After `String b = a`, both `a` and `b` reference the same String object \"cat\". The statement `b = \"dog\"` changes only which object `b` references; it does not modify `a` or mutate the String \"cat\" (Strings are immutable). So `a` still references \"cat\" and prints \"cat\", while `b` now references \"dog\" and prints \"dog\".",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "What is printed by the following code?\n\n```java\nString s = \"abcde\";\nString t = s.substring(1, 4);\nString u = t + s.substring(3);\nSystem.out.println(u.length());\nSystem.out.println(u);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4` then `bcde`"
+      },
+      {
+        "label": "B",
+        "text": "`3` then `bcd`"
+      },
+      {
+        "label": "C",
+        "text": "`6` then `bcdcde`"
+      },
+      {
+        "label": "D",
+        "text": "`5` then `abcde`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "s = \"abcde\" (a=0,b=1,c=2,d=3,e=4). `t = s.substring(1, 4)` returns characters at indices 1,2,3 \u2192 \"bcd\". `s.substring(3)` returns characters from index 3 to the end \u2192 \"de\". `u = \"bcd\" + \"de\" = \"bcde\"`, which has length 4. B forgets to concatenate the second part. C results from an off-by-one error assuming `s.substring(3)` = \"cde\". D confuses `u` with the original string `s`.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "A student is designing a `BankAccount` class that stores a balance and supports deposits. Which of the following designs **best** follows the principle of encapsulation?\n\n**Design A:**\n```java\npublic class BankAccount {\n    public double balance;\n    public void deposit(double amount) { balance += amount; }\n}\n```\n\n**Design B:**\n```java\npublic class BankAccount {\n    private double balance;\n    public void deposit(double amount) { balance += amount; }\n    public double getBalance() { return balance; }\n}\n```\n\n**Design C:**\n```java\npublic class BankAccount {\n    private double balance;\n    private void deposit(double amount) { balance += amount; }\n    private double getBalance() { return balance; }\n}\n```\n\n**Design D:**\n```java\npublic class BankAccount {\n    public static double balance;\n    public static void deposit(double amount) { balance += amount; }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Design A, because making `balance` public gives direct access without needing a method call"
+      },
+      {
+        "label": "B",
+        "text": "Design B, because `balance` is private and access is controlled through public methods"
+      },
+      {
+        "label": "C",
+        "text": "Design C, because declaring all members private provides the strongest protection"
+      },
+      {
+        "label": "D",
+        "text": "Design D, because static methods can be called without creating an object"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Encapsulation hides internal state (private field) behind a controlled public interface (public methods). Design B achieves this correctly. Design A violates encapsulation by making the field public, allowing any code to modify `balance` directly. Design C makes the methods private, rendering the class unusable from outside. Design D uses a static field shared across all instances, which breaks per-object state and is not encapsulation.",
+    "difficulty": 4,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "Which of the following best describes the relationship between a class and an object in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A class is a specific instance of an object."
+      },
+      {
+        "label": "B",
+        "text": "An object is a blueprint that defines the attributes and behaviors shared by all classes."
+      },
+      {
+        "label": "C",
+        "text": "A class is a blueprint; an object is one specific instance of that class with its own copy of instance variables."
+      },
+      {
+        "label": "D",
+        "text": "A class and an object are interchangeable terms for the same concept."
+      }
+    ],
+    "answer": "C",
+    "explanation": "A class defines the structure (blueprint), while an object is a specific instance created from that blueprint with its own copy of instance variables. A and B reverse the definitions; D is incorrect because they are fundamentally distinct concepts.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "Consider the following code excerpt.\n\n```java\nBox b1 = new Box(3);\nBox b2 = new Box(7);\nBox temp = b2;\nb2 = b1;\nb1 = temp;\nSystem.out.println(b1.getSize() + \" \" + b2.getSize());\n```\n\nAssume `Box` has a constructor that accepts one `int` argument and a `getSize()` method that returns it. What will be printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3 7`"
+      },
+      {
+        "label": "B",
+        "text": "`7 3`"
+      },
+      {
+        "label": "C",
+        "text": "`3 3`"
+      },
+      {
+        "label": "D",
+        "text": "`7 7`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Initially b1 references Box(3) and b2 references Box(7). After `temp = b2`, temp references Box(7). After `b2 = b1`, b2 references Box(3). After `b1 = temp`, b1 references Box(7). So b1.getSize() returns 7 and b2.getSize() returns 3, printing '7 3'. A incorrectly assumes the swap had no effect; C and D reflect confusion about which object temp captured before the reassignments.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "A class named `Game` has an instance method `getScore()` that returns an `int`. A `Game` object has been created and stored in a variable named `g`. Which of the following correctly calls `getScore()` on that object?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Game.getScore()`"
+      },
+      {
+        "label": "B",
+        "text": "`getScore(g)`"
+      },
+      {
+        "label": "C",
+        "text": "`g.getScore()`"
+      },
+      {
+        "label": "D",
+        "text": "`Game.g.getScore()`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Instance methods are invoked using the dot operator on an object reference: `objectName.methodName()`. A uses class-name dot notation, which is reserved for static methods. B treats the object as a function argument, which is not valid Java syntax for instance method calls. D invents a nonexistent qualified name that Java does not support.",
+    "difficulty": 1,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "Consider the following code.\n\n```java\nString a = \"Java\";\nString b = new String(\"Java\");\nif (a == b) {\n    System.out.println(\"same reference\");\n} else {\n    System.out.println(\"different reference\");\n}\nif (a.equals(b)) {\n    System.out.println(\"same content\");\n} else {\n    System.out.println(\"different content\");\n}\n```\n\nWhat is the output of this code?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`same reference` followed by `same content`"
+      },
+      {
+        "label": "B",
+        "text": "`different reference` followed by `same content`"
+      },
+      {
+        "label": "C",
+        "text": "`same reference` followed by `different content`"
+      },
+      {
+        "label": "D",
+        "text": "`different reference` followed by `different content`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`a` holds a reference to the interned string literal `\"Java\"` and `b` holds a reference to a newly heap-allocated object created by `new String(...)`. These are distinct objects, so `a == b` is false and 'different reference' prints. Both objects contain the same characters, so `a.equals(b)` is true and 'same content' prints. A is wrong because `new String(...)` always allocates a distinct object regardless of content. D is wrong because `.equals()` tests character content, not reference identity.",
+    "difficulty": 3,
+    "stem_pattern": "string_reference_equality"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "What is printed by the following code?\n\n```java\nString s = null;\ns = s + \"AP\";\nSystem.out.println(s);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`AP`"
+      },
+      {
+        "label": "B",
+        "text": "`nullAP`"
+      },
+      {
+        "label": "C",
+        "text": "Nothing is printed; a `NullPointerException` is thrown at runtime."
+      },
+      {
+        "label": "D",
+        "text": "Nothing is printed; a compile-time error occurs."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java's string concatenation operator `+` converts a `null` reference to the four-character string `\"null\"` rather than calling any method on it, so `null + \"AP\"` produces `\"nullAP\"`. C is the most tempting distractor \u2014 students often assume any use of a null reference causes a NullPointerException \u2014 but the `+` operator does not invoke a method on `s`. D is incorrect because this code is syntactically and type-legally valid Java.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "Which of the following best describes the relationship between a class and an object in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A class is a specific instance created in memory; an object is the blueprint that defines its attributes and behaviors."
+      },
+      {
+        "label": "B",
+        "text": "A class is a blueprint that defines attributes and behaviors; an object is a specific instance of that class created in memory."
+      },
+      {
+        "label": "C",
+        "text": "A class and an object are interchangeable terms for the same concept in Java."
+      },
+      {
+        "label": "D",
+        "text": "An object is a special method that constructs and returns a class at runtime."
+      }
+    ],
+    "answer": "B",
+    "explanation": "A class is the blueprint (template) that defines what data (attributes) and behavior (methods) its instances will have. An object is a specific instance created from that blueprint via `new`, with its own copy of the instance variables. Option A reverses the definitions; C incorrectly equates the two; D mischaracterizes an object as a method.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "What does a reference variable store in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The actual value of the object, stored directly inside the variable"
+      },
+      {
+        "label": "B",
+        "text": "A copy of every instance variable belonging to the object"
+      },
+      {
+        "label": "C",
+        "text": "The class name of the object represented as a `String`"
+      },
+      {
+        "label": "D",
+        "text": "The memory address of the object the variable refers to"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Reference variables hold the memory address (reference) of an object, not the object itself. Only primitive variables (A) store values directly in the variable. The reference does not hold a copy of instance variables (B) \u2014 those live inside the object on the heap. The class name as a String (C) is not what a reference variable contains.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "What is printed by the following code?\n\n```java\nString p = \"first\";\nString q = p;\np = p + \" and second\";\nSystem.out.println(q);\nSystem.out.println(p);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`first`\n`first and second`"
+      },
+      {
+        "label": "B",
+        "text": "`first and second`\n`first and second`"
+      },
+      {
+        "label": "C",
+        "text": "`first`\n`first`"
+      },
+      {
+        "label": "D",
+        "text": "`null`\n`first and second`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "After `q = p`, both variables reference the same String object `\"first\"`. The line `p = p + \" and second\"` constructs a brand-new String object and assigns `p` to it; `q` is unchanged and still references the original `\"first\"`. Strings are immutable \u2014 reassigning `p` does not mutate the object `q` points to. Option B incorrectly assumes `q` tracks `p`'s new assignment; C ignores the concatenation assigned to `p`; D incorrectly introduces `null`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "Consider the following code segment:\n\n```java\nString message = null;\nif (message != null && message.length() > 0) {\n    System.out.println(\"Has content\");\n} else {\n    System.out.println(\"Empty or null\");\n}\n```\n\nWhat is printed when this code runs?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Has content`"
+      },
+      {
+        "label": "B",
+        "text": "`Empty or null`"
+      },
+      {
+        "label": "C",
+        "text": "A `NullPointerException` is thrown at runtime."
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because `message` is assigned `null`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "`message != null` evaluates to `false`, so due to short-circuit evaluation of `&&`, the right operand `message.length() > 0` is never evaluated and no `NullPointerException` is thrown. The `else` branch executes, printing `Empty or null`. Option C is the classic null-reference distractor, but short-circuit evaluation prevents the method call. Option D is wrong because `null` is a valid value for a reference variable and compiles without error.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "Consider the following declarations:\n\n```java\nString s1 = \"apple\";\nString s2 = new String(\"apple\");\nString s3 = s1;\n```\n\nWhich of the following expressions evaluates to `true`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`s1 == s2`"
+      },
+      {
+        "label": "B",
+        "text": "`s1 == s3`"
+      },
+      {
+        "label": "C",
+        "text": "`s2 == s3`"
+      },
+      {
+        "label": "D",
+        "text": "`s1.equals(null)`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`s3 = s1` makes `s3` point to exactly the same object as `s1` (the interned string literal `\"apple\"`), so `s1 == s3` is `true`. `s1 == s2` is `false` because `new String(...)` allocates a distinct heap object even though its content is identical. `s2 == s3` is `false` for the same reason. `s1.equals(null)` always returns `false` for a non-null String.",
+    "difficulty": 3,
+    "stem_pattern": "string_reference_equality"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "A programmer writes the following code intending to print the number of characters in a string:\n\n```java\nString word = null;\nSystem.out.println(word.length());\n```\n\nWhat happens when this code is compiled and run?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The code compiles and prints `0`."
+      },
+      {
+        "label": "B",
+        "text": "The code compiles and prints `null`."
+      },
+      {
+        "label": "C",
+        "text": "The code compiles but throws a `NullPointerException` at runtime."
+      },
+      {
+        "label": "D",
+        "text": "The code fails to compile because a `String` variable cannot be assigned `null`."
+      }
+    ],
+    "answer": "C",
+    "explanation": "`word` holds `null`, meaning it references no object. The call `word.length()` therefore attempts to invoke a method on a non-existent object, throwing a `NullPointerException` at runtime. The code compiles without error because `null` is a valid value for any reference variable (eliminating D). The output is not `0` (A) or the text `\"null\"` (B) \u2014 those are common misconceptions about null behavior.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "Determine the output of the following code:\n\n```java\nString first = new String(\"blue\");\nString second = first;\nString third = new String(\"blue\");\n\nSystem.out.print((first == second) + \" \");\nSystem.out.print(first == third);\nSystem.out.print(\" \");\nSystem.out.print(first.equals(third));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true true true`"
+      },
+      {
+        "label": "B",
+        "text": "`true false true`"
+      },
+      {
+        "label": "C",
+        "text": "`false false true`"
+      },
+      {
+        "label": "D",
+        "text": "`true false false`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`first` and `second` refer to the same object, so `first == second` is true. `third` is a different object with the same characters, so `first == third` is false but `first.equals(third)` is true.",
+    "difficulty": 3,
+    "stem_pattern": "string_reference_equality"
+  },
+  {
+    "topic_id": "u1_s1_12",
+    "stem": "Which of the following best describes what is stored in a reference variable after an object is created with `new`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The address of the object"
+      },
+      {
+        "label": "B",
+        "text": "A copy of every instance variable in the object"
+      },
+      {
+        "label": "C",
+        "text": "The name of the class as a `String`"
+      },
+      {
+        "label": "D",
+        "text": "The number of methods the object can call"
+      }
+    ],
+    "answer": "A",
+    "explanation": "A reference variable stores a reference to an object, often described as its address. The object itself holds its instance variables and methods are defined by the class, not stored as a count in the variable.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  }
+]

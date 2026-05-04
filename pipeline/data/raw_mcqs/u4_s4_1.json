@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "Which of the following BEST describes the term \"algorithmic bias\"?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A syntax error in a program that causes it to produce incorrect output"
+      },
+      {
+        "label": "B",
+        "text": "Systemic, repeated errors in a program that produce unfair outcomes for some group of people"
+      },
+      {
+        "label": "C",
+        "text": "A deliberate decision by a programmer to favor one group of users over another"
+      },
+      {
+        "label": "D",
+        "text": "An error caused by using the wrong data type to store a value in memory"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Algorithmic bias is defined as systemic, repeated errors that produce unfair outcomes for some group \u2014 and is often unintentional, caused by biased training data. A describes a logic/syntax error, C incorrectly implies deliberate intent, and D describes a type-mismatch or overflow error.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "In computer science, a \"data set\" is BEST defined as which of the following?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A method that organizes and retrieves information from a relational database"
+      },
+      {
+        "label": "B",
+        "text": "A single variable that stores multiple values of different types"
+      },
+      {
+        "label": "C",
+        "text": "A collection of related pieces of data, analyzed by accessing values one at a time"
+      },
+      {
+        "label": "D",
+        "text": "A program that converts raw user input into structured output"
+      }
+    ],
+    "answer": "C",
+    "explanation": "A data set is a collection of related pieces of data analyzed by accessing values one at a time. A describes a database method, B conflates a data set with a mixed-type variable (Java arrays hold one type), and D describes a transformation program.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "Which of the following is NOT one of the three data quality concerns identified as leading to wrong conclusions and unreliable programs?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Incomplete data"
+      },
+      {
+        "label": "B",
+        "text": "Encrypted data"
+      },
+      {
+        "label": "C",
+        "text": "Inaccurate data"
+      },
+      {
+        "label": "D",
+        "text": "Off-topic data"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The three data quality concerns are incomplete, inaccurate, and off-topic data. Encrypted data is a security property \u2014 encrypted data may still be complete and accurate; encryption does not itself introduce errors or lead to wrong conclusions.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A school district trains a grade-prediction program using five years of student records from a single affluent suburban school. The program is then deployed district-wide, including in under-resourced urban schools. Which data quality concern is MOST directly at issue?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The data set is too large, making the program run too slowly on older hardware"
+      },
+      {
+        "label": "B",
+        "text": "The data set is incomplete and unrepresentative, likely leading to inaccurate predictions for students from different backgrounds"
+      },
+      {
+        "label": "C",
+        "text": "The data set uses inconsistent formatting, making it impossible for the program to parse"
+      },
+      {
+        "label": "D",
+        "text": "The data set is too recent to reflect long-term educational trends"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Training data from only one type of school is incomplete and unrepresentative \u2014 a data quality concern that causes unreliable and potentially biased predictions for students from different socioeconomic contexts. A, C, and D introduce concerns not supported by the scenario.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A hiring algorithm was trained using 20 years of r\u00e9sum\u00e9 and hiring-outcome data from a company where senior positions were rarely filled by women. Which of the following MOST accurately describes the likely consequence when the algorithm evaluates new applicants?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The algorithm will crash because it was not trained on sufficient data about female applicants"
+      },
+      {
+        "label": "B",
+        "text": "The algorithm will be unbiased because it uses objective historical data rather than human judgment"
+      },
+      {
+        "label": "C",
+        "text": "The algorithm may exhibit algorithmic bias by systematically rating female applicants lower for senior roles"
+      },
+      {
+        "label": "D",
+        "text": "The algorithm will automatically correct for historical bias by giving bonus weight to underrepresented groups"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Training on data that reflects historical discrimination causes the algorithm to reproduce those patterns \u2014 a textbook case of algorithmic bias from biased training data. B is wrong because 'historical data' can encode human bias. A and D describe behaviors a standard trained algorithm would not exhibit.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "Which of the following scenarios BEST illustrates data that is \"off-topic\" as a data quality concern?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A data set used to predict annual rainfall contains some entries where the recorded amount is a negative number"
+      },
+      {
+        "label": "B",
+        "text": "A data set used to study teen driving habits contains only records from drivers over the age of 65"
+      },
+      {
+        "label": "C",
+        "text": "A data set used to analyze social media trends is missing one week of records due to a server outage"
+      },
+      {
+        "label": "D",
+        "text": "A data set used to track stock prices contains duplicate entries for the same trading day"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Data from drivers over 65 is off-topic for studying teen driving habits \u2014 it does not address the question being studied. A illustrates inaccurate data (negative rainfall is physically impossible). C illustrates incomplete data (missing a week). D illustrates inaccurate/duplicate data.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A program reads a customer survey file to compute the average satisfaction score on a 1\u201310 scale. Out of 500 responses, 200 entries contain the sentinel value -1, which was used to indicate that the respondent skipped the question. The programmer includes all values, including the -1 entries, in the average calculation. Which data quality concern does this BEST illustrate?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The data set is too large, causing an arithmetic overflow in the average calculation"
+      },
+      {
+        "label": "B",
+        "text": "The data set is off-topic because customer satisfaction is unrelated to product quality"
+      },
+      {
+        "label": "C",
+        "text": "The data set contains incomplete entries; including the placeholder -1 values in the average produces a misleadingly low result"
+      },
+      {
+        "label": "D",
+        "text": "The data set has no quality concern because all 500 responses were submitted by real customers"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The -1 values represent missing (incomplete) responses, not real satisfaction scores. Including them in the average is a data quality issue that leads to a wrong conclusion. A is implausible for typical survey data. B misidentifies the concern type. D incorrectly dismisses the quality issue.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A city uses an algorithm to allocate additional police patrols. The algorithm was trained on historical crime-report data. Researchers find that certain neighborhoods were historically over-policed, generating more reports \u2014 not necessarily more crime \u2014 than others. Which of the following BEST explains the ethical concern with deploying this algorithm?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The algorithm is unethical solely because it uses geographic data, which is always irrelevant to crime prediction"
+      },
+      {
+        "label": "B",
+        "text": "The algorithm may perpetuate algorithmic bias: over-policed neighborhoods generate more reports, causing the algorithm to direct even more patrols there and reinforcing the original bias"
+      },
+      {
+        "label": "C",
+        "text": "The algorithm is only unethical if the programmers deliberately intended to discriminate against certain neighborhoods"
+      },
+      {
+        "label": "D",
+        "text": "The algorithm raises no ethical concern as long as it uses verified real-world crime data"
+      }
+    ],
+    "answer": "B",
+    "explanation": "This describes a feedback loop where biased historical data causes the algorithm to amplify the original bias \u2014 a core concern of algorithmic bias. C is incorrect because algorithmic bias can exist without deliberate intent. D is wrong because 'real data' can still encode systematic bias.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A software team is building a loan-approval algorithm. Which of the following practices would MOST effectively reduce the risk of algorithmic bias in the program's outcomes?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Training the algorithm exclusively on records of applicants who were previously approved for loans"
+      },
+      {
+        "label": "B",
+        "text": "Training the algorithm on a diverse, representative data set and auditing outcomes for fairness across demographic groups"
+      },
+      {
+        "label": "C",
+        "text": "Running the algorithm multiple times on each application and averaging the results to reduce random variation"
+      },
+      {
+        "label": "D",
+        "text": "Using only numerical inputs so the algorithm cannot be influenced by subjective applicant descriptions"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Using diverse, representative training data and auditing for fairness directly addresses the root causes of algorithmic bias. A introduces selection bias by excluding denied applicants. C reduces randomness but not systematic bias. D is insufficient because numerical data can still encode historical patterns of discrimination.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A medical research program analyzes patient records to identify risk factors for a particular disease. The records were collected from a single clinic in a coastal city and cover only the months of June, July, and August. A researcher concludes that the identified risk factors apply to the general population year-round. Which statement BEST describes the flaw in this conclusion?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The data set is inaccurate because patient-reported information is never reliable"
+      },
+      {
+        "label": "B",
+        "text": "The data set is too large, so a smaller random sample should have been taken instead"
+      },
+      {
+        "label": "C",
+        "text": "The data set is complete and accurate, so the conclusion is justified"
+      },
+      {
+        "label": "D",
+        "text": "The data set is incomplete \u2014 limited to one location and one season \u2014 so the conclusions may not generalize to the full population year-round"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The data is geographically and seasonally restricted, making it incomplete as a representation of the general population. Conclusions drawn from it may not hold outside those specific conditions. A makes an unsupported blanket claim. B is not supported by the scenario. C ignores the incompleteness problem.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A facial recognition system achieves 97% accuracy on images of light-skinned individuals but only 73% accuracy on images of dark-skinned individuals. Investigation reveals the training data set was composed of 92% images of light-skinned individuals. Which of the following BEST explains this outcome and classifies the concern?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The accuracy difference is a hardware problem because darker images require more processing power"
+      },
+      {
+        "label": "B",
+        "text": "The accuracy difference is acceptable because 73% still represents a majority of correct identifications"
+      },
+      {
+        "label": "C",
+        "text": "The imbalanced training data produced algorithmic bias \u2014 the system systematically generates less accurate, unfair outcomes for dark-skinned individuals"
+      },
+      {
+        "label": "D",
+        "text": "The system should be retrained using only images of dark-skinned individuals to correct the imbalance"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The disparate accuracy rates result directly from an imbalanced (biased) training data set \u2014 a textbook example of algorithmic bias producing unfair outcomes for a demographic group. A mischaracterizes it as a hardware issue. B dismisses a meaningful accuracy gap as acceptable. D overcorrects by proposing a different imbalanced data set rather than a representative one.",
+    "difficulty": 4,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A researcher uses data collected in 1990 to train a program that recommends candidates for modern software engineering positions. The data set was complete and accurate for its time but predates the widespread adoption of the internet and modern programming languages. Consider the following statements:\n\nI. The data set is incomplete because modern technical skills and credentials are not represented.\nII. The data set is inaccurate because all data older than 10 years automatically contains errors.\nIII. The data set may be off-topic because qualifications valued in 1990 may not align with current software engineering roles.\n\nWhich of the following BEST identifies the data quality concerns present?",
+    "options": [
+      {
+        "label": "A",
+        "text": "I only"
+      },
+      {
+        "label": "B",
+        "text": "II only"
+      },
+      {
+        "label": "C",
+        "text": "I and III"
+      },
+      {
+        "label": "D",
+        "text": "II and III"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Statement I is correct \u2014 the data lacks modern skills (incomplete). Statement III is correct \u2014 1990 qualifications may be off-topic for today's roles. Statement II is incorrect: age alone does not make data inaccurate; the scenario explicitly says the data was accurate for its time. The concerns are incompleteness and off-topic relevance, not inaccuracy.",
+    "difficulty": 4,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "Which of the following BEST defines algorithmic bias?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A runtime error caused by an array index that is out of bounds"
+      },
+      {
+        "label": "B",
+        "text": "Systemic, repeated errors in a program that produce unfair outcomes for some group"
+      },
+      {
+        "label": "C",
+        "text": "A logical error introduced by using `==` instead of `.equals()` when comparing `String` values"
+      },
+      {
+        "label": "D",
+        "text": "Random variation in a program's output caused by `Math.random()`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Algorithmic bias refers to systemic, repeated errors in a program that produce unfair outcomes for certain groups \u2014 often caused by biased training data. Options A and C describe ordinary programming bugs; option D describes intentional, expected randomness rather than systematic unfairness.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "Which of the following BEST describes a data set?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A fixed-size, indexed collection of values of the same type declared with the `new` keyword"
+      },
+      {
+        "label": "B",
+        "text": "A resizable list of object references stored in an `ArrayList`"
+      },
+      {
+        "label": "C",
+        "text": "A collection of related pieces of data that is analyzed by accessing values one at a time"
+      },
+      {
+        "label": "D",
+        "text": "A text file read into a program using a `Scanner` object"
+      }
+    ],
+    "answer": "C",
+    "explanation": "A data set is a collection of related pieces of data analyzed by accessing values one at a time. Options A and B describe specific Java data structures (arrays and ArrayLists); option D describes a mechanism for reading data into a program, not the data set concept itself.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A company builds a program to screen job applications. The program is trained on historical hiring records from a period when the company hired almost exclusively from one university. Which of the following BEST describes the likely problem with this program?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The program will throw an `IndexOutOfBoundsException` when processing applications from other universities"
+      },
+      {
+        "label": "B",
+        "text": "The program will run more slowly because the historical data set is too large to fit in an array"
+      },
+      {
+        "label": "C",
+        "text": "The program may exhibit algorithmic bias, systematically favoring applicants from that university and producing unfair outcomes for others"
+      },
+      {
+        "label": "D",
+        "text": "The program will produce correct results because historical data always reflects sound hiring decisions"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Training on biased historical data causes the program to reflect and perpetuate that bias, systematically disadvantaging applicants from other universities. Options A and B describe unrelated runtime or performance issues; option D is incorrect because biased historical data reproduces past inequities rather than guaranteeing sound outcomes.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A researcher surveys students about their reading habits by collecting responses only from students who visit the school library before school. Which of the following BEST identifies the data quality concern in this scenario?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The data is inaccurate because library visitors are likely to misreport how much they read"
+      },
+      {
+        "label": "B",
+        "text": "The data set is incomplete and unrepresentative of all students, so conclusions drawn about the entire student body may be unreliable"
+      },
+      {
+        "label": "C",
+        "text": "The data is off-topic because library visits are unrelated to reading habits"
+      },
+      {
+        "label": "D",
+        "text": "The data set is too large to be stored efficiently in a single `ArrayList`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Collecting data only from library visitors excludes students who rarely or never visit, producing an incomplete, non-representative sample \u2014 a classic data quality concern. Option A confuses sampling bias with self-reporting inaccuracy; option C is wrong because library usage is closely related to reading habits; option D is a technical storage concern unrelated to data quality.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A medical diagnosis program is trained exclusively on patient records from adults aged 40\u201365. The program is later deployed to diagnose patients of all ages. Which of the following BEST describes the data ethics concern raised by this situation, and its most likely consequence?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The program's data set is off-topic; as a result, the program will throw a `NullPointerException` when processing records for younger patients"
+      },
+      {
+        "label": "B",
+        "text": "The program's data set is incomplete and not representative of all patients; as a result, diagnoses for patients outside the training age range may be unreliable or biased"
+      },
+      {
+        "label": "C",
+        "text": "The program's data set is too accurate; diagnoses will be overly precise and therefore difficult for doctors to interpret"
+      },
+      {
+        "label": "D",
+        "text": "The program's data set is inaccurate because medical records always contain errors; the program should use `Integer.parseInt` to validate numeric fields before analysis"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Using a training data set that does not represent the full population is a data quality concern (incomplete/non-representative data) that produces unreliable or algorithmically biased outputs for underrepresented groups. Option A incorrectly conflates a conceptual data concern with a Java runtime exception; option C inverts the problem; option D confuses data validation with the representativeness issue.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "Which of the following BEST defines algorithmic bias?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A random error that occasionally causes a program to produce an incorrect result for a single input"
+      },
+      {
+        "label": "B",
+        "text": "Systemic, repeated errors in a program that produce unfair outcomes for one or more groups"
+      },
+      {
+        "label": "C",
+        "text": "A logic error that causes a program to enter an infinite loop regardless of input"
+      },
+      {
+        "label": "D",
+        "text": "An error that occurs when a program attempts to access an index outside the valid range of an array"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Algorithmic bias refers to systemic, repeated errors in a program that produce unfair outcomes for some group, typically stemming from biased or unrepresentative training data. Options A, C, and D describe distinct categories of programming errors (random errors, infinite loops, and ArrayIndexOutOfBoundsException) that are unrelated to the concept of algorithmic fairness.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A hospital develops a program to predict which patients are at high risk for a serious illness. The program is trained on historical medical records. Researchers later discover that the training data under-represents patients from rural communities. Which of the following is the MOST likely consequence?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The program will run more slowly when processing records from rural patients"
+      },
+      {
+        "label": "B",
+        "text": "The program will throw a `NullPointerException` when it encounters a record with a missing field"
+      },
+      {
+        "label": "C",
+        "text": "The program will produce less accurate risk predictions for rural patients, reflecting algorithmic bias"
+      },
+      {
+        "label": "D",
+        "text": "The program will automatically request additional data from rural communities to correct the imbalance"
+      }
+    ],
+    "answer": "C",
+    "explanation": "When training data under-represents a population group, the resulting program tends to be systematically less accurate for that group \u2014 a form of algorithmic bias. Options A and D describe runtime or self-correcting behaviors that programs do not exhibit automatically, and Option B describes a runtime exception unrelated to data representation.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A programmer builds a travel-time prediction program using data collected only during summer months, then deploys it to predict year-round commute times. Which of the following BEST describes the concern with this approach?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The data set is too large, which will cause the program to exhaust available memory"
+      },
+      {
+        "label": "B",
+        "text": "The data set is incomplete for the intended use, which may lead the program to produce inaccurate year-round predictions"
+      },
+      {
+        "label": "C",
+        "text": "The data set cannot be stored in an array because it contains date values"
+      },
+      {
+        "label": "D",
+        "text": "The program will produce a `NumberFormatException` when parsing travel-time values from the file"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Data collected only during summer is incomplete for a year-round prediction task \u2014 a data quality concern. Incomplete or off-topic data sets lead programs to draw wrong conclusions. Options A, C, and D describe technical issues (memory, type constraints, parsing) that are not caused by the seasonal limitation of the data.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A company builds a hiring tool by training it on ten years of r\u00e9sum\u00e9s from candidates the company previously selected for interviews. Over that period, the company almost exclusively interviewed graduates of five specific universities. Which of the following MOST accurately describes the ethical concern?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The program may be storage-inefficient because r\u00e9sum\u00e9 data contains many String fields"
+      },
+      {
+        "label": "B",
+        "text": "The program may unfairly disadvantage applicants from universities not well-represented in the historical data, perpetuating past bias"
+      },
+      {
+        "label": "C",
+        "text": "The program will be more fair than human reviewers because it relies on objective historical data rather than subjective judgment"
+      },
+      {
+        "label": "D",
+        "text": "The program will produce a `ClassCastException` when comparing r\u00e9sum\u00e9s from different universities"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Training data that reflects past human bias encodes that bias into the algorithm, causing it to systematically disadvantage candidates from under-represented schools regardless of qualifications. Option C is a common misconception: historical data is not inherently objective \u2014 it reflects prior human decisions that may themselves have been biased.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "Which of the following actions would MOST effectively reduce algorithmic bias when building a program that makes loan approval recommendations?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Increasing the number of iterations in the approval algorithm so that more comparisons are performed per applicant"
+      },
+      {
+        "label": "B",
+        "text": "Storing applicant records in a sorted array instead of an `ArrayList` to enable binary search"
+      },
+      {
+        "label": "C",
+        "text": "Ensuring that the training data is representative of all demographic groups who will use the system"
+      },
+      {
+        "label": "D",
+        "text": "Replacing linear search with binary search when looking up applicant records"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Algorithmic bias most commonly originates in unrepresentative or historically skewed training data; ensuring diversity in the training set is the most direct mitigation. Options A, B, and D address algorithm efficiency and data structure choices, which affect performance but have no bearing on the fairness of outcomes.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A company collects customer satisfaction survey data distributed exclusively through its mobile app. Customers who had negative experiences frequently deleted the app before receiving the survey. The company uses the collected responses to conclude that customer satisfaction is high. Which of the following BEST describes the data quality concern in this scenario?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The data set is too small to be stored efficiently in a two-dimensional array"
+      },
+      {
+        "label": "B",
+        "text": "The survey responses cannot be processed because they contain non-numeric values that cause a `NumberFormatException`"
+      },
+      {
+        "label": "C",
+        "text": "The data set contains inaccurate records because the survey questions were worded in a misleading way"
+      },
+      {
+        "label": "D",
+        "text": "The data set is incomplete because dissatisfied customers are systematically excluded from the sample, leading the program to overstate satisfaction"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The distribution method creates selection bias: dissatisfied customers who deleted the app never receive the survey, so their responses are absent from the data set. This systematic exclusion makes the data incomplete and causes the resulting conclusions to be misleading. Option C describes a different quality concern (inaccuracy due to poor wording) that is not supported by the scenario; Options A and B describe unrelated technical issues.",
+    "difficulty": 4,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A school district uses a program to predict which students may need extra tutoring. The data used to build the program mostly comes from students at large schools with many tutoring resources. Which of the following is the best reason this could lead to algorithmic bias?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The program may make unfair repeated errors for students from schools that are not well represented in the data."
+      },
+      {
+        "label": "B",
+        "text": "The program will always throw an exception when it processes a student from a small school."
+      },
+      {
+        "label": "C",
+        "text": "The program cannot store data from more than one school in the same data set."
+      },
+      {
+        "label": "D",
+        "text": "The program will automatically correct any inaccurate predictions after it is run once."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Algorithmic bias can occur when training data is not representative, causing systematic unfair outcomes. The other choices describe runtime errors, storage limits, or automatic correction, none of which follow from biased data.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_1",
+    "stem": "A city analyzes a data set of reported traffic delays to decide where to change traffic light timing. Later, programmers discover that reports from several neighborhoods were missing for two months. Which statement best describes the main concern?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The missing records are a data quality problem that may cause the city to draw unreliable conclusions."
+      },
+      {
+        "label": "B",
+        "text": "The data set is invalid only if it contains values of more than one data type."
+      },
+      {
+        "label": "C",
+        "text": "The analysis is guaranteed to be fair because missing data is ignored by the program."
+      },
+      {
+        "label": "D",
+        "text": "The city should use the same conclusions because larger data sets are always more accurate."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Incomplete data can lead to inaccurate or unfair conclusions, especially when some groups or areas are underrepresented. The other choices confuse data quality with type rules or incorrectly assume missing data has no effect.",
+    "difficulty": 2,
+    "stem_pattern": "vocabulary"
+  }
+]

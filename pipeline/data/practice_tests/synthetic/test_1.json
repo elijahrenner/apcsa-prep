@@ -1,0 +1,1367 @@
+{
+  "label": "Synthetic Practice Test 1",
+  "source": "synthetic",
+  "format": "new-2025-26-ced",
+  "based_on": "Princeton Review 2025 practice tests (same 42-MCQ + 4-FRQ structure)",
+  "mcq_section": [
+    {
+      "topic_id": "u1_s1_14",
+      "stem": "A `Player` object has a `void` method `addPoints(int amount)` and an `int` method `getScore()`. Which code segment correctly adds 5 points to the object referenced by `p` and then prints the updated score?",
+      "options": [
+        {
+          "label": "A",
+          "text": "```java\np.addPoints(5);\nSystem.out.println(p.getScore());\n```"
+        },
+        {
+          "label": "B",
+          "text": "```java\nPlayer.addPoints(5);\nSystem.out.println(Player.getScore());\n```"
+        },
+        {
+          "label": "C",
+          "text": "```java\nSystem.out.println(p.addPoints(5));\n```"
+        },
+        {
+          "label": "D",
+          "text": "```java\np.getScore(5);\nSystem.out.println(p.addPoints());\n```"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Instance methods are called with an object reference, and the `void` method must be used as a standalone statement. The other choices use the class name as the receiver, try to print a `void` call, or use the wrong argument lists.",
+      "difficulty": 2,
+      "stem_pattern": "oop_design_and_access"
+    },
+    {
+      "topic_id": "u1_s1_7",
+      "stem": "Consider the following code:\n\n```java\nString s1 = \"hello\";\nString s2 = new String(\"hello\");\nSystem.out.println(s1.equals(s2));\nSystem.out.println(s1 == s2);\n```\n\nWhat is the output?",
+      "options": [
+        {
+          "label": "A",
+          "text": "`true`\n`true`"
+        },
+        {
+          "label": "B",
+          "text": "`false`\n`false`"
+        },
+        {
+          "label": "C",
+          "text": "`true`\n`false`"
+        },
+        {
+          "label": "D",
+          "text": "`false`\n`true`"
+        }
+      ],
+      "answer": "C",
+      "explanation": "`s1.equals(s2)` compares character content and returns `true` because both strings contain `\"hello\"`. `s1 == s2` compares object references: `s1` points to the interned string literal while `s2` points to a separately allocated object created with `new`, so `==` returns `false`. Option A incorrectly assumes `==` also tests content. Option D reverses both results.",
+      "difficulty": 3,
+      "stem_pattern": "string_reference_equality"
+    },
+    {
+      "topic_id": "u1_s1_9",
+      "stem": "A class named `Calculator` is defined in a separate file and contains the following method:\n\n```java\npublic static double average(int a, int b) {\n    return (a + b) / 2.0;\n}\n```\n\nWhich of the following correctly calls this method and stores the result?",
+      "options": [
+        {
+          "label": "A",
+          "text": "`double result = Calculator.average(10, 20);`"
+        },
+        {
+          "label": "B",
+          "text": "`double result = average.Calculator(10, 20);`"
+        },
+        {
+          "label": "C",
+          "text": "`double result = Calculator.average(10, 20, 30);`"
+        },
+        {
+          "label": "D",
+          "text": "`int result = Calculator.average(10, 20);`"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Static methods are called with `ClassName.methodName(args)`. Option A uses correct syntax and stores the `double` return value in a matching `double` variable. Option B reverses the class name and method name. Option C passes three arguments to a two-parameter method. Option D attempts to store a `double` return value in an `int` variable without an explicit cast — a narrowing conversion that produces a compile error.",
+      "difficulty": 2,
+      "stem_pattern": "oop_design_and_access"
+    },
+    {
+      "topic_id": "u1_s1_4",
+      "stem": "Determine the value of `x` after the following code runs.\n\n```java\nint x = 10;\nx += 3;\nx -= 4;\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`3`"
+        },
+        {
+          "label": "B",
+          "text": "`9`"
+        },
+        {
+          "label": "C",
+          "text": "`13`"
+        },
+        {
+          "label": "D",
+          "text": "`17`"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Starting at x = 10, `x += 3` updates x to 13, then `x -= 4` updates x to 9. Option C stops after the first step (forgets the subtraction). Option A subtracts both 3 and 4 from the original 10. Option D adds both 3 and 4 to 10.",
+      "difficulty": 2,
+      "stem_pattern": "code_trace_value"
+    },
+    {
+      "topic_id": "u1_s1_14",
+      "stem": "Determine the value of `n` after the following code runs:\n\n```java\nString s = \"banana\";\nint i = s.indexOf(\"an\");\nString t = s.substring(i + 1, i + 3);\nint n = t.length() + s.indexOf(t);\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`3`"
+        },
+        {
+          "label": "B",
+          "text": "`4`"
+        },
+        {
+          "label": "C",
+          "text": "`5`"
+        },
+        {
+          "label": "D",
+          "text": "`6`"
+        }
+      ],
+      "answer": "B",
+      "explanation": "s = \"banana\": b=0,a=1,n=2,a=3,n=4,a=5. `s.indexOf(\"an\")` returns 1 (first match: a=1,n=2). So i=1. `t = s.substring(2, 4)` returns characters at indices 2,3: 'n','a' → \"na\". `t.length()` = 2. `s.indexOf(\"na\")` finds 'n' at index 2 followed by 'a' → returns 2. n = 2 + 2 = 4. Option A results from using i directly as the indexOf result; C comes from incorrectly placing \"na\" at index 3; D doubles the length.",
+      "difficulty": 5,
+      "stem_pattern": "code_trace_value"
+    },
+    {
+      "topic_id": "u1_s1_11",
+      "stem": "Which of the following is NOT a possible value produced by the expression below?\n\n```java\n(int)(Math.random() * 4) + 2\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`2`"
+        },
+        {
+          "label": "B",
+          "text": "`4`"
+        },
+        {
+          "label": "C",
+          "text": "`5`"
+        },
+        {
+          "label": "D",
+          "text": "`6`"
+        }
+      ],
+      "answer": "D",
+      "explanation": "Math.random() * 4 is in [0.0, 4.0), so casting to int yields 0, 1, 2, or 3. Adding 2 gives 2, 3, 4, or 5. Reaching 6 would require Math.random() to return exactly 1.0, which is excluded from its range.A (2), B (4), and C (5) are all achievable.",
+      "difficulty": 3,
+      "stem_pattern": "random_range_calculation"
+    },
+    {
+      "topic_id": "u1_s1_2",
+      "stem": "Determine the values of `c` and `d` after the following code runs.\n\n```java\nint a = 17;\nint b = 5;\nint c = a / b;\nint d = a % b;\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`c = 3, d = 2`"
+        },
+        {
+          "label": "B",
+          "text": "`c = 2, d = 7`"
+        },
+        {
+          "label": "C",
+          "text": "`c = 3.4, d = 2`"
+        },
+        {
+          "label": "D",
+          "text": "`c = 4, d = 2`"
+        }
+      ],
+      "answer": "A",
+      "explanation": "Integer division truncates toward zero: `17 / 5 = 3` (the fractional part .4 is discarded). The remainder is `17 - 3 * 5 = 2`. Option B results from underestimating the quotient as 2, which gives a remainder of `17 - 2 * 5 = 7`. Option C is impossible because `c` is declared `int` and cannot hold a decimal value. Option D incorrectly rounds the quotient up to 4 instead of truncating.",
+      "difficulty": 2,
+      "stem_pattern": "code_trace_value"
+    },
+    {
+      "topic_id": "u2_s2_2",
+      "stem": "Determine the output of the following code:\n\n```java\nint p = 4;\nint q = 8;\nif (p * 2 == q)\n{\n    p = p + 1;\n    q = q - 1;\n    if (p > q)\n    {\n        System.out.print(\"X\");\n    }\n    else\n    {\n        System.out.print(\"Y\");\n    }\n}\nelse\n{\n    System.out.print(\"Z\");\n}\nSystem.out.print(p + q);\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`X12`"
+        },
+        {
+          "label": "B",
+          "text": "`Y12`"
+        },
+        {
+          "label": "C",
+          "text": "`Z12`"
+        },
+        {
+          "label": "D",
+          "text": "`Y13`"
+        }
+      ],
+      "answer": "B",
+      "explanation": "p * 2 = 8 equals q = 8, so the outer if body runs: p becomes 5, q becomes 7. Then 5 > 7 is false, printing \"Y\". Finally p + q = 5 + 7 = 12 prints as an integer. Option A would require p > q after the updates (5 is not > 7). Option C would require p * 2 ≠ q. Option D has an arithmetic error on the sum.",
+      "difficulty": 4,
+      "stem_pattern": "code_trace_output"
+    },
+    {
+      "topic_id": "u2_s2_11",
+      "stem": "How many times does `System.out.println(\"*\")` execute when the following code runs?\n\n```java\nfor (int i = 0; i < 5; i++) {\n    for (int j = 0; j < 5; j++) {\n        System.out.println(\"*\");\n    }\n}\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`5`"
+        },
+        {
+          "label": "B",
+          "text": "`10`"
+        },
+        {
+          "label": "C",
+          "text": "`20`"
+        },
+        {
+          "label": "D",
+          "text": "`25`"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The outer loop runs 5 times and the inner loop runs 5 times for each outer iteration, so the body executes 5 × 5 = 25 times total. Option A only counts the outer iterations; B adds the two bounds (5+5); C would result from a 4×5 loop (an off-by-one error on one dimension).",
+      "difficulty": 1,
+      "stem_pattern": "conceptual"
+    },
+    {
+      "topic_id": "u2_s2_1",
+      "stem": "Determine the output of the following code:\n\n```java\nint points = 4;\nboolean bonus = false;\n\nif (points > 5)\n    bonus = true;\npoints += 2;\n\nif (bonus)\n    points += 10;\n\nSystem.out.println(points);\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`4`"
+        },
+        {
+          "label": "B",
+          "text": "`6`"
+        },
+        {
+          "label": "C",
+          "text": "`14`"
+        },
+        {
+          "label": "D",
+          "text": "`16`"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Only `bonus = true;` is controlled by the first `if`, so `points += 2;` always runs. Since `bonus` is still false, the second `if` body does not run.",
+      "difficulty": 3,
+      "stem_pattern": "code_trace_output"
+    },
+    {
+      "topic_id": "u2_s2_8",
+      "stem": "Consider the following `for` loop:\n\n```java\nfor (int i = 0; i < n; i++) {\n    System.out.println(i);\n}\n```\n\nWhich of the following `while` loops is equivalent?",
+      "options": [
+        {
+          "label": "A",
+          "text": "```java\nint i = 0;\nwhile (i < n) {\n    i++;\n    System.out.println(i);\n}\n```"
+        },
+        {
+          "label": "B",
+          "text": "```java\nint i = 0;\nwhile (i < n) {\n    System.out.println(i);\n    i++;\n}\n```"
+        },
+        {
+          "label": "C",
+          "text": "```java\nint i = 0;\nwhile (!(i < n)) {\n    System.out.println(i);\n    i++;\n}\n```"
+        },
+        {
+          "label": "D",
+          "text": "```java\nint i = 0;\ni++;\nwhile (i < n) {\n    System.out.println(i);\n    i++;\n}\n```"
+        }
+      ],
+      "answer": "B",
+      "explanation": "In a for loop the body runs before the update expression, so the while equivalent prints i then increments—matching output 0 through n-1. A increments before printing, producing output 1 through n. C negates the condition (!(i<n) means i>=n), so the loop never executes when n>0. D increments i before the loop, skipping 0.",
+      "difficulty": 1,
+      "stem_pattern": "conceptual"
+    },
+    {
+      "topic_id": "u2_s2_10",
+      "stem": "Determine the output of the following code:\n\n```java\nString s = \"balloon\";\nString result = \"\";\n\nfor (int i = 0; i < s.length(); i++)\n{\n    String ch = s.substring(i, i + 1);\n    if (i % 2 == 0 && !ch.equals(\"l\"))\n    {\n        result += ch;\n    }\n}\n\nSystem.out.println(result);\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`bon`"
+        },
+        {
+          "label": "B",
+          "text": "`balon`"
+        },
+        {
+          "label": "C",
+          "text": "`bo`"
+        },
+        {
+          "label": "D",
+          "text": "`alo`"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The loop checks even indices 0, 2, 4, and 6, but skips index 2 because that character is `l`, so the result is `bon`. The other choices include odd-index characters, omit the final `n`, or ignore the even-index test.",
+      "difficulty": 3,
+      "stem_pattern": "code_trace_output"
+    },
+    {
+      "topic_id": "u2_s2_5",
+      "stem": "A variable `s` of type `String` may be `null` or may hold a string of any length. Which of the following conditions correctly guards access to `s.substring(0, 1)` without ever throwing a `NullPointerException`?\n\n```java\nif (/* condition */) {\n    System.out.println(s.substring(0, 1));\n}\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`s.length() > 0 && s != null`"
+        },
+        {
+          "label": "B",
+          "text": "`s != null && s.length() > 0`"
+        },
+        {
+          "label": "C",
+          "text": "`s != null || s.length() > 0`"
+        },
+        {
+          "label": "D",
+          "text": "`s.length() > 0 || s != null`"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Option B short-circuits: if `s != null` is `false`, `s.length()` is never called, preventing a `NullPointerException`. Option A evaluates `s.length()` before the null check, throwing an NPE when `s` is null. Option C fails when `s` is null because `s != null` is `false` and `||` then forces evaluation of `s.length()`, also throwing NPE. Option D evaluates `s.length()` unconditionally as the left operand.",
+      "difficulty": 2,
+      "stem_pattern": "boolean_short_circuit"
+    },
+    {
+      "topic_id": "u2_s2_4",
+      "stem": "A student writes the following code expecting to print `same` when two strings have identical content. What is the actual output?\n\n```java\nString a = new String(\"java\");\nString b = new String(\"java\");\nif (a == b)\n    System.out.println(\"same\");\nelse\n    System.out.println(\"different\");\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`same`, because `==` compares character content for `String` objects"
+        },
+        {
+          "label": "B",
+          "text": "`different`, because `==` compares object references, not content"
+        },
+        {
+          "label": "C",
+          "text": "`same`, because both strings share the same reference in the string pool"
+        },
+        {
+          "label": "D",
+          "text": "A compile-time error, because `==` cannot be applied to `String` objects"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Each `new String(\"java\")` allocates a distinct object on the heap; `==` checks whether the two references point to the same object, which they do not. Option C is wrong because string-pool interning only applies to string literals, not objects created with `new`. `.equals()` must be used to compare string content.",
+      "difficulty": 3,
+      "stem_pattern": "identify_bug"
+    },
+    {
+      "topic_id": "u2_s2_9",
+      "stem": "Determine the output of the following code:\n\n```java\nint sum = 0;\nfor (int i = 1; i <= 4; i++) {\n    sum += i;\n}\ndouble avg = sum / 4;\nSystem.out.println(avg);\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`2.0`"
+        },
+        {
+          "label": "B",
+          "text": "`2.5`"
+        },
+        {
+          "label": "C",
+          "text": "`10.0`"
+        },
+        {
+          "label": "D",
+          "text": "`3.0`"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The loop computes sum = 1+2+3+4 = 10. The expression sum / 4 performs integer division because both operands are int, yielding 2; storing that in a double gives 2.0. B is the correct mathematical average but requires casting one operand to double first (e.g., (double) sum / 4). C would result from printing sum. D represents incorrect rounding of 2.5.",
+      "difficulty": 3,
+      "stem_pattern": "code_trace_output"
+    },
+    {
+      "topic_id": "u2_s2_5",
+      "stem": "Determine the output of the following code:\n\n```java\nint a = 5;\nint b = 10;\nint c = 15;\n\nif (a < b && b < c) {\n    System.out.print(\"X\");\n}\nif (a > b || c > b) {\n    System.out.print(\"Y\");\n}\nif (!(a == b)) {\n    System.out.print(\"Z\");\n}\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`XZ`"
+        },
+        {
+          "label": "B",
+          "text": "`XY`"
+        },
+        {
+          "label": "C",
+          "text": "`YZ`"
+        },
+        {
+          "label": "D",
+          "text": "`XYZ`"
+        }
+      ],
+      "answer": "D",
+      "explanation": "First `if`: `5 < 10 && 10 < 15` = `true && true` = `true` → prints X. Second `if`: `5 > 10 || 15 > 10` = `false || true` = `true` → prints Y. Third `if`: `!(5 == 10)` = `!false` = `true` → prints Z. All three conditions are true, producing `XYZ`. Each distractor corresponds to misreading one condition: e.g., option A assumes the second `if` is false by ignoring the `||`.",
+      "difficulty": 3,
+      "stem_pattern": "code_trace_output"
+    },
+    {
+      "topic_id": "u2_s2_8",
+      "stem": "Determine the output of the following code:\n\n```java\nint result = 0;\nfor (int i = 1; i <= 4; i++) {\n    result += i * 2;\n}\nSystem.out.println(result);\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`10`"
+        },
+        {
+          "label": "B",
+          "text": "`12`"
+        },
+        {
+          "label": "C",
+          "text": "`20`"
+        },
+        {
+          "label": "D",
+          "text": "`30`"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The loop adds i*2 for i = 1, 2, 3, 4: 2+4+6+8 = 20. A results from adding i instead of i*2 (1+2+3+4=10). B results from only 3 iterations due to an off-by-one upper bound (2+4+6=12). D results from a fifth iteration with i<=5 (2+4+6+8+10=30).",
+      "difficulty": 2,
+      "stem_pattern": "code_trace_output"
+    },
+    {
+      "topic_id": "u2_s2_11",
+      "stem": "The following code is intended to print a 3×3 grid where each row displays `0 1 2 `. Which single change would make it produce the correct output?\n\n```java\nfor (int r = 0; r < 3; r++) {\n    for (int c = 0; c <= 3; c++) {\n        System.out.print(c + \" \");\n    }\n    System.out.println();\n}\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "Change `c <= 3` to `c < 3`"
+        },
+        {
+          "label": "B",
+          "text": "Change `r < 3` to `r <= 3`"
+        },
+        {
+          "label": "C",
+          "text": "Change `c = 0` to `c = 1`"
+        },
+        {
+          "label": "D",
+          "text": "Move `System.out.println()` inside the inner loop"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The condition `c <= 3` causes the inner loop to execute for c = 0, 1, 2, 3, printing four values per row instead of three. Changing to `c < 3` gives exactly three values (0, 1, 2) per row. Option B produces 4 rows instead of 3; C starts at c=1, printing '1 2 3 ' per row; D places a newline after every single value.",
+      "difficulty": 3,
+      "stem_pattern": "identify_bug"
+    },
+    {
+      "topic_id": "u2_s2_4",
+      "stem": "Determine the value of `result` after the following code runs:\n\n```java\nint a = 7;\nboolean result = a % 2 == 0;\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`true`"
+        },
+        {
+          "label": "B",
+          "text": "`false`"
+        },
+        {
+          "label": "C",
+          "text": "`1`"
+        },
+        {
+          "label": "D",
+          "text": "`0`"
+        }
+      ],
+      "answer": "B",
+      "explanation": "`a % 2` evaluates to `1` because 7 is odd; `1 == 0` is `false`, so `result` holds `false`. Options C and D are `int` values, not valid `boolean` results.",
+      "difficulty": 2,
+      "stem_pattern": "code_trace_value"
+    },
+    {
+      "topic_id": "u2_s2_10",
+      "stem": "What value is returned by the call `mystery(\"COMPUTER\")`?\n\n```java\npublic static String mystery(String word)\n{\n    String ans = \"\";\n    for (int k = word.length(); k > 0; k -= 2)\n    {\n        ans += word.substring(k - 1, k);\n    }\n    return ans;\n}\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`RTPO`"
+        },
+        {
+          "label": "B",
+          "text": "`REU`"
+        },
+        {
+          "label": "C",
+          "text": "`CPTR`"
+        },
+        {
+          "label": "D",
+          "text": "`RETUPMOC`"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The loop starts at the end of the string and appends characters at indices 7, 5, 3, and 1, producing `RTPO`. The distractors reflect using the wrong starting index, moving forward, or reversing every character.",
+      "difficulty": 4,
+      "stem_pattern": "code_trace_value"
+    },
+    {
+      "topic_id": "u2_s2_6",
+      "stem": "Which of the following is equivalent to `!(a > 5 || b < 3)`?",
+      "options": [
+        {
+          "label": "A",
+          "text": "`a <= 5 || b >= 3`"
+        },
+        {
+          "label": "B",
+          "text": "`a < 5 && b > 3`"
+        },
+        {
+          "label": "C",
+          "text": "`a <= 5 && b >= 3`"
+        },
+        {
+          "label": "D",
+          "text": "`a > 5 && b < 3`"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Applying De Morgan's law: !(a > 5 || b < 3) = !(a > 5) && !(b < 3) = (a <= 5) && (b >= 3). Option A flips || to || instead of &&, violating De Morgan's. Option B uses strict inequalities (< and >) rather than the correct <= and >=. Option D negates the operator but not the individual relational operands.",
+      "difficulty": 3,
+      "stem_pattern": "conceptual"
+    },
+    {
+      "topic_id": "u3_s3_9",
+      "stem": "Inside an instance method of a class, what does the keyword `this` refer to?",
+      "options": [
+        {
+          "label": "A",
+          "text": "The class definition (blueprint) from which the current object was created"
+        },
+        {
+          "label": "B",
+          "text": "The current object — the specific instance on which the method is being executed"
+        },
+        {
+          "label": "C",
+          "text": "The first object argument passed to the current method"
+        },
+        {
+          "label": "D",
+          "text": "The return value of the most recently called method in the program"
+        }
+      ],
+      "answer": "B",
+      "explanation": "`this` is always a reference to the current object — the instance on which the method was invoked. A describes the class itself, not an object. C confuses `this` with a parameter. D is entirely fabricated; `this` has nothing to do with return values.",
+      "difficulty": 1,
+      "stem_pattern": "vocabulary"
+    },
+    {
+      "topic_id": "u3_s3_1",
+      "stem": "Which of the following best describes procedural abstraction in program design?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Hiding the internal data of a class so it is accessible only through public methods"
+        },
+        {
+          "label": "B",
+          "text": "Naming a process (method) so callers can use it without knowing its implementation"
+        },
+        {
+          "label": "C",
+          "text": "Declaring all instance variables as `private` to prevent direct access from outside the class"
+        },
+        {
+          "label": "D",
+          "text": "Breaking a large program into smaller, cooperating classes"
+        }
+      ],
+      "answer": "B",
+      "explanation": "Procedural abstraction means giving a name to a process (a method) so that callers can invoke it without knowing how it works internally — the 'what' is exposed, the 'how' is hidden. Option A describes encapsulation. Option C describes the access-modifier convention that supports encapsulation. Option D describes class-level decomposition.",
+      "difficulty": 1,
+      "stem_pattern": "vocabulary"
+    },
+    {
+      "topic_id": "u3_s3_3",
+      "stem": "The following class contains an error.\n\n```java\npublic class Student {\n    private String name;\n    private static int count = 0;\n\n    public Student(String n) {\n        name = n;\n        count++;\n    }\n\n    public static String getInfo() {\n        return \"Student: \" + name;  // Line X\n    }\n}\n```\n\nWhich of the following best describes the error?",
+      "options": [
+        {
+          "label": "A",
+          "text": "`count` should not be declared `static` because it belongs to each individual instance."
+        },
+        {
+          "label": "B",
+          "text": "The constructor should be declared `static` to match the static field."
+        },
+        {
+          "label": "C",
+          "text": "Line X attempts to access the instance variable `name` from a `static` method, which is not allowed."
+        },
+        {
+          "label": "D",
+          "text": "Line X should use `this.name` instead of `name` to resolve the ambiguity."
+        }
+      ],
+      "answer": "C",
+      "explanation": "Static methods have no implicit `this` reference and cannot directly access instance variables. `name` is an instance variable, so referencing it in `getInfo()` produces a compile error ('non-static variable name cannot be referenced from a static context'). A is incorrect — using `static` for a class-wide counter is appropriate. D is wrong because `this` is also unavailable in a static method.",
+      "difficulty": 2,
+      "stem_pattern": "identify_bug"
+    },
+    {
+      "topic_id": "u3_s3_1",
+      "stem": "Consider the following class:\n\n```java\npublic class Counter {\n    private int count;\n\n    public Counter(int count) {\n        count = count;\n    }\n\n    public int getCount() {\n        return count;\n    }\n}\n```\n\nAfter executing the following code, what value is printed?\n\n```java\nCounter c = new Counter(10);\nSystem.out.println(c.getCount());\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`10`"
+        },
+        {
+          "label": "B",
+          "text": "`0`"
+        },
+        {
+          "label": "C",
+          "text": "`null`"
+        },
+        {
+          "label": "D",
+          "text": "A compile-time error occurs."
+        }
+      ],
+      "answer": "B",
+      "explanation": "The constructor body `count = count;` is a variable-shadowing bug: both occurrences of `count` refer to the parameter, so the statement merely assigns the parameter to itself. The instance variable `this.count` is never set and retains its default value of 0. The fix is `this.count = count;`. Option A would be correct only if the assignment had used `this.count`. Option C is wrong because `int` defaults to 0, not `null`. Option D is wrong because the code compiles without error.",
+      "difficulty": 3,
+      "stem_pattern": "identify_bug"
+    },
+    {
+      "topic_id": "u4_s4_6",
+      "stem": "A file items.txt contains this text.\n\npencil,12\npen,8\n\nInside a loop, line stores one line from the file. Which code correctly prints the item name from that line?",
+      "options": [
+        {
+          "label": "A",
+          "text": "String[] parts = line.split(\",\");\nSystem.out.println(parts[0]);"
+        },
+        {
+          "label": "B",
+          "text": "String[] parts = line.split(\":\");\nSystem.out.println(parts[0]);"
+        },
+        {
+          "label": "C",
+          "text": "String[] parts = line.split(\",\");\nSystem.out.println(parts[1]);"
+        },
+        {
+          "label": "D",
+          "text": "String[] parts = scan.split(\",\");\nSystem.out.println(parts[0]);"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The line uses a comma as the separator, and the item name appears before the comma, at index 0.",
+      "difficulty": 2,
+      "stem_pattern": "identify_correct_code"
+    },
+    {
+      "topic_id": "u4_s4_9",
+      "stem": "Which statement about traversing an `ArrayList<Integer>` is correct?",
+      "options": [
+        {
+          "label": "A",
+          "text": "An indexed `for` loop can access both an element and its index."
+        },
+        {
+          "label": "B",
+          "text": "An enhanced `for` loop gives direct access to each element's index."
+        },
+        {
+          "label": "C",
+          "text": "`list.length` gives the number of elements in an `ArrayList`."
+        },
+        {
+          "label": "D",
+          "text": "`list[i]` is used to access the element at index `i`."
+        }
+      ],
+      "answer": "A",
+      "explanation": "An indexed loop uses `i`, so it can use both `i` and `list.get(i)`. Enhanced loops do not provide the index, and ArrayLists use `size()` and `get(i)`, not `length` or bracket access.",
+      "difficulty": 1,
+      "stem_pattern": "conceptual"
+    },
+    {
+      "topic_id": "u4_s4_4",
+      "stem": "Consider the following method.\n\n```java\npublic static boolean contains(int[] data, int target)\n{\n    for (int n : data)\n    {\n        if (n == target)\n        {\n            return true;\n        }\n        /* missing code */\n    }\n    return false;\n}\n```\n\nWhich replacement for `/* missing code */` makes the method return `true` when `target` appears anywhere in `data` and `false` otherwise?",
+      "options": [
+        {
+          "label": "A",
+          "text": "`return false;`"
+        },
+        {
+          "label": "B",
+          "text": "`else return false;`"
+        },
+        {
+          "label": "C",
+          "text": "`n++;`"
+        },
+        {
+          "label": "D",
+          "text": "`// no statement is needed`"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The method should return `false` only after every element has been checked. Choices A and B return after the first nonmatching element, and C changes only the loop variable copy.",
+      "difficulty": 3,
+      "stem_pattern": "identify_bug"
+    },
+    {
+      "topic_id": "u4_s4_6",
+      "stem": "A method opens a file using this code.\n\nFile f = new File(\"scores.txt\");\nScanner scan = new Scanner(f);\n\nWhich header is most appropriate for the method?",
+      "options": [
+        {
+          "label": "A",
+          "text": "public static void readScores() throws IOException"
+        },
+        {
+          "label": "B",
+          "text": "public static void readScores() throws Scanner"
+        },
+        {
+          "label": "C",
+          "text": "public static File readScores() throws Scanner"
+        },
+        {
+          "label": "D",
+          "text": "public static void readScores(IOException)"
+        }
+      ],
+      "answer": "A",
+      "explanation": "A method that constructs a Scanner from a File should include throws IOException in its header.",
+      "difficulty": 2,
+      "stem_pattern": "conceptual"
+    },
+    {
+      "topic_id": "u4_s4_5",
+      "stem": "Consider the following code:\n\n```java\nint[] arr = {5, 10, 15, 20};\nfor (int i = arr.length; i >= 0; i--) {\n    System.out.println(arr[i]);\n}\n```\n\nWhich of the following best describes what happens when this code is executed?",
+      "options": [
+        {
+          "label": "A",
+          "text": "The loop prints the array elements in forward order."
+        },
+        {
+          "label": "B",
+          "text": "An `ArrayIndexOutOfBoundsException` is thrown before any output is produced."
+        },
+        {
+          "label": "C",
+          "text": "The loop prints the array elements in reverse order but skips `arr[0]`."
+        },
+        {
+          "label": "D",
+          "text": "The loop runs one fewer iteration than a correct reverse traversal, skipping `arr[arr.length - 1]`."
+        }
+      ],
+      "answer": "B",
+      "explanation": "The loop initializes `i` to `arr.length` (= 4). Valid indices are 0 through 3, so `arr[4]` immediately throws `ArrayIndexOutOfBoundsException` before any `println` executes. The correct initialization is `i = arr.length - 1`. Option A describes forward traversal. Option C describes the result of using `i > 0` as the loop condition. Option D describes starting the index at `arr.length - 2`.",
+      "difficulty": 2,
+      "stem_pattern": "identify_bug"
+    },
+    {
+      "topic_id": "u4_s4_3",
+      "stem": "What is the default value stored in each element immediately after the following array is created?\n\n```java\nint[] scores = new int[5];\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`0`"
+        },
+        {
+          "label": "B",
+          "text": "`null`"
+        },
+        {
+          "label": "C",
+          "text": "`1`"
+        },
+        {
+          "label": "D",
+          "text": "`-1`"
+        }
+      ],
+      "answer": "A",
+      "explanation": "`int` is a primitive type; Java initializes every element of a newly created `int[]` to `0`. `null` is the default for reference types such as `String[]`, not for primitive arrays. `1` and `-1` are never defaults.",
+      "difficulty": 1,
+      "stem_pattern": "vocabulary"
+    },
+    {
+      "topic_id": "u4_s4_12",
+      "stem": "Determine the output of the following code segment:\n\n```java\nint[][] mat = {{1, 2}, {3, 4}, {5, 6}};\nfor (int c = 0; c < mat[0].length; c++)\n{\n    for (int r = 0; r < mat.length; r++)\n    {\n        System.out.print(mat[r][c] + \" \");\n    }\n}\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`1 2 3 4 5 6`"
+        },
+        {
+          "label": "B",
+          "text": "`1 3 5 2 4 6`"
+        },
+        {
+          "label": "C",
+          "text": "`2 4 6 1 3 5`"
+        },
+        {
+          "label": "D",
+          "text": "`6 5 4 3 2 1`"
+        }
+      ],
+      "answer": "B",
+      "explanation": "The outer loop iterates over columns (c = 0, then c = 1), and the inner loop iterates over rows. Column 0 prints first (1, 3, 5), then column 1 (2, 4, 6), giving `1 3 5 2 4 6`. Option A is row-major order; C would occur if column 1 were printed before column 0; D reverses the row-major sequence.",
+      "difficulty": 3,
+      "stem_pattern": "code_trace_output"
+    },
+    {
+      "topic_id": "u4_s4_8",
+      "stem": "Determine the output of the following code.\n\n```java\nArrayList<String> words = new ArrayList<String>();\nwords.add(\"cat\");\nwords.add(\"dog\");\nwords.add(\"eel\");\nwords.set(1, \"fox\");\nwords.add(0, \"ant\");\nSystem.out.println(words.get(2));\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`\"cat\"`"
+        },
+        {
+          "label": "B",
+          "text": "`\"dog\"`"
+        },
+        {
+          "label": "C",
+          "text": "`\"fox\"`"
+        },
+        {
+          "label": "D",
+          "text": "`\"eel\"`"
+        }
+      ],
+      "answer": "C",
+      "explanation": "After the three adds the list is [\"cat\",\"dog\",\"eel\"].set(1,\"fox\") replaces index 1, giving [\"cat\",\"fox\",\"eel\"].add(0,\"ant\") inserts at index 0 and shifts every element one position right, giving [\"ant\",\"cat\",\"fox\",\"eel\"]; get(2) returns \"fox\". A is wrong because of an off-by-one confusion (thinking indices start at 1). B is wrong because set(1,\"fox\") replaced \"dog\". D is wrong because add(0,\"ant\") pushed \"eel\" from index 2 to index 3.",
+      "difficulty": 2,
+      "stem_pattern": "code_trace_output"
+    },
+    {
+      "topic_id": "u4_s4_14",
+      "stem": "A programmer applies binary search to an array that has not been sorted. Which of the following best describes the result?",
+      "options": [
+        {
+          "label": "A",
+          "text": "The program throws an `ArrayIndexOutOfBoundsException` when it accesses an out-of-range index."
+        },
+        {
+          "label": "B",
+          "text": "The program throws an `IllegalArgumentException` indicating that the sorted precondition is violated."
+        },
+        {
+          "label": "C",
+          "text": "Binary search may return an incorrect result—either a wrong index or -1—even when the target is present."
+        },
+        {
+          "label": "D",
+          "text": "Binary search still finds the correct result but may require more comparisons than on a sorted array."
+        }
+      ],
+      "answer": "C",
+      "explanation": "Binary search assumes sorted order to safely discard half the remaining elements at each step. On unsorted data the algorithm may search the wrong half and miss the target entirely, producing an incorrect index or -1 with no exception thrown. Java has no built-in check for the sorted precondition, so Options A and B describe exceptions that do not occur. Option D is incorrect because correctness—not just efficiency—is compromised on unsorted data.",
+      "difficulty": 2,
+      "stem_pattern": "conceptual"
+    },
+    {
+      "topic_id": "u4_s4_13",
+      "stem": "Consider a 2D array declared as `int[][] grid = new int[4][3]` containing nonzero values. Which of the following code segments correctly prints every element in column 2?",
+      "options": [
+        {
+          "label": "A",
+          "text": "```java\nfor (int i = 0; i < grid.length; i++) {\n    System.out.print(grid[2][i] + \" \");\n}\n```"
+        },
+        {
+          "label": "B",
+          "text": "```java\nfor (int i = 0; i < grid[0].length; i++) {\n    System.out.print(grid[i][2] + \" \");\n}\n```"
+        },
+        {
+          "label": "C",
+          "text": "```java\nfor (int i = 0; i < grid.length; i++) {\n    System.out.print(grid[i][2] + \" \");\n}\n```"
+        },
+        {
+          "label": "D",
+          "text": "```java\nfor (int i = 0; i < grid[2].length; i++) {\n    System.out.print(grid[i][2] + \" \");\n}\n```"
+        }
+      ],
+      "answer": "C",
+      "explanation": "Column 2 has one element per row (rows 0 through 3), so the loop must iterate i from 0 to grid.length - 1 = 3, accessing grid[i][2] each time. Option C does exactly this. Option A accesses row 2 (indices swapped). Options B and D use grid[0].length or grid[2].length (both equal 3, the number of columns) as the upper bound, iterating only 3 times and omitting row 3.",
+      "difficulty": 2,
+      "stem_pattern": "conceptual"
+    },
+    {
+      "topic_id": "u4_s4_13",
+      "stem": "What is printed after the following code executes?\n\n```java\nint[][] mat = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\nfor (int r = 0; r < mat.length; r++) {\n    for (int c = 0; c < mat[0].length; c++) {\n        if (r == c) {\n            System.out.print(mat[r][c] + \" \");\n        }\n    }\n}\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`1 5 9`"
+        },
+        {
+          "label": "B",
+          "text": "`3 5 7`"
+        },
+        {
+          "label": "C",
+          "text": "`1 4 7`"
+        },
+        {
+          "label": "D",
+          "text": "`1 2 3 4 5 6 7 8 9`"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The condition r == c selects the main diagonal: (0,0)=1, (1,1)=5, (2,2)=9.B (3 5 7) is the anti-diagonal where r + c == mat.length - 1, a common confusion with the == condition.C (1 4 7) is column 0, produced by the condition c == 0. D results from removing the if condition entirely.",
+      "difficulty": 3,
+      "stem_pattern": "code_trace_output"
+    },
+    {
+      "topic_id": "u4_s4_6",
+      "stem": "A program needs to read every word from a file into an ArrayList.\n\nFile f = new File(\"words.txt\");\nScanner scan = new Scanner(f);\nArrayList<String> words = new ArrayList<String>();\n/* missing code */\n\nWhich replacement correctly reads all tokens and closes the Scanner?",
+      "options": [
+        {
+          "label": "A",
+          "text": "while (scan.hasNext())\n{\n  words.add(scan.next());\n}\nscan.close();"
+        },
+        {
+          "label": "B",
+          "text": "while (scan.hasNext())\n{\n  words.add(scan.next());\n  scan.close();\n}"
+        },
+        {
+          "label": "C",
+          "text": "while (scan.next())\n{\n  words.add(scan.hasNext());\n}\nscan.close();"
+        },
+        {
+          "label": "D",
+          "text": "scan.close();\nwhile (scan.hasNext())\n{\n  words.add(scan.next());\n}"
+        }
+      ],
+      "answer": "A",
+      "explanation": "The loop should use hasNext to test for another token, next to read it, and close the Scanner after all input has been read.",
+      "difficulty": 2,
+      "stem_pattern": "identify_correct_code"
+    },
+    {
+      "topic_id": "u4_s4_8",
+      "stem": "Determine the values of `a` and `b` after the following code runs.\n\n```java\nArrayList<String> words = new ArrayList<String>();\nwords.add(\"red\");\nwords.add(\"blue\");\nwords.add(\"green\");\nwords.add(1, \"yellow\");\nString a = words.remove(2);\nString b = words.get(2);\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`a = \"blue\", b = \"green\"`"
+        },
+        {
+          "label": "B",
+          "text": "`a = \"yellow\", b = \"green\"`"
+        },
+        {
+          "label": "C",
+          "text": "`a = \"green\", b = \"blue\"`"
+        },
+        {
+          "label": "D",
+          "text": "`a = \"blue\", b = \"yellow\"`"
+        }
+      ],
+      "answer": "A",
+      "explanation": "After inserting `\"yellow\"` at index 1, the list is `[red, yellow, blue, green]`; removing index 2 returns `\"blue\"` and shifts `\"green\"` to index 2. The distractors use the old indices or forget the shift after removal.",
+      "difficulty": 3,
+      "stem_pattern": "code_trace_value"
+    },
+    {
+      "topic_id": "u4_s4_13",
+      "stem": "What does the following method return when called with the argument `new int[][]{{3, 1, 4}, {1, 5, 9}, {2, 6, 5}}`?\n\n```java\npublic static int maxRowSum(int[][] arr) {\n    int maxSum = 0;\n    for (int r = 0; r < arr.length; r++) {\n        int rowSum = 0;\n        for (int c = 0; c < arr[0].length; c++) {\n            rowSum += arr[r][c];\n        }\n        if (rowSum > maxSum) {\n            maxSum = rowSum;\n        }\n    }\n    return maxSum;\n}\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`8`"
+        },
+        {
+          "label": "B",
+          "text": "`1`"
+        },
+        {
+          "label": "C",
+          "text": "`13`"
+        },
+        {
+          "label": "D",
+          "text": "`15`"
+        }
+      ],
+      "answer": "D",
+      "explanation": "The three row sums are 3+1+4=8, 1+5+9=15, and 2+6+5=13. maxSum starts at 0; row 0 updates it to 8; row 1 updates it to 15; row 2 (sum 13) does not exceed 15. The method returns 15.A (8) is row 0's sum.B (1) is the row index of the maximum-sum row—a confusion between returning the sum value vs. its row index.C (13) is the last row's sum.",
+      "difficulty": 4,
+      "stem_pattern": "2d_array_trace"
+    },
+    {
+      "topic_id": "u4_s4_8",
+      "stem": "Which statement about `ArrayList` objects is true?",
+      "options": [
+        {
+          "label": "A",
+          "text": "The number of elements is accessed using the `length` field."
+        },
+        {
+          "label": "B",
+          "text": "Elements are accessed using bracket notation, such as `list[0]`."
+        },
+        {
+          "label": "C",
+          "text": "Adding an element at a valid index shifts later elements one position to the right."
+        },
+        {
+          "label": "D",
+          "text": "An `ArrayList<double>` is the standard way to store decimal values."
+        }
+      ],
+      "answer": "C",
+      "explanation": "`add(index, value)` inserts at that position and shifts later elements right. A and B describe arrays, and D is invalid because an `ArrayList` uses wrapper types such as `Double`.",
+      "difficulty": 1,
+      "stem_pattern": "conceptual"
+    },
+    {
+      "topic_id": "u4_s4_14",
+      "stem": "Consider the following binary search method:\n\n```java\npublic static int binarySearch(int[] a, int target) {\n    int lo = 0, hi = a.length - 1;\n    while (lo <= hi) {\n        int mid = (lo + hi) / 2;\n        if (a[mid] == target) return mid;\n        else if (a[mid] < target) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    return -1;\n}\n```\n\nWhat value is returned by `binarySearch(new int[]{1, 3, 5, 7, 9, 11, 13}, 7)`?",
+      "options": [
+        {
+          "label": "A",
+          "text": "`3`"
+        },
+        {
+          "label": "B",
+          "text": "`7`"
+        },
+        {
+          "label": "C",
+          "text": "`4`"
+        },
+        {
+          "label": "D",
+          "text": "`-1`"
+        }
+      ],
+      "answer": "A",
+      "explanation": "lo=0, hi=6. mid=(0+6)/2=3. a[3]=7 equals target, so return 3 immediately. Option B (7) confuses the target value with its index. Option C (4) would result from miscounting the midpoint. Option D (-1) would indicate target not found.",
+      "difficulty": 2,
+      "stem_pattern": "code_trace_value"
+    },
+    {
+      "topic_id": "u4_s4_5",
+      "stem": "What is the output of the following code?\n\n```java\nint[] arr = {2, 4, 1, 3, 5};\nfor (int i = 1; i < arr.length; i++) {\n    arr[i] = arr[i - 1] + arr[i];\n}\nSystem.out.println(arr[3] + \" \" + arr[4]);\n```",
+      "options": [
+        {
+          "label": "A",
+          "text": "`3 5`"
+        },
+        {
+          "label": "B",
+          "text": "`4 8`"
+        },
+        {
+          "label": "C",
+          "text": "`10 15`"
+        },
+        {
+          "label": "D",
+          "text": "`10 5`"
+        }
+      ],
+      "answer": "C",
+      "explanation": "The loop builds a running prefix sum in place. Starting from {2,4,1,3,5}: i=1 → arr[1]=2+4=6, giving {2,6,1,3,5}; i=2 → arr[2]=6+1=7, giving {2,6,7,3,5}; i=3 → arr[3]=7+3=10, giving {2,6,7,10,5}; i=4 → arr[4]=10+5=15, giving {2,6,7,10,15}. Printing arr[3] and arr[4] yields `10 15`. Option A (3 5) uses the original values, ignoring all mutations. Option B (4 8) computes each step from the original adjacent pairs (1+3=4, 3+5=8) rather than the already-updated prefix sums. Option D (10 5) results from a loop condition of `i < arr.length - 1`, which stops before i=4, leaving arr[4] at its original value of 5.",
+      "difficulty": 5,
+      "stem_pattern": "code_trace_output"
+    }
+  ],
+  "frq_section": [
+    {
+      "archetype": "methods_control",
+      "topic_id": "u2_s2_8",
+      "prompt": "A PhraseEditor object stores a single non-null String called phrase that consists of one or more words separated by exactly one space character. There are no leading or trailing spaces. You will write two methods of the PhraseEditor class.\n\nClass information for this question:\n  public class PhraseEditor\n  private String phrase\n  public PhraseEditor(String phrase)\n  public boolean startsWithVowel(String word)\n  public int countVowelWords()",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Write the method startsWithVowel, which returns true if the parameter word begins with a vowel (a, e, i, o, or u, in either lowercase or uppercase) and returns false otherwise. If word has length 0, return false.\n\n  /** Returns true if word's first letter is a vowel. */\n  public boolean startsWithVowel(String word)"
+        },
+        {
+          "label": "(b)",
+          "prompt": "Write the method countVowelWords, which returns the number of words in phrase that begin with a vowel. Words in phrase are separated by single spaces. Your method must split phrase into individual words using indexOf and substring (not split), and must call startsWithVowel from part (a) to test each word.\n\nFor example, if phrase is \"I am an engineer\", countVowelWords returns 4. If phrase is \"hello world\", it returns 0.\n\n  /** Returns the number of space-separated words in phrase that begin with a vowel. */\n  public int countVowelWords()"
+        }
+      ],
+      "reference_solution": "public class PhraseEditor {\n    private String phrase;\n\n    public PhraseEditor(String phrase) {\n        this.phrase = phrase;\n    }\n\n    public boolean startsWithVowel(String word) {\n        if (word.length() == 0) {\n            return false;\n        }\n        String first = word.substring(0, 1);\n        return first.equals(\"a\") || first.equals(\"e\") || first.equals(\"i\")\n            || first.equals(\"o\") || first.equals(\"u\")\n            || first.equals(\"A\") || first.equals(\"E\") || first.equals(\"I\")\n            || first.equals(\"O\") || first.equals(\"U\");\n    }\n\n    public int countVowelWords() {\n        int count = 0;\n        String remaining = phrase;\n        while (remaining.length() > 0) {\n            int space = remaining.indexOf(\" \");\n            String word;\n            if (space == -1) {\n                word = remaining;\n                remaining = \"\";\n            } else {\n                word = remaining.substring(0, space);\n                remaining = remaining.substring(space + 1);\n            }\n            if (startsWithVowel(word)) {\n                count++;\n            }\n        }\n        return count;\n    }\n}",
+      "rubric": [
+        {
+          "point_label": "startsWithVowel header",
+          "criterion": "Method declared exactly as public boolean startsWithVowel(String word) inside the PhraseEditor class.",
+          "points": 1
+        },
+        {
+          "point_label": "First-character extraction",
+          "criterion": "First character is obtained with word.substring(0, 1); does NOT use charAt. Empty string is guarded so substring(0,1) is never called on length-0 input.",
+          "points": 1
+        },
+        {
+          "point_label": "Vowel test logic",
+          "criterion": "Returns true when the first character equals any of a/e/i/o/u (case handled either by checking both cases or by toLowerCase) and false otherwise; uses .equals for String comparison.",
+          "points": 1
+        },
+        {
+          "point_label": "Loop and termination in countVowelWords",
+          "criterion": "Uses a loop (while or for) that continues until every word has been processed; loop terminates correctly when no further space is found (indexOf returns -1) by handling the final word.",
+          "points": 1
+        },
+        {
+          "point_label": "Word extraction via indexOf and substring",
+          "criterion": "Each word is isolated using remaining.indexOf(\" \") together with remaining.substring(0, space) and remaining.substring(space + 1); does not use String.split.",
+          "points": 1
+        },
+        {
+          "point_label": "Calls startsWithVowel helper",
+          "criterion": "The part-(a) method startsWithVowel is invoked on each extracted word and its result drives the increment. Reimplementing the vowel test inline forfeits this point.",
+          "points": 1
+        },
+        {
+          "point_label": "Counter and return value",
+          "criterion": "An int counter is initialized to 0 before the loop, incremented by exactly 1 for each word that starts with a vowel, and returned at the end.",
+          "points": 1
+        }
+      ],
+      "total_points": 7,
+      "test_cases": [
+        {
+          "description": "basic with mixed words",
+          "setup_java": "PhraseEditor p = new PhraseEditor(\"apple banana orange\");\nSystem.out.println(p.countVowelWords());",
+          "expected_output": "2\n"
+        },
+        {
+          "description": "single word no vowels and case insensitive",
+          "setup_java": "PhraseEditor p1 = new PhraseEditor(\"hello\");\nPhraseEditor p2 = new PhraseEditor(\"I am an Engineer\");\nSystem.out.println(p1.countVowelWords());\nSystem.out.println(p2.countVowelWords());",
+          "expected_output": "0\n4\n"
+        },
+        {
+          "description": "all words start with vowels",
+          "setup_java": "PhraseEditor p = new PhraseEditor(\"oak elm ash ivy umbrella\");\nSystem.out.println(p.countVowelWords());",
+          "expected_output": "5\n"
+        }
+      ]
+    },
+    {
+      "archetype": "class_writing",
+      "topic_id": "u3_s3_3",
+      "prompt": "A coffee shop loyalty program tracks each customer with a CoffeeCard object. Every CoffeeCard stores the customer's name (a String), the customer's tier code (an int, where 0 = standard, 1 = gold, 2 = platinum), the number of points earned so far (an int), and whether auto-renewal is enabled (a boolean).\n\nThe class supports the following behavior:\n\n- CoffeeCard(String name, int tier, int points, boolean autoRenew) — constructs a card with all four fields supplied.\n- CoffeeCard(String name) — constructs a card for a brand-new customer; sets tier to 0, points to 0, and autoRenew to false.\n- void earnPoints(int amount) — adds amount to the running total of points earned.\n- void upgradeTier() — if tier is 0, set it to 1; if tier is 1, set it to 2; if tier is already 2, leave it unchanged.\n- String tierLabel() — returns \"standard\" if tier is 0, \"gold\" if tier is 1, and \"platinum\" if tier is 2.\n- String describe() — returns a String of the form \"<name> | <tierLabel> | <points> pts | renew=<autoRenew>\" using the value returned by tierLabel().\n\nWrite the complete CoffeeCard class. All instance variables must be private.",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Write the complete CoffeeCard class, including private instance variables, both constructors, and all required methods (earnPoints, upgradeTier, tierLabel, describe)."
+        }
+      ],
+      "reference_solution": "public class CoffeeCard {\n    private String name;\n    private int tier;\n    private int points;\n    private boolean autoRenew;\n\n    public CoffeeCard(String name, int tier, int points, boolean autoRenew) {\n        this.name = name;\n        this.tier = tier;\n        this.points = points;\n        this.autoRenew = autoRenew;\n    }\n\n    public CoffeeCard(String name) {\n        this.name = name;\n        this.tier = 0;\n        this.points = 0;\n        this.autoRenew = false;\n    }\n\n    public void earnPoints(int amount) {\n        points += amount;\n    }\n\n    public void upgradeTier() {\n        if (tier == 0) {\n            tier = 1;\n        } else if (tier == 1) {\n            tier = 2;\n        }\n    }\n\n    public String tierLabel() {\n        if (tier == 0) {\n            return \"standard\";\n        } else if (tier == 1) {\n            return \"gold\";\n        }\n        return \"platinum\";\n    }\n\n    public String describe() {\n        return name + \" | \" + tierLabel() + \" | \" + points + \" pts | renew=\" + autoRenew;\n    }\n}",
+      "rubric": [
+        {
+          "point_label": "Class header",
+          "criterion": "Class is declared as public class CoffeeCard",
+          "points": 1
+        },
+        {
+          "point_label": "Private instance variables",
+          "criterion": "All four required fields (name String, tier int, points int, autoRenew boolean) declared private with correct types",
+          "points": 1
+        },
+        {
+          "point_label": "Four-argument constructor",
+          "criterion": "CoffeeCard(String, int, int, boolean) has correct header and assigns all four fields from parameters",
+          "points": 1
+        },
+        {
+          "point_label": "One-argument constructor",
+          "criterion": "CoffeeCard(String) has correct header, assigns name from parameter, and defaults tier to 0, points to 0, and autoRenew to false",
+          "points": 1
+        },
+        {
+          "point_label": "earnPoints mutator",
+          "criterion": "earnPoints has return type void, one int parameter, and uses += to accumulate points (not =)",
+          "points": 1
+        },
+        {
+          "point_label": "upgradeTier mutator",
+          "criterion": "upgradeTier promotes 0 -> 1 and 1 -> 2 using conditional logic, and leaves tier unchanged when tier is already 2",
+          "points": 1
+        },
+        {
+          "point_label": "tierLabel and describe",
+          "criterion": "tierLabel returns the correct String for each of the three tier values via branching; describe returns a String exactly of the form \"<name> | <tierLabel> | <points> pts | renew=<autoRenew>\" using return (not System.out.print) and invoking tierLabel for the label",
+          "points": 1
+        }
+      ],
+      "total_points": 7,
+      "test_cases": [
+        {
+          "description": "default constructor, earn points, upgrade once",
+          "setup_java": "CoffeeCard c = new CoffeeCard(\"Priya\");\nc.earnPoints(40);\nc.earnPoints(10);\nc.upgradeTier();\nSystem.out.println(c.describe());",
+          "expected_output": "Priya | gold | 50 pts | renew=false"
+        },
+        {
+          "description": "full constructor and tierLabel",
+          "setup_java": "CoffeeCard c = new CoffeeCard(\"Theo\", 2, 300, true);\nSystem.out.println(c.tierLabel());\nSystem.out.println(c.describe());",
+          "expected_output": "platinum\nTheo | platinum | 300 pts | renew=true"
+        },
+        {
+          "description": "upgradeTier capped at platinum",
+          "setup_java": "CoffeeCard c = new CoffeeCard(\"Mira\", 1, 75, false);\nc.upgradeTier();\nc.upgradeTier();\nc.upgradeTier();\nSystem.out.println(c.describe());",
+          "expected_output": "Mira | platinum | 75 pts | renew=false"
+        }
+      ]
+    },
+    {
+      "archetype": "arraylist",
+      "topic_id": "u4_s4_8",
+      "prompt": "A WordCollector object stores words gathered from phrases for vocabulary study. The class has a private ArrayList<String> field named words that holds the collected words.\n\nThe partial class declaration is shown below. The constructor and method getWords are completed for you; you will write addLongWords and collectFromPhrases.\n\npublic class WordCollector {\n    private ArrayList<String> words;\n\n    public WordCollector() { /* implementation not shown */ }\n\n    public ArrayList<String> getWords() { /* implementation not shown */ }\n\n    /** Part (a) */\n    public int addLongWords(String phrase, int minLen) { /* to implement */ }\n\n    /** Part (b) */\n    public int collectFromPhrases(ArrayList<String> phrases, int minLen) { /* to implement */ }\n}\n\nA phrase is a String containing zero or more words separated by single spaces, with no leading or trailing space. Words must be extracted using String.indexOf and String.substring (no split, no charAt).",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Write the method addLongWords(String phrase, int minLen). The method must traverse the given phrase, extract each word using indexOf(\" \") and substring, and add to the words field every word whose length is greater than or equal to minLen. The method returns the number of words added by this call. The order of additions must match the order in which words appear in the phrase. If phrase is the empty string, no words are added and 0 is returned."
+        },
+        {
+          "label": "(b)",
+          "prompt": "Write the method collectFromPhrases(ArrayList<String> phrases, int minLen). The method must process each phrase in phrases (in order) by delegating to addLongWords from part (a), and return the total number of words added across all phrases. You must call addLongWords; do not duplicate its logic."
+        }
+      ],
+      "reference_solution": "import java.util.ArrayList;\n\npublic class WordCollector {\n    private ArrayList<String> words;\n\n    public WordCollector() {\n        words = new ArrayList<String>();\n    }\n\n    public ArrayList<String> getWords() {\n        return words;\n    }\n\n    public int addLongWords(String phrase, int minLen) {\n        int count = 0;\n        String remaining = phrase;\n        while (remaining.length() > 0) {\n            int spaceIdx = remaining.indexOf(\" \");\n            String word;\n            if (spaceIdx == -1) {\n                word = remaining;\n                remaining = \"\";\n            } else {\n                word = remaining.substring(0, spaceIdx);\n                remaining = remaining.substring(spaceIdx + 1);\n            }\n            if (word.length() >= minLen) {\n                words.add(word);\n                count++;\n            }\n        }\n        return count;\n    }\n\n    public int collectFromPhrases(ArrayList<String> phrases, int minLen) {\n        int total = 0;\n        for (int i = 0; i < phrases.size(); i++) {\n            total += addLongWords(phrases.get(i), minLen);\n        }\n        return total;\n    }\n}\n",
+      "rubric": [
+        {
+          "point_label": "Loop traverses entire phrase using indexOf/substring",
+          "criterion": "Part (a) uses a loop that repeatedly calls indexOf(\" \") and substring to extract every word, including the final word after the last space. Off-by-one or skipping the last word loses this point.",
+          "points": 1
+        },
+        {
+          "point_label": "Length comparison and conditional add",
+          "criterion": "Part (a) compares word.length() to minLen using >= and only calls words.add(word) when the condition is true. Using > or adding all words loses this point.",
+          "points": 1
+        },
+        {
+          "point_label": "Returns count of words added in part (a)",
+          "criterion": "Part (a) increments a local counter exactly when a word is added and returns that counter. Returning words.size() (which may be inflated by previous calls) loses this point.",
+          "points": 1
+        },
+        {
+          "point_label": "Part (b) iterates all phrases without bounds error",
+          "criterion": "Part (b) uses for, enhanced-for, or while with bound i < phrases.size() to visit every phrase exactly once. Using <= phrases.size() or skipping any element loses this point.",
+          "points": 1
+        },
+        {
+          "point_label": "Part (b) calls part (a) and accumulates returned total",
+          "criterion": "Part (b) calls addLongWords on each phrase and adds its return value into a running total that is returned. Reimplementing the parsing logic in part (b) or ignoring the return value forfeits this point.",
+          "points": 1
+        }
+      ],
+      "total_points": 5,
+      "test_cases": [
+        {
+          "description": "basic single phrase, mix of short and long words",
+          "setup_java": "WordCollector wc = new WordCollector();\nint n = wc.addLongWords(\"the quick brown fox jumps\", 4);\nSystem.out.println(n);\nSystem.out.println(wc.getWords());",
+          "expected_output": "3\n[quick, brown, jumps]"
+        },
+        {
+          "description": "edge: phrase with no qualifying words",
+          "setup_java": "WordCollector wc = new WordCollector();\nint n = wc.addLongWords(\"hi to me\", 5);\nSystem.out.println(n);\nSystem.out.println(wc.getWords().size());",
+          "expected_output": "0\n0"
+        },
+        {
+          "description": "part (b) collects across multiple phrases",
+          "setup_java": "WordCollector wc = new WordCollector();\nArrayList<String> phrases = new ArrayList<String>();\nphrases.add(\"apple banana cat\");\nphrases.add(\"dog elephant frog\");\nphrases.add(\"\");\nint total = wc.collectFromPhrases(phrases, 5);\nSystem.out.println(total);\nSystem.out.println(wc.getWords());",
+          "expected_output": "3\n[apple, banana, elephant]"
+        }
+      ]
+    },
+    {
+      "archetype": "array_2d",
+      "topic_id": "u4_s4_11",
+      "prompt": "A theater seating section is represented by a 2D array of strings, where each cell either contains a patron's name or the empty string \"\" if the seat is unoccupied. The Theater class is partially shown below.\n\npublic class Theater {\n    private String[][] seats;\n\n    /** Constructs a Theater with the given number of rows and columns.\n     *  Every seat is initialized to the empty string \"\" (not null). */\n    public Theater(int numRows, int numCols) { /* implementation in part (a) */ }\n\n    /** Returns true if the seat at (r, c) is currently empty. */\n    public boolean isEmpty(int r, int c) { return seats[r][c].equals(\"\"); }\n\n    /** Attempts to seat a patron with the given name in the first empty seat found,\n     *  scanning row 0 left-to-right, then row 1 left-to-right, and so on.\n     *  Returns true if seated, or false if the section is full.\n     *  Implementation in part (b). */\n    public boolean seatPatron(String name) { /* implementation in part (b) */ }\n}",
+      "parts": [
+        {
+          "label": "(a)",
+          "prompt": "Write the constructor Theater(int numRows, int numCols). It must allocate the 2D array seats with the given dimensions and initialize every cell to the empty string \"\" (not null)."
+        },
+        {
+          "label": "(b)",
+          "prompt": "Write the method seatPatron(String name). It must scan the seats in row-major order (row 0 left to right, then row 1, etc.) and place name in the first cell whose value is the empty string. As soon as a patron is seated, the method must return true and stop scanning. If no empty seat exists, the method returns false and the array is unchanged."
+        }
+      ],
+      "reference_solution": "public class Theater {\n    private String[][] seats;\n\n    public Theater(int numRows, int numCols) {\n        seats = new String[numRows][numCols];\n        for (int r = 0; r < numRows; r++) {\n            for (int c = 0; c < numCols; c++) {\n                seats[r][c] = \"\";\n            }\n        }\n    }\n\n    public boolean isEmpty(int r, int c) {\n        return seats[r][c].equals(\"\");\n    }\n\n    public boolean seatPatron(String name) {\n        for (int r = 0; r < seats.length; r++) {\n            for (int c = 0; c < seats[r].length; c++) {\n                if (seats[r][c].equals(\"\")) {\n                    seats[r][c] = name;\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n\n    public String getSeat(int r, int c) {\n        return seats[r][c];\n    }\n}",
+      "rubric": [
+        {
+          "point_label": "Array allocated with parameter dimensions",
+          "criterion": "Constructor allocates seats = new String[numRows][numCols] using the parameters (not hardcoded values, no swapped indices).",
+          "points": 1
+        },
+        {
+          "point_label": "Cells initialized to empty string",
+          "criterion": "Constructor uses nested loops to assign \"\" (not null) to every cell of seats.",
+          "points": 1
+        },
+        {
+          "point_label": "seatPatron nested traversal",
+          "criterion": "Uses nested for loops with outer over seats.length and inner over seats[r].length to scan in row-major order.",
+          "points": 1
+        },
+        {
+          "point_label": "Empty-cell condition",
+          "criterion": "Tests each cell with seats[r][c].equals(\"\") (or equivalent) to detect the first empty seat.",
+          "points": 1
+        },
+        {
+          "point_label": "Assignment and early return",
+          "criterion": "On the first empty seat found, assigns name to that cell and immediately returns true so no further cells are overwritten.",
+          "points": 1
+        },
+        {
+          "point_label": "Returns false when full",
+          "criterion": "After both loops finish without finding an empty seat, returns false and the array is unchanged.",
+          "points": 1
+        }
+      ],
+      "total_points": 6,
+      "test_cases": [
+        {
+          "description": "seat first three patrons",
+          "setup_java": "Theater t = new Theater(2, 2);\nSystem.out.println(t.seatPatron(\"Ana\"));\nSystem.out.println(t.seatPatron(\"Ben\"));\nSystem.out.println(t.seatPatron(\"Cleo\"));\nSystem.out.println(t.getSeat(0, 0));\nSystem.out.println(t.getSeat(0, 1));\nSystem.out.println(t.getSeat(1, 0));\nSystem.out.println(t.getSeat(1, 1));",
+          "expected_output": "true\ntrue\ntrue\nAna\nBen\nCleo\n"
+        },
+        {
+          "description": "theater full returns false",
+          "setup_java": "Theater t = new Theater(1, 2);\nt.seatPatron(\"X\");\nt.seatPatron(\"Y\");\nSystem.out.println(t.seatPatron(\"Z\"));\nSystem.out.println(t.getSeat(0, 0));\nSystem.out.println(t.getSeat(0, 1));",
+          "expected_output": "false\nX\nY"
+        },
+        {
+          "description": "empty cells initialized correctly",
+          "setup_java": "Theater t = new Theater(2, 3);\nSystem.out.println(t.isEmpty(0, 0));\nSystem.out.println(t.isEmpty(1, 2));\nt.seatPatron(\"Sam\");\nSystem.out.println(t.isEmpty(0, 0));\nSystem.out.println(t.isEmpty(0, 1));",
+          "expected_output": "true\ntrue\nfalse\ntrue"
+        }
+      ]
+    }
+  ]
+}

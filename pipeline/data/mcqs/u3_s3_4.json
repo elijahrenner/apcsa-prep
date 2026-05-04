@@ -1,0 +1,522 @@
+[
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Which of the following correctly describes a constructor in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A constructor must declare `void` as its return type."
+      },
+      {
+        "label": "B",
+        "text": "A constructor has the same name as the class and declares no return type."
+      },
+      {
+        "label": "C",
+        "text": "A constructor is invoked by writing `ClassName.constructor(args)`."
+      },
+      {
+        "label": "D",
+        "text": "A class may define at most one constructor."
+      }
+    ],
+    "answer": "B",
+    "explanation": "A constructor is distinguished from a regular method by sharing the class name and having no return type \u2014 not even void. It is called with `new ClassName(args)`, not a dot-method call. A class may define multiple overloaded constructors with different parameter lists.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Consider the following class.\n\n```java\npublic class Counter\n{\n    private int count;\n    private int step;\n\n    public Counter(int count, int step)\n    {\n        count = count;\n        step = step;\n    }\n\n    public int getCount() { return count; }\n    public int getStep()  { return step; }\n}\n```\n\nAfter executing `Counter c = new Counter(5, 2);`, what are the values returned by `c.getCount()` and `c.getStep()`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`getCount()` returns `5`, `getStep()` returns `2`"
+      },
+      {
+        "label": "B",
+        "text": "`getCount()` returns `0`, `getStep()` returns `0`"
+      },
+      {
+        "label": "C",
+        "text": "`getCount()` returns `5`, `getStep()` returns `0`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because parameter names match field names."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The constructor parameters `count` and `step` shadow the instance fields of the same name. `count = count` and `step = step` each assign the parameter to itself \u2014 a no-op. The instance fields are never updated and retain their default value of `0`. Java does not flag this as a compile error, making D wrong; A and C both incorrectly assume the assignment reaches the instance fields.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Consider the following class.\n\n```java\npublic class Box\n{\n    private String label;\n    private int size;\n\n    public Box(String lbl, int s)\n    {\n        label = lbl;\n        size = s;\n    }\n\n    public String toString()\n    {\n        return label + \": \" + size;\n    }\n}\n```\n\nWhat is printed after executing the following code?\n\n```java\nBox b = new Box(\"Books\", 10);\nSystem.out.println(b);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Box: 10`"
+      },
+      {
+        "label": "B",
+        "text": "`Books: 10`"
+      },
+      {
+        "label": "C",
+        "text": "`lbl: s`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because `toString` is not explicitly called."
+      }
+    ],
+    "answer": "B",
+    "explanation": "`println` automatically invokes `toString()` on its argument. The constructor assigns `label = \"Books\"` and `size = 10`, so `toString()` returns `\"Books: 10\"`. The parameter names `lbl` and `s` are local to the constructor and never appear in output (eliminating C). D is wrong because `println` calls `toString()` implicitly.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Consider the following class.\n\n```java\npublic class Ticket\n{\n    private String event;\n    private int row;\n    private double price;\n\n    public Ticket(String e, int r, double p)\n    {\n        event = e;\n        row = r;\n        price = p;\n    }\n\n    public Ticket(int r, double p)\n    {\n        row = r;\n        price = p;\n    }\n}\n```\n\nWhich of the following client statements would cause a compile-time error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Ticket t = new Ticket(\"Concert\", 5, 49.99);`"
+      },
+      {
+        "label": "B",
+        "text": "`Ticket t = new Ticket(3, 25.00);`"
+      },
+      {
+        "label": "C",
+        "text": "`Ticket t = new Ticket(\"Play\", 2, 30);`"
+      },
+      {
+        "label": "D",
+        "text": "`Ticket t = new Ticket(\"Show\", 5.5, 19.99);`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The second parameter `row` is declared as `int`, but `5.5` is a `double` literal. Java does not automatically narrow `double` to `int`, causing a compile-time error. Option C passes the integer literal `30` where a `double` is expected; Java widens `int` to `double` automatically, so it compiles without error.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Consider the following class.\n\n```java\npublic class Circle\n{\n    private double radius;\n    private double area;\n\n    public Circle(double r)\n    {\n        radius = r;\n        double area = 3.14 * radius * radius;\n    }\n\n    public double getRadius() { return radius; }\n    public double getArea()   { return area; }\n}\n```\n\nDetermine the values returned by `getRadius()` and `getArea()` after `Circle c = new Circle(5.0);` is executed.",
+    "options": [
+      {
+        "label": "A",
+        "text": "`getRadius()` returns `5.0`, `getArea()` returns `78.5`"
+      },
+      {
+        "label": "B",
+        "text": "`getRadius()` returns `5.0`, `getArea()` returns `0.0`"
+      },
+      {
+        "label": "C",
+        "text": "`getRadius()` returns `0.0`, `getArea()` returns `78.5`"
+      },
+      {
+        "label": "D",
+        "text": "`getRadius()` returns `0.0`, `getArea()` returns `0.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Inside the constructor, `double area = 3.14 * radius * radius` declares a new local variable named `area`, shadowing the instance field. The local variable is computed and then discarded when the constructor exits; the instance field `area` is never assigned and stays at its default value of `0.0`. The field `radius` is assigned correctly via `radius = r`, so `getRadius()` returns `5.0`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Consider the following class.\n\n```java\npublic class Temperature\n{\n    private double celsius;\n    private String scale;\n\n    public Temperature(double c)\n    {\n        celsius = c;\n        scale = \"Celsius\";\n    }\n\n    public Temperature(int f)\n    {\n        celsius = (f - 32) * 5.0 / 9.0;\n        scale = \"Fahrenheit\";\n    }\n\n    public String toString()\n    {\n        return celsius + \" \" + scale;\n    }\n}\n```\n\nWhat is printed after executing the following code?\n\n```java\nTemperature t = new Temperature(32);\nSystem.out.println(t);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`32.0 Celsius`"
+      },
+      {
+        "label": "B",
+        "text": "`0.0 Fahrenheit`"
+      },
+      {
+        "label": "C",
+        "text": "`32.0 Fahrenheit`"
+      },
+      {
+        "label": "D",
+        "text": "`0 Celsius`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The literal `32` is an `int`, so Java selects `Temperature(int f)` \u2014 an exact match takes priority over widening to `double`. Inside that constructor, `celsius = (32 - 32) * 5.0 / 9.0 = 0.0` and `scale = \"Fahrenheit\"`. `toString()` returns `\"0.0 Fahrenheit\"`. Students who assume `32` triggers the `double` constructor would predict A.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Consider the following class and client code.\n\n```java\npublic class Student\n{\n    private String name;\n    private int id;\n    private double gpa;\n\n    public Student(String n, int i)\n    {\n        name = n;\n        id = i;\n    }\n\n    public double getGpa() { return gpa; }\n}\n```\n\n```java\nStudent s = new Student(\"Alice\", 1001);\nSystem.out.println(s.getGpa());\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A compile-time error because `gpa` is not initialized in the constructor."
+      },
+      {
+        "label": "B",
+        "text": "`null`"
+      },
+      {
+        "label": "C",
+        "text": "`0.0`"
+      },
+      {
+        "label": "D",
+        "text": "A runtime exception because `gpa` has no assigned value."
+      }
+    ],
+    "answer": "C",
+    "explanation": "The instance field `gpa` is a `double`, which Java initializes to `0.0` by default even when the constructor omits it. No compile error or runtime exception occurs; `getGpa()` simply returns `0.0`. Option B (`null`) is the default for reference types, not primitives.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "A class named `Book` declares the following constructor and no others.\n\n```java\npublic Book(String title, int pages)\n{\n    ...\n}\n```\n\nWhich of the following client statements would cause a compile-time error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Book b = new Book(\"Hamlet\", 200);`"
+      },
+      {
+        "label": "B",
+        "text": "`Book b = new Book(\"Hamlet\", (int) 200.5);`"
+      },
+      {
+        "label": "C",
+        "text": "`Book b = new Book();`"
+      },
+      {
+        "label": "D",
+        "text": "`Book b = new Book(\"Hamlet\", 0);`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Because `Book` explicitly defines a parameterized constructor, Java no longer provides the default no-argument constructor. Calling `new Book()` matches no declared constructor and causes a compile-time error. Options A, B, and D all supply a `String` and an `int` (or an explicitly cast `int`) that match the declared signature.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Consider the following class.\n\n```java\npublic class Point\n{\n    private int x;\n    private int y;\n\n    public Point(int x, int y)\n    {\n        this.x = x;\n        y = y;\n    }\n\n    public int getX() { return x; }\n    public int getY() { return y; }\n}\n```\n\nDetermine the values returned by `getX()` and `getY()` after `Point p = new Point(3, 7);` is executed.",
+    "options": [
+      {
+        "label": "A",
+        "text": "`getX()` returns `3`, `getY()` returns `7`"
+      },
+      {
+        "label": "B",
+        "text": "`getX()` returns `0`, `getY()` returns `0`"
+      },
+      {
+        "label": "C",
+        "text": "`getX()` returns `3`, `getY()` returns `0`"
+      },
+      {
+        "label": "D",
+        "text": "`getX()` returns `0`, `getY()` returns `7`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`this.x = x` correctly assigns the parameter to the instance field `x`, so `getX()` returns `3`. The line `y = y` assigns the local parameter `y` to itself \u2014 both sides refer to the parameter \u2014 leaving the instance field `y` at its default value of `0`. A assumes both assignments work; B assumes neither does; D has the correction applied to the wrong field.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "A class named `Lamp` has one private `int` field named `brightness`. Which of the following is a correct constructor declaration for `Lamp`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public void Lamp(int b) { brightness = b; }`"
+      },
+      {
+        "label": "B",
+        "text": "`public int Lamp(int b) { brightness = b; return brightness; }`"
+      },
+      {
+        "label": "C",
+        "text": "`public Lamp(int b) { brightness = b; }`"
+      },
+      {
+        "label": "D",
+        "text": "`public static Lamp(int b) { brightness = b; }`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "A constructor must share the class name and declare no return type \u2014 not even `void`. Options A and B include return types (`void` and `int`) and are therefore regular method declarations, not constructors. Option D is invalid because constructors cannot be `static`. Only C correctly omits the return type while using the class name.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Consider the following class:\n\n```java\npublic class Animal {\n    private String name;\n    private int age;\n\n    public Animal(String n, int a) {\n        name = n;\n        age = a;\n    }\n}\n```\n\nOnce this class is compiled, which of the following statements about instantiating `Animal` objects is true?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Java automatically provides a no-argument constructor `Animal()` in addition to the constructor shown, so both `new Animal()` and `new Animal(\"Cat\", 3)` compile."
+      },
+      {
+        "label": "B",
+        "text": "`new Animal()` causes a compile-time error because writing any constructor removes Java's automatic no-argument constructor."
+      },
+      {
+        "label": "C",
+        "text": "`new Animal()` compiles successfully but throws a runtime exception because `name` and `age` are not initialized."
+      },
+      {
+        "label": "D",
+        "text": "`new Animal()` compiles successfully and initializes `name` to `\"\"` and `age` to `0`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java provides a free no-argument constructor only when a class defines no constructors at all. Once the programmer writes any constructor, the implicit default is no longer generated. Calling `new Animal()` therefore produces a compile-time error. Options C and D are incorrect because the call would not even compile; option A incorrectly states that the default constructor coexists with programmer-defined constructors.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Consider the following class:\n\n```java\npublic class Wallet {\n    private int bills;\n    private int coins;\n\n    public Wallet() {\n        bills = 5;\n    }\n\n    public Wallet(int b, int c) {\n        bills = b;\n        coins = c;\n    }\n\n    public int getBills() { return bills; }\n    public int getCoins() { return coins; }\n}\n```\n\nAfter the following code runs:\n\n```java\nWallet w1 = new Wallet();\nWallet w2 = new Wallet(10, 25);\n```\n\nDetermine the values of `w1.getCoins()` and `w2.getBills()`.",
+    "options": [
+      {
+        "label": "A",
+        "text": "`w1.getCoins()` is `0` and `w2.getBills()` is `10`"
+      },
+      {
+        "label": "B",
+        "text": "`w1.getCoins()` is `5` and `w2.getBills()` is `10`"
+      },
+      {
+        "label": "C",
+        "text": "`w1.getCoins()` is `0` and `w2.getBills()` is `5`"
+      },
+      {
+        "label": "D",
+        "text": "`w1.getCoins()` is `5` and `w2.getBills()` is `25`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`w1` uses the no-argument constructor, which sets `bills` to `5` but never assigns `coins`; the `int` field `coins` therefore remains at its default value of `0`. `w2` uses the two-parameter constructor, setting `bills = 10` and `coins = 25`. Option B confuses `coins` with `bills` for `w1`; option C confuses `bills` values between the two constructors; option D swaps the field values of `w2`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class BankAccount {\n    private int balance;\n    private int bonus;\n\n    public BankAccount(int initialBalance) {\n        balance = initialBalance;\n        bonus = initialBalance / 10;\n    }\n\n    public void deposit(int amount) {\n        balance += amount + bonus;\n    }\n\n    public int getBalance() { return balance; }\n}\n\nBankAccount acct = new BankAccount(40);\nacct.deposit(30);\nacct.deposit(20);\nSystem.out.println(acct.getBalance());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`90`"
+      },
+      {
+        "label": "B",
+        "text": "`94`"
+      },
+      {
+        "label": "C",
+        "text": "`98`"
+      },
+      {
+        "label": "D",
+        "text": "`102`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "After `new BankAccount(40)`: `balance = 40`, `bonus = 40 / 10 = 4` (integer division). `deposit(30)` sets `balance = 40 + 30 + 4 = 74`. `deposit(20)` sets `balance = 74 + 20 + 4 = 98`. Option A ignores the bonus entirely (40+30+20). Option B adds the bonus only once across both deposits (40+30+4+20). Option D results from incorrectly adding the bonus a third time as if the constructor also incremented `balance` by `bonus`.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Which of the following statements about Java's default (no-argument) constructor is accurate?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Java always provides a default no-argument constructor for every class, regardless of what constructors the programmer writes."
+      },
+      {
+        "label": "B",
+        "text": "Java provides a default no-argument constructor only when the programmer writes no constructors at all."
+      },
+      {
+        "label": "C",
+        "text": "Java provides a default no-argument constructor only when the programmer has already written at least one constructor."
+      },
+      {
+        "label": "D",
+        "text": "The default no-argument constructor is always `private`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java supplies a free public no-argument constructor only when the programmer defines zero constructors. The moment any constructor is written, the compiler-generated default disappears. A is wrong because once you write a constructor the default is removed. C inverts the rule. D is wrong \u2014 the compiler-supplied default is public, not private.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "A class `Sensor` is declared as follows:\n\n```java\npublic class Sensor {\n    private boolean active;\n    private double reading;\n    private String label;\n\n    public Sensor() { }\n}\n```\n\nAfter `Sensor s = new Sensor();` executes, what are the values of `active`, `reading`, and `label`, respectively?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`false`, `0.0`, `null`"
+      },
+      {
+        "label": "B",
+        "text": "`false`, `0.0`, `\"\"`"
+      },
+      {
+        "label": "C",
+        "text": "`true`, `0.0`, `null`"
+      },
+      {
+        "label": "D",
+        "text": "`0`, `0.0`, `null`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`boolean` fields default to `false`, `double` to `0.0`, and any reference type (including `String`) to `null` \u2014 not the empty string. B is wrong because `String` defaults to `null`, not `\"\"`. C is wrong because `boolean` defaults to `false`, not `true`. D is wrong because `active` is `boolean` so its default is `false`, not `0`.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Consider the following class:\n\n```java\npublic class Score {\n    private int points;\n\n    public Score(int p) {\n        points = p;\n    }\n\n    public int getPoints() { return points; }\n}\n```\n\nWhat value is printed by the following code?\n\n```java\nint x = 10;\nScore s = new Score(x);\nx = 99;\nSystem.out.println(s.getPoints());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`99`"
+      },
+      {
+        "label": "C",
+        "text": "`0`"
+      },
+      {
+        "label": "D",
+        "text": "A runtime exception is thrown."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Primitive values are passed by value. When `x` is passed to the constructor, a copy of `10` is assigned to `points`. Reassigning `x` to `99` after the constructor call has no effect on `points`, which holds an independent copy. B would be correct only if `points` were an alias for `x`, which is impossible with primitives. C would result if the constructor never ran.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "A `Rectangle` class has two `private int` fields: `width` and `height`. Which of the following is the correct header for a constructor that accepts both values as parameters?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public void Rectangle(int w, int h)`"
+      },
+      {
+        "label": "B",
+        "text": "`public Rectangle(int w, int h)`"
+      },
+      {
+        "label": "C",
+        "text": "`public int Rectangle(int w, int h)`"
+      },
+      {
+        "label": "D",
+        "text": "`public static Rectangle(int w, int h)`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "A constructor header matches the class name exactly and has no return type \u2014 not even `void`. A is a regular method declaration (the `void` makes it a method, not a constructor). C is invalid because constructors cannot declare a return type. D is invalid because constructors cannot be `static`.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Consider the following class:\n\n```java\nimport java.util.ArrayList;\n\npublic class Team {\n    private ArrayList<String> members;\n\n    public Team(ArrayList<String> names) {\n        members = names;\n    }\n\n    public int size() { return members.size(); }\n}\n```\n\nWhat is printed by the following code?\n\n```java\nArrayList<String> roster = new ArrayList<String>();\nroster.add(\"Alice\");\nroster.add(\"Bob\");\nTeam t = new Team(roster);\nroster.add(\"Carol\");\nSystem.out.println(t.size());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`0`"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown."
+      }
+    ],
+    "answer": "B",
+    "explanation": "When an `ArrayList` is passed to a constructor, the parameter holds a copy of the reference \u2014 both `roster` and `members` point to the same underlying list object. The assignment `members = names;` creates an alias, not a copy. Therefore `roster.add(\"Carol\")` modifies the shared list, and `t.size()` returns `3`. A would be correct only if a defensive copy (`new ArrayList<String>(names)`) were made in the constructor. C would result if `members` were never initialized.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Consider the following class and code segment.\n\n```java\npublic class Ticket\n{\n    private String event;\n    private int price;\n\n    public Ticket(int p)\n    {\n        price = p;\n    }\n\n    public String getInfo()\n    {\n        return event + \" \" + price;\n    }\n}\n\nTicket t = new Ticket(25);\nSystem.out.print(t.getInfo());\n```\n\nWhat is printed as a result of executing the code segment?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`25`"
+      },
+      {
+        "label": "B",
+        "text": "` 25`"
+      },
+      {
+        "label": "C",
+        "text": "`null 25`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because `event` was not initialized in the constructor."
+      }
+    ],
+    "answer": "C",
+    "explanation": "The constructor assigns `price` but does not assign `event`, so `event` has the default reference value `null`; string concatenation prints `null 25`. The other choices either omit the default value or assume an error occurs, but unassigned instance variables receive default values.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_4",
+    "stem": "Consider the following class declaration.\n\n```java\npublic class Player\n{\n    private String name;\n    private int score;\n\n    public Player(String name, int score)\n    {\n        /* missing code */\n    }\n}\n```\n\nWhich of the following can replace `/* missing code */` so that the constructor correctly initializes both instance variables?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nname = name;\nscore = score;\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nthis.name = name;\nthis.score = score;\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nPlayer.name = name;\nPlayer.score = score;\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nString name = this.name;\nint score = this.score;\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`this.name` and `this.score` refer to the instance variables, while `name` and `score` refer to the constructor parameters. Choice A assigns each parameter to itself, choice C uses class-name access for nonstatic fields, and choice D declares local variables instead of setting the object's state.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  }
+]

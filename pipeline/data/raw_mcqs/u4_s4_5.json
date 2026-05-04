@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "What is the output of the following code?\n\n```java\nint[] vals = {3, 7, 2, 8, 5};\nint sum = 0;\nfor (int v : vals) {\n    sum += v;\n}\nSystem.out.println(sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`20`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`25`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The enhanced-for loop accumulates each element into `sum`: 3+7+2+8+5 = 25. Option A (20) sums only the first four elements, an off-by-one error. Option B (5) confuses the count of elements with the sum. Option C (3) would result if only the first element were added.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Determine the value of `max` after the following code executes:\n\n```java\nint[] data = {4, 9, 2, 7, 1};\nint max = data[0];\nfor (int i = 1; i < data.length; i++) {\n    if (data[i] > max) {\n        max = data[i];\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`9`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "`1`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop initializes `max` to `data[0]` (= 4) and updates it whenever a larger value is found. At index 1, 9 > 4, so `max` becomes 9; subsequent elements 2, 7, and 1 are all less than 9, so `max` remains 9. Option A (4) is the initial value before any comparison. Option C (7) is the second-largest. Option D (1) is the minimum, which would result if the condition were `<` instead of `>`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Consider the following method intended to determine whether `target` appears anywhere in `arr`:\n\n```java\npublic static boolean contains(int[] arr, int target) {\n    for (int v : arr) {\n        if (v == target) {\n            return true;\n        } else {\n            return false;\n        }\n    }\n    return false;\n}\n```\n\nWhich of the following best describes a flaw in this implementation?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method always returns `false` because the `return true` statement is unreachable."
+      },
+      {
+        "label": "B",
+        "text": "An `ArrayIndexOutOfBoundsException` is thrown whenever `arr` is empty."
+      },
+      {
+        "label": "C",
+        "text": "The final `return false` after the loop causes a compile-time error because all code paths inside the loop already return a value."
+      },
+      {
+        "label": "D",
+        "text": "The method only examines the first element, returning `false` if it does not equal `target` even when `target` appears later in `arr`."
+      }
+    ],
+    "answer": "D",
+    "explanation": "The `else { return false; }` branch causes the method to exit after checking exactly one element. If `arr[0] != target`, it immediately returns `false` without scanning the rest. The fix is to remove the `else` clause and place `return false` only after the loop. Option A is wrong because `return true` executes when the first element matches. Option B is wrong because an empty array skips the loop body entirely and reaches the final `return false` safely. Option C is wrong because the compiler requires the final `return false` to cover the empty-array code path.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "A linear search method scans an array looking for a target value. Which value does the method conventionally return when the target is not found?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`arr.length`"
+      },
+      {
+        "label": "C",
+        "text": "`-1`"
+      },
+      {
+        "label": "D",
+        "text": "`Integer.MIN_VALUE`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "By convention, -1 signals 'not found' because it is not a valid array index, making it unambiguous. Option A (0) is the default value of an uninitialized `int` and is also a valid index, creating ambiguity. Option B (`arr.length`) is one past the last valid index; returning it would be non-standard. Option D (`Integer.MIN_VALUE`) is a valid `int` that could legitimately appear as array data.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "What is the output of the following code?\n\n```java\nint[] nums = {10, 20, 30, 40};\nfor (int i = nums.length - 1; i >= 0; i--) {\n    System.out.print(nums[i] + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10 20 30 40`"
+      },
+      {
+        "label": "B",
+        "text": "`40 30 20 10`"
+      },
+      {
+        "label": "C",
+        "text": "`40 30 20`"
+      },
+      {
+        "label": "D",
+        "text": "`30 20 10`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop starts at index `nums.length - 1` (= 3) and decrements to 0 inclusive, printing 40, 30, 20, 10 in reverse. Option A shows forward order. Option C results from using `i > 0` instead of `i >= 0`, which skips index 0 (value 10). Option D results from starting at `nums.length - 2` (index 2), skipping index 3 (value 40).",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Which of the following searching algorithms requires that the elements in the array be sorted before the search is performed in order for it to work correctly?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Linear search only, because it compares elements in sequential order."
+      },
+      {
+        "label": "B",
+        "text": "Both linear search and binary search, because both rely on element ordering."
+      },
+      {
+        "label": "C",
+        "text": "Binary search only, because it uses sorted order to eliminate half the remaining candidates at each step."
+      },
+      {
+        "label": "D",
+        "text": "Neither; both linear search and binary search work correctly on unsorted arrays."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Binary search compares the target to the middle element and discards the half that cannot contain the target; this strategy is only correct when the array is sorted. Linear search checks every element in sequence and works on unsorted data. Option A is wrong because linear search does not require sorted order. Option B is wrong for the same reason. Option D is wrong because binary search on unsorted data can incorrectly eliminate the half that does contain the target.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Determine the value of `count` after the following code executes:\n\n```java\nint[] scores = {85, 92, 78, 92, 65, 92};\nint count = 0;\nfor (int s : scores) {\n    if (s == 92) {\n        count++;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop increments `count` for each element equal to 92. The value 92 appears at indices 1, 3, and 5, so `count` is incremented three times, reaching 3. Option A (1) would result from an early-return bug that exits after the first match. Option C (2) is off by one, missing the third occurrence. Option D (6) is the total number of elements, confusing `arr.length` with a conditional count.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Consider the following code:\n\n```java\nint[] arr = {5, 10, 15, 20};\nfor (int i = arr.length; i >= 0; i--) {\n    System.out.println(arr[i]);\n}\n```\n\nWhich of the following best describes what happens when this code is executed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The loop prints the array elements in forward order."
+      },
+      {
+        "label": "B",
+        "text": "An `ArrayIndexOutOfBoundsException` is thrown before any output is produced."
+      },
+      {
+        "label": "C",
+        "text": "The loop prints the array elements in reverse order but skips `arr[0]`."
+      },
+      {
+        "label": "D",
+        "text": "The loop runs one fewer iteration than a correct reverse traversal, skipping `arr[arr.length - 1]`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop initializes `i` to `arr.length` (= 4). Valid indices are 0 through 3, so `arr[4]` immediately throws `ArrayIndexOutOfBoundsException` before any `println` executes. The correct initialization is `i = arr.length - 1`. Option A describes forward traversal. Option C describes the result of using `i > 0` as the loop condition. Option D describes starting the index at `arr.length - 2`.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "What is the output of the following code?\n\n```java\nint[] grades = {70, 80, 85};\nint sum = 0;\nfor (int g : grades) {\n    sum += g;\n}\nSystem.out.println(sum / grades.length);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`78`"
+      },
+      {
+        "label": "B",
+        "text": "`78.33`"
+      },
+      {
+        "label": "C",
+        "text": "`79`"
+      },
+      {
+        "label": "D",
+        "text": "`235`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`sum` is 235 (an `int`) and `grades.length` is 3 (also an `int`), so `235 / 3` performs integer division, truncating toward zero to yield 78. Option B (78.33) assumes floating-point division; a cast such as `(double) sum / grades.length` would be required. Option C (79) is the mathematically rounded result; Java truncates rather than rounds. Option D (235) is the value of `sum` before the division.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "The following code is intended to double every element in `nums`:\n\n```java\nint[] nums = {1, 2, 3, 4};\nfor (int v : nums) {\n    v = v * 2;\n}\n```\n\nWhich of the following best describes the actual result?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`nums` is changed to `{2, 4, 6, 8}`."
+      },
+      {
+        "label": "B",
+        "text": "An `ArrayIndexOutOfBoundsException` is thrown during the loop."
+      },
+      {
+        "label": "C",
+        "text": "A compile-time error occurs because an enhanced-for loop variable cannot appear on the left side of an assignment."
+      },
+      {
+        "label": "D",
+        "text": "`nums` is unchanged; `v` is a copy of each element, and assigning to `v` does not affect the array."
+      }
+    ],
+    "answer": "D",
+    "explanation": "For a primitive array, the enhanced-for loop variable `v` holds a copy of each element. Assigning `v = v * 2` modifies only that local copy; the underlying array is unaffected. To actually update the elements, an indexed loop is needed: `nums[i] = nums[i] * 2`. Option A is the intended but incorrect outcome. Option B is wrong because no index is out of bounds. Option C is wrong because Java permits assignment to an enhanced-for variable syntactically \u2014 it simply has no effect on the array.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Consider the following linear search method:\n\n```java\npublic static int search(int[] a, int target) {\n    for (int i = 0; i < a.length; i++) {\n        if (a[i] == target) {\n            return i;\n        }\n    }\n    return -1;\n}\n```\n\nWhat value is stored in `result` after the following statement executes?\n\n```java\nint[] arr = {5, 3, 8, 6, 2};\nint result = search(arr, 6);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`6`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "`-1`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The method returns the index of the first element equal to `target`. At index 0 (value 5), 1 (value 3), and 2 (value 8), the target 6 is not found. At index 3, `a[3] == 6` is true, so the method returns 3. Option B (6) confuses the target value with the index where it is found. Option C (2) is the index one before the target's location. Option D (-1) would be returned only if 6 were absent from the array.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "What is the output of the following code?\n\n```java\nint[] arr = {2, 4, 1, 3, 5};\nfor (int i = 1; i < arr.length; i++) {\n    arr[i] = arr[i - 1] + arr[i];\n}\nSystem.out.println(arr[3] + \" \" + arr[4]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3 5`"
+      },
+      {
+        "label": "B",
+        "text": "`4 8`"
+      },
+      {
+        "label": "C",
+        "text": "`10 15`"
+      },
+      {
+        "label": "D",
+        "text": "`10 5`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop builds a running prefix sum in place. Starting from {2,4,1,3,5}: i=1 \u2192 arr[1]=2+4=6, giving {2,6,1,3,5}; i=2 \u2192 arr[2]=6+1=7, giving {2,6,7,3,5}; i=3 \u2192 arr[3]=7+3=10, giving {2,6,7,10,5}; i=4 \u2192 arr[4]=10+5=15, giving {2,6,7,10,15}. Printing arr[3] and arr[4] yields `10 15`. Option A (3 5) uses the original values, ignoring all mutations. Option B (4 8) computes each step from the original adjacent pairs (1+3=4, 3+5=8) rather than the already-updated prefix sums. Option D (10 5) results from a loop condition of `i < arr.length - 1`, which stops before i=4, leaving arr[4] at its original value of 5.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] nums = {5, 3, 8, 3, 7, 3};\nint count = 0;\nfor (int val : nums) {\n    if (val == 3) {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`9`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop increments count for each element equal to 3; the value 3 appears at indices 1, 3, and 5, giving count = 3. A (2) is one short \u2014 an off-by-one mistake. C (9) is 3 \u00d7 3, confusing the sum of matching values with the count. D (6) is the array's length, not the count of matches.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "What is the value of `max` after the following code executes?\n\n```java\nint[] vals = {-4, -9, -2, -6, -1};\nint max = 0;\nfor (int v : vals) {\n    if (v > max) {\n        max = v;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`-1`"
+      },
+      {
+        "label": "B",
+        "text": "`-4`"
+      },
+      {
+        "label": "C",
+        "text": "`0`"
+      },
+      {
+        "label": "D",
+        "text": "`-9`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "max is initialized to 0. Every element in vals is negative, so the condition v > max (equivalently v > 0) is never satisfied and max is never updated, remaining 0. A (-1) is the true maximum of the array \u2014 the correct result only if max had been initialized to Integer.MIN_VALUE or vals[0]. B (-4) is simply the first element. D (-9) is the minimum of the array.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Consider the following method:\n\n```java\npublic static boolean hasEven(int[] arr) {\n    for (int v : arr) {\n        if (v % 2 == 0) {\n            return true;\n        } else {\n            return false;\n        }\n    }\n    return false;\n}\n```\n\nWhich of the following best describes a bug in `hasEven`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method throws `ArrayIndexOutOfBoundsException` when `arr` contains no elements."
+      },
+      {
+        "label": "B",
+        "text": "The method returns `false` whenever the first element of `arr` is odd, even if a later element is even."
+      },
+      {
+        "label": "C",
+        "text": "The condition `v % 2 == 0` tests for odd numbers instead of even numbers."
+      },
+      {
+        "label": "D",
+        "text": "The enhanced for loop variable `v` cannot appear inside a `return` statement."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The else branch returns false immediately after examining only the first element if it is odd, so the remaining elements are never checked. The fix is to remove the else branch so the loop continues. A is wrong \u2014 an empty array causes neither branch to execute and the method returns false without any exception. C is wrong \u2014 v % 2 == 0 correctly identifies even numbers. D is wrong \u2014 the loop variable is in scope for the entire loop body.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Which of the following correctly describes a difference between insertion sort and selection sort when applied to an array of n elements?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Insertion sort's worst-case comparison count is proportional to n log n, while selection sort's worst case is proportional to n\u00b2."
+      },
+      {
+        "label": "B",
+        "text": "Insertion sort can complete in time proportional to n on already-sorted input because its inner loop exits immediately each pass, while selection sort always performs a number of comparisons proportional to n\u00b2 regardless of the initial order."
+      },
+      {
+        "label": "C",
+        "text": "Selection sort requires extra memory proportional to n to hold a working copy of the array, while insertion sort operates entirely in place."
+      },
+      {
+        "label": "D",
+        "text": "Insertion sort scans the unsorted portion for the minimum element and swaps it to the front; selection sort inserts each element into its correct position among the already-sorted elements."
+      }
+    ],
+    "answer": "B",
+    "explanation": "B is correct: on a sorted array, insertion sort's inner while loop finds immediately that temp >= a[possibleIndex-1] and exits after zero shifts each pass, giving O(n) total work. Selection sort must scan the entire remaining unsorted portion every pass to find the minimum, giving O(n\u00b2) comparisons regardless of input order. A reverses the facts \u2014 both sorts are O(n\u00b2) worst case; O(n log n) describes merge sort. C is wrong \u2014 selection sort is in-place, needing only a single temp variable. D reverses the descriptions of the two algorithms.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "What value is returned by the following call?\n\n```java\npublic static int bSearch(int[] a, int target) {\n    int lo = 0, hi = a.length - 1;\n    while (lo <= hi) {\n        int mid = (lo + hi) / 2;\n        if (a[mid] == target) return mid;\n        else if (a[mid] < target) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    return -1;\n}\n```\n\n`bSearch(new int[]{2, 5, 7, 12, 18, 23}, 12)`",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`12`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Iteration 1: lo=0, hi=5, mid=2, a[2]=7 < 12, so lo becomes 3. Iteration 2: lo=3, hi=5, mid=4, a[4]=18 > 12, so hi becomes 3. Iteration 3: lo=3, hi=3, mid=3, a[3]=12 == 12, return 3. A (2) is the index examined in the first iteration. C (4) is the index examined in the second iteration. D (12) confuses the target value with the returned index.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] vals = {3, 7, 2, 8, 5};\nint result = 0;\nfor (int i = 0; i < vals.length; i++)\n{\n    if (vals[i] % 2 == 0)\n        result += vals[i];\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`25`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "`8`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop accumulates only even-valued elements. The even elements are 2 and 8, so result = 2 + 8 = 10. B (25) is the sum of all five elements\u2014the student ignored the even-only condition. C (2) would result from returning or printing only on the first even element found. D (8) confuses a max-finding algorithm with a conditional-sum algorithm.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Consider the method `hasNegative`, intended to return `true` if any element of the array is negative. Which of the following best describes the actual behavior of this method?\n\n```java\npublic static boolean hasNegative(int[] a)\n{\n    for (int v : a)\n    {\n        if (v < 0)\n            return true;\n        else\n            return false;\n    }\n    return false;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method correctly returns `true` if and only if at least one element is negative."
+      },
+      {
+        "label": "B",
+        "text": "The method always returns `false` regardless of the array contents."
+      },
+      {
+        "label": "C",
+        "text": "The method returns a result based solely on the value of the first element."
+      },
+      {
+        "label": "D",
+        "text": "The method throws an `ArrayIndexOutOfBoundsException` when the array is empty."
+      }
+    ],
+    "answer": "C",
+    "explanation": "The `else return false` causes the method to exit on the very first iteration\u2014only the first element is ever examined. If `a[0] < 0`, it returns `true`; otherwise it immediately returns `false`. A is wrong because an array like {5, -1} would incorrectly return `false`. B is wrong because the method does return `true` when the first element is negative. D is wrong because an empty array simply skips the loop body and reaches the final `return false` without any exception.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Determine the value of `best` after the following code executes.\n\n```java\nint[] nums = {4, 9, 2, 11, 7};\nint best = nums[0];\nfor (int i = 1; i < nums.length; i++)\n{\n    if (nums[i] > best)\n        best = nums[i];\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`9`"
+      },
+      {
+        "label": "C",
+        "text": "`11`"
+      },
+      {
+        "label": "D",
+        "text": "`7`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The code implements a maximum-finding algorithm. `best` starts at 4. At i=1, 9 > 4 so `best` becomes 9. At i=2, 2 > 9 is false. At i=3, 11 > 9 so `best` becomes 11. At i=4, 7 > 11 is false. Final value is 11. A (4) would result if the loop never executed (e.g., the student thought the loop condition was false). B (9) results from stopping the trace after one iteration. D (7) is merely the last element in the array, not the maximum.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Consider the method `search` and the code segment below. Determine the output when the code segment executes.\n\n```java\npublic static int search(int[] a, int target)\n{\n    for (int i = 0; i < a.length; i++)\n    {\n        if (a[i] == target)\n            return i;\n    }\n    return -1;\n}\n```\n\n```java\nint[] data = {5, 3, 8, 3, 1};\nSystem.out.println(search(data, 3));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`-1`"
+      },
+      {
+        "label": "B",
+        "text": "`0`"
+      },
+      {
+        "label": "C",
+        "text": "`1`"
+      },
+      {
+        "label": "D",
+        "text": "`3`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The method performs a linear search and returns the index of the first match. At i=0, data[0]=5 \u2260 3. At i=1, data[1]=3 == 3, so 1 is returned immediately. A (-1) would be returned only if 3 were absent from the array. B (0) is an off-by-one error\u2014the match occurs at index 1, not 0. D (3) confuses the target value itself with the index at which it is found.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] scores = {10, 20, 30};\nfor (int s : scores)\n{\n    s = s * 2;\n}\nSystem.out.println(scores[1]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`20`"
+      },
+      {
+        "label": "B",
+        "text": "`40`"
+      },
+      {
+        "label": "C",
+        "text": "`10`"
+      },
+      {
+        "label": "D",
+        "text": "`60`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In an enhanced for loop over a primitive array, the loop variable `s` is a copy of each element; assigning to `s` does not modify the original array. After the loop, `scores` is still {10, 20, 30}, so `scores[1]` prints 20. B (40) is the trap answer\u2014students who believe the assignment updates the array pick this. C (10) is `scores[0]`, suggesting index confusion. D (60) is double `scores[2]`, not `scores[1]`.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] a = {5, 2, 8, 1, 9};\nfor (int j = 0; j < a.length - 1; j++)\n{\n    int minIndex = j;\n    for (int k = j + 1; k < a.length; k++)\n    {\n        if (a[k] < a[minIndex])\n            minIndex = k;\n    }\n    int temp = a[j];\n    a[j] = a[minIndex];\n    a[minIndex] = temp;\n}\nSystem.out.println(a[0] + \" \" + a[1] + \" \" + a[2]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 2 5`"
+      },
+      {
+        "label": "B",
+        "text": "`1 2 8`"
+      },
+      {
+        "label": "C",
+        "text": "`5 2 8`"
+      },
+      {
+        "label": "D",
+        "text": "`2 5 8`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "This is selection sort. j=0: minimum of {5,2,8,1,9} is 1 at index 3; swap a[0]\u2194a[3] \u2192 {1,2,8,5,9}. j=1: minimum of {2,8,5,9} is 2 at index 1; no swap \u2192 {1,2,8,5,9}. j=2: minimum of {8,5,9} is 5 at index 3; swap a[2]\u2194a[3] \u2192 {1,2,5,8,9}. j=3: minimum of {8,9} is 8; no swap. Printing a[0]+\" \"+a[1]+\" \"+a[2] gives \"1 2 5\". B (1 2 8) results from tracing only the j=0 pass and stopping. C (5 2 8) reads the original unsorted first three elements. D (2 5 8) does not correspond to any valid trace of this algorithm.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] nums = {4, -1, 7, 7, 2};\nint max = nums[0];\nint count = 0;\n\nfor (int i = 1; i < nums.length; i++)\n{\n    if (nums[i] > max)\n    {\n        max = nums[i];\n        count = 1;\n    }\n    else if (nums[i] == max)\n    {\n        count++;\n    }\n}\n\nSystem.out.print(max + \" \" + count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`7 1`"
+      },
+      {
+        "label": "B",
+        "text": "`7 2`"
+      },
+      {
+        "label": "C",
+        "text": "`4 0`"
+      },
+      {
+        "label": "D",
+        "text": "`7 3`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`max` becomes 7 when index 2 is reached, and `count` is set to 1; the next 7 increments `count` to 2. The other options reflect forgetting the repeated maximum, never updating the maximum, or counting too many values.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_5",
+    "stem": "Consider the following method.\n\n```java\npublic static boolean containsNegative(int[] data)\n{\n    for (int i = 0; i < data.length; i++)\n    {\n        /* missing code */\n    }\n    return false;\n}\n```\n\nWhich of the following can replace `/* missing code */` so that the method returns `true` if `data` contains at least one negative value and returns `false` otherwise?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nif (data[i] < 0)\n{\n    return true;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nif (data[i] < 0)\n{\n    return true;\n}\nelse\n{\n    return false;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nif (data[i] > 0)\n{\n    return true;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nif (data[i] < 0)\n{\n    return false;\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The method should return `true` as soon as a negative value is found, then return `false` only after all elements have been checked. Option B incorrectly returns `false` after only the first nonnegative element, while C and D test or return the wrong condition.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  }
+]

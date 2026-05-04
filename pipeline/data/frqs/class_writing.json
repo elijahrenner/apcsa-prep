@@ -1,0 +1,818 @@
+[
+  {
+    "archetype": "class_writing",
+    "topic_id": "u3_s3_3",
+    "prompt": "A local library uses a software system to manage patron accounts. Each patron has a library card that records their name, the number of books currently checked out, the total fines owed, and whether they hold a premium membership. You will write the complete LibraryCard class to model these accounts.\n\nThe following describes the required class members:\n\nLibraryCard(String name, boolean isPremium) \u2014 Constructs a new LibraryCard. Sets patronName to name, premium to isPremium; initializes booksCheckedOut to 0 and finesOwed to 0.0.\nvoid checkOutBook() \u2014 Increments booksCheckedOut by 1.\nvoid addFine(double amount) \u2014 Adds amount to the running total of finesOwed.\nString getAccountSummary() \u2014 Returns a formatted multi-line String containing all account fields.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the class header for LibraryCard. Declare all required private instance variables: patronName (String), booksCheckedOut (int), finesOwed (double), and premium (boolean). Write the constructor LibraryCard(String name, boolean isPremium) that initializes every instance variable. The fields booksCheckedOut and finesOwed must be set to 0 and 0.0 respectively; patronName and premium are set from the parameters."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the three instance methods of LibraryCard.\nvoid checkOutBook() increments booksCheckedOut by 1.\nvoid addFine(double amount) accumulates amount onto finesOwed (do not overwrite the existing total).\nString getAccountSummary() returns a String in the following format, with each item on its own line:\nName: <patronName>\nBooks Checked Out: <booksCheckedOut>\nFines Owed: <finesOwed>\nMembership: Premium Member   (when premium is true)\nMembership: Standard Member  (when premium is false)"
+      }
+    ],
+    "reference_solution": "public class LibraryCard {\n    private String patronName;\n    private int booksCheckedOut;\n    private double finesOwed;\n    private boolean premium;\n\n    public LibraryCard(String name, boolean isPremium) {\n        patronName = name;\n        booksCheckedOut = 0;\n        finesOwed = 0.0;\n        premium = isPremium;\n    }\n\n    public void checkOutBook() {\n        booksCheckedOut++;\n    }\n\n    public void addFine(double amount) {\n        finesOwed += amount;\n    }\n\n    public String getAccountSummary() {\n        String tier;\n        if (premium) {\n            tier = \"Premium Member\";\n        } else {\n            tier = \"Standard Member\";\n        }\n        return \"Name: \" + patronName + \"\\nBooks Checked Out: \" + booksCheckedOut + \"\\nFines Owed: \" + finesOwed + \"\\nMembership: \" + tier;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Class header",
+        "criterion": "Class is declared public class LibraryCard with no extends, implements, or interface keywords.",
+        "points": 1
+      },
+      {
+        "point_label": "Private instance variables",
+        "criterion": "All four fields declared private with correct types: patronName (String), booksCheckedOut (int), finesOwed (double), premium (boolean). No field is public or static.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor header",
+        "criterion": "Constructor is named LibraryCard and accepts exactly (String name, boolean isPremium) as parameters in that order.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor body",
+        "criterion": "All four fields initialized: patronName assigned from name, booksCheckedOut set to 0, finesOwed set to 0.0, premium assigned from isPremium. All four assignments present.",
+        "points": 1
+      },
+      {
+        "point_label": "checkOutBook method header and body",
+        "criterion": "Declared void checkOutBook() with no parameters; body increments booksCheckedOut by exactly 1 (e.g., booksCheckedOut++ or booksCheckedOut += 1).",
+        "points": 1
+      },
+      {
+        "point_label": "addFine method header and body",
+        "criterion": "Declared void addFine(double amount); body accumulates using +=: finesOwed += amount. Using = instead of += does not earn this point.",
+        "points": 1
+      },
+      {
+        "point_label": "getAccountSummary return value",
+        "criterion": "Declared String getAccountSummary(); returns a String containing all four fields separated by \\n characters; selects Premium Member when premium is true and Standard Member when false; no System.out.print calls inside the method.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "standard membership with two checkouts and a cumulative fine",
+        "setup_java": "LibraryCard card = new LibraryCard(\"Alice\", false);\ncard.checkOutBook();\ncard.checkOutBook();\ncard.addFine(2.5);\nSystem.out.println(card.getAccountSummary());",
+        "expected_output": "Name: Alice\nBooks Checked Out: 2\nFines Owed: 2.5\nMembership: Standard Member"
+      },
+      {
+        "description": "premium membership with one checkout and initial zero balance",
+        "setup_java": "LibraryCard card2 = new LibraryCard(\"Bob\", true);\ncard2.checkOutBook();\nSystem.out.println(card2.getAccountSummary());",
+        "expected_output": "Name: Bob\nBooks Checked Out: 1\nFines Owed: 0.0\nMembership: Premium Member"
+      },
+      {
+        "description": "fines accumulated across two addFine calls with no books checked out",
+        "setup_java": "LibraryCard card3 = new LibraryCard(\"Carol\", false);\ncard3.addFine(1.0);\ncard3.addFine(3.5);\nSystem.out.println(card3.getAccountSummary());",
+        "expected_output": "Name: Carol\nBooks Checked Out: 0\nFines Owed: 4.5\nMembership: Standard Member"
+      }
+    ]
+  },
+  {
+    "archetype": "class_writing",
+    "topic_id": "u3_s3_3",
+    "prompt": "A fitness app tracks a runner's weekly training progress. Each user has a running log that records their name, their weekly mileage goal, the total miles run so far this week, and how many individual runs they have logged. You will write the complete RunningLog class to model this data.\n\nThe following describes the required class members:\n\nRunningLog(String name, double weeklyGoal) \u2014 Constructs a RunningLog with a specific weekly goal. Sets runnerName to name, weeklyGoalMiles to weeklyGoal; initializes milesRunThisWeek to 0.0 and totalRuns to 0.\nRunningLog(String name) \u2014 Constructs a RunningLog with no weekly goal. Sets runnerName to name; initializes weeklyGoalMiles to 0.0, milesRunThisWeek to 0.0, and totalRuns to 0.\nvoid logRun(double miles) \u2014 Records a run of the given distance and increments the run count.\nboolean onPace() \u2014 Returns true if the runner has already met or exceeded the weekly mileage goal.\nString getSummary() \u2014 Returns a formatted multi-line String with the runner's name, total runs, and miles run this week.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the class header for RunningLog. Declare all required private instance variables: runnerName (String), weeklyGoalMiles (double), milesRunThisWeek (double), and totalRuns (int). Write both constructors:\n- RunningLog(String name, double weeklyGoal): sets runnerName from name, weeklyGoalMiles from weeklyGoal; sets milesRunThisWeek to 0.0 and totalRuns to 0.\n- RunningLog(String name): sets runnerName from name; explicitly defaults weeklyGoalMiles to 0.0, milesRunThisWeek to 0.0, and totalRuns to 0."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the three instance methods of RunningLog.\nvoid logRun(double miles) adds miles to milesRunThisWeek (cumulative) and increments totalRuns by 1.\nboolean onPace() returns true if milesRunThisWeek is greater than or equal to weeklyGoalMiles, and false otherwise. The method must return a boolean; it must not call System.out.print.\nString getSummary() returns a String in the following format, with each item on its own line:\nRunner: <runnerName>\nTotal Runs: <totalRuns>\nMiles This Week: <milesRunThisWeek>"
+      }
+    ],
+    "reference_solution": "public class RunningLog {\n    private String runnerName;\n    private double weeklyGoalMiles;\n    private double milesRunThisWeek;\n    private int totalRuns;\n\n    public RunningLog(String name, double weeklyGoal) {\n        runnerName = name;\n        weeklyGoalMiles = weeklyGoal;\n        milesRunThisWeek = 0.0;\n        totalRuns = 0;\n    }\n\n    public RunningLog(String name) {\n        runnerName = name;\n        weeklyGoalMiles = 0.0;\n        milesRunThisWeek = 0.0;\n        totalRuns = 0;\n    }\n\n    public void logRun(double miles) {\n        milesRunThisWeek += miles;\n        totalRuns++;\n    }\n\n    public boolean onPace() {\n        return milesRunThisWeek >= weeklyGoalMiles;\n    }\n\n    public String getSummary() {\n        return \"Runner: \" + runnerName + \"\\nTotal Runs: \" + totalRuns + \"\\nMiles This Week: \" + milesRunThisWeek;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Class header",
+        "criterion": "Class declared as public class RunningLog with no extends, implements, or interface keywords.",
+        "points": 1
+      },
+      {
+        "point_label": "Private instance variables",
+        "criterion": "All four fields declared private with correct types: runnerName (String), weeklyGoalMiles (double), milesRunThisWeek (double), totalRuns (int). No field is public or static.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor headers",
+        "criterion": "Both constructors are named RunningLog; the two-parameter constructor accepts (String name, double weeklyGoal) and the one-parameter constructor accepts (String name) only, in the correct order.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor bodies initialize all fields",
+        "criterion": "In the two-parameter constructor, all four fields are assigned (weeklyGoalMiles from weeklyGoal, others as defaults or parameters). In the one-parameter constructor, weeklyGoalMiles is explicitly set to 0.0 (not left uninitialized), along with milesRunThisWeek and totalRuns.",
+        "points": 1
+      },
+      {
+        "point_label": "logRun method header and body",
+        "criterion": "Declared void logRun(double miles); body uses += to accumulate: milesRunThisWeek += miles; and increments totalRuns by 1. Both updates must be present.",
+        "points": 1
+      },
+      {
+        "point_label": "onPace method return value",
+        "criterion": "Declared boolean onPace() with no parameters; returns the result of milesRunThisWeek >= weeklyGoalMiles (or logically equivalent expression). No System.out.print calls inside the method.",
+        "points": 1
+      },
+      {
+        "point_label": "getSummary return value",
+        "criterion": "Declared String getSummary(); returns a String containing runnerName, totalRuns, and milesRunThisWeek on separate lines using \\n, with the labels Runner:, Total Runs:, and Miles This Week: exactly. No System.out.print calls inside the method.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "runner not yet on pace after two runs",
+        "setup_java": "RunningLog log = new RunningLog(\"Dana\", 20.0);\nlog.logRun(5.5);\nlog.logRun(6.0);\nSystem.out.println(log.onPace());\nSystem.out.println(log.getSummary());",
+        "expected_output": "false\nRunner: Dana\nTotal Runs: 2\nMiles This Week: 11.5"
+      },
+      {
+        "description": "runner exactly meets the weekly goal boundary",
+        "setup_java": "RunningLog log2 = new RunningLog(\"Eli\", 10.0);\nlog2.logRun(10.0);\nSystem.out.println(log2.onPace());",
+        "expected_output": "true"
+      },
+      {
+        "description": "no-goal constructor defaults weeklyGoalMiles to 0.0 so any logged run is on pace",
+        "setup_java": "RunningLog log3 = new RunningLog(\"Fiona\");\nlog3.logRun(3.0);\nSystem.out.println(log3.onPace());\nSystem.out.println(log3.getSummary());",
+        "expected_output": "true\nRunner: Fiona\nTotal Runs: 1\nMiles This Week: 3.0"
+      }
+    ]
+  },
+  {
+    "archetype": "class_writing",
+    "topic_id": "u3_s3_3",
+    "prompt": "A movie theater loyalty program issues digital tickets that double as reward cards. Each ticket stores the holder's name, the movie title, the seat tier (premium or standard), and the holder's current reward point balance. Points can be earned by purchasing tickets and redeemed for discounts, but only when the current balance is sufficient. You will write the complete MovieTicket class to model this system.\n\nThe following describes the required class members:\n\nMovieTicket(String holder, String movie, boolean isPremium) \u2014 Constructs a MovieTicket. Sets holderName to holder, movieTitle to movie, premiumSeat to isPremium; initializes rewardPoints to 0.\nvoid addPoints(int points) \u2014 Adds points to the reward point total.\nvoid redeemPoints(int points) \u2014 Subtracts points from the reward total only if the current balance is greater than or equal to points; otherwise does nothing.\nString getTicketInfo() \u2014 Returns a formatted multi-line String containing all four fields, with the seat tier displayed as Premium or Standard.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the class header for MovieTicket. Declare all required private instance variables: holderName (String), movieTitle (String), premiumSeat (boolean), and rewardPoints (int). Write the constructor MovieTicket(String holder, String movie, boolean isPremium) that initializes every instance variable. The field rewardPoints must be set to 0; the remaining fields are set from the constructor parameters."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the three instance methods of MovieTicket.\nvoid addPoints(int points) adds points to rewardPoints (cumulative total; do not overwrite).\nvoid redeemPoints(int points) subtracts points from rewardPoints only when rewardPoints >= points; if the current balance is insufficient the method must leave rewardPoints unchanged.\nString getTicketInfo() returns a String in the following format, with each item on its own line:\nHolder: <holderName>\nMovie: <movieTitle>\nSeat: Premium   (when premiumSeat is true)\nSeat: Standard  (when premiumSeat is false)\nReward Points: <rewardPoints>"
+      }
+    ],
+    "reference_solution": "public class MovieTicket {\n    private String holderName;\n    private String movieTitle;\n    private boolean premiumSeat;\n    private int rewardPoints;\n\n    public MovieTicket(String holder, String movie, boolean isPremium) {\n        holderName = holder;\n        movieTitle = movie;\n        premiumSeat = isPremium;\n        rewardPoints = 0;\n    }\n\n    public void addPoints(int points) {\n        rewardPoints += points;\n    }\n\n    public void redeemPoints(int points) {\n        if (rewardPoints >= points) {\n            rewardPoints -= points;\n        }\n    }\n\n    public String getTicketInfo() {\n        String seatType;\n        if (premiumSeat) {\n            seatType = \"Premium\";\n        } else {\n            seatType = \"Standard\";\n        }\n        return \"Holder: \" + holderName + \"\\nMovie: \" + movieTitle + \"\\nSeat: \" + seatType + \"\\nReward Points: \" + rewardPoints;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Class header",
+        "criterion": "Class declared as public class MovieTicket with no extends, implements, or interface keywords.",
+        "points": 1
+      },
+      {
+        "point_label": "Private instance variables",
+        "criterion": "All four fields declared private with correct types: holderName (String), movieTitle (String), premiumSeat (boolean), rewardPoints (int). No field is public or static.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor header",
+        "criterion": "Constructor is named MovieTicket and accepts exactly (String holder, String movie, boolean isPremium) as parameters in that order.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor body",
+        "criterion": "All four fields initialized: holderName from holder, movieTitle from movie, premiumSeat from isPremium, and rewardPoints explicitly set to 0.",
+        "points": 1
+      },
+      {
+        "point_label": "addPoints method header and body",
+        "criterion": "Declared void addPoints(int points); body uses += to accumulate: rewardPoints += points. Using = instead of += does not earn this point.",
+        "points": 1
+      },
+      {
+        "point_label": "redeemPoints conditional check and update",
+        "criterion": "Declared void redeemPoints(int points); body contains an if statement that checks rewardPoints >= points before subtracting; rewardPoints -= points executes only when the condition is true; method does nothing when balance is insufficient.",
+        "points": 1
+      },
+      {
+        "point_label": "getTicketInfo return value",
+        "criterion": "Declared String getTicketInfo(); returns a String with holderName, movieTitle, conditional seat label (Premium or Standard based on premiumSeat), and rewardPoints each separated by \\n; no System.out.print calls inside the method.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "standard seat with two addPoints calls then summary",
+        "setup_java": "MovieTicket ticket = new MovieTicket(\"Grace\", \"Starfall\", false);\nticket.addPoints(50);\nticket.addPoints(30);\nSystem.out.println(ticket.getTicketInfo());",
+        "expected_output": "Holder: Grace\nMovie: Starfall\nSeat: Standard\nReward Points: 80"
+      },
+      {
+        "description": "premium seat with a successful redemption",
+        "setup_java": "MovieTicket ticket2 = new MovieTicket(\"Hank\", \"Luna Rising\", true);\nticket2.addPoints(100);\nticket2.redeemPoints(40);\nSystem.out.println(ticket2.getTicketInfo());",
+        "expected_output": "Holder: Hank\nMovie: Luna Rising\nSeat: Premium\nReward Points: 60"
+      },
+      {
+        "description": "failed redemption leaves balance unchanged when points are insufficient",
+        "setup_java": "MovieTicket ticket3 = new MovieTicket(\"Iris\", \"Orbit\", true);\nticket3.addPoints(20);\nticket3.redeemPoints(50);\nSystem.out.println(ticket3.getTicketInfo());",
+        "expected_output": "Holder: Iris\nMovie: Orbit\nSeat: Premium\nReward Points: 20"
+      }
+    ]
+  },
+  {
+    "archetype": "class_writing",
+    "topic_id": "u3_s3_3",
+    "prompt": "A fitness gym uses software to track member progress toward monthly workout goals. You will write a complete Java class called GymMembership.\n\nThe GymMembership class has four private instance variables: memberName (String), monthlyGoal (int), minutesLogged (int), and classesAttended (int).\n\nGymMembership has two constructors:\n- GymMembership(String memberName, int monthlyGoal): initializes all fields; minutesLogged and classesAttended each start at 0.\n- GymMembership(String memberName): sets monthlyGoal to a default of 600 minutes; minutesLogged and classesAttended each start at 0.\n\nGymMembership has two methods:\n- void logWorkout(int minutes): adds minutes to minutesLogged and increments classesAttended by 1.\n- String getMemberStatus(): returns a formatted String containing the member name, monthly goal, total minutes logged, classes attended, and a status line. The status reads \"On Track\" if minutesLogged >= monthlyGoal, or \"Below Goal\" otherwise.\n\nSample: given GymMembership g = new GymMembership(\"Taylor\", 300) followed by g.logWorkout(150) and g.logWorkout(200), g.getMemberStatus() returns the following (each item on its own line):\nMember: Taylor\nMonthly Goal: 300 min\nLogged: 350 min\nClasses: 2\nStatus: On Track",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the complete GymMembership class. Your class must include all private instance variables, both constructors, the logWorkout method, and the getMemberStatus method. No class skeleton is provided."
+      }
+    ],
+    "reference_solution": "public class GymMembership {\n    private String memberName;\n    private int monthlyGoal;\n    private int minutesLogged;\n    private int classesAttended;\n\n    public GymMembership(String memberName, int monthlyGoal) {\n        this.memberName = memberName;\n        this.monthlyGoal = monthlyGoal;\n        this.minutesLogged = 0;\n        this.classesAttended = 0;\n    }\n\n    public GymMembership(String memberName) {\n        this.memberName = memberName;\n        this.monthlyGoal = 600;\n        this.minutesLogged = 0;\n        this.classesAttended = 0;\n    }\n\n    public void logWorkout(int minutes) {\n        minutesLogged += minutes;\n        classesAttended += 1;\n    }\n\n    public String getMemberStatus() {\n        String status;\n        if (minutesLogged >= monthlyGoal) {\n            status = \"On Track\";\n        } else {\n            status = \"Below Goal\";\n        }\n        return \"Member: \" + memberName + \"\\nMonthly Goal: \" + monthlyGoal + \" min\\nLogged: \" + minutesLogged + \" min\\nClasses: \" + classesAttended + \"\\nStatus: \" + status;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Class header",
+        "criterion": "Class is declared as public with the exact name GymMembership (public class GymMembership); no extends, implements, or abstract keywords present",
+        "points": 1
+      },
+      {
+        "point_label": "Private instance variables",
+        "criterion": "All four fields declared private with correct types: memberName (String), monthlyGoal (int), minutesLogged (int), classesAttended (int); no field is public or static",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor headers",
+        "criterion": "Both constructors are named GymMembership with no return type; first accepts (String, int) parameters; second accepts (String) only",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor bodies initialize all fields",
+        "criterion": "Two-parameter constructor assigns memberName and monthlyGoal from params and explicitly sets minutesLogged and classesAttended to 0; one-parameter constructor sets monthlyGoal to 600 and both counters to 0",
+        "points": 1
+      },
+      {
+        "point_label": "logWorkout method header",
+        "criterion": "Method declared with return type void, named exactly logWorkout, and exactly one int parameter",
+        "points": 1
+      },
+      {
+        "point_label": "logWorkout method body",
+        "criterion": "minutesLogged is increased by the parameter value using += (not overwritten with =); classesAttended is incremented by 1 in the same method body",
+        "points": 1
+      },
+      {
+        "point_label": "getMemberStatus method",
+        "criterion": "Method declares return type String and returns (does not print) a multi-line String using \\n separators for all five labeled lines; status branch produces \"On Track\" when minutesLogged >= monthlyGoal and \"Below Goal\" otherwise",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "Two-parameter constructor; two logWorkout calls accumulate past the monthly goal",
+        "setup_java": "GymMembership g = new GymMembership(\"Taylor\", 300);\ng.logWorkout(150);\ng.logWorkout(200);\nSystem.out.println(g.getMemberStatus());",
+        "expected_output": "Member: Taylor\nMonthly Goal: 300 min\nLogged: 350 min\nClasses: 2\nStatus: On Track"
+      },
+      {
+        "description": "Two-parameter constructor; single logWorkout call leaves total below the monthly goal",
+        "setup_java": "GymMembership g = new GymMembership(\"Jordan\", 500);\ng.logWorkout(100);\nSystem.out.println(g.getMemberStatus());",
+        "expected_output": "Member: Jordan\nMonthly Goal: 500 min\nLogged: 100 min\nClasses: 1\nStatus: Below Goal"
+      },
+      {
+        "description": "One-parameter constructor applies default goal of 600; no workouts logged yet",
+        "setup_java": "GymMembership g = new GymMembership(\"Sam\");\nSystem.out.println(g.getMemberStatus());",
+        "expected_output": "Member: Sam\nMonthly Goal: 600 min\nLogged: 0 min\nClasses: 0\nStatus: Below Goal"
+      }
+    ]
+  },
+  {
+    "archetype": "class_writing",
+    "topic_id": "u3_s3_3",
+    "prompt": "A nonprofit organization awards certification to volunteers who complete a required number of service hours. You will write a complete Java class called VolunteerRecord.\n\nThe VolunteerRecord class has four private instance variables: volunteerName (String), organization (String), hoursRequired (int), and hoursCompleted (int).\n\nVolunteerRecord has two constructors:\n- VolunteerRecord(String volunteerName, String organization, int hoursRequired): initializes all fields; hoursCompleted starts at 0.\n- VolunteerRecord(String volunteerName, String organization): sets hoursRequired to a default of 100; hoursCompleted starts at 0.\n\nVolunteerRecord has two methods:\n- void logHours(int hours): adds hours to hoursCompleted.\n- String getCertificationStatus(): returns a formatted String with the volunteer name, organization, hours completed, hours required, and a status line. The status reads \"Certified\" if hoursCompleted >= hoursRequired, or \"Not Yet Certified\" otherwise.\n\nSample: given VolunteerRecord v = new VolunteerRecord(\"Maya\", \"Food Bank\", 50) followed by v.logHours(30) and v.logHours(25), v.getCertificationStatus() returns the following (each item on its own line):\nVolunteer: Maya\nOrg: Food Bank\nCompleted: 55 hrs\nRequired: 50 hrs\nStatus: Certified",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the complete VolunteerRecord class. Your class must include all private instance variables, both constructors, the logHours method, and the getCertificationStatus method. No class skeleton is provided."
+      }
+    ],
+    "reference_solution": "public class VolunteerRecord {\n    private String volunteerName;\n    private String organization;\n    private int hoursRequired;\n    private int hoursCompleted;\n\n    public VolunteerRecord(String volunteerName, String organization, int hoursRequired) {\n        this.volunteerName = volunteerName;\n        this.organization = organization;\n        this.hoursRequired = hoursRequired;\n        this.hoursCompleted = 0;\n    }\n\n    public VolunteerRecord(String volunteerName, String organization) {\n        this.volunteerName = volunteerName;\n        this.organization = organization;\n        this.hoursRequired = 100;\n        this.hoursCompleted = 0;\n    }\n\n    public void logHours(int hours) {\n        hoursCompleted += hours;\n    }\n\n    public String getCertificationStatus() {\n        String status;\n        if (hoursCompleted >= hoursRequired) {\n            status = \"Certified\";\n        } else {\n            status = \"Not Yet Certified\";\n        }\n        return \"Volunteer: \" + volunteerName + \"\\nOrg: \" + organization + \"\\nCompleted: \" + hoursCompleted + \" hrs\\nRequired: \" + hoursRequired + \" hrs\\nStatus: \" + status;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Class header",
+        "criterion": "Class is declared as public with the exact name VolunteerRecord (public class VolunteerRecord); no extends, implements, or abstract keywords present",
+        "points": 1
+      },
+      {
+        "point_label": "Private instance variables",
+        "criterion": "All four fields declared private with correct types: volunteerName (String), organization (String), hoursRequired (int), hoursCompleted (int); no field is public or static",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor headers",
+        "criterion": "Both constructors are named VolunteerRecord with no return type; first accepts (String, String, int) parameters; second accepts (String, String) only",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor bodies initialize all fields",
+        "criterion": "Three-parameter constructor assigns volunteerName, organization, and hoursRequired from params and explicitly sets hoursCompleted to 0; two-parameter constructor sets hoursRequired to 100 and hoursCompleted to 0",
+        "points": 1
+      },
+      {
+        "point_label": "logHours method header",
+        "criterion": "Method declared with return type void, named exactly logHours, and exactly one int parameter",
+        "points": 1
+      },
+      {
+        "point_label": "logHours method body",
+        "criterion": "hoursCompleted is increased by the parameter value using += (accumulation, not overwrite with =); no other field is modified",
+        "points": 1
+      },
+      {
+        "point_label": "getCertificationStatus method",
+        "criterion": "Method declares return type String and returns (does not print) a multi-line String using \\n separators for all five labeled lines; status branch produces \"Certified\" when hoursCompleted >= hoursRequired and \"Not Yet Certified\" otherwise",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "Three-parameter constructor; two logHours calls push total above the required hours",
+        "setup_java": "VolunteerRecord v = new VolunteerRecord(\"Maya\", \"Food Bank\", 50);\nv.logHours(30);\nv.logHours(25);\nSystem.out.println(v.getCertificationStatus());",
+        "expected_output": "Volunteer: Maya\nOrg: Food Bank\nCompleted: 55 hrs\nRequired: 50 hrs\nStatus: Certified"
+      },
+      {
+        "description": "Three-parameter constructor; single logHours call leaves total short of required hours",
+        "setup_java": "VolunteerRecord v = new VolunteerRecord(\"Ethan\", \"Animal Shelter\", 200);\nv.logHours(75);\nSystem.out.println(v.getCertificationStatus());",
+        "expected_output": "Volunteer: Ethan\nOrg: Animal Shelter\nCompleted: 75 hrs\nRequired: 200 hrs\nStatus: Not Yet Certified"
+      },
+      {
+        "description": "Two-parameter constructor applies default 100-hour requirement; no hours logged yet",
+        "setup_java": "VolunteerRecord v = new VolunteerRecord(\"Priya\", \"Library\");\nSystem.out.println(v.getCertificationStatus());",
+        "expected_output": "Volunteer: Priya\nOrg: Library\nCompleted: 0 hrs\nRequired: 100 hrs\nStatus: Not Yet Certified"
+      }
+    ]
+  },
+  {
+    "archetype": "class_writing",
+    "topic_id": "u3_s3_3",
+    "prompt": "A library tracks each physical book with a LibraryBook object. Each book records its title, author, the number of times it has been checked out over its lifetime, and whether it is currently checked out. Write the complete LibraryBook class so that the calls in the table below behave as described.\n\nMethod / Constructor signatures:\n  public LibraryBook(String title, String author, int timesCheckedOut)\n      - Constructs a book with the given title, author, and prior checkout count. The book starts NOT currently checked out.\n  public LibraryBook(String title, String author)\n      - Constructs a brand-new book with the given title and author. The lifetime checkout count must default to 0, and the book starts NOT currently checked out.\n  public void checkOut()\n      - If the book is not currently checked out, mark it as checked out AND increment the lifetime checkout count by 1. If the book is already checked out, this method must do nothing.\n  public String getInfo()\n      - Returns a String of the form: <title> by <author> (<status>), checkouts: <count>\n        where <status> is exactly the literal \"currently checked out\" if the book is currently checked out, or exactly the literal \"available\" otherwise.\n\nAll instance variables must be private. Do NOT use System.out.print inside getInfo.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the complete LibraryBook class, including all private instance variables, both constructors, the checkOut method, and the getInfo method, exactly as specified above."
+      }
+    ],
+    "reference_solution": "public class LibraryBook {\n    private String title;\n    private String author;\n    private int timesCheckedOut;\n    private boolean isCheckedOut;\n\n    public LibraryBook(String title, String author, int timesCheckedOut) {\n        this.title = title;\n        this.author = author;\n        this.timesCheckedOut = timesCheckedOut;\n        this.isCheckedOut = false;\n    }\n\n    public LibraryBook(String title, String author) {\n        this.title = title;\n        this.author = author;\n        this.timesCheckedOut = 0;\n        this.isCheckedOut = false;\n    }\n\n    public void checkOut() {\n        if (!isCheckedOut) {\n            isCheckedOut = true;\n            timesCheckedOut++;\n        }\n    }\n\n    public String getInfo() {\n        String status;\n        if (isCheckedOut) {\n            status = \"currently checked out\";\n        } else {\n            status = \"available\";\n        }\n        return title + \" by \" + author + \" (\" + status + \"), checkouts: \" + timesCheckedOut;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Class header",
+        "criterion": "Class is declared as public class LibraryBook with no extends/implements clause.",
+        "points": 1
+      },
+      {
+        "point_label": "Private instance variables",
+        "criterion": "Declares exactly four private instance fields with correct types: String title, String author, int timesCheckedOut, boolean isCheckedOut (or isomorphic names). No field is public or static.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor headers",
+        "criterion": "Both constructor signatures are present and correct: public LibraryBook(String, String, int) and public LibraryBook(String, String). Constructor name matches class name exactly.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor bodies initialize all fields",
+        "criterion": "Each constructor assigns every instance field. The two-parameter constructor explicitly defaults timesCheckedOut to 0. Both constructors set isCheckedOut to false.",
+        "points": 1
+      },
+      {
+        "point_label": "Mutator header",
+        "criterion": "checkOut method has signature public void checkOut() with no parameters and void return type.",
+        "points": 1
+      },
+      {
+        "point_label": "Mutator body updates fields correctly",
+        "criterion": "checkOut conditionally tests isCheckedOut: only when the book is not currently checked out does it set isCheckedOut to true AND increment timesCheckedOut by 1. Already-checked-out books are unchanged.",
+        "points": 1
+      },
+      {
+        "point_label": "getInfo accessor returns correct String",
+        "criterion": "getInfo returns (does not print) a String concatenating title, ' by ', author, status string with parentheses, and ', checkouts: ' followed by timesCheckedOut. Status string branches correctly on isCheckedOut between 'currently checked out' and 'available'.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "three-arg constructor, no checkOut called",
+        "setup_java": "LibraryBook b = new LibraryBook(\"Dune\", \"Herbert\", 5);\nSystem.out.println(b.getInfo());",
+        "expected_output": "Dune by Herbert (available), checkouts: 5"
+      },
+      {
+        "description": "two-arg constructor; second checkOut must not double-increment",
+        "setup_java": "LibraryBook b = new LibraryBook(\"1984\", \"Orwell\");\nb.checkOut();\nb.checkOut();\nSystem.out.println(b.getInfo());",
+        "expected_output": "1984 by Orwell (currently checked out), checkouts: 1"
+      },
+      {
+        "description": "three-arg constructor, then one checkOut increments lifetime count",
+        "setup_java": "LibraryBook b = new LibraryBook(\"Hamlet\", \"Shakespeare\", 12);\nb.checkOut();\nSystem.out.println(b.getInfo());",
+        "expected_output": "Hamlet by Shakespeare (currently checked out), checkouts: 13"
+      }
+    ]
+  },
+  {
+    "archetype": "class_writing",
+    "topic_id": "u3_s3_3",
+    "prompt": "A personal-finance app models each savings goal with a SavingsGoal object. Each goal records its name, the dollar target, the dollar amount currently saved, and a priority level encoded as an integer (1 = high, 2 = medium, anything else = low). Write the complete SavingsGoal class so that the calls in the table below behave as described.\n\nMethod / Constructor signatures:\n  public SavingsGoal(String goalName, double targetAmount, double currentAmount, int priority)\n      - Constructs a goal initialized from all four parameters.\n  public SavingsGoal(String goalName, double targetAmount, int priority)\n      - Constructs a brand-new goal with no money saved yet. The currentAmount field must default to 0.0.\n  public void deposit(double amount)\n      - Adds amount to the current saved amount (accumulates; do not overwrite).\n  public String getStatus()\n      - Returns a String of the form: <goalName>: $<currentAmount> of $<targetAmount> [<label>]\n        where <label> is exactly:\n          'high priority' when priority equals 1,\n          'medium priority' when priority equals 2,\n          'low priority' for any other priority value.\n\nAll instance variables must be private. Do NOT print anything from inside getStatus.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the complete SavingsGoal class, including all private instance variables, both overloaded constructors, the deposit mutator, and the getStatus accessor, exactly as specified above."
+      }
+    ],
+    "reference_solution": "public class SavingsGoal {\n    private String goalName;\n    private double targetAmount;\n    private double currentAmount;\n    private int priority;\n\n    public SavingsGoal(String goalName, double targetAmount, double currentAmount, int priority) {\n        this.goalName = goalName;\n        this.targetAmount = targetAmount;\n        this.currentAmount = currentAmount;\n        this.priority = priority;\n    }\n\n    public SavingsGoal(String goalName, double targetAmount, int priority) {\n        this.goalName = goalName;\n        this.targetAmount = targetAmount;\n        this.currentAmount = 0.0;\n        this.priority = priority;\n    }\n\n    public void deposit(double amount) {\n        currentAmount += amount;\n    }\n\n    public String getStatus() {\n        String label;\n        if (priority == 1) {\n            label = \"high priority\";\n        } else if (priority == 2) {\n            label = \"medium priority\";\n        } else {\n            label = \"low priority\";\n        }\n        return goalName + \": $\" + currentAmount + \" of $\" + targetAmount + \" [\" + label + \"]\";\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Class header",
+        "criterion": "Class is declared as public class SavingsGoal with no extends/implements clause.",
+        "points": 1
+      },
+      {
+        "point_label": "Private instance variables",
+        "criterion": "Declares exactly four private instance fields with correct types: String goalName, double targetAmount, double currentAmount, int priority. No field is public or static.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor headers",
+        "criterion": "Both overloaded constructor signatures are present and correct: public SavingsGoal(String, double, double, int) and public SavingsGoal(String, double, int). Constructor name matches class name exactly.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor bodies initialize all fields",
+        "criterion": "Each constructor assigns every instance field. The three-parameter constructor explicitly defaults currentAmount to 0.0. The four-parameter constructor copies all four parameters into the matching fields.",
+        "points": 1
+      },
+      {
+        "point_label": "Mutator header",
+        "criterion": "deposit method has signature public void deposit(double amount) with one double parameter and void return type.",
+        "points": 1
+      },
+      {
+        "point_label": "Mutator body accumulates correctly",
+        "criterion": "deposit uses += (or equivalent currentAmount = currentAmount + amount) to accumulate, NOT plain assignment. After multiple deposits the field reflects the total.",
+        "points": 1
+      },
+      {
+        "point_label": "getStatus accessor returns correctly branched String",
+        "criterion": "getStatus returns (does not print) a String concatenating goalName + ': $' + currentAmount + ' of $' + targetAmount + ' [' + label + ']'. The label is selected by branching on priority: 1 yields 'high priority', 2 yields 'medium priority', any other value yields 'low priority'.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "three-arg constructor defaults currentAmount to 0.0; one deposit; high priority",
+        "setup_java": "SavingsGoal g = new SavingsGoal(\"Vacation\", 1000.0, 1);\ng.deposit(250.0);\nSystem.out.println(g.getStatus());",
+        "expected_output": "Vacation: $250.0 of $1000.0 [high priority]"
+      },
+      {
+        "description": "four-arg constructor; multiple deposits accumulate; medium priority",
+        "setup_java": "SavingsGoal g = new SavingsGoal(\"Laptop\", 1500.0, 500.0, 2);\ng.deposit(100.0);\ng.deposit(50.0);\nSystem.out.println(g.getStatus());",
+        "expected_output": "Laptop: $650.0 of $1500.0 [medium priority]"
+      },
+      {
+        "description": "three-arg constructor, no deposits, priority 3 falls through to low",
+        "setup_java": "SavingsGoal g = new SavingsGoal(\"Gift\", 200.0, 3);\nSystem.out.println(g.getStatus());",
+        "expected_output": "Gift: $0.0 of $200.0 [low priority]"
+      }
+    ]
+  },
+  {
+    "archetype": "class_writing",
+    "topic_id": "u3_s3_3",
+    "prompt": "A small public library tracks the books it loans out. You will write a complete class LibraryBook that stores information about a single book title and how many physical copies of that title are currently on the shelf.\n\nA LibraryBook keeps track of the following information:\n- the title of the book (a String)\n- the author of the book (a String)\n- the total number of copies the library owns (an int)\n- the number of copies currently available to be checked out (an int)\n\nThe class must support the methods shown in the table below.\n\nMethod / Constructor                              | Description\n--------------------------------------------------|----------------------------------------------------------------\nLibraryBook(String t, String a, int copies)       | Initializes title to t, author to a, and sets BOTH totalCopies and copiesAvailable to copies (every copy starts on the shelf).\nLibraryBook(String t, String a)                   | Initializes title to t and author to a. Sets totalCopies and copiesAvailable to 0 (the library has none of this title yet).\nvoid checkOut()                                   | Decreases copiesAvailable by 1 (a patron has taken a copy off the shelf). You may assume copiesAvailable > 0 when this is called.\nString getStatus()                                | Returns a formatted status line. If copiesAvailable is 0, returns the title, then \" by \", then the author, then \": unavailable\". Otherwise returns the title, then \" by \", then the author, then \": \", then copiesAvailable, then \" of \", then totalCopies, then \" available\".\n\nWrite the complete LibraryBook class. Your implementation must include all instance variables, both constructors, and both methods. All instance variables must be private. Do not write a main method.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the complete LibraryBook class as specified above. Include the class header, all private instance variables, both constructors, the checkOut method, and the getStatus method."
+      }
+    ],
+    "reference_solution": "public class LibraryBook {\n    private String title;\n    private String author;\n    private int totalCopies;\n    private int copiesAvailable;\n\n    public LibraryBook(String t, String a, int copies) {\n        title = t;\n        author = a;\n        totalCopies = copies;\n        copiesAvailable = copies;\n    }\n\n    public LibraryBook(String t, String a) {\n        title = t;\n        author = a;\n        totalCopies = 0;\n        copiesAvailable = 0;\n    }\n\n    public void checkOut() {\n        copiesAvailable = copiesAvailable - 1;\n    }\n\n    public String getStatus() {\n        if (copiesAvailable == 0) {\n            return title + \" by \" + author + \": unavailable\";\n        }\n        return title + \" by \" + author + \": \" + copiesAvailable + \" of \" + totalCopies + \" available\";\n    }\n}\n",
+    "rubric": [
+      {
+        "point_label": "Class header",
+        "criterion": "Declares the class as public class LibraryBook with the exact specified name.",
+        "points": 1
+      },
+      {
+        "point_label": "Private instance variables",
+        "criterion": "Declares exactly four private instance fields: a String title, a String author, an int totalCopies, and an int copiesAvailable. None of the fields are public or static.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor headers",
+        "criterion": "Both constructors are present with the exact name LibraryBook and parameter lists (String, String, int) and (String, String) in that order. No return types declared.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor bodies initialize all fields",
+        "criterion": "Three-arg constructor assigns title, author, totalCopies, and copiesAvailable from / to copies. Two-arg constructor assigns title and author from parameters and explicitly defaults totalCopies and copiesAvailable to 0.",
+        "points": 1
+      },
+      {
+        "point_label": "Mutator method header (checkOut)",
+        "criterion": "Declares public void checkOut() with no parameters and return type void.",
+        "points": 1
+      },
+      {
+        "point_label": "Mutator method body (checkOut)",
+        "criterion": "Body decreases copiesAvailable by 1 (using -=, --, or copiesAvailable = copiesAvailable - 1). Does not modify any other field.",
+        "points": 1
+      },
+      {
+        "point_label": "Accessor method getStatus",
+        "criterion": "getStatus is declared to return String, branches on copiesAvailable == 0 to return the unavailable form, otherwise returns the title + \" by \" + author + \": \" + copiesAvailable + \" of \" + totalCopies + \" available\". Returns the String \u2014 does not print it.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "basic three-arg constructor, fully stocked",
+        "setup_java": "LibraryBook b = new LibraryBook(\"Dune\", \"Herbert\", 3);\nSystem.out.println(b.getStatus());",
+        "expected_output": "Dune by Herbert: 3 of 3 available\n"
+      },
+      {
+        "description": "checkOut twice leaves one copy available",
+        "setup_java": "LibraryBook b = new LibraryBook(\"Dune\", \"Herbert\", 3);\nb.checkOut();\nb.checkOut();\nSystem.out.println(b.getStatus());",
+        "expected_output": "Dune by Herbert: 1 of 3 available\n"
+      },
+      {
+        "description": "two-arg constructor reports unavailable",
+        "setup_java": "LibraryBook b = new LibraryBook(\"Foo\", \"Bar\");\nSystem.out.println(b.getStatus());",
+        "expected_output": "Foo by Bar: unavailable\n"
+      }
+    ]
+  },
+  {
+    "archetype": "class_writing",
+    "topic_id": "u3_s3_3",
+    "prompt": "A bank tracks savings accounts. You will write a complete class SavingsAccount that records information about a single customer's account.\n\nA SavingsAccount keeps track of the following information:\n- the account holder's name (a String)\n- the account number (an int)\n- the annual interest rate as a decimal, e.g. 0.05 for 5% (a double)\n- the current account balance in dollars (a double)\n\nThe class must support the constructors and methods shown in the table below.\n\nMethod / Constructor                                                | Description\n--------------------------------------------------------------------|----------------------------------------------------------------\nSavingsAccount(String holder, int num, double rate, double initBal) | Initializes accountHolder to holder, accountNumber to num, interestRate to rate, and balance to initBal.\nSavingsAccount(String holder, int num, double rate)                 | Initializes accountHolder, accountNumber, and interestRate from the parameters. Sets balance to 0.0 (a brand new account with no money deposited yet).\nvoid deposit(double amount)                                         | Adds amount to balance. Multiple deposits should accumulate; do not overwrite the previous balance.\nString getSummary()                                                 | Returns a one-line summary of the account. The label inside the parentheses is \"premium\" when interestRate is greater than or equal to 0.05, and \"standard\" otherwise. Format: \"Account #\" + accountNumber + \" (\" + label + \"): \" + accountHolder + \", balance $\" + balance.\n\nWrite the complete SavingsAccount class. Your implementation must include all instance variables, both constructors, and both methods. All instance variables must be private. Do not write a main method.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the complete SavingsAccount class as specified above. Include the class header, all private instance variables, both constructors, the deposit method, and the getSummary method."
+      }
+    ],
+    "reference_solution": "public class SavingsAccount {\n    private String accountHolder;\n    private int accountNumber;\n    private double interestRate;\n    private double balance;\n\n    public SavingsAccount(String holder, int num, double rate, double initBal) {\n        accountHolder = holder;\n        accountNumber = num;\n        interestRate = rate;\n        balance = initBal;\n    }\n\n    public SavingsAccount(String holder, int num, double rate) {\n        accountHolder = holder;\n        accountNumber = num;\n        interestRate = rate;\n        balance = 0.0;\n    }\n\n    public void deposit(double amount) {\n        balance = balance + amount;\n    }\n\n    public String getSummary() {\n        String label;\n        if (interestRate >= 0.05) {\n            label = \"premium\";\n        } else {\n            label = \"standard\";\n        }\n        return \"Account #\" + accountNumber + \" (\" + label + \"): \" + accountHolder + \", balance $\" + balance;\n    }\n}\n",
+    "rubric": [
+      {
+        "point_label": "Class header",
+        "criterion": "Declares the class as public class SavingsAccount with the exact specified name.",
+        "points": 1
+      },
+      {
+        "point_label": "Private instance variables",
+        "criterion": "Declares exactly four private instance fields with correct types: String accountHolder, int accountNumber, double interestRate, double balance. None of the fields are public or static.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor headers",
+        "criterion": "Both constructors are present with the exact name SavingsAccount and parameter lists (String, int, double, double) and (String, int, double) in that order. No return types declared.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor bodies initialize all fields",
+        "criterion": "Four-arg constructor assigns accountHolder, accountNumber, interestRate, and balance from parameters. Three-arg constructor assigns accountHolder, accountNumber, and interestRate from parameters and explicitly defaults balance to 0.0.",
+        "points": 1
+      },
+      {
+        "point_label": "Mutator method header (deposit)",
+        "criterion": "Declares public void deposit(double amount) with return type void and a single double parameter.",
+        "points": 1
+      },
+      {
+        "point_label": "Mutator method body (deposit)",
+        "criterion": "Body adds amount to balance using += or balance = balance + amount. Multiple calls accumulate; the body does not overwrite balance with amount.",
+        "points": 1
+      },
+      {
+        "point_label": "Accessor method getSummary",
+        "criterion": "getSummary is declared to return String, branches on interestRate >= 0.05 to choose \"premium\" vs. \"standard\", and returns a string of the form \"Account #\" + accountNumber + \" (\" + label + \"): \" + accountHolder + \", balance $\" + balance. Returns the String \u2014 does not print it.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "four-arg constructor, low rate uses standard label",
+        "setup_java": "SavingsAccount a = new SavingsAccount(\"Alice\", 1234, 0.03, 500.0);\nSystem.out.println(a.getSummary());",
+        "expected_output": "Account #1234 (standard): Alice, balance $500.0\n"
+      },
+      {
+        "description": "three-arg constructor defaults balance to 0; deposits accumulate; high rate uses premium label",
+        "setup_java": "SavingsAccount a = new SavingsAccount(\"Bob\", 2222, 0.06);\na.deposit(100.0);\na.deposit(50.0);\nSystem.out.println(a.getSummary());",
+        "expected_output": "Account #2222 (premium): Bob, balance $150.0\n"
+      },
+      {
+        "description": "boundary: rate exactly 0.05 is premium; deposit adds to initial balance",
+        "setup_java": "SavingsAccount a = new SavingsAccount(\"Carol\", 9999, 0.05, 200.0);\na.deposit(25.0);\nSystem.out.println(a.getSummary());",
+        "expected_output": "Account #9999 (premium): Carol, balance $225.0\n"
+      }
+    ]
+  },
+  {
+    "archetype": "class_writing",
+    "topic_id": "u3_s3_3",
+    "prompt": "A local library tracks books that patrons borrow. You will write a complete BookLoan class to represent one loan record. A BookLoan object stores the title of the book (a String), the patron's name (a String), the number of days the book has been checked out (an int), and the daily late fee in cents once the loan goes overdue (an int). A loan is considered overdue when the number of days checked out is greater than 14.\n\nThe class supports the following behavior:\n\n- BookLoan(String title, String patron, int days, int dailyFee) \u2014 constructs a BookLoan with all four fields supplied.\n- BookLoan(String title, String patron) \u2014 constructs a BookLoan with the given title and patron, sets days to 0, and sets dailyFee to 25 cents.\n- void extendLoan(int extraDays) \u2014 adds extraDays to the running total of days checked out.\n- int currentFine() \u2014 returns the total fine in cents. If the loan is not overdue (days <= 14), return 0. Otherwise return (days - 14) * dailyFee.\n- String summary() \u2014 returns a String of the form \"<title> borrowed by <patron>: <days> days, fine = <fine>c\" where <fine> is the value returned by currentFine().\n\nWrite the complete BookLoan class. All instance variables must be private.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the complete BookLoan class as specified above, including all private instance variables, both constructors, extendLoan, currentFine, and summary."
+      }
+    ],
+    "reference_solution": "public class BookLoan {\n    private String title;\n    private String patron;\n    private int days;\n    private int dailyFee;\n\n    public BookLoan(String title, String patron, int days, int dailyFee) {\n        this.title = title;\n        this.patron = patron;\n        this.days = days;\n        this.dailyFee = dailyFee;\n    }\n\n    public BookLoan(String title, String patron) {\n        this.title = title;\n        this.patron = patron;\n        this.days = 0;\n        this.dailyFee = 25;\n    }\n\n    public void extendLoan(int extraDays) {\n        days += extraDays;\n    }\n\n    public int currentFine() {\n        if (days <= 14) {\n            return 0;\n        }\n        return (days - 14) * dailyFee;\n    }\n\n    public String summary() {\n        return title + \" borrowed by \" + patron + \": \" + days + \" days, fine = \" + currentFine() + \"c\";\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Class header",
+        "criterion": "Class is declared as public class BookLoan",
+        "points": 1
+      },
+      {
+        "point_label": "Private instance variables",
+        "criterion": "All four required fields (title String, patron String, days int, dailyFee int) declared private with correct types",
+        "points": 1
+      },
+      {
+        "point_label": "Four-argument constructor",
+        "criterion": "Constructor BookLoan(String, String, int, int) has correct header and assigns all four fields from parameters",
+        "points": 1
+      },
+      {
+        "point_label": "Two-argument constructor",
+        "criterion": "Constructor BookLoan(String, String) has correct header, assigns title and patron from parameters, and defaults days to 0 and dailyFee to 25",
+        "points": 1
+      },
+      {
+        "point_label": "extendLoan mutator",
+        "criterion": "extendLoan has return type void, takes one int parameter, and uses += (or equivalent) to add extraDays to the days field rather than overwriting it",
+        "points": 1
+      },
+      {
+        "point_label": "currentFine accessor",
+        "criterion": "currentFine returns int; returns 0 when days <= 14, otherwise returns (days - 14) * dailyFee",
+        "points": 1
+      },
+      {
+        "point_label": "summary method",
+        "criterion": "summary returns a String exactly of the form \"<title> borrowed by <patron>: <days> days, fine = <fine>c\" where fine is computed from currentFine; uses return (not System.out.print)",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "two-arg constructor, not overdue",
+        "setup_java": "BookLoan b = new BookLoan(\"Hamlet\", \"Ana\");\nb.extendLoan(10);\nSystem.out.println(b.summary());",
+        "expected_output": "Hamlet borrowed by Ana: 10 days, fine = 0c"
+      },
+      {
+        "description": "four-arg constructor, overdue with custom fee",
+        "setup_java": "BookLoan b = new BookLoan(\"Dune\", \"Marcus\", 20, 30);\nSystem.out.println(b.currentFine());\nSystem.out.println(b.summary());",
+        "expected_output": "180\nDune borrowed by Marcus: 20 days, fine = 180c"
+      },
+      {
+        "description": "default fee after extending past due",
+        "setup_java": "BookLoan b = new BookLoan(\"1984\", \"Lin\");\nb.extendLoan(14);\nb.extendLoan(6);\nSystem.out.println(b.summary());",
+        "expected_output": "1984 borrowed by Lin: 20 days, fine = 150c"
+      }
+    ]
+  },
+  {
+    "archetype": "class_writing",
+    "topic_id": "u3_s3_3",
+    "prompt": "A coffee shop loyalty program tracks each customer with a CoffeeCard object. Every CoffeeCard stores the customer's name (a String), the customer's tier code (an int, where 0 = standard, 1 = gold, 2 = platinum), the number of points earned so far (an int), and whether auto-renewal is enabled (a boolean).\n\nThe class supports the following behavior:\n\n- CoffeeCard(String name, int tier, int points, boolean autoRenew) \u2014 constructs a card with all four fields supplied.\n- CoffeeCard(String name) \u2014 constructs a card for a brand-new customer; sets tier to 0, points to 0, and autoRenew to false.\n- void earnPoints(int amount) \u2014 adds amount to the running total of points earned.\n- void upgradeTier() \u2014 if tier is 0, set it to 1; if tier is 1, set it to 2; if tier is already 2, leave it unchanged.\n- String tierLabel() \u2014 returns \"standard\" if tier is 0, \"gold\" if tier is 1, and \"platinum\" if tier is 2.\n- String describe() \u2014 returns a String of the form \"<name> | <tierLabel> | <points> pts | renew=<autoRenew>\" using the value returned by tierLabel().\n\nWrite the complete CoffeeCard class. All instance variables must be private.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the complete CoffeeCard class, including private instance variables, both constructors, and all required methods (earnPoints, upgradeTier, tierLabel, describe)."
+      }
+    ],
+    "reference_solution": "public class CoffeeCard {\n    private String name;\n    private int tier;\n    private int points;\n    private boolean autoRenew;\n\n    public CoffeeCard(String name, int tier, int points, boolean autoRenew) {\n        this.name = name;\n        this.tier = tier;\n        this.points = points;\n        this.autoRenew = autoRenew;\n    }\n\n    public CoffeeCard(String name) {\n        this.name = name;\n        this.tier = 0;\n        this.points = 0;\n        this.autoRenew = false;\n    }\n\n    public void earnPoints(int amount) {\n        points += amount;\n    }\n\n    public void upgradeTier() {\n        if (tier == 0) {\n            tier = 1;\n        } else if (tier == 1) {\n            tier = 2;\n        }\n    }\n\n    public String tierLabel() {\n        if (tier == 0) {\n            return \"standard\";\n        } else if (tier == 1) {\n            return \"gold\";\n        }\n        return \"platinum\";\n    }\n\n    public String describe() {\n        return name + \" | \" + tierLabel() + \" | \" + points + \" pts | renew=\" + autoRenew;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Class header",
+        "criterion": "Class is declared as public class CoffeeCard",
+        "points": 1
+      },
+      {
+        "point_label": "Private instance variables",
+        "criterion": "All four required fields (name String, tier int, points int, autoRenew boolean) declared private with correct types",
+        "points": 1
+      },
+      {
+        "point_label": "Four-argument constructor",
+        "criterion": "CoffeeCard(String, int, int, boolean) has correct header and assigns all four fields from parameters",
+        "points": 1
+      },
+      {
+        "point_label": "One-argument constructor",
+        "criterion": "CoffeeCard(String) has correct header, assigns name from parameter, and defaults tier to 0, points to 0, and autoRenew to false",
+        "points": 1
+      },
+      {
+        "point_label": "earnPoints mutator",
+        "criterion": "earnPoints has return type void, one int parameter, and uses += to accumulate points (not =)",
+        "points": 1
+      },
+      {
+        "point_label": "upgradeTier mutator",
+        "criterion": "upgradeTier promotes 0 -> 1 and 1 -> 2 using conditional logic, and leaves tier unchanged when tier is already 2",
+        "points": 1
+      },
+      {
+        "point_label": "tierLabel and describe",
+        "criterion": "tierLabel returns the correct String for each of the three tier values via branching; describe returns a String exactly of the form \"<name> | <tierLabel> | <points> pts | renew=<autoRenew>\" using return (not System.out.print) and invoking tierLabel for the label",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "default constructor, earn points, upgrade once",
+        "setup_java": "CoffeeCard c = new CoffeeCard(\"Priya\");\nc.earnPoints(40);\nc.earnPoints(10);\nc.upgradeTier();\nSystem.out.println(c.describe());",
+        "expected_output": "Priya | gold | 50 pts | renew=false"
+      },
+      {
+        "description": "full constructor and tierLabel",
+        "setup_java": "CoffeeCard c = new CoffeeCard(\"Theo\", 2, 300, true);\nSystem.out.println(c.tierLabel());\nSystem.out.println(c.describe());",
+        "expected_output": "platinum\nTheo | platinum | 300 pts | renew=true"
+      },
+      {
+        "description": "upgradeTier capped at platinum",
+        "setup_java": "CoffeeCard c = new CoffeeCard(\"Mira\", 1, 75, false);\nc.upgradeTier();\nc.upgradeTier();\nc.upgradeTier();\nSystem.out.println(c.describe());",
+        "expected_output": "Mira | platinum | 75 pts | renew=false"
+      }
+    ]
+  },
+  {
+    "archetype": "class_writing",
+    "topic_id": "u3_s3_3",
+    "prompt": "A role-playing game tracks each playable character with a GameCharacter class. Each character has a name, a class type (such as \"Mage\" or \"Knight\"), a current level, and an experience-point total. The class supports the following table of operations.\n\nMethod / Constructor | Description\n---------------------|------------\npublic GameCharacter(String n, String c, int lv, int exp) | Constructs a GameCharacter with the given name, class type, level, and experience.\npublic GameCharacter(String n, String c) | Constructs a GameCharacter with the given name and class type. The level defaults to 1 and the experience defaults to 0.\npublic void gainExp(int amount) | Adds amount to the character's experience-point total. Multiple calls accumulate.\npublic String getStatus() | Returns a formatted status string of the form: NAME the CLASSTYPE (LABEL) - Level LV, XP: EXP where LABEL is the literal string \"Beginner\" if the character's level is less than 5, or \"Veteran\" if the level is greater than or equal to 5.\n\nWrite the complete GameCharacter class. Your implementation must include the class header, all private instance variables, both constructors, and both methods listed above. All instance variables must be private.",
+    "parts": [
+      {
+        "label": "(complete class)",
+        "prompt": "Write the entire GameCharacter class as specified, including all private instance variables, both constructors, the gainExp method, and the getStatus method."
+      }
+    ],
+    "reference_solution": "public class GameCharacter {\n    private String name;\n    private String classType;\n    private int level;\n    private int experience;\n\n    public GameCharacter(String n, String c, int lv, int exp) {\n        name = n;\n        classType = c;\n        level = lv;\n        experience = exp;\n    }\n\n    public GameCharacter(String n, String c) {\n        name = n;\n        classType = c;\n        level = 1;\n        experience = 0;\n    }\n\n    public void gainExp(int amount) {\n        experience += amount;\n    }\n\n    public String getStatus() {\n        String label;\n        if (level < 5) {\n            label = \"Beginner\";\n        } else {\n            label = \"Veteran\";\n        }\n        return name + \" the \" + classType + \" (\" + label + \") - Level \" + level + \", XP: \" + experience;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Class header",
+        "criterion": "Class is declared as public class GameCharacter with the exact specified name.",
+        "points": 1
+      },
+      {
+        "point_label": "Private instance variables",
+        "criterion": "All four instance variables are declared private with correct types: a String for name, a String for class type, an int for level, and an int for experience. No public or static fields.",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor headers",
+        "criterion": "Both constructors are present with the correct name GameCharacter and parameter lists exactly matching the specification: one (String, String, int, int) and one (String, String).",
+        "points": 1
+      },
+      {
+        "point_label": "Constructor bodies initialize all fields",
+        "criterion": "The four-parameter constructor assigns each of the four fields from its corresponding parameter. The two-parameter constructor assigns name and class type from parameters AND explicitly defaults level to 1 and experience to 0.",
+        "points": 1
+      },
+      {
+        "point_label": "gainExp method header",
+        "criterion": "Method gainExp is declared public with return type void and a single int parameter.",
+        "points": 1
+      },
+      {
+        "point_label": "gainExp method body",
+        "criterion": "Method body increments the experience field by the parameter using accumulation (for example experience += amount), not overwriting assignment.",
+        "points": 1
+      },
+      {
+        "point_label": "getStatus returns correctly formatted string with conditional label",
+        "criterion": "Method has return type String, branches on level (< 5 yields \"Beginner\", otherwise \"Veteran\"), returns a String of the form NAME the CLASSTYPE (LABEL) - Level LV, XP: EXP, and contains no System.out calls.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "Four-argument constructor with high level produces Veteran label",
+        "setup_java": "GameCharacter g = new GameCharacter(\"Aria\", \"Mage\", 7, 1200);\nSystem.out.println(g.getStatus());",
+        "expected_output": "Aria the Mage (Veteran) - Level 7, XP: 1200"
+      },
+      {
+        "description": "Two-argument constructor defaults level and XP; gainExp accumulates",
+        "setup_java": "GameCharacter g = new GameCharacter(\"Bran\", \"Knight\");\ng.gainExp(50);\ng.gainExp(25);\nSystem.out.println(g.getStatus());",
+        "expected_output": "Bran the Knight (Beginner) - Level 1, XP: 75"
+      },
+      {
+        "description": "Boundary: level exactly 5 is Veteran, not Beginner",
+        "setup_java": "GameCharacter g = new GameCharacter(\"Cyra\", \"Rogue\", 5, 0);\ng.gainExp(100);\nSystem.out.println(g.getStatus());",
+        "expected_output": "Cyra the Rogue (Veteran) - Level 5, XP: 100"
+      }
+    ]
+  }
+]

@@ -1,0 +1,548 @@
+[
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Which of the following best describes encapsulation in object-oriented programming?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Hiding internal implementation details and exposing state only through public methods"
+      },
+      {
+        "label": "B",
+        "text": "Allowing all fields and methods to be accessed from any other class"
+      },
+      {
+        "label": "C",
+        "text": "Breaking a large method into smaller helper methods"
+      },
+      {
+        "label": "D",
+        "text": "Giving multiple methods the same name with different parameter lists"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Encapsulation means keeping internal data private and providing controlled access through methods. B describes the opposite of encapsulation. C is method decomposition. D is method overloading.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "A class `BankAccount` needs to store an account balance as a decimal number. Which of the following is the most appropriate field declaration, following standard Java class-design conventions?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public double balance;`"
+      },
+      {
+        "label": "B",
+        "text": "`private double balance;`"
+      },
+      {
+        "label": "C",
+        "text": "`public static double balance;`"
+      },
+      {
+        "label": "D",
+        "text": "`private static double balance;`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Instance variables should be `private` to enforce encapsulation, and each `BankAccount` object should have its own balance (not `static`). A exposes the field publicly, violating encapsulation. C and D make the field `static`, so all accounts would share one balance.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Consider the following class.\n\n```java\npublic class Counter {\n    private static int count = 0;\n    private int id;\n\n    public Counter() {\n        count++;\n        id = count;\n    }\n\n    public static int getCount() { return count; }\n    public int getId() { return id; }\n}\n```\n\nAfter the following three statements run, what are the values of `a.getId()` and `Counter.getCount()`?\n\n```java\nCounter a = new Counter();\nCounter b = new Counter();\nCounter c = new Counter();\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a.getId()` is `1`, `Counter.getCount()` is `1`"
+      },
+      {
+        "label": "B",
+        "text": "`a.getId()` is `1`, `Counter.getCount()` is `3`"
+      },
+      {
+        "label": "C",
+        "text": "`a.getId()` is `3`, `Counter.getCount()` is `3`"
+      },
+      {
+        "label": "D",
+        "text": "`a.getId()` is `0`, `Counter.getCount()` is `3`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`count` is static and shared across all instances. Object `a` was constructed first: `count` incremented to 1 and `a.id` was set to 1. After all three constructors run, `count` is 3. C is wrong because `a` was the first Counter created. D is wrong because `id` is set to the post-increment value of `count`, not its pre-increment value.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Determine the output of the following code.\n\n```java\npublic class Box {\n    private int value;\n\n    public Box(int v) { value = v; }\n    public int getValue() { return value; }\n    public void setValue(int v) { value = v; }\n}\n\npublic static void change(Box b, int n) {\n    b.setValue(n);\n    b = new Box(99);\n}\n\nBox myBox = new Box(10);\nchange(myBox, 50);\nSystem.out.println(myBox.getValue());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`50`"
+      },
+      {
+        "label": "C",
+        "text": "`99`"
+      },
+      {
+        "label": "D",
+        "text": "`0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`b` inside `change` is a copy of the reference to the same object as `myBox`. `b.setValue(50)` mutates the shared object so its `value` becomes 50. The subsequent `b = new Box(99)` reassigns only the local parameter `b`; it does not affect `myBox`. So `myBox.getValue()` returns 50.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "A class `Sensor` is declared with the following fields and no constructor.\n\n```java\npublic class Sensor {\n    private int readings;\n    private double temperature;\n    private boolean active;\n}\n```\n\nWhat are the default initial values of `readings`, `temperature`, and `active` for a newly instantiated `Sensor` object?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`, `0`, `false`"
+      },
+      {
+        "label": "B",
+        "text": "`0`, `0.0`, `false`"
+      },
+      {
+        "label": "C",
+        "text": "`null`, `null`, `null`"
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs because no constructor is explicitly defined."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java initializes primitive instance variables to their type defaults: `int` \u2192 `0`, `double` \u2192 `0.0`, `boolean` \u2192 `false`. A is wrong because `double` defaults to `0.0`, not `0`. C applies to reference types, not primitives. D is wrong because Java provides a default no-arg constructor automatically when no constructor is written.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "The following class contains an error.\n\n```java\npublic class Student {\n    private String name;\n    private static int count = 0;\n\n    public Student(String n) {\n        name = n;\n        count++;\n    }\n\n    public static String getInfo() {\n        return \"Student: \" + name;  // Line X\n    }\n}\n```\n\nWhich of the following best describes the error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`count` should not be declared `static` because it belongs to each individual instance."
+      },
+      {
+        "label": "B",
+        "text": "The constructor should be declared `static` to match the static field."
+      },
+      {
+        "label": "C",
+        "text": "Line X attempts to access the instance variable `name` from a `static` method, which is not allowed."
+      },
+      {
+        "label": "D",
+        "text": "Line X should use `this.name` instead of `name` to resolve the ambiguity."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Static methods have no implicit `this` reference and cannot directly access instance variables. `name` is an instance variable, so referencing it in `getInfo()` produces a compile error ('non-static variable name cannot be referenced from a static context'). A is incorrect \u2014 using `static` for a class-wide counter is appropriate. D is wrong because `this` is also unavailable in a static method.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Consider the following class.\n\n```java\npublic class Roster {\n    private ArrayList<String> names;\n\n    public Roster() {\n        names = new ArrayList<String>();\n    }\n\n    public void addName(String n) { names.add(n); }\n\n    public ArrayList<String> getNames() { return names; }\n}\n```\n\nA `Roster` object `r` is created, `\"Alice\"` is added, and then `list` is assigned via `r.getNames()`. After `list.add(\"Bob\")` is called, which of the following correctly describes the state of `r`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`r` contains only `\"Alice\"` because `getNames()` returns a copy of the internal list."
+      },
+      {
+        "label": "B",
+        "text": "`r` contains both `\"Alice\"` and `\"Bob\"` because `getNames()` returns a reference to the internal list."
+      },
+      {
+        "label": "C",
+        "text": "`r` contains only `\"Bob\"` because `list.add` replaces the original list."
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs because `private` fields cannot be returned from a method."
+      }
+    ],
+    "answer": "B",
+    "explanation": "`getNames()` returns a reference to the actual `ArrayList` stored in `r`, not a defensive copy. When `list.add(\"Bob\")` is called, it modifies the same object that `r.names` points to. To protect internal state, `getNames()` should return `new ArrayList<String>(names)`. D is wrong \u2014 access modifiers control external direct access to a field, not what a method is allowed to return.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Consider the following class.\n\n```java\npublic class Item {\n    private String label;\n    private int quantity;\n\n    public Item(String label, int quantity) {\n        this.label = label;\n        this.quantity = quantity;\n    }\n\n    public String getLabel() { return label; }\n}\n```\n\nWhich of the following correctly describes what happens when the code below is compiled?\n\n```java\nItem x = new Item();\nItem y = new Item(\"bolt\", 5);\nSystem.out.println(y.getLabel());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The code compiles and runs; `x` is created with `label` set to `null` and `quantity` set to `0`, and `bolt` is printed."
+      },
+      {
+        "label": "B",
+        "text": "A compile error occurs because `new Item()` calls a no-argument constructor that does not exist."
+      },
+      {
+        "label": "C",
+        "text": "A `NullPointerException` is thrown at runtime when `new Item()` is executed."
+      },
+      {
+        "label": "D",
+        "text": "The code compiles and `bolt` is printed; Java always provides a default no-argument constructor."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Once a programmer writes any constructor, Java no longer provides the default no-argument constructor. Since `Item` defines a two-parameter constructor, `new Item()` has no matching signature and causes a compile error. D is false \u2014 the default constructor is only available when NO constructors are defined. The error is detected at compile time, not runtime, so C is also wrong.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Consider the following class.\n\n```java\npublic class Temperature {\n    private double degrees;\n\n    public Temperature(double d) { degrees = d; }\n\n    public boolean isWarmer(Temperature other) {\n        return this.degrees > other.degrees;\n    }\n}\n```\n\nAfter the following code runs, what is the value of `result`?\n\n```java\nTemperature t1 = new Temperature(75.0);\nTemperature t2 = new Temperature(68.0);\nboolean result = t1.isWarmer(t2);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true`"
+      },
+      {
+        "label": "B",
+        "text": "`false`"
+      },
+      {
+        "label": "C",
+        "text": "A compile error occurs because `other.degrees` accesses a `private` field of another object."
+      },
+      {
+        "label": "D",
+        "text": "A runtime error occurs because `other` could be `null`."
+      }
+    ],
+    "answer": "A",
+    "explanation": "`t1.degrees` is 75.0 and `t2.degrees` is 68.0, so `75.0 > 68.0` evaluates to `true`. C is a common misconception \u2014 a method may access `private` fields of any instance of the same class; `other.degrees` is valid because `other` is also a `Temperature`. D is incorrect; `t2` is a properly constructed object and the precondition assumes non-null arguments.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Which of the following best describes encapsulation in object-oriented design?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Breaking a large method into smaller, named helper methods so each does one job"
+      },
+      {
+        "label": "B",
+        "text": "Naming a method so callers can use it without knowing its implementation"
+      },
+      {
+        "label": "C",
+        "text": "Keeping instance data `private` and exposing it only through public methods"
+      },
+      {
+        "label": "D",
+        "text": "Allowing any class to read and modify another class's variables directly"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Encapsulation means hiding internal state behind private access modifiers and providing controlled access via public methods. A describes method decomposition; B describes procedural abstraction; D is the opposite of encapsulation.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "A class `BankAccount` needs an instance variable to store the account balance as a decimal value. Each `BankAccount` object should maintain its own independent balance. Which of the following is the most appropriate declaration for this field?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public double balance;`"
+      },
+      {
+        "label": "B",
+        "text": "`private double balance;`"
+      },
+      {
+        "label": "C",
+        "text": "`private static double balance;`"
+      },
+      {
+        "label": "D",
+        "text": "`public static double balance;`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Instance variables should be private (encapsulation) and non-static (each object holds its own copy). A violates encapsulation by exposing the field publicly. C and D use `static`, which would create one balance value shared across all BankAccount objects rather than a per-object value.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Consider the following class.\n\n```java\npublic class Rectangle\n{\n    private int width;\n    private int height;\n\n    public Rectangle(int width, int height)\n    {\n        width = width;\n        height = height;\n    }\n\n    public int getWidth()  { return width; }\n    public int getHeight() { return height; }\n}\n```\n\nAfter executing `Rectangle r = new Rectangle(5, 10);`, what does the expression `r.getWidth() + \" \" + r.getHeight()` evaluate to?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5 10`"
+      },
+      {
+        "label": "B",
+        "text": "`0 0`"
+      },
+      {
+        "label": "C",
+        "text": "`5 0`"
+      },
+      {
+        "label": "D",
+        "text": "`10 5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Inside the constructor, `width = width` assigns the parameter back to itself due to shadowing \u2014 the instance variable `this.width` is never updated and retains its default value of 0. The same bug affects `height`. Both getters therefore return 0. Option A would be correct if `this.width = width` had been written instead.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Consider the following class and code segment.\n\n```java\npublic class Counter\n{\n    private static int count = 0;\n    private int id;\n\n    public Counter()\n    {\n        count++;\n        id = count;\n    }\n\n    public int getId()            { return id; }\n    public static int getCount()  { return count; }\n}\n```\n\n```java\nCounter a = new Counter();\nCounter b = new Counter();\nCounter c = new Counter();\nSystem.out.println(a.getId() + \" \" + Counter.getCount());\n```\n\nDetermine the output of the code segment.",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0 3`"
+      },
+      {
+        "label": "B",
+        "text": "`1 1`"
+      },
+      {
+        "label": "C",
+        "text": "`1 3`"
+      },
+      {
+        "label": "D",
+        "text": "`3 3`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Each constructor call increments the shared static `count` before assigning it to the new object's `id`. After three constructions, `count` is 3. Object `a` was the first constructed, so its `id` was set when `count` first reached 1; `a.getId()` returns 1. `Counter.getCount()` returns the current class-level value of 3. D is a common mistake from confusing `a`'s id with the final count value.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Consider the following class.\n\n```java\npublic class Point\n{\n    private int x;\n    private int y;\n\n    public Point(int x, int y)\n    {\n        this.x = x;\n        this.y = y;\n    }\n\n    public void shift(int x, int y)\n    {\n        x = this.x + x;\n        y = this.y + y;\n    }\n\n    public int getX() { return x; }\n    public int getY() { return y; }\n}\n```\n\n```java\nPoint p = new Point(3, 4);\np.shift(2, 5);\nSystem.out.println(p.getX() + \" \" + p.getY());\n```\n\nDetermine the output.",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5 9`"
+      },
+      {
+        "label": "B",
+        "text": "`3 4`"
+      },
+      {
+        "label": "C",
+        "text": "`2 5`"
+      },
+      {
+        "label": "D",
+        "text": "`0 0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Inside `shift`, `x = this.x + x` computes 3+2=5 and writes the result into the local parameter `x`, not into the instance variable `this.x`. Neither `this.x` nor `this.y` is ever modified, so the getters still return the constructor values 3 and 4. Option A would be correct if the method body read `this.x = this.x + x;` and `this.y = this.y + y;` instead.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Which of the following best describes **encapsulation** as it applies to a Java class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Breaking a large method into smaller helper methods to reduce complexity"
+      },
+      {
+        "label": "B",
+        "text": "Keeping instance variables `private` and exposing them only through public methods"
+      },
+      {
+        "label": "C",
+        "text": "Giving a process a name so callers can use it without knowing its implementation"
+      },
+      {
+        "label": "D",
+        "text": "Declaring all methods as `static` so they belong to the class rather than to any object"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Encapsulation means hiding internal data by declaring instance variables `private` and controlling access through public methods. Option A describes method decomposition; option C describes procedural abstraction; option D describes static methods, which are unrelated to encapsulation.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "A `Car` class needs an instance variable to store the number of miles driven for each individual car, hidden from outside code. Which of the following is the most appropriate field declaration?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public int milesDriven;`"
+      },
+      {
+        "label": "B",
+        "text": "`private int milesDriven;`"
+      },
+      {
+        "label": "C",
+        "text": "`private static int milesDriven;`"
+      },
+      {
+        "label": "D",
+        "text": "`public static int milesDriven;`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Instance variables should be `private` (to hide them from outside code) and non-`static` (each Car needs its own milesDriven, not one value shared by all Cars). Option A uses `public`, violating encapsulation. Options C and D use `static`, which would create a single shared value across all Car objects.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Consider the following class and code segment.\n\n```java\npublic class Point {\n    private int x;\n    private int y;\n\n    public Point(int x, int y) {\n        this.x = x;\n        this.y = y;\n    }\n\n    public String toString() {\n        return \"(\" + x + \", \" + y + \")\";\n    }\n}\n```\n\n```java\nPoint p = new Point(4, 7);\nSystem.out.println(p);\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Point@` followed by a hexadecimal hash code"
+      },
+      {
+        "label": "B",
+        "text": "`(7, 4)`"
+      },
+      {
+        "label": "C",
+        "text": "`(4, 7)`"
+      },
+      {
+        "label": "D",
+        "text": "`x=4, y=7`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Because `toString()` is overridden, `println(p)` automatically calls it and prints `(4, 7)`. Option A would appear only if `toString` were not overridden and the default `Object.toString()` ran. Option B reverses the order of the constructor arguments. Option D does not match the literal string produced by the overridden method.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Consider the following class.\n\n```java\npublic class Ticket {\n    private static int nextId = 1;\n    private int id;\n    private String event;\n\n    public Ticket(String event) {\n        this.event = event;\n        id = nextId;\n        nextId++;\n    }\n\n    public int getId() { return id; }\n}\n```\n\nWhat is printed after the following code executes?\n\n```java\nTicket t1 = new Ticket(\"Concert\");\nTicket t2 = new Ticket(\"Game\");\nTicket t3 = new Ticket(\"Play\");\nSystem.out.println(t2.getId());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`nextId` is a static variable shared by all instances. Creating t1 sets its `id` to 1 and increments `nextId` to 2. Creating t2 sets its `id` to 2 and increments `nextId` to 3. Creating t3 sets its `id` to 3 and increments `nextId` to 4. `t2.getId()` returns the value stored in t2's `id` field, which is `2`. Option D confuses `nextId`'s final value (4) with t2's stored `id`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Which of the following statements about `static` methods in a Java class is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A `static` method can directly access instance variables of the class without an object reference."
+      },
+      {
+        "label": "B",
+        "text": "A `static` method can use the `this` keyword to refer to the current object."
+      },
+      {
+        "label": "C",
+        "text": "A `static` method belongs to the class itself and not to any individual object."
+      },
+      {
+        "label": "D",
+        "text": "A `static` method must be declared `private` to prevent access from outside the class."
+      }
+    ],
+    "answer": "C",
+    "explanation": "A static method belongs to the class rather than to any instance, so it can be called without creating an object (e.g., `Math.abs(-3)`). It has no implicit current object, so it cannot use `this` (ruling out option B) and cannot directly access instance variables (ruling out option A). Static methods are commonly `public`, so option D is incorrect.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "Consider the following class declaration.\n\n```java\npublic class ScoreCard\n{\n    private int score;\n    private boolean complete;\n\n    public ScoreCard()\n    {\n        score = 10;\n    }\n\n    public void addPoints(int points)\n    {\n        score += points;\n    }\n\n    public void finish()\n    {\n        complete = true;\n    }\n\n    public String toString()\n    {\n        return score + \" \" + complete;\n    }\n}\n```\n\nWhat is printed by the following code segment?\n\n```java\nScoreCard card = new ScoreCard();\ncard.addPoints(5);\nSystem.out.println(card);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`15 true`"
+      },
+      {
+        "label": "B",
+        "text": "`15 false`"
+      },
+      {
+        "label": "C",
+        "text": "`10 false`"
+      },
+      {
+        "label": "D",
+        "text": "`ScoreCard@15`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The constructor sets `score` to 10, `addPoints` changes it to 15, and `complete` keeps its default value `false`. Option A incorrectly assumes `finish` was called, C ignores the mutator call, and D ignores the defined `toString` method.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_3",
+    "stem": "A `Ticket` object should store a section name and a seat number. Outside code should not access these values directly. Which of the following is the most appropriate declaration for the instance variables?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nprivate String section;\nprivate int seatNumber;\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\npublic String section;\npublic int seatNumber;\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nprivate static String section;\nprivate static int seatNumber;\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nString section;\nint seatNumber;\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Instance variables should normally be `private` so the class controls access through methods. B exposes the data directly, C makes the data shared by all `Ticket` objects, and D does not explicitly use private access.",
+    "difficulty": 1,
+    "stem_pattern": "oop_design_and_access"
+  }
+]

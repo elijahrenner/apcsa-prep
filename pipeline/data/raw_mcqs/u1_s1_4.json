@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Which of the following is equivalent to the statement `x *= 3`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = x + 3`"
+      },
+      {
+        "label": "B",
+        "text": "`x = x * x`"
+      },
+      {
+        "label": "C",
+        "text": "`x = x * 3`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 3`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`x *= 3` is defined as `x = x * 3`. Option A adds 3 instead of multiplying (confuses `+=` with `*=`). Option B squares x rather than tripling it. Option D discards the original value of x entirely.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Which of the following is equivalent to the statement `score = score / 4`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`score *= 4`"
+      },
+      {
+        "label": "B",
+        "text": "`score /= 4`"
+      },
+      {
+        "label": "C",
+        "text": "`score %= 4`"
+      },
+      {
+        "label": "D",
+        "text": "`score -= 4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`score /= 4` expands to `score = score / 4`, which matches exactly. Option A multiplies instead of divides. Option C computes the remainder rather than the quotient. Option D subtracts 4 rather than dividing by it.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "What is the value of `x` after the following code executes?\n\n```java\nint x = 10;\nx += 4;\nx -= 3;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`11`"
+      },
+      {
+        "label": "C",
+        "text": "`14`"
+      },
+      {
+        "label": "D",
+        "text": "`17`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`x` starts at 10. After `x += 4`, x is 14. After `x -= 3`, x is 11. Option C stops after the first operation. Option D adds both 4 and 3 instead of subtracting 3. Option A subtracts 3 and 4 from 10 in the wrong order.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "What is printed when the following code executes?\n\n```java\nint n = 6;\nn *= 2;\nn -= 4;\nSystem.out.println(n);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`12`"
+      },
+      {
+        "label": "D",
+        "text": "`16`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`n` starts at 6. `n *= 2` sets n to 12. `n -= 4` sets n to 8, which is printed. Option C stops after the first operation. Option A results from treating `*=` as `+=` (6 + 2 = 8, then 8 \u2212 4 = 4). Option D applies `*= 2` a second time to 12.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "What is printed when the following code executes?\n\n```java\nint x = 17;\nx %= 5;\nSystem.out.println(x);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`12`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`x %= 5` is equivalent to `x = x % 5`. Since 17 = 3 \u00d7 5 + 2, the remainder is 2. Option Bis the quotient (17 / 5 = 3), not the remainder. Option C is the divisor itself. Option D results from applying `-=` instead of `%=` (17 \u2212 5 = 12).",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "What is printed when the following code executes?\n\n```java\nint x = 7;\nx /= 2;\nSystem.out.println(x);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`3.5`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`7`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`x /= 2` is equivalent to `x = x / 2`. Because both operands are `int`, the division truncates toward zero: 7 / 2 = 3 (not 3.5). Option B forgets that integer division discards the fractional part. Option C rounds up instead of truncating. Option D applies no operation.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "What is the value of `sum` after the following code executes?\n\n```java\nint sum = 0;\nfor (int i = 1; i <= 4; i++) {\n    sum += i;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`6`"
+      },
+      {
+        "label": "C",
+        "text": "`10`"
+      },
+      {
+        "label": "D",
+        "text": "`15`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop adds i to sum for i = 1, 2, 3, 4, giving 0 + 1 +2 + 3 + 4 = 10. Option B (1 + 2 + 3 = 6) results from an off-by-one error using `< 4` instead of `<= 4`. Option A is just the last value of i. Option D (1 + 2 + 3 + 4 + 5 = 15) results from the loop running one extra iteration.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "What is printed when the following code executes?\n\n```java\nint a = 20;\nint b = 3;\na /= b;\na += b;\nSystem.out.println(a);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`9`"
+      },
+      {
+        "label": "C",
+        "text": "`10`"
+      },
+      {
+        "label": "D",
+        "text": "`23`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`a /= b` computes 20 / 3 as integer division, truncating to 6. Then `a += b` adds 3, giving 9. Option A stops after the first operation. Option C rounds 20 / 3 up to 7 (instead of truncating) then adds 3. Option D skips the division and prints 20 + 3.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "What is printed when the following code executes?\n\n```java\nint x = 1;\nwhile (x < 50) {\n    x *= 3;\n}\nSystem.out.println(x);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`27`"
+      },
+      {
+        "label": "B",
+        "text": "`54`"
+      },
+      {
+        "label": "C",
+        "text": "`81`"
+      },
+      {
+        "label": "D",
+        "text": "`243`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Starting at 1, successive multiplications by 3 give 3, 9, 27, then 81. After the fourth multiplication x = 81, which is not less than 50, so the loop exits and 81 is printed. Option A is the value just before the last iteration (27 < 50, so the loop continues). Option D applies one extra multiplication (81 \u00d7 3). Option B would result from using a multiplier of 2 (1 \u2192 2 \u2192 4 \u2192 8 \u2192 16 \u2192 32 \u2192 64, not 54).",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "A student intends to add each value of `i` to `sum` as the loop runs. What is the value of `sum` after the following code executes?\n\n```java\nint sum = 0;\nfor (int i = 1; i <= 5; i++) {\n    sum =+ i;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`15`"
+      },
+      {
+        "label": "D",
+        "text": "`25`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`sum =+ i` is parsed as `sum = (+i)`, which simply assigns i to sum each iteration (the unary `+` leaves i unchanged). The final assignment when i = 5 sets sum to 5. The correct compound operator would be `+=`; writing `=+` reverses the characters and creates an assignment, not accumulation. Option C (15) is the intended result if `sum += i` were used.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "What is printed when the following code executes?\n\n```java\nint a = 4;\na += a * a;\nSystem.out.println(a);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`16`"
+      },
+      {
+        "label": "B",
+        "text": "`20`"
+      },
+      {
+        "label": "C",
+        "text": "`32`"
+      },
+      {
+        "label": "D",
+        "text": "`64`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`a += a * a` expands to `a = a + (a * a)`. Because `*` has higher precedence than `+`, the RHS evaluates as 4 + (4 \u00d7 4) =4 + 16 = 20. Option A computes only `a * a = 16`, ignoring the addition. Option C applies the wrong precedence: (a + a) * a = 8 * 4 = 32. Option D treats the expression as (a + a)\u00b2 = 8\u00b2 = 64.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "What is printed when the following code executes?\n\n```java\nint total = 7;\ntotal /= 2;\ntotal *= 2;\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`7`"
+      },
+      {
+        "label": "C",
+        "text": "`8`"
+      },
+      {
+        "label": "D",
+        "text": "`14`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`total /= 2` performs integer division: 7 / 2 = 3 (the fractional part is discarded). Then `total *= 2` gives 3 * 2 = 6. Option B assumes that dividing then multiplying by the same value always restores the original, but integer truncation makes 7 \u2192 3 \u2192 6, not 7. Option C rounds 7 / 2 up to 4 instead of truncating. Option D applies only the multiplication.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Which of the following is equivalent to `n *= 4`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`n = 4`"
+      },
+      {
+        "label": "B",
+        "text": "`n = n + 4`"
+      },
+      {
+        "label": "C",
+        "text": "`n = n * 4`"
+      },
+      {
+        "label": "D",
+        "text": "`n = 4 * 4`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`n *= 4` is shorthand for `n = n * 4`, multiplying n's current value by 4 and storing the result back in n. Option A replaces n with the literal 4 regardless of its prior value; option B adds 4 instead of multiplying; option D squares the literal 4, ignoring n entirely.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Determine the value of `x` after the following code runs.\n\n```java\nint x = 10;\nx += 3;\nx -= 4;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`9`"
+      },
+      {
+        "label": "C",
+        "text": "`13`"
+      },
+      {
+        "label": "D",
+        "text": "`17`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Starting at x = 10, `x += 3` updates x to 13, then `x -= 4` updates x to 9. Option C stops after the first step (forgets the subtraction). Option A subtracts both 3 and 4 from the original 10. Option D adds both 3 and 4 to 10.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Determine the output of the following code:\n\n```java\nint n = 17;\nn /= 5;\nSystem.out.println(n);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`3.4`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`n /= 5` expands to `n = n / 5`; since both operands are `int`, the division truncates toward zero: 17 / 5 = 3. Option C would require at least one operand to be `double`. Option D results from rounding rather than truncating. Option A is off by one.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Determine the output of the following code:\n\n```java\nint balance = 100;\nbalance =- 20;\nSystem.out.println(balance);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`-20`"
+      },
+      {
+        "label": "B",
+        "text": "`80`"
+      },
+      {
+        "label": "C",
+        "text": "`120`"
+      },
+      {
+        "label": "D",
+        "text": "A syntax error occurs at compile time."
+      }
+    ],
+    "answer": "A",
+    "explanation": "`balance =- 20` is NOT the compound operator `-=`; Java parses it as `balance = (-20)`, a plain assignment of the unary-negated literal 20, producing -20. Option B is what `balance -= 20` (the correct compound form) would yield. Option C corresponds to `balance += 20`. The statement is syntactically legal, so no compile error occurs.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Determine the values of `a` and `b` after the following code runs.\n\n```java\nint a = 5;\nint b = 3;\na += b;\nb *= a;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a = 8, b = 15`"
+      },
+      {
+        "label": "B",
+        "text": "`a = 8, b = 24`"
+      },
+      {
+        "label": "C",
+        "text": "`a = 8, b = 11`"
+      },
+      {
+        "label": "D",
+        "text": "`a = 5, b = 24`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`a += b` sets a to 5 + 3 = 8. Then `b *= a` uses the already-updated value of a (8), so b becomes 3 \u00d7 8 = 24. Option A uses the original a = 5 in the second step (3 \u00d7 5 = 15), a common error when students forget that a was mutated. Option C misreads `*=` as `+=` (3 + 8 = 11). Option D leaves a at its original value 5.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Determine the value of `x` after the following code runs.\n\n```java\nint x = 10;\nx -= 3;\nx *= 2;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`14`"
+      },
+      {
+        "label": "B",
+        "text": "`17`"
+      },
+      {
+        "label": "C",
+        "text": "`20`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "x -= 3 produces x = 10 \u2212 3 = 7; then x *= 2 produces x = 7 \u00d7 2 = 14. B applies *= before -= (10 \u00d7 2 = 20, 20 \u2212 3 = 17). C skips the subtraction entirely (10 \u00d7 2 = 20). D misreads both statements as a single expression x = x \u2212 (3 \u00d7 2) = 4.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Determine the value of `n` after the following code runs.\n\n```java\nint n = 25;\nn %= 7;\nn += 10;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`13`"
+      },
+      {
+        "label": "C",
+        "text": "`14`"
+      },
+      {
+        "label": "D",
+        "text": "`35`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "25 % 7 = 4 (since 7 \u00d7 3 = 21 and 25 \u2212 21 = 4), then 4 + 10 = 14. A omits the += step. B confuses the remainder with the integer quotient (25 / 7 = 3, then 3 + 10 = 13). D ignores the %= operation and adds 10 to the original value of 25.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Determine the output of the following code.\n\n```java\nint total = 10;\nfor (int i = 1; i <= 4; i++) {\n    total -= i;\n}\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`-5`"
+      },
+      {
+        "label": "B",
+        "text": "`0`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`10`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Each iteration subtracts i from total: 10 \u2212 1 \u2212 2 \u2212 3 \u2212 4 = 0. A comes from an off-by-one (i <= 5), running a fifth iteration that subtracts 5: 0 \u2212 5 = \u22125. C results from starting i at 0: 10 \u2212 0 \u2212 1 \u2212 2 \u2212 3 = 4. D assumes the loop body never executes.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Which of the following is equivalent to `x %= 3`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 3 % x`"
+      },
+      {
+        "label": "B",
+        "text": "`x = x % 3`"
+      },
+      {
+        "label": "C",
+        "text": "`x = x / 3`"
+      },
+      {
+        "label": "D",
+        "text": "`x = x - 3`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Every compound assignment op %= expands as x = x % 3, preserving x as the left operand and 3 as the right. A reverses the operands, which produces a different result whenever x \u2260 3. C substitutes integer division for modulo. D substitutes subtraction for modulo.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "The following code is intended to print the sum of the integers from 1 through 5 (which is 15), but it does not. Which of the following correctly identifies the bug?\n\n```java\nint sum = 0;\nfor (int i = 1; i <= 5; i++) {\n    sum =+ i;\n}\nSystem.out.println(sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The loop should start at `i = 0` instead of `i = 1`."
+      },
+      {
+        "label": "B",
+        "text": "The loop condition should be `i < 5` instead of `i <= 5`."
+      },
+      {
+        "label": "C",
+        "text": "`sum =+ i` should be `sum += i`."
+      },
+      {
+        "label": "D",
+        "text": "`sum` should be initialized to `1` instead of `0`."
+      }
+    ],
+    "answer": "C",
+    "explanation": "`sum =+ i` is not the compound addition operator; it is parsed as `sum = (+i)`, a plain assignment of the unary-positive value of i. So sum is overwritten each iteration and ends as 5 rather than accumulating to 15. Changing it to `sum += i` fixes the accumulation. A and B alter the loop range without addressing the operator error; D changes initialization but still leaves sum overwritten on each pass.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Determine the values of `x` and `y` after the following code runs.\n\n```java\nint x = 15;\nint y = 4;\nx /= y;\ny += x;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 3, y = 4`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 3, y = 7`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 3, y = 19`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 4, y = 8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "x /= y performs integer division: 15 / 4 = 3 (truncated toward zero, not rounded). Then y += x adds the already-updated x = 3 to y = 4, giving y = 7. A forgets to apply the y += x step. C uses the original x = 15 in the addition (4 + 15 = 19), ignoring that x was modified first. D rounds 15 / 4 up to 4 instead of truncating, then computes y = 4 + 4 = 8.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 18;\nint y = 5;\n\nx -= y * 2;\ny += x / 3;\nx *= y - 4;\nx %= y;\n\nSystem.out.println(x + \" \" + y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3 7`"
+      },
+      {
+        "label": "B",
+        "text": "`24 7`"
+      },
+      {
+        "label": "C",
+        "text": "`8 7`"
+      },
+      {
+        "label": "D",
+        "text": "`3 11`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`x -= y * 2` makes `x` 8, then integer division makes `y += x / 3` add 2, so `y` is 7. The final updates make `x` 24 and then `24 % 7`, which is 3.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_4",
+    "stem": "Determine the values of `a` and `b` after the following code runs.\n\n```java\nint a = 9;\nint b = 4;\n\na += b;\nb *= 2;\na -= b / 3;\nb %= a - 5;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a = 11, b = 0`"
+      },
+      {
+        "label": "B",
+        "text": "`a = 10, b = 3`"
+      },
+      {
+        "label": "C",
+        "text": "`a = 11, b = 8`"
+      },
+      {
+        "label": "D",
+        "text": "`a = 13, b = 1`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "After `a += b`, `a` is 13; after `b *= 2`, `b` is 8. Since `8 / 3` is 2, `a` becomes 11, and `b %= a - 5` gives `8 % 6`, which is 2, not 0.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  }
+]

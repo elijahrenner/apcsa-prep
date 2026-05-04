@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Which of the following best describes what the keyword `this` refers to when used inside an instance method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The class that declares the method"
+      },
+      {
+        "label": "B",
+        "text": "The current object on which the method was invoked"
+      },
+      {
+        "label": "C",
+        "text": "The most recently created object of the class"
+      },
+      {
+        "label": "D",
+        "text": "The parameter list passed to the method"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Inside any instance method or constructor, `this` is a reference to the specific object on which the call was made. A describes the class itself, not an object. C is wrong because `this` tracks the invoked instance, not the creation order. D is wrong; parameters are local variables, not the object.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Which of the following situations requires the use of `this` to correctly assign an instance variable inside a constructor?",
+    "options": [
+      {
+        "label": "A",
+        "text": "When the constructor has no parameters"
+      },
+      {
+        "label": "B",
+        "text": "When a constructor parameter has the same name as an instance variable"
+      },
+      {
+        "label": "C",
+        "text": "When the instance variable is declared `public`"
+      },
+      {
+        "label": "D",
+        "text": "When the constructor is called from a static method"
+      }
+    ],
+    "answer": "B",
+    "explanation": "When a parameter shares a name with an instance variable, the parameter shadows the field inside the constructor body. `this.fieldName` explicitly refers to the instance variable. A requires no disambiguation because there is no shadowing. C and D are irrelevant; visibility and the call site have no bearing on the need for `this`.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "A student writes the following method inside a class that has a private instance variable also named `score`:\n\n```java\npublic void setScore(int score) {\n    score = score;\n}\n```\n\nWhich of the following best describes what this method does?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It correctly assigns the parameter value to the instance variable `score`"
+      },
+      {
+        "label": "B",
+        "text": "It causes a compile-time error because `score` is ambiguous"
+      },
+      {
+        "label": "C",
+        "text": "It assigns the parameter `score` to itself, leaving the instance variable unchanged"
+      },
+      {
+        "label": "D",
+        "text": "It resets the instance variable `score` to its default value of `0`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Both occurrences of `score` inside the body resolve to the local parameter, which shadows the instance variable. The statement `score = score` is a self-assignment and is a no-op; the instance variable is never touched and keeps its prior value. No compile-time error occurs. D is wrong: the field is simply left alone, not explicitly zeroed.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Consider the following class:\n\n```java\npublic class Lamp {\n    private int brightness;\n\n    public Lamp(int brightness) {\n        brightness = brightness;\n    }\n\n    public int getBrightness() {\n        return brightness;\n    }\n}\n```\n\nAfter the statement `Lamp l = new Lamp(75);` executes, what value does `l.getBrightness()` return?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`75`"
+      },
+      {
+        "label": "B",
+        "text": "`0`"
+      },
+      {
+        "label": "C",
+        "text": "`1`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The constructor body `brightness = brightness;` assigns the parameter to itself due to shadowing; the instance variable `brightness` is never set and retains the default `int` value of `0`. A would be correct only if `this.brightness = brightness;` were used. C and D do not occur.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Which of the following statements about the `this` keyword in Java is TRUE?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`this` can be used inside a `static` method to refer to the class itself"
+      },
+      {
+        "label": "B",
+        "text": "`this` can be passed as an argument when calling another method"
+      },
+      {
+        "label": "C",
+        "text": "`this` can only appear in constructors, not in regular instance methods"
+      },
+      {
+        "label": "D",
+        "text": "`this` refers to the most recently instantiated object of the enclosing class"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`this` is a valid object reference that may be passed as an argument \u2014 for example, `otherObject.someMethod(this)`. A is false: static methods have no associated object, so `this` is not defined in a static context and produces a compile-time error. C is false: `this` is valid in any instance method. D is false: `this` always tracks the specific invoked instance, not creation order.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Consider the following incomplete class:\n\n```java\npublic class Timer {\n    private int seconds;\n\n    public Timer(int seconds) {\n        /* missing code */\n    }\n\n    public int getSeconds() { return seconds; }\n}\n```\n\nWhich of the following replacements for `/* missing code */` correctly initializes the instance variable `seconds`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`seconds = seconds;`"
+      },
+      {
+        "label": "B",
+        "text": "`this.seconds = seconds;`"
+      },
+      {
+        "label": "C",
+        "text": "`Timer.seconds = seconds;`"
+      },
+      {
+        "label": "D",
+        "text": "`int seconds = seconds;`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`this.seconds = seconds;` uses `this` to refer to the instance variable, assigning it the parameter's value. A has the shadowing bug \u2014 the parameter is assigned to itself. C causes a compile-time error because `seconds` is an instance field, not a static field, and cannot be accessed via the class name. D declares a new local variable and has no effect on the instance field.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class Counter {\n    private int count;\n\n    public Counter(int count) {\n        this.count = count;\n    }\n\n    public void add(int count) {\n        this.count += count;\n    }\n\n    public int getCount() { return count; }\n}\n```\n\n```java\nCounter c = new Counter(10);\nc.add(5);\nc.add(3);\nSystem.out.println(c.getCount());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`15`"
+      },
+      {
+        "label": "C",
+        "text": "`18`"
+      },
+      {
+        "label": "D",
+        "text": "`8`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The constructor sets `this.count = 10`. In `add`, `this.count` refers to the field while `count` refers to the parameter. After `c.add(5)`, the field is `15`; after `c.add(3)`, it is `18`. A ignores both calls; B reflects only the first; D would result from adding 5 and 3 without the initial 10.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class Wallet {\n    private int dollars;\n\n    public Wallet(int dollars) {\n        this.dollars = dollars;\n    }\n\n    public void transfer(Wallet other) {\n        other.dollars += this.dollars;\n        this.dollars = 0;\n    }\n\n    public int getDollars() { return dollars; }\n}\n```\n\n```java\nWallet w1 = new Wallet(50);\nWallet w2 = new Wallet(20);\nw1.transfer(w2);\nSystem.out.println(w1.getDollars() + \" \" + w2.getDollars());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`50 20`"
+      },
+      {
+        "label": "B",
+        "text": "`0 20`"
+      },
+      {
+        "label": "C",
+        "text": "`0 70`"
+      },
+      {
+        "label": "D",
+        "text": "`50 70`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`w1.transfer(w2)` runs with `this = w1` (dollars = 50) and `other = w2` (dollars = 20). First, `other.dollars += this.dollars` \u2192 w2.dollars = 70. Then `this.dollars = 0` \u2192 w1.dollars = 0. A method may legally access private fields of another instance of the same class. A ignores the call entirely; B applies only the zeroing; D applies only the addition.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "A programmer wants to write a constructor for a `Book` class with private instance variables `title` and `pages`. Which of the following constructors correctly initializes both fields?\n\n```java\n// I\npublic Book(String title, int pages) {\n    title = title;\n    pages = pages;\n}\n```\n\n```java\n// II\npublic Book(String t, int p) {\n    title = t;\n    pages = p;\n}\n```\n\n```java\n// III\npublic Book(String title, int pages) {\n    this.title = title;\n    this.pages = pages;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "I only"
+      },
+      {
+        "label": "B",
+        "text": "II only"
+      },
+      {
+        "label": "C",
+        "text": "III only"
+      },
+      {
+        "label": "D",
+        "text": "II and III only"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Version II uses differently named parameters (`t`, `p`), so no shadowing occurs and the instance variables are assigned correctly. Version III uses `this.title` and `this.pages` to disambiguate the fields from the same-named parameters \u2014 also correct. Version I has the shadowing bug: `title = title` and `pages = pages` assign each parameter to itself, leaving both instance variables uninitialized.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Consider the following class:\n\n```java\npublic class Circle {\n    private double radius;\n\n    public Circle(double radius) {\n        this.radius = radius;\n    }\n\n    public boolean isBiggerThan(Circle other) {\n        return this.radius > other.radius;\n    }\n}\n```\n\nAfter the following code executes:\n\n```java\nCircle c1 = new Circle(5.0);\nCircle c2 = new Circle(3.0);\nboolean result = c2.isBiggerThan(c1);\n```\n\nWhat is the value of `result`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true`"
+      },
+      {
+        "label": "B",
+        "text": "`false`"
+      },
+      {
+        "label": "C",
+        "text": "A compile-time error occurs because `other.radius` accesses a private field"
+      },
+      {
+        "label": "D",
+        "text": "A runtime error occurs"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`c2.isBiggerThan(c1)` sets `this = c2` (radius 3.0) and `other = c1` (radius 5.0). `this.radius > other.radius` evaluates to `3.0 > 5.0`, which is `false`. C is a common misconception: a method may legally access the private fields of a parameter whose declared type is the same class. No runtime error occurs.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class Player {\n    private int score;\n\n    public Player(int score) {\n        this.score = score;\n    }\n\n    public void combine(Player other) {\n        this.score += other.score;\n        other.score = 0;\n    }\n\n    public int getScore() { return score; }\n}\n```\n\n```java\nPlayer p1 = new Player(30);\nPlayer p2 = new Player(40);\np1.combine(p2);\np2.combine(p1);\nSystem.out.println(p1.getScore() + \" \" + p2.getScore());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`70 0`"
+      },
+      {
+        "label": "B",
+        "text": "`70 70`"
+      },
+      {
+        "label": "C",
+        "text": "`0 70`"
+      },
+      {
+        "label": "D",
+        "text": "`30 40`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "After `p1.combine(p2)`: p1.score = 30 + 40 = 70, p2.score = 0. After `p2.combine(p1)`: p2.score = 0 + 70 = 70, p1.score = 0. Output is `0 70`. A reflects only the first call's state. B would require neither object to be zeroed during the second call. D ignores both calls.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class BankAccount {\n    private int balance;\n\n    public BankAccount(int balance) {\n        this.balance = balance;\n    }\n\n    public void deposit(int balance) {\n        this.balance += balance;\n    }\n\n    public void merge(BankAccount other) {\n        this.deposit(other.balance);\n        other.balance = 0;\n    }\n\n    public String toString() {\n        return \"\" + balance;\n    }\n}\n```\n\n```java\nBankAccount a = new BankAccount(100);\nBankAccount b = new BankAccount(200);\na.merge(b);\nSystem.out.println(a + \" \" + b);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`100 200`"
+      },
+      {
+        "label": "B",
+        "text": "`300 200`"
+      },
+      {
+        "label": "C",
+        "text": "`300 0`"
+      },
+      {
+        "label": "D",
+        "text": "`100 0`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`a.merge(b)` calls `this.deposit(other.balance)`, i.e., `a.deposit(200)`. Inside `deposit`, the parameter is named `balance`, shadowing the field; `this.balance += balance` correctly adds 200 to the field, giving `a.balance = 300`. Then `other.balance = 0` sets `b.balance = 0`. `toString()` concatenates the field, so output is `300 0`. A ignores all changes; B skips zeroing `b`; D skips the deposit step.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Which of the following best describes the purpose of the `this` keyword when used inside an instance method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It refers to the class in which the method is declared."
+      },
+      {
+        "label": "B",
+        "text": "It refers to the current object on which the method was called."
+      },
+      {
+        "label": "C",
+        "text": "It creates a new instance of the current class."
+      },
+      {
+        "label": "D",
+        "text": "It allows the method to call static methods defined in the same class."
+      }
+    ],
+    "answer": "B",
+    "explanation": "`this` is a reference to the current object \u2014 the specific instance on which the method is being invoked. It is not the class itself (A), does not construct a new object (C), and has no special relationship to static methods (D).",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Consider the following class.\n\n```java\npublic class Circle {\n    private double radius;\n\n    public Circle(double radius) {\n        radius = radius;\n    }\n\n    public double getRadius() { return radius; }\n}\n```\n\nA client program executes `Circle c = new Circle(5.0);` and then calls `c.getRadius()`. What value is returned?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5.0`"
+      },
+      {
+        "label": "B",
+        "text": "`0.0`"
+      },
+      {
+        "label": "C",
+        "text": "`10.0`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because `radius` is declared twice."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Inside the constructor, `radius = radius` assigns the parameter to itself; the instance variable `radius` is never written and keeps its default value of `0.0`. The fix is `this.radius = radius;`. D is wrong because shadowing a field with a same-named parameter is legal Java \u2014 it compiles without error.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Consider the following class.\n\n```java\npublic class Box {\n    private int size;\n\n    public Box(int size) {\n        this.size = size * 2;\n    }\n\n    public void expand(int size) {\n        size = this.size + size;\n    }\n\n    public int getSize() { return size; }\n}\n```\n\nDetermine the output of the following code.\n\n```java\nBox b = new Box(4);\nb.expand(3);\nSystem.out.println(b.getSize());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`11`"
+      },
+      {
+        "label": "D",
+        "text": "`3`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The constructor runs `this.size = 4 * 2 = 8`, setting the field to 8. Inside `expand(3)`, the statement `size = this.size + size` computes `8 + 3 = 11` and assigns it to the local parameter `size` \u2014 not to `this.size`. The field is unchanged. `getSize()` returns the instance field, so the output is `8`. Option C results from incorrectly believing `expand` modifies the field.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "A student writes the following class.\n\n```java\npublic class Tally {\n    private static int total = 0;\n    private int value;\n\n    public Tally(int value) {\n        this.value = value;\n        total++;\n    }\n\n    public static int getTotal() {\n        return this.value;\n    }\n}\n```\n\nWhich of the following correctly describes the result of compiling this code?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The code compiles successfully and `getTotal()` returns the `value` of the most recently created `Tally` object."
+      },
+      {
+        "label": "B",
+        "text": "The code compiles successfully and `getTotal()` always returns `0`."
+      },
+      {
+        "label": "C",
+        "text": "A compile-time error occurs because `this` cannot be used inside a static method."
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because a class cannot declare both `static` and non-static fields."
+      }
+    ],
+    "answer": "C",
+    "explanation": "`this` refers to the current instance, but static methods belong to the class and have no associated instance. The compiler rejects `this.value` inside `getTotal()` with the error 'non-static variable cannot be referenced from a static context'. Options A and B are wrong because the code does not compile. D is wrong because mixing static and instance fields in the same class is perfectly legal Java.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Consider the following class.\n\n```java\npublic class Sensor {\n    private int reading;\n\n    public Sensor(int reading) {\n        this.reading = reading;\n    }\n\n    public void calibrate(Sensor other) {\n        this.reading = other.reading + 10;\n    }\n\n    public void selfCalibrate() {\n        calibrate(this);\n    }\n\n    public int getReading() { return reading; }\n}\n```\n\nDetermine the output of the following code.\n\n```java\nSensor s = new Sensor(20);\ns.selfCalibrate();\nSystem.out.println(s.getReading());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`20`"
+      },
+      {
+        "label": "C",
+        "text": "`30`"
+      },
+      {
+        "label": "D",
+        "text": "`40`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`s.reading` starts at `20`. `selfCalibrate()` calls `calibrate(this)`, passing `s` as `other`. Inside `calibrate`, Java evaluates the right-hand side first: `other.reading + 10 = 20 + 10 = 30`, then assigns `30` to `this.reading`. Since `this` and `other` are the same object, `s.reading` is now `30`. `getReading()` returns `30`. Option B results from thinking that passing an object to itself has no observable effect; option D would require the operation to execute twice.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Inside an instance method of a class, what does the keyword `this` refer to?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The class definition (blueprint) from which the current object was created"
+      },
+      {
+        "label": "B",
+        "text": "The current object \u2014 the specific instance on which the method is being executed"
+      },
+      {
+        "label": "C",
+        "text": "The first object argument passed to the current method"
+      },
+      {
+        "label": "D",
+        "text": "The return value of the most recently called method in the program"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`this` is always a reference to the current object \u2014 the instance on which the method was invoked. A describes the class itself, not an object. C confuses `this` with a parameter. D is entirely fabricated; `this` has nothing to do with return values.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Consider the following class.\n\n```java\npublic class Counter {\n    private int count;\n\n    public Counter(int count) {\n        count = count;\n    }\n\n    public int getCount() { return count; }\n}\n```\n\nWhat is the value returned by `new Counter(5).getCount()`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`1`"
+      },
+      {
+        "label": "C",
+        "text": "`0`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because the parameter and field share the same name."
+      }
+    ],
+    "answer": "C",
+    "explanation": "The constructor body `count = count;` assigns the parameter `count` to itself \u2014 the instance field `count` is never written and retains its default value of `0`. The fix is `this.count = count;`. No compile error occurs; the code is syntactically legal Java, just logically incorrect.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Which of the following statements about the `this` keyword in Java is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`this` can be used inside both instance methods and static methods of a class."
+      },
+      {
+        "label": "B",
+        "text": "`this` can be used to distinguish between a parameter and an instance variable that share the same name."
+      },
+      {
+        "label": "C",
+        "text": "`this` refers to the class itself rather than to any particular object."
+      },
+      {
+        "label": "D",
+        "text": "`this` must be written explicitly every time an instance variable is accessed inside a method."
+      }
+    ],
+    "answer": "B",
+    "explanation": "When a parameter shadows an instance variable of the same name, writing `this.name` targets the field while `name` alone refers to the parameter \u2014 this disambiguation is the primary use of `this`. A is wrong because static methods have no implicit object and therefore no `this`. C confuses `this` with the class name. D is wrong because `this` is only necessary when shadowing creates an ambiguity.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Consider the following class.\n\n```java\npublic class Point {\n    private int x;\n    private int y;\n\n    public Point(int x, int y) {\n        this.x = x;\n        this.y = y;\n    }\n\n    public void shift(int x, int y) {\n        this.x += x;\n        this.y += y;\n    }\n\n    public String toString() {\n        return x + \",\" + y;\n    }\n}\n```\n\nDetermine the output of the following code segment.\n\n```java\nPoint p = new Point(3, 4);\np.shift(2, -1);\nSystem.out.println(p);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3,4`"
+      },
+      {
+        "label": "B",
+        "text": "`2,-1`"
+      },
+      {
+        "label": "C",
+        "text": "`5,3`"
+      },
+      {
+        "label": "D",
+        "text": "`5,-1`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The constructor sets `this.x = 3` and `this.y = 4`. Calling `p.shift(2, -1)` executes `this.x += 2` (x \u2192 5) and `this.y += -1` (y \u2192 4 + (\u22121) = 3). `println(p)` calls `toString()`, printing `\"5,3\"`. A results if `shift` is ignored. B gives only the parameter values. D results if `this.y += y` were mistakenly read as `this.y = y` (assignment instead of compound addition).",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Consider the following class.\n\n```java\npublic class BankAccount {\n    private int balance;\n    private int bonus;\n\n    public BankAccount(int balance) {\n        this.balance = balance;\n        this.bonus = balance / 10;\n    }\n\n    public int getBalance() { return balance; }\n    public int getBonus()   { return bonus; }\n\n    public void deposit(int balance) {\n        this.balance += balance;\n    }\n}\n```\n\nAfter the following code executes, determine the values returned by `acct.getBalance()` and `acct.getBonus()`.\n\n```java\nBankAccount acct = new BankAccount(100);\nacct.deposit(50);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`getBalance()` returns `100`; `getBonus()` returns `10`"
+      },
+      {
+        "label": "B",
+        "text": "`getBalance()` returns `150`; `getBonus()` returns `10`"
+      },
+      {
+        "label": "C",
+        "text": "`getBalance()` returns `150`; `getBonus()` returns `15`"
+      },
+      {
+        "label": "D",
+        "text": "`getBalance()` returns `50`; `getBonus()` returns `10`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The constructor sets `this.balance = 100` and `this.bonus = 100 / 10 = 10`. In `deposit(50)`, the parameter is also named `balance`; `this.balance += balance` correctly adds 50 to the field, making it 150. The `bonus` field is only assigned in the constructor and does not automatically update, so it stays 10. C results from incorrectly believing `bonus` recomputes to `150/10=15`. D results from misreading `+=` as `=`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Consider the following class.\n\n```java\npublic class Score {\n    private int value;\n\n    public Score(int value) {\n        this.value = value;\n    }\n\n    public int getValue() { return value; }\n\n    public boolean beats(Score other) {\n        return this.value > other.value;\n    }\n\n    public void compete(Score other) {\n        if (other.beats(this)) {\n            this.value = 0;\n        } else {\n            this.value *= 2;\n        }\n    }\n}\n```\n\nDetermine the output of the following code segment.\n\n```java\nScore s1 = new Score(10);\nScore s2 = new Score(8);\ns1.compete(s2);\nSystem.out.println(s1.getValue());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`10`"
+      },
+      {
+        "label": "D",
+        "text": "`20`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Inside `s1.compete(s2)`, `this` = s1 (value 10) and `other` = s2 (value 8). The call `other.beats(this)` invokes `s2.beats(s1)`, evaluating `s2.value > s1.value` \u2192 `8 > 10` \u2192 `false`. The `else` branch executes: `this.value *= 2` sets s1's value to 20. A results from reversing the receiver and argument so `beats` returns true. C results from thinking `compete` has no effect. B confuses s2's original value with s1's final value.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class Box\n{\n    private int size;\n\n    public Box(int size)\n    {\n        size = size;\n    }\n\n    public void setSize(int size)\n    {\n        this.size = size;\n    }\n\n    public int getSize()\n    {\n        return size;\n    }\n}\n\nBox b = new Box(5);\nSystem.out.print(b.getSize() + \" \");\nb.setSize(7);\nSystem.out.print(b.getSize());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0 7`"
+      },
+      {
+        "label": "B",
+        "text": "`5 7`"
+      },
+      {
+        "label": "C",
+        "text": "`0 0`"
+      },
+      {
+        "label": "D",
+        "text": "`5 5`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In the constructor, `size = size;` assigns the parameter to itself, so the instance variable remains its default value `0`. The mutator uses `this.size`, so it correctly changes the instance variable to `7`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_9",
+    "stem": "Consider the following class declaration.\n\n```java\npublic class Ticket\n{\n    private int number;\n    private String owner;\n\n    public Ticket(int number, String owner)\n    {\n        /* missing code */\n    }\n\n    public String info()\n    {\n        return owner + \" #\" + number;\n    }\n}\n```\n\nWhich of the following could replace `/* missing code */` so that the constructor correctly initializes both instance variables?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`number = number; owner = owner;`"
+      },
+      {
+        "label": "B",
+        "text": "`this.number = number; this.owner = owner;`"
+      },
+      {
+        "label": "C",
+        "text": "`number = this.number; owner = this.owner;`"
+      },
+      {
+        "label": "D",
+        "text": "`this.number = this.number; this.owner = this.owner;`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`this.number` and `this.owner` refer to the instance variables, while `number` and `owner` refer to the constructor parameters. The other choices either assign parameters to themselves or leave the fields unchanged.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  }
+]

@@ -1,0 +1,366 @@
+[
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "Which comment syntax is specifically designed to generate API documentation in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`// documentation`"
+      },
+      {
+        "label": "B",
+        "text": "`/* documentation */`"
+      },
+      {
+        "label": "C",
+        "text": "`/** documentation */`"
+      },
+      {
+        "label": "D",
+        "text": "`//! documentation`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The `/** ... */` Javadoc syntax is processed by the `javadoc` tool to produce HTML API documentation. `//` is a single-line comment and `/* */` is a block comment \u2014 both are invisible to Javadoc. `//!` is not valid Java syntax.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "Which of the following best describes the effect of comments on a compiled Java program?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Comments are executed by the JVM as informational output to the console."
+      },
+      {
+        "label": "B",
+        "text": "Comments are ignored by the compiler and have no effect on the program's execution."
+      },
+      {
+        "label": "C",
+        "text": "Comments cause compilation to slow down but do not change the output of the program."
+      },
+      {
+        "label": "D",
+        "text": "Comments are stored in the `.class` bytecode file and displayed when the program runs."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The Java compiler strips all comments before generating bytecode; they have zero effect on execution and exist solely for human readers. A is wrong because comments produce no output. C is wrong because any compilation overhead from comments is not a language guarantee. D is wrong because comments do not appear in the `.class` file at all.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "Determine the output of the following code:\n\n```java\n// System.out.println(\"Line 1\");\nSystem.out.println(\"Line 2\");\n/* System.out.println(\"Line 3\"); */\nSystem.out.println(\"Line 4\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Line 1\nLine 2\nLine 3\nLine 4"
+      },
+      {
+        "label": "B",
+        "text": "Line 2\nLine 4"
+      },
+      {
+        "label": "C",
+        "text": "Line 1\nLine 4"
+      },
+      {
+        "label": "D",
+        "text": "Line 2\nLine 3\nLine 4"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The first `println` is inside a `//` single-line comment and the third is inside a `/* */` block comment; both are ignored by the compiler. Only the second and fourth statements execute, printing `Line 2` then `Line 4`. D would result if only the `//` comment were recognized. A would result if no comments were recognized at all.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "A programmer writes the following Javadoc comment above a method:\n\n```java\n/**\n * Precondition: n > 0\n * Returns the integer square root of n.\n */\npublic static int mySqrt(int n) { /* implementation not shown */ }\n```\n\nWhat does the precondition `n > 0` indicate?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method will throw an `ArithmeticException` automatically if `n` is not greater than `0`."
+      },
+      {
+        "label": "B",
+        "text": "The method will print an error message and return `-1` if `n <= 0`."
+      },
+      {
+        "label": "C",
+        "text": "The caller is responsible for ensuring `n > 0` before invoking the method; the method itself does not verify this condition."
+      },
+      {
+        "label": "D",
+        "text": "The Java compiler will reject any call to `mySqrt` where the argument could be `0` or negative."
+      }
+    ],
+    "answer": "C",
+    "explanation": "A precondition documents a contract: the caller guarantees the condition holds before the call, and the method is not required to enforce or check it. A is wrong \u2014 no exception is thrown automatically by a Javadoc comment. B describes behavior the method would need to implement explicitly. D is wrong \u2014 the compiler does not evaluate or enforce conditions stated in comments.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "Which of the following is a syntactically valid single-line comment in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`# This is a comment`"
+      },
+      {
+        "label": "B",
+        "text": "`/* This is a comment`"
+      },
+      {
+        "label": "C",
+        "text": "`// This is a comment`"
+      },
+      {
+        "label": "D",
+        "text": "`-- This is a comment`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`//` begins a single-line comment in Java; everything from `//` to the end of that line is ignored by the compiler. `#` is the comment character in Python and shell scripts. `/* ...` without a closing `*/` is an unclosed block comment (syntax error). `--` is used in SQL for single-line comments.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "Which of the following code segments contains a syntax error related to comment delimiters?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`// int x = 5;`"
+      },
+      {
+        "label": "B",
+        "text": "`/* int x = 5; */`"
+      },
+      {
+        "label": "C",
+        "text": "`/** Precondition: x > 0 */`"
+      },
+      {
+        "label": "D",
+        "text": "`/* unclosed comment`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "A block comment opened with `/*` must be closed with `*/`. Option D opens a comment but never closes it, causing the compiler to consume everything that follows as part of the comment \u2014 producing a compilation error. A is a valid single-line comment. B is a properly closed block comment. C is a valid (if minimal) Javadoc comment.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "What is printed when the following code runs?\n\n```java\nint score = 100;\n// score = 0;\nSystem.out.println(score);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`100`"
+      },
+      {
+        "label": "B",
+        "text": "`0`"
+      },
+      {
+        "label": "C",
+        "text": "`score`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because the comment prevents `score` from being initialized."
+      }
+    ],
+    "answer": "A",
+    "explanation": "The line `// score = 0;` is a single-line comment and is completely ignored by the compiler, so `score` retains its initialized value of `100`. Option B assumes the commented-out assignment still executes. Option C reflects the misconception that the variable name is printed as literal text. Option D is wrong because comments do not prevent initialization or cause compile errors.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "A programmer writes the following Javadoc comment before a method:\n\n```java\n/**\n * Precondition: n > 0\n * Returns the square root of n.\n */\npublic static double mySqrt(double n) { /* ... */ }\n```\n\nWhich of the following best describes the role of the precondition statement?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It is a condition the method guarantees to be true after the method finishes executing."
+      },
+      {
+        "label": "B",
+        "text": "It is a condition the caller must ensure is true before invoking the method."
+      },
+      {
+        "label": "C",
+        "text": "It is a condition automatically checked at runtime by the JVM before the method executes."
+      },
+      {
+        "label": "D",
+        "text": "It is a condition enforced by the compiler that prevents the method from being called with `n <= 0`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "A precondition is the caller's responsibility: the caller must guarantee it holds before invoking the method; the method itself is not required to verify it. Option A describes a postcondition. Options C and D are wrong because Javadoc comments are documentation only \u2014 they carry no runtime or compile-time enforcement.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "Which of the following correctly lists all three Java comment styles recognized by the compiler?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`//`, `#`, and `/** */`"
+      },
+      {
+        "label": "B",
+        "text": "`//`, `/* */`, and `/** */`"
+      },
+      {
+        "label": "C",
+        "text": "`//`, `/* */`, and `<!-- -->`"
+      },
+      {
+        "label": "D",
+        "text": "`#`, `/* */`, and `/** */`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java supports exactly three comment syntaxes: `//` for single-line, `/* */` for multi-line block comments, and `/** */` for Javadoc documentation comments. `#` is used in Python and shell scripts; `<!-- -->` is HTML. Both are foreign to Java.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 5;\n// x = 10;\nx += 3;\n/* x = 20; */\nSystem.out.println(x);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`13`"
+      },
+      {
+        "label": "D",
+        "text": "`20`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`x` is initialized to 5. The line `// x = 10;` is a single-line comment and is ignored. `x += 3` executes, giving x = 8. The block `/* x = 20; */` is also a comment and is ignored. `System.out.println(x)` prints `8`. Distractors C (13) and D (20) result from incorrectly treating the commented-out assignments as live code; A (5) results from ignoring the `x += 3` statement.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "Which comment style is specifically designed to support automatic generation of API documentation from Java source code?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Single-line comments using `//`"
+      },
+      {
+        "label": "B",
+        "text": "Multi-line block comments using `/* */`"
+      },
+      {
+        "label": "C",
+        "text": "Javadoc comments using `/** */`"
+      },
+      {
+        "label": "D",
+        "text": "All three comment styles support documentation generation equally."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Javadoc comments (`/** */`) are processed by the `javadoc` tool to generate HTML API documentation. They support special tags such as `@param`, `@return`, and `@throws`. Single-line `//` and block `/* */` comments are for in-source notes only and are not processed by documentation generators.",
+    "difficulty": 2,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "Consider the following method:\n\n```java\n/**\n * Precondition: divisor != 0\n */\npublic static int divide(int dividend, int divisor) {\n    return dividend / divisor;\n}\n```\n\nWhich of the following best describes the purpose of the precondition comment?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method must verify `divisor != 0` inside the method body and throw an exception if the condition is violated."
+      },
+      {
+        "label": "B",
+        "text": "The precondition is the caller's responsibility; the method body may rely on `divisor != 0` being true without adding its own check."
+      },
+      {
+        "label": "C",
+        "text": "The precondition is enforced by the Java compiler, which rejects any call that could pass `divisor = 0`."
+      },
+      {
+        "label": "D",
+        "text": "The precondition comment causes the method to return `0` automatically if `divisor == 0` is passed."
+      }
+    ],
+    "answer": "B",
+    "explanation": "A precondition documents a condition that the *caller* must guarantee before invoking the method; the method writer is permitted to assume it holds without writing defensive checks. The compiler does not enforce preconditions (C), and the comment has no run-time effect of its own \u2014 it neither throws exceptions (A) nor changes the return value (D).",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 4;\nint y = 1;\n// x = x + 10;\nx = x + y;\n/*\ny = y + 5;\nx = x * 2;\n*/\nSystem.out.print(x + \" \" + y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5 1`"
+      },
+      {
+        "label": "B",
+        "text": "`15 1`"
+      },
+      {
+        "label": "C",
+        "text": "`10 6`"
+      },
+      {
+        "label": "D",
+        "text": "`30 6`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The single-line comment and block comment are ignored, so only `x = x + y;` changes a value. The final values are `x = 5` and `y = 1`.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_8",
+    "stem": "Consider the following method comment.\n\n```java\n/**\n * Precondition: score >= 0\n * Postcondition: returns true if score is at least 60;\n * otherwise returns false\n */\npublic static boolean passing(int score)\n{\n    return score >= 60;\n}\n```\n\nWhich of the following best describes the comment?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It is a documentation comment that describes what must be true before the method runs and what the method guarantees after it runs."
+      },
+      {
+        "label": "B",
+        "text": "It is a single-line comment because each line begins with `*`."
+      },
+      {
+        "label": "C",
+        "text": "It changes the value returned by the method when `score` is negative."
+      },
+      {
+        "label": "D",
+        "text": "It is required for the program to compile."
+      }
+    ],
+    "answer": "A",
+    "explanation": "A comment beginning with `/**` is a documentation comment, and preconditions and postconditions describe expected method use and results. Comments do not execute, do not change return values, and are not required for compilation.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  }
+]

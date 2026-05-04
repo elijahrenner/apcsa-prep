@@ -1,0 +1,574 @@
+[
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Which of the following best describes **procedural abstraction** in object-oriented design?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Storing data fields inside a class so that outside code cannot access them directly"
+      },
+      {
+        "label": "B",
+        "text": "Giving a method a name so callers can invoke it without knowing how it is implemented"
+      },
+      {
+        "label": "C",
+        "text": "Using a variable name to represent a stored value without exposing how that value is computed"
+      },
+      {
+        "label": "D",
+        "text": "Splitting a large class into smaller helper classes, each with one responsibility"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Procedural abstraction means a process (method) is given a name, letting callers use it without knowing the implementation. Option A describes encapsulation; Option C describes data abstraction via naming; Option D describes class-level decomposition.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Which of the following declarations best follows Java conventions for an instance variable in a class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public int score;`"
+      },
+      {
+        "label": "B",
+        "text": "`private int score;`"
+      },
+      {
+        "label": "C",
+        "text": "`public static int score;`"
+      },
+      {
+        "label": "D",
+        "text": "`static int score;`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`private` is the conventional and correct visibility for instance variables, enforcing encapsulation so external code must use accessor and mutator methods. `public` breaks encapsulation. `static` makes a class-level variable shared among all instances, which is not appropriate for per-object state. `public static` has both problems.",
+    "difficulty": 1,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class Ticket {\n    private String event;\n    private int row;\n\n    public Ticket(String event, int row) {\n        this.event = event;\n        this.row = row;\n    }\n\n    public String toString() {\n        return event + \"-\" + row;\n    }\n}\n```\n\n```java\nTicket t = new Ticket(\"Concert\", 7);\nSystem.out.println(t);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "A memory address in the form `Ticket@xxxxxxxx`"
+      },
+      {
+        "label": "B",
+        "text": "`Concert-7`"
+      },
+      {
+        "label": "C",
+        "text": "`event-row`"
+      },
+      {
+        "label": "D",
+        "text": "`Concert 7`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`System.out.println` automatically calls `toString()` on the object. The overridden `toString()` returns `event + \"-\" + row`, which evaluates to `\"Concert-7\"`. Option A would result if `toString()` were not overridden (the inherited `Object.toString()` prints a class name and hash code). Options C and D reflect incorrect string construction.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Consider the following class:\n\n```java\npublic class Score {\n    private int points;\n\n    public Score() { points = 0; }\n\n    public void setPoints(int points) {\n        points = points;   // line 7\n    }\n\n    public int getPoints() { return points; }\n}\n```\n\n```java\nScore s = new Score();\ns.setPoints(50);\nSystem.out.println(s.getPoints());\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`50`"
+      },
+      {
+        "label": "B",
+        "text": "`0`"
+      },
+      {
+        "label": "C",
+        "text": "A compile error occurs at line 7"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown at runtime"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Line 7 has a shadowing bug: the parameter `points` hides the instance variable `points`, so `points = points` assigns the parameter to itself and the instance variable remains `0`. No compile error occurs \u2014 the code is syntactically valid. The fix is `this.points = points`.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "A method `calcShipping(double weight)` is called throughout a program. Users of the method do not need to know whether the implementation uses a formula, a lookup table, or a web API call. Which concept does this best illustrate?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Data abstraction"
+      },
+      {
+        "label": "B",
+        "text": "Encapsulation"
+      },
+      {
+        "label": "C",
+        "text": "Procedural abstraction"
+      },
+      {
+        "label": "D",
+        "text": "Method decomposition"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Procedural abstraction allows callers to invoke a named method (the process `calcShipping`) without knowing its implementation. Data abstraction relates to naming data without exposing storage details. Encapsulation hides fields inside a class behind access methods. Method decomposition is the technique of breaking one method into smaller helpers.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class Widget {\n    private static int totalCreated = 0;\n    private int id;\n\n    public Widget() {\n        totalCreated++;\n        id = totalCreated;\n    }\n\n    public static int getTotal() { return totalCreated; }\n    public int getId() { return id; }\n}\n```\n\n```java\nWidget a = new Widget();\nWidget b = new Widget();\nWidget c = new Widget();\nSystem.out.println(Widget.getTotal() + \" \" + b.getId());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 2`"
+      },
+      {
+        "label": "B",
+        "text": "`3 2`"
+      },
+      {
+        "label": "C",
+        "text": "`3 3`"
+      },
+      {
+        "label": "D",
+        "text": "`0 2`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Each constructor increments the shared static `totalCreated`. After three objects are created, `Widget.getTotal()` returns 3. Widget `b` is the second object created; at that moment `totalCreated` was 2, so `b.id` was set to 2, and `b.getId()` returns 2. Output is `3 2`. Option C is wrong because `c.getId()` would be 3, not `b`'s.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Consider the following class:\n\n```java\npublic class Converter {\n    private static final double RATE = 1.6;\n\n    public static double toKm(double miles) {\n        return miles * RATE;\n    }\n}\n```\n\nWhich of the following correctly calls `toKm` from outside the `Converter` class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Converter.toKm(5.0)`"
+      },
+      {
+        "label": "B",
+        "text": "`toKm(5.0)`"
+      },
+      {
+        "label": "C",
+        "text": "`Converter c; c.toKm(5.0)`"
+      },
+      {
+        "label": "D",
+        "text": "`new Converter().RATE * 5.0`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Static methods are called with `ClassName.methodName(args)`. Option B omits the class name and will not compile from outside the class. Option C declares `c` but never initializes it \u2014 using an uninitialized local variable is a compile error. Option D attempts to access the `private` field `RATE` directly, which is also a compile error.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Consider the following class:\n\n```java\npublic class Car {\n    private String model;\n    private int year;\n\n    public Car(String model, int year) {\n        this.model = model;\n        this.year = year;\n    }\n}\n```\n\nWhich of the following statements will compile without error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Car c = new Car();`"
+      },
+      {
+        "label": "B",
+        "text": "`Car c = new Car(\"Sedan\");`"
+      },
+      {
+        "label": "C",
+        "text": "`Car c = new Car(\"Sedan\", 2024);`"
+      },
+      {
+        "label": "D",
+        "text": "`Car c = new Car(2024, \"Sedan\");`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Because a two-parameter constructor is explicitly defined, Java no longer provides a default no-argument constructor. Option A fails because `Car()` does not exist. Option B provides only one argument. Option D reverses the argument types \u2014 the constructor expects `String` first, then `int`. Only Option C matches the declared signature `Car(String, int)` exactly.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Determine the values printed by the following code:\n\n```java\npublic class Box {\n    private int size;\n\n    public Box(int s) { size = s; }\n    public void grow(int amount) { size += amount; }\n    public int getSize() { return size; }\n}\n\npublic static void enlarge(Box b, int n) {\n    b.grow(n);\n    n = 0;\n}\n```\n\n```java\nBox myBox = new Box(10);\nenlarge(myBox, 5);\nint x = myBox.getSize();\nint y = 3;\nenlarge(myBox, y);\ny = 0;\nSystem.out.println(x + \" \" + y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10 3`"
+      },
+      {
+        "label": "B",
+        "text": "`15 3`"
+      },
+      {
+        "label": "C",
+        "text": "`15 0`"
+      },
+      {
+        "label": "D",
+        "text": "`18 0`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "After `enlarge(myBox, 5)`, the box size grows from 10 to 15 (the reference to `myBox` is copied, but both names point to the same object), so `x = 15`. Inside `enlarge`, `n = 0` only zeroes the local copy of the primitive \u2014 the caller's `y` is unaffected by this. However, the caller itself then executes `y = 0`, explicitly setting `y` to 0. Output: `15 0`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "A `Playlist` class has the following accessor method:\n\n```java\npublic ArrayList<String> getSongs() {\n    return songs;\n}\n```\n\nwhere `songs` is a `private ArrayList<String>` instance variable. A programmer writes:\n\n```java\nPlaylist p = new Playlist();\nArrayList<String> mine = p.getSongs();\nmine.add(\"New Song\");\n```\n\nWhich of the following best describes the effect on the `Playlist` object's internal `songs` list?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It is unaffected because `songs` is declared `private`"
+      },
+      {
+        "label": "B",
+        "text": "It is unaffected because `mine` holds a separate copy of the list"
+      },
+      {
+        "label": "C",
+        "text": "It gains the entry `\"New Song\"` because `mine` and `songs` reference the same object"
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs because a `private` field cannot be returned by a public method"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Returning a reference type from a getter passes the actual reference, not a defensive copy. `mine` and `songs` point to the same `ArrayList` object, so `mine.add(\"New Song\")` mutates the playlist's internal list. `private` only prevents direct external access to the field name \u2014 it does not prevent mutation through a returned reference. To protect internal state, `getSongs()` should return `new ArrayList<String>(songs)`.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class Counter {\n    private int count;\n\n    public Counter(int start) { this.count = start; }\n    public void add(int n) { count += n; }\n    public String toString() { return \"Count: \" + count; }\n}\n```\n\n```java\nCounter p = new Counter(5);\nCounter q = p;\nq.add(3);\np.add(2);\nSystem.out.println(p);\nSystem.out.println(q);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Count: 7` then `Count: 8`"
+      },
+      {
+        "label": "B",
+        "text": "`Count: 10` then `Count: 10`"
+      },
+      {
+        "label": "C",
+        "text": "`Count: 10` then `Count: 8`"
+      },
+      {
+        "label": "D",
+        "text": "`Count: 7` then `Count: 10`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`Counter q = p` does not create a new object \u2014 both `p` and `q` refer to the same `Counter`. `q.add(3)` brings the shared `count` from 5 to 8; `p.add(2)` brings it from 8 to 10. Since both variables reference the same object, both `println(p)` and `println(q)` invoke `toString()` on that one object and both print `Count: 10`. Options A and D reflect the mistake of treating `p` and `q` as independent objects.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Which of the following best describes procedural abstraction in program design?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Hiding the internal data of a class so it is accessible only through public methods"
+      },
+      {
+        "label": "B",
+        "text": "Naming a process (method) so callers can use it without knowing its implementation"
+      },
+      {
+        "label": "C",
+        "text": "Declaring all instance variables as `private` to prevent direct access from outside the class"
+      },
+      {
+        "label": "D",
+        "text": "Breaking a large program into smaller, cooperating classes"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Procedural abstraction means giving a name to a process (a method) so that callers can invoke it without knowing how it works internally \u2014 the 'what' is exposed, the 'how' is hidden. Option A describes encapsulation. Option C describes the access-modifier convention that supports encapsulation. Option D describes class-level decomposition.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "A class `Temperature` needs to store a per-object temperature reading as a `double`. Which of the following is the most appropriate field declaration, following standard Java encapsulation conventions?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public double temp;`"
+      },
+      {
+        "label": "B",
+        "text": "`private static double temp;`"
+      },
+      {
+        "label": "C",
+        "text": "`private double temp;`"
+      },
+      {
+        "label": "D",
+        "text": "`public static double temp;`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "By convention, instance variables are `private` so outside code cannot access them directly (encapsulation). `static` would create a single shared copy across all objects, which is wrong for per-object state. `public` exposes the field directly, violating encapsulation.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Consider the following class:\n\n```java\npublic class Box {\n    private int width;\n    private int height;\n    private boolean isEmpty;\n\n    public Box(int w) {\n        width = w;\n    }\n\n    public String toString() {\n        return width + \" \" + height + \" \" + isEmpty;\n    }\n}\n```\n\nWhat is printed by the following statement?\n\n```java\nSystem.out.println(new Box(5));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5 0 false`"
+      },
+      {
+        "label": "B",
+        "text": "`5 0 true`"
+      },
+      {
+        "label": "C",
+        "text": "`5 null false`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because `height` and `isEmpty` are never initialized."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Java automatically initializes instance variables to default values: `int` defaults to 0 and `boolean` defaults to `false`. Because the constructor never assigns `height` or `isEmpty`, they remain 0 and `false`, yielding `5 0 false`. Option B is wrong because the default for `boolean` is `false`, not `true`. Option C is wrong because `height` is an `int` primitive, not a reference type \u2014 only reference types default to `null`. Option D is wrong because Java does not require explicit initialization of instance variables; the compiler accepts the code.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Consider the following class:\n\n```java\npublic class Counter {\n    private int count;\n\n    public Counter(int count) {\n        count = count;\n    }\n\n    public int getCount() {\n        return count;\n    }\n}\n```\n\nAfter executing the following code, what value is printed?\n\n```java\nCounter c = new Counter(10);\nSystem.out.println(c.getCount());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`0`"
+      },
+      {
+        "label": "C",
+        "text": "`null`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The constructor body `count = count;` is a variable-shadowing bug: both occurrences of `count` refer to the parameter, so the statement merely assigns the parameter to itself. The instance variable `this.count` is never set and retains its default value of 0. The fix is `this.count = count;`. Option A would be correct only if the assignment had used `this.count`. Option C is wrong because `int` defaults to 0, not `null`. Option D is wrong because the code compiles without error.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Consider the following class:\n\n```java\npublic class Tracker {\n    private static int total = 0;\n    private int id;\n\n    public Tracker(int id) {\n        this.id = id;\n        total++;\n    }\n\n    public static int getTotal() {\n        return total;\n    }\n}\n```\n\nWhich of the following statements about the `Tracker` class is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Each `Tracker` object has its own separate copy of `total`."
+      },
+      {
+        "label": "B",
+        "text": "`Tracker.getTotal()` can be called without creating any `Tracker` objects."
+      },
+      {
+        "label": "C",
+        "text": "The constructor cannot access `total` because `total` is declared `static`."
+      },
+      {
+        "label": "D",
+        "text": "`getTotal()` can directly return `id` because both members are declared in the same class."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Static methods belong to the class itself, not to any instance, and are called with `ClassName.methodName()` without needing an object to exist. Option A is false: `static` fields are shared \u2014 there is exactly one copy of `total` regardless of how many objects exist. Option C is false: constructors (and instance methods) can freely read and write static variables. Option D is false: `getTotal()` is a static method and has no `this` reference, so it cannot directly access the instance variable `id`.",
+    "difficulty": 4,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Which of the following best describes **procedural abstraction** in object-oriented programming?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Storing all data in public fields so any class can read or modify it directly"
+      },
+      {
+        "label": "B",
+        "text": "Naming a process as a method so callers can use it without knowing its internal implementation"
+      },
+      {
+        "label": "C",
+        "text": "Declaring all instance variables with the `static` keyword so they are shared across all objects"
+      },
+      {
+        "label": "D",
+        "text": "Breaking a program into separate source files, one file per data type"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Procedural abstraction assigns a name to a process (a method) so that callers can invoke it without knowing how it works internally. A describes the opposite of encapsulation. C conflates abstraction with the static modifier. D describes file organization, not procedural abstraction.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "A class `BankAccount` needs a field to store an account balance as a decimal value. Which of the following field declarations correctly follows standard Java encapsulation conventions?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public double balance;`"
+      },
+      {
+        "label": "B",
+        "text": "`private double balance;`"
+      },
+      {
+        "label": "C",
+        "text": "`public static double balance;`"
+      },
+      {
+        "label": "D",
+        "text": "`private final double balance;`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "By convention, instance variables are declared `private` so outside code cannot read or modify them directly; access is controlled through getter and setter methods. A makes the field publicly accessible, violating encapsulation. C adds `static`, meaning the same balance would be shared across every `BankAccount` object. D adds `final`, which prevents the balance from ever being updated after the object is constructed.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Consider the following class and the code segment below it:\n\n```java\npublic class Box {\n    private int width;\n    private double height;\n    private boolean isEmpty;\n\n    public Box() { }\n\n    public String toString() {\n        return width + \" \" + height + \" \" + isEmpty;\n    }\n}\n```\n\n```java\nBox b = new Box();\nSystem.out.println(b);\n```\n\nWhat is printed when the code segment is executed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0 0.0 false`"
+      },
+      {
+        "label": "B",
+        "text": "`0 0 false`"
+      },
+      {
+        "label": "C",
+        "text": "`null null null`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because the fields are never explicitly initialized."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Java automatically initializes instance variables to their type defaults: `int` \u2192 0, `double` \u2192 0.0, `boolean` \u2192 false. String concatenation of these values produces `0 0.0 false`. B incorrectly prints `0` for the `double` field instead of `0.0`. C confuses primitive-type defaults with the object-reference default (`null`). D is wrong because Java guarantees default initialization of all instance fields.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Consider the following class:\n\n```java\npublic class Tracker {\n    private int score;\n\n    public Tracker(int s) { score = s; }\n\n    public void boost(int s) { s += 10; }\n\n    public int getScore() { return score; }\n}\n```\n\nWhat is printed by the following code segment?\n\n```java\nTracker t = new Tracker(50);\nint val = 30;\nt.boost(val);\nSystem.out.println(val + \" \" + t.getScore());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`30 50`"
+      },
+      {
+        "label": "B",
+        "text": "`40 50`"
+      },
+      {
+        "label": "C",
+        "text": "`30 60`"
+      },
+      {
+        "label": "D",
+        "text": "`40 60`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Java passes primitives by value. `boost(val)` receives a copy of `val`; incrementing the local parameter `s` does not change `val` in the caller, so `val` remains 30. Additionally, `boost` never modifies the instance variable `score` \u2014 it only modifies its own parameter \u2014 so `t.getScore()` still returns 50. B assumes the caller's `val` was changed; C assumes `score` was changed; D assumes both were changed.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "A program contains a long method that calculates a student's final average. The method repeats the same five lines of code each time it needs to compute the average of three quiz scores.\n\nWhich change best demonstrates procedural abstraction?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Create a helper method that accepts three quiz scores and returns their average."
+      },
+      {
+        "label": "B",
+        "text": "Make all quiz score variables public so other classes can access them."
+      },
+      {
+        "label": "C",
+        "text": "Copy the five lines of averaging code into each place where the average is needed."
+      },
+      {
+        "label": "D",
+        "text": "Rename the variables so that their purpose is clearer."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Procedural abstraction names a process with a method so callers can use it without repeating the implementation. The other choices either expose data, duplicate code, or improve readability without creating a reusable process.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_1",
+    "stem": "Determine the output of the following code.\n\n```java\npublic class Item\n{\n    private String name;\n    private int count;\n\n    public Item(String name, int count)\n    {\n        name = name;\n        this.count = count;\n    }\n\n    public void add(int count)\n    {\n        count = count + 2;\n    }\n\n    public String getInfo()\n    {\n        return name + \":\" + count;\n    }\n}\n\nItem x = new Item(\"pen\", 4);\nx.add(3);\nSystem.out.println(x.getInfo());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`pen:4`"
+      },
+      {
+        "label": "B",
+        "text": "`pen:6`"
+      },
+      {
+        "label": "C",
+        "text": "`null:4`"
+      },
+      {
+        "label": "D",
+        "text": "`null:5`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "In the constructor, `name = name;` assigns the parameter to itself, so the instance variable remains `null`; `this.count = count;` sets the field to 4. The `add` method changes only its local parameter, not the instance variable.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  }
+]

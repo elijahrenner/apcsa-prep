@@ -1,0 +1,626 @@
+[
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Determine the output of the following code:\n\n```java\nfor (int i = 1; i <= 3; i++) {\n    for (int j = 1; j <= 2; j++) {\n        System.out.print(i * j + \" \");\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 2 2 4 3 6 `"
+      },
+      {
+        "label": "B",
+        "text": "`1 2 3 2 4 6 `"
+      },
+      {
+        "label": "C",
+        "text": "`1 2 3 4 5 6 `"
+      },
+      {
+        "label": "D",
+        "text": "`2 4 6 `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "For each value of i (1, 2, 3) the inner loop runs with j = 1 then j = 2, printing i*j each time: i=1 gives '1 2 ', i=2 gives '2 4 ', i=3 gives '3 6 ', for a final output of '1 2 2 4 3 6 '. Option B reverses which variable is the outer; C lists sequential integers 1\u20136 ignoring the product; D shows only the j=2 products.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Determine the value of `count` after the following code executes:\n\n```java\nint count = 0;\nfor (int i = 0; i < 4; i++) {\n    for (int j = 0; j < 3; j++) {\n        count++;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`7`"
+      },
+      {
+        "label": "B",
+        "text": "`12`"
+      },
+      {
+        "label": "C",
+        "text": "`16`"
+      },
+      {
+        "label": "D",
+        "text": "`11`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The outer loop runs 4 times (i = 0, 1, 2, 3) and the inner loop completes all 3 of its iterations for each outer iteration, so count++ executes 4 \u00d7 3 = 12 times. Option A adds the two bounds instead of multiplying; C squares the outer bound (4\u00d74); D is an off-by-one of the correct answer.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "How many times does `System.out.println(\"*\")` execute when the following code runs?\n\n```java\nfor (int i = 0; i < 5; i++) {\n    for (int j = 0; j < 5; j++) {\n        System.out.println(\"*\");\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`20`"
+      },
+      {
+        "label": "D",
+        "text": "`25`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The outer loop runs 5 times and the inner loop runs 5 times for each outer iteration, so the body executes 5 \u00d7 5 = 25 times total. Option A only counts the outer iterations; B adds the two bounds (5+5); C would result from a 4\u00d75 loop (an off-by-one error on one dimension).",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Determine the output of the following code:\n\n```java\nfor (int i = 1; i <= 3; i++) {\n    for (int j = 1; j <= i; j++) {\n        System.out.print(j + \" \");\n    }\n    System.out.println();\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Line 1: `1 `  Line 2: `1 2 `  Line 3: `1 2 3 `"
+      },
+      {
+        "label": "B",
+        "text": "Line 1: `1 `  Line 2: `2 `  Line 3: `3 `"
+      },
+      {
+        "label": "C",
+        "text": "Line 1: `1 2 3 `  Line 2: `1 2 3 `  Line 3: `1 2 3 `"
+      },
+      {
+        "label": "D",
+        "text": "Line 1: `1 `  Line 2: `1 2 `  (only two lines printed)"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Because the inner loop condition is `j <= i`, it runs i times on each outer iteration: i=1 prints '1 ', i=2 prints '1 2 ', i=3 prints '1 2 3 '. Each System.out.println() ends the line. Option B confuses printing j with printing i; C uses j <= 3 (constant) instead of j <= i; D would require the outer condition to be `i < 3`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Determine the value of `sum` after the following code executes:\n\n```java\nint sum = 0;\nfor (int i = 1; i <= 3; i++) {\n    for (int j = 1; j <= i; j++) {\n        sum += j;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`9`"
+      },
+      {
+        "label": "C",
+        "text": "`10`"
+      },
+      {
+        "label": "D",
+        "text": "`12`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The inner loop adds 1, then 1+2, then 1+2+3 across the three outer iterations: i=1 adds 1 (sum=1); i=2 adds 1+2 (sum=4); i=3 adds 1+2+3 (sum=10). Option A computes only 1+2+3=6, ignoring the repeated lower terms; B and D are plausible arithmetic errors that don't match the actual triangular accumulation.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "The following code is intended to print a 3\u00d73 grid where each row displays `0 1 2 `. Which single change would make it produce the correct output?\n\n```java\nfor (int r = 0; r < 3; r++) {\n    for (int c = 0; c <= 3; c++) {\n        System.out.print(c + \" \");\n    }\n    System.out.println();\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Change `c <= 3` to `c < 3`"
+      },
+      {
+        "label": "B",
+        "text": "Change `r < 3` to `r <= 3`"
+      },
+      {
+        "label": "C",
+        "text": "Change `c = 0` to `c = 1`"
+      },
+      {
+        "label": "D",
+        "text": "Move `System.out.println()` inside the inner loop"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The condition `c <= 3` causes the inner loop to execute for c = 0, 1, 2, 3, printing four values per row instead of three. Changing to `c < 3` gives exactly three values (0, 1, 2) per row. Option B produces 4 rows instead of 3; C starts at c=1, printing '1 2 3 ' per row; D places a newline after every single value.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Determine the output of the following code:\n\n```java\nfor (int i = 0; i < 4; i++) {\n    for (int j = 0; j < 4; j++) {\n        if (i == j) {\n            System.out.print(i + \" \");\n        }\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0 1 2 3 `"
+      },
+      {
+        "label": "B",
+        "text": "`0 0 1 1 2 2 3 3 `"
+      },
+      {
+        "label": "C",
+        "text": "`0 `"
+      },
+      {
+        "label": "D",
+        "text": "`1 2 3 4 `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The condition `i == j` is true only at the four diagonal pairs (0,0), (1,1), (2,2), (3,3), each printing i once, giving '0 1 2 3 '. Option B would result from printing on every iteration of both loops; C would result from stopping after the first match; D shifts each value up by 1 as if the loops started at 1.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Consider the following nested loop where `n` equals `4`. How many times does `count++` execute?\n\n```java\nint count = 0;\nfor (int i = 1; i <= n; i++) {\n    for (int j = i; j <= n; j++) {\n        count++;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`8`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`12`"
+      },
+      {
+        "label": "D",
+        "text": "`16`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Because the inner loop starts at j = i, the inner iteration counts decrease: i=1 runs 4 times, i=2 runs 3, i=3 runs 2, i=4 runs 1, totaling 4+3+2+1 = 10. Option D treats both loops as running n=4 times each (4\u00d74=16); A computes 4+4 instead of n(n+1)/2; C is a common off-estimate for triangular sums.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 0;\nfor (int i = 1; i <= 4; i++) {\n    for (int j = 1; j <= i; j++) {\n        if (j % 2 == 0) {\nx++;\n        }\n    }\n}\nSystem.out.println(x);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Only even j values trigger x++. i=1: j={1}, 0 even \u2192 x=0. i=2: j={1,2}, j=2 is even \u2192 x=1. i=3: j={1,2,3}, j=2 is even \u2192 x=2. i=4: j={1,2,3,4}, j=2 and j=4 are even \u2192 x=4. Option A stops counting after i=3; B undercounts the i=4 row; D overcounts by treating all rows as contributing two even values.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint i = 1;\nwhile (i <= 3) {\n    int j = 1;\n    while (j <= 3) {\n        System.out.print(i + j + \" \");\n        j++;\n    }\n    i++;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 3 4 3 4 5 4 5 6 `"
+      },
+      {
+        "label": "B",
+        "text": "`1 2 3 2 4 6 3 6 9 `"
+      },
+      {
+        "label": "C",
+        "text": "`2 3 4 5 6 7 8 9 10 `"
+      },
+      {
+        "label": "D",
+        "text": "`3 4 5 4 5 6 5 6 7 `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "For each i (1, 2, 3) the inner loop prints i+j for j = 1, 2, 3: i=1 gives '2 3 4 ', i=2 gives '3 4 5 ', i=3 gives '4 5 6 '. Option B shows multiplication (i*j); C would be correct if j re-initialized to i+1 each time; D shifts each group up by 1 as if i started at 2.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Which of the following best describes the execution order of a nested loop?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The outer loop completes all of its iterations before the inner loop begins executing."
+      },
+      {
+        "label": "B",
+        "text": "The inner loop completes all of its iterations for each single iteration of the outer loop."
+      },
+      {
+        "label": "C",
+        "text": "The total number of inner loop body executions equals the sum of the outer and inner loop counts."
+      },
+      {
+        "label": "D",
+        "text": "The inner loop and outer loop always execute the same number of times."
+      }
+    ],
+    "answer": "B",
+    "explanation": "In a nested loop, each time the outer loop body executes the entire inner loop runs to completion before the outer loop advances to its next iteration. Option A reverses the relationship; C mistakes multiplication for addition (total executions is the product when loops are independent); D is only true if both loops happen to share the same bounds.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "The following code is intended to print a right triangle where row `i` contains exactly `i` asterisks, for `i` from 1 to 3. Which single change would produce the intended output?\n\n```java\nint n = 3;\nfor (int i = 1; i <= n; i++) {\n    for (int j = 1; j <= n; j++) {\n        System.out.print(\"* \");\n    }\n    System.out.println();\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Change the outer loop condition from `i <= n` to `i < n`"
+      },
+      {
+        "label": "B",
+        "text": "Change the inner loop initialization from `j = 1` to `j = i`"
+      },
+      {
+        "label": "C",
+        "text": "Change the inner loop condition from `j <= n` to `j <= i`"
+      },
+      {
+        "label": "D",
+        "text": "Move `System.out.println()` to before the inner loop"
+      }
+    ],
+    "answer": "C",
+    "explanation": "As written the inner loop always runs n=3 times, producing a 3\u00d73 square. Changing `j <= n` to `j <= i` makes the inner loop run exactly i times per outer iteration, giving 1, 2, then 3 asterisks across the three rows. Option A reduces to 2 rows; B starts j at i but still ends at j <= n, producing a decreasing (not increasing) triangle; D places a blank line before each row of stars.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "How many times will `System.out.print` be called when the following code runs?\n\n```java\nfor (int i = 0; i < 5; i++)\n{\n    for (int j = 0; j < 5; j++)\n    {\n        System.out.print(\"*\");\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`20`"
+      },
+      {
+        "label": "D",
+        "text": "`25`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The outer loop runs 5 times (i = 0, 1, 2, 3, 4) and for each outer iteration the inner loop also runs 5 times (j = 0, 1, 2, 3, 4), giving 5 \u00d7 5 = 25 total calls. A counts only the outer loop iterations. B adds the two loop bounds (5 + 5) instead of multiplying them. C reflects an off-by-one error where the student counts one of the loops as running only 4 times.",
+    "difficulty": 1,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "What is the value of `count` after the following code runs?\n\n```java\nint count = 0;\nfor (int i = 1; i <= 5; i++)\n{\n    for (int j = i; j <= 5; j++)\n    {\n        count++;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`count = 10`"
+      },
+      {
+        "label": "B",
+        "text": "`count = 15`"
+      },
+      {
+        "label": "C",
+        "text": "`count = 20`"
+      },
+      {
+        "label": "D",
+        "text": "`count = 25`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "When i=1, the inner loop runs 5 times (j=1..5); when i=2 it runs 4 times (j=2..5); continuing, the counts are 5+4+3+2+1 = 15, a triangular number equal to n(n+1)/2 = 5\u00d76/2. A (10) results from starting j at i+1 instead of i, giving 4+3+2+1+0 = 10. C (20) results from an off-by-one on the inner upper bound, e.g., using `j <= 6`. D (25) assumes both loops always run 5 times (the rectangular case).",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "The code below is intended to print the integers 1 through 9 in a 3\u00d73 grid:\n```\n1 2 3\n4 5 6\n7 8 9\n```\nWhich of the following correctly replaces `/* missing code */` to achieve this output?\n\n```java\nfor (int i = 0; i < 3; i++)\n{\n    for (int j = 0; j < 3; j++)\n    {\n        /* missing code */\n    }\n    System.out.println();\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`System.out.print(i * 3 + j + 1 + \" \");`"
+      },
+      {
+        "label": "B",
+        "text": "`System.out.print(i + j + 1 + \" \");`"
+      },
+      {
+        "label": "C",
+        "text": "`System.out.print(i * j + 1 + \" \");`"
+      },
+      {
+        "label": "D",
+        "text": "`System.out.print((i + 1) * (j + 1) + \" \");`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "With i and j starting at 0, the expression i*3+j+1 produces exactly the values 1\u20139 in row-major order: (i=0,j=0)\u21921, (i=0,j=2)\u21923, (i=1,j=0)\u21924, (i=2,j=2)\u21929. B uses i+j+1, which prints 1,2,3 for the first row but then 2,3,4 for the second row. C uses i*j+1, giving 1,1,1 for the entire first row because i=0 makes every product 0. D computes (i+1)*(j+1), the multiplication table, yielding 1,2,3 then 2,4,6 then 3,6,9.",
+    "difficulty": 3,
+    "stem_pattern": "identify_correct_code"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "What output is produced by the following code?\n\n```java\nfor (int i = 1; i <= 3; i++)\n{\n    int temp = 0;\n    for (int j = 1; j <= 3; j++)\n    {\n        temp += j;\n    }\n    System.out.println(i + \" \" + temp);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\n1 6\n2 6\n3 6\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\n1 6\n2 12\n3 18\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\n1 1\n2 3\n3 6\n```"
+      },
+      {
+        "label": "D",
+        "text": "```\n1 3\n2 3\n3 3\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Because `temp` is declared inside the outer loop, it resets to 0 at the start of every outer iteration. Each time, the inner loop computes temp = 1+2+3 = 6, so every line prints the current `i` paired with 6. B results from declaring `temp` before the outer loop so it accumulates across iterations (6, 12, 18). C results from misreading the inner loop as `j <= i`, running fewer iterations each row and building a partial triangle sum. D results from confusing `+=` with `=`, storing only the final value of j (which is 3) rather than the running sum.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Consider the following code segment.\n\n```java\nfor (int i = 0; i < 3; i++)\n{\n    for (int j = 0; j < 3; j++)\n    {\n        System.out.print(i + j + \" \");\n    }\n}\n```\n\nWhat is printed when this code is executed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0 0 0 1 1 1 2 2 2`"
+      },
+      {
+        "label": "B",
+        "text": "`0 1 2 1 2 3 2 3 4`"
+      },
+      {
+        "label": "C",
+        "text": "`0 1 2 3 4`"
+      },
+      {
+        "label": "D",
+        "text": "`0 1 2 0 1 2 0 1 2`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "For each outer value of i (0, 1, 2), j takes values 0, 1, 2 and prints i+j: i=0 yields 0 1 2; i=1 yields 1 2 3; i=2 yields 2 3 4, giving the full sequence. A prints i three times per outer iteration (ignores j's contribution to the sum). C treats the nested structure as a single loop printing only distinct totals. D prints j alone each time (ignores i).",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "What is the value of `sum` after the following code segment executes?\n\n```java\nint sum = 0;\nfor (int i = 1; i <= 3; i++)\n{\n    for (int j = 1; j <= 3; j++)\n    {\n        sum += i * j;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`18`"
+      },
+      {
+        "label": "B",
+        "text": "`30`"
+      },
+      {
+        "label": "C",
+        "text": "`36`"
+      },
+      {
+        "label": "D",
+        "text": "`45`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The double sum of i*j factors as (1+2+3)\u00d7(1+2+3) = 6\u00d76 = 36. A (18) results from adding only i on each inner iteration (sum += i), so 3\u00d7(1+2+3) = 18. B (30) is an off-by-one error where j starts at 2 instead of 1, skipping the j=1 terms. D (45) equals 1+2+\u2026+9, as if the products were replaced by a flat sequence from 1 to 9.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "How many times will `System.out.println(x)` execute in the following code segment?\n\n```java\nint x = 0;\nfor (int i = 1; i <= 6; i++)\n{\n    for (int j = 1; j <= 4; j++)\n    {\n        System.out.println(x);\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`30`"
+      },
+      {
+        "label": "C",
+        "text": "`36`"
+      },
+      {
+        "label": "D",
+        "text": "`24`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The outer loop runs 6 times and the independent inner loop runs 4 times per outer iteration, giving 6 \u00d7 4 = 24 total executions. A (10) adds the loop bounds instead of multiplying. B (30) is 6 \u00d7 5, as if the inner bound were j <= 5 (one too many). C (36) uses the outer bound for both loops (6 \u00d7 6).",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Consider the following code segment.\n\n```java\nint count = 0;\nfor (int i = 0; i < 4; i++)\n{\n    for (int j = 0; j < 4; j++)\n    {\n        if (i == j)\n        {\n            count++;\n        }\n    }\n}\nSystem.out.println(count);\n```\n\nWhat is the output?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`0`"
+      },
+      {
+        "label": "C",
+        "text": "`12`"
+      },
+      {
+        "label": "D",
+        "text": "`16`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The condition i == j is satisfied exactly when both indices are equal: (0,0), (1,1), (2,2), (3,3) \u2014 four times. B (0) results from believing the condition is never true. C (12) equals 4\u00d74 \u2212 4, the count of pairs where i \u2260 j, as if the condition were negated. D (16) counts every iteration of the inner loop regardless of the condition.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Consider the following code segment.\n\n```java\nfor (int i = 1; i <= 4; i++)\n{\n    for (int j = 1; j <= i; j++)\n    {\n        System.out.print(i + \" \");\n    }\n}\n```\n\nWhat is printed when this code is executed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 2 3 4`"
+      },
+      {
+        "label": "B",
+        "text": "`2 3 3 4 4 4`"
+      },
+      {
+        "label": "C",
+        "text": "`1 2 2 3 3 3 4 4 4 4`"
+      },
+      {
+        "label": "D",
+        "text": "`1 1 2 1 2 3 1 2 3 4`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The inner loop runs i times for each outer value of i, and it always prints i: i=1 contributes one \"1\"; i=2 contributes two \"2\"s; i=3 three \"3\"s; i=4 four \"4\"s. A assumes the inner loop runs exactly once per outer iteration. B is an off-by-one error \u2014 using j < i instead of j <= i causes i=1 to produce zero prints, shifting everything. D prints j instead of i, producing a triangular sequence of j values.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Consider the following code segment, where `n` is an `int` variable.\n\n```java\nfor (int i = 1; i <= n; i++)\n{\n    for (int j = i + 1; j <= n; j++)\n    {\n        System.out.println(i + \" \" + j);\n    }\n}\n```\n\nIf `n = 5`, how many lines are printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`15`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`20`"
+      },
+      {
+        "label": "D",
+        "text": "`25`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "When i=1, j runs from 2 to 5 (4 lines); i=2 gives 3 lines; i=3 gives 2; i=4 gives 1; i=5 gives 0. Total: 4+3+2+1 = 10 = n(n\u22121)/2. A (15) equals n(n+1)/2, the result if j started at i rather than i+1. C (20) doubles the correct answer, as if each ordered pair were printed twice. D (25) is n\u00b2, ignoring the dependence of the inner bound on i.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint total = 0;\n\nfor (int r = 1; r <= 3; r++)\n{\n    for (int c = 0; c < r; c++)\n    {\n        total += r + c;\n    }\n}\n\nSystem.out.print(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`12`"
+      },
+      {
+        "label": "B",
+        "text": "`15`"
+      },
+      {
+        "label": "C",
+        "text": "`18`"
+      },
+      {
+        "label": "D",
+        "text": "`21`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The inner loop runs 1, 2, and 3 times for `r` values 1, 2, and 3, adding 1, then 2 and 3, then 3, 4, and 5 for a total of 18. The other values come from common off-by-one traces of the inner loop.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_11",
+    "stem": "Which of the following could replace `/* missing code */` so that the code prints the output shown?\n\n```java\nfor (int r = 1; r <= 4; r++)\n{\n    /* missing code */\n    System.out.println();\n}\n```\n\nOutput:\n\n```java\n1\n12\n123\n1234\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int c = 1; c <= r; c++)\n{\n    System.out.print(c);\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int c = 1; c < r; c++)\n{\n    System.out.print(c);\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int c = 0; c < r; c++)\n{\n    System.out.print(c);\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int c = 1; c <= 4; c++)\n{\n    System.out.print(c);\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "For each row `r`, the inner loop must print the numbers from 1 through `r`. Choice B stops too early, choice C starts at 0, and choice D prints four numbers on every row.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  }
+]

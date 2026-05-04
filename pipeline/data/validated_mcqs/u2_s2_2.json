@@ -1,0 +1,574 @@
+[
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Which of the following is guaranteed to be true when the `else` block of an `if`/`else` statement executes?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The boolean expression in the `if` condition evaluated to `true`"
+      },
+      {
+        "label": "B",
+        "text": "The boolean expression in the `if` condition evaluated to `false`"
+      },
+      {
+        "label": "C",
+        "text": "Both the `if` block and the `else` block execute during the same run"
+      },
+      {
+        "label": "D",
+        "text": "The `if` condition must contain a relational operator"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The else block executes if and only if the if condition is false. Option A is the opposite. Option C is impossible; in an if/else exactly one branch runs. Option D is incorrect because any boolean expression \u2014 even a literal `false` \u2014 can serve as the condition.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the values of `x` and `y` after the following code executes:\n\n```java\nint x = 5;\nint y = 10;\nif (x > y)\n{\n    x = x * 2;\n}\nelse\n{\n    y = y - x;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 10, y = 10`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 5, y = 10`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 5, y = 5`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 10, y = 5`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "5 > 10 is false, so the else branch executes: y = 10 \u2212 5 = 5. x is unchanged at 5. Option A results from mistakenly taking the if branch. Option B assumes neither branch runs. Option D assumes both branches run, which is impossible in an if/else.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Which of the following correctly describes the behavior of the code below?\n\n```java\nint temp = 75;\nif (temp >= 80)\n    System.out.println(\"hot\");\n    System.out.println(\"wear sunscreen\");\nelse\n    System.out.println(\"cool\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`cool` is printed because `temp < 80`"
+      },
+      {
+        "label": "B",
+        "text": "`wear sunscreen` and `cool` are both printed"
+      },
+      {
+        "label": "C",
+        "text": "A compile error occurs because the `else` has no matching `if`"
+      },
+      {
+        "label": "D",
+        "text": "`hot` and `wear sunscreen` are printed when `temp >= 80`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Without braces, the if controls only the single statement `System.out.println(\"hot\")`. The next line `System.out.println(\"wear sunscreen\")` is a standalone statement, leaving the following `else` with no matching `if`, which is a compile error. Braces are required to group multiple statements into an if body.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 8;\nint b = 5;\nif (a > b)\n{\n    if (a % 2 == 0)\n    {\n        System.out.print(\"even winner\");\n    }\n    else\n    {\n        System.out.print(\"odd winner\");\n    }\n}\nelse\n{\n    System.out.print(\"b wins\");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`even winner`"
+      },
+      {
+        "label": "B",
+        "text": "`odd winner`"
+      },
+      {
+        "label": "C",
+        "text": "`b wins`"
+      },
+      {
+        "label": "D",
+        "text": "`even winnerb wins`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "8 > 5 is true, so the outer if body executes. Then 8 % 2 == 0 is true, so the inner if prints \"even winner\". Option B would require a to be odd. Option C would require a \u2264 b. Option D is impossible because in an if/else exactly one branch runs.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 15;\nif (x > 10)\n    if (x > 20)\n        System.out.print(\"large\");\n    else\n        System.out.print(\"medium\");\nSystem.out.print(\" done\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`large done`"
+      },
+      {
+        "label": "B",
+        "text": "`medium done`"
+      },
+      {
+        "label": "C",
+        "text": "` done`"
+      },
+      {
+        "label": "D",
+        "text": "`large medium done`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The else pairs with the nearest unmatched if, which is `if (x > 20)`. With x = 15, the outer if (x > 10) is true, so the inner if/else is entered; x > 20 is false, printing \"medium\". `System.out.print(\" done\")` is outside both ifs and always executes. Option C would require x \u2264 10.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 0;\nif (x != 0 && 10 / x > 2)\n{\n    System.out.print(\"yes\");\n}\nelse\n{\n    System.out.print(\"no\");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`yes`"
+      },
+      {
+        "label": "B",
+        "text": "`no`"
+      },
+      {
+        "label": "C",
+        "text": "An `ArithmeticException` is thrown at runtime due to division by zero"
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs"
+      }
+    ],
+    "answer": "B",
+    "explanation": "With x = 0, `x != 0` evaluates to false. Due to short-circuit evaluation of &&, the right operand `10 / x` is never evaluated, so no division by zero occurs. The condition is false and the else branch prints \"no\". Option C is the classic trap for students who do not know short-circuit evaluation prevents the division.",
+    "difficulty": 3,
+    "stem_pattern": "boolean_short_circuit"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the output of the following code:\n\n```java\nint score = 79;\nString grade;\nif (score >= 90)\n{\n    grade = \"A\";\n}\nelse if (score >= 80)\n{\n    grade = \"B\";\n}\nelse if (score >= 70)\n{\n    grade = \"C\";\n}\nelse\n{\n    grade = \"F\";\n}\nSystem.out.print(grade);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`A`"
+      },
+      {
+        "label": "B",
+        "text": "`B`"
+      },
+      {
+        "label": "C",
+        "text": "`C`"
+      },
+      {
+        "label": "D",
+        "text": "`F`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "79 \u2265 90 is false, 79 \u2265 80 is false, and 79 \u2265 70 is true, so grade is set to \"C\" and the remaining else is skipped. In an else-if chain at most one branch executes \u2014 the first whose condition is true. Option B would require score \u2265 80; option D would require score < 70.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the output of the following code:\n\n```java\nint n = 6;\nboolean result = true;\nif (n % 2 == 0)\n{\n    result = false;\n}\nif (n % 3 == 0)\n{\n    result = true;\n}\nSystem.out.print(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true`"
+      },
+      {
+        "label": "B",
+        "text": "`false`"
+      },
+      {
+        "label": "C",
+        "text": "`truefalse`"
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Both conditions are satisfied for n = 6 (6 % 2 == 0 and 6 % 3 == 0), so both if blocks execute: result becomes false, then immediately becomes true. These are two independent if statements, not an if/else, so both always run. Option B is the trap for students who mentally treat the second if as an else if and skip it.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "A programmer intends for `System.out.println(\"nonzero\")` to execute only when `x > 0`. Which of the following correctly describes the actual behavior of the code?\n\n```java\nint x = 3;\nif (x > 0)\n    System.out.println(\"positive\");\n    System.out.println(\"nonzero\");\nSystem.out.println(\"done\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`positive` and `done` are printed; `nonzero` prints only when `x > 0`"
+      },
+      {
+        "label": "B",
+        "text": "`positive`, `nonzero`, and `done` are all printed"
+      },
+      {
+        "label": "C",
+        "text": "Only `done` is printed"
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs because braces are missing"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Without braces, the if controls only `System.out.println(\"positive\")`. Both `System.out.println(\"nonzero\")` and `System.out.println(\"done\")` are unconditional statements that always execute. Missing braces cause a logic bug, not a compile error (ruling out D). With x = 3, all three lines print.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the output of the following code:\n\n```java\nint p = 4;\nint q = 8;\nif (p * 2 == q)\n{\n    p = p + 1;\n    q = q - 1;\n    if (p > q)\n    {\n        System.out.print(\"X\");\n    }\n    else\n    {\n        System.out.print(\"Y\");\n    }\n}\nelse\n{\n    System.out.print(\"Z\");\n}\nSystem.out.print(p + q);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`X12`"
+      },
+      {
+        "label": "B",
+        "text": "`Y12`"
+      },
+      {
+        "label": "C",
+        "text": "`Z12`"
+      },
+      {
+        "label": "D",
+        "text": "`Y13`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "p * 2 = 8 equals q = 8, so the outer if body runs: p becomes 5, q becomes 7. Then 5 > 7 is false, printing \"Y\". Finally p + q = 5 + 7 = 12 prints as an integer. Option A would require p > q after the updates (5 is not > 7). Option C would require p * 2 \u2260 q. Option D has an arithmetic error on the sum.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the output of the following code:\n\n```java\nString s1 = \"hello\";\nString s2 = new String(\"hello\");\nif (s1 == s2)\n{\n    System.out.print(\"same ref\");\n}\nelse\n{\n    System.out.print(\"diff ref\");\n}\nif (s1.equals(s2))\n{\n    System.out.print(\" same val\");\n}\nelse\n{\n    System.out.print(\" diff val\");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`same ref same val`"
+      },
+      {
+        "label": "B",
+        "text": "`diff ref same val`"
+      },
+      {
+        "label": "C",
+        "text": "`diff ref diff val`"
+      },
+      {
+        "label": "D",
+        "text": "`same ref diff val`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "s1 is a string literal while s2 is created with `new String()`, so they are distinct objects; `s1 == s2` compares references and is false, printing \"diff ref\". However, both contain the same characters, so `s1.equals(s2)` returns true, printing \" same val\". Always use `.equals()` to compare String content; `==` tests reference identity.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the output of the following code:\n\n```java\nint n = 18;\nif (n % 3 == 0) {\n    System.out.println(\"fizz\");\n} else {\n    System.out.println(\"buzz\");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`fizz`"
+      },
+      {
+        "label": "B",
+        "text": "`buzz`"
+      },
+      {
+        "label": "C",
+        "text": "`0`"
+      },
+      {
+        "label": "D",
+        "text": "`18`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "18 % 3 evaluates to 0, so n % 3 == 0 is true and the if-branch executes, printing \"fizz\"; the else-branch is skipped. B would print if the condition were false. C and D confuse printing the result of the modulo operation or the variable n with the string literals in the branches.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the values of `p` and `q` after the following code runs.\n\n```java\nint p = 8;\nint q = 4;\nif (p > q) {\n    p = p - q;\n} else {\n    p = p + q;\n}\nif (p == q) {\n    q = 0;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`p = 4, q = 4`"
+      },
+      {
+        "label": "B",
+        "text": "`p = 4, q = 0`"
+      },
+      {
+        "label": "C",
+        "text": "`p = 12, q = 4`"
+      },
+      {
+        "label": "D",
+        "text": "`p = 12, q = 0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "First if: p > q \u2192 8 > 4 is true, so p = 8 - 4 = 4. Second if: p == q \u2192 4 == 4 is true, so q = 0. Final: p = 4, q = 0. A correctly traces the first if but fails to execute the second if. C takes the else branch (p = 8 + 4 = 12) and skips the second if (12 == 4 is false). D takes the else branch but incorrectly assumes 12 == 4 triggers q = 0.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 2;\nif (x > 3)\n    System.out.println(\"greater\");\n    System.out.println(\"done\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`greater`"
+      },
+      {
+        "label": "B",
+        "text": "`greater` followed by `done`"
+      },
+      {
+        "label": "C",
+        "text": "`done`"
+      },
+      {
+        "label": "D",
+        "text": "Nothing is printed."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Without braces, only the immediately following statement belongs to the if-block. System.out.println(\"done\") is unconditionally executed regardless of the condition. Since x = 2 and 2 > 3 is false, \"greater\" is not printed, but \"done\" always prints. A and B incorrectly assume the condition is true; D incorrectly assumes both statements are guarded by the if.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Which of the following correctly describes when the `else` branch of an `if`/`else` statement executes?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Every time the `if`/`else` statement is reached during program execution"
+      },
+      {
+        "label": "B",
+        "text": "Only when the boolean condition evaluates to `true`"
+      },
+      {
+        "label": "C",
+        "text": "Only when the boolean condition evaluates to `false`"
+      },
+      {
+        "label": "D",
+        "text": "Only when the `if` branch completes without printing any output"
+      }
+    ],
+    "answer": "C",
+    "explanation": "An if/else statement evaluates its boolean condition and executes exactly one branch: the if-branch when the condition is true, and the else-branch when the condition is false. A is wrong because both branches never run in the same execution. B describes when the if-branch (not the else-branch) runs. D describes no valid Java behavior.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 4;\nint b = 4;\nif (a == b) {\n    a = a * 2;\n    if (a > b) {\n        b = b + 3;\n    } else {\n        b = b - 3;\n    }\n} else {\n    a = 0;\n    b = 0;\n}\nSystem.out.println(a + \" \" + b);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`8 7`"
+      },
+      {
+        "label": "B",
+        "text": "`8 1`"
+      },
+      {
+        "label": "C",
+        "text": "`0 0`"
+      },
+      {
+        "label": "D",
+        "text": "`4 7`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "a == b \u2192 4 == 4 is true, so the outer else is skipped. a = 4 * 2 = 8. Now a > b \u2192 8 > 4 is true (b is still 4 at this moment), so b = 4 + 3 = 7. Output: \"8 7\". B takes the wrong inner branch (b - 3 = 1). C incorrectly takes the outer else (a != b would have to be true). D forgets that a is updated to 8 before the inner condition is evaluated, using the stale value 4.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "What is printed when the following code is executed?\n\n```java\nint n = 12;\nString msg;\n\nif (n % 5 == 0)\n{\n    msg = \"fizz\";\n}\nelse\n{\n    msg = \"buzz\";\n}\n\nif (n % 4 == 0)\n{\n    msg = msg + \"!\";\n}\n\nSystem.out.println(msg);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`fizz`"
+      },
+      {
+        "label": "B",
+        "text": "`buzz`"
+      },
+      {
+        "label": "C",
+        "text": "`fizz!`"
+      },
+      {
+        "label": "D",
+        "text": "`buzz!`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "12 % 5 = 2, not 0, so the first if condition is false and msg = \"buzz\". Then 12 % 4 = 0, so the second if is true and msg becomes \"buzz!\". A and C both require 12 % 5 == 0, which is false. B correctly identifies the first branch but ignores that the second if also executes.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the values of `p` and `q` after the following code runs.\n\n```java\nint p = 4;\nint q = 4;\n\nif (p != q)\n{\n    p = p + q;\n}\nelse\n{\n    q = p + q;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`p = 4, q = 4`"
+      },
+      {
+        "label": "B",
+        "text": "`p = 4, q = 8`"
+      },
+      {
+        "label": "C",
+        "text": "`p = 8, q = 4`"
+      },
+      {
+        "label": "D",
+        "text": "`p = 8, q = 8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Since p == q (both 4), the condition p != q is false and the else branch executes: q = 4 + 4 = 8; p is unchanged at 4. A incorrectly assumes neither branch ran (impossible in an if-else). C reflects the if branch executing (p != q true), which it is not. D assumes both branches ran, which is impossible.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "What is printed when the following code is executed?\n\n```java\nint val = 3;\nif (val > 5)\n    System.out.println(\"greater\");\n    System.out.println(\"done\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`greater`"
+      },
+      {
+        "label": "B",
+        "text": "`done`"
+      },
+      {
+        "label": "C",
+        "text": "`greater` followed by `done` on separate lines"
+      },
+      {
+        "label": "D",
+        "text": "Nothing is printed"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Without braces, only the immediately following statement (println(\"greater\")) belongs to the if block. Since val = 3 is not > 5, that line is skipped. However, println(\"done\") is outside the if and always executes unconditionally, printing \"done\". D is wrong because the second println is not guarded by the condition.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "What is printed when the following code is executed?\n\n```java\nint x = 0;\nint y = 10;\n\nif (x != 0 && y / x > 2)\n{\n    System.out.println(\"safe\");\n}\nelse\n{\n    System.out.println(\"guarded\");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`safe`"
+      },
+      {
+        "label": "B",
+        "text": "`guarded`"
+      },
+      {
+        "label": "C",
+        "text": "An `ArithmeticException` is thrown at runtime because `y / x` divides by zero."
+      },
+      {
+        "label": "D",
+        "text": "Nothing is printed because the boolean condition cannot be fully evaluated."
+      }
+    ],
+    "answer": "B",
+    "explanation": "x = 0, so x != 0 evaluates to false. Short-circuit evaluation of && immediately makes the entire condition false without ever evaluating y / x, so no divide-by-zero occurs. The else branch executes and prints \"guarded\". C is the classic short-circuit trap: the right operand of && is never reached when the left is false. D is incorrect because the condition resolves normally to false.",
+    "difficulty": 3,
+    "stem_pattern": "boolean_short_circuit"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the output of the following code segment:\n\n```java\nint x = 4;\nint y = 7;\n\nif (x > 5)\n    if (y > 5)\n        System.out.print(\"A\");\n    else\n        System.out.print(\"B\");\n\nSystem.out.print(\"C\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`C`"
+      },
+      {
+        "label": "B",
+        "text": "`BC`"
+      },
+      {
+        "label": "C",
+        "text": "`AC`"
+      },
+      {
+        "label": "D",
+        "text": "No output is produced."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Since `x > 5` is false, the nested `if` and its paired `else` are skipped. The final print statement always runs, so the output is `C`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_2",
+    "stem": "Determine the value of `result` after the following code segment runs.\n\n```java\nint n = 18;\nString result = \"\";\n\nif (n % 2 == 0)\n{\n    result += \"E\";\n}\nelse\n{\n    result += \"O\";\n}\n\nif (n % 3 == 0)\n{\n    result += \"T\";\n}\nelse\n{\n    result += \"N\";\n}\n\nif (n % 5 == 0)\n{\n    result += \"F\";\n}\nelse\n{\n    result += \"R\";\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`OTR`"
+      },
+      {
+        "label": "B",
+        "text": "`ETF`"
+      },
+      {
+        "label": "C",
+        "text": "`ETR`"
+      },
+      {
+        "label": "D",
+        "text": "`ENR`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`18` is divisible by `2` and `3`, so `E` and `T` are added. It is not divisible by `5`, so `R` is added, giving `ETR`.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  }
+]

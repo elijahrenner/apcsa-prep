@@ -1,0 +1,522 @@
+[
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static int mystery(int n)\n{\n    if (n <= 1)\n    {\n        return 2;\n    }\n    return n + mystery(n - 2);\n}\n```\n\nWhat is returned by `mystery(7)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`14`"
+      },
+      {
+        "label": "B",
+        "text": "`16`"
+      },
+      {
+        "label": "C",
+        "text": "`17`"
+      },
+      {
+        "label": "D",
+        "text": "`18`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`mystery(7)` evaluates as `7 + 5 + 3 + mystery(1)`, and `mystery(1)` returns `2`, for a total of `17`. The other options result from treating the base case as `0` or `1`, or from including an extra recursive step.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Determine the output of the following code.\n\n```java\npublic static void show(int n)\n{\n    if (n > 0)\n    {\n        System.out.print(n);\n        show(n - 1);\n        System.out.print(n);\n    }\n}\n\nshow(3);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`321123`"
+      },
+      {
+        "label": "B",
+        "text": "`321`"
+      },
+      {
+        "label": "C",
+        "text": "`123321`"
+      },
+      {
+        "label": "D",
+        "text": "`332211`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The first print happens before each recursive call, producing `321`; the second print happens as the calls finish, producing `123`. Options B, C, and D reflect missing the post-recursive prints or using the wrong call order.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static String mix(String s)\n{\n    if (s.length() <= 1)\n    {\n        return s;\n    }\n    return s.substring(s.length() - 1)\n        + mix(s.substring(1, s.length() - 1))\n        + s.substring(0, 1);\n}\n```\n\nWhat is printed by `System.out.print(mix(\"trail\"));`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`liart`"
+      },
+      {
+        "label": "B",
+        "text": "`lirait`"
+      },
+      {
+        "label": "C",
+        "text": "`liartt`"
+      },
+      {
+        "label": "D",
+        "text": "`trail`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Each call moves the last character to the front and the first character to the end while recursing on the middle, so `trail` becomes `l` + `iar` + `t`, or `liart`. The distractors come from reversing all characters incorrectly or duplicating an endpoint.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static int countDown(int n)\n{\n    if (n == 0)\n    {\n        return 0;\n    }\n    return 1 + countDown(n - 3);\n}\n```\n\nWhich of the following method calls will eventually cause a `StackOverflowError`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`countDown(12)`"
+      },
+      {
+        "label": "B",
+        "text": "`countDown(9)`"
+      },
+      {
+        "label": "C",
+        "text": "`countDown(6)`"
+      },
+      {
+        "label": "D",
+        "text": "`countDown(5)`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`countDown(5)` calls `countDown(2)`, then `countDown(-1)`, moving farther from the base case `n == 0`. The other calls eventually reach `0` exactly.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static int recur(int[] nums, int index)\n{\n    if (index == nums.length - 1)\n    {\n        return nums[index];\n    }\n    int rest = recur(nums, index + 1);\n    if (nums[index] > rest)\n    {\n        return nums[index];\n    }\n    return rest;\n}\n```\n\nWhat is returned by `recur(new int[] {4, 7, 2, 9, 5}, 0)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "`9`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The method compares each element with the greatest value returned from the rest of the array, so it returns the maximum value, `9`. The other options are values from the array but are not the largest.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static int f(int n)\n{\n    if (n < 10)\n    {\n        return n;\n    }\n    return f(n / 10) + n % 10;\n}\n```\n\nWhat is returned by `f(5074)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`11`"
+      },
+      {
+        "label": "B",
+        "text": "`16`"
+      },
+      {
+        "label": "C",
+        "text": "`5074`"
+      },
+      {
+        "label": "D",
+        "text": "`4705`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The method recursively removes the last digit using integer division and adds that digit using `% 10`, so it computes `5 + 0 + 7 + 4 = 16`. Option A omits the leading digit, while C and D treat the method as preserving or reversing the number.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static int sumSkip(int n)\n{\n    if (n <= 0)\n    {\n        return 0;\n    }\n    return n + sumSkip(n - 2);\n}\n```\n\nWhat is returned by `sumSkip(7)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`12`"
+      },
+      {
+        "label": "B",
+        "text": "`15`"
+      },
+      {
+        "label": "C",
+        "text": "`16`"
+      },
+      {
+        "label": "D",
+        "text": "`28`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`sumSkip(7)` evaluates to `7 + 5 + 3 + 1 + 0`, which is `16`. The other choices reflect stopping too early or adding values that are not reached by the recursive calls.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static void show(int n)\n{\n    if (n > 0)\n    {\n        System.out.print(n + \" \");\n        show(n - 2);\n        System.out.print(n + \" \");\n    }\n}\n```\n\nWhat is printed as a result of the call `show(5)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5 3 1 `"
+      },
+      {
+        "label": "B",
+        "text": "`1 3 5 `"
+      },
+      {
+        "label": "C",
+        "text": "`5 3 1 1 3 5 `"
+      },
+      {
+        "label": "D",
+        "text": "`5 3 1 3 5 `"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Each positive call prints before and after its recursive call, so the values print while going down and again while returning. Choice D omits the second print from `show(1)`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static String flip(String s)\n{\n    if (s.length() <= 1)\n    {\n        return s;\n    }\n    return flip(s.substring(1)) + s.substring(0, 1);\n}\n```\n\nWhat is returned by `flip(\"code\")`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`\"code\"`"
+      },
+      {
+        "label": "B",
+        "text": "`\"edoc\"`"
+      },
+      {
+        "label": "C",
+        "text": "`\"cde\"`"
+      },
+      {
+        "label": "D",
+        "text": "`\"odec\"`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The method recursively processes all but the first character, then appends the first character, reversing the string. Choices C and D reflect removing or rotating characters instead of tracing the returned values.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static int calc(int n)\n{\n    if (n < 2)\n    {\n        return n;\n    }\n    return calc(n - 1) + calc(n - 2);\n}\n```\n\nWhat is returned by `calc(5)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "`8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`calc(5)` is `calc(4) + calc(3)`, which evaluates to `3 + 2 = 5`. Choice D is the next value in this pattern, and choice A is `calc(4)`.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static int search(int[] a, int low, int high, int target)\n{\n    if (low > high)\n    {\n        return -1;\n    }\n    int mid = (low + high) / 2;\n    if (a[mid] == target)\n    {\n        return mid;\n    }\n    else if (target < a[mid])\n    {\n        return search(a, low, mid - 1, target);\n    }\n    return search(a, mid + 1, high, target);\n}\n```\n\nAssume `int[] nums = {2, 4, 7, 9, 12, 14, 18, 21};`. What is returned by `search(nums, 0, nums.length - 1, 14)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`-1`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`14`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The first middle index is `3`, and since `14 > 9`, the next search is from indexes `4` through `7`; the new middle index is `5`, where the target is found. Choice C gives the target value instead of its index.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static int reduce(int n)\n{\n    if (n == 1)\n    {\n        return 1;\n    }\n    return reduce(n / 2);\n}\n```\n\nWhich of the following calls does not reach the base case?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`reduce(8)`"
+      },
+      {
+        "label": "B",
+        "text": "`reduce(10)`"
+      },
+      {
+        "label": "C",
+        "text": "`reduce(1)`"
+      },
+      {
+        "label": "D",
+        "text": "`reduce(0)`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`reduce(0)` calls `reduce(0 / 2)`, which is again `reduce(0)`, so it never reaches `n == 1`. The other calls either start at `1` or eventually divide down to `1`.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following code segment.\n\n```java\npublic static String change(String word)\n{\n    if (word.length() <= 1)\n    {\n        return word;\n    }\n    return change(word.substring(1)) + word.substring(0, 1);\n}\n\nSystem.out.print(change(\"desk\"));\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`desk`"
+      },
+      {
+        "label": "B",
+        "text": "`dsek`"
+      },
+      {
+        "label": "C",
+        "text": "`ksed`"
+      },
+      {
+        "label": "D",
+        "text": "`eskd`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Each recursive call removes the first letter and adds it after the result of the smaller call. This reverses the string, so `desk` becomes `ksed`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following code segment.\n\n```java\npublic static void show(int n)\n{\n    if (n > 0)\n    {\n        System.out.print(n + \" \");\n        show(n - 2);\n        System.out.print(n + \" \");\n    }\n}\n\nshow(5);\n```\n\nWhich of the following represents the output produced by the code?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5 3 1 `"
+      },
+      {
+        "label": "B",
+        "text": "`1 3 5 5 3 1 `"
+      },
+      {
+        "label": "C",
+        "text": "`5 3 1 1 3 5 `"
+      },
+      {
+        "label": "D",
+        "text": "`5 4 3 2 1 1 2 3 4 5 `"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The method prints `5`, `3`, and `1` before the recursive calls finish, then prints `1`, `3`, and `5` as the calls return. The call with `-1` prints nothing.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following code segment.\n\n```java\npublic static int f(int x, int y)\n{\n    if (y == 0)\n    {\n        return x;\n    }\n    return f(y, x % y);\n}\n\nSystem.out.print(f(30, 12));\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`6`"
+      },
+      {
+        "label": "D",
+        "text": "`12`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The calls are `f(30, 12)`, `f(12, 6)`, and `f(6, 0)`. The base case then returns `6`.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static int calc(int n)\n{\n    if (n == 0)\n    {\n        return 2;\n    }\n    return 3 + calc(n - 1);\n}\n```\n\nWhat value is returned by `calc(4)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`11`"
+      },
+      {
+        "label": "B",
+        "text": "`12`"
+      },
+      {
+        "label": "C",
+        "text": "`14`"
+      },
+      {
+        "label": "D",
+        "text": "`15`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`calc(4)` adds 3 four times and then reaches the base case value 2, giving `3 + 3 + 3 + 3 + 2 = 14`. The distractors reflect counting too few or too many recursive additions or ignoring the base value.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static String change(String s)\n{\n    if (s.length() <= 1)\n    {\n        return s;\n    }\n    return change(s.substring(1)) + s.substring(0, 1);\n}\n```\n\nWhat is returned by `change(\"plan\")`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`plan`"
+      },
+      {
+        "label": "B",
+        "text": "`lanp`"
+      },
+      {
+        "label": "C",
+        "text": "`nalp`"
+      },
+      {
+        "label": "D",
+        "text": "`pnal`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Each call removes the first one-character substring and appends it after the result of the recursive call, reversing the string. The other choices preserve the original order or move only part of the string.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static int countCalls(int n)\n{\n    if (n <= 0)\n    {\n        return 1;\n    }\n    return 1 + countCalls(n - 3);\n}\n```\n\nHow many times is `countCalls` called, including the original call, when evaluating `countCalls(10)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`10`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The arguments are `10`, `7`, `4`, `1`, and `-2`, for five total calls. The off-by-one distractors stop before counting the base-case call or count only some decreases.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Consider the following method.\n\n```java\npublic static int recur(int n)\n{\n    if (n == 1)\n    {\n        return 1;\n    }\n    return n + recur(n + 1);\n}\n```\n\nWhich statement best describes the call `recur(3)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It returns `6`."
+      },
+      {
+        "label": "B",
+        "text": "It returns `3`."
+      },
+      {
+        "label": "C",
+        "text": "It eventually reaches the base case and returns `1`."
+      },
+      {
+        "label": "D",
+        "text": "It does not terminate normally because the recursive calls move away from the base case."
+      }
+    ],
+    "answer": "D",
+    "explanation": "Starting at `3`, each recursive call uses a larger value, so `n == 1` is never reached. The numeric answers assume the argument decreases or that only one call is made.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_16",
+    "stem": "Determine the output of the following code:\n\n```java\npublic static void trace(int n)\n{\n    if (n <= 0)\n    {\n        System.out.print(\"X\");\n    }\n    else\n    {\n        System.out.print(n);\n        trace(n - 2);\n        System.out.print(n - 1);\n    }\n}\n\ntrace(5);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`531X024`"
+      },
+      {
+        "label": "B",
+        "text": "`531X420`"
+      },
+      {
+        "label": "C",
+        "text": "`531024X`"
+      },
+      {
+        "label": "D",
+        "text": "`531X`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The method prints `5`, `3`, and `1` before reaching the base case, which prints `X`; then each paused call resumes and prints `0`, `2`, and `4`. The other choices place the after-recursion prints in the wrong order or omit them.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  }
+]

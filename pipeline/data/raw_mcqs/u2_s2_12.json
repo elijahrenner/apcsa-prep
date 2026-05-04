@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "How many times does the body of the following loop execute?\n\n```java\nfor (int i = 3; i <= 9; i++) {\n    System.out.println(i);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`7`"
+      },
+      {
+        "label": "C",
+        "text": "`8`"
+      },
+      {
+        "label": "D",
+        "text": "`9`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop variable i takes values 3, 4, 5, 6, 7, 8, 9 \u2014 that is hi \u2212 lo + 1 = 9 \u2212 3 + 1 = 7 iterations. Option A (6) is the classic off-by-one from computing 9 \u2212 3 without adding 1 for the inclusive lower bound. Option D confuses the upper bound value with the iteration count.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "What is the output of the following code?\n\n```java\nString result = \"\";\nfor (int i = 1; i <= 4; i++) {\n    result += i;\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`1234`"
+      },
+      {
+        "label": "D",
+        "text": "`1 2 3 4`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Because `result` is a `String`, the `+=` operator performs string concatenation each iteration, building \"1\", then \"12\", then \"123\", then \"1234\". Option A (10) would be the result if `result` were an `int` accumulator. Option B is only the final value of `i`. Option D would require an explicit space added inside the loop.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "What are the values of `x` and `count` after the following code executes?\n\n```java\nint x = 1;\nint count = 0;\nwhile (x < 20) {\n    x *= 3;\n    count++;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 9, count = 2`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 27, count = 3`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 27, count = 2`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 81, count = 4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "After iteration 1: x = 3, count = 1. After iteration 2: x = 9, count = 2. After iteration 3: x = 27, count = 3. Since 27 \u2265 20 the loop exits. Option A stops one iteration too early. Option C gets x right but undercounts iterations by one. Option D performs a fourth iteration that never occurs.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "How many times is `count++` executed when the following code runs?\n\n```java\nint count = 0;\nfor (int i = 0; i < 5; i++) {\n    for (int j = 0; j < 4; j++) {\n        count++;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`9`"
+      },
+      {
+        "label": "B",
+        "text": "`16`"
+      },
+      {
+        "label": "C",
+        "text": "`20`"
+      },
+      {
+        "label": "D",
+        "text": "`25`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The outer loop runs 5 times (i = 0 through 4) and the inner loop runs 4 times (j = 0 through 3) for each outer iteration. Total = 5 \u00d7 4 = 20. Option A (9) adds the bounds instead of multiplying. Option B (16) is 4\u00b2, as if both loops had the same bound 4. Option D (25) is 5\u00b2, as if both loops had bound 5.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "What output is produced by the following code?\n\n```java\nfor (int i = 1; i <= 4; i++) {\n    for (int j = 1; j <= i; j++) {\n        System.out.print(\"* \");\n    }\n    System.out.println();\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\n* * * * \n* * * \n* * \n* \n```"
+      },
+      {
+        "label": "B",
+        "text": "```\n* \n* * \n* * * \n* * * * \n```"
+      },
+      {
+        "label": "C",
+        "text": "```\n* * * * \n* * * * \n* * * * \n* * * * \n```"
+      },
+      {
+        "label": "D",
+        "text": "```\n* * \n* * * \n* * * * \n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The inner loop runs j from 1 to i, printing exactly i stars on row i. Row 1 gets 1 star, row 2 gets 2, row 3 gets 3, row 4 gets 4 \u2014 the growing triangle in B. Option A is the descending pattern produced by a bound like `j <= 5 - i`. Option C is the 4 \u00d7 4 rectangle produced when the inner bound does not depend on i. Option D has only 3 rows, missing the i = 1 row.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "How many times does the body of the following loop execute?\n\n```java\nfor (int k = 2; k <= 14; k += 3) {\n    System.out.println(k);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`6`"
+      },
+      {
+        "label": "D",
+        "text": "`12`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "k takes values 2, 5, 8, 11, 14. When k would become 17, the condition 17 \u2264 14 is false and the loop stops \u2014 5 iterations. Option A (4) results from computing (14 \u2212 2) / 3 = 4 without adding 1 for the inclusive starting value. Option D (12) is simply the range 14 \u2212 2.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "What is the value of `total` after the following code executes?\n\n```java\nint total = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (i % 2 == 0) {\n        total += i;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`20`"
+      },
+      {
+        "label": "B",
+        "text": "`25`"
+      },
+      {
+        "label": "C",
+        "text": "`30`"
+      },
+      {
+        "label": "D",
+        "text": "`55`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The condition `i % 2 == 0` selects even numbers. The even values from 1 to 10 are 2, 4, 6, 8, 10, and their sum is 30. Option D (55) is the sum of all integers 1 through 10. Option B (25) is the sum of the odd values 1 + 3 + 5 + 7 + 9. Option A (20) results from stopping before including i = 10.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "What are the values of `a` and `b` after the following code executes?\n\n```java\nint a = 20;\nint b = 1;\nwhile (a > b) {\n    a -= 4;\n    b += 3;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a = 8, b = 10`"
+      },
+      {
+        "label": "B",
+        "text": "`a = 12, b = 7`"
+      },
+      {
+        "label": "C",
+        "text": "`a = 16, b = 4`"
+      },
+      {
+        "label": "D",
+        "text": "`a = 4, b = 13`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "After iteration 1: a = 16, b = 4 (16 > 4, continue). After iteration 2: a = 12, b = 7 (12 > 7, continue). After iteration 3: a = 8, b = 10 (8 > 10 is false, exit). Option C reflects the state after only 1 iteration. Option B is the state after 2 iterations. Option D would require a fourth iteration that never executes.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "What is the value of `count` after the following code executes?\n\n```java\nint count = 0;\nfor (int i = 1; i <= 5; i++) {\n    for (int j = 1; j < i; j++) {\n        count++;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`15`"
+      },
+      {
+        "label": "C",
+        "text": "`20`"
+      },
+      {
+        "label": "D",
+        "text": "`25`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The inner loop runs j from 1 to i \u2212 1, executing i \u2212 1 times. Contributions per outer iteration: i=1\u21920, i=2\u21921, i=3\u21922, i=4\u21923, i=5\u21924. Total = 0+1+2+3+4 = 10, matching the triangular formula n(n\u22121)/2 with n=5. Option B (15) results from using `j <= i`. Option D (25) is the full 5 \u00d7 5 rectangular count. Option C (20) is twice the correct answer.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "A student wants to print every integer from 1 through `n` inclusive, one per line. Which of the following contains an off-by-one error that causes it to print one fewer value than expected?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int i = 1; i <= n; i++) {\n    System.out.println(i);\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int i = 1; i < n; i++) {\n    System.out.println(i);\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int k = 1; k <= n; k++) {\n    System.out.println(k);\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nint i = 1;\nwhile (i <= n) {\n    System.out.println(i);\n    i++;\n}\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Option B uses `i < n` instead of `i <= n`, so the loop body runs for i = 1 through n \u2212 1 only, printing n \u2212 1 values and missing n. Options A and C are correct for loops with identical logic (just different variable names). Option D is a correct while-loop equivalent that uses the same inclusive bound.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "What is the value of `result` after the following code executes?\n\n```java\nString s = \"abcde\";\nString result = \"\";\nfor (int i = 0; i < s.length(); i += 2) {\n    result += s.substring(i, i + 1);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`\"abcde\"`"
+      },
+      {
+        "label": "B",
+        "text": "`\"bd\"`"
+      },
+      {
+        "label": "C",
+        "text": "`\"ace\"`"
+      },
+      {
+        "label": "D",
+        "text": "`\"ab\"`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop increments i by 2, so i visits 0, 2, 4. `substring(0,1)` = \"a\", `substring(2,3)` = \"c\", `substring(4,5)` = \"e\"; result = \"ace\". Option A results from stepping by 1 (all characters). Option B results from starting at i = 1 and stepping by 2, selecting indices 1 and 3. Option D results from a loop that exits after only 2 iterations.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "What is the output of the following code?\n\n```java\nint val = 0;\nfor (int i = 0; i < 4; i++) {\n    for (int j = 0; j < 4 - i; j++) {\n        val += i + j;\n    }\n}\nSystem.out.println(val);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`15`"
+      },
+      {
+        "label": "B",
+        "text": "`18`"
+      },
+      {
+        "label": "C",
+        "text": "`20`"
+      },
+      {
+        "label": "D",
+        "text": "`24`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "For each i, the inner loop runs 4 \u2212 i times. i=0: j\u2208{0,1,2,3}, adds 0+1+2+3 = 6; i=1: j\u2208{0,1,2}, adds 1+2+3 = 6; i=2: j\u2208{0,1}, adds 2+3 = 5; i=3: j\u2208{0}, adds 3. Total = 6+6+5+3 = 20. Option A (15) reflects an off-by-one in the inner bound. Option B (18) omits the i=2 contribution. Option D (24) results from incorrectly treating the inner loop as always running 4 times regardless of i.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "How many times will the body of the following loop execute?\n\n```java\nfor (int i = 2; i <= 10; i += 3)\n{\n    System.out.println(i);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "2"
+      },
+      {
+        "label": "B",
+        "text": "3"
+      },
+      {
+        "label": "C",
+        "text": "4"
+      },
+      {
+        "label": "D",
+        "text": "9"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`i` takes values 2, 5, 8 \u2014 when `i` becomes 11 the condition `11 <= 10` is false and the loop exits, so the body runs exactly 3 times. Option A is off-by-one (misses the first iteration at i=2). Option C incorrectly includes an extra iteration past i=8. Option D treats the step as 1 instead of 3, giving 10-2+1 = 9.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "Determine the output of the following code:\n\n```java\nint count = 0;\nfor (int i = 0; i < 4; i++)\n{\n    for (int j = 0; j < 3; j++)\n    {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`7`"
+      },
+      {
+        "label": "B",
+        "text": "`12`"
+      },
+      {
+        "label": "C",
+        "text": "`16`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The outer loop runs 4 times (i = 0, 1, 2, 3); for each outer iteration the inner loop runs 3 times (j = 0, 1, 2), so `count` is incremented 4 \u00d7 3 = 12 times. Option A adds the two bounds (4 + 3 = 7) instead of multiplying. Option C squares the outer bound (4\u00b2 = 16). Option D counts only the outer loop iterations.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "If `n` is assigned the value `5`, what is the value of `count` after the following code executes?\n\n```java\nint count = 0;\nfor (int i = 0; i < n; i++)\n{\n    for (int j = 0; j <= i; j++)\n    {\n        count++;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`15`"
+      },
+      {
+        "label": "C",
+        "text": "`20`"
+      },
+      {
+        "label": "D",
+        "text": "`25`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The inner loop runs `i + 1` times for each outer iteration: i=0 \u2192 1, i=1 \u2192 2, i=2 \u2192 3, i=3 \u2192 4, i=4 \u2192 5. Total = 1+2+3+4+5 = 15. Option A applies the formula n(n\u22121)/2 = 10, which would be correct if the inner bound were `j < i`. Options C and D correspond to rectangular 4\u00d75 and 5\u00d75 grids that ignore the triangular structure.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "Determine the output of the following code:\n\n```java\nint n = 100;\nint steps = 0;\nwhile (n > 1)\n{\n    n = n / 2;\n    steps++;\n}\nSystem.out.println(steps);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`6`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "`50`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Integer division halves `n` each iteration: 100 \u2192 50 \u2192 25 \u2192 12 \u2192 6 \u2192 3 \u2192 1. The loop stops when `n > 1` becomes false (n = 1), so `steps` is incremented 6 times. Option A is off-by-one (exits one step too early). Option C is off-by-one in the other direction. Option D confuses halving with the initial value, as if the loop counts down by 2 from 100.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "How many asterisks will be printed by the following code?\n\n```java\nfor (int i = 1; i <= 4; i++)\n{\n    for (int j = i; j <= 4; j++)\n    {\n        System.out.print(\"*\");\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "8"
+      },
+      {
+        "label": "B",
+        "text": "10"
+      },
+      {
+        "label": "C",
+        "text": "12"
+      },
+      {
+        "label": "D",
+        "text": "16"
+      }
+    ],
+    "answer": "B",
+    "explanation": "When i=1, j runs from 1 to 4 (4 prints); i=2, from 2 to 4 (3 prints); i=3, from 3 to 4 (2 prints); i=4, from 4 to 4 (1 print). Total: 4+3+2+1 = 10. Option D treats the loops as fully rectangular (4\u00d74 = 16), ignoring that the inner start index grows with `i`. Option C uses a slightly-off triangular count. Option A undercounts by skipping the first row.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "A `for` loop is written as shown below:\n\n```java\nfor (int i = lo; i <= hi; i++)\n{\n    // body\n}\n```\n\nAssuming `lo` and `hi` are `int` variables with `lo <= hi`, how many times does the loop body execute?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`hi - lo`"
+      },
+      {
+        "label": "B",
+        "text": "`hi - lo + 1`"
+      },
+      {
+        "label": "C",
+        "text": "`hi - lo - 1`"
+      },
+      {
+        "label": "D",
+        "text": "`hi + lo`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "A loop from lo to hi inclusive executes hi - lo + 1 times; for example, i = 3, 4, 5 is 5 - 3 + 1 = 3 iterations. Option A omits the +1 (classic off-by-one), C subtracts an extra 1, and D adds the two endpoints, which has no basis in the iteration-count formula.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "How many times does the following loop execute?\n\n```java\nfor (int k = 5; k <= 20; k++)\n{\n    System.out.println(k);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "14"
+      },
+      {
+        "label": "B",
+        "text": "15"
+      },
+      {
+        "label": "C",
+        "text": "16"
+      },
+      {
+        "label": "D",
+        "text": "20"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop runs for k = 5, 6, \u2026, 20, which is 20 - 5 + 1 = 16 iterations. Option B (15) is the result of 20 - 5, forgetting the +1. Option A (14) subtracts one more. Option D uses only the upper-bound value rather than applying the count formula.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "What output is generated by the following code?\n\n```java\nfor (int i = 1; i <= 3; i++)\n{\n    for (int j = i; j <= 3; j++)\n    {\n        System.out.print(j + \" \");\n    }\n    System.out.println();\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\n1 2 3 \n2 3 \n3 \n```"
+      },
+      {
+        "label": "B",
+        "text": "```\n3 \n2 3 \n1 2 3 \n```"
+      },
+      {
+        "label": "C",
+        "text": "```\n1 \n1 2 \n1 2 3 \n```"
+      },
+      {
+        "label": "D",
+        "text": "```\n1 2 3 \n1 2 \n1 \n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "When i=1 the inner loop runs j=1,2,3 printing '1 2 3 '; when i=2 it runs j=2,3 printing '2 3 '; when i=3 it runs j=3 only printing '3 '. Option C is produced when the inner loop starts at j=1 and runs up to j=i (an increasing triangle). Option D would require the upper bound to decrease each outer iteration.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "What is the value of `count` after the following code executes?\n\n```java\nint count = 0;\nfor (int i = 1; i <= 4; i++)\n{\n    for (int j = 1; j <= i; j++)\n    {\n        count++;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "4"
+      },
+      {
+        "label": "B",
+        "text": "6"
+      },
+      {
+        "label": "C",
+        "text": "10"
+      },
+      {
+        "label": "D",
+        "text": "16"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The inner loop executes 1 time when i=1, 2 when i=2, 3 when i=3, and 4 when i=4, giving 1+2+3+4 = 10. Option D (16) treats the structure as rectangular (4 \u00d7 4). Option B (6) results from mistakenly using j < i instead of j <= i, yielding 0+1+2+3 = 6. Option A (4) counts only the outer loop iterations.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "Determine the value of `x` after the following code executes:\n\n```java\nint x = 0;\nint i = 1;\nwhile (i <= 16)\n{\n    x++;\n    i *= 2;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "4"
+      },
+      {
+        "label": "B",
+        "text": "5"
+      },
+      {
+        "label": "C",
+        "text": "6"
+      },
+      {
+        "label": "D",
+        "text": "8"
+      }
+    ],
+    "answer": "B",
+    "explanation": "i takes values 1, 2, 4, 8, 16 \u2014 each satisfies i <= 16, so the loop body executes 5 times and x = 5. Option A (4) results from mistakenly using i < 16, which exits before the i=16 iteration. Option C overcounts by one. Option D confuses the final or limit value of i with the number of loop iterations.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "What is the value of `result` after the following code executes?\n\n```java\nint result = 0;\nfor (int i = 1; i <= 5; i++)\n{\n    int j = 1;\n    while (j <= i)\n    {\n        result += j;\n        j++;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "15"
+      },
+      {
+        "label": "B",
+        "text": "25"
+      },
+      {
+        "label": "C",
+        "text": "35"
+      },
+      {
+        "label": "D",
+        "text": "45"
+      }
+    ],
+    "answer": "C",
+    "explanation": "For each i the while loop accumulates 1+2+\u2026+i into result: i=1 contributes 1, i=2 contributes 3, i=3 contributes 6, i=4 contributes 10, i=5 contributes 15, totaling 1+3+6+10+15 = 35. Option A (15) equals 1+2+3+4+5, as if result incremented by 1 per outer iteration only. Option D (45) is 1+2+\u2026+9, an incorrect triangular sum.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "Determine the output of the following code:\n\n```java\nint total = 0;\n\nfor (int i = 1; i <= 4; i++)\n{\n    for (int j = 0; j < i; j++)\n    {\n        total += i - j;\n    }\n}\n\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`16`"
+      },
+      {
+        "label": "C",
+        "text": "`20`"
+      },
+      {
+        "label": "D",
+        "text": "`30`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The inner loop adds 1, then 2 + 1, then 3 + 2 + 1, then 4 + 3 + 2 + 1, for a total of 20. The other values come from counting only iterations or using an off-by-one loop range.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_12",
+    "stem": "How many times is the statement `count++` executed in the following code?\n\n```java\nint n = 40;\nint count = 0;\n\nwhile (n > 3)\n{\n    n = n / 2;\n    count++;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The values of `n` after each iteration are 20, 10, 5, and 2, so `count++` runs 4 times before the condition becomes false. The other choices reflect stopping one iteration too early or too late.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  }
+]

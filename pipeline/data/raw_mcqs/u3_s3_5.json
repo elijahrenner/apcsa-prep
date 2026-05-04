@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Which of the following best describes an accessor method in a Java class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A method that returns the value of a private instance variable"
+      },
+      {
+        "label": "B",
+        "text": "A method that modifies the value of a private instance variable"
+      },
+      {
+        "label": "C",
+        "text": "A method that allocates memory for a new object of the class"
+      },
+      {
+        "label": "D",
+        "text": "A method that removes an object from memory when it is no longer needed"
+      }
+    ],
+    "answer": "A",
+    "explanation": "An accessor (getter) returns the value of an instance variable without changing state. B describes a mutator (setter). C describes a constructor. D is not a Java concept; garbage collection handles memory reclamation automatically.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class Point {\n    private int x;\n    private int y;\n\n    public Point(int x, int y) {\n        this.x = x;\n        this.y = y;\n    }\n\n    public String toString() {\n        return \"(\" + x + \", \" + y + \")\";\n    }\n}\n\nPoint p = new Point(3, 7);\nSystem.out.println(p);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "A runtime error because `println` cannot accept a `Point` argument"
+      },
+      {
+        "label": "B",
+        "text": "`Point@[hashcode]`"
+      },
+      {
+        "label": "C",
+        "text": "`(3, 7)`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 3, y = 7`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "When an object is passed to `println`, Java automatically calls `toString()` on it. The overridden `toString()` returns `\"(\" + x + \", \" + y + \")\"`, so the output is `(3, 7)`. B would appear only if `toString()` were not overridden, since the inherited default returns `ClassName@hashcode`. D does not match the `toString()` implementation.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Consider the following class and the code that uses it:\n\n```java\npublic class Dog {\n    private String name;\n    private int age;\n\n    public Dog(String name, int age) {\n        name = name;\n        age = age;\n    }\n\n    public String getName() { return name; }\n    public int getAge() { return age; }\n}\n\nDog d = new Dog(\"Rex\", 5);\nSystem.out.println(d.getName() + \" \" + d.getAge());\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Rex 5`"
+      },
+      {
+        "label": "B",
+        "text": "`null 0`"
+      },
+      {
+        "label": "C",
+        "text": "A compile error because the constructor parameters shadow the instance variables"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` when `getName()` is called"
+      }
+    ],
+    "answer": "B",
+    "explanation": "In the constructor, `name = name` and `age = age` assign each parameter to itself; the instance variables remain at their Java defaults (`null` for `String`, `0` for `int`). String concatenation converts `null` to the text `\"null\"`, so the output is `null 0`. Shadowing is legal Java, so no compile error occurs (C is wrong). `getName()` simply returns `null` without invoking any method on it, so no `NullPointerException` is thrown (D is wrong). The fix requires `this.name = name` and `this.age = age`.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "What value does `mystery(10)` return?\n\n```java\npublic static int mystery(int n) {\n    int result = 0;\n    for (int i = 1; i <= n; i++) {\n        result += i;\n        if (result > 10) {\n            return result;\n        }\n    }\n    return result;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`55`"
+      },
+      {
+        "label": "C",
+        "text": "`15`"
+      },
+      {
+        "label": "D",
+        "text": "`21`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Tracing the loop: after i=1 result=1, i=2 result=3, i=3 result=6, i=4 result=10 (10>10 is false), i=5 result=15 (15>10 is true) \u2014 the method returns 15. A is wrong because `>` is strict (10 is not greater than 10). B is the sum 1 through 10, reached only if no early return fires. D (21) would be the running total at i=6, but the method exits at i=5.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Determine the output of the following code:\n\n```java\npublic static void doubleIt(int x) {\n    x = x * 2;\n}\n\nint num = 8;\ndoubleIt(num);\nSystem.out.println(num);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`16`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`0`"
+      },
+      {
+        "label": "D",
+        "text": "`8`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Primitive arguments are passed by value: `doubleIt` receives a copy of `num` in the local parameter `x`. Doubling `x` inside the method has no effect on `num` in the calling code. The output is `8`. A is the trap distractor for students who treat int parameters as if they were passed by reference.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "A programmer is designing a `BankAccount` class. The `balance` field should be readable and modifiable only through getter and setter methods, never directly from outside the class. Which field declaration best follows standard Java conventions?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public double balance;`"
+      },
+      {
+        "label": "B",
+        "text": "`private double balance;`"
+      },
+      {
+        "label": "C",
+        "text": "`static double balance;`"
+      },
+      {
+        "label": "D",
+        "text": "`public final double balance;`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`private` enforces encapsulation by preventing direct external access; getter and setter methods serve as the controlled interface. A allows unrestricted access from anywhere, violating encapsulation. C (without `private`) is package-accessible and, as `static`, shared across all instances \u2014 wrong on both counts. D is `public` (breaks encapsulation) and `final` (prevents any setter from updating it).",
+    "difficulty": 1,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class Counter {\n    private static int count = 0;\n    private int id;\n\n    public Counter() {\n        count++;\n        id = count;\n    }\n\n    public int getId() { return id; }\n    public static int getCount() { return count; }\n}\n\nCounter a = new Counter();\nCounter b = new Counter();\nCounter c = new Counter();\nSystem.out.println(a.getId() + \" \" + Counter.getCount());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 3`"
+      },
+      {
+        "label": "B",
+        "text": "`3 3`"
+      },
+      {
+        "label": "C",
+        "text": "`1 1`"
+      },
+      {
+        "label": "D",
+        "text": "`0 3`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Each `new Counter()` increments the shared static field `count` and then assigns its current value to the instance field `id`. After three constructions, `count` is 3. Object `a` was created first, so `a.getId()` returns 1. `Counter.getCount()` returns the class-level total, 3. B is wrong because `a.getId()` is 1, not 3. C is wrong because `getCount()` reflects all three constructions. D is wrong because `id` is set in the constructor, not left at its default of 0.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "The following method is intended to be part of a `Game` class that declares `private int score`. The code will not compile. Which of the following best explains why?\n\n```java\npublic void setScore(int s) {\n    score = s;\n    return score;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "A `void` method cannot contain any `return` statement of any kind."
+      },
+      {
+        "label": "B",
+        "text": "The variable `score` has not been declared inside the method body."
+      },
+      {
+        "label": "C",
+        "text": "A setter method is not permitted to use `return` statements."
+      },
+      {
+        "label": "D",
+        "text": "A `void` method cannot return a value; `return score` attempts to return an `int`."
+      }
+    ],
+    "answer": "D",
+    "explanation": "`void` declares that the method returns nothing; using `return score` attempts to return an `int`, causing a type mismatch compile error. A is wrong \u2014 a `void` method may legally use a bare `return;` (no value) to exit early. B is wrong \u2014 `score` is accessible as an instance variable of the enclosing class. C is wrong \u2014 there is no language rule against `return` in setter-style methods; the issue is returning a value from a `void` method.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Determine the value printed by the following code:\n\n```java\npublic static void addValue(ArrayList<Integer> list, int val) {\n    list.add(val);\n    list = new ArrayList<Integer>();\n}\n\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(10);\naddValue(nums, 20);\nSystem.out.println(nums.size());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`1`"
+      },
+      {
+        "label": "D",
+        "text": "`3`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The parameter `list` receives a copy of the reference that `nums` holds, so both initially point to the same ArrayList. `list.add(val)` operates on that shared object, growing its size from 1 to 2. The subsequent `list = new ArrayList<>()` reassigns only the local parameter; it does not affect `nums` in the caller. Therefore `nums.size()` is 2. A is the trap for students who believe reassigning the parameter clears the original list. C is wrong because `list.add` successfully adds 20 before the reassignment.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "The following class will not compile. Which of the following best explains why?\n\n```java\npublic class Thermostat {\n    private double temperature;\n\n    public Thermostat(double t) {\n        temperature = t;\n    }\n\n    public static double getTemperature() {\n        return temperature;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The constructor parameter should be named `temperature` and the body should use `this.temperature = temperature`."
+      },
+      {
+        "label": "B",
+        "text": "The `temperature` field must be declared `public` for a static method to access it."
+      },
+      {
+        "label": "C",
+        "text": "A static method cannot access a non-static instance variable."
+      },
+      {
+        "label": "D",
+        "text": "`getTemperature` must be declared `void` because it does not take any parameters."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Static methods belong to the class, not to any instance, and have no implicit `this` reference. Referencing the instance field `temperature` inside a static method produces the compile error: `non-static variable temperature cannot be referenced from a static context`. A is wrong \u2014 no shadowing issue exists because the constructor parameter is named `t`. B is wrong \u2014 changing the field's access modifier does not fix a static-vs-instance context error. D is wrong \u2014 return type is unrelated to parameter count.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class Box {\n    private int width;\n    private int height;\n\n    public Box(int w, int h) {\n        width = w;\n        height = h;\n    }\n\n    public int area() {\n        return width * height;\n    }\n\n    public String toString() {\n        return width + \"x\" + height;\n    }\n}\n\nBox b = new Box(4, 6);\nSystem.out.println(\"Box: \" + b + \", area=\" + b.area());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Box: Box@[hashcode], area=24`"
+      },
+      {
+        "label": "B",
+        "text": "`Box: 4x6, area=10`"
+      },
+      {
+        "label": "C",
+        "text": "`Box: width=4, height=6, area=24`"
+      },
+      {
+        "label": "D",
+        "text": "`Box: 4x6, area=24`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "String concatenation with an object implicitly calls `toString()`, which returns `\"4x6\"`. `b.area()` returns `4 * 6 = 24`. The full output is `Box: 4x6, area=24`. A would result if `toString()` were not overridden. B confuses area (24) with width + height (10). C does not match the `toString()` implementation provided.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class Calc {\n    private int value;\n\n    public Calc(int v) {\n        value = v;\n    }\n\n    public static int triple(int n) {\n        return n * 3;\n    }\n\n    public int compute(int n) {\n        value += n;\n        return triple(value) - n;\n    }\n\n    public int getValue() {\n        return value;\n    }\n}\n\nCalc c = new Calc(4);\nint result = c.compute(3);\nSystem.out.println(result + \" \" + c.getValue());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`18 7`"
+      },
+      {
+        "label": "B",
+        "text": "`21 7`"
+      },
+      {
+        "label": "C",
+        "text": "`9 4`"
+      },
+      {
+        "label": "D",
+        "text": "`18 4`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "After `new Calc(4)`, `value = 4`. Calling `c.compute(3)`: `value += 3` updates the instance field to 7; `triple(7)` returns 21; the method returns `21 - 3 = 18`. `c.getValue()` returns the updated field, 7. Output: `18 7`. B forgets to subtract `n` at the end of `compute`, returning `triple(value)` = 21. C skips the `value += n` update and uses the original `value = 4`: `triple(4) - 3 = 9`, with `getValue()` reporting 4. D correctly computes `result = 18` but incorrectly assumes the instance field reverts to 4 after the method returns.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Which of the following best describes an *accessor* method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A method declared `void` that updates the value of an instance variable"
+      },
+      {
+        "label": "B",
+        "text": "A non-void method that returns the value of an instance variable without modifying it"
+      },
+      {
+        "label": "C",
+        "text": "A method that is called automatically when an object is created with `new`"
+      },
+      {
+        "label": "D",
+        "text": "A method that allocates memory and sets initial values for instance variables"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An accessor (getter) is a non-void method that reads and returns an instance variable's value without changing object state. A describes a mutator (setter). C and D both describe a constructor.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Consider the following class:\n\n```java\npublic class Counter {\n    private int count;\n\n    public Counter(int count) {\n        count = count;\n    }\n\n    public int getCount() {\n        return count;\n    }\n}\n```\n\nWhat is printed by the following code?\n\n```java\nCounter c = new Counter(5);\nSystem.out.println(c.getCount());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`0`"
+      },
+      {
+        "label": "C",
+        "text": "A compile-time error occurs because `count` is declared `private`"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown at runtime"
+      }
+    ],
+    "answer": "B",
+    "explanation": "In the constructor, `count = count` assigns the parameter `count` to itself \u2014 the instance variable `count` is never updated and retains its default value of `0`. `getCount()` returns the instance variable, so `0` is printed. Writing `this.count = count` would fix the shadowing bug.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Consider the following code segment:\n\n```java\npublic static void triple(int n) {\n    n = n * 3;\n}\n\npublic static void main(String[] args) {\n    int x = 4;\n    triple(x);\n    System.out.println(x);\n}\n```\n\nDetermine the value printed.",
+    "options": [
+      {
+        "label": "A",
+        "text": "`12`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java passes primitive arguments by value: when `triple(x)` is called, `n` receives a copy of `x`'s value. Multiplying `n` by 3 modifies only the local copy; `x` in `main` is never affected and remains `4`. A is the distractor for students who believe primitives are passed by reference.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Consider the following partial class declaration:\n\n```java\npublic class Temperature {\n    private double degrees;\n\n    public Temperature(double d) {\n        degrees = d;\n    }\n    /* missing mutator */\n}\n```\n\nWhich of the following correctly implements a public mutator that sets `degrees` to the value of its parameter?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public double getDegrees() { return degrees; }`"
+      },
+      {
+        "label": "B",
+        "text": "`public void setDegrees(double degrees) { degrees = degrees; }`"
+      },
+      {
+        "label": "C",
+        "text": "`public void setDegrees(double d) { degrees = d; }`"
+      },
+      {
+        "label": "D",
+        "text": "`private void setDegrees(double d) { degrees = d; }`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "C is the correct public void mutator: the parameter name `d` is distinct from the field `degrees`, so `degrees = d` correctly updates the instance variable. A is an accessor. B contains the shadowing bug \u2014 `degrees = degrees` assigns the parameter to itself and leaves the field unchanged. D is private, making it inaccessible to callers outside the class.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Consider the following class:\n\n```java\npublic class Point {\n    private int x;\n    private int y;\n\n    public Point(int x, int y) {\n        this.x = x;\n        this.y = y;\n    }\n\n    public int distanceSquared(Point other) {\n        int dx = this.x - other.x;\n        int dy = this.y - other.y;\n        return dx * dx + dy * dy;\n    }\n}\n```\n\nWhat is printed by the following code?\n\n```java\nPoint p1 = new Point(1, 4);\nPoint p2 = new Point(4, 8);\nSystem.out.println(p1.distanceSquared(p2));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`7`"
+      },
+      {
+        "label": "B",
+        "text": "`25`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because `other.x` and `other.y` access private fields"
+      }
+    ],
+    "answer": "B",
+    "explanation": "A method may access the private instance variables of a parameter whose declared type is the same class, so `other.x` and `other.y` are legal. `dx = 1 \u2212 4 = \u22123`, `dy = 4 \u2212 8 = \u22124`, and `(\u22123)\u00b2 + (\u22124)\u00b2 = 9 + 16 = 25`. Distractor A is |dx| + |dy| = 7. Distractor C is the Euclidean distance \u221a25 = 5, confusing distance with distanceSquared. Distractor D incorrectly applies the private-access rule across different classes.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Which of the following best describes an accessor method in a Java class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A `void` method that modifies the value of an instance variable"
+      },
+      {
+        "label": "B",
+        "text": "A non-void method that returns the value of an instance variable without modifying the object's state"
+      },
+      {
+        "label": "C",
+        "text": "A method that allocates memory for a new object and initializes its instance variables"
+      },
+      {
+        "label": "D",
+        "text": "A `private` method that exposes an instance variable to code outside the class"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An accessor (getter) is a non-void method that reads and returns an instance variable's value without altering the object's state. A describes a mutator (setter). C describes a constructor. D is doubly incorrect: accessor methods must be public so outside code can call them, and a private method cannot be invoked from outside the class at all.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Consider the following class definition:\n\n```java\npublic class Rectangle {\n    private int width;\n    private int height;\n\n    public Rectangle(int width, int height) {\n        width = width;\n        height = height;\n    }\n\n    public int getArea() {\n        return width * height;\n    }\n}\n```\n\nA client creates `new Rectangle(5, 3)` and immediately calls `getArea()`. What value is returned?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`15`"
+      },
+      {
+        "label": "B",
+        "text": "`0`"
+      },
+      {
+        "label": "C",
+        "text": "`8`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because the parameter names conflict with the instance variable names."
+      }
+    ],
+    "answer": "B",
+    "explanation": "In the constructor, `width = width` assigns the local parameter `width` back to itself \u2014 the instance variable `width` is never set and retains its default value of 0. The same bug affects `height`. Consequently `getArea()` returns `0 * 0 = 0`. The fix is `this.width = width; this.height = height;`. A (15) would be correct if the instance variables were properly initialized. C (8) is the sum 5 + 3, not the product. D is wrong: Java compiles this without error; shadowing is a silent logic bug, not a compile error.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Consider the following class and client code:\n\n```java\npublic class Book {\n    private String title;\n    private int pages;\n\n    public Book(String t, int p) {\n        title = t;\n        pages = p;\n    }\n\n    public String toString() {\n        return title + \": \" + pages + \" pages\";\n    }\n}\n```\n\n```java\nBook b = new Book(\"Dune\", 412);\nSystem.out.println(b);\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Book@` followed by a hexadecimal hash code"
+      },
+      {
+        "label": "B",
+        "text": "`Dune: 412 pages`"
+      },
+      {
+        "label": "C",
+        "text": "`title: pages pages`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because `println` cannot accept an object argument."
+      }
+    ],
+    "answer": "B",
+    "explanation": "`System.out.println` automatically invokes `toString()` when passed an object. Because `Book` overrides `toString()`, the call returns `\"Dune: 412 pages\"`. A would appear if `toString()` were not overridden, since the inherited `Object.toString()` prints the class name and a hash code. C confuses the field names (`title`, `pages`) for their stored values. D is incorrect: `PrintStream` has a `println(Object)` overload that accepts any object.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Consider the following class:\n\n```java\npublic class Roster {\n    private ArrayList<String> names;\n\n    public Roster() {\n        names = new ArrayList<String>();\n    }\n\n    public void addName(String n) { names.add(n); }\n\n    public ArrayList<String> getNames() { return names; }\n}\n```\n\nThe following client code is executed:\n\n```java\nRoster r = new Roster();\nr.addName(\"Alice\");\nr.addName(\"Bob\");\nArrayList<String> myList = r.getNames();\nmyList.add(\"Charlie\");\nSystem.out.println(r.getNames().size());\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`1`"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown at runtime."
+      }
+    ],
+    "answer": "B",
+    "explanation": "`getNames()` returns a direct reference to the private `names` field \u2014 not a defensive copy. Assigning the result to `myList` makes both variables alias the same `ArrayList`. When `myList.add(\"Charlie\")` runs, it mutates the internal list, bringing its size to 3. A (2) would be correct only if `getNames()` returned a copy such as `new ArrayList<String>(names)`, protecting the internal state from external modification. C and D cannot occur given this code.",
+    "difficulty": 4,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Consider the following class:\n\n```java\npublic class Counter {\n    private int count;\n\n    public Counter() { count = 0; }\n\n    public int increment(int amount) {\n        if (amount <= 0) {\n            return count;\n        }\n        count += amount;\n        return count;\n    }\n}\n```\n\nThe following statements execute in order:\n\n```java\nCounter c = new Counter();\nSystem.out.println(c.increment(-5));\nSystem.out.println(c.increment(3));\nSystem.out.println(c.increment(0));\n```\n\nWhat is the output?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The three lines printed are `0`, `3`, and `3`."
+      },
+      {
+        "label": "B",
+        "text": "The three lines printed are `0`, `3`, and `0`."
+      },
+      {
+        "label": "C",
+        "text": "The three lines printed are `-5`, `-2`, and `-2`."
+      },
+      {
+        "label": "D",
+        "text": "The three lines printed are `-5`, `3`, and `3`."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Call 1 (amount = -5): -5 \u2264 0 is true, so `return count` fires immediately, yielding 0; `count` remains 0. Call 2 (amount = 3): 3 \u2264 0 is false, so `count += 3` \u2192 `count = 3`, return 3. Call 3 (amount = 0): 0 \u2264 0 is true, so `return count` yields the current value 3. B is wrong because the third early return yields the current `count` (3), not 0. C results from ignoring the `if` guard entirely, letting `count` accumulate all amounts: 0 + (-5) = -5, -5 + 3 = -2, -2 + 0 = -2. D results from misreading `return count` in the early-exit branch as returning `amount` (-5) instead of the field `count` (0).",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Consider the following class:\n\n```java\npublic class Circle {\n    private double radius;\n\n    public Circle(double radius) {\n        this.radius = radius;\n    }\n\n    public void scale(double radius) {\n        radius = radius * 2;\n    }\n\n    public double getRadius() {\n        return radius;\n    }\n}\n```\n\nThe following client code is executed:\n\n```java\nCircle c = new Circle(5.0);\nc.scale(3.0);\nSystem.out.println(c.getRadius());\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5.0`"
+      },
+      {
+        "label": "B",
+        "text": "`10.0`"
+      },
+      {
+        "label": "C",
+        "text": "`6.0`"
+      },
+      {
+        "label": "D",
+        "text": "`3.0`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In `scale`, the parameter named `radius` shadows the instance variable `radius`. The statement `radius = radius * 2` doubles the local parameter (3.0 \u2192 6.0) but never touches `this.radius`, which remains 5.0. `getRadius()` therefore returns 5.0. B (10.0) would result from `this.radius = this.radius * 2` (doubling the field using its own current value). C (6.0) would result from `this.radius = radius * 2` (setting the field to twice the argument). D (3.0) would result from `this.radius = radius` (assigning the parameter directly to the field).",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "Consider the following class and code segment.\n\n```java\npublic class Counter\n{\n    private int count;\n\n    public Counter(int start)\n    {\n        count = start;\n    }\n\n    public void add(int n)\n    {\n        count += n;\n        if (count > 10)\n        {\n            count = 10;\n            return;\n        }\n        count++;\n    }\n\n    public int getCount()\n    {\n        return count;\n    }\n}\n\nCounter c = new Counter(8);\nc.add(1);\nc.add(5);\nSystem.out.println(c.getCount());\n```\n\nWhat is printed as a result of executing the code segment?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`11`"
+      },
+      {
+        "label": "C",
+        "text": "`15`"
+      },
+      {
+        "label": "D",
+        "text": "`16`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "After `c.add(1)`, `count` becomes 10. During `c.add(5)`, `count` becomes 15, is reset to 10, and the `return` prevents the final increment.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_5",
+    "stem": "A `QuizTracker` object has private instance variables `totalPoints` and `numQuizzes`. Which pair of methods correctly adds one quiz score and returns the average score?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\npublic void addQuiz(int score)\n{\n    totalPoints += score;\n    numQuizzes++;\n}\n\npublic double getAverage()\n{\n    return (double) totalPoints / numQuizzes;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\npublic int addQuiz(int score)\n{\n    totalPoints += score;\n    numQuizzes++;\n}\n\npublic double getAverage()\n{\n    return totalPoints / numQuizzes;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\npublic void addQuiz(int score)\n{\n    totalPoints = score;\n    numQuizzes++;\n}\n\npublic double getAverage()\n{\n    return (double) totalPoints / numQuizzes;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\npublic void addQuiz(int score)\n{\n    totalPoints += score;\n    numQuizzes++;\n}\n\npublic double getAverage()\n{\n    System.out.println(totalPoints / numQuizzes);\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`addQuiz` should be a void mutator that accumulates the score, and `getAverage` should return a double value using a cast before division. The other choices either have an invalid non-void method, overwrite instead of accumulate, use integer division, or print instead of returning.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  }
+]

@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Which of the following correctly creates a 2D `int` array with 3 rows and 5 columns?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`int[3][5] grid;`"
+      },
+      {
+        "label": "B",
+        "text": "`int[][] grid = new int[3][5];`"
+      },
+      {
+        "label": "C",
+        "text": "`int[][] grid = new int[5][3];`"
+      },
+      {
+        "label": "D",
+        "text": "`int[] grid = new int[3][5];`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`int[][] grid = new int[3][5];` is correct: `int[][]` declares a 2D array reference and `new int[3][5]` allocates 3 rows each of length 5. Option A is a compile error because array sizes cannot appear inside the type brackets of a declaration. Option C swaps the dimensions, producing 5 rows and 3 columns. Option D uses the 1D type `int[]`, which is incompatible with a 2D array allocation.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "For the declaration `int[][] table = new int[6][4];`, what is the value of `table.length`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`6`"
+      },
+      {
+        "label": "C",
+        "text": "`24`"
+      },
+      {
+        "label": "D",
+        "text": "Accessing `table.length` throws a `NullPointerException`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "For a 2D array, `arr.length` gives the number of rows. Because `new int[6][4]` allocates 6 rows, `table.length` is 6. `table[0].length` would give the number of columns (4). Option C is the total number of elements (6 \u00d7 4). Option D is wrong because `table` is not null after the allocation.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint[][] grid = { {1, 2, 3},\n                 {4, 5, 6},\n                 {7, 8, 9} };\nint sum = 0;\nfor (int r = 0; r < grid.length; r++) {\n    sum += grid[r][r];\n}\nSystem.out.println(sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`9`"
+      },
+      {
+        "label": "B",
+        "text": "`12`"
+      },
+      {
+        "label": "C",
+        "text": "`15`"
+      },
+      {
+        "label": "D",
+        "text": "`45`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop accesses the main diagonal using the same index for both row and column: `grid[0][0]` = 1, `grid[1][1]` = 5, `grid[2][2]` = 9, so sum = 15. Option A is just the last diagonal element. Option B is the column-0 sum (1 + 4 + 7 = 12), which a student might get by mentally using `grid[r][0]` instead of `grid[r][r]`. Option D is the sum of all nine elements.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint[][] arr = { {1, 2, 3},\n                {4, 5, 6} };\nSystem.out.println(arr[1][2]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`arr[1][2]` accesses row 1 (`{4, 5, 6}`) at column index 2, which is 6. Option A is `arr[0][2]` (row 0 instead of row 1). Option B is `arr[1][0]` (column 0 instead of column 2). Option C is `arr[1][1]` (off by one on the column index).",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "A student writes the following code to find the maximum value in a 2D array, but it does not examine all elements. Which change would fix the bug?\n\n```java\nint[][] data = { {3, 7, 2}, {9, 1, 5} };\nint max = data[0][0];\nfor (int r = 0; r < data.length; r++) {\n    for (int c = 0; c < data.length; c++) {\n        if (data[r][c] > max) {\n            max = data[r][c];\n        }\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Change `int max = data[0][0];` to `int max = 0;`"
+      },
+      {
+        "label": "B",
+        "text": "Change `c < data.length` to `c < data[0].length` in the inner loop header"
+      },
+      {
+        "label": "C",
+        "text": "Change `data[r][c] > max` to `data[r][c] >= max`"
+      },
+      {
+        "label": "D",
+        "text": "Change `max = data[r][c];` to `max += data[r][c];`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The inner loop uses `data.length` (number of rows = 2) as the column bound instead of `data[0].length` (number of columns = 3). This causes column index 2 to be skipped, so `data[0][2]` = 2 and `data[1][2]` = 5 are never examined. Option A would incorrectly initialize `max` to 0, causing bugs with all-negative arrays. Option C changes semantics but does not fix the traversal. Option D accumulates a sum instead of tracking a maximum.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint[][] grid = { {1, 2}, {3, 4}, {5, 6} };\nfor (int r = 0; r < grid.length; r++) {\n    for (int c = 0; c < grid[0].length; c++) {\n        System.out.print(grid[r][c] + \" \");\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 2 3 4 5 6 `"
+      },
+      {
+        "label": "B",
+        "text": "`1 3 5 2 4 6 `"
+      },
+      {
+        "label": "C",
+        "text": "`2 4 6 1 3 5 `"
+      },
+      {
+        "label": "D",
+        "text": "`6 5 4 3 2 1 `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The outer loop iterates rows 0\u20132 and the inner loop iterates columns 0\u20131, producing row-major order: row 0 yields `1 2 `, row 1 yields `3 4 `, row 2 yields `5 6 `. Option B is column-major output (column 0 first, then column 1). Option C prints column 1 then column 0. Option D reverses all elements.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint[][] grid = { {1, 2, 3}, {4, 5, 6} };\nfor (int c = 0; c < grid[0].length; c++) {\n    for (int r = 0; r < grid.length; r++) {\n        System.out.print(grid[r][c] + \" \");\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 2 3 4 5 6 `"
+      },
+      {
+        "label": "B",
+        "text": "`1 4 2 5 3 6 `"
+      },
+      {
+        "label": "C",
+        "text": "`4 5 6 1 2 3 `"
+      },
+      {
+        "label": "D",
+        "text": "`4 1 5 2 6 3 `"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The outer loop iterates columns 0\u20132 and the inner loop iterates rows 0\u20131, producing column-major order: column 0 yields `1 4 `, column 1 yields `2 5 `, column 2 yields `3 6 `, for a total of `1 4 2 5 3 6 `. Option A is the row-major output, the most common confusion when the loop variables are swapped. Option C prints row 1 followed by row 0. Option D gives column-major output but with rows in reverse order.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "After the statement `boolean[][] flags = new boolean[3][4];` executes, what is the value of `flags[1][2]`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true`"
+      },
+      {
+        "label": "B",
+        "text": "`false`"
+      },
+      {
+        "label": "C",
+        "text": "`null`"
+      },
+      {
+        "label": "D",
+        "text": "`0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java initializes every element of a newly allocated `boolean` array to `false`. Option A is wrong because `false`, not `true`, is the default. Option C (`null`) is the default only for reference types such as `String` or object arrays. Option D (`0`) is the default for numeric primitive types like `int` or `double`.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Given the declaration `String[][] matrix = new String[5][7];`, which expression correctly gives the number of columns?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`matrix.length`"
+      },
+      {
+        "label": "B",
+        "text": "`matrix[0].length`"
+      },
+      {
+        "label": "C",
+        "text": "`matrix.length()`"
+      },
+      {
+        "label": "D",
+        "text": "`matrix[0].size()`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`matrix.length` gives the number of rows (5); `matrix[0]` is the first row, a `String[]` of length 7, so `matrix[0].length` gives the number of columns. Option C incorrectly uses parentheses \u2014 array `length` is a field, not a method (unlike `String.length()`). Option D incorrectly applies `.size()`, which belongs to `ArrayList`, not arrays.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Determine the value of `result` after the following code runs:\n\n```java\nint[][] arr = { {10, 20, 30},\n                {40, 50, 60} };\nint result = arr[0][2] + arr[1][0];\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`50`"
+      },
+      {
+        "label": "B",
+        "text": "`60`"
+      },
+      {
+        "label": "C",
+        "text": "`70`"
+      },
+      {
+        "label": "D",
+        "text": "`90`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`arr[0][2]` is row 0, column 2 = 30; `arr[1][0]` is row 1, column 0 = 40; their sum is 70. Option A results from adding `arr[0][0]` + `arr[1][0]` = 10 + 40. Option B results from adding `arr[0][1]` + `arr[1][0]` = 20 + 40. Option D results from adding `arr[0][2]` + `arr[1][2]` = 30 + 60 (wrong column for the second term).",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "What happens when the following code runs?\n\n```java\nint[][] arr = new int[3][4];\nfor (int r = 0; r <= arr.length; r++) {\n    for (int c = 0; c < arr[0].length; c++) {\n        arr[r][c] = r * c;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The code runs without error and fills `arr` with the products `r * c`."
+      },
+      {
+        "label": "B",
+        "text": "An `ArrayIndexOutOfBoundsException` is thrown because `r <= arr.length` allows `r` to reach `arr.length`."
+      },
+      {
+        "label": "C",
+        "text": "An `ArrayIndexOutOfBoundsException` is thrown because `c < arr[0].length` is the wrong column bound."
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs because `arr.length` cannot appear in a loop condition."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Valid row indices are 0 through `arr.length - 1` (i.e., 0, 1, 2). The condition `r <= arr.length` allows `r` to reach 3, so `arr[3][c]` throws `ArrayIndexOutOfBoundsException`. The condition must be `r < arr.length`. Option C is incorrect because `c < arr[0].length` is the correct column bound. Option D is incorrect because `arr.length` is a valid expression anywhere.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint[][] scores = { {85, 90, 78},\n                   {92, 88, 95},\n                   {70, 75, 80} };\nint total = 0;\nfor (int c = 0; c < scores[0].length; c++) {\n    total += scores[1][c];\n}\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`225`"
+      },
+      {
+        "label": "B",
+        "text": "`247`"
+      },
+      {
+        "label": "C",
+        "text": "`253`"
+      },
+      {
+        "label": "D",
+        "text": "`275`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The loop iterates over each column index (0, 1, 2) and accumulates `scores[1][c]`, traversing row 1: 92 + 88 + 95 = 275. Option A (225) is the sum of row 2 (70 + 75 + 80). Option B (247) is the sum of column 0 across all rows (85 + 92 + 70), which a student might get by confusing the fixed row index with a fixed column index. Option C (253) is the sum of row 0 (85 + 90 + 78).",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Consider the following method:\n\n```java\npublic static int[] rowSums(int[][] arr) {\n    int[] sums = new int[arr.length];\n    for (int r = 0; r < arr.length; r++) {\n        for (int c = 0; c < arr[0].length; c++) {\n            sums[r] += arr[r][c];\n        }\n    }\n    return sums;\n}\n```\n\nWhat does `rowSums(new int[][]{ {2, 3}, {4, 5}, {6, 7} })` return?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`{2, 4, 6}`"
+      },
+      {
+        "label": "B",
+        "text": "`{3, 5, 7}`"
+      },
+      {
+        "label": "C",
+        "text": "`{5, 9, 13}`"
+      },
+      {
+        "label": "D",
+        "text": "`{9, 9, 9}`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "For each row r, the inner loop accumulates all column values: `sums[0]` = 2 + 3 = 5, `sums[1]` = 4 + 5 = 9, `sums[2]` = 6 + 7 = 13. Option A contains the column-0 values only, as if the inner loop ran a single iteration with c = 0. Option B contains the column-1 values only. Option D cannot be produced by this logic.",
+    "difficulty": 4,
+    "stem_pattern": "2d_array_trace"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint[][] nums = { {1, 2, 3}, {4, 5, 6} };\nfor (int[] row : nums) {\n    System.out.print(row[0] + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 2 3 4 5 6 `"
+      },
+      {
+        "label": "B",
+        "text": "`1 4 `"
+      },
+      {
+        "label": "C",
+        "text": "`3 6 `"
+      },
+      {
+        "label": "D",
+        "text": "`1 2 3 `"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The enhanced for loop binds `row` to each inner `int[]` in turn. `row[0]` selects the first element of each row: 1 from `{1, 2, 3}` then 4 from `{4, 5, 6}`, printing `1 4 `. Option A would result if both rows were printed in full. Option C results from using `row[2]` (last element). Option D results from printing only the first row entirely.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "For a 2D array declared as `int[][] matrix = new int[3][4];`, what is the type of the expression `matrix[0]`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`int`"
+      },
+      {
+        "label": "B",
+        "text": "`int[]`"
+      },
+      {
+        "label": "C",
+        "text": "`int[][]`"
+      },
+      {
+        "label": "D",
+        "text": "`Object`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "A 2D array is an array of arrays. `matrix` has type `int[][]`, so indexing it once with `matrix[0]` yields a single element of that array \u2014 one row \u2014 whose type is `int[]` (a 1D int array of length 4). Option A is the type of `matrix[0][k]` for some column index k. Option C is the type of `matrix` itself, before any indexing. Option D is not the correct static type.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint[][] t = { {1, 2, 3},\n              {4, 5, 6},\n              {7, 8, 9} };\nint count = 0;\nfor (int r = 0; r < t.length; r++) {\n    for (int c = 0; c < t[0].length; c++) {\n        if (t[r][c] % 2 == 0) {\n            count++;\n        }\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`9`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The nested loops visit all 9 elements {1\u20139}. Those satisfying `% 2 == 0` are 2, 4, 6, and 8 \u2014 four elements \u2014 so `count` = 4. Option A might result from miscounting, examining only one row. Option C is the count of odd elements (1, 3, 5, 7, 9). Option D is the total number of elements in the array.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint[][] m = { {0, 0, 0},\n              {0, 0, 0} };\nfor (int r = 0; r < m.length; r++) {\n    for (int c = 0; c < m[0].length; c++) {\n        m[r][c] = r + c;\n    }\n}\nSystem.out.println(m[0][2] + m[1][1]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`5`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "After the nested loops, each cell holds `r + c`. So `m[0][2]` = 0 + 2 = 2 and `m[1][1]` = 1 + 1 = 2, giving 2 + 2 = 4. Option A (2) results from assuming `m[1][1]` is still 0 (its initial value before the loops ran). Option B (3) results from reading `m[1][0]` = 1 instead of `m[1][1]` = 2 for the second term. Option D (5) results from using `m[1][2]` = 3 instead of `m[1][1]` = 2 for the second term.",
+    "difficulty": 5,
+    "stem_pattern": "2d_array_trace"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Which of the following correctly declares and creates a 2D array of `double` values with 4 rows and 7 columns, with all elements initialized to `0.0`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`double[][] grid = new double[7][4];`"
+      },
+      {
+        "label": "B",
+        "text": "`double[4][7] grid;`"
+      },
+      {
+        "label": "C",
+        "text": "`double[][] grid = new double[4][7];`"
+      },
+      {
+        "label": "D",
+        "text": "`double[][] grid = new double[4, 7];`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The correct syntax is `type[][] name = new type[rows][cols]`, so `new double[4][7]` creates 4 rows of 7 columns each, all defaulting to 0.0. Option A swaps the row and column counts, producing 7 rows of 4 columns. Option B places the dimension literals inside the type brackets, which is not valid Java. Option D uses a comma inside the brackets, which is also invalid Java syntax.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Determine the value printed by the following code segment:\n\n```java\nint[][] grid = new int[2][3];\nint count = 1;\nfor (int r = 0; r < 2; r++) {\n    for (int c = 0; c < 3; c++) {\n        grid[r][c] = count;\n        count++;\n    }\n}\nSystem.out.println(grid[1][2]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`6`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`7`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The nested loops fill `grid` in row-major order: row 0 receives 1, 2, 3 and row 1 receives 4, 5, 6. Therefore `grid[1][2]` = 6. Option A (3) results from confusing `grid[0][2]`, as if the row and column indices were swapped. Option C (5) is an off-by-one error \u2014 it is the value stored at `grid[1][1]`. Option D (7) is the value of `count` after the loop finishes, not the value stored in the array.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Consider the following method intended to print every element in a specified column of a 2D array:\n\n```java\npublic static void printCol(int[][] arr, int col) {\n    for (int r = 0; r <= arr.length; r++) {\n        System.out.println(arr[r][col]);\n    }\n}\n```\n\nWhich of the following best describes the error in this method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The variable `col` is used where `r` should appear as the second index inside the loop body."
+      },
+      {
+        "label": "B",
+        "text": "The loop condition `r <= arr.length` will cause an `ArrayIndexOutOfBoundsException` at runtime."
+      },
+      {
+        "label": "C",
+        "text": "The method should declare a non-`void` return type to return the column values."
+      },
+      {
+        "label": "D",
+        "text": "`arr[0].length` should be used in the loop condition instead of `arr.length`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Valid row indices are `0` through `arr.length - 1`. Using `r <= arr.length` lets `r` reach `arr.length`, so the access `arr[arr.length][col]` throws `ArrayIndexOutOfBoundsException`. Option A is wrong: `col` is correctly used as the column index and `r` as the row index. Option C is wrong: printing values via `void` is entirely valid. Option D is wrong: `arr.length` correctly gives the number of rows for a row-traversal loop; `arr[0].length` would give the number of columns, which is irrelevant here.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Determine the value printed by the following code segment:\n\n```java\nint[][] table = {{2, 8, 14},\n                 {10, 6, 20}};\nfor (int c = 0; c < table[0].length; c++) {\n    table[0][c] = table[1][c] - table[0][c];\n}\nSystem.out.println(table[0][1]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`6`"
+      },
+      {
+        "label": "C",
+        "text": "`-2`"
+      },
+      {
+        "label": "D",
+        "text": "`8`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop modifies `table[0]` one column at a time using the current values of both rows. When `c = 1`: `table[0][1] = table[1][1] - table[0][1] = 6 - 8 = -2`. Option A (2) is the original value of `table[0][0]`, not the element being printed. Option B (6) is `table[1][1]`, the value subtracted from \u2014 not the result. Option D (8) is the original value of `table[0][1]` before the loop body executes for that column; students who forget the element is overwritten will choose this.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Consider the following method:\n\n```java\npublic static int mystery(int[][] arr) {\n    int result = 0;\n    for (int r = 0; r < arr.length; r++) {\n        int rowSum = 0;\n        for (int c = 0; c < arr[0].length; c++) {\n            rowSum += arr[r][c];\n        }\n        if (rowSum > result) {\n            result = rowSum;\n        }\n    }\n    return result;\n}\n```\n\nWhat value is returned by `mystery(g)` when `g` is initialized as:\n\n```java\nint[][] g = {{3, 7, 2},\n             {8, 1, 5}};\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`14`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`12`"
+      },
+      {
+        "label": "D",
+        "text": "`26`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The method computes each row's sum and tracks the maximum. Row 0 sum = 3+7+2 = 12; row 1 sum = 8+1+5 = 14. `result` starts at 0, updates to 12 after row 0, then updates to 14 after row 1, and is returned. Option B (8) is only the largest single element, not any row sum. Option C (12) is the sum of row 0 alone \u2014 the result if a student incorrectly exits after the first row. Option D (26) is the sum of all elements in the entire array.",
+    "difficulty": 4,
+    "stem_pattern": "2d_array_trace"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "What is printed when the following code segment executes?\n\n```java\nint[][] nums = {{1, 2, 3}, {4, 5, 6}};\nfor (int[] row : nums) {\n    row[0] = 99;\n}\nSystem.out.println(nums[1][0]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "An `ArrayIndexOutOfBoundsException` is thrown"
+      },
+      {
+        "label": "D",
+        "text": "`99`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "When iterating a 2D array with an enhanced for loop, each `row` variable holds a **reference** to the actual inner array \u2014 not a copy of it. Assigning `row[0] = 99` therefore modifies the original 2D array in place. After both iterations, `nums[0][0]` and `nums[1][0]` are both 99, so `nums[1][0]` prints 99. Option B (4) is the original value; students who incorrectly believe the enhanced-for loop supplies only a copy (as it does for primitives like `int`) will choose this. No out-of-bounds exception occurs because `row[0]` is a valid index for every row.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint[][] grid = { {2, 4, 6},\n                 {1, 3, 5},\n                 {7, 8, 9} };\nint total = 0;\n\nfor (int r = 0; r < grid.length; r++)\n{\n    for (int c = 0; c < grid[0].length; c++)\n    {\n        if ((r + c) % 2 == 0)\n        {\n            total += grid[r][c];\n        }\n        else\n        {\n            total -= grid[r][c];\n        }\n    }\n}\n\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`9`"
+      },
+      {
+        "label": "B",
+        "text": "`45`"
+      },
+      {
+        "label": "C",
+        "text": "`-9`"
+      },
+      {
+        "label": "D",
+        "text": "`5`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The cells where `r + c` is even are added and the others are subtracted, giving `2 - 4 + 6 - 1 + 3 - 5 + 7 - 8 + 9 = 9`. The other choices come from adding all values, reversing the signs, or missing one subtraction.",
+    "difficulty": 3,
+    "stem_pattern": "2d_array_trace"
+  },
+  {
+    "topic_id": "u4_s4_11",
+    "stem": "Which of the following correctly declares and creates a 2D `int` array named `scores` with 4 rows and 6 columns?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`int[][] scores = new int[4][6];`"
+      },
+      {
+        "label": "B",
+        "text": "`int[][] scores = new int[6][4];`"
+      },
+      {
+        "label": "C",
+        "text": "`int[][] scores = new int[4, 6];`"
+      },
+      {
+        "label": "D",
+        "text": "`int[] scores = new int[4][6];`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In a 2D array creation expression, the first bracket gives the number of rows and the second gives the number of columns. Choice B swaps them, while choices C and D use invalid 2D array syntax or type.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  }
+]

@@ -1,0 +1,1047 @@
+[
+  {
+    "chapter": "Chapter 3",
+    "topic_tags": [
+      "primitive types",
+      "chapter 3"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\n1 int a = 10;\n2 double b = 10.7;\n3 double c = a + b;\n4 int d = a + c;\n5 System.out.println(c + \" \" + d);\n```\n\nWhat will be the output as a result of executing the code segment?",
+    "options": [
+      "`20.0 30`",
+      "`20.7 31`",
+      "`20.7 30.7`",
+      "Nothing will be printed because of a compile-time error."
+    ],
+    "answer": "D",
+    "explanation": "Start by examining line 3 in the code segment: `double c = a + b`. Note that `a` is an integer variable and `b` is a double variable. When a double variable is added to an integer variable, the integer is automatically cast to a double before the addition takes place. Therefore, `a + b` will be 20.7; this value will be assigned to `c`.\n\nNow look at line 4: `int d = a + c`. Because `c` is a double, `a` will once again be cast to a double and `a + c` will be 30.7. This value, which is a double, is then assigned to an integer variable. Because there is a loss of precision when a double value is assigned to an integer variable, the compiler will alert you. The correct answer is (D).",
+    "difficulty": 3,
+    "source_qid": "c003-q1",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 3",
+    "topic_tags": [
+      "primitive types",
+      "chapter 3"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\n1 int a = 10;\n2 double b = 10.7;\n3 int d = a + b;\n```\n\nLine 3 will not compile in the code segment above. With which of the following statements could we replace this line so that it compiles?\n\n```java\nint d = (int) a + b;\nint d = (int) a + b;\nint d = (int) (a + b);\nint d = (int) (a + b);\nint d = a + (int) b;\nint d = a + (int) b;\n```",
+    "options": [
+      "II only",
+      "III only",
+      "I and III only",
+      "II and III only"
+    ],
+    "answer": "D",
+    "explanation": "The key to this question is remembering that the cast operator `(int)` has precedence over the addition operator. First take a look at I. In that case, `a` will first be cast to an int (which has no effect because it is already an int) and then it will be added to `b`, which is still a double: the result of the addition will be a double, so you haven’t fixed the problem. You can therefore eliminate (C).\n\nIn II, `a + b` is enclosed in parentheses, so the addition will take place first. Adding `a` and `b` results in a double (20.7). This double is then cast to an int (20) and assigned to `d`. This is a legal assignment, so keep (A) and (D) and eliminate (B).\n\nNow, look at III. Here, the double `b` (10.7) is first cast to an int (10). This int is added to `a`, which is also an int. When two ints are added, the result is also an int, so this expression is also valid. The correct answer is (D).",
+    "difficulty": 3,
+    "source_qid": "c003-q2",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 3",
+    "topic_tags": [
+      "primitive types",
+      "chapter 3"
+    ],
+    "stem": "Consider the following code segment.\n\n```java\n1 int a = 11;\n2 int b = 4;\n3 double x = 11;\n4 double y = 4;\n5 System.out.print(a / b);\n6 System.out.print(\", \");\n7 System.out.print(x / y);\n8 System.out.print(\", \");\n9 System.out.print(a / y);\n```\n\nWhat is printed as a result of executing the code segment?",
+    "options": [
+      "`3, 2.75, 2.75`",
+      "`2, 3, 2`",
+      "`2, 2.75, 2.75`",
+      "Nothing will be printed because of a compile-time error."
+    ],
+    "answer": "C",
+    "explanation": "In line 5 of the code segment, divide `a` by `b`. Because both of the operands are integers, the result will be truncated to an int: 11 divided by 4 is 2.75, which is then truncated to 2. Now you know that the first number printed will be 2 (assuming you don’t run into a compilation error later in the code), so get rid of (A).\n\nIn line 7, once again divide 11 by 4. This time, however, the variables that hold these values are doubles. Therefore, the result of dividing 11 by 4 will also be a double: 2.75. Get rid of (B).\n\nIn line 9, yet again divide 11 by 4. The variable that holds 11 is an integer, while the variable that holds 4 is a double. With arithmetic operators, if one of the operands is a double and the other an integer, the integer is automatically cast to a double and the result of the operation is a double. Therefore, you get 2.75 again. The correct answer is (C).",
+    "difficulty": 3,
+    "source_qid": "c003-q3",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 3",
+    "topic_tags": [
+      "primitive types",
+      "chapter 3"
+    ],
+    "stem": "Consider the following statement:\n\n`int i = x % 50;`\n\nIf `x` is a positive integer, which of the following could NOT be the value of `i` after the statement above executes?",
+    "options": [
+      "`0`",
+      "`10`",
+      "`25`",
+      "`50`"
+    ],
+    "answer": "D",
+    "explanation": "In this question, you need to find the answer choice that doesn’t work. If the answer to this question is not obvious to you, the best approach is to try each answer choice and see whether it could be the value of `i`. If it can, then get rid of it.\n\nStart with (A). Could `i` be equal to 0? Because `x % 50` gives the remainder when `x` is divided by 50, for `i` to equal 0, `x` would have to be evenly divisible by 50. There are plenty of integers that would work for `x` (50, 100, 150…). In fact, any multiple of 50 would work.\n\nHow about (B)? Is there a positive integer we can pick for `x` that leaves a remainder of 10 when divided by 50? Well, because 50 is evenly divisible by 50, 50 + 10, or 60, would leave a remainder of 10 when divided by 50. Other numbers that would work include 110 and 160. In fact, if you add 10 to any positive multiple of 50, you will get a number that leaves a remainder of 10 when divided by 50.\n\nFollowing the same logic, find a number that would leave a remainder of 25 when divided by 50. For example, 75 would work. Therefore, get rid of (C).\n\nThe only choice left is (D). So why is it that you can’t get a remainder of 50 if you divide a positive integer by 50? Consider what happens if you divide 98 by 50. You get a remainder of 48. What if you divide 99 by 50? Now the remainder is 49. It seems if you increase 99 to 100, the remainder will increase to 50! But wait - 100 divided by 50 actually leaves a remainder of 0.\n\nThe upshot of this example is that the value returned by the modulus operator will always be less than the operand to the right of the modulus operator. The correct answer is (D).",
+    "difficulty": 3,
+    "source_qid": "c003-q4",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 4",
+    "topic_tags": [
+      "using classes and",
+      "chapter 4"
+    ],
+    "stem": "Given the following code, which of the following would cause a run-time error?\n\n`String s1 = \"pizza\";`",
+    "options": [
+      "`String s2 = s1.substring(0, 2);`",
+      "`String s2 = s1.substring(1, 3);`",
+      "`String s2 = s1.substring(3, 3);`",
+      "`String s2 = s1.substring(4, 6);`"
+    ],
+    "answer": "D",
+    "explanation": "Choices (A) and (B) all have valid indices within `s1`. Choice (C) has valid indices; it will simply produce an empty string. Choice (D) will attempt to go out of bounds of the `String` because the last valid index is 4. The last possible index for the ending argument is 5 (substring would go up to that index, but not include the letter at that index).",
+    "difficulty": 3,
+    "source_qid": "c004-q1",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 4",
+    "topic_tags": [
+      "using classes and",
+      "chapter 4"
+    ],
+    "stem": "Given the following code, what is the final value stored in `s3`?\n\n```java\nString s1 = \"kangaroo\";\nString s3 = s1.substring(1, 2);\n```",
+    "options": [
+      "`\"k\"`",
+      "`\"ka\"`",
+      "`\"a\"`",
+      "`\"an\"`"
+    ],
+    "answer": "C",
+    "explanation": "Indices of characters within a string start at 0; thus the “`a`” is located at index 1. The second argument in the substring command is the ending index. The substring will go up to, but not include, this index. In this case, the substring will have a length of 1.",
+    "difficulty": 3,
+    "source_qid": "c004-q2",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 4",
+    "topic_tags": [
+      "using classes and",
+      "chapter 4"
+    ],
+    "stem": "Given the following code, what is the final value stored in `s4`?\n\n```java\nString s1 = \"tango\";\nString s4 = s1.substring(s1.length() - 2);\n```",
+    "options": [
+      "`\"g\"`",
+      "`\"go\"`",
+      "`\"o\"`",
+      "A compiler error will occur."
+    ],
+    "answer": "B",
+    "explanation": "The command `s1.length()` returns `5`, so `String s4 = s1.substring(s1.length() - 2)` will store the characters from `s1`, starting at index 3, to the end of the string. So (B) is the correct answer.",
+    "difficulty": 3,
+    "source_qid": "c004-q3",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 4",
+    "topic_tags": [
+      "using classes and",
+      "chapter 4"
+    ],
+    "stem": "Given that “J” comes before “j” in the dictionary and the following variables have been defined and initialized, which is true?\n\n```java\nString str1 = \"january\";\nString str2 = \"June\";\nString str3 = \"July\";\n```",
+    "options": [
+      "`str1.compareTo(str3) < 0`",
+      "`str3.compareTo(str2) > 0`",
+      "`str1.compareTo(str2) < 0`",
+      "`str1.compareTo(str2) > 0`"
+    ],
+    "answer": "D",
+    "explanation": "Using the return values of the `compareTo` method regarding lexicographical order:\n\n(A) `\"january\"` precedes `\"July\"` (incorrect, uppercase comes first)\n\n(B) `\"July\"` follows `\"June\"` (incorrect, “July” comes first)\n\n(C) `\"january\"` precedes `\"June\"` (incorrect, uppercase comes first)\n\n(D) `\"january\"` follows `\"June\"` (correct)",
+    "difficulty": 3,
+    "source_qid": "c004-q4",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 4",
+    "topic_tags": [
+      "using classes and",
+      "chapter 4"
+    ],
+    "stem": "Given the following code, what is the final value stored in `p`?\n\n```java\n1 String word = \"boottool\";\n2 int p = word.indexOf(\"oo\");\n3 word.substring(p + 2);\n4 p = word.indexOf(\"oo\");\n```",
+    "options": [
+      "`0`",
+      "`1`",
+      "`2`",
+      "`5`"
+    ],
+    "answer": "B",
+    "explanation": "Line 2 finds the string `\"oo\"` at index 1, storing the 1 in variable p. Line 3 is a valid substring command, but it does not store the substring. Line 4 simply repeats what was done at line 2, finding the string `\"``oo\"` at index 1 once again.",
+    "difficulty": 3,
+    "source_qid": "c004-q5",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 5",
+    "topic_tags": [
+      "boolean expression",
+      "chapter 5"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nfor (int i = 200; i > 0; i /= 3)\n{\nif (i % 2 == 0)\nSystem.out.print(i + \" \");\n}\n```\n\nWhat is the output as a result of executing the code segment?",
+    "options": [
+      "`200 66 22 7 2`",
+      "`66 22 7 2`",
+      "`200 66 22 2`",
+      "`7`"
+    ],
+    "answer": "C",
+    "explanation": "You may have seen a problem like this one before. Be careful not to make assumptions; instead, note that `i` starts at 200 and is divided by 3 after each pass through the `for` loop. Note that `i /= 3` is equivalent to `i = i / 3`, and integer division truncates the results. As you iterate through the loop, the values of `i` will be: 200, 66, 22, 7, 2.\n\nIn the body of the loop, `i` is printed if `i % 2` equals 0. `i % 2` gives the remainder when `i` is divided by 2; `i` will give a remainder of 0 when divided by 2 whenever `i` is even. Therefore, 200, 66, 22, and 2 will be printed; 7 will not be printed. The correct answer is (C).",
+    "difficulty": 3,
+    "source_qid": "c005-q1",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 5",
+    "topic_tags": [
+      "boolean expression",
+      "chapter 5"
+    ],
+    "stem": "Suppose `p` and `q` are declared as boolean variables and have been initialized to unknown truth values.\n\nWhat does the following boolean expression evaluate to?\n\n`(p && !q) || (p && q)`",
+    "options": [
+      "The expression always evaluates to the same value as `p`.",
+      "The expression always evaluates to the same value as `q`.",
+      "The expression always evaluates to `false`.",
+      "The expression evaluates to `true` only if `p` and `q` have opposite truth values."
+    ],
+    "answer": "A",
+    "explanation": "Upon examination of both sides of the compound condition, `p` is combined with `!q` or `q`. If `q` is `false`, the left side (`p && !q`) has a chance of being true if `p` is also true. If `q` is true, the left side (`p && q`) has a chance of being true if `p` is also true. Thus, if `p` is true, we know for sure that either the left side OR the right side will be true. If `p` is false, both sides would be false. Thus, the overall expression will evaluate to the same value as `p`.",
+    "difficulty": 3,
+    "source_qid": "c005-q2",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 6",
+    "topic_tags": [
+      "iteration",
+      "chapter 6"
+    ],
+    "stem": "Consider the following output:\n\n```java\n0 1\n0 2 4\n0 3 6 9\n0 4 8 12 16\n```\n\nWhich of the following code segments will produce this output?",
+    "options": [
+      "```java\nfor (int x = 1; x < 5; x++)\n{\nfor (int z = 0; z <= x; z++)\n{\nSystem.out.print(x * z + \" \");\n}\nSystem.out.println(\" \");\n}\n```",
+      "```java\nfor (int x = 1; x <= 5; x++)\n{\nfor (int z = 0; z < x; z++)\n{\nSystem.out.print(x * z + \" \");\n}\nSystem.out.println(\" \");\n}\n```",
+      "```java\nfor (int x = 1; x < 5; x++)\n{\nfor (int z = 0; z <= 4; z++)\n{\nSystem.out.print(x * z + \" \");\n}\nSystem.out.println(\" \");\n}\n```",
+      "```java\nfor (int x = 1; x <= 5; x++)\n{\nfor (int z = 0; z <= x; z++)\n{\nSystem.out.print(x * z + \" \");\n}\nSystem.out.println(\" \");\n}\n```"
+    ],
+    "answer": "A",
+    "explanation": "This question tests your ability to reason through a nested loop. The first thing you should note is that the output is triangular. The first row has two elements, the second has three elements, and so on. Generally, the output of a nested loop will be triangular if the conditional statement of the inner loop is dependent upon the value of the outer loop. If the two loops are independent, the output is usually rectangular.\n\nTrace through each answer choice and see which one will give you the first row: `0 1`.\n\nThe first time you go through the inner loop in (A), `x` will be 1; because `z` starts at 0 and the loop continues while `z` is less than or equal to 1, the inner loop will print out `0 1`. So keep this choice. For (B), the condition of the inner loop is that `z` is strictly less than `x`, so this will only print out `0`. Get rid of (B). Choice (C) will print out `0 1 2 3 4`, so get rid of that too. Choice (D) prints `0 1` for the first line, so keep it for now.\n\nYou are now down to (A) and (D). Rather than tracing through each segment in its entirety, see what the differences are between each segment.\n\nThe only difference is the outer `for` loop. In (A), it is\n\n`for (int x = 1; x < 5; x++)`\n\nAnd in (D), it is\n\n`for (int x = 1; x <= 5; x++)` (note the extra equals sign)\n\nIn (D), because the body of the outer loop is evaluated five times, it will print out five rows of numbers. Because the answer we are looking for prints only 4 rows, the correct answer must be (A).",
+    "difficulty": 3,
+    "source_qid": "c006-q1",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 6",
+    "topic_tags": [
+      "iteration",
+      "chapter 6"
+    ],
+    "stem": "The speed limit of a stretch of highway is 55 miles per hour (mph). The highway patrol issues speeding tickets to anyone caught going faster than 55 miles per hour. The fine for speeding is based on the following scale:\n\nSpeed: greater than 55 mph but less than 65 mph, Fine: $100\n\nSpeed: greater than or equal to 65 mph but less than 75 mph, Fine: $150\n\nSpeed: greater than or equal to 75 mph, Fine: $300\n\nIf the value of the `int` variable `speed` is the speed of a driver who was pulled over for going faster than 55 mph, which of the following code segments will assign the correct value to the `int` variable `fine`?\n\n```java\nif (speed >= 75)\nfine = 300;\nif (speed >= 65 && speed < 75)\nfine = 150;\nif (speed > 55 && speed < 65)\nfine = 100;\nif (speed >= 75)\nfine = 300;\nif (speed >= 65 && speed < 75)\nfine = 150;\nif (speed > 55 && speed < 65)\nfine = 100;\nif (speed >= 75)\nfine = 300;\nif (65 <= speed < 75)\nfine = 150;\nif (55 < speed < 65)\nfine = 100;\nif (speed >= 75)\nfine = 300;\nif (65 <= speed < 75)\nfine = 150;\nif (55 < speed < 65)\nfine = 100;\nif (speed >= 75)\nfine = 300;\nif (speed >= 65)\nfine = 150;\nif (speed > 55)\nfine = 100;\nif (speed >= 75)\nfine = 300;\nif (speed >= 65)\nfine = 150;\nif (speed > 55)\nfine = 100;\n```",
+    "options": [
+      "I only",
+      "III only",
+      "I and II",
+      "I and III"
+    ],
+    "answer": "A",
+    "explanation": "Option I works correctly, so get rid of (B).\n\nOption II is incorrect, because the conditional `65 <= speed < 75` is illegal. A variable can’t be compared to two numbers at once. This code will therefore cause a compile-time error. Get rid of (C).\n\nOption III will compile and run, but it contains a logical error. Assume, for example, that a driver’s speed is 85 mph. The driver should receive a fine of $300. If you trace through the code, you see that the value of the variable `fine` is, in fact, set to $300 in the body of the first `if` loop because the driver’s speed is greater than or equal to 75. The problem is that the condition in the second `if` loop is also true: the driver’s speed is greater than 65. The body of the second loop is executed and the fine is set to $150. Finally, the condition in the third loop is also true, so the fine is then set to $100. Because III is incorrect, get rid of (D). (Note that III would have been correct if the programmer had put `else` in front of the second and third loops.) The correct answer is (A).",
+    "difficulty": 3,
+    "source_qid": "c006-q2",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 6",
+    "topic_tags": [
+      "iteration",
+      "chapter 6"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nint x = 10;\nint y = 3;\nboolean b = true;\nfor (int i = 0; i < 15; i += 5)\n{\nx = x + y;\nb = (x % y == 2);\nif (!b)\n{\ny++;\ni += 5;\n}\n}\n```\n\nWhat is the value of `x` after the code segment executes?",
+    "options": [
+      "`10`",
+      "`15`",
+      "`17`",
+      "`22`"
+    ],
+    "answer": "C",
+    "explanation": "This question tests your ability to trace through a convoluted piece of code. A few things to note:\n\nThe body of the `if` loop is executed only if `b` is false.\n\nThe variable `i` is incremented by 5, not by 1, in the `for` loop.\n\nThe variable `i` is also incremented by 5 in the body of the `if` loop. This is something you would not normally do in your own code, but it is something you may see on the exam. Don’t assume the variable in the conditional of the `for` loop is modified only in the `for` loop.",
+    "difficulty": 3,
+    "source_qid": "c006-q3",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 6",
+    "topic_tags": [
+      "iteration",
+      "chapter 6"
+    ],
+    "stem": "In the following statement, `a` and `b` are boolean variables:\n\n`boolean c = (a && b) || !(a || b);`\n\nUnder what conditions will the value of `c` be `true`?",
+    "options": [
+      "Only when the value of `a` is different than the value of `b`",
+      "Only when the value of `a` is the same as the value of `b`",
+      "Only when `a` and `b` are both `true`",
+      "The value of `c` will be `true` for all values of `a` and `b`."
+    ],
+    "answer": "B",
+    "explanation": "Keep in mind that `&&` returns `true` if both operands are true, `||` returns `true` if one or more of its operands are true, and `!` reverses a boolean value.\n\nThe best way to crack questions involving booleans is often to just assign `true` or `false` to the variables and evaluate the expression.\n\nBreak `(a && b) || !(a || b)` into two pieces: `(a && b)` and `!(a || b)`. The variable `c` will be assigned `true` if either of these pieces is true. `(a && b)` is true when both `a` and `b` are true. Therefore, get rid of (A).\n\nSee what happens if both `a` and `b` are false. Clearly `(a && b)` evaluates to `false` in this case, but what about `!(a || b)`? `(a || b)` is false if both `a` and `b` are false, but the `!` operator inverts the value to `true`. So because `!(a || b)` is true, `(a && b) || !(a || b)` evaluates to `true`. Therefore, `c` will be assigned `true` when both `a` and `b` are false, so get rid of (C).\n\nYou are left with (B) and (D). See what happens when `a` is false and `b` is true. `(a && b)` evaluates to `false`. `(a || b)` is true, so `!(a || b)` is false. Therefore, `(a && b) || !(a || b)` is false and you can get rid of (D). The correct answer is (B).",
+    "difficulty": 3,
+    "source_qid": "c006-q4",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 6",
+    "topic_tags": [
+      "iteration",
+      "chapter 6"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nwhile ((x > y) || y >= z)\n{\n//code not shown\n}\n```\n\nIn the code segment above, `x`, `y`, and `z` are variables of type `int`. Which of the following must be true after the code segment has executed?",
+    "options": [
+      "`x > y || y >= z`",
+      "`x <= y || y > z`",
+      "`x < y && y <= z`",
+      "`x <= y && y < z`"
+    ],
+    "answer": "D",
+    "explanation": "The code will finish executing when the conditional in the `while` loop is false. In other words, when `!(x > y || y >= z)` is true. So figure out which of the answer choices is equivalent to `!(x > y || y >= z)`.\n\nHere’s how to solve it step by step:\n\nRecall that `!(a || b)` is equivalent to `!a && !b`. So `!(x > y || y >= z)` becomes `!(x > y) && !(y >= z).`\n\n`!(x > y)` is equivalent to `x <= y,` so you now have `x <= y && !(y >= z).`\n\n`!(y >= z)` is equivalent to `y < z,` so you have `x <= y && y < z.` The correct answer is (D).",
+    "difficulty": 3,
+    "source_qid": "c006-q5",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 6",
+    "topic_tags": [
+      "iteration",
+      "chapter 6"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nint a = 0;\nfor (int i = 0; i < 10; i++)\n{\nfor (int k = 0; k <= 5; k++)\n{\nfor (int z = 1; z <= 16; z = z * 2)\n{\na++;\n}\n}\n}\n```\n\nWhat is the value of `a` after the code segment executes?",
+    "options": [
+      "`31`",
+      "`180`",
+      "`200`",
+      "`300`"
+    ],
+    "answer": "D",
+    "explanation": "Each time the incremental statement `a++` is evaluated, the value of `a` is increased by one. So to answer this question, you need to figure out how many times `a` is incremented.\n\nThe outer loop will be evaluated 10 times. The inner loop will be evaluated six times for each time that the outer loop is evaluated. The code in the body of the inner loop will therefore execute 6 × 10 or 60 times. Note that the condition `k <= 5` evaluates to `true` when `k` equals 5. In the third loop, the value of `z` starts at 1 and is doubled after each pass through the loop. So the body of the innermost loop will execute when `i` equals 1, 2, 4, 8, and 16 - or five times for each time the middle loop executes. Because 60 × 5 is 300, `a` will be incremented 300 times. The correct answer is (D).",
+    "difficulty": 3,
+    "source_qid": "c006-q6",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 6",
+    "topic_tags": [
+      "iteration",
+      "chapter 6"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nint x = 10;\nint y = x / 3;\nint z = x % 2;\nx++;\nSystem.out.println(x)\n```\n\nWhat is printed as a result of executing the code segment above?",
+    "options": [
+      "`2`",
+      "`10`",
+      "`11`",
+      "`15`"
+    ],
+    "answer": "C",
+    "explanation": "The trick to this question is that arithmetic operators don’t modify their operands. So if `x` is 10 when we divide `x` by 3, the result is 3 but `x` remains the same. Likewise, taking the modulus of a number does not change the number itself. On the other hand, the post-increment operator `(++)` does change the value of the variable it operates on, so `x++` will increase the value of `x` by 1. The correct answer is (C).",
+    "difficulty": 3,
+    "source_qid": "c006-q7",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 6",
+    "topic_tags": [
+      "iteration",
+      "chapter 6"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nint a = 10;\ndouble b = 3.7;\nint c = 4;\nint x = (int) (a + b);\ndouble y = (double) a / c;\ndouble z = (double) (a / c);\ndouble w = x + y + z;\nSystem.out.println(w);\n```\n\nWhat is printed as a result of evaluating the code above?",
+    "options": [
+      "`10`",
+      "`15.5`",
+      "`17`",
+      "`17.5`"
+    ],
+    "answer": "D",
+    "explanation": "On the fourth line, `a` + `b` will be 13.7, but this result is cast to an int, so `x` will be 13. On the next line, `a` is first cast to a double and then divided by `c`. Because `a` is a double, `c` is automatically promoted to a double and the result of dividing the two is also a double. Therefore, `y` is 2.5.\n\nOn the next line, the parentheses cause the division to take place before the cast. Because `a` and `c` are ints, the result of dividing the two is truncated to an int, 2 in this case. The fact that we then cast the result to a double does not bring back the truncated decimal. Thus `z` is equal to 2, so `w` = 13 + 2.5 + 2. The correct answer is (D).",
+    "difficulty": 3,
+    "source_qid": "c006-q8",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 6",
+    "topic_tags": [
+      "iteration",
+      "chapter 6"
+    ],
+    "stem": "Consider the following code segments:\n\n```java\nint x = 10;\nint y = 20;\nint z = 0;\nif (x < y && 10 < y/z)\n{\nSystem.out.println(\"Homer\");\n}\nelse\n{\nSystem.out.println(\"Bart\");\n}\nint x = 10;\nint y = 20;\nint z = 0;\nif (x < y && 10 < y/z)\n{\nSystem.out.println(\"Homer\");\n}\nelse\n{\nSystem.out.println(\"Bart\");\n}\nint x = 10;\nint y = 20;\nint z = 0;\nif (x > y && 10 < y/z)\nSystem.out.println(\"Homer\");\nelse\nSystem.out.println(\"Bart\");\nint x = 10;\nint y = 20;\nint z = 0;\nif (x > y && 10 < y/z)\nSystem.out.println(\"Homer\");\nelse\nSystem.out.println(\"Bart\");\nint x = 10;\nint y = 20;\nint z = 0;\nif (x < y || 10 < y/z)\nSystem.out.println(\"Homer\");\nelse\nSystem.out.println(\"Bart\");\nint x = 10;\nint y = 20;\nint z = 0;\nif (x < y || 10 < y/z)\nSystem.out.println(\"Homer\");\nelse\nSystem.out.println(\"Bart\");\n```\n\nWhich of the code segments above will run without error?",
+    "options": [
+      "I only",
+      "II only",
+      "III only",
+      "II and III"
+    ],
+    "answer": "D",
+    "explanation": "This question tests your understanding of short-circuit evaluation. In each code segment, pay attention to the conditional in the `if` statement.\n\nIn I, the conditional statement is `x < y && 10 < y/z`. First, `x < y` is evaluated. Because `x` is 10 and `y` is 20, `x < y` evaluates to `true`. Then check `10 < y/z`. Because you divide by zero here, a run-time exception occurs. You can eliminate (A).\n\nNow look at II. The conditional statement is `x > y && 10 < y/z`. Once again, first evaluate the operand to the left of the `&&` operator. Because `x` is not greater than `y, x > y` evaluates to `false`. There’s no need to evaluate the right-hand operand. With the `&&` operator, if the left operand is false, the whole condition is false. Because the right-hand operand is not evaluated, `y` is never divided by `z` and a run-time exception does not occur. This means (B) and (D) are still possible: eliminate (C).\n\nIn III, the conditional statement is `x < y || 10 < y/z`. The left-hand side, `x < y,` evaluates to `true`. Notice that this time you have the or operator `||` in the middle of the conditional. With an “or” statement, if the left-hand side is true, the condition is true regardless of the value of the right side. Because the left side is true, there is no need to evaluate the right-hand side, and the division by 0 error never occurs. The correct answer is (D).",
+    "difficulty": 3,
+    "source_qid": "c006-q9",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 7",
+    "topic_tags": [
+      "writing classes",
+      "chapter 7"
+    ],
+    "stem": "A development team is building an online bookstore that customers can use to order books. Information about inventory and customer orders is kept in a database. Code must be developed that will store and retrieve data from the database. The development team decides to put the database code in separate classes from the rest of the program. Which of the following would be an advantage of this plan?\n\nThe database access code could be reused in other applications that also need to access the database.\n\nThe database access code can be tested independently. It will be possible to test the database access code before the interface is developed.\n\nA team of programmers can be assigned to work just on the code that is used to access the database. The programmers can work independently from other programmers, such as those who develop the user interface.",
+    "options": [
+      "I only",
+      "III only",
+      "I and II only",
+      "I, II, and III"
+    ],
+    "answer": "D",
+    "explanation": "Because the database code can, in fact, be developed separately, tested separately, and possibly reused, all of the statements are correct. With questions like these, the easiest approach is to consider each candidate statement suspect, and look for ways in which they could be incorrect. If you find an incorrect one, cross off any answer choice that refers to it, including any choice that includes it AND another statement, because a combination of a true statement and a false statement is a false statement. Alternatively, when a candidate statement is true, put a star next to each answer choice that contains it. When you finish checking the statements, the one with the most stars wins.\n\nIn the above, because all three statements are true, we can cross off (A) and (B) because each choice indicates that only one statement is correct. Similarly, cross off (C), because it dismisses the third statement. The correct answer is (D).",
+    "difficulty": 3,
+    "source_qid": "c007-q1",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 7",
+    "topic_tags": [
+      "writing classes",
+      "chapter 7"
+    ],
+    "stem": "In Java, instance fields (also known as instance variables) and methods can be designated public or private. Which of the following best characterizes the designation that should be used?",
+    "options": [
+      "Instance fields and methods should always be public. This makes it easier for client programs to access data fields and use the methods of the class.",
+      "Instance fields should be either public or private, depending on whether or not it is beneficial for client programs to access them directly. All methods should be public. A private method is useless because a client program can’t access it.",
+      "Keep all methods and instance fields private. This enforces encapsulation.",
+      "Instance fields should always be private so that clients can’t directly access them. Methods can be either public or private."
+    ],
+    "answer": "D",
+    "explanation": "While the Java language makes it possible to make data fields public, one of the golden rules on the AP Computer Science A Exam is that data fields should always be designated private. Note that constants that are declared as static and final can be public; however, static constants apply to the class as a whole (because of the keyword `static`) and, thus, aren’t data fields.\n\nBecause data fields must be private, get rid of any answer choice that states they can be public. So get rid of (A) and (B).\n\nNow look at (C). What would happen if all methods in a class were private? Instances of the class would be useless because clients couldn’t ask the class to do anything for them. Classes need public methods to be useful. Eliminate (C).\n\nWhat about (D)? The first part is good because data fields should be private. What about the second sentence? Above, you saw that methods can be public. They can also be private. A private method is used internally by a class to help out a public method, but is not directly accessible by client programs. The correct answer is (D).",
+    "difficulty": 3,
+    "source_qid": "c007-q2",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 7",
+    "topic_tags": [
+      "writing classes",
+      "chapter 7"
+    ],
+    "stem": "Which of the following are signs of a well-designed program?\n\nClients know how data is stored in the class.\n\nClasses and methods can be tested independently.\n\nThe implementation of a method can be changed without changing the programs that use the method.",
+    "options": [
+      "I only",
+      "II only",
+      "II and III",
+      "I and II"
+    ],
+    "answer": "C",
+    "explanation": "Segment I is incorrect because it violates encapsulation. Thus, any answer that includes I can be dismissed out of hand. Thus, dismiss (A) and (D). The implementation of a method can be changed without changing its client programs, so III is correct. Therefore, eliminate (B), which does not include III. Thus, the answer must be (C).",
+    "difficulty": 3,
+    "source_qid": "c007-q3",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 7",
+    "topic_tags": [
+      "writing classes",
+      "chapter 7"
+    ],
+    "stem": "Consider the following classes:\n\n```java\npublic class Sample\n{\npublic void writeMe(Object obj)\n{\nSystem.out.println(\"object\");\n}\npublic void writeMe(String s)\n{\nSystem.out.println(\"string\");\n}\n}\n```\n\nWhat will be the result of executing the following?\n\n```java\nSample s = new Sample( );\nString tmp = new String(\"hi\");\ns.writeMe(tmp);\n```",
+    "options": [
+      "Compile-time error",
+      "`\"object\"`",
+      "`\"string\"`",
+      "Run-time error"
+    ],
+    "answer": "C",
+    "explanation": "The code is syntactically correct, so (A) cannot be the answer. Along the same lines, you’re not doing anything that requires casting, or dealing with `null`, or dividing by a number that could potentially be 0, so (D) is not the answer. That leaves (B) and (C). Because you’re creating a `String` object and passing to a method that takes a string as a parameter, the existence of the `writeMe(Object obj)` method is inconsequential. Thus, the only valid answer is (C).",
+    "difficulty": 3,
+    "source_qid": "c007-q4",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 7",
+    "topic_tags": [
+      "writing classes",
+      "chapter 7"
+    ],
+    "stem": "Consider the following class:\n\n```java\npublic class Sample\n{\npublic void writeMe(Object obj)\n{\nSystem.out.println(\"object\");\n}\npublic void writeMe(String s)\n{\nSystem.out.println(\"string\");\n}\n}\n```\n\nWhat will be the result of executing the following?\n\n```java\nSample s = new Sample( );\nObject tmp = new Object( );\ns.writeMe(tmp);\n```",
+    "options": [
+      "Compile-time error",
+      "`\"string\"`",
+      "`\"object\"`",
+      "Run-time error"
+    ],
+    "answer": "C",
+    "explanation": "The code is syntactically correct, so (A) cannot be the answer. Along the same lines, you’re not doing anything that requires casting, or dealing with `null`, or dividing by a number that could potentially be 0, so (D) is not the answer. That leaves (B) and (C). Because you’re creating an Object and passing to a method that takes an Object as a parameter, the existence of the `writeMe(String s)` method is inconsequential. Thus, the only valid answer is (C).",
+    "difficulty": 3,
+    "source_qid": "c007-q5",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 7",
+    "topic_tags": [
+      "writing classes",
+      "chapter 7"
+    ],
+    "stem": "Consider the following class:\n\n```java\npublic class Sample\n{\npublic void writeMe(Object obj)\n{\nSystem.out.println(\"object\");\n}\npublic void writeMe(String s)\n{\nSystem.out.println(\"string\");\n}\n}\n```\n\nWhat will be the result of executing the following?\n\n```java\nSample s = new Sample( );\nObject tmp = new String(\"hi\");\ns.writeMe(tmp);\n```",
+    "options": [
+      "Compile-time error",
+      "`\"object\"`",
+      "`\"string\"`",
+      "Run-time error"
+    ],
+    "answer": "C",
+    "explanation": "Use an Object reference to refer to a `String` instance, because a string IS-A Object. Thus, the code is not syntactically incorrect, so (A) is not the answer. That leaves (B), (C), and (D). Because you’re not doing any sort of casting, (D) is also an unlikely candidate. That leaves (C) and (B). Now the question becomes, when making overloaded calls, does Java pay attention to the type of the reference (which in this case is `Object`) or the type of the variable (which in this case is `String`)? It turns out that Java always pays attention to the type of the object, so (C) is correct.",
+    "difficulty": 3,
+    "source_qid": "c007-q6",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 7",
+    "topic_tags": [
+      "writing classes",
+      "chapter 7"
+    ],
+    "stem": "Consider the following class:\n\n```java\npublic class Sample\n{\npublic void writeMe(Object obj)\n{\nSystem.out.println(\"object\");\n}\npublic void writeMe(String s)\n{\nSystem.out.println(\"string\");\n}\n}\n```\n\nWhat will be the result of executing the following?\n\n```java\nSample s = new Sample( );\nString tmp = new Object( );\ns.writeMe(tmp);\n```",
+    "options": [
+      "Compile-time error",
+      "`\"object\"`",
+      "`\"string\"`",
+      "Run-time error"
+    ],
+    "answer": "A",
+    "explanation": "`tmp` is an `Object`, not a `String`; thus the code snippet `String tmp = new Object` is illegal. This code will generate a compile-time error. The correct answer is (A).",
+    "difficulty": 3,
+    "source_qid": "c007-q7",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 7",
+    "topic_tags": [
+      "writing classes",
+      "chapter 7"
+    ],
+    "stem": "Consider the following class:\n\n```java\npublic class Sample\n{\nint val = 0;\n}\n```\n\nIs `val` an attribute or a method?",
+    "options": [
+      "`val` is an attribute.",
+      "`val` is a method.",
+      "`val` is both an attribute and a method.",
+      "Neither: `val` is a primitive."
+    ],
+    "answer": "A",
+    "explanation": "This class is not declaring any methods at all, so (B) cannot possibly be correct. Choice (C) is nonsense because nothing can be both an attribute and a method, and (D), while true, is irrelevant. Being a primitive does not imply that `val` cannot be an attribute, so the “neither” part of the answer choice is a red herring. The correct answer is (A).",
+    "difficulty": 3,
+    "source_qid": "c007-q8",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 7",
+    "topic_tags": [
+      "writing classes",
+      "chapter 7"
+    ],
+    "stem": "Consider the following class:\n\n```java\npublic class Sample\n{\npublic String writeMe(String s)\n{\nSystem.out.println(\"object\");\n}\npublic void writeMe(String s)\n{\nSystem.out.println(\"string\");\n}\n}\n```\n\nWhat will be the result of executing the following?\n\n```java\nSample s = new Sample( );\nObject tmp = new Object( );\ns.writeMe(tmp);\n```",
+    "options": [
+      "Compile-time error",
+      "`\"object\"`",
+      "`\"string\"`",
+      "Run-time error"
+    ],
+    "answer": "A",
+    "explanation": "Both `writeMe` methods have the same name and same parameter list, but they return different types. This is illegal. Thus, (A) is the correct answer.",
+    "difficulty": 3,
+    "source_qid": "c007-q9",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 8",
+    "topic_tags": [
+      "array",
+      "chapter 8"
+    ],
+    "stem": "What is the length of the array `numbers` after the following code executes?\n\n```java\nString word = \"Bear\";\nint[] numbers = new int[word.length() - 1];\n```",
+    "options": [
+      "`1`",
+      "`3`",
+      "`4`",
+      "The array will not be created due to a compile-time error."
+    ],
+    "answer": "B",
+    "explanation": "The length of the word is 4, so `[word.length() – 1]` will allow for 3 elements.",
+    "difficulty": 3,
+    "source_qid": "c008-q1",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 8",
+    "topic_tags": [
+      "array",
+      "chapter 8"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nString[] s = new String[2];\nString[] t = {\"Michael\", \"Megan\", \"Chelsea\"};\ns = t;\nSystem.out.print(s.length);\n```\n\nWhat is printed as a result of executing the code segment?",
+    "options": [
+      "`2`",
+      "`3`",
+      "Nothing will be printed due to a compile-time error.",
+      "Nothing will be printed due to a run-time error."
+    ],
+    "answer": "B",
+    "explanation": "On line 1, an array of `String` is created and assigned to reference `s`. Note that the array to which `s` refers can hold only two strings. This does not prevent you, however, from pointing `s` to another array that is not of length 2. This is exactly what happens on line 3; `s` is reassigned to the same array that `t` references. This array has a length of 3. The correct answer is (B).\n\nHere is what this looks like:",
+    "difficulty": 3,
+    "source_qid": "c008-q2",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 8",
+    "topic_tags": [
+      "array",
+      "chapter 8"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nfinal int[] a1 = {1, 2};\nint[] b1 = {3, 4};\na1 = b1;\nSystem.out.print(a1[1]);\n```\n\nWhat is printed as a result of executing the code segment?",
+    "options": [
+      "`2`",
+      "`4`",
+      "Nothing will be printed due to a compile-time error.",
+      "Nothing will be printed due to a run-time error."
+    ],
+    "answer": "C",
+    "explanation": "In the code segment, the variable `a1` is declared as `final`. This means that once you assign an array to it, `a1` must always point to that array. A compile-time error will occur when you try to assign the array referenced by `b1` to `a1`. The correct answer is (C).",
+    "difficulty": 3,
+    "source_qid": "c008-q3",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 8",
+    "topic_tags": [
+      "array",
+      "chapter 8"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nfinal int[] myArray = {1, 2};\nmyArray[1] = 3;\nSystem.out.print(myArray[1]);\n```\n\nWhat is printed as a result of executing the code segment?",
+    "options": [
+      "`2`",
+      "`3`",
+      "Nothing will be printed due to a run-time error.",
+      "Nothing will be printed due to a compile-time error."
+    ],
+    "answer": "B",
+    "explanation": "In the code segment, an array containing two integers is constructed and assigned to a variable named `myArray`. Because this reference is `final`, it cannot be assigned to another array. This does not prevent you, however, from changing the contents of the array that the variable `myArray` points to, as you do in the second line. The key here is that even though you change the contents of the array, it is still the same array. The correct answer is (B).",
+    "difficulty": 3,
+    "source_qid": "c008-q4",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 8",
+    "topic_tags": [
+      "array",
+      "chapter 8"
+    ],
+    "stem": "Consider the following incomplete method:\n\n```java\npublic static int mod3(int[] numbers)\nint count = 0;\nfor (int i = 0; i < numbers.length; i++)\n{\n/* mystery code */\n}\nreturn count;\n}\n```\n\nMethod `mod3` is intended to return the number of integers in the array `numbers` that are evenly divisible by 3. Which of the following code segments could be used to replace / * mystery code * / so that `mod3` will work as intended?\n\n```java\nif (i % 3 == 0)\n{\ncount++;\n}\nif (i % 3 == 0)\n{\ncount++;\n}\nif (numbers[i] % 3 == 0)\n{\ncount++;\n}\nif (numbers[i] % 3 == 0)\n{\ncount++;\n}\nwhile (numbers[i] % 3 == 0)\n{\ncount++;\n}\nwhile (numbers[i] % 3 == 0)\n{\ncount++;\n}\n```",
+    "options": [
+      "II only",
+      "III only",
+      "I and II",
+      "II and III"
+    ],
+    "answer": "A",
+    "explanation": "In the `for` loop in the method `mod3`, the variable `i` keeps track of the position in the array that you are inspecting for each iteration of the loop. `numbers[i]`, on the other hand, is the value that is located at position `i` in the array. Option I will check to see whether position `i` is divisible by 3; that is not what you are looking for, so (C) is incorrect. Option II will check whether the number that is stored in the array at position `i` is divisible by 3, which is what you are looking for. Segment III will go into an infinite loop the first time it encounters an element in the array that is divisible by 3, so (B) and (D) can be eliminated. Only II will get the program to work as intended. The correct answer is (A).",
+    "difficulty": 3,
+    "source_qid": "c008-q5",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 8",
+    "topic_tags": [
+      "array",
+      "chapter 8"
+    ],
+    "stem": "Assume that an array `arr` of integer values has been declared and initialized with random numbers.\n\nWhich of the following code segments correctly swaps the values stored in `arr[0]` and `arr[3]`?",
+    "options": [
+      "```java\narr[0] = 3;\narr[3] = 0;\n```",
+      "```java\narr[0] = arr[3];\narr[3] = arr[0];\n```",
+      "```java\nint k = arr[3];\narr[3] = arr[0];\narr[0] = k;\n```",
+      "```java\nint k = arr[3];\narr[0] = arr[3];\narr[3] = k;\n```"
+    ],
+    "answer": "C",
+    "explanation": "Choice (A) does not assign the current values in `arr` to any element. Choice (B) will assign the contents of `arr[3]` to `arr[0]`, thereby wiping out the original contents of `arr[3]`.\n\nThe next two choices can be examined using trace tables. For each answer choice, let’s assume `arr[0] = 4` and `arr[3] = 5`.\n\n(C)\n\n(D)",
+    "difficulty": 3,
+    "source_qid": "c008-q6",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 8",
+    "topic_tags": [
+      "array",
+      "chapter 8"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nint [] scores = {75, 63, 52, 80};\nfor (int s : scores)\n{\nif (s < 75)\n{\ns += 5;\n}\n}\nfor (int s : scores)\n{\nSystem.out.print(s + \" \");\n}\n```\n\nWhat is printed as a result of executing the code segment?",
+    "options": [
+      "`75 63 52 80`",
+      "`75 68 57 80`",
+      "`80 68 57 80`",
+      "Nothing will be printed due to a compile-time error."
+    ],
+    "answer": "A",
+    "explanation": "When using an enhanced-`for` loop with an array, each element is read into a local variable, in this case, `s`. While `s` may change within the loop, that change does not get implemented within the original array. Thus the elements in the array remain unchanged. Choice (A) is the correct answer.",
+    "difficulty": 3,
+    "source_qid": "c008-q7",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 8",
+    "topic_tags": [
+      "array",
+      "chapter 8"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nString [] names = {\"Abi\", \"Brianna\", \"Jada\", \"Kiara\", \"Tiffany\", \"Vanessa\"};\nint middle = names.length/2 - 1;\nfor (int x = 0; x < middle; x++)\n{\nString hold = names[x];\nnames[x] = names [names.length - x - 1];\nnames[names.length - x - 1] = hold;\n}\nfor (String n: names)\n{\nSystem.out.print(n + \" \");\n}\n```\n\nWhat is printed as a result of executing the code segment?",
+    "options": [
+      "`Abi Brianna Jada Kiara Tiffany Vanessa`",
+      "`Vanessa Tiffany Kiara Jada Brianna Abi`",
+      "`Vanessa Tiffany Jada Kiara Brianna Abi`",
+      "`Vanessa Brianna Jada Kiara Tiffany Abi`"
+    ],
+    "answer": "C",
+    "explanation": "This code is meant to reverse the order of the array by flipping the first element with the last, moving in toward the center.\n\nThe instruction `middle = names.length/2 - 1;` assigns a 2 to `middle`.\n\nThe `for` loop is controlled by `x < middle` so the two middle elements will not be flipped, because they are never accessed in the loop.",
+    "difficulty": 3,
+    "source_qid": "c008-q8",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 9",
+    "topic_tags": [
+      "arraylist",
+      "chapter 9"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nArrayList list = new ArrayList( );\nlist.add(\"A\");\nlist.add(\"B\");\nlist.add(0, \"C\");\nlist.add(\"D\");\nlist.set(2, \"E\");\nlist.remove(1);\nSystem.out.println(list);\n```\n\nWhat is printed as a result of executing the code segment?",
+    "options": [
+      "`[A, B, C, D, E]`",
+      "`[C, E, D]`",
+      "`[A, D, E]`",
+      "`[A, C, D, E]`"
+    ],
+    "answer": "B",
+    "explanation": "Walk through this step by step. Remember that the `add()` method that takes just one argument adds the argument to the end of the list. The second and third lines of code add \"`A`\" and \"`B`\" to the `ArrayList` one after another:\n\n`list.add(`\"`A`\"`)`\n\n`list.add(`\"`B`\"`)`\n\nAfter the code above executes, the list looks like\n\n`[A, B]`\n\nThe next statement, `list.add(0,` \"`C`\"`)`, adds \"`C`\" to the beginning of the list. Now the list looks like\n\n`[C, A, B]`\n\nAfter `list.add(`\"`D`\"`)` executes, the list looks like\n\n`[C, A, B, D]`\n\nThe `set()` method replaces the value at the position indicated by the first argument. After `list.set(2,` \"`E`\"`)` executes, the list looks like\n\n`[C, A, E, D]`\n\nAfter `list.remove(1)` executes, the list looks like\n\n`[C, E, D]`\n\nThe correct answer is, therefore, (B).",
+    "difficulty": 3,
+    "source_qid": "c009-q1",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 9",
+    "topic_tags": [
+      "arraylist",
+      "chapter 9"
+    ],
+    "stem": "Consider the following data fields and method:\n\n```java\nprivate ArrayList letters;\n// precondition: letters.size( ) > 0\n// letters contains String objects\npublic void letterRemover( )\n{\nint i = 0;\nwhile (i < letters.size( ))\n{\nif (letters.get(i).equals(\"A\"))\nletters.remove(i);\ni++;\n}\n}\n```\n\nAssume that `ArrayList letters` originally contains the following `String` values:\n\n`[A, B, A, A, C, D, B]`\n\nWhat will `letters` contain as a result of executing `letterRemover( )`?",
+    "options": [
+      "`[A, B, A, A, C, D, B]`",
+      "`[B, C, D, B]`",
+      "`[B, A, C, D, B]`",
+      "`[A, B, A, C, D, B]`"
+    ],
+    "answer": "C",
+    "explanation": "The key to this question is that as elements are removed from an `ArrayList`, the elements to the right of the removed element are shifted to the left, and their indices are reduced by 1.\n\nOn the first pass through the `while` loop, `i` will be `0`. Because the string in position 0 of `letters` equals `A`, it is removed and `letters` looks like:\n\n`[B, A, A, C, D, B]`\n\nThe next time through the `while` loop, `i` will be `1`. The letter in position 1 is equal to `A`, so it is removed. Now `letters` looks like:\n\n`[B, A, C, D, B]`\n\nOn the next pass through the `ArrayList`, `i` is `2`. The letter in position 2 is a `C`, so it is not removed. The `while` loop will continue to iterate through the `ArrayList`, but because none of the strings in indices higher than 2 are equal to `A`, nothing else will be removed.\n\nThe correct answer is, therefore, (C).",
+    "difficulty": 3,
+    "source_qid": "c009-q2",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 9",
+    "topic_tags": [
+      "arraylist",
+      "chapter 9"
+    ],
+    "stem": "Consider the following method:\n\n```java\nprivate ArrayList myList;\n// precondition: myList.size( ) > 0\n// myList contains String objects\npublic void myMethod( )\n{\nfor (int i = 0; i < myList.size( ) – 1; i++)\n{\nmyList.remove(i);\nSystem.out.print(myList.get(i) + \" \");\n}\n}\n```\n\nAssume that `myList` originally contains the following `String` values:\n\n`[A, B, C, D, E]`\n\nWhat will be printed when the method above executes?",
+    "options": [
+      "`A B C D E`",
+      "`B D E`",
+      "`B D`",
+      "Nothing will be printed due to an `Index­Out­Of­Bounds­Exception`."
+    ],
+    "answer": "C",
+    "explanation": "The first time through the `for` loop, the letter in position 0 is removed and `myList` looks like:\n\n`[B, C, D, E]`\n\nThe letter that is in position 0, which is now `B`, is printed.\n\nThe next time through the `for` loop, `i` is `1`, so `C`, the letter in position 1, is removed. Now `myList` looks like:\n\n`[B, D, E]`\n\nThe letter that is in position 1, which is now `D`, is printed.\n\nAt this point, `i` is incremented to `2`. The size of `myList` is also `2`, so `i` is no longer less than `myList.size().` The `for` loop does not execute again.\n\nThe correct answer is, therefore, (C).",
+    "difficulty": 3,
+    "source_qid": "c009-q3",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 9",
+    "topic_tags": [
+      "arraylist",
+      "chapter 9"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nArrayList list = new ArrayList( );\nfor (int i = 1; i <= 8; i++)\n{\nlist.add(new Integer(i));\n}\nfor (int j = 1; j < list.size( ); j++)\n{\nlist.set(j / 2, list.get(j));\n}\nSystem.out.println(list);\n```\n\nWhat is printed as a result of executing the code segment?",
+    "options": [
+      "`[2, 4, 6, 8, 5, 6, 7, 8]`",
+      "`[1, 2, 3, 4, 5, 6, 7, 8]`",
+      "`[1, 2, 3, 4, 1, 2, 3, 4]`",
+      "`[2, 2, 4, 4, 6, 6, 8, 8]`"
+    ],
+    "answer": "A",
+    "explanation": "The first `for` loop initializes the `ArrayList` list so that it looks like\n\n`[1, 2, 3, 4, 5, 6, 7, 8]`\n\nNow take a look at the second `for` loop. Note that the highest value that `j` will reach is 7, one less than the size of the list. In the body of the `for` loop, the index of the position that you are setting is `j` divided by 2; the index can, therefore, never be greater than 3. In other words, you won’t be modifying any values other than those in the first 4 positions of the `ArrayList`. Knowing this, eliminate (C) and (D).\n\nOn the first pass through the loop, `j` is 1 and we call `list.set(1 / 2, list.get(1))`. Because the result of integer division is truncated, this call is equivalent to `list.set(0, list.get(1))`, so the value of the element at position 0 is the same as that of position 1 and the `ArrayList` is\n\n`[2, 2, 3, 4, 5, 6, 7, 8]`\n\nOn the next pass through the `for` loop, `j` is 2 and we call `list.set(1, list.get(2))`. The `ArrayList` looks like this:\n\n`[2, 3, 3, 4, 5, 6, 7, 8]`\n\nOn the next pass we call, `list.get(1, list.get(3))`. The `ArrayList` now looks like this:\n\n`[2, 4, 3, 4, 5, 6, 7, 8]`\n\nIf you continue to iterate through the second `for` loop, the `ArrayList` will end up looking like this:\n\n`[2, 4, 6, 8, 5, 6, 7, 8]`\n\nThe correct answer is (A).",
+    "difficulty": 3,
+    "source_qid": "c009-q4",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 9",
+    "topic_tags": [
+      "arraylist",
+      "chapter 9"
+    ],
+    "stem": "The `State` class, described earlier, contains the method\n\n```java\nprivate void calculate­Percent­Change()\n{\n//Calculates and saves the percent change in population from 2010 to 2020\n// missing code\n//to be completed in the Review Drill\n}\n```\n\nWhich of the following correctly calculates the percent change in the state’s population and saves the result in the state’s appropriate instance variable?",
+    "options": [
+      "`double pctChange = (double) popChange / pop2010;`",
+      "`percentChange = popChange / pop2010;`",
+      "`percentChange = (double) popChange / pop2010;`",
+      "`percentChange = (double) (popChange / popChange2010);`"
+    ],
+    "answer": "C",
+    "explanation": "Choice (A) is incorrect because `pctChange` is a local variable. Choice (B) is incorrect because the result of `popChange / pop2010` integer division with a result of 0. Choice (C) is correct because `percentChange` is the instance variable for the state’s percent change in population. The use of `(double)` casts the number of `popChange / pop2010` as a floating-point number so that the result of the division is a double. Choice (D) is incorrect because `popChange / pop2010` is casted to a double only after the integer division is completed, leading to a result of 0. The answer is (C).",
+    "difficulty": 3,
+    "source_qid": "c009-q5",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 10",
+    "topic_tags": [
+      "2d arrays",
+      "chapter 10"
+    ],
+    "stem": "The following class, `Arr2d`, is meant to represent a two-dimensional array object. The constructor will initialize `Arr2d` using the number of rows and columns that have been passed. Choose the statement that will initialize the array in the constructor.\n\n```java\npublic class Arr2D {\nprivate int [][] arr;\nArr2D (int rows, int columns)\n{\n/* missing code */\n}\n}\n```",
+    "options": [
+      "`int [] arr = new int [rows][columns];`",
+      "`int [][] arr = new int [rows - 1][columns - 1];`",
+      "`arr = new int [rows][columns];`",
+      "`arr = new int [rows - 1][columns - 1];`"
+    ],
+    "answer": "C",
+    "explanation": "The variable identifier `arr` has already been created, eliminating (A) and (B). While indices of arrays start at 0 and range to one less than the number of rows (or columns), the declaration should use the exact number of rows and columns desired in the array.",
+    "difficulty": 3,
+    "source_qid": "c010-q1",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 10",
+    "topic_tags": [
+      "2d arrays",
+      "chapter 10"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nint [][] numbers = {{1, 2, 3, 4}, {5, 6, 7, 8}};\nfor (int [] nums : numbers)\nfor (int n : nums)\nSystem.out.print(n + \" \");\nSystem.out.print(\"\\n\");\n```\n\nWhat is printed as a result of executing the code segment?",
+    "options": [
+      "`1 2 3 4 5 6 7 8`",
+      "```java\n1 2 3 4\n5 6 7 8\n```",
+      "```java\n1 2\n3 4\n5 6\n7 8\n```",
+      "A compiler error would occur."
+    ],
+    "answer": "A",
+    "explanation": "This is an enhanced-`for` loop. The first loop uses the concept that a two-dimensional array is an array of arrays. It pulls off one row at a time and stores it in `nums`. The inner loop takes one element at a time from the row and stores it in `n`. There are no line breaks, so the array is simply printed one element after another. This answer is (A).",
+    "difficulty": 3,
+    "source_qid": "c010-q2",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 10",
+    "topic_tags": [
+      "2d arrays",
+      "chapter 10"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nint[][] numbers = new int [4][4];\ninitializeIt(numbers);\nint total = 0;\nfor (int z = 0; z < numbers.length; z++)\n{\ntotal += numbers[z][numbers[0].length – 1 – z];\n}\n```\n\nThe call to `initializeIt()` on the second line initializes the array `numbers` so that it looks like the following:\n\n```java\n1 2 5 3\n7 9 4 0\n3 3 2 5\n4 5 8 1\n```\n\nWhat will be the value of `total` after the code has executed?",
+    "options": [
+      "`11`",
+      "`12`",
+      "`13`",
+      "`14`"
+    ],
+    "answer": "D",
+    "explanation": "The variable `numbers.length` is the number of rows in the two-dimensional array `numbers`. The variable `numbers[0].length` is the number of columns. Both the number of rows and the number of columns are 4.\n\nOn the first pass through the `for` loop, `z` is `0`, and `numbers[0].length – 1 – z` is `3`. So the value of `numbers[0][3]` is added to the total. `numbers[0][3]` is `3`.\n\nOn the next pass, `z` is `1`, `numbers[0].length – 1 – z` is `2`, so the value of `numbers[1][2]` (which is `4`) is added to the total.\n\nOn the next pass, add the value at `numbers[2][1]`, which is `3`, and on the final pass add the value at `numbers[3][0]`, which is `4`.\n\nAs you can see, the `for` loop simply finds the sum of one of the diagonals of the array. The correct answer is (D).",
+    "difficulty": 3,
+    "source_qid": "c010-q3",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 10",
+    "topic_tags": [
+      "2d arrays",
+      "chapter 10"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nint[][] numbers = new int[3][6];\ninitializeIt(numbers);\nint total = 0;\nfor (int j = 0; j < numbers.length; j++)\n{\nfor (int k = 0; k < numbers[0].length; k += 2)\n{\ntotal += numbers[j][k];\n}\n}\n```\n\nThe call to `initializeIt()` on the second line initializes the array `numbers` so that it looks like the following:\n\n```java\n2 4 6 3 2 1\n5 6 7 4 2 9\n4 0 5 6 4 2\n```\n\nWhat will be the value of `total` after the code has executed?",
+    "options": [
+      "`18`",
+      "`35`",
+      "`37`",
+      "`72`"
+    ],
+    "answer": "C",
+    "explanation": "Note that `k` is incremented by 2 in the inner `for` loop. The code segment will find the sum of all the integers in columns with even indices.\n\n`numbers[0][0] + numbers[0][2] + numbers[0][4] + numbers[1][0] + numbers[1][2] + numbers[1][4] + numbers[2][0] + numbers[2][2] + numbers[2][4] = 37`",
+    "difficulty": 3,
+    "source_qid": "c010-q4",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 10",
+    "topic_tags": [
+      "2d arrays",
+      "chapter 10"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nint[][] num = new int[4][4];\nfor (int i = 0; i < num.length; i++)\n{\nfor (int k = 0; k < num[0].length; k++)\n{\nnum[i][k] = i * k;\n}\n}\n```\n\nWhat are the contents of `num` after the code segment has executed?",
+    "options": [
+      "```java\n0 0 0 0\n0 1 2 3\n0 2 4 6\n0 3 6 9\n```",
+      "```java\n0 1 2 3\n1 2 3 4\n2 3 4 5\n3 4 5 6\n```",
+      "```java\n1 1 1 1\n2 2 2 2\n3 3 3 3\n4 4 4 4\n```",
+      "```java\n0 0 0 0\n1 2 3 4\n2 4 6 8\n3 6 9 12\n```"
+    ],
+    "answer": "A",
+    "explanation": "For each cell in the two-dimensional array, the code sets the value to the product of the indices for that cell. For example, `num[2][3]` is set to 2 × 3 or 6. The correct answer is (A).",
+    "difficulty": 3,
+    "source_qid": "c010-q5",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 10",
+    "topic_tags": [
+      "2d arrays",
+      "chapter 10"
+    ],
+    "stem": "Consider the following code segment:\n\n```java\nint [][] numbers = {{1, 2, 3, 4},{5, 6, 7, 8}};\ninitializeIt(numbers);\nString line =\"\";\nfor (int a = 0; a < numbers[0].length; a++)\n{\nfor (int b = 0; b < numbers.length; b++)\n{\nline += numbers[b][a] + \" \";\n}\nline += \"\\n\";\n}\nSystem.out.println(line);\n```\n\nThe call to `initializeIt()` on the second line initializes the array so that it looks like the following:\n\n```java\n1 2 3 4\n5 6 7 8\n```\n\nWhat will be printed after the code has executed?",
+    "options": [
+      "```java\n1 2 3 4\n5 6 7 8\n```",
+      "```java\n5 6 7 8\n1 2 3 4\n```",
+      "```java\n8 7 6 5\n4 3 2 1\n```",
+      "```java\n1 5\n2 6\n3 4\n4 8\n```"
+    ],
+    "answer": "D",
+    "explanation": "The index `a` will range from `0` to `3`, while index `b` will range from `0` to `1`. The indices are used in `[b][a]` order. The table below will help to visualize the traversal of the array. Each time `b` reaches the maximum index of rows, it will add a line break. The answer is (D).",
+    "difficulty": 3,
+    "source_qid": "c010-q6",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 10",
+    "topic_tags": [
+      "2d arrays",
+      "chapter 10"
+    ],
+    "stem": "Consider the following client code and method:\n\n```java\nint [][] numbers = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};\nint [] myArr = mystery(numbers, 2);\nfor (int j: myArr)\nSystem.out.print(j + \" \");\npublic static int [] mystery(int [][] arr, int n)\n{\nint [] m = new int[arr.length];\nfor (int i = 0; i < arr.length; i++)\nm[i] = arr[i][n];\nreturn m;\n}\n```\n\nWhat will be printed after the code executes?",
+    "options": [
+      "`2 6 10`",
+      "`9 10 11 12`",
+      "`4 8 12`",
+      "`3 7 11`"
+    ],
+    "answer": "D",
+    "explanation": "The array `m` is declared using the number of rows (`arr.length`). Thus, there must be 3 entries, eliminating (B). Index `i` will refer to each row. The number `2` is passed to `n`; thus, the column at index 2 (column 3) will be accessed. The correct column is `3 7 11`.",
+    "difficulty": 3,
+    "source_qid": "c010-q7",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 10",
+    "topic_tags": [
+      "2d arrays",
+      "chapter 10"
+    ],
+    "stem": "Consider the following code:\n\n```java\nint [][] numbers = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};\nfor (int r = numbers.length - 1; r > 0 ; r--)\n{\nfor (int c = 0; c < numbers[r].length; c++)\n{\nnumbers[r - 1][c] = numbers[r][c];\n}\n}\n```\n\nWhich of the following represents the current values in the array?",
+    "options": [
+      "```java\n1 2 3 4\n5 6 7 8\n9 10 11 12\n```",
+      "```java\n9 10 11 12\n5 6 7 8\n1 2 3 4\n```",
+      "```java\n1 2 3 4\n1 2 3 4\n1 2 3 4\n```",
+      "```java\n9 10 11 12\n9 10 11 12\n9 10 11 12\n```"
+    ],
+    "answer": "D",
+    "explanation": "The index `r` starts traversing the array on the last row. The program accesses each element in the row and assigns it to the row above it. This has the net result of changing all the elements to be the same values as those in the last row.",
+    "difficulty": 3,
+    "source_qid": "c010-q8",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 11",
+    "topic_tags": [
+      "recursion",
+      "chapter 11"
+    ],
+    "stem": "Consider the following recursive method:\n\n```java\npublic int mystery(int x)\n{\nif (x == 1)\nreturn 2;\nelse\nreturn 2 * mystery(x – 1);\n}\n```\n\nWhat value is returned as a result of the call `mystery(6)`?",
+    "options": [
+      "`12`",
+      "`32`",
+      "`64`",
+      "`128`"
+    ],
+    "answer": "C",
+    "explanation": "The recursion is as follows:\n\nSo `mystery(6) = 2 * 2 * 2 * 2 * 2 * 2 = 64`.\n\nThe correct answer is (C).",
+    "difficulty": 3,
+    "source_qid": "c011-q1",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 11",
+    "topic_tags": [
+      "recursion",
+      "chapter 11"
+    ],
+    "stem": "Consider the following recursive method:\n\n```java\npublic static int mystery(int x)\n{\nif (x == 0)\n{\nreturn 0;\n}\nelse\n{\nreturn (x + mystery(x / 2) + mystery(x / 4));\n}\n}\n```\n\nWhat value is returned as a result of a call to `mystery(10)`?",
+    "options": [
+      "`12`",
+      "`20`",
+      "`22`",
+      "`35`"
+    ],
+    "answer": "C",
+    "explanation": "On the first pass through the method, you get\n\n`10 + mystery(10 / 2) + mystery(10 / 4)`\n\nWhich can be simplified to\n\n`10 + mystery(5) + mystery(2)`\n\nNow figure out what `mystery(5)` and `mystery(2)` are and add the results to 10.\n\nFirst, solve `mystery(5)`:\n\n`mystery(5) = 5 + mystery(5 / 2) + mystery(5 / 4) = 5 + mystery(2) + mystery(1)`\n\n`mystery(2) = 2 + mystery(2 / 2) + mystery(2 / 4) = 2 + mystery(1) + mystery(0)`\n\n`mystery(1) = 1 + mystery(1 / 2) + mystery(1 / 4) = 1 + mystery(0) + mystery(0)`\n\nNote that `mystery(0)` is our base case and returns `0`. Working your way back up the recursive calls, you find that `mystery(1)` = `1`, `mystery(2)` = `3`, and `mystery(5)` = `9`. Note that in solving `mystery(5)`, you ended up needing to solve `mystery(2).`\n\nSo in the original equation, `10` + `mystery(5)` + `mystery(2)`, you can replace `mystery(5)` with `9` and `mystery(2)` with `3` to get `10 + 9 + 3`, which equals `22`. The correct answer is (C).",
+    "difficulty": 3,
+    "source_qid": "c011-q2",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 11",
+    "topic_tags": [
+      "recursion",
+      "chapter 11"
+    ],
+    "stem": "Consider the following nonrecursive method:\n\n```java\n//precondition: x >= 0\npublic static int mystery(int x)\n{\nint sum = 0;\nwhile(x >= 0)\n{\nsum += x;\nx--;\n}\nreturn sum;\n}\n```\n\nWhich of the following recursive methods are equivalent to the method above?\n\n```java\npublic static int mystery2(int x)\n{\nif (x == 0)\n{\nreturn 0;\n}\nreturn (x + mystery2(x – 1));\n}\npublic static int mystery2(int x)\n{\nif (x == 0)\n{\nreturn 0;\n}\nreturn (x + mystery2(x – 1));\n}\npublic static int mystery3 (int x)\n{\nif (x == 0)\nreturn 0;\nelse\nreturn mystery3(x – 1);\n}\npublic static int mystery3 (int x)\n{\nif (x == 0)\nreturn 0;\nelse\nreturn mystery3(x – 1);\n}\npublic static int mystery4 (int x)\n{\nif (x == 1)\n{\nreturn 1:\n}\nreturn (x + mystery4(x – 1));\n}\npublic static int mystery4 (int x)\n{\nif (x == 1)\n{\nreturn 1:\n}\nreturn (x + mystery4(x – 1));\n}\n```",
+    "options": [
+      "I only",
+      "III only",
+      "I and II only",
+      "II and III only"
+    ],
+    "answer": "A",
+    "explanation": "For any non-negative number `n` that is passed as an argument to the non-recursive method `mystery()`, the method will return `0 + 1 + 2 + 3 +…+ n`. For example, a call to `mystery(5)` will return `0 + 1 + 2 + 3 + 4 + 5 = 15`. Note that the border case for `mystery()` occurs when `0` is passed to the method. In this case, the method returns `0`.\n\nI (method `mystery2()`) is equivalent to `mystery().`\n\nII `(mystery3())` is not equivalent. Notice that `mystery3()` does not modify what is returned by the recursive call, whereas `mystery2()` adds `x` to the results of each recursive call. The method `mystery3()` will return `0` regardless of the value that is passed to the method.\n\nIII `(mystery4())` is equivalent to `mystery()` except when `x` equals `0`. If `0` is passed to the method, the loop will infinitely recurse. Because `mystery4()` doesn’t handle the border case correctly, III is incorrect.\n\nOnly I is equivalent to the `mystery()` method, so (A) is correct.",
+    "difficulty": 3,
+    "source_qid": "c011-q3",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 11",
+    "topic_tags": [
+      "recursion",
+      "chapter 11"
+    ],
+    "stem": "Consider the following method:\n\n```java\npublic int mystery(int x, int y)\n{\nif (x >= 100 || y <= 0)\n{\nreturn 1;\n}\nelse\n{\nreturn mystery(x + 10, y – 3);\n}\n}\n```\n\nWhat value is returned by the call `mystery (30, 18)`?",
+    "options": [
+      "`0`",
+      "`1`",
+      "`6`",
+      "Nothing will be returned due to infinite recursion."
+    ],
+    "answer": "B",
+    "explanation": "You originally pass `30` and `18` to the method as `x` and `y,` respectively. Each time the method is recursively called, `10` is added to `x` and `3` is subtracted from `y`. Therefore, `x` will eventually become larger than `100` and `y` will become smaller than `0`, so you know that the condition of the base case will eventually be met, and infinite recursion won’t occur. Eliminate (D).\n\nNote that the base case returns `1`. What about the non-base case? The method return `mystery (x + 10, y – 3)` simply returns whatever was returned by the call to `mystery()`; it doesn’t modify it in any way. Because there’s no modification of the return value, `1` is the only thing that is ever returned, no matter how many recursive calls occur. The correct answer is (B).",
+    "difficulty": 3,
+    "source_qid": "c011-q4",
+    "pre_2025_format": false
+  },
+  {
+    "chapter": "Chapter 11",
+    "topic_tags": [
+      "recursion",
+      "chapter 11"
+    ],
+    "stem": "Consider the following incomplete method:\n\n```java\npublic int mystery(int x)\n{\nif (x <= 1)\n{\nreturn 1;\n}\nelse\n{\nreturn ( / * missing code * / );\n}\n}\n```\n\nWhich of the following could be used to replace / * missing code * / so that the value of `mystery(10)` is `32`?",
+    "options": [
+      "`mystery(x – 1) + mystery(x – 2)`",
+      "`2 * mystery(x – 2)`",
+      "`2 * mystery(x – 1``)`",
+      "`4 * mystery(x – 4)`"
+    ],
+    "answer": "B",
+    "explanation": "The best way to solve this problem is to trace through each answer choice. But don’t necessarily start with (A). Start with the answer choice that you think you can solve most quickly. In this case, (A) will probably take longer to check because it has two recursive calls. Instead, start with (D). Why (D)? Because each recursive call reduces the integer that you pass as an argument by 4, there won’t be as many recursive calls as there will be with the other choices.\n\nWith (D), the first time through the method, you have `mystery(10) = 4 * mystery(6)`. Find that `mystery(6) = 4 * mystery(2)` and `mystery(2) = 4 * mystery(–2)`. Finally, `mystery(–2)` equals `1` (the base case). Working your way back up the call stack, you get `mystery(2)` = `4`, `mystery(6)` = `16` and `mystery(10)` = `64`. So (D) is incorrect.\n\nThe choice with the next fewest recursive calls is (B). For this choice, `mystery(10) = 2 * mystery(8)`; `mystery(8) = 2 * mystery(6)`; `mystery(6) = 2 * mystery(4)`; `mystery(4) = 2 * mystery(2)`; `mystery(2) = 2 * mystery(0)`; and `mystery(0) = 1`. Therefore, `mystery(2)` = `2`; `mystery(4)` = `4`; `mystery(6)` = `8`; `mystery(8)` = `16`; and `mystery(10)` = `32`. The correct answer is (B).",
+    "difficulty": 3,
+    "source_qid": "c011-q5",
+    "pre_2025_format": false
+  }
+]

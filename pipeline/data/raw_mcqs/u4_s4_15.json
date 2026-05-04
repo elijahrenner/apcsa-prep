@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] a = {7, 2, 5, 3};\n\nfor (int j = 0; j < 2; j++)\n{\n    int minIndex = j;\n    for (int k = j + 1; k < a.length; k++)\n    {\n        if (a[k] < a[minIndex])\n        {\n            minIndex = k;\n        }\n    }\n    int temp = a[j];\n    a[j] = a[minIndex];\n    a[minIndex] = temp;\n}\n\nfor (int k = 0; k < a.length; k++)\n{\n    System.out.print(a[k] + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 3 5 7 `"
+      },
+      {
+        "label": "B",
+        "text": "`2 7 5 3 `"
+      },
+      {
+        "label": "C",
+        "text": "`2 3 7 5 `"
+      },
+      {
+        "label": "D",
+        "text": "`7 2 5 3 `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Two passes of selection sort place 2 and then 3 into the first two positions, leaving 5 and 7 in order. B shows only one pass, C swaps with the wrong later element, and D shows no swaps.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Determine the contents of `a` after the following code runs.\n\n```java\nint[] a = {4, 1, 3, 2};\n\nfor (int j = 1; j < 3; j++)\n{\n    int temp = a[j];\n    int possibleIndex = j;\n    while (possibleIndex > 0 && temp < a[possibleIndex - 1])\n    {\n        a[possibleIndex] = a[possibleIndex - 1];\n        possibleIndex--;\n    }\n    a[possibleIndex] = temp;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`{1, 3, 4, 2}`"
+      },
+      {
+        "label": "B",
+        "text": "`{1, 4, 3, 2}`"
+      },
+      {
+        "label": "C",
+        "text": "`{1, 2, 3, 4}`"
+      },
+      {
+        "label": "D",
+        "text": "`{4, 1, 3, 2}`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The first pass inserts 1 before 4, and the second pass inserts 3 between 1 and 4; the last element is not processed because `j < 3`. B stops after one pass, C sorts the whole array, and D shows no changes.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Which of the following can replace `/* missing code */` so that the method sorts the array in increasing order using selection sort?\n\n```java\npublic static void sort(int[] a)\n{\n    for (int j = 0; j < a.length - 1; j++)\n    {\n        int minIndex = j;\n        for (int k = j + 1; k < a.length; k++)\n        {\n            /* missing code */\n        }\n        int temp = a[j];\n        a[j] = a[minIndex];\n        a[minIndex] = temp;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nif (a[k] < a[minIndex])\n{\n    minIndex = k;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nif (a[j] < a[k])\n{\n    minIndex = j;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nif (a[k] < a[j])\n{\n    k = minIndex;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nif (a[minIndex] < a[k])\n{\n    minIndex = k;\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Selection sort must update `minIndex` when a smaller value is found in the unsorted part. B never changes the chosen index correctly, C assigns to the loop variable, and D finds the maximum instead of the minimum.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "An array is already sorted in increasing order. Which sorting algorithm from the AP CSA course is expected to make the fewest comparisons on this input?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Insertion sort"
+      },
+      {
+        "label": "B",
+        "text": "Selection sort"
+      },
+      {
+        "label": "C",
+        "text": "Merge sort"
+      },
+      {
+        "label": "D",
+        "text": "Selection sort and merge sort always make fewer comparisons than insertion sort"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Insertion sort's inner loop stops immediately for each element when the array is already sorted. Selection sort still scans the remaining part each pass, and merge sort still performs its divide-and-merge process.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "The following code merges two sorted portions of `a`: indices `0` through `2` and indices `3` through `5`. Determine the output.\n\n```java\nint[] a = {1, 4, 8, 2, 5, 7};\nint[] temp = new int[a.length];\nint left = 0;\nint right = 3;\nint t = 0;\n\nwhile (left <= 2 && right <= 5)\n{\n    if (a[left] < a[right])\n    {\n        temp[t] = a[left];\n        left++;\n    }\n    else\n    {\n        temp[t] = a[right];\n        right++;\n    }\n    t++;\n}\nwhile (left <= 2)\n{\n    temp[t] = a[left];\n    left++;\n    t++;\n}\nwhile (right <= 5)\n{\n    temp[t] = a[right];\n    right++;\n    t++;\n}\n\nfor (int i = 0; i < temp.length; i++)\n{\n    System.out.print(temp[i] + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 2 4 5 7 8 `"
+      },
+      {
+        "label": "B",
+        "text": "`1 4 8 2 5 7 `"
+      },
+      {
+        "label": "C",
+        "text": "`2 1 5 4 7 8 `"
+      },
+      {
+        "label": "D",
+        "text": "`1 2 4 5 8 7 `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The merge repeatedly takes the smaller front value from the two sorted portions, producing `1 2 4 5 7 8`. B is the original array, C alternates values incorrectly, and D leaves the final two values out of order.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "The following method is used to count shifts during insertion sort.\n\n```java\npublic static int countShifts(int[] a)\n{\n    int count = 0;\n    for (int j = 1; j < a.length; j++)\n    {\n        int temp = a[j];\n        int possibleIndex = j;\n        while (possibleIndex > 0 && temp < a[possibleIndex - 1])\n        {\n            a[possibleIndex] = a[possibleIndex - 1];\n            possibleIndex--;\n            count++;\n        }\n        a[possibleIndex] = temp;\n    }\n    return count;\n}\n```\n\nWhat is returned by `countShifts(new int[] {5, 2, 4, 1})`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The shifts are 1 for inserting 2, 1 for inserting 4, and 2 for inserting 1, for a total of 4. The other choices come from missing one shift, adding an extra comparison as a shift, or counting every pair.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] nums = {4, 1, 3, 2};\n\nfor (int j = 0; j < 2; j++)\n{\n    int minIndex = j;\n    for (int k = j + 1; k < nums.length; k++)\n    {\n        if (nums[k] < nums[minIndex])\n        {\n            minIndex = k;\n        }\n    }\n    int temp = nums[j];\n    nums[j] = nums[minIndex];\n    nums[minIndex] = temp;\n}\n\nfor (int i = 0; i < nums.length; i++)\n{\n    System.out.print(nums[i]);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1234`"
+      },
+      {
+        "label": "B",
+        "text": "`1432`"
+      },
+      {
+        "label": "C",
+        "text": "`1243`"
+      },
+      {
+        "label": "D",
+        "text": "`4132`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The first pass swaps 1 into index 0, and the second pass swaps 2 into index 1, producing `{1, 2, 3, 4}`. The other options reflect no pass, one pass only, or a wrong second swap.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Determine the values in `a` after the following code runs.\n\n```java\nint[] a = {5, 2, 4, 3};\n\nfor (int j = 1; j < 3; j++)\n{\n    int temp = a[j];\n    int possibleIndex = j;\n    while (possibleIndex > 0 && temp < a[possibleIndex - 1])\n    {\n        a[possibleIndex] = a[possibleIndex - 1];\n        possibleIndex--;\n    }\n    a[possibleIndex] = temp;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`{2, 4, 5, 3}`"
+      },
+      {
+        "label": "B",
+        "text": "`{2, 5, 4, 3}`"
+      },
+      {
+        "label": "C",
+        "text": "`{2, 3, 4, 5}`"
+      },
+      {
+        "label": "D",
+        "text": "`{5, 2, 4, 3}`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop runs for `j = 1` and `j = 2`, inserting 2 before 5 and then inserting 4 before 5. Choice C would require the loop to also process index 3.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "The following method is intended to sort `a` into increasing order using selection sort, but it does not work correctly.\n\n```java\npublic static void sort(int[] a)\n{\n    for (int j = 0; j < a.length - 1; j++)\n    {\n        int minIndex = 0;\n        for (int k = j + 1; k < a.length; k++)\n        {\n            if (a[k] < a[minIndex])\n            {\n                minIndex = k;\n            }\n        }\n        int temp = a[j];\n        a[j] = a[minIndex];\n        a[minIndex] = temp;\n    }\n}\n```\n\nWhich change best fixes the error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Replace `int minIndex = 0;` with `int minIndex = j;`"
+      },
+      {
+        "label": "B",
+        "text": "Replace `int k = j + 1;` with `int k = 0;`"
+      },
+      {
+        "label": "C",
+        "text": "Replace `a[k] < a[minIndex]` with `a[k] > a[minIndex]`"
+      },
+      {
+        "label": "D",
+        "text": "Replace `j < a.length - 1` with `j < a.length`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "On each pass, the minimum should be found only within the unsorted portion starting at index `j`. The other choices either search the wrong range, sort in the wrong direction, or cause an out-of-bounds swap on the last pass.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Which statement correctly compares selection sort and insertion sort on an array that is already sorted in increasing order?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Selection sort still makes a quadratic number of comparisons, while insertion sort makes only a linear number of comparisons."
+      },
+      {
+        "label": "B",
+        "text": "Selection sort makes only a linear number of comparisons, while insertion sort still makes a quadratic number of comparisons."
+      },
+      {
+        "label": "C",
+        "text": "Both selection sort and insertion sort make a quadratic number of comparisons."
+      },
+      {
+        "label": "D",
+        "text": "Both selection sort and insertion sort make only a linear number of comparisons."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Selection sort searches the remaining unsorted portion on every pass regardless of order. Insertion sort's inner loop stops immediately when the array is already sorted.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "The following code merges two sorted portions of `a`, indexes 0 through 2 and indexes 3 through 5. Determine the output.\n\n```java\nint[] a = {1, 4, 7, 2, 3, 6};\nint[] temp = new int[a.length];\nint left = 0;\nint right = 3;\nint index = 0;\n\nwhile (left <= 2 && right <= 5)\n{\n    if (a[left] < a[right])\n    {\n        temp[index] = a[left];\n        left++;\n    }\n    else\n    {\n        temp[index] = a[right];\n        right++;\n    }\n    index++;\n}\n\nwhile (left <= 2)\n{\n    temp[index] = a[left];\n    left++;\n    index++;\n}\nwhile (right <= 5)\n{\n    temp[index] = a[right];\n    right++;\n    index++;\n}\n\nfor (int i = 0; i < a.length; i++)\n{\n    System.out.print(temp[i]);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`147236`"
+      },
+      {
+        "label": "B",
+        "text": "`123467`"
+      },
+      {
+        "label": "C",
+        "text": "`123647`"
+      },
+      {
+        "label": "D",
+        "text": "`124736`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The merge repeatedly takes the smaller front value from the two sorted portions, producing `1, 2, 3, 4, 6, 7`. The distractors reflect leaving the array unchanged or appending values from a half too early.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Which of the following can replace `/* missing code */` so the method sorts `list` into increasing order using selection sort?\n\n```java\npublic static void sortList(ArrayList<Integer> list)\n{\n    for (int j = 0; j < list.size() - 1; j++)\n    {\n        int minIndex = j;\n        for (int k = j + 1; k < list.size(); k++)\n        {\n            if (list.get(k) < list.get(minIndex))\n            {\n                minIndex = k;\n            }\n        }\n\n        /* missing code */\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nint temp = list.get(j);\nlist.set(j, list.get(minIndex));\nlist.set(minIndex, temp);\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nint temp = list.get(minIndex);\nlist.set(minIndex, list.get(j));\nlist.set(j, list.get(minIndex));\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint temp = list.get(j);\nlist.get(j) = list.get(minIndex);\nlist.get(minIndex) = temp;\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nlist.set(j, list.get(minIndex));\nlist.set(minIndex, list.get(j));\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Choice A saves the old value at index `j`, moves the minimum into index `j`, and then places the saved value at `minIndex`. Choice B overwrites the saved minimum, C is invalid assignment syntax, and D loses the original value at index `j`.",
+    "difficulty": 3,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] vals = {7, 3, 5, 1};\nint minIndex = 0;\n\nfor (int k = 1; k < vals.length; k++)\n{\n    if (vals[k] < vals[minIndex])\n    {\n        minIndex = k;\n    }\n}\n\nint temp = vals[0];\nvals[0] = vals[minIndex];\nvals[minIndex] = temp;\n\nSystem.out.println(vals[0] + \",\" + vals[1] + \",\" + vals[2] + \",\" + vals[3]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1,3,5,7`"
+      },
+      {
+        "label": "B",
+        "text": "`3,7,5,1`"
+      },
+      {
+        "label": "C",
+        "text": "`1,7,5,3`"
+      },
+      {
+        "label": "D",
+        "text": "`7,3,5,1`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The minimum value in the array is 1 at index 3, so it is swapped with the element at index 0, producing 1,7,5,3. Choice A incorrectly shows the fully sorted array, B swaps with the first smaller value only, and D shows no swap.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Determine the values in `nums` after the following code runs.\n\n```java\nint[] nums = {2, 6, 4, 1};\n\nfor (int j = 1; j <= 2; j++)\n{\n    int temp = nums[j];\n    int possibleIndex = j;\n\n    while (possibleIndex > 0 && temp < nums[possibleIndex - 1])\n    {\n        nums[possibleIndex] = nums[possibleIndex - 1];\n        possibleIndex--;\n    }\n\n    nums[possibleIndex] = temp;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`{2, 4, 6, 1}`"
+      },
+      {
+        "label": "B",
+        "text": "`{1, 2, 4, 6}`"
+      },
+      {
+        "label": "C",
+        "text": "`{2, 6, 4, 1}`"
+      },
+      {
+        "label": "D",
+        "text": "`{2, 4, 1, 6}`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop performs only the passes for j = 1 and j = 2; the second pass inserts 4 before 6, giving {2, 4, 6, 1}. Choice B shows the result after a full insertion sort, C ignores the shift, and D reflects moving the last element too early.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Which of the following could replace `/* missing code */` so that the method sorts `words` in increasing alphabetical order?\n\n```java\npublic static void selectionSort(String[] words)\n{\n    for (int j = 0; j < words.length - 1; j++)\n    {\n        int minIndex = j;\n        for (int k = j + 1; k < words.length; k++)\n        {\n            /* missing code */\n        }\n        String temp = words[j];\n        words[j] = words[minIndex];\n        words[minIndex] = temp;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nif (words[k].compareTo(words[minIndex]) < 0)\n{\n    minIndex = k;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nif (words[k] < words[minIndex])\n{\n    minIndex = k;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nif (words[k].equals(words[minIndex]))\n{\n    minIndex = k;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nif (words[k].compareTo(words[minIndex]) > 0)\n{\n    minIndex = k;\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "String values are ordered with compareTo, and a negative result means words[k] comes before words[minIndex]. Choice B uses an invalid object comparison, C only detects equal strings, and D would select the largest remaining string.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "An array is already sorted in increasing order. Which statement best compares insertion sort and selection sort on this array?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Insertion sort does fewer comparisons because its inner loop stops immediately on each pass."
+      },
+      {
+        "label": "B",
+        "text": "Selection sort does fewer comparisons because it never needs to swap any elements."
+      },
+      {
+        "label": "C",
+        "text": "Both sorts always perform exactly the same number of comparisons for every input order."
+      },
+      {
+        "label": "D",
+        "text": "Insertion sort cannot be used because the array is already sorted."
+      }
+    ],
+    "answer": "A",
+    "explanation": "For an already sorted array, insertion sort's inner while condition fails immediately on each pass. Selection sort still scans the unsorted portion to find the minimum, even when no useful swap is needed.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] a = {5, 2, 4, 3};\n\nfor (int j = 1; j < a.length; j++)\n{\n    int temp = a[j];\n    int p = j;\n\n    while (p > 0 && temp < a[p - 1])\n    {\n        a[p] = a[p - 1];\n        p--;\n    }\n\n    a[p] = temp;\n    System.out.print(a[0] + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 2 2 `"
+      },
+      {
+        "label": "B",
+        "text": "`5 2 2 `"
+      },
+      {
+        "label": "C",
+        "text": "`2 4 3 `"
+      },
+      {
+        "label": "D",
+        "text": "`2 2 3 `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "After the first pass, 2 becomes the first element and remains there for the next two passes, so 2 is printed three times. The other choices treat the first element as changing before the first insertion, print inserted values, or show the final first element incorrectly.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Which of the following is a true statement about merge sort?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It divides the array into smaller parts and merges sorted parts back together."
+      },
+      {
+        "label": "B",
+        "text": "It repeatedly selects the smallest remaining element and swaps it into the next position."
+      },
+      {
+        "label": "C",
+        "text": "It inserts each element into the correct position within the sorted left portion."
+      },
+      {
+        "label": "D",
+        "text": "It requires the original array to already be sorted before the algorithm begins."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Merge sort is a divide-and-combine sorting algorithm that merges sorted subarrays. Choice B describes selection sort, C describes insertion sort, and D describes a requirement for binary search, not sorting.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] a = {5, 2, 4, 1};\n\nfor (int j = 0; j < 2; j++)\n{\n    int minIndex = j;\n    for (int k = j + 1; k < a.length; k++)\n    {\n        if (a[k] < a[minIndex])\n        {\n            minIndex = k;\n        }\n    }\n    int temp = a[j];\n    a[j] = a[minIndex];\n    a[minIndex] = temp;\n}\n\nfor (int x : a)\n{\n    System.out.print(x);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1245`"
+      },
+      {
+        "label": "B",
+        "text": "`1234`"
+      },
+      {
+        "label": "C",
+        "text": "`2145`"
+      },
+      {
+        "label": "D",
+        "text": "`5241`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "After the first selection-sort pass, 1 is swapped to index 0; the second pass leaves 2 at index 1, producing 1245. Choice B assumes the whole array is sorted, C reflects an incorrect first swap, and D is the original order.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] nums = {4, 1, 3, 2};\n\nfor (int j = 1; j < nums.length; j++)\n{\n    int temp = nums[j];\n    int possibleIndex = j;\n\n    while (possibleIndex > 0 && temp < nums[possibleIndex - 1])\n    {\n        nums[possibleIndex] = nums[possibleIndex - 1];\n        possibleIndex--;\n    }\n    nums[possibleIndex] = temp;\n\n    if (j == 2)\n    {\n        for (int n : nums)\n        {\n            System.out.print(n);\n        }\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4132`"
+      },
+      {
+        "label": "B",
+        "text": "`1432`"
+      },
+      {
+        "label": "C",
+        "text": "`1342`"
+      },
+      {
+        "label": "D",
+        "text": "`1234`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Insertion sort first changes the array to 1432, then inserts 3 before 4 to make 1342 when j is 2. Choice D assumes all passes have completed.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "The following method is intended to sort `a` into increasing order using selection sort.\n\n```java\npublic static void selectionSort(int[] a)\n{\n    for (int j = 0; j < a.length - 1; j++)\n    {\n        int minIndex = j;\n        for (int k = j + 1; k < a.length; k++)\n        {\n            if (a[k] < a[minIndex])\n            {\n                k = minIndex;\n            }\n        }\n        int temp = a[j];\n        a[j] = a[minIndex];\n        a[minIndex] = temp;\n    }\n}\n```\n\nWhich of the following best describes the error in the method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The outer loop should start at `1` instead of `0`."
+      },
+      {
+        "label": "B",
+        "text": "The statement `k = minIndex;` should be `minIndex = k;`."
+      },
+      {
+        "label": "C",
+        "text": "The inner loop should stop at `a.length - 1` instead of `a.length`."
+      },
+      {
+        "label": "D",
+        "text": "The swap should occur inside the inner loop."
+      }
+    ],
+    "answer": "B",
+    "explanation": "When a smaller element is found, the index of that element must be stored in `minIndex`. The other choices introduce off-by-one errors or swap too early.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Which statement about the three sorting algorithms is true?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Selection sort makes fewer comparisons on an already sorted array than on a reversed array."
+      },
+      {
+        "label": "B",
+        "text": "Insertion sort is generally most efficient when the array is already sorted or nearly sorted."
+      },
+      {
+        "label": "C",
+        "text": "Merge sort repeatedly finds the smallest value and swaps it into the next position."
+      },
+      {
+        "label": "D",
+        "text": "Selection sort and insertion sort both always require extra arrays the same length as the input."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Insertion sort's inner loop can stop immediately when values are already in order. Selection sort still searches the remaining unsorted portion, merge sort splits and merges, and selection/insertion sort do not require a full extra array.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Determine the values of `compares` and `moves` after the following code runs.\n\n```java\nint[] a = {1, 2, 4, 3};\nint compares = 0;\nint moves = 0;\n\nfor (int j = 1; j < a.length; j++)\n{\n    int temp = a[j];\n    int possibleIndex = j;\n    while (possibleIndex > 0 && temp < a[possibleIndex - 1])\n    {\n        compares++;\n        a[possibleIndex] = a[possibleIndex - 1];\n        moves++;\n        possibleIndex--;\n    }\n    a[possibleIndex] = temp;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`compares = 1, moves = 1`"
+      },
+      {
+        "label": "B",
+        "text": "`compares = 3, moves = 1`"
+      },
+      {
+        "label": "C",
+        "text": "`compares = 1, moves = 3`"
+      },
+      {
+        "label": "D",
+        "text": "`compares = 0, moves = 0`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Only the final outer-loop pass shifts 4 one position to the right, so the loop body runs once. The failed while-condition checks do not increment `compares` because the increment is inside the loop body.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "In a merge sort of an array with 16 elements, the array is repeatedly split into two halves until each part contains one element, and then sorted parts are merged. Which of the following best describes why merge sort is usually faster than selection sort for large arrays?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Merge sort avoids comparing values entirely."
+      },
+      {
+        "label": "B",
+        "text": "Merge sort eliminates about half of the unsorted values after each comparison."
+      },
+      {
+        "label": "C",
+        "text": "Merge sort uses a divide-and-conquer process with about `n log n` work."
+      },
+      {
+        "label": "D",
+        "text": "Merge sort works only when the original array is already sorted."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Merge sort splits the problem and merges sorted halves, giving about `n log n` work. Choice B describes binary search more closely, and choices A and D are false.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_15",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] nums = {6, 2, 5, 1, 4};\n\nfor (int j = 1; j < 3; j++)\n{\n    int temp = nums[j];\n    int possibleIndex = j;\n    while (possibleIndex > 0 && temp < nums[possibleIndex - 1])\n    {\n        nums[possibleIndex] = nums[possibleIndex - 1];\n        possibleIndex--;\n    }\n    nums[possibleIndex] = temp;\n}\n\nfor (int k = 0; k < nums.length; k++)\n{\n    System.out.print(nums[k] + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 5 6 1 4 `"
+      },
+      {
+        "label": "B",
+        "text": "`1 2 5 6 4 `"
+      },
+      {
+        "label": "C",
+        "text": "`1 2 4 5 6 `"
+      },
+      {
+        "label": "D",
+        "text": "`2 6 5 1 4 `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop performs the first two insertion sort passes, sorting only the first three values into `2, 5, 6`. Choice B reflects one extra pass or a different sort step, choice C is the fully sorted array, and choice D stops after only the first pass.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  }
+]

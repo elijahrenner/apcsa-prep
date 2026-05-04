@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "Which of the following BEST describes the term \"algorithmic bias\"?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A programming error that causes a loop to execute one too many times due to an incorrect loop bound"
+      },
+      {
+        "label": "B",
+        "text": "Systemic, repeated errors in a program that produce unfair outcomes for some group, often caused by biased training data"
+      },
+      {
+        "label": "C",
+        "text": "An algorithm that takes too long to execute because it uses selection sort instead of merge sort"
+      },
+      {
+        "label": "D",
+        "text": "The use of incorrect data types, such as storing a decimal value in an `int` variable"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Algorithmic bias refers to systemic, repeated errors in a program that produce unfair outcomes for some group, typically rooted in biased or unrepresentative training data. The other options describe programming mistakes unrelated to fairness or group outcomes.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "Which of the following is NOT identified as a data quality concern that can lead to wrong conclusions and unreliable programs?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Incomplete data"
+      },
+      {
+        "label": "B",
+        "text": "Inaccurate data"
+      },
+      {
+        "label": "C",
+        "text": "Off-topic data"
+      },
+      {
+        "label": "D",
+        "text": "Redundant data"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The three recognized data quality concerns are incomplete, inaccurate, and off-topic data. Redundant (duplicate) data is not listed among the three primary concerns that lead to wrong conclusions.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A program computes average patient wait times at a hospital. The dataset used was collected only on weekday mornings. Which data quality concern does this BEST illustrate?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Inaccurate data, because the times may have been recorded with rounding errors"
+      },
+      {
+        "label": "B",
+        "text": "Off-topic data, because time of day is unrelated to patient wait times"
+      },
+      {
+        "label": "C",
+        "text": "Incomplete data, because weekday afternoons, evenings, and weekends are not represented"
+      },
+      {
+        "label": "D",
+        "text": "No data quality concern exists, because any sufficiently large sample is representative"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Collecting data only during weekday mornings omits large portions of operating hours, making the dataset incomplete. This can lead to averages that misrepresent overall wait times.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A student records test scores for a class project, but accidentally enters 87 as 78 for one student and 95 as 59 for another. What type of data quality concern do these errors represent?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Incomplete data, because the affected students' scores are effectively missing"
+      },
+      {
+        "label": "B",
+        "text": "Inaccurate data, because the recorded values do not correctly reflect the actual scores"
+      },
+      {
+        "label": "C",
+        "text": "Off-topic data, because individual test scores are not relevant to class-level analysis"
+      },
+      {
+        "label": "D",
+        "text": "No data quality concern, because the errors will cancel each other out in the average"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Inaccurate data means the recorded values do not correctly represent the real-world values. Transposing digits so that 87 becomes 78 is a classic data entry inaccuracy. The errors do not cancel in general and both scores are present but wrong.",
+    "difficulty": 2,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A r\u00e9sum\u00e9-screening algorithm is trained on hiring decisions made at a company over the past 15 years. During that period, fewer than 10% of software engineers hired were women. Which of the following is the MOST likely ethical concern with deploying this algorithm?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The algorithm will throw an `ArrayIndexOutOfBoundsException` when processing r\u00e9sum\u00e9s from female applicants"
+      },
+      {
+        "label": "B",
+        "text": "The algorithm may rank female applicants lower because the training data reflects a historical pattern of underrepresentation"
+      },
+      {
+        "label": "C",
+        "text": "The algorithm will run more slowly on r\u00e9sum\u00e9s from underrepresented groups"
+      },
+      {
+        "label": "D",
+        "text": "The algorithm will always favor candidates with more years of experience, regardless of gender"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Because the training data reflects historical underrepresentation of women, the algorithm may learn to associate characteristics more common in male r\u00e9sum\u00e9s with \"successful\" candidates, perpetuating gender bias. Runtime exceptions and execution speed are unrelated to representation in training data.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A loan-approval program consistently denies applications from residents of certain zip codes at a much higher rate than applicants with comparable financial profiles in other areas. This pattern persists across thousands of decisions. Which of the following BEST characterizes this situation?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A random programming error that will correct itself as more data is processed"
+      },
+      {
+        "label": "B",
+        "text": "An off-by-one error in the loop that evaluates each application"
+      },
+      {
+        "label": "C",
+        "text": "Algorithmic bias, because the program systematically produces unfair outcomes for a group"
+      },
+      {
+        "label": "D",
+        "text": "A valid outcome, because zip code is an objective financial risk factor"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Algorithmic bias is defined by systemic, repeated unfair outcomes for a group. A consistent denial disparity based on zip code (which can correlate with race or ethnicity) fits this definition. A random error would not produce a consistent directional pattern.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A programmer writes a correct, bug-free algorithm that processes a dataset and generates college admission recommendations. After deployment, the recommendations are found to systematically disadvantage students from rural areas. Which of the following BEST explains how this can occur?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The algorithm contains a logic error that only appears when processing rural applicants"
+      },
+      {
+        "label": "B",
+        "text": "The training dataset may not have included enough data from rural students, causing the algorithm to produce poor results for that group"
+      },
+      {
+        "label": "C",
+        "text": "The algorithm runs correctly, so the only explanation is that rural students are objectively less qualified"
+      },
+      {
+        "label": "D",
+        "text": "The algorithm must use `==` instead of `.equals()` when comparing student records, causing incorrect matches"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An algorithm can be logically correct yet still produce biased outcomes if the training data is unrepresentative. Underrepresentation of rural students means the algorithm learned patterns that do not generalize fairly to that group.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "Consider the following code that reads a file of student test scores and computes an average.\n\n```java\nScanner scan = new Scanner(new File(\"scores.txt\"));\nint total = 0;\nint count = 0;\nwhile (scan.hasNextInt())\n{\n    int score = scan.nextInt();\n    total += score;\n    count++;\n}\nscan.close();\nint avg = total / count;\n```\n\nThe file `scores.txt` was collected from a gifted-student summer program and does not include scores from the general student population. Which of the following BEST describes the consequence of this data quality concern?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The variable `avg` will always equal `0` because `total / count` performs integer division"
+      },
+      {
+        "label": "B",
+        "text": "The computed average will likely be higher than the true class-wide average, making it unreliable for evaluating all students"
+      },
+      {
+        "label": "C",
+        "text": "The `Scanner` will throw a `FileNotFoundException` because the file only contains gifted-student scores"
+      },
+      {
+        "label": "D",
+        "text": "The `while` loop will execute an incorrect number of times because `hasNextInt()` cannot handle scores above 100"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Because `scores.txt` contains only gifted-student data, the dataset is incomplete. The computed average will be skewed upward and will not represent the full population, producing an unreliable result. Integer division, file exceptions, and loop counts are separate issues unrelated to this data quality concern.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A research team includes applicants' first names as a feature in a job-recommendation algorithm. Studies have shown that names can correlate with a person's perceived ethnicity. Which of the following BEST describes the concern with this design choice?",
+    "options": [
+      {
+        "label": "A",
+        "text": "First names are inaccurate data because applicants can legally change their names at any time"
+      },
+      {
+        "label": "B",
+        "text": "First names are incomplete data because some applicants may have submitted only a last name"
+      },
+      {
+        "label": "C",
+        "text": "Including first names may introduce bias because the algorithm could learn to favor or disfavor applicants based on name-ethnicity associations"
+      },
+      {
+        "label": "D",
+        "text": "First names are stored as `String` objects, which cannot be compared numerically, so they have no effect on numeric scoring"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Even data that appears neutral can act as a proxy for protected characteristics. Because names correlate with perceived ethnicity, using them as features can cause the algorithm to produce biased recommendations that discriminate along ethnic lines.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "Which of the following actions would be MOST effective in reducing algorithmic bias in a medical diagnosis support system?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Rewriting the algorithm in a different programming language"
+      },
+      {
+        "label": "B",
+        "text": "Replacing insertion sort with merge sort when ordering patient records"
+      },
+      {
+        "label": "C",
+        "text": "Increasing the total number of patient records without changing which demographic groups are represented"
+      },
+      {
+        "label": "D",
+        "text": "Ensuring the training dataset includes diverse and representative samples from all relevant patient groups"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Algorithmic bias rooted in unrepresentative training data is best addressed by making the dataset more diverse and representative. Simply increasing dataset size (option C) without improving representation does not fix the underlying imbalance. Programming language and sort algorithm choices are irrelevant to bias.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "Which of the following scenarios BEST illustrates algorithmic bias as opposed to a typical programming error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A loop uses `<=` instead of `<`, causing it to access an out-of-bounds index and throw an exception"
+      },
+      {
+        "label": "B",
+        "text": "A program throws a `NullPointerException` because an array element was never assigned a value"
+      },
+      {
+        "label": "C",
+        "text": "A facial recognition system consistently achieves lower accuracy for people with darker skin tones because that group was underrepresented in the training images"
+      },
+      {
+        "label": "D",
+        "text": "A sorting algorithm produces incorrect output because the swap step uses the wrong index variable"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Algorithmic bias involves systematic unfair outcomes for a particular group, typically rooted in biased or unrepresentative data. Options A, B, and D are classic coding mistakes that produce incorrect results for all inputs equally, not systematic disadvantages for a specific group.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A dataset of 12,000 records is used to train a hiring algorithm. Of those records, 11,400 represent applicants from one metropolitan area and 600 represent applicants from rural areas. A developer argues the dataset is adequate because 12,000 records is a large sample. Which of the following BEST critiques this argument?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The argument is valid because 12,000 records is always sufficient for any algorithm"
+      },
+      {
+        "label": "B",
+        "text": "The argument is flawed because the 600 rural records may not produce accurate or fair results for rural applicants"
+      },
+      {
+        "label": "C",
+        "text": "The argument is valid as long as the algorithm uses binary search to process the data"
+      },
+      {
+        "label": "D",
+        "text": "The argument is flawed because a properly representative dataset must have exactly equal counts from every group"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Total dataset size does not guarantee fairness. With only 600 of 12,000 records representing rural applicants (5%), the algorithm may produce inaccurate results for that group. Option D is incorrect because exact equal counts are not required \u2014 adequate representation is.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A researcher identifies three problems with a dataset used to train a crime-prediction algorithm:\n\nI. Arrest records from certain neighborhoods were never entered into the database.\nII. Several records have incorrect incident dates because a data-entry form contained a software bug.\nIII. The dataset includes the subject's favorite sports team, which has no relationship to crime likelihood.\n\nWhich of the following correctly classifies each problem?",
+    "options": [
+      {
+        "label": "A",
+        "text": "I \u2014 inaccurate, II \u2014 incomplete, III \u2014 off-topic"
+      },
+      {
+        "label": "B",
+        "text": "I \u2014 incomplete, II \u2014 inaccurate, III \u2014 off-topic"
+      },
+      {
+        "label": "C",
+        "text": "I \u2014 off-topic, II \u2014 inaccurate, III \u2014 incomplete"
+      },
+      {
+        "label": "D",
+        "text": "I \u2014 incomplete, II \u2014 off-topic, III \u2014 inaccurate"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Missing records from certain neighborhoods is incomplete data (entries were never added). Incorrect dates from a buggy form are inaccurate data (wrong values present). Favorite sports team is off-topic data (irrelevant to the prediction task). Option A swaps the labels for I and II.",
+    "difficulty": 4,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A search engine algorithm ranks results based on how frequently past users clicked on them. Over time, the same top results receive more clicks and rank even higher, while other results become harder to find. Which of the following is the BEST description of the bias concern in this design?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The algorithm will eventually throw a `StackOverflowError` because it calls itself recursively to update rankings"
+      },
+      {
+        "label": "B",
+        "text": "The algorithm creates a feedback loop that reinforces existing popular results and reduces exposure to diverse viewpoints"
+      },
+      {
+        "label": "C",
+        "text": "The algorithm will produce an `IndexOutOfBoundsException` when the number of results exceeds `Integer.MAX_VALUE`"
+      },
+      {
+        "label": "D",
+        "text": "The algorithm runs less efficiently over time because clicking data grows without bound"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Using past click behavior as training data creates a self-reinforcing loop: popular items rank higher, receive more clicks, and rank even higher \u2014 reducing exposure to less-seen content and producing a form of bias toward already-dominant results.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A company states that its credit-scoring algorithm \"has no bias because it applies the same mathematical formula to every applicant.\" An audit reveals the algorithm disproportionately denies applications from one ethnic group even when controlling for financial history. Which of the following BEST explains why the company's claim is incorrect?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Algorithms cannot perform division, so the mathematical formula cannot be correct"
+      },
+      {
+        "label": "B",
+        "text": "Applying the same logic to every input is sufficient to guarantee fair outcomes for all groups"
+      },
+      {
+        "label": "C",
+        "text": "The algorithm may reproduce patterns of bias present in the training data, producing systematically unfair outcomes even though the code is applied uniformly"
+      },
+      {
+        "label": "D",
+        "text": "The algorithm is biased because it stores applicant names as `String` objects, which are compared by reference rather than value"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Uniform application of logic does not prevent bias if the training data itself reflects historical inequalities. An algorithm trained on biased data can produce biased outcomes for specific groups even when the same formula is applied to all inputs.",
+    "difficulty": 4,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "Weather sensors in rural areas of a region malfunction frequently and report no data, while urban sensors operate normally. A program reads all sensor data and computes regional temperature averages. Which of the following BEST describes the likely impact on the program's output?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The program will throw an `IOException` each time a rural sensor reports no data"
+      },
+      {
+        "label": "B",
+        "text": "The computed averages will accurately represent all areas because the functioning urban sensors compensate for missing rural data"
+      },
+      {
+        "label": "C",
+        "text": "The computed averages may be skewed toward urban temperatures, producing misleading conclusions about rural climate patterns"
+      },
+      {
+        "label": "D",
+        "text": "The program will produce correct results because averaging automatically handles missing values"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Because rural sensors are systematically absent (incomplete data), the averages over-represent urban readings. This illustrates how incomplete data from specific subgroups can produce skewed, misleading conclusions \u2014 a form of data-driven bias.",
+    "difficulty": 4,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A dataset is used to train a program that predicts whether a student will need academic support. The dataset was collected from one school district where nearly all students come from high-income households. A teacher from a low-income district plans to use this program. Which of the following is the GREATEST risk?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The program will run more slowly on the teacher's computer because the dataset is large"
+      },
+      {
+        "label": "B",
+        "text": "The program may produce inaccurate predictions for students in the low-income district because they were not represented in the training data"
+      },
+      {
+        "label": "C",
+        "text": "The program will throw a `NumberFormatException` when it encounters student names from the new district"
+      },
+      {
+        "label": "D",
+        "text": "The program will always predict that every student needs support, because the model was trained on too few data points"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Because the training data consists entirely of high-income students, the algorithm may not generalize to students with different socioeconomic backgrounds. This is an incomplete-data concern that can result in inaccurate or unfair predictions for the underrepresented population.",
+    "difficulty": 4,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A school uses a program to recommend students for an advanced course. The program was trained mostly on records from one neighborhood and consistently recommends students from that neighborhood more often than equally qualified students from other neighborhoods. Which term best describes this problem?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Algorithmic bias"
+      },
+      {
+        "label": "B",
+        "text": "Integer overflow"
+      },
+      {
+        "label": "C",
+        "text": "Binary search"
+      },
+      {
+        "label": "D",
+        "text": "Encapsulation"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Algorithmic bias is a repeated unfair outcome caused by the program or its data. The other choices describe unrelated programming concepts.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A city wants to use a data set to decide where to add bus service. Which of the following data sets would be most likely to lead to unreliable conclusions?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Recent passenger counts from every bus route at several times of day"
+      },
+      {
+        "label": "B",
+        "text": "Recent survey responses from riders in all neighborhoods served by buses"
+      },
+      {
+        "label": "C",
+        "text": "Ten-year-old ridership data collected before several neighborhoods were built"
+      },
+      {
+        "label": "D",
+        "text": "Current counts of empty seats on buses during morning and evening routes"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Old data collected before major changes may be inaccurate for the current decision. The other data sets are more current and relevant to bus use.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A program labels loan applications using the following code. Determine the output.\n\n```java\nint income = 48;\nint years = 2;\nint score = 0;\n\nif (income >= 50)\n{\n    score += 2;\n}\nelse\n{\n    score += 1;\n}\n\nif (years >= 3)\n{\n    score += 2;\n}\n\nif (score >= 3)\n{\n    System.out.print(\"approve\");\n}\nelse\n{\n    System.out.print(\"review\");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`approve`"
+      },
+      {
+        "label": "B",
+        "text": "`review`"
+      },
+      {
+        "label": "C",
+        "text": "`approve review`"
+      },
+      {
+        "label": "D",
+        "text": "No output is produced."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The first condition is false, so score becomes 1, and the second condition is also false. Since 1 is less than 3, the program prints review.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A hiring program was tested only on applications from people who already worked at the company. The program is then used to screen all new applicants. Which is the best reason this could produce unfair results?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The test data may not represent the full group of people who will be evaluated."
+      },
+      {
+        "label": "B",
+        "text": "The program must use an ArrayList instead of an array."
+      },
+      {
+        "label": "C",
+        "text": "The program should always reject applications with missing values."
+      },
+      {
+        "label": "D",
+        "text": "The program cannot use conditional statements in an ethical decision."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Testing on a narrow data set can hide errors that affect other groups. The data structure and use of conditionals do not by themselves determine whether the result is fair.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A programmer wants to check whether a prediction program makes more errors for one group than another. The following code counts errors for group `\"A\"`.\n\n```java\nString[] group = {\"A\", \"B\", \"A\", \"A\", \"B\"};\nboolean[] predicted = {true, true, false, true, false};\nboolean[] actual = {true, false, true, true, false};\nint errors = 0;\n\nfor (int i = 0; i < group.length; i++)\n{\n    if (group[i].equals(\"A\") && predicted[i] != actual[i])\n    {\n        errors++;\n    }\n}\n```\n\nWhat is the value of `errors` after the code runs?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`1`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "`3`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The entries in group A occur at indices 0, 2, and 3, and only index 2 has different predicted and actual values. Choices C and D count errors from other groups or extra entries.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A medical scheduling algorithm gives lower priority to patients with incomplete records. Which of the following would be the most appropriate first step before using the algorithm for real appointments?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Check whether missing data occurs more often for some patient groups and whether the rule changes outcomes unfairly."
+      },
+      {
+        "label": "B",
+        "text": "Remove all patients with complete records so every record has the same amount of missing data."
+      },
+      {
+        "label": "C",
+        "text": "Keep the rule unchanged because all programs that use the same rule for everyone are fair."
+      },
+      {
+        "label": "D",
+        "text": "Replace every missing value with `0` without checking what the field represents."
+      }
+    ],
+    "answer": "A",
+    "explanation": "The effect of missing data should be evaluated because incomplete records may not be evenly distributed across groups. The other choices ignore context or could create new inaccurate data.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A school uses a program to select students for an advanced course. The program was trained using past placement decisions, and later testing shows that qualified students from one group are selected less often than similarly qualified students from other groups. Which of the following is the best response?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Keep the program unchanged because it uses the same rules for every student."
+      },
+      {
+        "label": "B",
+        "text": "Review the training data and compare the program's error rates across groups."
+      },
+      {
+        "label": "C",
+        "text": "Remove all student names from the data and assume the program is fair."
+      },
+      {
+        "label": "D",
+        "text": "Use a faster search algorithm so the program can evaluate more students."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Comparing error rates across groups and reviewing the data can reveal algorithmic bias caused by past decisions or poor data quality. A, C, and D do not actually test whether outcomes are fair.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_17",
+    "stem": "A programmer writes the following code to compare average wait times for two groups in a data set.\n\n```java\nint[] times = {12, 18, 20, 30, 16, 28};\nString[] groups = {\"A\", \"B\", \"A\", \"B\", \"A\", \"B\"};\nint sumA = 0;\nint sumB = 0;\n\nfor (int i = 0; i < times.length; i++)\n{\n    if (groups[i].equals(\"A\"))\n    {\n        sumA += times[i];\n    }\n    else\n    {\n        sumB += times[i];\n    }\n}\n\nSystem.out.println(sumA / times.length);\nSystem.out.println(sumB / times.length);\n```\n\nWhich of the following best describes the ethical concern with using this output to make a decision?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The code compares `String` values incorrectly, so the groups may be counted in the wrong totals."
+      },
+      {
+        "label": "B",
+        "text": "The averages are computed using the total number of records instead of the number of records in each group."
+      },
+      {
+        "label": "C",
+        "text": "The arrays have different lengths, so the loop will throw an exception before printing anything."
+      },
+      {
+        "label": "D",
+        "text": "The code should use a binary search because data ethics problems require sorted data."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Each group has 3 records, but the code divides both sums by `times.length`, which is 6, so the reported averages are misleading. A is wrong because `.equals` is used correctly, C is wrong because both arrays have length 6, and D is unrelated.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  }
+]

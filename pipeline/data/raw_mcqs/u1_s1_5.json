@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "Which of the following correctly describes the result of evaluating `(int) 3.9` in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`, because the value is rounded to the nearest integer"
+      },
+      {
+        "label": "B",
+        "text": "`3`, because casting truncates the decimal portion toward zero"
+      },
+      {
+        "label": "C",
+        "text": "`3.9`, because casting a `double` to `int` has no effect on the stored value"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because `double` cannot be explicitly cast to `int`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Casting a `double` to `int` truncates (drops) the fractional part without rounding, so `(int) 3.9` evaluates to `3`. Option A confuses truncation with rounding; option C is wrong because the cast does change both the type and value; option D is wrong because an explicit narrowing cast from `double` to `int` is legal Java.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "Which of the following correctly states the value of `Integer.MAX_VALUE` in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The largest positive value a `double` can represent"
+      },
+      {
+        "label": "B",
+        "text": "`2,147,483,647` \u2014 the largest value that fits in a 32-bit signed `int`"
+      },
+      {
+        "label": "C",
+        "text": "`1,000,000,000`"
+      },
+      {
+        "label": "D",
+        "text": "The largest positive value a `long` can represent"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`Integer.MAX_VALUE` is 2^31 \u2212 1 = 2,147,483,647, the largest 32-bit signed integer. It is unrelated to `double` (option A) or `long` (option D), and 1,000,000,000 (option C) is an arbitrary round number, not the exact maximum.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "A student writes `System.out.println(0.1 + 0.2 == 0.3);` and is surprised to see `false` printed. Which of the following best explains this result?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The `+` operator does not work with `double` values, so the expression always evaluates to `0`"
+      },
+      {
+        "label": "B",
+        "text": "`double` values have finite binary precision, so some decimal fractions cannot be represented exactly, causing round-off error"
+      },
+      {
+        "label": "C",
+        "text": "Java automatically converts `0.1` and `0.2` to `int` before adding them, so the sum is `0`"
+      },
+      {
+        "label": "D",
+        "text": "The `==` operator always returns `false` when comparing any two `double` values"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`double` uses 64-bit IEEE 754 binary floating-point, which cannot represent 0.1 or 0.2 exactly in binary. Their sum approximates 0.30000000000000004, which is not exactly equal to 0.3. Option A is false \u2014 `+` works correctly on `double`. Option C is wrong \u2014 no implicit narrowing to `int` occurs. Option D is wrong \u2014 `==` can return `true` for `double` values represented identically.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "What are the values of `p` and `q` after the following code executes?\n\n```java\nint a = 9;\nint b = 4;\ndouble p = a / b;\ndouble q = (double) a / b;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`p = 2.25`, `q = 2.25`"
+      },
+      {
+        "label": "B",
+        "text": "`p = 2.0`, `q = 2.25`"
+      },
+      {
+        "label": "C",
+        "text": "`p = 2.25`, `q = 2.0`"
+      },
+      {
+        "label": "D",
+        "text": "`p = 2.0`, `q = 2.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "For `p`: `a / b` performs integer division (9 / 4 = 2), and the `int` result is then widened to `double`, giving `2.0`. For `q`: `(double) a` converts `a` to `9.0` before the division occurs, so `9.0 / 4 = 2.25`. Option A incorrectly applies double division to `p`; option C reverses the two results; option D applies integer division to both.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "What is the value of `result` after the following code executes?\n\n```java\ndouble d = 5.99;\nint result = (int) d;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`5.99`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Casting a `double` to `int` truncates the fractional portion toward zero, so `(int) 5.99` is `5`, not `6`. Option A confuses truncation with rounding. Option C is impossible because `result` is declared as `int`. Option D is wrong because an explicit narrowing cast is valid Java.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "What are the values of `x` and `y` after the following code executes?\n\n```java\ndouble val = 3.6;\nint x = (int) val * 2;\nint y = (int)(val * 2);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 6`, `y = 7`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 7`, `y = 7`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 6`, `y = 6`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 8`, `y = 8`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The cast operator `(int)` has higher precedence than `*`. For `x`: `(int) val` = `(int) 3.6` = `3`, then `3 * 2` = `6`. For `y`: the parentheses force `val * 2` to evaluate first \u2014 `3.6 * 2` = `7.2` \u2014 and then `(int) 7.2` = `7`. Option B incorrectly treats the cast as rounding for `x`; option C applies premature truncation for `y`; option D rounds both values.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "What is printed as the result of the following code?\n\n```java\nint n = Integer.MAX_VALUE;\nSystem.out.println(n + 1);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2147483648`"
+      },
+      {
+        "label": "B",
+        "text": "`2147483647`"
+      },
+      {
+        "label": "C",
+        "text": "`-2147483648`"
+      },
+      {
+        "label": "D",
+        "text": "An `ArithmeticException` is thrown"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Adding 1 to `Integer.MAX_VALUE` causes integer overflow. The 32-bit value wraps around to `Integer.MIN_VALUE`, which is -2147483648. Java does not throw an exception on integer overflow \u2014 the result is silently incorrect. Option A would require a 33-bit integer. Option B leaves the value unchanged. Option D is wrong because integer overflow does not trigger an exception.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "What is printed as the result of the following code?\n\n```java\nint a = 4;\nint b = 3;\nSystem.out.println(\"Result: \" + a + b);\nSystem.out.println(a + b + \" total\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Result: 7`\n`7 total`"
+      },
+      {
+        "label": "B",
+        "text": "`Result: 43`\n`7 total`"
+      },
+      {
+        "label": "C",
+        "text": "`Result: 43`\n`43 total`"
+      },
+      {
+        "label": "D",
+        "text": "`Result: 7`\n`43 total`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "In the first `println`, `+` evaluates left-to-right: `\"Result: \" + 4` \u2192 `\"Result: 4\"`, then `\"Result: 4\" + 3` \u2192 `\"Result: 43\"`. In the second `println`, `a + b` is evaluated as `int + int` = `7` first (no `String` on the left yet), then `7 + \" total\"` \u2192 `\"7 total\"`. Options A and D miss the string-concatenation trap in line 1; option C incorrectly applies it to line 2 as well.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "What is the value of `avg` after the following code executes?\n\n```java\nint total = 17;\nint count = 5;\ndouble avg = 0.0;\navg += total / count;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3.4`"
+      },
+      {
+        "label": "B",
+        "text": "`3.0`"
+      },
+      {
+        "label": "C",
+        "text": "`0.0`"
+      },
+      {
+        "label": "D",
+        "text": "`17.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`total / count` performs integer division: 17 / 5 = 3 (the remainder 2 is discarded). The `int` result `3` is widened to `3.0` and added to `avg` (currently `0.0`), yielding `avg = 3.0`. Option A is the mathematically exact quotient but requires double division, which does not occur here because both operands are `int`. Option C would result if the `+=` had no effect. Option D is nonsensical.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "A student writes the following code to compute the percentage of quiz questions answered correctly.\n\n```java\nint correct = 17;\nint total = 20;\ndouble percentage = correct / total * 100;\n```\n\nThe student expects `percentage` to be `85.0`, but the stored value is different. Which of the following identifies the bug and the actual value of `percentage`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`correct / total` performs integer division, yielding `0`; `percentage` is `0.0`"
+      },
+      {
+        "label": "B",
+        "text": "`correct / total` performs integer division, yielding `0`; `percentage` is `0`"
+      },
+      {
+        "label": "C",
+        "text": "`correct / total` performs integer division, yielding `1`; `percentage` is `100.0`"
+      },
+      {
+        "label": "D",
+        "text": "There is no bug; `percentage` is `85.0`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`correct / total` = 17 / 20 = 0 (integer division truncates toward zero). Then `0 * 100` = `0`, which is widened to `0.0` and stored in `percentage`. A fix is `(double) correct / total * 100`. Option B is almost right but `percentage` is declared `double`, so it stores `0.0`, not the `int` `0`. Option C incorrectly claims the integer quotient is `1`; option D denies the bug exists.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "What is printed as the result of the following code?\n\n```java\nint a = 7;\nint b = 2;\ndouble c = (double)(a / b);\ndouble d = a / (double) b;\nSystem.out.print(c + \" \" + d);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3.0 3.5`"
+      },
+      {
+        "label": "B",
+        "text": "`3.5 3.5`"
+      },
+      {
+        "label": "C",
+        "text": "`3.0 3.0`"
+      },
+      {
+        "label": "D",
+        "text": "`3.5 3.0`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "For `c`: `a / b` performs integer division first (7 / 2 = 3); the cast `(double)(3)` then widens that result to `3.0`. For `d`: `(double) b` converts `b` to `2.0` before the division, so `7 / 2.0 = 3.5`. The placement of the cast determines when type promotion occurs. Option B applies double division to both; option C applies integer division to both; option D reverses the two results.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "What is the value of `result` after the following code executes?\n\n```java\nint a = 10;\nint b = 4;\nint c = 6;\ndouble result = (double) a / b + c / b;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4.0`"
+      },
+      {
+        "label": "B",
+        "text": "`3.5`"
+      },
+      {
+        "label": "C",
+        "text": "`2.5`"
+      },
+      {
+        "label": "D",
+        "text": "`4.5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`(double) a / b` promotes `a` to `10.0` before division, giving `10.0 / 4 = 2.5`. `c / b` has no cast, so it is integer division: `6 / 4 = 1`. `result = 2.5 + 1 = 3.5`. Option A treats both subexpressions as double division (`10.0/4 + 6.0/4 = 2.5 + 1.5 = 4.0`), incorrectly applying the cast to the second term. Option C includes only the first term. Option D applies incorrect arithmetic throughout.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "When the cast operator `(int)` is applied to a `double` value, which of the following correctly describes the result?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The `double` is rounded to the nearest integer (values ending in .5 round up)."
+      },
+      {
+        "label": "B",
+        "text": "The decimal portion is dropped (truncated toward zero) and the integer part is returned."
+      },
+      {
+        "label": "C",
+        "text": "The `double` is always rounded up to the next integer."
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because `int` and `double` are incompatible types."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Casting a double to int truncates the fractional portion toward zero without rounding \u2014 (int) 3.9 yields 3 and (int) -3.9 yields -3. A describes round-half-up, which requires the pattern (int)(x + 0.5); C describes ceiling; D is false because the explicit cast is legal Java.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "Determine the values of `x` and `y` after the following code runs.\n\n```java\ndouble x = 7 / 2;\ndouble y = (double) 7 / 2;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 3.0, y = 3.5`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 3.5, y = 3.5`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 3.5, y = 3.0`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 3, y = 3.5`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "For x: the expression 7 / 2 uses two int literals, so integer division happens first (result is 3), which is then widened to 3.0 when stored in a double. For y: (double) 7 promotes the dividend to 7.0 before the division occurs, yielding 7.0 / 2 = 3.5. B wrongly assumes x also performs double division; C swaps the two results; D is incorrect because a double variable always holds a double value (3.0, not 3).",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "What is printed by the following code?\n\n```java\nint n = Integer.MAX_VALUE;\nn = n + 1;\nSystem.out.println(n);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2147483648`"
+      },
+      {
+        "label": "B",
+        "text": "`-2147483648`"
+      },
+      {
+        "label": "C",
+        "text": "`0`"
+      },
+      {
+        "label": "D",
+        "text": "An `ArithmeticException` is thrown at runtime."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Integer.MAX_VALUE is 2,147,483,647 (2^31 \u2212 1). Adding 1 causes integer overflow: the 32-bit bit pattern wraps around silently to Integer.MIN_VALUE, which is \u22122,147,483,648. Java never throws an exception for int overflow (unlike division by zero). A gives the mathematically correct value, which exceeds the int range; C and D are both incorrect.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "Determine the values of `a` and `b` after the following code runs.\n\n```java\ndouble temperature = 98.6;\nint a = (int) temperature;\nint b = (int)(temperature + 0.5);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a = 98, b = 98`"
+      },
+      {
+        "label": "B",
+        "text": "`a = 99, b = 99`"
+      },
+      {
+        "label": "C",
+        "text": "`a = 98, b = 99`"
+      },
+      {
+        "label": "D",
+        "text": "`a = 99, b = 98`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "a = (int) 98.6 truncates to 98. For b, adding 0.5 first gives 99.1, and (int) 99.1 truncates to 99. The idiom (int)(x + 0.5) is the standard way to round a positive double to the nearest int. A wrongly truncates both; B wrongly rounds both up; D reverses the two results.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "Determine the output of the following code:\n\n```java\nint p = 9;\nint q = 4;\ndouble a = p / q;\ndouble b = (double)(p / q);\ndouble c = (double) p / q;\nSystem.out.println(a + \" \" + b + \" \\ + c);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2.0 2.0 2.25`"
+      },
+      {
+        "label": "B",
+        "text": "`2.25 2.25 2.25`"
+      },
+      {
+        "label": "C",
+        "text": "`2.0 2.25 2.25`"
+      },
+      {
+        "label": "D",
+        "text": "`2.25 2.0 2.25`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "For a: p / q is int division (9 / 4 = 2), then widened to 2.0 when stored in a double. For b: the cast applies after the division \u2014 (double)(9 / 4) = (double)(2) = 2.0 \u2014 the int division already occurred inside the parentheses. For c: (double) p promotes p to 9.0 before division, so 9.0 / 4 = 2.25. The common trap (option C) is believing (double)(p / q) promotes both operands; it does not.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "Which of the following correctly describes what the cast operator `(int)` does when applied to a positive `double` value?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It rounds the value to the nearest integer."
+      },
+      {
+        "label": "B",
+        "text": "It converts the value to a `double` with no decimal places."
+      },
+      {
+        "label": "C",
+        "text": "It discards the fractional part, truncating toward zero."
+      },
+      {
+        "label": "D",
+        "text": "It throws an `ArithmeticException` if the value has a nonzero fractional part."
+      }
+    ],
+    "answer": "C",
+    "explanation": "The (int) cast truncates toward zero, dropping the fractional part entirely \u2014 (int) 7.9 and (int) 7.1 both yield 7, not 8 or 7. No exception is thrown; the cast is valid for any double value. Option A confuses truncation with rounding; Option B is nonsensical because the result type changes from double to int.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "Determine the value stored in `result` after the following code runs.\n\n```java\nint x = 10;\nint y = 3;\ndouble result = x / y;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3.0`"
+      },
+      {
+        "label": "B",
+        "text": "`3.3333333333333335`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`3.33`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Because both x and y are int, the expression x / y performs integer division, yielding the int value 3. That 3 is then widened to double for assignment into result, giving 3.0. The declared type of result does not influence how the division is performed \u2014 both operands would need to include a double for floating-point division to occur. Option C is wrong because result is declared as double, so the stored value is 3.0 not 3.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "Determine the output of the following code.\n\n```java\nint a = 17;\nint b = 5;\ndouble result = (double)(a / b);\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`3.4`"
+      },
+      {
+        "label": "C",
+        "text": "`3.5`"
+      },
+      {
+        "label": "D",
+        "text": "`3.0`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The parentheses force a / b to be evaluated first as integer division: 17 / 5 = 3 (the remainder 2 is discarded). The (double) cast is then applied to the already-computed integer 3, producing 3.0. Option B (3.4 = 17.0/5) would require the cast to appear on an operand before the division, such as (double) a / b, not wrapped around the whole subexpression.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "Determine the output of the following code.\n\n```java\nint a = 5;\nint b = 2;\nSystem.out.println(a / b);\nSystem.out.println((double) a / b);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\n2\n2\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\n2\n2.5\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\n2.5\n2.5\n```"
+      },
+      {
+        "label": "D",
+        "text": "```\n2.5\n2\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The first println evaluates a / b as integer division (5 / 2 = 2) and prints 2. The second expression casts a to double before the division, making the expression 5.0 / 2; because one operand is now double, the division is performed as floating-point, yielding 2.5. Once any operand is double, the entire division is carried out as double arithmetic.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "What is printed by the following code?\n\n```java\nint x = Integer.MAX_VALUE;\nx = x + 1;\nSystem.out.println(x);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`-2147483648`"
+      },
+      {
+        "label": "B",
+        "text": "`2147483648`"
+      },
+      {
+        "label": "C",
+        "text": "An `ArithmeticException` is thrown at run time"
+      },
+      {
+        "label": "D",
+        "text": "`2147483647`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Integer.MAX_VALUE is 2147483647, the largest 32-bit int. Adding 1 causes integer overflow: the bit pattern wraps silently to Integer.MIN_VALUE, which is -2147483648. Java does not throw an exception for integer arithmetic overflow \u2014 the result is silently wrong. Option B is impossible because 2147483648 exceeds int range and cannot be stored in an int variable.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "A program computes the percentage of quiz questions answered correctly. Given `int correct` and `int total`, which of the following correctly stores the percentage (a value in the range 0.0 to 100.0) into a `double` variable?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`double percent = correct / total * 100;`"
+      },
+      {
+        "label": "B",
+        "text": "`double percent = (double)(correct / total * 100);`"
+      },
+      {
+        "label": "C",
+        "text": "`double percent = (double) correct / total * 100;`"
+      },
+      {
+        "label": "D",
+        "text": "`double percent = correct / (double)(total * 100);`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Option C casts correct to double before the division, so (double) correct / total performs floating-point division (e.g., 3.0 / 4 = 0.75), and multiplying by 100 then gives 75.0. Option A performs integer division first (3 / 4 = 0), then multiplies by 100, yielding 0.0. Option B also performs all arithmetic as ints first \u2014 correct / total * 100 is entirely integer math \u2014 and casting afterward cannot recover the lost fraction. Option D divides correct by total * 100, producing a tiny fraction near zero instead of a percentage.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 7;\nint b = 2;\ndouble x = a / b;\ndouble y = (double) a / b;\nint z = (int)(y + 0.5);\nSystem.out.print(x + \" \" + y + \" \" + z);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3.0 3.5 4`"
+      },
+      {
+        "label": "B",
+        "text": "`3.5 3.5 4`"
+      },
+      {
+        "label": "C",
+        "text": "`3.0 3.0 3`"
+      },
+      {
+        "label": "D",
+        "text": "`3 3.5 3`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`a / b` uses integer division before being assigned to `x`, so it becomes `3.0`; casting `a` to `double` forces double division, and `(int)(3.5 + 0.5)` is `4`. The other options ignore integer division, the cast, or the rounding expression.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_5",
+    "stem": "Determine the output of the following code:\n\n```java\nint n = Integer.MAX_VALUE;\nn += 2;\nSystem.out.print(n);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2147483649`"
+      },
+      {
+        "label": "B",
+        "text": "`-2147483647`"
+      },
+      {
+        "label": "C",
+        "text": "`-2147483648`"
+      },
+      {
+        "label": "D",
+        "text": "An `ArithmeticException` is thrown."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Adding past `Integer.MAX_VALUE` causes integer overflow; adding 1 would wrap to `Integer.MIN_VALUE`, and adding 2 gives `-2147483647`. Java does not throw an error for int overflow.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  }
+]

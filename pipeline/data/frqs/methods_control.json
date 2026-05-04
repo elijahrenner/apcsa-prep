@@ -1,0 +1,854 @@
+[
+  {
+    "archetype": "methods_control",
+    "topic_id": "u2_s2_8",
+    "prompt": "A text-processing utility class called RepeatChecker analyzes strings and sentences for consecutive repeated characters. Two adjacent characters form a \"consecutive repeat\" if they are identical\u2014for example, the \"ll\" in \"hello\" or the \"ee\" in \"sweet\".\n\nThe following is a partial class declaration.\n\npublic class RepeatChecker {\n\n    /** Returns true if text contains at least one pair of consecutively\n     *  identical characters, false otherwise.\n     *  Precondition: text is not null.\n     */\n    public boolean hasConsecutiveRepeat(String text)\n    { /* to be implemented in part (a) */ }\n\n    /** Returns the number of space-separated words in sentence for which\n     *  hasConsecutiveRepeat returns true.\n     *  Precondition: sentence contains at least one word with no leading\n     *  or trailing spaces.\n     */\n    public int countRepeatWords(String sentence)\n    { /* to be implemented in part (b) */ }\n}",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the method hasConsecutiveRepeat, which returns true if any two adjacent characters in text are identical and false otherwise. You must use substring(i, i+1) to extract individual characters; do not use charAt.\n\nExamples:\n  hasConsecutiveRepeat(\"hello\")  returns true   (the 'l' at index 2 equals the 'l' at index 3)\n  hasConsecutiveRepeat(\"world\")  returns false\n  hasConsecutiveRepeat(\"a\")      returns false\n  hasConsecutiveRepeat(\"aa\")     returns true\n\nComplete the method:\n    public boolean hasConsecutiveRepeat(String text)"
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method countRepeatWords, which takes a sentence of space-separated words and returns the count of words for which hasConsecutiveRepeat returns true. You must call hasConsecutiveRepeat from part (a) to test each word; reimplementing its logic will not receive full credit. Use indexOf(\" \") and substring to parse words from the sentence one at a time.\n\nExamples:\n  countRepeatWords(\"hello sweet coffee\")  returns 3\n  countRepeatWords(\"cat dog bird\")         returns 0\n  countRepeatWords(\"bee\")                  returns 1\n\nComplete the method:\n    public int countRepeatWords(String sentence)"
+      }
+    ],
+    "reference_solution": "public class RepeatChecker {\n    public boolean hasConsecutiveRepeat(String text) {\n        for (int i = 0; i < text.length() - 1; i++) {\n            if (text.substring(i, i + 1).equals(text.substring(i + 1, i + 2))) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    public int countRepeatWords(String sentence) {\n        int count = 0;\n        while (sentence.length() > 0) {\n            int spaceIdx = sentence.indexOf(\" \");\n            String word;\n            if (spaceIdx == -1) {\n                word = sentence;\n                sentence = \"\";\n            } else {\n                word = sentence.substring(0, spaceIdx);\n                sentence = sentence.substring(spaceIdx + 1);\n            }\n            if (hasConsecutiveRepeat(word)) {\n                count++;\n            }\n        }\n        return count;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Loop bounds (part a)",
+        "criterion": "Loop condition ensures i + 1 never exceeds the last valid index; correct form is i < text.length() - 1 or equivalent such as i <= text.length() - 2.",
+        "points": 1
+      },
+      {
+        "point_label": "Character extraction via substring (part a)",
+        "criterion": "Uses text.substring(i, i+1) and text.substring(i+1, i+2) (or equivalent adjacent substring calls) to extract the two neighboring characters; must NOT use charAt.",
+        "points": 1
+      },
+      {
+        "point_label": "Correct return logic (part a)",
+        "criterion": "Returns true immediately upon finding the first consecutive match; returns false only after the entire loop completes without finding a match.",
+        "points": 1
+      },
+      {
+        "point_label": "Word-splitting with indexOf and substring (part b)",
+        "criterion": "Uses indexOf(\" \") to locate each space boundary and substring to extract each individual word, correctly handling the final word that has no trailing space.",
+        "points": 1
+      },
+      {
+        "point_label": "Calls hasConsecutiveRepeat (part b)",
+        "criterion": "Explicitly calls hasConsecutiveRepeat(word) (or this.hasConsecutiveRepeat(word)) for each extracted word; does not reimplement the consecutive-character comparison logic inline.",
+        "points": 1
+      },
+      {
+        "point_label": "Accumulator updated correctly (part b)",
+        "criterion": "count is initialized to 0 and incremented when and only when hasConsecutiveRepeat returns true for the current word.",
+        "points": 1
+      },
+      {
+        "point_label": "Return value correct (part b)",
+        "criterion": "Returns count as an int representing the total number of words in sentence that contain at least one consecutive repeated character.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "basic - three words all containing consecutive repeats",
+        "setup_java": "RepeatChecker rc = new RepeatChecker();\nSystem.out.println(rc.countRepeatWords(\"hello sweet coffee\"));",
+        "expected_output": "3"
+      },
+      {
+        "description": "no words contain consecutive repeats",
+        "setup_java": "RepeatChecker rc = new RepeatChecker();\nSystem.out.println(rc.countRepeatWords(\"cat dog bird\"));",
+        "expected_output": "0"
+      },
+      {
+        "description": "edge - single character string, two-character repeat, and single-word sentence",
+        "setup_java": "RepeatChecker rc = new RepeatChecker();\nSystem.out.println(rc.hasConsecutiveRepeat(\"a\"));\nSystem.out.println(rc.hasConsecutiveRepeat(\"aa\"));\nSystem.out.println(rc.countRepeatWords(\"bee\"));",
+        "expected_output": "false\ntrue\n1"
+      }
+    ]
+  },
+  {
+    "archetype": "methods_control",
+    "topic_id": "u2_s2_8",
+    "prompt": "A dice-game simulator class called DiceGame models rolling a multi-faced die and running a two-dice game over multiple rounds. In each round, two dice are rolled and their face values are summed.\n\nThe following is a partial class declaration.\n\npublic class DiceGame {\n\n    /** Returns a uniformly random integer in the range [1, numFaces], inclusive.\n     *  Precondition: numFaces >= 1.\n     */\n    public int rollDie(int numFaces)\n    { /* to be implemented in part (a) */ }\n\n    /** Simulates numRounds rounds of a two-six-sided-die game.\n     *  In each round two six-sided dice are rolled and their values are summed.\n     *  Returns the integer percentage (truncated, 0 to 100) of rounds in which\n     *  the sum equals targetSum.\n     *  Precondition: numRounds > 0, 2 <= targetSum <= 12.\n     */\n    public int simulateGame(int numRounds, int targetSum)\n    { /* to be implemented in part (b) */ }\n}",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the method rollDie, which returns a uniformly distributed random integer from 1 to numFaces, inclusive. Use Math.random() to generate the random value, then scale, shift, and cast it to int so the result falls in the correct range.\n\nExamples:\n  rollDie(6)  must return a value in {1, 2, 3, 4, 5, 6} with equal probability\n  rollDie(1)  must always return 1\n  rollDie(20) must return a value in {1, 2, ..., 20}\n\nComplete the method:\n    public int rollDie(int numFaces)"
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method simulateGame, which runs numRounds rounds of a two-dice game. In each round, call rollDie(6) twice and sum the results. Count the rounds in which the total equals targetSum. Return the percentage of matching rounds as a truncated int (e.g., 16 hits out of 100 rounds returns 16).\n\nYou must call rollDie from part (a) to produce each die value; reimplementing random-number logic directly in part (b) will not receive full credit. Be careful to avoid integer-division truncation when computing the percentage.\n\nComplete the method:\n    public int simulateGame(int numRounds, int targetSum)"
+      }
+    ],
+    "reference_solution": "public class DiceGame {\n    public int rollDie(int numFaces) {\n        return (int)(Math.random() * numFaces) + 1;\n    }\n\n    public int simulateGame(int numRounds, int targetSum) {\n        int hits = 0;\n        for (int i = 0; i < numRounds; i++) {\n            int sum = rollDie(6) + rollDie(6);\n            if (sum == targetSum) {\n                hits++;\n            }\n        }\n        return (int)((double) hits / numRounds * 100);\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Uses Math.random() (part a)",
+        "criterion": "Method body calls Math.random() to generate a pseudo-random value; no other random-number source (e.g., java.util.Random) is required but Math.random() must be present.",
+        "points": 1
+      },
+      {
+        "point_label": "Correct range scaling and cast (part a)",
+        "criterion": "Math.random() is multiplied by numFaces (yielding [0, numFaces)), 1 is added, and the result is cast to int, producing a value in [1, numFaces] inclusive; an off-by-one in the multiplier or a missing +1 shift loses this point.",
+        "points": 1
+      },
+      {
+        "point_label": "Returns correct int type (part a)",
+        "criterion": "Method returns an int (not a double) representing the die face value; the cast to int must appear before the return.",
+        "points": 1
+      },
+      {
+        "point_label": "Loop executes exactly numRounds times (part b)",
+        "criterion": "Loop initializes at i = 0 and condition is i < numRounds (not i <= numRounds); any equivalent structure that iterates exactly numRounds times is accepted.",
+        "points": 1
+      },
+      {
+        "point_label": "Calls rollDie(6) for each die (part b)",
+        "criterion": "Part (b) calls rollDie(6) (not Math.random() directly) at least twice per round to obtain the two die values.",
+        "points": 1
+      },
+      {
+        "point_label": "Accumulator updated correctly (part b)",
+        "criterion": "hits is initialized to 0 before the loop and incremented when and only when the sum of the two dice equals targetSum.",
+        "points": 1
+      },
+      {
+        "point_label": "Avoids integer division and returns correct percentage (part b)",
+        "criterion": "hits or numRounds is cast or promoted to double before the division (e.g., (double)hits / numRounds * 100) so the quotient is not truncated by integer division; the final product is cast to int for the return value.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "rollDie(6) always returns a value in [1, 6] across many calls",
+        "setup_java": "DiceGame dg = new DiceGame();\nboolean allValid = true;\nfor (int t = 0; t < 200; t++) {\n    int r = dg.rollDie(6);\n    if (r < 1 || r > 6) { allValid = false; }\n}\nSystem.out.println(allValid);",
+        "expected_output": "true"
+      },
+      {
+        "description": "rollDie(1) always returns exactly 1",
+        "setup_java": "DiceGame dg = new DiceGame();\nboolean allOne = true;\nfor (int t = 0; t < 50; t++) {\n    if (dg.rollDie(1) != 1) { allOne = false; }\n}\nSystem.out.println(allOne);",
+        "expected_output": "true"
+      },
+      {
+        "description": "simulateGame with unreachable targetSum returns 0 (two six-sided dice always sum to at least 2)",
+        "setup_java": "DiceGame dg = new DiceGame();\nSystem.out.println(dg.simulateGame(300, 1));",
+        "expected_output": "0"
+      }
+    ]
+  },
+  {
+    "archetype": "methods_control",
+    "topic_id": "u2_s2_8",
+    "prompt": "A coffee shop tracks customer orders using the DrinkOrder class. Each DrinkOrder has a drink name and a size code. The shop wants to simulate a daily promotion where a random customer order is selected as the winner of a free upgrade. The class also needs to count how many orders qualify for the upgrade (those whose drink name starts with a vowel).\n\nThe DrinkOrder class is shown below.\n\npublic class DrinkOrder {\n    private String drinkName;\n    private String sizeCode;\n\n    public DrinkOrder(String name, String code) {\n        drinkName = name;\n        sizeCode = code;\n    }\n\n    public String getDrinkName() { return drinkName; }\n    public String getSizeCode() { return sizeCode; }\n\n    /** Returns true if the first letter of drinkName is a vowel (a, e, i, o, or u, case-insensitive).\n     *  Returns false otherwise. To be implemented in part (a). */\n    public boolean startsWithVowel() { /* to be implemented in part (a) */ return false; }\n\n    /** Simulates promotion draws and returns the count of qualifying orders.\n     *  To be implemented in part (b). */\n    public static int countVowelDraws(java.util.ArrayList<DrinkOrder> orders, int numDraws) {\n        /* to be implemented in part (b) */ return 0;\n    }\n}",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the method startsWithVowel. The method returns true if the first character of drinkName is one of 'a','e','i','o','u' (uppercase or lowercase). If drinkName is the empty string, the method must return false. You must extract the first character using substring."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the static method countVowelDraws. The method performs exactly numDraws random draws. On each draw, a random index in the range [0, orders.size() - 1] is generated using Math.random(), the order at that index is examined, and a counter is incremented if that order's drink name starts with a vowel. The method must call startsWithVowel from part (a). Return the final count. You may assume orders is non-null and non-empty and numDraws >= 0."
+      }
+    ],
+    "reference_solution": "import java.util.ArrayList;\n\npublic class DrinkOrder {\n    private String drinkName;\n    private String sizeCode;\n\n    public DrinkOrder(String name, String code) {\n        drinkName = name;\n        sizeCode = code;\n    }\n\n    public String getDrinkName() { return drinkName; }\n    public String getSizeCode() { return sizeCode; }\n\n    public boolean startsWithVowel() {\n        if (drinkName.length() == 0) {\n            return false;\n        }\n        String first = drinkName.substring(0, 1);\n        if (first.equals(\"a\") || first.equals(\"e\") || first.equals(\"i\")\n                || first.equals(\"o\") || first.equals(\"u\")\n                || first.equals(\"A\") || first.equals(\"E\") || first.equals(\"I\")\n                || first.equals(\"O\") || first.equals(\"U\")) {\n            return true;\n        }\n        return false;\n    }\n\n    public static int countVowelDraws(ArrayList<DrinkOrder> orders, int numDraws) {\n        int count = 0;\n        for (int i = 0; i < numDraws; i++) {\n            int idx = (int) (Math.random() * orders.size());\n            DrinkOrder pick = orders.get(idx);\n            if (pick.startsWithVowel()) {\n                count++;\n            }\n        }\n        return count;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Correct first-character extraction via substring",
+        "criterion": "Part (a) uses substring(0, 1) to extract the first character (not charAt).",
+        "points": 1
+      },
+      {
+        "point_label": "Vowel comparison correct (case-insensitive)",
+        "criterion": "Part (a) compares the extracted character to all five vowels in both cases using .equals or equivalent, returning true on match.",
+        "points": 1
+      },
+      {
+        "point_label": "Empty-string guard / correct boolean return",
+        "criterion": "Part (a) handles the empty-string case (returns false) and returns false when no vowel matches.",
+        "points": 1
+      },
+      {
+        "point_label": "Random index generation in valid range",
+        "criterion": "Part (b) computes (int)(Math.random() * orders.size()) so the index spans [0, orders.size()-1].",
+        "points": 1
+      },
+      {
+        "point_label": "Loop executes exactly numDraws times",
+        "criterion": "Part (b) loop bounds are for (int i = 0; i < numDraws; i++) (or equivalent), executing exactly numDraws iterations.",
+        "points": 1
+      },
+      {
+        "point_label": "Calls part (a) helper, does not reimplement",
+        "criterion": "Part (b) invokes startsWithVowel() on the selected DrinkOrder rather than rewriting the vowel check.",
+        "points": 1
+      },
+      {
+        "point_label": "Correct accumulator and return value",
+        "criterion": "Part (b) increments count only when startsWithVowel returns true and returns the final int count.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "startsWithVowel basic vowel and consonant",
+        "setup_java": "DrinkOrder a = new DrinkOrder(\"Espresso\", \"M\");\nDrinkOrder b = new DrinkOrder(\"Latte\", \"L\");\nSystem.out.println(a.startsWithVowel());\nSystem.out.println(b.startsWithVowel());",
+        "expected_output": "true\nfalse"
+      },
+      {
+        "description": "startsWithVowel empty string and lowercase",
+        "setup_java": "DrinkOrder c = new DrinkOrder(\"\", \"S\");\nDrinkOrder d = new DrinkOrder(\"americano\", \"M\");\nSystem.out.println(c.startsWithVowel());\nSystem.out.println(d.startsWithVowel());",
+        "expected_output": "false\ntrue"
+      },
+      {
+        "description": "countVowelDraws on a list where every order starts with a vowel always returns numDraws",
+        "setup_java": "java.util.ArrayList<DrinkOrder> list = new java.util.ArrayList<DrinkOrder>();\nlist.add(new DrinkOrder(\"Iced\", \"L\"));\nlist.add(new DrinkOrder(\"Espresso\", \"M\"));\nlist.add(new DrinkOrder(\"Americano\", \"S\"));\nSystem.out.println(DrinkOrder.countVowelDraws(list, 25));\nSystem.out.println(DrinkOrder.countVowelDraws(list, 0));",
+        "expected_output": "25\n0"
+      }
+    ]
+  },
+  {
+    "archetype": "methods_control",
+    "topic_id": "u2_s2_8",
+    "prompt": "A high school is encoding student announcements as compact strings. Each announcement is a single String of words separated by single spaces (no leading or trailing spaces). The school wants two utilities: one that returns the length of the longest word in the announcement, and one that builds a summary by combining the longest-word length with the number of \"long\" words across a list of announcements.\n\nThe Announcement class skeleton is shown below.\n\npublic class Announcement {\n    private String text;\n\n    public Announcement(String t) { text = t; }\n\n    public String getText() { return text; }\n\n    /** Returns the length of the longest word in text. Words are separated by single spaces.\n     *  If text is the empty string, returns 0. To be implemented in part (a). */\n    public int longestWordLength() { /* to be implemented in part (a) */ return 0; }\n\n    /** Returns the number of announcements whose longest word is at least minLen characters long.\n     *  To be implemented in part (b). */\n    public static int countLongAnnouncements(java.util.ArrayList<Announcement> list, int minLen) {\n        /* to be implemented in part (b) */ return 0;\n    }\n}",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the method longestWordLength. The method scans text and returns the length of the longest word, where words are separated by single spaces. Use indexOf(' ') and substring to split the text repeatedly. If text is the empty string, return 0. Do not use String.split or charAt."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the static method countLongAnnouncements. The method iterates over every Announcement in list and counts those whose longest word has length greater than or equal to minLen. The method must call longestWordLength from part (a). Return the count as an int. You may assume list is non-null."
+      }
+    ],
+    "reference_solution": "import java.util.ArrayList;\n\npublic class Announcement {\n    private String text;\n\n    public Announcement(String t) { text = t; }\n\n    public String getText() { return text; }\n\n    public int longestWordLength() {\n        if (text.length() == 0) {\n            return 0;\n        }\n        int longest = 0;\n        String remaining = text;\n        int space = remaining.indexOf(\" \");\n        while (space != -1) {\n            String word = remaining.substring(0, space);\n            if (word.length() > longest) {\n                longest = word.length();\n            }\n            remaining = remaining.substring(space + 1);\n            space = remaining.indexOf(\" \");\n        }\n        if (remaining.length() > longest) {\n            longest = remaining.length();\n        }\n        return longest;\n    }\n\n    public static int countLongAnnouncements(ArrayList<Announcement> list, int minLen) {\n        int count = 0;\n        for (int i = 0; i < list.size(); i++) {\n            Announcement a = list.get(i);\n            if (a.longestWordLength() >= minLen) {\n                count++;\n            }\n        }\n        return count;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Splits on spaces using indexOf and substring",
+        "criterion": "Part (a) uses indexOf(\" \") and substring to isolate words rather than charAt or split.",
+        "points": 1
+      },
+      {
+        "point_label": "Loop processes every word including the final one",
+        "criterion": "Part (a) loops while a space is found AND, after the loop, considers the trailing word past the final space.",
+        "points": 1
+      },
+      {
+        "point_label": "Tracks maximum length correctly",
+        "criterion": "Part (a) maintains a 'longest' accumulator, updates it only when the current word's length exceeds it, and handles the empty-string case by returning 0.",
+        "points": 1
+      },
+      {
+        "point_label": "Returns int length value",
+        "criterion": "Part (a) returns the int longest word length (not the word itself, not a boolean).",
+        "points": 1
+      },
+      {
+        "point_label": "Loop traverses the entire ArrayList",
+        "criterion": "Part (b) loops from 0 to list.size() - 1 inclusive (e.g., for (int i = 0; i < list.size(); i++)) to visit every Announcement.",
+        "points": 1
+      },
+      {
+        "point_label": "Calls longestWordLength helper from part (a)",
+        "criterion": "Part (b) calls a.longestWordLength() on each Announcement rather than reimplementing the longest-word logic.",
+        "points": 1
+      },
+      {
+        "point_label": "Correct comparison and accumulator return",
+        "criterion": "Part (b) compares the helper's result to minLen with >=, increments count on match, and returns the final count as int.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "longestWordLength on multi-word and empty strings",
+        "setup_java": "Announcement a1 = new Announcement(\"the quick brown fox\");\nAnnouncement a2 = new Announcement(\"hi\");\nAnnouncement a3 = new Announcement(\"\");\nSystem.out.println(a1.longestWordLength());\nSystem.out.println(a2.longestWordLength());\nSystem.out.println(a3.longestWordLength());",
+        "expected_output": "5\n2\n0"
+      },
+      {
+        "description": "longestWordLength final word is the longest",
+        "setup_java": "Announcement a4 = new Announcement(\"a bb ccc dddd eeeee\");\nSystem.out.println(a4.longestWordLength());",
+        "expected_output": "5"
+      },
+      {
+        "description": "countLongAnnouncements with mixed lengths",
+        "setup_java": "java.util.ArrayList<Announcement> list = new java.util.ArrayList<Announcement>();\nlist.add(new Announcement(\"go now\"));\nlist.add(new Announcement(\"computers are wonderful\"));\nlist.add(new Announcement(\"hello world\"));\nlist.add(new Announcement(\"\"));\nSystem.out.println(Announcement.countLongAnnouncements(list, 5));\nSystem.out.println(Announcement.countLongAnnouncements(list, 2));",
+        "expected_output": "2\n3"
+      }
+    ]
+  },
+  {
+    "archetype": "methods_control",
+    "topic_id": "u2_s2_8",
+    "prompt": "A TextAnalyzer object stores a single non-null String of letters (no digits or punctuation) called message. The class is used to compute statistics about the letters in the stored message. You will write two methods of the TextAnalyzer class.\n\nClass information for this question:\n  public class TextAnalyzer\n  private String message\n  public TextAnalyzer(String message)\n  public boolean isVowel(String letter)\n  public int vowelPercent()",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the method isVowel, which returns true if the one-character String letter is a vowel (a, e, i, o, or u, in either lowercase or uppercase) and returns false otherwise. You may assume that letter has length exactly 1.\n\n  /** Returns true if letter is one of a, e, i, o, u (any case). */\n  public boolean isVowel(String letter)"
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method vowelPercent, which returns the percentage of characters in message that are vowels, rounded down (truncated) to an int in the range [0, 100]. For example, if message is \"hello\" then there are 2 vowels out of 5 letters, so vowelPercent returns 40. If message has length 0, vowelPercent returns 0. Your method must call isVowel from part (a) to test each character.\n\n  /** Returns the integer percentage of letters in message that are vowels. */\n  public int vowelPercent()"
+      }
+    ],
+    "reference_solution": "public class TextAnalyzer {\n    private String message;\n\n    public TextAnalyzer(String message) {\n        this.message = message;\n    }\n\n    public boolean isVowel(String letter) {\n        return letter.equals(\"a\") || letter.equals(\"e\") || letter.equals(\"i\")\n            || letter.equals(\"o\") || letter.equals(\"u\")\n            || letter.equals(\"A\") || letter.equals(\"E\") || letter.equals(\"I\")\n            || letter.equals(\"O\") || letter.equals(\"U\");\n    }\n\n    public int vowelPercent() {\n        if (message.length() == 0) {\n            return 0;\n        }\n        int vowels = 0;\n        for (int i = 0; i < message.length(); i++) {\n            if (isVowel(message.substring(i, i + 1))) {\n                vowels++;\n            }\n        }\n        return (int)((double) vowels / message.length() * 100);\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "isVowel header",
+        "criterion": "Method declared exactly as public boolean isVowel(String letter) inside the TextAnalyzer class.",
+        "points": 1
+      },
+      {
+        "point_label": "isVowel return logic",
+        "criterion": "Body returns true when letter equals any of a/e/i/o/u (case handled either by checking both cases or by toLowerCase) and returns false otherwise; uses .equals (not ==) for String comparison.",
+        "points": 1
+      },
+      {
+        "point_label": "Loop bounds in vowelPercent",
+        "criterion": "Loop iterates exactly from i = 0 while i < message.length(); does not run off the end and does not skip the last character.",
+        "points": 1
+      },
+      {
+        "point_label": "Character extraction via substring",
+        "criterion": "Each character is obtained with message.substring(i, i + 1); does NOT use charAt.",
+        "points": 1
+      },
+      {
+        "point_label": "Calls isVowel helper",
+        "criterion": "Inside the loop body, the part-(a) method isVowel is invoked on the extracted one-character String and the result drives the increment. Reimplementing the vowel test inline forfeits this point.",
+        "points": 1
+      },
+      {
+        "point_label": "Accumulator update",
+        "criterion": "An int counter is initialized to 0 before the loop and incremented by exactly 1 each time isVowel returns true.",
+        "points": 1
+      },
+      {
+        "point_label": "Return value avoids integer division",
+        "criterion": "Return statement promotes to double before dividing (e.g., (int)((double) vowels / message.length() * 100)) and handles the empty-message case by returning 0 without dividing by zero.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "basic mixed letters",
+        "setup_java": "TextAnalyzer t = new TextAnalyzer(\"hello\");\nSystem.out.println(t.vowelPercent());",
+        "expected_output": "40\n"
+      },
+      {
+        "description": "all vowels uppercase",
+        "setup_java": "TextAnalyzer t = new TextAnalyzer(\"AEIOU\");\nSystem.out.println(t.vowelPercent());",
+        "expected_output": "100\n"
+      },
+      {
+        "description": "no vowels and empty edge",
+        "setup_java": "TextAnalyzer t1 = new TextAnalyzer(\"xyz\");\nTextAnalyzer t2 = new TextAnalyzer(\"\");\nSystem.out.println(t1.vowelPercent());\nSystem.out.println(t2.vowelPercent());",
+        "expected_output": "0\n0\n"
+      }
+    ]
+  },
+  {
+    "archetype": "methods_control",
+    "topic_id": "u2_s2_8",
+    "prompt": "A PhraseEditor object stores a single non-null String called phrase that consists of one or more words separated by exactly one space character. There are no leading or trailing spaces. You will write two methods of the PhraseEditor class.\n\nClass information for this question:\n  public class PhraseEditor\n  private String phrase\n  public PhraseEditor(String phrase)\n  public boolean startsWithVowel(String word)\n  public int countVowelWords()",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the method startsWithVowel, which returns true if the parameter word begins with a vowel (a, e, i, o, or u, in either lowercase or uppercase) and returns false otherwise. If word has length 0, return false.\n\n  /** Returns true if word's first letter is a vowel. */\n  public boolean startsWithVowel(String word)"
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method countVowelWords, which returns the number of words in phrase that begin with a vowel. Words in phrase are separated by single spaces. Your method must split phrase into individual words using indexOf and substring (not split), and must call startsWithVowel from part (a) to test each word.\n\nFor example, if phrase is \"I am an engineer\", countVowelWords returns 4. If phrase is \"hello world\", it returns 0.\n\n  /** Returns the number of space-separated words in phrase that begin with a vowel. */\n  public int countVowelWords()"
+      }
+    ],
+    "reference_solution": "public class PhraseEditor {\n    private String phrase;\n\n    public PhraseEditor(String phrase) {\n        this.phrase = phrase;\n    }\n\n    public boolean startsWithVowel(String word) {\n        if (word.length() == 0) {\n            return false;\n        }\n        String first = word.substring(0, 1);\n        return first.equals(\"a\") || first.equals(\"e\") || first.equals(\"i\")\n            || first.equals(\"o\") || first.equals(\"u\")\n            || first.equals(\"A\") || first.equals(\"E\") || first.equals(\"I\")\n            || first.equals(\"O\") || first.equals(\"U\");\n    }\n\n    public int countVowelWords() {\n        int count = 0;\n        String remaining = phrase;\n        while (remaining.length() > 0) {\n            int space = remaining.indexOf(\" \");\n            String word;\n            if (space == -1) {\n                word = remaining;\n                remaining = \"\";\n            } else {\n                word = remaining.substring(0, space);\n                remaining = remaining.substring(space + 1);\n            }\n            if (startsWithVowel(word)) {\n                count++;\n            }\n        }\n        return count;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "startsWithVowel header",
+        "criterion": "Method declared exactly as public boolean startsWithVowel(String word) inside the PhraseEditor class.",
+        "points": 1
+      },
+      {
+        "point_label": "First-character extraction",
+        "criterion": "First character is obtained with word.substring(0, 1); does NOT use charAt. Empty string is guarded so substring(0,1) is never called on length-0 input.",
+        "points": 1
+      },
+      {
+        "point_label": "Vowel test logic",
+        "criterion": "Returns true when the first character equals any of a/e/i/o/u (case handled either by checking both cases or by toLowerCase) and false otherwise; uses .equals for String comparison.",
+        "points": 1
+      },
+      {
+        "point_label": "Loop and termination in countVowelWords",
+        "criterion": "Uses a loop (while or for) that continues until every word has been processed; loop terminates correctly when no further space is found (indexOf returns -1) by handling the final word.",
+        "points": 1
+      },
+      {
+        "point_label": "Word extraction via indexOf and substring",
+        "criterion": "Each word is isolated using remaining.indexOf(\" \") together with remaining.substring(0, space) and remaining.substring(space + 1); does not use String.split.",
+        "points": 1
+      },
+      {
+        "point_label": "Calls startsWithVowel helper",
+        "criterion": "The part-(a) method startsWithVowel is invoked on each extracted word and its result drives the increment. Reimplementing the vowel test inline forfeits this point.",
+        "points": 1
+      },
+      {
+        "point_label": "Counter and return value",
+        "criterion": "An int counter is initialized to 0 before the loop, incremented by exactly 1 for each word that starts with a vowel, and returned at the end.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "basic with mixed words",
+        "setup_java": "PhraseEditor p = new PhraseEditor(\"apple banana orange\");\nSystem.out.println(p.countVowelWords());",
+        "expected_output": "2\n"
+      },
+      {
+        "description": "single word no vowels and case insensitive",
+        "setup_java": "PhraseEditor p1 = new PhraseEditor(\"hello\");\nPhraseEditor p2 = new PhraseEditor(\"I am an Engineer\");\nSystem.out.println(p1.countVowelWords());\nSystem.out.println(p2.countVowelWords());",
+        "expected_output": "0\n4\n"
+      },
+      {
+        "description": "all words start with vowels",
+        "setup_java": "PhraseEditor p = new PhraseEditor(\"oak elm ash ivy umbrella\");\nSystem.out.println(p.countVowelWords());",
+        "expected_output": "5\n"
+      }
+    ]
+  },
+  {
+    "archetype": "methods_control",
+    "topic_id": "u2_s2_8",
+    "prompt": "A WordChecker object analyzes a single word (a String of letters with no spaces) by counting how many of its characters are vowels. The vowels are the letters a, e, i, o, and u, in either uppercase or lowercase. The class is shown below.\n\npublic class WordChecker {\n    private String word;\n\n    public WordChecker(String w) {\n        word = w;\n    }\n\n    /** Returns true if letter is a single-character String that is a vowel,\n     *  and returns false otherwise. */\n    public boolean isVowel(String letter) { /* to be implemented in part (a) */ }\n\n    /** Returns the percentage of characters in word that are vowels, rounded\n     *  down to the nearest whole percent. The instance variable word is\n     *  guaranteed to contain at least one character. */\n    public int vowelPercentage() { /* to be implemented in part (b) */ }\n}\n\nYou will write the two methods of the WordChecker class.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the method isVowel, which returns true when its parameter letter is a one-character String equal to one of the five vowels (in either uppercase or lowercase) and returns false otherwise. Complete method isVowel below.\n\n/** Returns true if letter is a single-character String that is a vowel,\n *  and returns false otherwise. */\npublic boolean isVowel(String letter)"
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method vowelPercentage, which returns an int equal to the percentage of characters in the instance variable word that are vowels, rounded down to the nearest whole percent. For example, if word is \"Hello\", then 2 of the 5 characters are vowels and the method should return 40. If word is \"AEIOU\", every character is a vowel and the method should return 100. Method vowelPercentage must use isVowel from part (a) to determine whether each character is a vowel. Assume isVowel works as specified, regardless of what you wrote in part (a). Complete method vowelPercentage below.\n\n/** Returns the percentage of characters in word that are vowels. */\npublic int vowelPercentage()"
+      }
+    ],
+    "reference_solution": "public class WordChecker {\n    private String word;\n\n    public WordChecker(String w) {\n        word = w;\n    }\n\n    public boolean isVowel(String letter) {\n        String lower = letter.toLowerCase();\n        return lower.equals(\"a\") || lower.equals(\"e\") || lower.equals(\"i\")\n                || lower.equals(\"o\") || lower.equals(\"u\");\n    }\n\n    public int vowelPercentage() {\n        int count = 0;\n        for (int i = 0; i < word.length(); i++) {\n            String letter = word.substring(i, i + 1);\n            if (isVowel(letter)) {\n                count++;\n            }\n        }\n        return (int) ((double) count / word.length() * 100);\n    }\n}\n",
+    "rubric": [
+      {
+        "point_label": "isVowel header and parameter",
+        "criterion": "Method isVowel is declared as public boolean isVowel(String letter) inside class WordChecker.",
+        "points": 1
+      },
+      {
+        "point_label": "isVowel correct return value",
+        "criterion": "Method body compares letter (after handling case) against each of the five vowels using equals (or equalsIgnoreCase) and returns true exactly when a match is found, false otherwise.",
+        "points": 1
+      },
+      {
+        "point_label": "vowelPercentage header",
+        "criterion": "Method vowelPercentage is declared as public int vowelPercentage() with no parameters and an int return type.",
+        "points": 1
+      },
+      {
+        "point_label": "Loop bounds use word.length()",
+        "criterion": "A loop iterates with index i from 0 up to but not including word.length() (e.g., for (int i = 0; i < word.length(); i++)). Off-by-one bounds do not earn this point.",
+        "points": 1
+      },
+      {
+        "point_label": "Character extraction via substring(i, i+1)",
+        "criterion": "Each character is extracted as word.substring(i, i + 1) (or equivalent two-argument substring call). Use of charAt forfeits this point.",
+        "points": 1
+      },
+      {
+        "point_label": "Calls isVowel helper",
+        "criterion": "The loop body passes the extracted single-character String to isVowel and uses its boolean result to decide whether to increment the counter. Reimplementing the vowel test inline forfeits this point.",
+        "points": 1
+      },
+      {
+        "point_label": "Avoids integer division for percentage",
+        "criterion": "Returns (int)((double) count / word.length() * 100) or equivalent with a double promotion before the division, so the percentage is computed without integer-division truncation before the multiplication by 100.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "basic mixed-case word",
+        "setup_java": "WordChecker w = new WordChecker(\"Hello\");\nSystem.out.println(w.isVowel(\"e\"));\nSystem.out.println(w.isVowel(\"H\"));\nSystem.out.println(w.vowelPercentage());",
+        "expected_output": "true\nfalse\n40"
+      },
+      {
+        "description": "all vowels uppercase",
+        "setup_java": "WordChecker w = new WordChecker(\"AEIOU\");\nSystem.out.println(w.isVowel(\"A\"));\nSystem.out.println(w.vowelPercentage());",
+        "expected_output": "true\n100"
+      },
+      {
+        "description": "no vowels and longer word",
+        "setup_java": "WordChecker w1 = new WordChecker(\"rhythm\");\nSystem.out.println(w1.vowelPercentage());\nWordChecker w2 = new WordChecker(\"Programming\");\nSystem.out.println(w2.vowelPercentage());",
+        "expected_output": "0\n27"
+      }
+    ]
+  },
+  {
+    "archetype": "methods_control",
+    "topic_id": "u2_s2_8",
+    "prompt": "A NameProcessor object stores a person's full name as a single String of one or more words separated by single spaces, with no leading or trailing spaces. The class is intended to extract the person's initials. The class is shown below.\n\npublic class NameProcessor {\n    private String fullName;\n\n    public NameProcessor(String name) {\n        fullName = name;\n    }\n\n    /** Returns the first letter of word as an uppercase one-character String.\n     *  The parameter word is guaranteed to be non-empty. */\n    public String firstLetter(String word) { /* to be implemented in part (a) */ }\n\n    /** Returns a String of uppercase initials, one initial per word in fullName,\n     *  in the same order the words appear. The instance variable fullName is\n     *  guaranteed to contain at least one word and to have words separated by\n     *  single spaces with no leading or trailing spaces. */\n    public String getInitials() { /* to be implemented in part (b) */ }\n}\n\nYou will write the two methods of the NameProcessor class.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the method firstLetter, which returns the first character of its parameter word as an uppercase one-character String. For example, firstLetter(\"hello\") returns \"H\" and firstLetter(\"World\") returns \"W\". Complete method firstLetter below.\n\n/** Returns the first letter of word as an uppercase one-character String. */\npublic String firstLetter(String word)"
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method getInitials, which returns a String containing one uppercase initial per word in fullName, in the order the words appear. For example, if fullName is \"john quincy adams\", getInitials returns \"JQA\"; if fullName is \"Alice\", getInitials returns \"A\". Method getInitials must locate word boundaries using indexOf(\" \") and substring, and must use firstLetter from part (a) to obtain each initial. Assume firstLetter works as specified, regardless of what you wrote in part (a). Complete method getInitials below.\n\n/** Returns the uppercase initials of every word in fullName. */\npublic String getInitials()"
+      }
+    ],
+    "reference_solution": "public class NameProcessor {\n    private String fullName;\n\n    public NameProcessor(String name) {\n        fullName = name;\n    }\n\n    public String firstLetter(String word) {\n        return word.substring(0, 1).toUpperCase();\n    }\n\n    public String getInitials() {\n        String result = \"\";\n        String remaining = fullName;\n        while (remaining.indexOf(\" \") != -1) {\n            int spaceIdx = remaining.indexOf(\" \");\n            String word = remaining.substring(0, spaceIdx);\n            result += firstLetter(word);\n            remaining = remaining.substring(spaceIdx + 1);\n        }\n        result += firstLetter(remaining);\n        return result;\n    }\n}\n",
+    "rubric": [
+      {
+        "point_label": "firstLetter header",
+        "criterion": "Method firstLetter is declared as public String firstLetter(String word) inside class NameProcessor.",
+        "points": 1
+      },
+      {
+        "point_label": "firstLetter returns uppercase one-character substring",
+        "criterion": "Method body returns word.substring(0, 1).toUpperCase() (or equivalent) so the returned String is a one-character uppercase letter.",
+        "points": 1
+      },
+      {
+        "point_label": "getInitials header",
+        "criterion": "Method getInitials is declared as public String getInitials() with no parameters and a String return type.",
+        "points": 1
+      },
+      {
+        "point_label": "Locates spaces with indexOf(\" \")",
+        "criterion": "Loop condition or computation uses indexOf(\" \") on the remaining portion of the name to find the next space, and terminates correctly when no more spaces are found (indexOf returns -1).",
+        "points": 1
+      },
+      {
+        "point_label": "Splits words via substring",
+        "criterion": "Each individual word is extracted using substring(0, spaceIdx) (or equivalent) and the remaining portion of the name is advanced using substring(spaceIdx + 1).",
+        "points": 1
+      },
+      {
+        "point_label": "Calls firstLetter helper",
+        "criterion": "Each extracted word, including the final word after the loop ends, is passed to firstLetter from part (a) to obtain its initial. Reimplementing the first-letter logic inline forfeits this point.",
+        "points": 1
+      },
+      {
+        "point_label": "Returns concatenation of all initials in order",
+        "criterion": "All initials are accumulated (e.g., via String concatenation) in the order the words appear, and the final String, including the initial of the last word, is returned.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "single word",
+        "setup_java": "NameProcessor n = new NameProcessor(\"Alice\");\nSystem.out.println(n.firstLetter(\"hello\"));\nSystem.out.println(n.getInitials());",
+        "expected_output": "H\nA"
+      },
+      {
+        "description": "two-word name with mixed case",
+        "setup_java": "NameProcessor n = new NameProcessor(\"John Smith\");\nSystem.out.println(n.getInitials());",
+        "expected_output": "JS"
+      },
+      {
+        "description": "three-word lowercase name",
+        "setup_java": "NameProcessor n = new NameProcessor(\"john quincy adams\");\nSystem.out.println(n.getInitials());\nNameProcessor n2 = new NameProcessor(\"mary jane watson parker\");\nSystem.out.println(n2.getInitials());",
+        "expected_output": "JQA\nMJWP"
+      }
+    ]
+  },
+  {
+    "archetype": "methods_control",
+    "topic_id": "u2_s2_8",
+    "prompt": "A library tracks late book returns and computes overdue fees. The Librarian class is partially defined below.\n\npublic class Librarian {\n    private String name;\n    private int numSimulations;\n\n    public Librarian(String n, int sims) {\n        name = n;\n        numSimulations = sims;\n    }\n\n    /** Returns a random integer representing the number of days a book is\n      * returned late. The value is in the inclusive range [minDays, maxDays].\n      * Precondition: minDays <= maxDays, both are non-negative.\n      */\n    public int randomLateDays(int minDays, int maxDays) { /* part (a) */ }\n\n    /** Runs numSimulations simulated returns. For each simulation it generates\n      * a random number of late days between 0 and 14 (inclusive) using the\n      * randomLateDays method. Returns the percentage (as an int from 0 to 100,\n      * truncated) of simulations whose late days are strictly greater than\n      * threshold. If numSimulations is 0, returns 0.\n      */\n    public int percentOver(int threshold) { /* part (b) */ }\n}\n",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the method randomLateDays. The returned int must be uniformly distributed in [minDays, maxDays] inclusive. You must use Math.random()."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method percentOver. It must run exactly numSimulations trials, calling randomLateDays(0, 14) each time. Count the trials whose result is strictly greater than threshold and return the percentage of such trials, truncated to an int. Avoid integer division. percentOver MUST call randomLateDays."
+      }
+    ],
+    "reference_solution": "public class Librarian {\n    private String name;\n    private int numSimulations;\n\n    public Librarian(String n, int sims) {\n        name = n;\n        numSimulations = sims;\n    }\n\n    public int randomLateDays(int minDays, int maxDays) {\n        return (int)(Math.random() * (maxDays - minDays + 1)) + minDays;\n    }\n\n    public int percentOver(int threshold) {\n        if (numSimulations == 0) return 0;\n        int count = 0;\n        for (int i = 0; i < numSimulations; i++) {\n            int days = randomLateDays(0, 14);\n            if (days > threshold) {\n                count++;\n            }\n        }\n        return (int)((double) count / numSimulations * 100);\n    }\n}\n",
+    "rubric": [
+      {
+        "point_label": "Random-number generation (part a)",
+        "criterion": "Math.random() is invoked in randomLateDays.",
+        "points": 1
+      },
+      {
+        "point_label": "Correct range scaling and int cast (part a)",
+        "criterion": "Multiplies Math.random() by (maxDays - minDays + 1), adds minDays, and casts to int so the value spans [minDays, maxDays] inclusive.",
+        "points": 1
+      },
+      {
+        "point_label": "Method header (part b)",
+        "criterion": "percentOver has the correct signature: public int percentOver(int threshold).",
+        "points": 1
+      },
+      {
+        "point_label": "Loop bounds (part b)",
+        "criterion": "Loop iterates exactly numSimulations times (e.g., for (int i = 0; i < numSimulations; i++)).",
+        "points": 1
+      },
+      {
+        "point_label": "Accumulator / comparison logic (part b)",
+        "criterion": "Increments a counter when the simulated days are strictly greater than threshold.",
+        "points": 1
+      },
+      {
+        "point_label": "Calls randomLateDays (part b)",
+        "criterion": "Part (b) calls randomLateDays(0, 14) rather than reimplementing random generation.",
+        "points": 1
+      },
+      {
+        "point_label": "Avoids integer division on return",
+        "criterion": "Casts numerator or denominator to double before computing the percentage, returns an int, and handles numSimulations == 0 by returning 0.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "randomLateDays bounds over many calls",
+        "setup_java": "Librarian lib = new Librarian(\"Ada\", 0);\nint min = 100, max = -1;\nfor (int i = 0; i < 5000; i++) {\n    int v = lib.randomLateDays(3, 7);\n    if (v < min) min = v;\n    if (v > max) max = v;\n}\nSystem.out.println(min >= 3 && max <= 7);\nSystem.out.println(min == 3);\nSystem.out.println(max == 7);",
+        "expected_output": "true\ntrue\ntrue"
+      },
+      {
+        "description": "percentOver with zero simulations returns 0",
+        "setup_java": "Librarian lib = new Librarian(\"Ben\", 0);\nSystem.out.println(lib.percentOver(5));",
+        "expected_output": "0"
+      },
+      {
+        "description": "percentOver with threshold higher than max possible returns 0",
+        "setup_java": "Librarian lib = new Librarian(\"Cara\", 200);\nSystem.out.println(lib.percentOver(14));",
+        "expected_output": "0"
+      }
+    ]
+  },
+  {
+    "archetype": "methods_control",
+    "topic_id": "u2_s2_8",
+    "prompt": "A text utility analyzes phrases. The PhraseScanner class is partially defined below.\n\npublic class PhraseScanner {\n    private String phrase;\n\n    public PhraseScanner(String p) {\n        phrase = p;\n    }\n\n    /** Returns true if the single-character String ch is one of the\n      * vowels \"a\", \"e\", \"i\", \"o\", or \"u\" (lowercase only). Otherwise returns\n      * false.\n      * Precondition: ch has length 1.\n      */\n    public boolean isVowel(String ch) { /* part (a) */ }\n\n    /** Returns the number of words in phrase that begin with a vowel.\n      * Words are separated by single spaces. The phrase has no leading or\n      * trailing spaces. If phrase is null or the empty string, returns 0.\n      * This method MUST call isVowel to test the first letter of each word.\n      */\n    public int countVowelWords() { /* part (b) */ }\n}\n",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write isVowel. It receives a single-character String and returns true if and only if it equals \"a\", \"e\", \"i\", \"o\", or \"u\". Do not use String.charAt."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write countVowelWords. Split phrase on single spaces using indexOf and substring. For each word, examine the first character (using substring(0, 1)) and call isVowel to decide whether to count it. Return 0 immediately if phrase is null or empty. countVowelWords MUST call isVowel."
+      }
+    ],
+    "reference_solution": "public class PhraseScanner {\n    private String phrase;\n\n    public PhraseScanner(String p) {\n        phrase = p;\n    }\n\n    public boolean isVowel(String ch) {\n        return ch.equals(\"a\") || ch.equals(\"e\") || ch.equals(\"i\")\n            || ch.equals(\"o\") || ch.equals(\"u\");\n    }\n\n    public int countVowelWords() {\n        if (phrase == null || phrase.length() == 0) return 0;\n        int count = 0;\n        String remaining = phrase;\n        while (remaining.length() > 0) {\n            int space = remaining.indexOf(\" \");\n            String word;\n            if (space == -1) {\n                word = remaining;\n                remaining = \"\";\n            } else {\n                word = remaining.substring(0, space);\n                remaining = remaining.substring(space + 1);\n            }\n            if (word.length() > 0 && isVowel(word.substring(0, 1))) {\n                count++;\n            }\n        }\n        return count;\n    }\n}\n",
+    "rubric": [
+      {
+        "point_label": "isVowel header and return type (part a)",
+        "criterion": "isVowel has signature public boolean isVowel(String ch) and returns a boolean.",
+        "points": 1
+      },
+      {
+        "point_label": "Correct vowel comparison using equals (part a)",
+        "criterion": "Compares ch against each of \"a\", \"e\", \"i\", \"o\", \"u\" using .equals (not ==), returning true on any match and false otherwise.",
+        "points": 1
+      },
+      {
+        "point_label": "Null / empty precondition guard (part b)",
+        "criterion": "Checks phrase == null first (or short-circuits) and then checks for length 0, returning 0 in those cases without throwing NullPointerException.",
+        "points": 1
+      },
+      {
+        "point_label": "Word splitting via indexOf and substring (part b)",
+        "criterion": "Uses indexOf(\" \") together with substring to extract each word, advancing past the space; does not use String.charAt.",
+        "points": 1
+      },
+      {
+        "point_label": "First-letter extraction via substring (part b)",
+        "criterion": "Extracts the first character of each word using substring(0, 1) \u2014 not charAt.",
+        "points": 1
+      },
+      {
+        "point_label": "Calls isVowel (part b)",
+        "criterion": "countVowelWords delegates the vowel test to isVowel rather than reimplementing the comparison.",
+        "points": 1
+      },
+      {
+        "point_label": "Accumulator returns correct count",
+        "criterion": "Maintains an int counter incremented exactly when isVowel returns true for a word's first letter, and returns that counter.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "basic phrase with mixed words",
+        "setup_java": "PhraseScanner ps = new PhraseScanner(\"apple orange banana igloo kite\");\nSystem.out.println(ps.countVowelWords());",
+        "expected_output": "3"
+      },
+      {
+        "description": "null and empty inputs",
+        "setup_java": "PhraseScanner a = new PhraseScanner(null);\nPhraseScanner b = new PhraseScanner(\"\");\nSystem.out.println(a.countVowelWords());\nSystem.out.println(b.countVowelWords());",
+        "expected_output": "0\n0"
+      },
+      {
+        "description": "single word and isVowel direct checks",
+        "setup_java": "PhraseScanner ps = new PhraseScanner(\"umbrella\");\nSystem.out.println(ps.countVowelWords());\nSystem.out.println(ps.isVowel(\"a\"));\nSystem.out.println(ps.isVowel(\"b\"));\nSystem.out.println(ps.isVowel(\"o\"));",
+        "expected_output": "1\ntrue\nfalse\ntrue"
+      }
+    ]
+  },
+  {
+    "archetype": "methods_control",
+    "topic_id": "u2_s2_8",
+    "prompt": "A carnival game keeps track of dart throws at a circular target. The class DartGame simulates throws and computes statistics. A throw is considered a \"bullseye\" when a randomly generated score equals the maximum possible score on the board.\n\nThe DartGame class is shown below.\n\npublic class DartGame {\n    private int maxScore;\n    private int numThrows;\n\n    public DartGame(int max, int throws_) {\n        maxScore = max;\n        numThrows = throws_;\n    }\n\n    /** Returns a random integer in the range [1, maxScore] inclusive. */\n    public int throwDart() { /* part (a) */ }\n\n    /** Simulates numThrows dart throws and returns the integer percentage that were bullseyes. */\n    public int bullseyePercent() { /* part (b) */ }\n}",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the method throwDart, which returns a pseudo-random integer in the range from 1 to maxScore inclusive. Use Math.random() to generate the random value."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method bullseyePercent, which simulates numThrows dart throws by calling throwDart for each throw. A throw is a bullseye when the value returned by throwDart equals maxScore. The method must return the integer percentage (0 to 100) of throws that were bullseyes. You must use throwDart from part (a) to receive full credit. Assume numThrows is greater than 0."
+      }
+    ],
+    "reference_solution": "public class DartGame {\n    private int maxScore;\n    private int numThrows;\n\n    public DartGame(int max, int throws_) {\n        maxScore = max;\n        numThrows = throws_;\n    }\n\n    public int throwDart() {\n        return (int)(Math.random() * maxScore) + 1;\n    }\n\n    public int bullseyePercent() {\n        int hits = 0;\n        for (int i = 0; i < numThrows; i++) {\n            if (throwDart() == maxScore) {\n                hits++;\n            }\n        }\n        return (int)((double) hits / numThrows * 100);\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Random-number generation (part a)",
+        "criterion": "Uses Math.random() to produce a random value inside throwDart.",
+        "points": 1
+      },
+      {
+        "point_label": "Correct range scaling and int cast (part a)",
+        "criterion": "Multiplies Math.random() by maxScore, adds 1, and casts to int so result spans [1, maxScore] inclusive.",
+        "points": 1
+      },
+      {
+        "point_label": "Loop executes numThrows times (part b)",
+        "criterion": "Uses a loop with bounds for (int i = 0; i < numThrows; i++) or equivalent that runs exactly numThrows iterations.",
+        "points": 1
+      },
+      {
+        "point_label": "Comparison logic correct (part b)",
+        "criterion": "Compares the returned dart value to maxScore and increments a counter only when they are equal.",
+        "points": 1
+      },
+      {
+        "point_label": "Calls throwDart helper (part b)",
+        "criterion": "Part (b) calls throwDart() from part (a) instead of reimplementing the random logic.",
+        "points": 1
+      },
+      {
+        "point_label": "Avoids integer division",
+        "criterion": "Casts hits or numThrows to double before dividing so the percentage computation is not truncated to 0.",
+        "points": 1
+      },
+      {
+        "point_label": "Return value correct type",
+        "criterion": "Returns an int from bullseyePercent representing the integer percentage of bullseyes.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "guaranteed bullseye when maxScore is 1",
+        "setup_java": "DartGame g = new DartGame(1, 50);\nSystem.out.println(g.bullseyePercent());",
+        "expected_output": "100"
+      },
+      {
+        "description": "throwDart returns value in valid range",
+        "setup_java": "DartGame g = new DartGame(10, 1);\nint v = g.throwDart();\nSystem.out.println(v >= 1 && v <= 10);",
+        "expected_output": "true"
+      },
+      {
+        "description": "many throws on a single-score board still 100%",
+        "setup_java": "DartGame g = new DartGame(1, 250);\nSystem.out.println(g.bullseyePercent());",
+        "expected_output": "100"
+      }
+    ]
+  },
+  {
+    "archetype": "methods_control",
+    "topic_id": "u2_s2_8",
+    "prompt": "A messaging application processes user-submitted comments. The MessageFilter class checks individual words and entire comments for prohibited content.\n\nThe MessageFilter class is shown below.\n\npublic class MessageFilter {\n    private String bannedLetter;\n\n    public MessageFilter(String b) {\n        bannedLetter = b;\n    }\n\n    /** Returns true if word contains bannedLetter (case-sensitive), false otherwise. */\n    public boolean containsBanned(String word) { /* part (a) */ }\n\n    /** Returns the number of words in comment that contain bannedLetter. Words are separated by single spaces. */\n    public int countFlagged(String comment) { /* part (b) */ }\n}\n\nbannedLetter is guaranteed to be a one-character String. comment in part (b) is non-empty and contains no leading or trailing spaces; consecutive words are separated by exactly one space.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the method containsBanned, which returns true if the parameter word contains the String bannedLetter at any position, and returns false otherwise. You must extract characters from word using substring; do not use charAt."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method countFlagged, which returns the number of words in comment that contain bannedLetter. Words in comment are separated by single spaces. You must call containsBanned from part (a) to receive full credit. Use indexOf and substring to split comment into individual words."
+      }
+    ],
+    "reference_solution": "public class MessageFilter {\n    private String bannedLetter;\n\n    public MessageFilter(String b) {\n        bannedLetter = b;\n    }\n\n    public boolean containsBanned(String word) {\n        for (int i = 0; i < word.length(); i++) {\n            if (word.substring(i, i + 1).equals(bannedLetter)) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    public int countFlagged(String comment) {\n        int count = 0;\n        String rest = comment;\n        int space = rest.indexOf(\" \");\n        while (space != -1) {\n            String w = rest.substring(0, space);\n            if (containsBanned(w)) {\n                count++;\n            }\n            rest = rest.substring(space + 1);\n            space = rest.indexOf(\" \");\n        }\n        if (containsBanned(rest)) {\n            count++;\n        }\n        return count;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Loop over characters of word (part a)",
+        "criterion": "Loops over indices 0 to word.length() - 1 inclusive to inspect each character of word.",
+        "points": 1
+      },
+      {
+        "point_label": "String character extraction via substring (part a)",
+        "criterion": "Uses word.substring(i, i + 1) and .equals(bannedLetter) to test each character; does not use charAt.",
+        "points": 1
+      },
+      {
+        "point_label": "Returns boolean correctly (part a)",
+        "criterion": "Returns true on first match and false after the loop completes with no match.",
+        "points": 1
+      },
+      {
+        "point_label": "Splits comment using indexOf and substring (part b)",
+        "criterion": "Uses indexOf(\" \") and substring to peel words from comment one at a time.",
+        "points": 1
+      },
+      {
+        "point_label": "Handles final word after last space (part b)",
+        "criterion": "Processes the trailing word that has no space after it (or otherwise visits every word including the last).",
+        "points": 1
+      },
+      {
+        "point_label": "Calls containsBanned helper (part b)",
+        "criterion": "Part (b) calls containsBanned() rather than reimplementing the substring search inline.",
+        "points": 1
+      },
+      {
+        "point_label": "Accumulator and return value correct (part b)",
+        "criterion": "Initializes count to 0, increments only when containsBanned returns true, and returns the int count.",
+        "points": 1
+      }
+    ],
+    "total_points": 7,
+    "test_cases": [
+      {
+        "description": "single word with banned letter",
+        "setup_java": "MessageFilter mf = new MessageFilter(\"z\");\nSystem.out.println(mf.containsBanned(\"pizza\"));",
+        "expected_output": "true"
+      },
+      {
+        "description": "multi-word comment count",
+        "setup_java": "MessageFilter mf = new MessageFilter(\"a\");\nSystem.out.println(mf.countFlagged(\"apple banana cherry kiwi\"));",
+        "expected_output": "2"
+      },
+      {
+        "description": "no flagged words in comment",
+        "setup_java": "MessageFilter mf = new MessageFilter(\"x\");\nSystem.out.println(mf.countFlagged(\"hello world from java\"));",
+        "expected_output": "0"
+      }
+    ]
+  }
+]

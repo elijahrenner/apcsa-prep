@@ -1,0 +1,833 @@
+{
+  "label": "Princeton Review 2025  -  Practice Test 3",
+  "source": "princeton-2025",
+  "format": "new-2025-26-ced",
+  "mcq_section": [
+    {
+      "stem": "Consider the following methods.\n\n```java\npublic void trial()\n{\n    int a = 10;\n    int b = 5;\n    doubleValues(a, b);\n    System.out.print(b);\n    System.out.print(a);\n}\npublic void doubleValues(int c, int d)\n{\n    c = c * 2;\n    d = d * 2;\n    System.out.print(c);\n    System.out.print(d);\n}\n```\n\nWhat is printed as the result of the call `trial()`?",
+      "options": [
+        "`2010105`",
+        "`20101020`",
+        "`20102010`",
+        "`2010510`"
+      ],
+      "answer": "D",
+      "explanation": "This question tests how well you understand assigning values to variables and following the steps of the code. When `trial()` is called, `a` is assigned to the integer value of 10 and `b` is assigned to the integer value of 5. Next, `doubleValues()` is called with `a` and `b` as inputs `c` and `d`. The method `doubleValues()` multiplies the input values `c` and `d` by 2 and prints them out. Thus, the value of `c` is 10 * 2 = 20 and the value of `d` is 5 * 2 = 10. Because `System.out.print()` does not print any line breaks or spaces, the resulting print is `2010`. While `c` and `d` have been reassigned new values, these values exist only within the `doubleValues()` call, so the values of `a` and `b` are unchanged. After the `doubleValues()` method is completed, the `trial()` method then prints the values of `b` and then `a`, printing `510`. Once again, no spaces or line breaks are printed, so, combined together, what is printed from calling `trial()` is `2010510`. Therefore, the correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q1",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following method.\n\n```java\n/**\n* Precondition: a > b > 0\n*/\npublic static int mystery(int a, int b)\n{\n    int d = 0;\n    for (int c = a; c > b; c--)\n    {\n        d = d + c;\n    }\n    return d;\n}\n```\n\nWhat is returned by the call `mystery(x, y)`?",
+      "options": [
+        "The sum of all integers greater than `y` but less than or equal to `x`",
+        "The sum of all integers greater than or equal to `y` but less than or equal to `x`",
+        "The sum of all integers greater than `y` but less than `x`",
+        "The sum of all integers greater than or equal to `y` but less than `x`"
+      ],
+      "answer": "A",
+      "explanation": "The method `mystery(int a, int b)` takes as input integers `a` and `b` with the precondition that `a` > `b` > 0. Plug in `x` = 5 and `y` = 2. These values are passed as parameters to make `a` = 5 and `b` = 2. Set `d = 0`. Now go to the `for` loop, initializing `c` = `a` = 5. Since it is still the case that `c` > `b`, execute the `for` loop. Execute `d = d + c` by setting `d` = 0 + 5 = 5. Decrease `c` by 1 to get `c` = 4. Since `c` > `b`, execute the `for` loop again. Execute `d = d + c` by setting `d` = 5 + 4 = 9. Decrease `c` by 1 to get `c` = 3. Since it is still the case that `c` > `b`, execute the `for` loop again. Execute `d = d + c` by setting `d` = 9 + 3 = 12. Decrease `c` by 1 to get `c` = 2. Since it is no longer the case that `c` > `b`, stop executing the `for` loop. Return `d` = 12. Now go through the choices and eliminate any that don't describe a return of 12.Choice (A) is the sum of all integers greater than `y` but less than or equal to `x`. The sum of all integers greater than 2 but less than or equal to 5 is 3 + 4 + 5 = 12, so keep (A).Choice (B) is the sum of all integers greater than or equal to `y` but less than or equal to `x`. The sum of all integers greater than or equal to 2 but less than or equal to 5 is 2 + 3 + 4 + 5 = 14, so eliminate (B).Choice (C) is the sum of all integers greater than `y` but less than `x`. The sum of all integers greater than 2 but less than 5 is 3 + 4 = 7, so eliminate (C).Choice (D) is the sum of all integers greater than or equal to `y` but less than `x`. The sum of all integers greater than or equal to 2 but less than 5 is 2 + 3 + 4 = 9, so eliminate (D). Only one answer remains. The correct answer is (A).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q2",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following method.\n\n```java\npublic void mystery (int n)\n{\n    int k;\n    for (k = 0 ; k < n ; k++)\n    {\n        mystery(k);\n        System.out.print (k);\n    }\n}\n```\n\nWhat is printed by the call `mystery(3)` ?",
+      "options": [
+        "`0123`",
+        "`00123`",
+        "`0010012`",
+        "`00100123`"
+      ],
+      "answer": "C",
+      "explanation": "The question asks for what is printed by the call `mystery(3)`. In the call, 3 is taken as a parameter and assigned to `n`. The integer `k` is then initialized in the `for` loop and set equal to 0. Since `k` < `n`, execute the `for` loop. Call `mystery(0)`, while keeping your place in the call of `mystery(3)`. Again, `k` is initialized in the `for` loop and set equal to 0. In this call, since `n` = 0, it is not the case that `k` < `n`, so do not execute the `for` loop. This completes the call of `mystery(0)`, so return to `mystery(3)`. The next command is `System.out.print(k)`. Since `k` = 0, the first character printed is `0`. Look to see whether any choices can be eliminated. All choices begin with `0`, so no choices can be eliminated. Continue with the method call. Since this is the last command of the `for` loop, increment `k` to get `k` = 1. Since it is still the case that `k` < `n`, execute the `for` loop again. Call `mystery(1)`, again keeping your place in the call of `mystery(3)`. Again, `k` is initialized in the `for` loop and set equal to 0. In this call, since `n` = 1, it is the case that `k` < `n`, so execute the `for` loop. Call `mystery(k)`, which is `mystery(0)`. As seen above, `mystery(0)` prints nothing, so execute the next line in `mystery(1)`, which is `System.out.print(k)`. Since `k` = 0, print `0`.Eliminate (A), since the second character printed is not `0`. Increment `k` to get `k` = 1. Since it is no longer the case that `k` < `n`, do not execute the `for` loop again and end this call of `mystery(1)`. Return to the original call of `mystery(3)`, where `k` = 1 and `System.out.print(k)` is the next statement. Print `1`. All remaining choices have `1` as the third character, so do not eliminate any choices. This is the end of the `for` loop, so increment `k` to get `k` = 2. Since `n` = 3, it is still the case that `k` < `n`, so execute the `for` loop. Call `mystery(2)` while holding your place in `mystery(3)`. Again, `k` is initialized in the `for` loop and set equal to 0. In this call, since `n` = 2, it is the case that `k` < `n`, so execute the `for` loop. Call `mystery(0)`, which prints nothing. Execute `System.out.print(k)` to print `0`.Eliminate (B), since the next character is not `0`. Increment `k` to get `k` = 1. Since `k` < `n`, execute the `for` loop. Call `mystery(1)`, which, as described above, prints `0`. All remaining choices have `0` as the next character, so don't eliminate any choices. The next command in `mystery(2)` is `System.out.print(k)`, so print `1`. Again, keep all the remaining choices. In `mystery(2)`, increment `k` to get `k` = 2. Since `n` = 2, it is no longer the case that `k` < `n`, so stop executing the `for` loop. End `mystery(2)` and return to `mystery(3)`, where `k` = 2 and the next command is `System.out.print(k)`, so print `2`. Again, keep all remaining choices. Increment `k` to get `k` = 3. Since it is no longer the case that `k` < `n`, stop executing the `for` loop. The method call is complete for `mystery(3)`, so there will be no more printed characters.Eliminate (D), which has further characters printed.\n\nIn other words, the calling sequence looks like this:\n\nThe correct answer is (C).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q3",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider an array of integers.\n\n```java\n4 10 1 2 6 7 3 5\n```\n\nIf selection sort is used to order the array from smallest to largest values, which of the following represents a possible state of the array at some point during the selection sort process?",
+      "options": [
+        "`1 4 10 2 3 6 7 5`",
+        "`1 2 4 6 10 7 3 5`",
+        "`1 2 3 10 6 7 4 5`",
+        "`4 3 1 2 6 7 10 5`"
+      ],
+      "answer": "C",
+      "explanation": "`SelectionSort` walks through the array to find the smallest element in the part of the array not yet sorted. It then swaps that smallest element with the first unsorted element.\n\nStart with the original array of values.\n\nThe smallest element is 1. Swap that with the first unsorted element, 4. The array now looks like this.\n\nThis is not a choice, so continue. The smallest element in the unsorted part of the array (from 10 to 5) is 2. Swap that with the first unsorted element, 10.\n\nThis is still not a choice, so continue this process. The smallest element in the unsorted part of the array (from 4 to 5) is 3. Swap that with the first unsorted element, 4.\n\nThis is (C), so stop here. If you're interested, here are the complete moves for selection sort.\n\nThe correct answer is (C).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q4",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following code segment:\n\n```java\nint k;\nint A[];\nA = new int [7];\nfor (k = 0; k < A.length; k++)\n{\n    A[k] = A.length – k;\n}\nfor (k = 0; k < A.length – 1; k++)\n{\n    A[k + 1] = A[k];\n}\n```\n\nWhat values will `A` contain after the code segment is executed?",
+      "options": [
+        "`1 2 3 4 5 6 7`",
+        "`6 6 5 4 3 2 1`",
+        "`7 7 6 5 4 3 2`",
+        "`7 7 7 7 7 7 7`"
+      ],
+      "answer": "D",
+      "explanation": "Execute the commands. The integer `k` and the integer array `A` are initialized. The array `A` is given length 7. Thus, the array, `A`, has seven elements with indexes from 0 to 6. Execute the first `for` loop. Set `k` = 0. Since `k` < `A.length`, execute the `for` loop, which sets `A[0]` equal to `A.length – k` = 7 – 0 = 7. Increment `k` to get `k` = 1. Since 1 < 7, execute the `for` loop, which sets `A[1]` equal to `A.length – k` = 7 – 1 = 6. Increment `k` to get `k` = 2. Since 2 < 7, execute the `for` loop, which sets `A[2]` equal to `A.length – k` = 7 – 2 = 5. Increment `k` to get `k` = 3. Since 3 < 7, execute the `for` loop, which sets `A[3]` equal to `A.length – k` = 7 – 3 = 4. Increment `k` to get `k` = 4. Since 4 < 7, execute the `for` loop, which sets `A[4]` equal to `A.length – k` = 7 – 4 = 3. Increment `k` to get `k` = 5. Since 5 < 7, execute the `for` loop, which sets `A[5]` equal to `A.length – k` = 7 – 5 = 2. Increment `k` to get `k` = 6. Since 6 < 7, execute the `for` loop, which sets `A[6]` equal to `A.length – k` = 7 – 6 = 1. Increment `k` to get `k` = 7. Since it is not the case that 7 < 7, stop executing the `for` loop. Therefore, the array has the values\n\nThe second `for` loop puts the value of the `k`th element of the array into the `(k + 1)`st element. Be careful!\n\nA quick glance might lead you to believe that array elements `A[1]` to `A[5]` are shifted one spot to the right, giving an answer of (C). However, a step-by-step analysis demonstrates that this will not be the case. The `for` loop sets `k` = 0. Since 0 < `A.length –` 1, execute the `for` loop. The command in the `for` loop is `A[k + 1] = A[k]`. Since `k` = 0, set `A[1]` = `A[0]` = 7. Increment `k` to get `k` = 1. Since it is still the case that `k` < `A.length` – 1, execute the `for` loop. Since `k` = 1, set `A[2]` = `A[1]` = 7. Continue in this manner. Since `A.length` – 1 = 7 – 1 = 6, only execute the `for` loop through `k` = 5. Each execution of the `for` loop is shown below.\n\nThe final values contained by `A` are `7 7 7 7 7 7 7`. The correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q5",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 6-7 refer to the following two classes.\n\n```java\npublic class PostOffice\n{\n    // constructor initializes boxes\n    // to length 100\n    public PostOffice()\n    { /* implementation not shown */}\n    // returns the P.O. box based on the given P.O. box number\n    // 0 <= theBox < getNumBoxes ()\n    public Box getBox(int theBox)\n    { /* implementation not shown */}\n    // returns the number of P.O. boxes\n    public int getNumBoxes()\n    { /* implementation not shown */}\n    // private data members and\n    // other methods not shown\n}\npublic class Box\n{\n    // constructor\n    public Box()\n    { /* implementation not shown */}\n    // returns the number of this box\n    public int getBoxNumber()\n    { /* implementation not shown */}\n    // returns the number of pieces\n    // of mail in this box\n    public int getMailCount()\n    { /* implementation not shown */}\n    // returns the given piece of mail\n    // 0 <= thePiece < getMailCount ( )\n    public Mail getMail(int thePiece)\n    { /* implementation not shown */}\n    // true if the box has been assigned\n    // to a customer\n    public boolean isAssigned()\n    { /* implementation not shown */}\n    // true if the box contains mail\n    public boolean hasMail()\n    { /* implementation not shown */}\n    // private data members and\n    // other methods not shown\n}\npublic class Mail\n{\n    // private members, constructors, and\n    // other methods not shown\n}\n```\n\nConsider the following code segment:\n\n```java\nPostOffice p[ ];\np = new PostOffice[10];\n```\n\nAssuming that the box has been assigned and that it has at least four pieces of mail waiting in it, what is the correct way of getting the fourth piece of mail from the 57th box of the 10th post office of `p` ?",
+      "options": [
+        "`Mail m = p[10].getBox(57).getmail(4);`",
+        "`Mail m = p[9].getBox(56).getMail(3);`",
+        "`Mail m = p.getMail(57).getMail(4) [10];`",
+        "`Mail m = getMail(getBox(p[9], 560, 3);`"
+      ],
+      "answer": "B",
+      "explanation": "Choices (C) and (D) are syntactically invalid according to the given class definitions.In (C), `p` is used as a `PostOffice` object rather than an array of `PostOffice` objects.Choice (D) treats `getMail` and `getBox` as static methods without invoking them from an object.Choices (A) and (B) differ only in the indexes of the array and methods. There are two clues in the question that indicate that (B) is the correct answer. First, `p` is declared as an array of 10 `PostOffices`. This means that `p[10]` would raise an `ArrayListOutOfBoundsException`. Remember that `p[9]` actually refers to the 10th post office, since array indexes begin with 0. Second, the comments in the class definitions for the `getBox` and `getMail` methods indicate that the parameter they take is zero-based. Therefore, they should be passed an integer one less than the number of the box or piece of mail needed. For either reason, eliminate (A). The correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q6",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 6-7 refer to the following two classes.\n\n```java\npublic class PostOffice\n{\n    // constructor initializes boxes\n    // to length 100\n    public PostOffice()\n    { /* implementation not shown */}\n    // returns the P.O. box based on the given P.O. box number\n    // 0 <= theBox < getNumBoxes ()\n    public Box getBox(int theBox)\n    { /* implementation not shown */}\n    // returns the number of P.O. boxes\n    public int getNumBoxes()\n    { /* implementation not shown */}\n    // private data members and\n    // other methods not shown\n}\npublic class Box\n{\n    // constructor\n    public Box()\n    { /* implementation not shown */}\n    // returns the number of this box\n    public int getBoxNumber()\n    { /* implementation not shown */}\n    // returns the number of pieces\n    // of mail in this box\n    public int getMailCount()\n    { /* implementation not shown */}\n    // returns the given piece of mail\n    // 0 <= thePiece < getMailCount ( )\n    public Mail getMail(int thePiece)\n    { /* implementation not shown */}\n    // true if the box has been assigned\n    // to a customer\n    public boolean isAssigned()\n    { /* implementation not shown */}\n    // true if the box contains mail\n    public boolean hasMail()\n    { /* implementation not shown */}\n    // private data members and\n    // other methods not shown\n}\npublic class Mail\n{\n    // private members, constructors, and\n    // other methods not shown\n}\n```\n\nConsider the incomplete function `printEmptyBoxes` given below. `printEmptyBoxes` should print the box numbers of all of the boxes that have been assigned to a customer but do not contain mail.\n\n```java\npublic void printEmptyBoxes (PostOffice[] p)\n{\n    for (int k = 0; k < p.length - 1 ; k++)\n    {\n        for (int x = 0; x < p[k].getNumBoxes() - 1 ; x++)\n        {\n            /* missing code */\n        }\n    }\n}\n```\n\nWhich of the following could be used to replace /* missing code */ so that `printBoxesWithoutMail` works as intended?",
+      "options": [
+        "```java\nif (p[k].getBox(x).isAssigned() &&\n    !p[k].getBox(x).hasMail())\n{\n    System. out.println(p[k].getBox(x).getBoxNumber()) ;\n}\n```",
+        "```java\nif (p[x].getBox(k).isAssigned() &&\n    !p[x].getBox(k).hasMail())\n{\n    System. out.println(p[x].getBox(k).getBoxNumber());\n}\n```",
+        "```java\nif (p[k].getBox(x).isAssigned() &&\n    !p[k].getBox(x).hasMail())\n{\n    System.out.println (p[k].getBoxNumber (x));\n}\n```",
+        "```java\nif (p[x].getBox(k).isAssigned() &&\n    !p[x].getBox (k).hasMail())\n{\n    System. out.println(p[x].getBoxNumber(k));\n}\n```"
+      ],
+      "answer": "A",
+      "explanation": "In the method `printEmptyBoxes`, the loop variable `k` refers to the index of the post office and the loop variable `x` refers to the index of the box within the post office.Choice (A) is correct. It checks to see whether the box is assigned and whether it does not have mail using the appropriate methods of the `Box` class. It then prints out the box number of the box.Choice (B) is similar to (A) but incorrectly interchanges `x` and `k`.Eliminate (B).Choice (C) omits the call to the method `getBox`. Therefore, it attempts to call the `getBoxNumber()` method of the `PostOffice` object `p[k]`. Since `PostOffice` objects do not have a `getBoxNumber()` method, this would result in a compile error.Eliminate (C).Choice (D) is similar to (C), but interchanges `x` and `k`.Eliminate (D). The correct answer is (A).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q7",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Assume that `a` and `b` are boolean variables that have been initialized. Consider the following code segment.\n\n```java\na = a && b;\nb = a || b;\n```\n\nWhich of the following statements is always true?\n\nThe final value of `a` is the same as the initial value of `a`.\n\nThe final value of `b` is the same as the initial value of `b`.\n\nThe final value of `a` is the same as the initial value of `b`.",
+      "options": [
+        "I only",
+        "II only",
+        "I and II only",
+        "II and III only"
+      ],
+      "answer": "B",
+      "explanation": "There are four possibilities for the values of `a` and `b`. Either both `a` and `b` are true, both `a` and `b` are false, `a` is true and `b` is false, or `a` is false and `b` is true.\n\nAnalyze the possibilities in a table.\n\nRemember when calculating `b = a || b` that `a` has already been modified. Therefore, use the final, rather than the initial, value of `a` when calculating the final value of `b`.\n\nGo through each statement. Statement I says that the final value of `a` is equal to the initial value of `a`. This is not the case in the second row of the table, so Statement I is not always true. Eliminate any choice that includes it: (A) and (C). Statement II says that the final value of `b` is equal to the initial value of `b`. This is true in each row and, thus, Statement II is always true. Statement III says that the final value of `a` is equal to the initial value of `b`. This is not the case in the third row of the table, so Statement III is not always true. Eliminate any choice that includes it: (D). The correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q8",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following code segment.\n\n```java\nint x;\nx = 53;\nif (x > 10)\n{\n    System.out.print(\"A\");\n}\nif (x > 30)\n{\n    System.out.print(\"B\");\n}\nelse if (x > 40)\n{\n    System.out.print(\"C\");\n}\nif (x > 50)\n{\n    System.out.print (\"D\");\n}\nif (x > 70)\n{\n    System.out.print (\"E\");\n}\n```\n\nWhat is the output when the code is executed?",
+      "options": [
+        "`A`",
+        "`D`",
+        "`ABD`",
+        "`ABCD`"
+      ],
+      "answer": "C",
+      "explanation": "The best way to solve this problem is to look at each `if` statement individually. The integer `x` is initialized and then set equal to 53. The next statement is an `if` statement with the condition `(x > 10)`. Since 53 > 10, execute the statement, `System.out.print(\"A\")`, and print `A`. The next statement is an `if-else` statement, this one having the condition `(x > 30)`. Since 53 > 30, execute the `if` statement, `System.out.print(\"B\")`, and print `B`. Even though 53 > 40, because the next part of the statement is an `else` statement, it cannot be executed if the original `if` statement was executed. Therefore, do not execute the `else` statement, and do not print `C`. The next statement is another `if` statement, this one having the condition `(x > 50)`. Since 53 > 50, execute the statement, `System.out.print(\"D\")`, and print `D`. The next statement is another `if` statement, this one having the condition `(x > 70)`. Since it is not the case that 53 > 70, do not execute the statement. There is no further code to execute, so the result of the printing is `ABD`. The correct answer is (C).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q9",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following code segment:\n\n```java\nint j;\nint k;\nfor (j = -2; j <= 2; j = j + 2)\n{\n    for (k = j; k < j + 3; k++)\n    {\n        System.out.print(k + \" \");\n    }\n}\n```\n\nWhat is the output when the code is executed?",
+      "options": [
+        "`-2 -1 0`",
+        "`-2 -1 0 1 2`",
+        "`-2 0 2`",
+        "`-2 -1 0 0 1 2 2 3 4`"
+      ],
+      "answer": "D",
+      "explanation": "This problem tests your ability to work with nested `for` loops. Although it appears complicated at first glance, it can easily be solved by systematically walking through the code.\n\nBe sure to write the values of the variables `j` and `k` down on paper; don't try to keep track of `j` and `k` in your head. Use the empty space in the question booklet for this purpose.\n\nAt this point, stop because (D) is the only choice that starts `–2 –1 0 0`. However, repeating this process will result in the correct output of `–2 –1 0 0 1 2 2 3 4`. The correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q10",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following method.\n\n```java\npublic void mystery (int count, String s)\n{\n    if (count <= 0)\n    {\n        return;\n    }\n    if (count % 3 == 0)\n    {\n        System.out.print(s + \"--\" + s);\n    }\n    else if (count % 3 == 1)\n    {\n        System.out.print(s + \"-\" + s);\n    }\n    else\n    {\n        System.out.print(s);\n    }\n    mystery(count - 1, s);\n}\n```\n\nWhat is outputted by the call `mystery(5, \"X\")`?",
+      "options": [
+        "`XX-XX--XXX-X`",
+        "`XX-XX-XX-XX`",
+        "`XXX--XX-X-XX--XXX`",
+        "`XX-XXX--XXX-XX`"
+      ],
+      "answer": "A",
+      "explanation": "To solve this problem, first note that `count % 3` is equal to the remainder when `count` is divided by 3. Execute the method call `mystery(5, \"X\")`, taking `count = 5` and `s = \"X\"` as parameters. Because it is not the case that `5 <= 0`, do not execute the first `if` statement.\n\nBecause 5 % 3 = 2, calling `mystery(5, \"X\")` will execute the `else` statement, printing `X`. Then, it will call `mystery(4, \"X\")`, and return. Because 4 % 3 = 1, calling `mystery(4, \"X\")` will execute the `else if` statement, printing `X-X`, call `mystery(3, \"X\")`, and return. At this point, (C) can be eliminated. Because 3 % 3 = 0, calling `mystery(3, \"X\")` will execute the `if` statement, printing `X––X`, call `mystery(2, \"X\")`, and return. Note that you can stop at this point because (B) and (D) can be eliminated. If you're interested, here is the remainder of the execution. Because 2 % 3 = 2, calling `mystery(2, \"X\")` will execute the `else` statement, printing `X`, call `mystery(1, \"X\")`, and return. Because 1 % 3 = 1, calling `mystery(1, \"X\")` will execute the `else if` statement, printing `X–X`, call `mystery(0, \"X\")`, and return. Finally, calling `mystery(0, \"X\")` will simply return because `count` is less than or equal to zero. Putting it all together, `mystery(5, \"X\")` prints\n\nThe correct answer is (A).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q11",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 12-13 refer to the following classes and method descriptions.\n\nClass Table has a method getPrice, which takes no parameters and returns the price of the table.\n\nClass Chair also has a method getPrice, which takes no parameters and returns the price of the chair.\n\nClass DiningRoomSet has a constructor which is passed a Table object and an ArrayList of Chair objects. It stores these parameters in its private data fields myTable and myChairs.\n\nClass DiningRoomSet has a method getPrice, which takes no parameters and returns the price of the dining room set. The price of a dining room set is calculated as the sum of the price of its table and all of its chairs.\n\nWhat is the correct way to define the signature of the constructor for the `DiningRoomSet` class?",
+      "options": [
+        "`public DiningRoomSet(Table t, ArrayList<Chair> chairs)`",
+        "`public void DiningRoomSet(Table t, ArrayList Chair Chairs)`",
+        "`public DiningRoomSet(Table t, ArrayList Chair Chairs)`",
+        "`public DiningRoomSet(Table t, Chair Chairs)`"
+      ],
+      "answer": "A",
+      "explanation": "The only information that you need to solve this problem is the first sentence in the description of the constructor. Class `DiningRoomSet` has a constructor, which is passed a `Table` object and an `ArrayList` of `Chair` objects. Because you are writing a constructor, you can immediately eliminate (B), which is a `void` method. Constructors never return anything, so there is never a need to specify a `void` return.Choice (D) is incorrect because the constructor is passed a `Table` object and a `Chair` object, not a `Table` object and an `ArrayList` of `Chair` objects.Choice (C) is incorrect because the second parameter has two types associated with it. It should have only one type: `ArrayList`.Choice (A) is correct.",
+      "difficulty": 3,
+      "source_qid": "sec_5-q12",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 12-13 refer to the following classes and method descriptions.\n\nClass Table has a method getPrice, which takes no parameters and returns the price of the table.\n\nClass Chair also has a method getPrice, which takes no parameters and returns the price of the chair.\n\nClass DiningRoomSet has a constructor which is passed a Table object and an ArrayList of Chair objects. It stores these parameters in its private data fields myTable and myChairs.\n\nClass DiningRoomSet has a method getPrice, which takes no parameters and returns the price of the dining room set. The price of a dining room set is calculated as the sum of the price of its table and all of its chairs.\n\nWhat is the correct way to implement the `getPrice` method of the `DiningRoomSet` class?",
+      "options": [
+        "```java\npublic double getPrice(Table t, ArrayList chairs)\n{\n    return t.getPrice() + chairs.getPrice();\n}\n```",
+        "```java\npublic double getPrice(Table t, ArrayList chairs)\n{\n    return myTable.getPrice() + myChairs.getPrice();\n}\n```",
+        "```java\npublic double getPrice()\n{\n    return myTable.getPrice() + myChairs.getPrice();\n}\n```",
+        "```java\npublic double getPrice()\n{\n    double result = myTable.getPrice();\n    for (int k = 0; k < myChairs.size() - 1; k++)\n    {\n        result += ((Chair)myChairs.get(k)).getPrice();\n    }\n    return result;\n}\n```"
+      ],
+      "answer": "D",
+      "explanation": "The best way to solve this problem is to eliminate choices.Choices (A) and (B) are incorrect because the class description states that the `getPrice` method of the `DiningRoomSet` class does not take any parameters.Choice (C) can be eliminated because the private data field `myChairs` is not a `Chair`; it is an `ArrayList`. Therefore, it does not have a `getPrice` method. This leaves (D). You need to know that `ArrayLists` are accessed using the `get` method while arrays are accessed using the `[]` notation. `MyChairs` is an `ArrayList`, so the correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q13",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following output:\n\n```java\n6 5 4 3 2 1\n5 4 3 2 1\n4 3 2 1\n3 2 1\n2 1\n\n```\n\nWhich of the following code segments produces the above output when executed?",
+      "options": [
+        "```java\nfor (int j = 6; j < 0; j--)\n{\n    for (int k = j; k > 0; k--)\n    {\n        System.out.print(k + \" \");\n    }\n    System.out.println(\" \");\n}\n```",
+        "```java\nfor (int j = 6; j >= 0; j--)\n{\n    for (int k = j; k >= 0; k--)\n    {\n        System.out.print(k + \" \");\n    }\n    System.out.println(\" \");\n}\n```",
+        "```java\nfor (int j = 0; j < 6; j++)\n{\n    for (int k = 6 - j; k > 0; k--)\n    {\n        System.out.print(k + \" \");\n    }\n    System.out.println(\" \");\n}\n```",
+        "```java\nfor (int j = 0; j < 6; j++)\n{\n    for (int k = 6 - j ; k >= 0; k--)\n    {\n        System.out.print(k + \" \");\n    }\n    System.out.println(\" \");\n}\n```"
+      ],
+      "answer": "C",
+      "explanation": "To solve this type of problem, use information about the output and the loops to eliminate incorrect choices. Then, if necessary, work through the code for any remaining choices to determine the correct answer. There are six lines of output. By examining the outer loop of each of the choices, you can eliminate (B) because it will traverse the loop seven times, and during each traversal at least one number will be printed. You can also eliminate (A) because the outer loop will never be executed. The initial value of j is 6, but the condition `j < 0` causes the loop to terminate immediately. The remaining choices have the same outer loop, so turn your attention to the inner loop. Finally, eliminate (D) because the condition of the inner loop, `k >= 0,` will cause a 0 to be printed at the end of each line. This leaves (C), which is indeed the correct answer.",
+      "difficulty": 3,
+      "source_qid": "sec_5-q14",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following code segment.\n\n```java\nList<Integer> list = new ArrayList<Integer>();\nlist.add(new Integer(7));\nlist.add(new Integer(6));\nlist.add(1, new Integer(5));\nlist.add(1, new Integer(4));\nlist.add(new Integer(3));\nlist.set(2, new Integer(2));\nlist.add(1, new Integer(1));\nSystem.out.println(list);\n```\n\nWhat is printed as a result of executing this code segment?",
+      "options": [
+        "`[1, 4, 2, 7, 6, 3]`",
+        "`[7, 1, 4, 2, 6, 3]`",
+        "`[7, 2, 5, 4, 3, 1]`",
+        "`[7, 6, 2, 4, 3, 1]`"
+      ],
+      "answer": "B",
+      "explanation": "This problem tests your knowledge of the methods of the `ArrayList` class. The following table shows the contents of `list` after each line of code.\n\nThe next command is to print `list`. Therefore, the correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q15",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "The following program reads a file of words into an `ArrayList`:\n\n```java\n1.  import java.io.*;\n2.  import java.util.*;\n3.  public class MC\n4.  {\n5.      public static void main(String[] args)\n6.      {\n7.          File f=new File(\"words.txt\");\n8.          Scanner scan=new Scanner(f);\n9.          ArrayList<String>words=new ArrayList<String>();\n10.         readWords(f,scan,words);\n11.     }\n12.     public static void readWords(File f,Scanner scan,ArrayList<String> words)\n13.     {\n14.         while (scan.hasNext())\n15.             words.add(scan.next());\n16.     }\n17. }\n```\n\nThe program does not compile because it is missing throws `IOException`.\n\nWhich of the following corrects this, so that the program compiles?",
+      "options": [
+        "Line 3 should be `public class MC throws IOException`",
+        "Line 5 should be `public static void main(String[] args) throws IOException`",
+        "Line 7 should be `File f = new File(\"words.txt\") throws IOException;`",
+        "Line 9 should be `public static void readWords readWords(File f,Scanner scan,ArrayList<String> words) throws IOException`"
+      ],
+      "answer": "B",
+      "explanation": "`IOException` must be in the header of the method that creates the `File`, in this example the `main` method. The correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q16",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following two classes.\n\n```java\npublic class Fish {\n    private FishType fType;\n    private String endokeleton = \"bone\";\n    Fish (FishType f)\n    {\n        fType = f;\n    }\n    public void action()\n    {\n        System.out.println(\"splash splash\");\n    }\n}\npublic class FishType {\n    private String name;\n    public String endoskeleton = \"cartilage\";\n    FishType (String n){\n        name = n;\n    }\n    public void action() {\n        System.out.println(\"chomp chomp\");\n    }\n}\n```\n\nWhich of the following is the correct output after the following code segment is executed?\n\n```java\nFishType shark = new FishType(\"shark\");\nFish bob = new Fish(shark);\nbob.action();\n```",
+      "options": [
+        "`splash splash`",
+        "`chomp chomp`",
+        "```java\nsplash splash\nchomp chomp\n```",
+        "```java\nchomp chomp\nsplash splash\n```"
+      ],
+      "answer": "A",
+      "explanation": "The object bob is an instance of the `Fish` class. When `bob.action()` is called, it will execute the `action()` method in the `Fish` class. Thus `\"splash splash\"` is printed. The correct answer is (A).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q17",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 18-19 refer to the following incomplete method.\n\nThe following insertSort method sorts the values in an integer array, sort, in ascending order.\n\n```java\npublic static void insertSort(int[] sort)\n{\n    for (int index = 1; index < sort.length; index++)\n    {\n        int temp = sort[index];\n        while (index > 0 && sort[index - 1] > temp)\n        {\n            /* missing code */\n        }\n        sort[index] = temp;\n    }\n}\n```\n\nWhich of the following can be used to replace /* missing code */ so that the `insertSort` method will execute properly?",
+      "options": [
+        "```java\nsort[index] = sort[index - 1];\nindex++;\n```",
+        "```java\nsort[index - 1] = sort[index];\nindex--;\n```",
+        "```java\nsort[index] = sort[index + 1];\nindex++;\n```",
+        "```java\nsort[index] = sort[index - 1];\nindex--;\n```"
+      ],
+      "answer": "D",
+      "explanation": "The insertion sort algorithm creates a sorted array by sorting elements one at a time.\n\nThe `for` loop of the code shows that the elements are being sorted from left to right. To determine the position of the new element to be sorted, the value of the new element must be compared with the values of the sorted elements from right to left. This requires `index--` in the `while` loop, not `index++`.Choices (A) and (C) are wrong.\n\nIn order to place the new element to be sorted in its correct position, any sorted elements larger than the new element must be shifted to the right. This requires `sort[index] = sort[index -1].` Choice (B) is wrong. The correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q18",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 18-19 refer to the following incomplete method.\n\nThe following insertSort method sorts the values in an integer array, sort, in ascending order.\n\n```java\npublic static void insertSort(int[] sort)\n{\n    for (int index = 1; index < sort.length; index++)\n    {\n        int temp = sort[index];\n        while (index > 0 && sort[index - 1] > temp)\n        {\n            /* missing code */\n        }\n        sort[index] = temp;\n    }\n}\n```\n\nAssuming that the /* missing code */ is implemented properly, what change can be made to the code in order for the array to be sorted in descending order?",
+      "options": [
+        "Replace Line 6 with: `while (index < 0 && sort[index - 1] > temp)`",
+        "Replace Line 6 with: `while (index < 0 && sort[index - 1] < temp)`",
+        "Replace Line 6 with: `while (index > 0 && sort[index - 1] < temp)`",
+        "Replace Line 3 with: `for (int index = sort.length - 1; index > 0; index--)`"
+      ],
+      "answer": "C",
+      "explanation": "In order for the array to be sorted in descending order, you will need to make a change. Plug each answer choice into the array to see which is correct.In (A) and (B), as the index will never be less than 0, the contents of the `while` loop will never be executed.Choice (C) is the correct answer, as it changes the condition of finding the position of the new element from being less than the compared element to greater.In (D), altering the `for` loop this way would lead to the elements being sorted from right to left but still in ascending order. The correct answer is (C).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q19",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Which of the following arrays would be sorted the slowest using insertion sort?",
+      "options": [
+        "`[3 2 5 4 6 7 9]`",
+        "`[9 7 6 5 4 3 2]`",
+        "`[2 3 4 5 6 7 9]`",
+        "`[9 3 2 4 5 7 6]`"
+      ],
+      "answer": "B",
+      "explanation": "The rate at which insertion sort runs depends on the number of comparisons that are made. The number of comparisons is minimized with an array with elements that are already sorted in ascending order and maximized with an array with elements that are sorted in descending order. The array in (B) is sorted in reverse order and will require the most comparisons to sort. The correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q20",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 21-23 refer to the following incomplete class declaration used to represent fractions with integer numerators and denominators.\n\n```java\npublic class Fraction\n{\n    private int numerator;\n    private int denominator;\n    public Fraction()\n    {\n        numerator = 0;\n        denominator = 1;\n    }\n    public Fraction(int n, int d)\n    {\n        numerator = n;\n        denominator = d;\n    }\n    // postcondition: returns the\n    // numerator\n    public int getNumerator()\n    { /* implementation not shown */ }\n    // postcondition: returns the\n    // denominator\n    public int getDenominator()\n    { /* implementation not shown*/ }\n    // postcondition: returns the greatest\n    // common divisor of x and y\n    public int gcd(int x, int y)\n    { /* implementation not shown*/ }\n    // postcondition: returns the Fraction\n    // that is the result of multiplying\n    // this Fraction and f\n    public Fraction multiply(Fraction f)\n    { /* implementation not shown */ }\n    // …other methods not shown\n}\n```\n\nConsider the method `multiply` of the `Fraction` class.\n\n```java\n// postcondition: returns the Fraction\n// that is the result of multiplying\n// this Fraction and f\npublic Fraction multiply(Fraction f)\n{ /* missing code */ }\n```\n\nWhich of the following statements can be used to replace /* missing code */ so that the `multiply` method is correctly implemented?\n\n```java\nI.\nreturn Fraction(\nnumerator * f.getNumerator(),\ndenominator * f.getDenominator());\n\nII.\nreturn new Fraction(\nnumerator * f.numerator,\ndenominator * f.denominator());\n\nIII.\nreturn new Fraction(\nnumerator * f.getNumerator(),\ndenominator * f.getDenominator());\n```",
+      "options": [
+        "II only",
+        "III only",
+        "I and III only",
+        "II and III only"
+      ],
+      "answer": "B",
+      "explanation": "All three responses look very similar, so look carefully at the difference. Statement I is missing the keyword `new,` which is needed to create a new object. Eliminate any choice that includes Statement I: (C). Statements II and III differ in how they access the other fraction. Statement II uses `f.numerator` and `f.denominator()`, but `denominator()` is not a method in the `Fraction` class. Statement III correctly uses the public accessor methods `f.getNumerator()` and `f.getDenominator()`. Therefore, Statement II is not valid. Eliminate any choice that includes it: (A) and (D). The correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q21",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 21-23 refer to the following incomplete class declaration used to represent fractions with integer numerators and denominators.\n\n```java\npublic class Fraction\n{\n    private int numerator;\n    private int denominator;\n    public Fraction()\n    {\n        numerator = 0;\n        denominator = 1;\n    }\n    public Fraction(int n, int d)\n    {\n        numerator = n;\n        denominator = d;\n    }\n    // postcondition: returns the\n    // numerator\n    public int getNumerator()\n    { /* implementation not shown */ }\n    // postcondition: returns the\n    // denominator\n    public int getDenominator()\n    { /* implementation not shown*/ }\n    // postcondition: returns the greatest\n    // common divisor of x and y\n    public int gcd(int x, int y)\n    { /* implementation not shown*/ }\n    // postcondition: returns the Fraction\n    // that is the result of multiplying\n    // this Fraction and f\n    public Fraction multiply(Fraction f)\n    { /* implementation not shown */ }\n    // …other methods not shown\n}\n```\n\nConsider the use of the `Fraction` class to multiply the fractions and . Consider the following code:\n\n```java\nFraction fractionOne;\nFraction fractionTwo;\nFraction answer;\nfractionOne = new Fraction(3, 4);\nfractionTwo = new Fraction(7, 19);\n/* missing code */\n```\n\nWhich of the following could be used to replace /* missing code */ so that the answer contains the result of multiplying `fractionOne` by `fractionTwo`?",
+      "options": [
+        "`answer = fractionOne * fractionTwo;`",
+        "`answer = multiply(fractionOne, fractionTwo);`",
+        "`answer = fractionOne.multiply(fractionTwo);`",
+        "```java\nanswer = (fractionOne.getNumerator() * fractionTwo.getNumerator()) /\n(fractionOne.getDenominator() * fractionTwo.getDenominator());\n```"
+      ],
+      "answer": "C",
+      "explanation": "Go through the choices one at a time.Choice (A) is incorrect because the multiplication operator, `*`, is not defined to work on `Fraction` objects.Eliminate (A).Choice (B) is incorrect because the multiply method takes only one parameter and it is not correctly invoked by a `Fraction` object.Eliminate (B).Choice (C) correctly calls the `multiply()` method as through a fraction object, taking the other fraction as a parameter.Keep (C). Finally, while (D) calculates the value of the result of the multiplication, the `\"/\"` operator assigns integer types, which cannot be applied to `answer`, which is an object of type `Fraction`.Eliminate (D). The correct answer is (C).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q22",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 21-23 refer to the following incomplete class declaration used to represent fractions with integer numerators and denominators.\n\n```java\npublic class Fraction\n{\n    private int numerator;\n    private int denominator;\n    public Fraction()\n    {\n        numerator = 0;\n        denominator = 1;\n    }\n    public Fraction(int n, int d)\n    {\n        numerator = n;\n        denominator = d;\n    }\n    // postcondition: returns the\n    // numerator\n    public int getNumerator()\n    { /* implementation not shown */ }\n    // postcondition: returns the\n    // denominator\n    public int getDenominator()\n    { /* implementation not shown*/ }\n    // postcondition: returns the greatest\n    // common divisor of x and y\n    public int gcd(int x, int y)\n    { /* implementation not shown*/ }\n    // postcondition: returns the Fraction\n    // that is the result of multiplying\n    // this Fraction and f\n    public Fraction multiply(Fraction f)\n    { /* implementation not shown */ }\n    // …other methods not shown\n}\n```\n\nThe following incomplete class declaration is intended to extend the `Fraction` class so that fractions can be manipulated in reduced form (lowest terms).\n\nNote that a fraction can be reduced to lowest terms by dividing both the numerator and denominator by the greatest common divisor (gcd) of the numerator and denominator.\n\n```java\npublic class ReducedFraction extends Fraction\n{\n    private int reducedNumerator;\n    private int reducedDenominator;\n    // …constructors and other methods not shown\n}\n```\n\nConsider the following proposed constructors for the `ReducedFraction` class:\n\n```java\npublic ReducedFraction( )\n{\n    reducedNumerator = 0;\n    reducedDenominator = 1;\n}\npublic ReducedFraction( )\n{\n    reducedNumerator = 0;\n    reducedDenominator = 1;\n}\npublic ReducedFraction(int n, int d)\n{\n    numerator = n;\n    denominator = d;\n    reducedNumerator = n / gcd(n, d);\n    reducedDenominator = d / gcd(n, d);\n}\npublic ReducedFraction(int n, int d)\n{\n    numerator = n;\n    denominator = d;\n    reducedNumerator = n / gcd(n, d);\n    reducedDenominator = d / gcd(n, d);\n}\npublic ReducedFraction(int n, int d)\n{\n    super(n, d);\n    reducedNumerator = n / gcd(n, d);\n    reducedDenominator = d / gcd(n, d);\n}\npublic ReducedFraction(int n, int d)\n{\n    super(n, d);\n    reducedNumerator = n / gcd(n, d);\n    reducedDenominator = d / gcd(n, d);\n}\n```\n\nWhich of these constructor(s) would be legal for the `ReducedFraction` class?",
+      "options": [
+        "I only",
+        "II only",
+        "III only",
+        "I and III only"
+      ],
+      "answer": "D",
+      "explanation": "Go through each statement one at a time. Constructor I is legal. This default constructor of the `ReducedFraction` class will automatically call the default constructor of the `Fraction` class and the private data of both classes will be set appropriately. Eliminate any choice that does not include Constructor I: (B) and (C). Because Constructor II is not included in the remaining choices, do not worry about analyzing it. Constructor III is also legal. The call `super(n, d)` invokes the second constructor of the `Fraction` class, which sets the private data of the `Fraction` class appropriately. The private data of the `ReducedFraction` class is then set explicitly in the `ReducedFraction` constructor. Note that if the call `super(n, d)` were not present, Constructor III would still be legal. However, it would create a logical error in the code, as the default constructor of the `Fraction` class would be invoked, and the private data of the `Fraction` class would not be set appropriately.Eliminate (A), which does not include Constructor III. Only one choice remains, so there is no need to continue. However, to see why Constructor II is illegal, remember that derived classes may not access the private data of their super classes. In other words, the constructor for a `ReducedFraction` may not directly access `numerator` and `denominator` in the `Fraction` class. The correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q23",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider `s1` and `s2` defined as follows.\n\n```java\nString s1 = new String(\"hello\");\nString s2 = new String(\"hello\");\n```\n\nWhich of the following is a correct way to see whether `s1` and `s2` hold identical strings?\n\n```java\nif (s1 == s2)\n    /* s1 and s2 are identical */\nif (s1 == s2)\n    /* s1 and s2 are identical */\nif (s1.equals(s2))\n    /* s1 and s2 are identical */\nif (s1.equals(s2))\n    /* s1 and s2 are identical */\nif (s1.compareTo(s2) == 0)\n    /* s1 and s2 are identical */\nif (s1.compareTo(s2) == 0)\n    /* s1 and s2 are identical */\n```",
+      "options": [
+        "I only",
+        "II only",
+        "I and III only",
+        "II and III only"
+      ],
+      "answer": "D",
+      "explanation": "Go through each statement one at a time. Statement I is incorrect. `\"``==\"` checks object references as opposed to their contents. This is an important distinction as two different objects may hold the same data.Eliminate (A) and (C), which contain Statement I. Both of the remaining choices contain Statement II, so don't worry about analyzing it. Statement III is correct. The `compareTo()` method of the `String` class returns 0 if the two `String` objects hold the same strings.Eliminate (B), which does not include Statement III. Only one choice remains, so there is no need to continue. However, you should see why Statement II is also correct. The `equals` method of the `String` class returns true if the two `String` objects hold the same strings. The correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q24",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following variable and method declarations:\n\n```java\nString s;\nString t;\npublic void mystery (String a, String b)\n{\n    a = a + b;\n    b = b + a;\n}\n```\n\nAssume that `s` has the value `\"Elizabeth\"` and `t` has the value `\"Andrew\"` and `mystery (s, t)` is called. What are the values of `s` and `t` after the call to `mystery`?",
+      "options": [
+        "`s: Elizabeth, t: Andrew`",
+        "`s: ElizabethAndrew, t: AndrewElizabeth`",
+        "`s: ElizabethAndrew, t: AndrewElizabethAndrew`",
+        "`s: ElizabethAndrew, t: ElizabethAndrewAndrew`"
+      ],
+      "answer": "A",
+      "explanation": "The values of `s` and `t` are not changed in `mystery()`. Even though `s` and `t` are both parameters of the method, only the instance variables `a` and `b` are changed. Thus, the original Strings `s` and `t` are unaffected by any action in `mystery()`. The correct answer is (A).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q25",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Which of the following code excerpts will print the following line?\n\n```java\n\\/\\/ \\/\\/\n```",
+      "options": [
+        "`System.out.println(\\/\\/ \\/\\/);`",
+        "`System.out.println(\"\\\\/\\\\/ \\\\/\\\\/\");`",
+        "`System.out.println(\"\\\\//\\\\// \\\\//\\\\//\");`",
+        "`System.out.println(\"\\\\\\/\\\\\\/ \\\\\\/\\\\\\/\");`"
+      ],
+      "answer": "B",
+      "explanation": "There are certain characters in Java that have meaning to the Java language. The double quotes character, `\"`, and the backslash, `\\` are among those characters. In order to print one of these \"special\" characters, they must be preceded by a backslash. In summary, to print the character `\"`, a programmer must use `\\\"`. To print the character `\\`, a programmer must use `\\\\`. All other characters in the string were \"normal\" in that they do not need anything special to print.Choice (B) is the correct answer.",
+      "difficulty": 3,
+      "source_qid": "sec_5-q26",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following abstraction of a `for` loop where <1>, <2>, <3>, and <4> represent legal code in the indicated locations:\n\n```java\nfor ( <1> ; <2> ; <3> )\n{\n    <4>\n}\n```\n\nWhich of the following `while` loops has the same functionality as the above `for` loop?",
+      "options": [
+        "```java\n<1> ;\nwhile ( <2> )\n{\n    <3> ;\n    <4>\n}\n```",
+        "```java\n<1> ;\nwhile ( <2> )\n{\n    <4>\n    <3> ;\n}\n```",
+        "```java\n<1> ;\nwhile (! <2> )\n{\n    <3> ;\n    <4>\n}\n```",
+        "```java\n<1> ;\n<3> ;\nwhile ( <2> )\n{\n    <4>\n    <3> ;\n}\n```"
+      ],
+      "answer": "B",
+      "explanation": "An example will help clarify this question.\n\nConsider the following `for` loop:\n\nThis prints out the integers 0 to 2, one number per line. Matching `int k = 0` to <1>; `k < 3` to <2>; `k++` to <3> and `System.out.println(k);` to <4>, go through each choice one at a time and determine whether each has the same functionality.Choice (A) initializes `k` and assigns it the value 0. Then it tests to determine whether `k` < 3. This is true, so execute the `while` loop. The next command is `k++`, so increase `k` by 1 to get `k` = 0 + 1 = 1. Now execute `System.out.println(k)` to print `1`. However, the first number printed in the original was `0`, so this is incorrect.Eliminate (A).Choice (B) initializes `k` and assigns it the value 0. Then it tests to determine whether `k` < 3. This is true, so execute the `while` loop. Now execute `System.out.println(k)` to print `0`. The next command is `k++`, so increase `k` by 1 to get `k` = 0 + 1 = 1. Go back to the top of the `while` loop. Since `k` = 1, it is still the case that `k` < 3, so execute the `while` loop. Now execute `System.out.println(k)` to print `1`. The next command is `k++`, so increase `k` by 1 to get `k` = 1 + 1 = 2. Go back to the top of the `while` loop. Since `k` = 2, it is still the case that `k` < 3, so execute the `while` loop. Now execute `System.out.println(k)` to print `2`. The next command is `k++`, so increase `k` by 1 to get `k` = 2 + 1 = 3. Go back to the top of the `while` loop. Since `k` = 3, it is no longer the case that `k` < 3, so stop executing the `while` loop. The result of the program is printing the integers 0 to 2, one number per line, so keep (B).Choice (C) initializes `k` and assigns it the value 0. Then it tests the condition `!(k < 3)`. Since it is the case that `k` < 3, the statement `(k < 3)` has the boolean value `true`, making the boolean value of `!(k < 3) false`. Thus the `while` loop is not executed. Since the `while` loop is not executed, nothing is printed.Eliminate (C).Choice (D) initializes `k` and assigns it the value 0. The next command is `k++`, so increase `k` by 1 to get `k` = 0 + 1 = 1. Then it tests to determine whether `k` < 3. This is true, so execute the `while` loop. Execute `System.out.println(k)` to print `1`. However, the first number printed in the original was 0, so this is incorrect.Eliminate (D).\n\nThe correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q27",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following expression:\n\n```java\na / b + c – d % e * f\n```\n\nWhich of the expressions given below is equivalent to the one given above?",
+      "options": [
+        "`((((a / b) + c) – d) % e) * f`",
+        "`((a / b) + c) – (d % (e * f))`",
+        "`(a / ((b + c) – d) % e) * f`",
+        "`((a / b) + c) – ((d % e) * f)`"
+      ],
+      "answer": "D",
+      "explanation": "This question tests your knowledge of operator precedence. In Java, multiplication, division, and modulus are performed before addition and subtraction. If more than one operator in an expression has the same precedence, the operations are performed left to right. Parenthesizing the expression one step at a time:\n\nThe correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q28",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Assume that a program declares and initializes `x` as follows:\n\n```java\nString[] x ;\nx = new String[10] ;\ninitialize(x); // Fills the array x with\n// valid strings each of\n// length 5\n```\n\nWhich of the following code segments correctly traverses the array and prints out the first character of all ten strings followed by the second character of all ten strings, and so on?\n\n```java\nint i;\nint j;\nfor (i = 0 ; i < 10 ; i++)\n    for (j = 0 ; j < 5 ; j++)\n        System. out.print(x[i].substring(j, j + 1));\nint i;\nint j;\nfor (i = 0 ; i < 10 ; i++)\n    for (j = 0 ; j < 5 ; j++)\n        System. out.print(x[i].substring(j, j + 1));\nint i;\nint j;\nfor (i = 0 ; i < 5 ; i++)\n    for (j = 0 ; j < 10 ; j++)\n        System. out.print(x[j].substring(i, i + 1));\nint i;\nint j;\nfor (i = 0 ; i < 5 ; i++)\n    for (j = 0 ; j < 10 ; j++)\n        System. out.print(x[j].substring(i, i + 1));\nint i;\nint j;\nfor (i = 0 ; i < 5 ; i++)\n    for (j = 0 ; j < 10 ; j++)\n        System. out.print(x[i].substring(j, j + 1));\nint i;\nint j;\nfor (i = 0 ; i < 5 ; i++)\n    for (j = 0 ; j < 10 ; j++)\n        System. out.print(x[i].substring(j, j + 1));\n```",
+      "options": [
+        "I only",
+        "II only",
+        "I and II only",
+        "II and III only"
+      ],
+      "answer": "B",
+      "explanation": "Come up with a sample array of 10 strings with length 5. Let `String[] x` be `{\"gator\", \"teeth\", \"ducky\", \"quack\", \"doggy\", \"woofs\", \"kitty\", \"meows\", \"bears\", \"growl\"}`. The code must print the first letter of all 10 strings, followed by the second letter of all 10 strings, and so on. Therefore, it must print\n\nGo through each segment one at a time.\n\nSegment I initializes `i` and `j` with no values. The outer `for` loop sets `i = 0`, and the inner `for` loop sets `j = 0`. The instruction of the inner `for` loop is `System.out.print(x[i].substring(j, j + 1)`. The `substring(a, b)` method of the `String` class returns a string made up of all the characters starting with the index of `a` through the index of `b – 1`. Therefore, `x[i].substring(j, j + 1)` returns the characters of `x[i]` from index `j` through index `(j + 1) – 1`. Since `(j + 1) – 1 = j`, it returns all the characters from indexes `j` through `j` - a single character string made up of the character at index `j`. Therefore, if `i` = 0 and `j` = 0, `System. out.print(x[i].substring(j, j + 1)` returns the character at index 0 of the string at index 0. This is the \"`g`\" from \"`gator`\". This is what should be printed, so continue. The inner `for` loop increments `j` to get `j` = 1. Since `j` < 5, the loop is executed again, printing the character at index 1 of the string at index 0. This is the character \"`a`\" from \"`gator`\". However, the character \"`t`\" from \"`teeth`\" should be the next character printed, so Segment I does not execute as intended. There is no need to continue with I, but note that it will eventually print all of the characters of the first string followed by all of the characters of the second string, and so on.Eliminate (A) and (C), which include I.\n\nBoth remaining choices include II, so don't worry about checking this one. Instead, analyze III.\n\nSegment III initializes `i` and `j` with no values. The outer `for` loop sets `i` = 0, and the inner `for` loop sets `j` = 0. The instruction of the inner `for` loop is `System.out.print(x[i].substring(j, j + 1)`. As discussed above, when `i` = 0 and `j` = 0, this command returns the character at index 0 of the string at index 0, which is the \"`g`\" from \"`gator`\". This is what should be printed, so continue. The inner `for` loop increments `j` to get `j` = 1. Since `j` < 5, the loop is executed again, printing the character at index 1 of the string at index 0. This is the character \"`a`\" from \"`gator`\". Again, the character \"`t`\" from \"`teeth`\" should be the next character printed, so Segment III does not execute as intended. There is no need to continue with Segment III, but note that it will attempt to print the first 10 characters of the first 5 strings. Since each String contains only 5 characters, an `IndexOutOfBoundsException` will be thrown when `j` = 5 and the program attempts to print the character at index 5.Eliminate (D), which includes Segment III.\n\nOnly one answer remains, so there is no need to continue. However, to see why Segment II is correct, note that it is similar to Segment I, but it reverses the roles of `i` and `j`. The command `System. out.print(x[j].substring(i, i + 1))` prints the character at index `j` of the string at index `i`. The inner `for` loop increments the index of the `String` array before the `outer` loop increments the index of the character in each `String`. Therefore, Segment II correctly prints out the first character of all 10 strings followed by the second character of all 10 strings, and so on. The correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q29",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following declaration and assignment statements:\n\n```java\nint a = 7;\nint b = 4;\ndouble c;\nc = a / b;\n```\n\nAfter the assignment statement is executed, what's the value of `c`?",
+      "options": [
+        "1.0",
+        "1.75",
+        "2.0",
+        "An error occurs because `a` and `b` are integers and `c` is a double."
+      ],
+      "answer": "A",
+      "explanation": "Begin with (D) and determine whether an error would occur. It is perfectly legal to assign a value of type `int` to a variable of type `double` in an expression, so eliminate (D). However, certain rules apply when evaluating the expression. In the expression `c = a / b; a` and `b` are both integers. Therefore, the `/` operator represents integer division. The result of the division is truncated by discarding the fractional component. In this example, 7 / 4 has the value 1 - the result of truncating 1.75. When assigning an integer to a variable of type `double`, the integer value is converted to its equivalent double value. Therefore, the correct answer is (A).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q30",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following code segment:\n\n```java\nint x;\nx = /* initialized to an integer */\nif (x % 2 == 0 && x / 3 == 1)\n    System.out.print(\"Yes\");\n```\n\nFor what values of `x` will the word `\"Yes\"` be printed when the code segment is executed?",
+      "options": [
+        "0",
+        "4",
+        "Whenever `x` is even and `x` is not divisible by 3",
+        "Whenever `x` is even and `x` is divisible by 3"
+      ],
+      "answer": "B",
+      "explanation": "For the code to print the word `Yes` two conditions must be true. The remainder must be zero when `x` is divided by 2. In other words, `x` must be divisible by 2: that is, even. The value after truncating the result when `x` is divided by 3 must be 1. In other words, 1 ≤ `x` / 3 < 2. The second condition is more narrow than the first. The only integers that fulfill the second condition are 3, 4, and 5. Of those, only 4 is even and therefore also fulfills the first condition. Therefore, the correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q31",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following incomplete class definition:\n\n```java\npublic class SomeClass\n{\n    private String myName;\n    // postcondition: returns myName\n    public String getName( )\n    { /* implementation not shown */ }\n    // postcondition: myName == name\n    public void setName(String name)\n    { /* implementation not shown */ }\n    // …constructors, other methods,\n    // and private data not shown\n}\n```\n\nNow consider the method `swap`, not part of the `SomeClass` class.\n\n```java\n// precondition: x and y are correctly\n// constructed\n// postcondition: the names of objects\n// x and y are swapped\npublic void swap (SomeClass x, SomeClass y)\n{\n    /* missing code */\n}\n```\n\nWhich of the following code segments can replace /* missing code */ so that the method `swap` works as intended?\n\n```java\nSomeClass temp;\ntemp = x;\nx = y;\ny = temp;\nSomeClass temp;\ntemp = x;\nx = y;\ny = temp;\nString temp;\ntemp = x.myName;\nx.myName = y.myName;\ny.myName = temp;\nString temp;\ntemp = x.myName;\nx.myName = y.myName;\ny.myName = temp;\nString temp;\ntemp = x.getName();\nx.setName(y.getName());\ny.setName(temp);\nString temp;\ntemp = x.getName();\nx.setName(y.getName());\ny.setName(temp);\n```",
+      "options": [
+        "I only",
+        "III only",
+        "I and III only",
+        "II and III only"
+      ],
+      "answer": "B",
+      "explanation": "Go through each statement one at a time. Segment I is incorrect because all parameters in Java are passed by value. After a method returns to its caller, the value of the caller's parameters is not modified. The strings will not be swapped.Eliminate (A) and (C), which include Segment I. Since both remaining choices include Segment III, don't worry about it. Segment II is incorrect because `myName` is a private data field of the `SomeClass` class and may not be accessed by the `swap` method. Note that the question specifically states that the `swap` method is not a method of the `SomeClass` class.Eliminate (D), which includes Segment II. Only one choice remains, so there is no need to continue. To see that Segment III correctly swaps the names of the objects, note that it calls the public methods `setName()` and `getName()` rather than the private `String myName`. Because the references of the instance object variables are the same as the references of the class object variables, modifying the data of the instance variables also changes the data of the class variable. The correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q32",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "How many times will the following `while` loop execute?\n\n```java\nint a = 2;\nint b = 6;\nwhile (a < b) {\n    if (b % a == 0)\n    {\n        a++;\n        b--;\n    }\n    else\n    {\n        b++;\n        a--;\n    }\n}\n```",
+      "options": [
+        "2 times",
+        "3 times",
+        "4 times",
+        "An infinite amount of times"
+      ],
+      "answer": "D",
+      "explanation": "This loop is an infinite loop. It never reaches the condition where `a` is no longer less than `b`. Set up a table and walk through a few iterations of the loop. The if statement is looking to see if `b` is evenly divisible by `a`, so we will follow that if statement to determine which part of the if statement is executed.\n\nAs you can quickly see, `a` and `b` are going to alternate between two sets of values and will never reach the point where `a` will no longer be less than `b`. This is an infinite loop and (D) is the correct answer.",
+      "difficulty": 3,
+      "source_qid": "sec_5-q33",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following code:\n\n```java\npublic int mystery(int x)\n{\n    if (x == 1)\n        return <missing value> ;\n    else\n        return(2 * mystery(x - 1)) + x;\n}\n```\n\nWhich of the following can be used to replace <missing value> so that `mystery (4)` returns `34` ?",
+      "options": [
+        "`1`",
+        "`2`",
+        "`3`",
+        "`4`"
+      ],
+      "answer": "B",
+      "explanation": "In order to solve this recursive problem, work backward from the base case to the known value of `mystery(4).`\n\nLet y represent the <missing value>. Note that `mystery(1)` = y. Now calculate `mystery(2)`, `mystery(3)`, and `mystery(4)` in terms of y.\n\nBecause `mystery(4)` also equals 34, set 8 * y + 18 = 34 and solve for y.\n\nThe correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q34",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following code segment:\n\n```java\nint [ ] X;\nint [ ] Y;\nint k;\nX = initializeX(); // returns a valid\n// initialized int [ ]\nY = initializeY(); // returns a valid\n// initialized int [ ]\nfor (k = 0;\nk < X.length && X[k] == Y[k];\nk++)\n{\n    /* some code */\n}\n```\n\nAssuming that after `X` and `Y` are initialized, `X.length == Y.length,` which of the following must be true after executing this code segment?",
+      "options": [
+        "`k < X.length && X[k] == Y[k]`",
+        "`k < X.length && X[k] != Y[k]`",
+        "`k >= X.length || X[k] == Y[k]`",
+        "`k >= X.length || X[k] != Y[k]`"
+      ],
+      "answer": "D",
+      "explanation": "The `for` loop terminates when the condition is no longer true. This can happen either because `k` is no longer less than `X.length` or because `X[k]` does not equal `Y[k]`.Choice (D) states this formally. Another way to approach the problem is to use De Morgan's Law to negate the condition in the `for` loop. Recall that De Morgan's Law states that\n\nNegating the condition in the `for` loop gives\n\nThis method also gives (D) as the correct answer.",
+      "difficulty": 3,
+      "source_qid": "sec_5-q35",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Which of the following would NOT cause a run-time exception?",
+      "options": [
+        "Dividing an integer by zero",
+        "Using an object that has been declared but not instantiated",
+        "Accessing an array element with an array index that is equal to the length of the array",
+        "Attempting to call a method with the wrong number of arguments"
+      ],
+      "answer": "D",
+      "explanation": "Choices (A), (B), and (C) are examples of an `ArithmeticException`, a `nullPointer-Exception`, and an `ArrayIndexOutOfBoundsException`, respectively. Be careful! While (D) may appear to be an example of an `IllegalArgumentException`, it is actually an example of an error that is caught at compile time rather than at runtime. An `IllegalArgumentException` occurs when a method is called with an argument that is either illegal or inappropriate - for instance, passing –1 to a method that expects to be passed only positive integers. Therefore, the correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q36",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Assume that `a` and `b` are properly initialized variables of type `Double`.\n\nWhich of the following is an equivalent expression to:\n\n```java\na.doubleValue() != b.doubleValue()\n```",
+      "options": [
+        "`a != b`",
+        "`!(a.doubleValue() .equals(b.doubleValue()))`",
+        "`!(a.compareTo(b))`",
+        "`a.compareTo(b) != 0`"
+      ],
+      "answer": "D",
+      "explanation": "First note that `a` and `b` are of type `Double`, not of type `double`. This distinction is important. The type `double` is a primitive type; the type `Double` is a subclass of the `Object` class that implements the `Comparable` interface. A `Double` is an object wrapper for a `double` value. Go through each choice one at a time.Choice (A) is incorrect. It compares `a` and `b` directly rather than the `double` values inside the objects. Even if `a` and `b` held the same value, they might be different objects.Eliminate (A).Choice (B) is incorrect, because `a.doubleValue()` returns a double. Since `double` is a primitive type, it does not have any methods. Had this choice been `!(a.equals(b))`, it would have been correct.\n\nThe expression `a.compareTo(b)` returns a value less than zero if `a.doubleValue()` is less than `b.doubleValue()`, a value equal to zero if `a.doubleValue()` is equal to `b.doubleValue()`, and a value greater than zero if `a.doubleValue()` is greater than `b.doubleValue()`.Choice (C) is incorrect because the `compareTo` method returns an int rather than a boolean.Choice (D) is correct. Since `compareTo()` returns `0` if and only if the two objects hold the same values, it will not return `0` if the values are different. The correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q37",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Which of the following would be the LEAST effective way of ensuring reliability in a program?",
+      "options": [
+        "Encapsulating functionality in a class by declaring all data fields to be public",
+        "Defining and following preconditions and postconditions for every method",
+        "Using descriptive variable names",
+        "Indenting code in a consistent and logical manner"
+      ],
+      "answer": "A",
+      "explanation": "While \"encapsulating functionality in a class\" sounds like (and is) a good thing, \"declaring all data fields to be public\" is the exact opposite of good programming practice. Data fields to a class should be declared to be private in order to hide the underlying representation of an object. This, in turn, helps increase system reliability.Choices (B), (C), and (D) all describe effective ways to ensure reliability in a program. The correct answer is (A).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q38",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider a dictionary that has 1,024 pages with 50 words on each page.\n\nIn order to look up a given target word, a student is considering using one of the following three methods:\n\nMethod 1\n\nUse a binary search technique to find the correct page (comparing the target word with the first word on a given page). When the correct page is found, use a sequential search technique to find the target word on the page.\n\nMethod 2\n\nUse a sequential search technique to find the correct page (comparing the target word with the first word on a given page). When the correct page is found, use another sequential search technique to find the target word on the page.\n\nMethod 3\n\nUse a sequential search technique on all of the words in the dictionary to find the target word.\n\nWhich of the following best characterizes the greatest number of words that will be examined using each method?",
+      "options": [
+        "Method 1: 10, Method 2: 50, Method 3: 1,024",
+        "Method 1: 55, Method 2: 537, Method 3: 25,600",
+        "Method 1: 60, Method 2: 1,074, Method 3: 1,074",
+        "Method 1: 60, Method 2: 1,074, Method 3: 51,200"
+      ],
+      "answer": "D",
+      "explanation": "Go through each method one at a time. Method 1 examines at most 10 words using a binary search technique on 1,024 pages to find the correct page. Remember, the maximum number of searches using binary search is log2(n) where n is the number of entries. It then searches sequentially on the page to find the correct word. If the target word is the last word on the page, this method will examine all 50 words on the page. Therefore, Method 1 will examine at most 60 words.Eliminate (A) and (B) which don't have 60 for Method 1. The two remaining choices both have the same number for Method 2, so worry only about Method 3. Method 3 sequentially searches through all of the words in the dictionary. Because there are 51,200 words in the dictionary and the target word may be the last word in the dictionary, this method may have to examine all 51,200 words in order to find the target word.Eliminate (C), which does not have 51,200 for Method 3. Only one choice remains, so there is no need to continue. However, note that Method 2 first uses a sequential search technique to find the correct page. If the target word is on the last page, this method will examine the first word on all 1,024 pages. Then, as with Method 1, it may examine as many as all 50 words on the page to find the target word. Therefore, Method 2 will examine at most 1,074 words. The correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q39",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following recursive method.\n\n```java\npublic static int mystery(int m)\n{\n    if (m == 0)\n    {\n        return 0;\n    }\n    else\n    {\n        return 4 + mystery(m − 2);\n    }\n}\n```\n\nAssuming that j is a positive integer and that m = 2j, what value is returned as a result of the call `mystery(m)`?",
+      "options": [
+        "`m`",
+        "`2m`",
+        "`j`",
+        "`2j`"
+      ],
+      "answer": "B",
+      "explanation": "Pick a positive value of `j`. The question says that `j` is a positive integer. A recursive method is easiest if it takes fewer recursions to get to the base case, so try `j` = 1. If `j` = 1, then `m` = 2`j` = 2(1) = 2. Determine the return of `mystery(2)`. Since it is not the case that `m` = 0, the `if` condition is false, so execute the `else` statement, which is to return 4 + `mystery(m − 2)`. Since `m` − 2 = 2 − 2 = 0, `mystery(2)` returns 4 + `mystery(0)`. Determine the return of `mystery(0)`. In `mystery(0)`, `m` = 0, so the `if` condition is true, which causes the method to return 0. Therefore, `mystery(0)` returns 0, and `mystery(2)` returns 4 + `mystery(0)` = 4 + 0 = 4. Go through each choice and eliminate any that are not 4.Choice (A) is `m`, which is 2, so eliminate (A).Choice (B) is 2`m`, which is 2(2) = 4, so keep (B).Choice (C) is `j`, which is 1, so eliminate (C).Choice (D) is 2`j`, which is 2(1) = 2, so eliminate (D). Only one choice remains. The correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_5-q40",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Which of the values of `a` and `b` will result in the following expression evaluating to `false`?\n\n```java\n(a >= b) || (a != -b)\n```",
+      "options": [
+        "a = –5 b = 5",
+        "a = 5 b = –5",
+        "a = –4 b = 5",
+        "a = –5 b = 4"
+      ],
+      "answer": "A",
+      "explanation": "The correct answer is easily found using a truth table.Choice (A) is the only answer that results in a false evaluation.Choice (A) is the correct answer.",
+      "difficulty": 3,
+      "source_qid": "sec_5-q41",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Choose the missing line of code to complete the recursive method to calculate `n` raised to the power of `p` (np).\n\n```java\npublic static int recur(int n, int p)\n{\n    if (p == 1)\n        return n;\n    /* missing code */\n}\n```",
+      "options": [
+        "`return n * recur(n-1);`",
+        "`return p * recur(p-1);`",
+        "`return n * recur(n-1, p);`",
+        "`return n * recur(n, p-1);`"
+      ],
+      "answer": "D",
+      "explanation": "Eliminate choices (A) and (B) because they only call recur with one parameter and it needs two parameters. Next trace through the code using the other choices. Let's use `n` = 2 and `p` = 3. 23 = 8 so we know the method should return 8.\n\nWe can assume that choice (D) is the answer. If we call `recur(2,3), p ==1` the base case, has not been met (p=3). So, execute return `n * recur(n, p-1)` or `2 * recur (2,2)`. Note at this point, the p did not change. The variable p will never change and never reach the base case.Eliminate (C).Choice (D) is the correct answer.",
+      "difficulty": 3,
+      "source_qid": "sec_5-q42",
+      "pre_2025_format": false,
+      "topic_tags": []
+    }
+  ],
+  "frq_section": [
+    {
+      "prompt": "A day care has a program to keep track of its employees and which children they teach during the day. An `Employee` has a minimum and maximum age they can teach. The `DayCare` also has a maximum ratio that specifies the maximum number of children a single employee can teach. Below is the full `DayCare` class:\n\n```java\npublic class DayCare\n{\n    private ArrayList<Employee> employees;\n    private ArrayList<Child> children;\n    private int maxRatio;\n    public DayCare(int maxRatio)\n    {\n        employees = new ArrayList<Employee>();\n        children = new ArrayList<Child>();\n        this.maxRatio = maxRatio;\n    }\n    public boolean findEmployeeForChild(Child c)\n    {\n        /* To be completed in part (a) */\n    }\n    public boolean runDayCare()\n    {\n        /* implementation not shown */\n    }\n    public boolean addChild(Child c)\n    {\n        /* To be completed in part (b) */\n    }\n}\n```\n\nAn `Employee` can only teach children between the employee's minimum age (inclusive) and maximum age (inclusive). They can also only teach children up to the day care's maximum ratio (inclusive). Below is the full `Employee` class.\n\n```java\npublic class Employee\n{\n    /* Instance variables not shown */\n    public Employee(String name, String id, int min, int max)\n    {\n        /* Implementation not shown */\n    }\n    // Return the number of children currently assigned to this Employee\n    public int childrenAssigned()\n    {\n        /* Implementation not shown */\n    }\n    // Assign a new child to this Employee\n    public void assignChild(Child c)\n    {\n        /* Implementation not shown */\n    }\n    // Determine whether this Employee can teach a Child based on the child's age\n    public boolean canTeach(int age)\n    {\n        /* Implementation not shown */\n    }\n}\n```\n\nA `Child` has accessors to get their name and age. While the implementation of `Child` is not shown, you can assume the accessors are called `getName` and `getAge`.\n\nComplete the `findEmployeeForChild` method below that assigns a `Child` to the first `Employee` who can teach the `Child` and who has not reached the maximum ratio of the `DayCare`.\n\n```java\n/* Return true if an Employee was found for the Child , false otherwise */\npublic boolean findEmployeeForChild(Child c)\n```\n\nBegin your response at the top of a new page in the separate Free Response booklet and fill in the appropriate circle at the top of each page to indicate the question number. If there are multiple parts to this question, write the part letter with your response.\n\nWhen a `Child` is added to the roster of the `DayCare`, the `DayCare` should first make sure there is an `Employee` available to teach that `Child`.\n\nComplete the `addChild` method below that adds a `Child` to the `children ArrayList` if an `Employee` is available to teach that `Child`.\n\n```java\n/* Return true if the Child was added to the ArrayList , false otherwise */\npublic boolean addChild(Child c)\n```\n\nBegin your response at the top of a new page in the separate Free Response booklet and fill in the appropriate circle at the top of each page to indicate the question number. If there are multiple parts to this question, write the part letter with your response.\n\nGo to Question 1 in Practice Test 3: Answer Key and Explanations, Section II: Free-Response Questions",
+      "parts": [
+        {
+          "label": "a",
+          "prompt": "An `Employee` can only teach children between the employee's minimum age (inclusive) and maximum age (inclusive). They can also only teach children up to the day care's maximum ratio (inclusive). Below is the full `Employee` class."
+        },
+        {
+          "label": "b",
+          "prompt": "When a `Child` is added to the roster of the `DayCare`, the `DayCare` should first make sure there is an `Employee` available to teach that `Child`.\n\nComplete the `addChild` method below that adds a `Child` to the `children ArrayList` if an `Employee` is available to teach that `Child`."
+        }
+      ],
+      "reference_solution": "**Part (a)**\n\n```java\npublic boolean findEmployeeForChild(Child c)\n{\n    for (Employee e : employees)\n    {\n        if (e.childrenAssigned() < maxRatio && e.canTeach(c.getAge()))\n        {\n            e.assignChild(c);\n            return true;\n        }\n    }\n    return false;\n}\n```\n\nThis can also be done with a typical `for` loop or a `while` loop and the `.get` method. A loop is necessary to look at each `Employee` in the `ArrayList`. You must then make sure the chosen `Employee` doesn't already have the maximum number of children allowed. You must also send the age of the `Child` using the `getAge` accessor to the `canTeach` method to see whether the chosen `Employee` is eligible to teach the given `Child`.\n\nIf an `Employee` is found for the given `Child`, you need to assign the `Child` to the `Employee` using the `assignChild` method and return `true`.\n\nYou should not return `false` inside the loop, since it is possible a different `Employee` is eligible to teach the given `Child`.\n\n\n**Part (b)**\n\n```java\npublic boolean addChild(Child c)\n{\n    if (findEmployeeForChild(c) == true)\n    {\n        children.add(c);\n        return true;\n    }\n    return false;\n}\n}\n```\n\nThe solution must call the `findEmployeeForChild` method from part (a) to see whether there is an `Employee` eligible to teach the given `Child`. If there is, you add the `Child` to the `ArrayList` using the `add` method and return `true`. If there isn't, you return `false`.",
+      "rubric": [
+        {
+          "point": "+0",
+          "criterion": "Part (a)"
+        },
+        {
+          "point": "+5",
+          "criterion": "+1: `for` loop correctly traverses all elements of the `employees` list\n\n+1: `if` statement correctly determines whether the number of children assigned to the current `employee` is less than the maximum allowed\n\n+1: `if` statement correctly determines whether current employee can teach the given child based on age\n\n+1: The child is assigned to the employee if both conditions are met\n\n+1: `true` is returned if the child is assigned to an employee; `false` is returned otherwise"
+        },
+        {
+          "point": "+1",
+          "criterion": "`for` loop correctly traverses all elements of the `employees` list"
+        },
+        {
+          "point": "+1",
+          "criterion": "`if` statement correctly determines whether the number of children assigned to the current `employee` is less than the maximum allowed"
+        },
+        {
+          "point": "+1",
+          "criterion": "`if` statement correctly determines whether current employee can teach the given child based on age"
+        },
+        {
+          "point": "+1",
+          "criterion": "The child is assigned to the employee if both conditions are met"
+        },
+        {
+          "point": "+1",
+          "criterion": "`true` is returned if the child is assigned to an employee; `false` is returned otherwise"
+        },
+        {
+          "point": "+0",
+          "criterion": "Part (b)"
+        },
+        {
+          "point": "+2",
+          "criterion": "+1: The `findEmployeeForChild` method is called correctly\n\n+1: Children are added to the `children` list correctly if an employee is found"
+        },
+        {
+          "point": "+1",
+          "criterion": "The `findEmployeeForChild` method is called correctly"
+        },
+        {
+          "point": "+1",
+          "criterion": "Children are added to the `children` list correctly if an employee is found"
+        }
+      ],
+      "total_points": 7,
+      "source_qid": "sec_5-q01"
+    },
+    {
+      "prompt": "A baseball team consists of different people fulfilling various roles such as players, coaches, and administrators. Write the employee class to be used for all the people who work for the team. Every person has a name, role, and a salary as an integer. If a salary is unknown or not specified, it will be initialized to 0. Write the `Employee` class to support the commands below.\n\nStatement\n\nExplanation of functionality\n\nOutput\n\n`Employee member1 = new Employee (\"Sammy Slugger\", \"right fielder\", 100000);`\n\nCreates a new instance named `member1` initializing all instance fields\n\n`Employee member2 = new Employee (\"John Branson\", 50000);`\n\nCreates a new instance `member2` initializing all instance fields. Empty string will be used for the missing role.\n\n`member1.setRole(\"outfielder\");`\n\nRole will be changed to outfielder for the object named member1\n\n`System. out.println(member1.toString());`\n\nThe `toString()` method will return all data for `member1` so that it will be printed as shown.\n\n`Sammy Slugger`\n\n`position is outfielder`\n\n`salary is 110000`\n\n`System. out.println(member2.toString());`\n\nThe `toString()` method will return all data for `member2` so that it will be printed as shown.\n\n`John Branson`\n\n`position is unknown`\n\n`salary is 50000`\n\nWrite the `Employee` class here.\n\nBegin your response at the top of a new page in the separate Free Response booklet and fill in the appropriate circle at the top of each page to indicate the question number. If there are multiple parts to this question, write the part letter with your response.\n\nGo to Question 2 in Practice Test 3: Answer Key and Explanations, Section II: Free-Response Questions",
+      "parts": [],
+      "reference_solution": "`Employee` - Canonical Solution\n\n```java\npublic class Employee {\n    private String name;\n    private String role;\n    private int salary;\n    Employee (String n, String r, int s)\n    {\n        name = n;\n        role = r;\n        salary = s;\n    }\n    Employee (String n, int s)\n    {\n        name = n;\n        role = \"\";\n        salary = s;\n    }\n    public void setRole(String r) {\n        role = r;\n    }\n    public void setSalary(int s)\n    {\n        salary = s;\n    }\n    public String toString()\n    {\n        String str = name + \"\\nposition is \";\n        if (role.equals(\"\"))\n            str += \"unknown\";\n        else\n            str += role;\n        str += \"\\nsalary is \" + salary;\n        return str;\n    }\n}\n```",
+      "rubric": [
+        {
+          "point": "+7",
+          "criterion": "+1: public class `Employee`\n\n+1: 3 variables must be private, 2 strings, 1 int\n\n+1: Constructors headers are correct: first constructor uses String, String, int as parameters, second constructor uses String, int as parameters\n\n+1: Constructors initialize all 3 variables. Second constructor initializes salary to 0.\n\n+1: Header for `changeRole` is correct\n\n+1: Header for `toString` method is correct\n\n+1: `toString` method returns string correctly using \\n to skip to new lines and uses unknown if role is the empty string"
+        },
+        {
+          "point": "+1",
+          "criterion": "public class `Employee`"
+        },
+        {
+          "point": "+1",
+          "criterion": "3 variables must be private, 2 strings, 1 int"
+        },
+        {
+          "point": "+1",
+          "criterion": "Constructors headers are correct: first constructor uses String, String, int as parameters, second constructor uses String, int as parameters"
+        },
+        {
+          "point": "+1",
+          "criterion": "Constructors initialize all 3 variables. Second constructor initializes salary to 0."
+        },
+        {
+          "point": "+1",
+          "criterion": "Header for `changeRole` is correct"
+        },
+        {
+          "point": "+1",
+          "criterion": "Header for `toString` method is correct"
+        },
+        {
+          "point": "+1",
+          "criterion": "`toString` method returns string correctly using \\n to skip to new lines and uses unknown if role is the empty string"
+        }
+      ],
+      "total_points": 7,
+      "source_qid": "sec_5-q02"
+    },
+    {
+      "prompt": "A class is designed to perform operations on someone's full name. You can assume the name has only one space between the first name and the last name. The class has methods to extract the first name, last name, and number of vowels in the name. You can see an example below.\n\n```java\nString fullName = \"Katherine Johnson\";\nName.getLastName(fullName); // Returns \"Johnson\"\nName.countVowels(fullName); // Returns 6\n```\n\nThe `getLastName` method returns the last name based on a given full name. You can assume that `fullName` has only one space between the first name and the last name. Write the `getLastName` method.\n\n`public static String getLastName(String name)`\n\nBegin your response at the top of a new page in the separate Free Response booklet and fill in the appropriate circle at the top of each page to indicate the question number. If there are multiple parts to this question, write the part letter with your response.\n\nThe `countVowels` method counts the number of vowels in the given full name. You can assume we will count only the letters `a, e, i, o`, and `u` as vowels. Write the entire `countVowels` method.\n\n`public static int countVowels(String name)`\n\nBegin your response at the top of a new page in the separate Free Response booklet and fill in the appropriate circle at the top of each page to indicate the question number. If there are multiple parts to this question, write the part letter with your response.\n\nGo to Question 3 in Practice Test 3: Answer Key and Explanations, Section II: Free-Response Questions",
+      "parts": [
+        {
+          "label": "a",
+          "prompt": "The `getLastName` method returns the last name based on a given full name. You can assume that `fullName` has only one space between the first name and the last name. Write the `getLastName` method.\n\n`public static String getLastName(String name)`"
+        },
+        {
+          "label": "b",
+          "prompt": "The `countVowels` method counts the number of vowels in the given full name. You can assume we will count only the letters `a, e, i, o`, and `u` as vowels. Write the entire `countVowels` method.\n\n`public static int countVowels(String name)`"
+        }
+      ],
+      "reference_solution": "`fullName` - Canonical Solution\n\n\n**Part (a)**\n\n```java\npublic static String getLastName(String name)\n{\n    int space = name.indexOf(\" \");\n    String last = name.substring(space + 1);\n    return last;\n}\n```\n\nThe solution to part (b) is similar to that of part (a). You still need to find the location of the space, but the substring starts at the location of the space plus `1`, which will be the first letter of the last name. You could add a second parameter of `name.length()`, but it isn't required.\n\n\n**Part (b)**\n\n```java\npublic static int countVowels(String name)\n{\n    int count = 0;\n    for (int i = 0; i < name.length(); i++)\n    {\n        String letter = name.substring(i, i + 1);\n        if (letter.equals(\"a\") || letter.equals(\"e\") || letter.equals(\"i\") ||\n            letter.equals(\"o\") || letter.equals(\"u\"))\n        count++;\n    }\n    return count;\n}\n```\n\nYou need to create a loop to go through the entire name. You could use an `enhanced-for` loop to extract characters, but characters are not part of the AP subset. If you use them, make sure you use them correctly. With a traditional `for` loop, you need to extract each letter using the `substring` method and see whether it equals one of the vowels. A count variable is increased by `1` each time a vowel is found.",
+      "rubric": [
+        {
+          "point": "+0",
+          "criterion": "Part (a)"
+        },
+        {
+          "point": "+2",
+          "criterion": "+1: The `indexOf` method is used correctly to find the first space\n\n+1: The `substring` method is used correctly to extract and return the last name"
+        },
+        {
+          "point": "+1",
+          "criterion": "The `indexOf` method is used correctly to find the first space"
+        },
+        {
+          "point": "+1",
+          "criterion": "The `substring` method is used correctly to extract and return the last name"
+        },
+        {
+          "point": "+0",
+          "criterion": "Part (b)"
+        },
+        {
+          "point": "+3",
+          "criterion": "+1: A loop is used to examine each letter in the name\n\n+1: An `if` statement is used to determine whether the current letter is a vowel\n\n+1: The correct vowel count is returned"
+        },
+        {
+          "point": "+1",
+          "criterion": "A loop is used to examine each letter in the name"
+        },
+        {
+          "point": "+1",
+          "criterion": "An `if` statement is used to determine whether the current letter is a vowel"
+        },
+        {
+          "point": "+1",
+          "criterion": "The correct vowel count is returned"
+        }
+      ],
+      "total_points": 5,
+      "source_qid": "sec_5-q03"
+    },
+    {
+      "prompt": "A city parking lot has a sign that keeps track of how many parking spaces are available in the lot. The class for the parking lot is detailed below.\n\n```java\npublic class ParkingLot\n{\n    private Car[ ][ ] lot;\n    public ParkingLot(int rows, int cols)\n    {\n        lot = new Car[rows][cols];\n    }\n    /* Return the number of empty spaces in the parking lot */\n    public int openSpaces()\n    {\n        // implementation not shown\n    }\n    public boolean parkCar(Car newCar)\n    {\n        // to be implemented\n    }\n}\n```\n\nComplete the `parkCar` method that puts a new car in any space in the parking lot and returns `true` if it was able to do so. It should return `false` if there are no empty spaces. You should use the `openSpaces` method to receive full credit.\n\n```java\n/* Return true if there is an open spot to park the newCar , false otherwise. The car should be added to the lot 2D array if there is an open spot. */\npublic boolean parkCar(Car newCar)\n```\n\nBegin your response at the top of a new page in the separate Free Response booklet and fill in the appropriate circle at the top of each page to indicate the question number. If there are multiple parts to this question, write the part letter with your response.\n\nGo to Question 4 in Practice Test 3: Answer Key and Explanations, Section II: Free-Response Questions",
+      "parts": [],
+      "reference_solution": "`ParkingLot` - Canonical Solution\n\n```java\npublic boolean parkCar(Car newCar)\n{\n    if (openSpaces() > 0)\n    {\n        for (int r = 0; r < lot.length; r++)\n        {\n            for (int c = 0; c < lot[r].length; c++)\n            {\n                if (lot[r][c] == null)\n                {\n                    lot[r][c] = newCar;\n                    return true;\n                }\n            }\n        }\n    }\n    return false;\n}\n```",
+      "rubric": [
+        {
+          "point": "+6",
+          "criterion": "+1: The `openSpaces` method is called correctly to determine whether there are spaces available\n\n+1: Nested `for` loops are used correctly to iterate through the `lot` 2D array\n\n+1: An `if` statement checks whether the current spot in the array is `null`\n\n+1: The `newCar` is assigned correctly to a `null` element in the 2D array\n\n+1: The `newCar` is only assigned to one space\n\n+1: The method returns `true` if a spot was found, and `false` otherwise"
+        },
+        {
+          "point": "+1",
+          "criterion": "The `openSpaces` method is called correctly to determine whether there are spaces available"
+        },
+        {
+          "point": "+1",
+          "criterion": "Nested `for` loops are used correctly to iterate through the `lot` 2D array"
+        },
+        {
+          "point": "+1",
+          "criterion": "An `if` statement checks whether the current spot in the array is `null`"
+        },
+        {
+          "point": "+1",
+          "criterion": "The `newCar` is assigned correctly to a `null` element in the 2D array"
+        },
+        {
+          "point": "+1",
+          "criterion": "The `newCar` is only assigned to one space"
+        },
+        {
+          "point": "+1",
+          "criterion": "The method returns `true` if a spot was found, and `false` otherwise"
+        }
+      ],
+      "total_points": 6,
+      "source_qid": "sec_5-q04"
+    }
+  ]
+}

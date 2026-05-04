@@ -1,0 +1,574 @@
+[
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Which of the following best describes a `static` variable declared in a class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It belongs to the class itself and is shared by all instances of the class."
+      },
+      {
+        "label": "B",
+        "text": "It can only be accessed from within the class in which it is declared."
+      },
+      {
+        "label": "C",
+        "text": "Its value is reset to the type default each time a new object of the class is created."
+      },
+      {
+        "label": "D",
+        "text": "It cannot be modified after it has been initialized."
+      }
+    ],
+    "answer": "A",
+    "explanation": "A static variable belongs to the class, not to any individual object \u2014 all instances share one copy. B describes the `private` access modifier. C describes per-object instance variable initialization during construction, not `static` behavior. D describes `final`.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "A class `Ticket` must track the total number of `Ticket` objects created across the entire program. Which of the following is the proper field declaration for this counter?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public int count;`"
+      },
+      {
+        "label": "B",
+        "text": "`private final int count;`"
+      },
+      {
+        "label": "C",
+        "text": "`private static int count;`"
+      },
+      {
+        "label": "D",
+        "text": "`private int count;`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "A class-level counter shared across all instances must be `static` (one copy per class) and `private` (encapsulated). A is not encapsulated and not static. B uses `final`, which would prevent the counter from being incremented. D is an instance variable, so each object would maintain its own separate count rather than a shared total.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Consider the following class definition and code segment:\n\n```java\npublic class Widget {\n    private static int count = 0;\n    private int id;\n\n    public Widget() {\n        count++;\n        id = count;\n    }\n\n    public static int getCount() { return count; }\n    public int getId() { return id; }\n}\n```\n\n```java\nWidget a = new Widget();\nWidget b = new Widget();\nWidget c = new Widget();\nSystem.out.println(Widget.getCount() + \" \" + b.getId());\n```\n\nWhat is the output?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 1`"
+      },
+      {
+        "label": "B",
+        "text": "`2 2`"
+      },
+      {
+        "label": "C",
+        "text": "`3 2`"
+      },
+      {
+        "label": "D",
+        "text": "`3 3`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "After constructing three Widgets the shared static `count` equals 3. Widget `b` was the second object constructed, so its `id` was assigned the value of `count` at that moment (2). The output is `3 2`. D is wrong because `b.getId()` returns 2, not 3. B is wrong because `Widget.getCount()` is 3 after all three objects are created.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Consider the following class:\n\n```java\npublic class Temperature {\n    private double degrees;\n\n    public Temperature(double d) {\n        degrees = d;\n    }\n\n    public static double toCelsius() {\n        return (degrees - 32) * 5.0 / 9.0;\n    }\n}\n```\n\nThe `toCelsius` method contains a compile-time error. Which of the following best describes it?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The instance variable `degrees` cannot be referenced directly from a static method because there is no object context."
+      },
+      {
+        "label": "B",
+        "text": "The method should return an `int` rather than a `double`."
+      },
+      {
+        "label": "C",
+        "text": "The field `degrees` must be declared `public` to be accessible in a static context."
+      },
+      {
+        "label": "D",
+        "text": "The Celsius conversion formula is mathematically incorrect."
+      }
+    ],
+    "answer": "A",
+    "explanation": "A static method has no implicit object (`this`), so it cannot access the instance variable `degrees`. This produces the compile error: 'non-static variable cannot be referenced from a static context.' B is unrelated to the static issue. C is wrong \u2014 changing the access modifier does not supply a missing object reference. The formula in D is correct.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "A class `Inventory` declares the following method:\n\n```java\npublic static int getItemCount() { ... }\n```\n\nWhich of the following correctly calls this method from outside the `Inventory` class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`getItemCount()`"
+      },
+      {
+        "label": "B",
+        "text": "`Inventory().getItemCount()`"
+      },
+      {
+        "label": "C",
+        "text": "`Inventory.getItemCount`"
+      },
+      {
+        "label": "D",
+        "text": "`Inventory.getItemCount()`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Static methods are invoked using `ClassName.methodName()`. A does not compile outside the class without an object or class qualifier. B is a syntax error \u2014 `Inventory()` without `new` is not a valid Java expression. C omits the required parentheses for a method invocation.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Consider the following class:\n\n```java\npublic class Box {\n    private static int total = 0;\n    private int size;\n\n    public Box(int s) {\n        size = s;\n        total += s;\n    }\n\n    public static int getTotal() { return total; }\n}\n```\n\nAfter the following statements execute, what value does `Box.getTotal()` return?\n\n```java\nBox b1 = new Box(5);\nBox b2 = new Box(3);\nBox b3 = new Box(7);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`15`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "`3`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The static variable `total` is shared across all Box instances. Each constructor adds `s` to the shared `total`: 0+5=5, 5+3=8, 8+7=15. B, C, and D each reflect the size of only a single box rather than the accumulated sum.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Which of the following statements about static methods in Java is TRUE?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A static method can directly call any instance method of the same class without an object reference."
+      },
+      {
+        "label": "B",
+        "text": "A static method has access to the `this` reference inside its body."
+      },
+      {
+        "label": "C",
+        "text": "A static method can only access members that are declared `public`."
+      },
+      {
+        "label": "D",
+        "text": "A static method can be invoked using `ClassName.methodName()` without creating an object."
+      }
+    ],
+    "answer": "D",
+    "explanation": "Static methods belong to the class and are called via `ClassName.methodName()` without needing an instance. A is false \u2014 calling an instance method from a static method requires an object reference. B is false \u2014 `this` does not exist in a static context. C is false \u2014 access modifiers control visibility; a static method freely accesses any static member of its own class regardless of access modifier.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Consider the following class and code segment:\n\n```java\npublic class Lamp {\n    private static int onCount = 0;\n    private boolean isOn;\n\n    public Lamp() { isOn = false; }\n\n    public void turnOn() {\n        if (!isOn) {\n            isOn = true;\n            onCount++;\n        }\n    }\n\n    public void turnOff() {\n        if (isOn) { isOn = false; }\n    }\n\n    public static int getOnCount() { return onCount; }\n}\n```\n\n```java\nLamp x = new Lamp();\nLamp y = new Lamp();\nx.turnOn();\nx.turnOn();\ny.turnOn();\nx.turnOff();\ny.turnOn();\nSystem.out.println(Lamp.getOnCount());\n```\n\nWhat is the output?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`onCount` increments only when a lamp transitions from off to on. First `x.turnOn()`: x.isOn becomes true, onCount=1. Second `x.turnOn()`: x.isOn is already true so `!isOn` is false and nothing happens. First `y.turnOn()`: y.isOn becomes true, onCount=2. `x.turnOff()`: x.isOn becomes false. Second `y.turnOn()`: y.isOn is still true so nothing happens. Final onCount is 2. B incorrectly increments for the redundant second `x.turnOn()`. D counts every `turnOn()` call regardless of the guard.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "What does declaring a variable as `final` mean in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The variable cannot be reassigned after it has been initialized."
+      },
+      {
+        "label": "B",
+        "text": "The variable is shared by all instances of the class."
+      },
+      {
+        "label": "C",
+        "text": "The variable is only accessible within the class where it is declared."
+      },
+      {
+        "label": "D",
+        "text": "The variable is automatically initialized to `0` or `null` when the program starts."
+      }
+    ],
+    "answer": "A",
+    "explanation": "`final` prevents a variable from being reassigned after its initialization, making it a constant. B describes `static`. C describes `private`. D describes the default initialization behavior of uninitialized class-level variables, which is not related to `final`.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "A programmer wants to define a class-level constant for the maximum number of players allowed in a game. Which of the following declarations is most appropriate?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`private int MAX_PLAYERS = 4;`"
+      },
+      {
+        "label": "B",
+        "text": "`public static int MAX_PLAYERS = 4;`"
+      },
+      {
+        "label": "C",
+        "text": "`public static final int MAX_PLAYERS = 4;`"
+      },
+      {
+        "label": "D",
+        "text": "`public int MAX_PLAYERS = 4;`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "A constant should be `static` (one copy for the class, not per instance), `final` (cannot be changed after initialization), and `public` (accessible throughout the program as a named constant). A is an instance variable that could be changed per object. B is `static` but not `final`, so the value could be accidentally modified. D is neither `static` nor `final`, creating a separate mutable copy in each object.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Consider the following class:\n\n```java\npublic class Thermometer {\n    private double temperature;\n\n    public Thermometer(double t) { temperature = t; }\n    public double getTemp() { return temperature; }\n\n    public static void printTemperature() {\n        System.out.println(\"Temp: \" + getTemp());\n    }\n}\n```\n\nThe `printTemperature` method will not compile. Which of the following best explains why?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`printTemperature` must declare a return type of `double` in order to invoke `getTemp`."
+      },
+      {
+        "label": "B",
+        "text": "The instance method `getTemp` cannot be called from the static method `printTemperature` without an object reference."
+      },
+      {
+        "label": "C",
+        "text": "The field `temperature` must be declared `public` so that `getTemp` can be invoked in a static context."
+      },
+      {
+        "label": "D",
+        "text": "Static methods cannot contain calls to `System.out.println`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "`printTemperature` is static and has no implicit `this` object, so calling `getTemp()` \u2014 an instance method \u2014 without an object reference produces the compile error 'non-static method getTemp() cannot be referenced from a static context.' A is incorrect \u2014 return type is unrelated to the static issue. C is incorrect \u2014 changing the access modifier on `temperature` does not provide a missing object context. D is incorrect \u2014 static methods can freely use `System.out.println`.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Which of the following best describes a `static` variable in a Java class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A variable that belongs to the class itself and is shared by all instances of that class"
+      },
+      {
+        "label": "B",
+        "text": "A variable that cannot be modified after it is first assigned a value"
+      },
+      {
+        "label": "C",
+        "text": "A variable declared inside a method whose value persists between successive method calls"
+      },
+      {
+        "label": "D",
+        "text": "A variable that is automatically initialized to `null` regardless of its declared type"
+      }
+    ],
+    "answer": "A",
+    "explanation": "A static variable is associated with the class rather than any individual object; every instance reads and writes the same single copy. Option B describes a `final` variable, not a static one. Option C is incorrect\u2014local variables in Java do not retain their values between calls. Option D is incorrect\u2014default initialization depends on type: 0 for int, false for boolean, and null only for reference types.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "A student writes the following class:\n\n```java\npublic class Circle {\n    private double radius;\n    private static int count = 0;\n\n    public Circle(double r) {\n        radius = r;\n        count++;\n    }\n\n    public static double getArea() {\n        return Math.PI * radius * radius;  // line 10\n    }\n}\n```\n\nWhich of the following best describes the error on line 10?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Math.PI` cannot be accessed from inside a user-defined class."
+      },
+      {
+        "label": "B",
+        "text": "`count` is a static variable and cannot be referenced inside a constructor."
+      },
+      {
+        "label": "C",
+        "text": "`radius` is an instance variable and cannot be referenced from a static method."
+      },
+      {
+        "label": "D",
+        "text": "A `static` method is not permitted to return a value of type `double`."
+      }
+    ],
+    "answer": "C",
+    "explanation": "A static method has no implicit `this` reference and therefore cannot access instance variables such as `radius`; the compiler reports \"non-static variable radius cannot be referenced from a static context.\" The fix is either to remove `static` from getArea() or to accept radius as a parameter. Option A is false\u2014Math.PI is a public static constant accessible anywhere. Option B is false\u2014static variables can be freely read and written from constructors and instance methods. Option D is false\u2014static methods may return any type.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Consider the following class and code segment:\n\n```java\npublic class Box {\n    private static int total = 0;\n    private int size;\n\n    public Box(int s) {\n        size = s;\n        total++;\n    }\n\n    public int getSize() { return size; }\n    public static int getTotal() { return total; }\n}\n```\n\n```java\nBox b1 = new Box(5);\nBox b2 = new Box(10);\nBox b3 = b1;\nb1 = new Box(15);\nSystem.out.println(b3.getSize() + \" \" + Box.getTotal());\n```\n\nDetermine the values printed by the code segment.",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5 2`"
+      },
+      {
+        "label": "B",
+        "text": "`5 3`"
+      },
+      {
+        "label": "C",
+        "text": "`15 3`"
+      },
+      {
+        "label": "D",
+        "text": "`15 2`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "After constructing b1 and b2, total=2. The statement b3=b1 copies only the object reference\u2014b3 points to the same Box(5) object b1 pointed to; no new object is created, so total remains 2. The statement b1=new Box(15) creates a third Box (total becomes 3) and redirects b1 to it, but b3 still refers to the original Box whose size is 5. Therefore b3.getSize() returns 5 and Box.getTotal() returns 3, printing \"5 3\". Option A undercounts Box constructions (only 2). Options C and D incorrectly assume b3 is automatically updated when b1 is reassigned, confusing reference copying with aliasing.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Which of the following field declarations correctly creates a variable that is shared among ALL instances of a class and is accessible only from within that class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public int count = 0;`"
+      },
+      {
+        "label": "B",
+        "text": "`public static int count = 0;`"
+      },
+      {
+        "label": "C",
+        "text": "`private int count = 0;`"
+      },
+      {
+        "label": "D",
+        "text": "`private static int count = 0;`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "A `static` field belongs to the class itself so every instance shares one copy, and `private` restricts access to within the declaring class. Option A is an instance variable (no `static`) and is public. Option B is static but public, violating encapsulation. Option C is private but is an instance variable \u2014 each object gets its own copy rather than sharing one.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Consider the following class and client code:\n\n```java\npublic class Box {\n    private static int count = 0;\n    private int id;\n\n    public Box() {\n        count++;\n        id = count;\n    }\n\n    public int getId() { return id; }\n    public static int getCount() { return count; }\n}\n```\n\n```java\nBox b1 = new Box();\nBox b2 = new Box();\nBox b3 = new Box();\nSystem.out.println(b1.getId() + \" \" + b2.getId() + \" \" + Box.getCount());\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0 0 3`"
+      },
+      {
+        "label": "B",
+        "text": "`1 2 3`"
+      },
+      {
+        "label": "C",
+        "text": "`3 3 3`"
+      },
+      {
+        "label": "D",
+        "text": "`1 2 2`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Because `count` is static, all constructors increment the same variable. After b1: count=1, b1.id=1. After b2: count=2, b2.id=2. After b3: count=3, b3.id=3. So the output is 1 2 3. Option A confuses `id` with the default int value 0. Option C assumes each object receives the final value of `count` rather than the value at construction time. Option D is an off-by-one error that treats `getCount()` as 2 instead of 3.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "The following class contains a compile error:\n\n```java\npublic class Student {\n    private String name;\n    private static int numStudents = 0;\n\n    public Student(String n) {\n        name = n;\n        numStudents++;\n    }\n\n    public static String getFirstStudent() {\n        return name;\n    }\n\n    public static int getCount() {\n        return numStudents;\n    }\n}\n```\n\nWhich of the following best describes the compile error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The constructor modifies `numStudents` inside a non-static context, but static variables can only be modified by static methods."
+      },
+      {
+        "label": "B",
+        "text": "`getFirstStudent` returns `name`, which is an instance variable and cannot be referenced from a static context."
+      },
+      {
+        "label": "C",
+        "text": "`getCount` returns `numStudents`, but a static method is not permitted to return a static variable."
+      },
+      {
+        "label": "D",
+        "text": "`numStudents` is declared `static`, so it cannot also be referenced inside the constructor."
+      }
+    ],
+    "answer": "B",
+    "explanation": "A static method has no implicit object reference (`this`), so it cannot directly access instance variables. Returning `name` in the static method `getFirstStudent` triggers the error: 'non-static variable name cannot be referenced from a static context.' Options A and D are false \u2014 both constructors and instance methods may freely read and write static variables. Option C is false \u2014 static methods may return static variables without restriction.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "A class `Stats` is defined as follows:\n\n```java\npublic class Stats {\n    private int value;\n\n    public Stats(int v) { value = v; }\n    public int getValue() { return value; }\n    public static int max(int a, int b) { return (a > b) ? a : b; }\n}\n```\n\nWhich of the following lines in a client program correctly calls the `max` method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Stats.max(3, 7)`"
+      },
+      {
+        "label": "B",
+        "text": "`Stats.getValue()`"
+      },
+      {
+        "label": "C",
+        "text": "`max(3, 7)`"
+      },
+      {
+        "label": "D",
+        "text": "`Stats.max`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Static methods are invoked as `ClassName.methodName(arguments)`, making `Stats.max(3, 7)` correct. Option B attempts to call an instance method (`getValue`) on the class name rather than on an object \u2014 this causes a compile error. Option C omits the required class qualifier and will not compile in a client. Option D omits the parentheses and arguments, which is a syntax error.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Which of the following statements about `static` methods in Java is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A static method can directly access instance variables of its own class without an object reference."
+      },
+      {
+        "label": "B",
+        "text": "A static method can be called using the class name without first creating an instance of the class."
+      },
+      {
+        "label": "C",
+        "text": "Inside a static method, the keyword `this` refers to the class itself rather than any particular object."
+      },
+      {
+        "label": "D",
+        "text": "A static method can only invoke other static methods and cannot call instance methods under any circumstances."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Because a static method belongs to the class rather than to any object, it is called via `ClassName.method()` with no instance required. Option A is false \u2014 static methods cannot access instance variables directly because there is no implicit object (no `this`). Option C is false \u2014 `this` is entirely unavailable inside a static method; using it causes a compile error. Option D is false \u2014 a static method can call instance methods as long as it has an object reference, for example one passed as a parameter.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Consider the following class:\n\n```java\npublic class Stamp {\n    public static final int VALUE = 5;\n    private static int totalStamps = 0;\n    private int serialNum;\n\n    public Stamp() {\n        totalStamps++;\n        serialNum = totalStamps * VALUE;\n    }\n\n    public int getSerialNum() { return serialNum; }\n    public static int getTotal() { return totalStamps; }\n}\n```\n\nDetermine the values of `x` and `y` after the following code executes:\n\n```java\nStamp s1 = new Stamp();\nStamp s2 = new Stamp();\nint x = s1.getSerialNum();\nint y = Stamp.getTotal();\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 5, y = 1`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 5, y = 2`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 10, y = 2`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 25, y = 2`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "When s1 is constructed: totalStamps increments to 1, so s1.serialNum = 1 * 5 = 5. When s2 is constructed: totalStamps increments to 2, so s2.serialNum = 2 * 5 = 10. Therefore x = s1.getSerialNum() = 5 and y = Stamp.getTotal() = 2. Option A incorrectly counts only one construction for y. Option C confuses s1's serialNum with s2's value of 10. Option D mistakenly computes VALUE * VALUE = 25 instead of using the incremented totalStamps.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Consider the following class and code segment.\n\n```java\npublic class Badge\n{\n    private static int next = 10;\n    private int number;\n\n    public Badge()\n    {\n        number = next;\n        next++;\n    }\n\n    public int getNumber()\n    {\n        return number;\n    }\n\n    public static int getNext()\n    {\n        return next;\n    }\n}\n\nBadge first = new Badge();\nBadge second = new Badge();\nSystem.out.print(first.getNumber() + \" \" + second.getNumber() + \" \" + Badge.getNext());\n```\n\nWhat is printed by the code segment?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10 10 10`"
+      },
+      {
+        "label": "B",
+        "text": "`10 11 12`"
+      },
+      {
+        "label": "C",
+        "text": "`11 12 12`"
+      },
+      {
+        "label": "D",
+        "text": "`10 11 10`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`next` is static, so both objects share one copy. The first object stores 10, the second stores 11, and `next` is then incremented to 12.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_7",
+    "stem": "Consider the following class.\n\n```java\npublic class Score\n{\n    private int points;\n    private static int total = 0;\n    private static int count = 0;\n\n    public Score(int p)\n    {\n        points = p;\n        total += p;\n        count++;\n    }\n\n    public int getPoints()\n    {\n        return points;\n    }\n\n    public static double getAverage()\n    {\n        /* missing code */\n    }\n}\n```\n\nAssuming at least one `Score` object has been created, which of the following can replace `/* missing code */` so that `getAverage` returns the average number of points for all `Score` objects created?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`return points / count;`"
+      },
+      {
+        "label": "B",
+        "text": "`return total / count;`"
+      },
+      {
+        "label": "C",
+        "text": "`return (double) total / count;`"
+      },
+      {
+        "label": "D",
+        "text": "`return (double) points / count;`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "A static method can use the static variables `total` and `count`, and casting `total` to `double` prevents integer division. Choices A and D use the instance variable `points` from a static method, and B truncates before returning.",
+    "difficulty": 3,
+    "stem_pattern": "oop_design_and_access"
+  }
+]

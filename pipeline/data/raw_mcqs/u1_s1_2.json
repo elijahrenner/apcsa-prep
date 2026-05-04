@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Which of the following correctly declares a `double` variable named `temp` and assigns it the value `98.6`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`double temp = 98.6;`"
+      },
+      {
+        "label": "B",
+        "text": "`int temp = 98.6;`"
+      },
+      {
+        "label": "C",
+        "text": "`double 98.6 = temp;`"
+      },
+      {
+        "label": "D",
+        "text": "`temp double = 98.6;`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`double temp = 98.6;` follows the correct Java declaration syntax: type, then identifier, then optional initializer. Option B uses the wrong primitive type (`int` cannot hold a decimal literal without an explicit cast). Option C reverses the value and the identifier. Option D reverses the type and the identifier.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "What is the output of the following code?\n\n```java\nSystem.out.print(\"Hello \");\nSystem.out.print(\"World\");\nSystem.out.println(\"!\");\nSystem.out.println(\"Done\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\nHello World!\nDone\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\nHello \nWorld\n!\nDone\n```"
+      },
+      {
+        "label": "C",
+        "text": "`Hello World!Done`"
+      },
+      {
+        "label": "D",
+        "text": "```\nHello World\n!\nDone\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`System.out.print` outputs its argument without a trailing newline; `System.out.println` outputs its argument and then advances to a new line. The first two `print` calls accumulate `Hello World` on the same line; `println(\"!\")` appends `!` and then moves to a new line; `println(\"Done\")` prints `Done` and moves to a new line. Option B incorrectly treats `print` as if it also adds a newline. Option C treats `println` as if it never adds a newline. Option D assumes `println` moves to a new line before printing its argument rather than after.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Determine the values of `c` and `d` after the following code runs.\n\n```java\nint a = 17;\nint b = 5;\nint c = a / b;\nint d = a % b;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`c = 3, d = 2`"
+      },
+      {
+        "label": "B",
+        "text": "`c = 2, d = 7`"
+      },
+      {
+        "label": "C",
+        "text": "`c = 3.4, d = 2`"
+      },
+      {
+        "label": "D",
+        "text": "`c = 4, d = 2`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Integer division truncates toward zero: `17 / 5 = 3` (the fractional part .4 is discarded). The remainder is `17 - 3 * 5 = 2`. Option B results from underestimating the quotient as 2, which gives a remainder of `17 - 2 * 5 = 7`. Option C is impossible because `c` is declared `int` and cannot hold a decimal value. Option D incorrectly rounds the quotient up to 4 instead of truncating.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "What is the output of the following code?\n\n```java\nint x = 3;\nint y = 4;\nSystem.out.println(\"Sum: \" + x + y);\nSystem.out.println(x + y + \" is the sum\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\nSum: 34\n7 is the sum\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\nSum: 7\n7 is the sum\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\nSum: 34\n34 is the sum\n```"
+      },
+      {
+        "label": "D",
+        "text": "```\nSum: 7\n34 is the sum\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The `+` operator evaluates left-to-right. In `\"Sum: \" + x + y`, the leftmost operand is a `String`, so each subsequent `+` is string concatenation: `\"Sum: \" + 3` \u2192 `\"Sum: 3\"`, then `\"Sum: 3\" + 4` \u2192 `\"Sum: 34\"`. In `x + y + \" is the sum\"`, the two leftmost operands are both `int`, so they are added arithmetically first: `3 + 4 = 7`, then `7 + \" is the sum\"` \u2192 `\"7 is the sum\"`. Option B treats the first expression as arithmetic. Option C treats the second expression as concatenation. Option D swaps which expression uses arithmetic and which uses concatenation.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Which of the following is a valid Java variable name?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2ndPlace`"
+      },
+      {
+        "label": "B",
+        "text": "`high score`"
+      },
+      {
+        "label": "C",
+        "text": "`highScore`"
+      },
+      {
+        "label": "D",
+        "text": "`double`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`highScore` is valid: it begins with a letter and contains only letters, following camelCase convention. Option A is invalid because Java identifiers cannot begin with a digit. Option B is invalid because identifiers cannot contain spaces. Option D is invalid because `double` is a reserved keyword in Java.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Determine the values of `y` and `z` after the following code runs.\n\n```java\ndouble x = 9.9;\nint y = (int) x;\ndouble z = (double) 7 / 2;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`y = 9, z = 3.5`"
+      },
+      {
+        "label": "B",
+        "text": "`y = 10, z = 3.5`"
+      },
+      {
+        "label": "C",
+        "text": "`y = 9, z = 3.0`"
+      },
+      {
+        "label": "D",
+        "text": "`y = 10, z = 3.0`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Casting a `double` to `int` truncates (removes the decimal part without rounding), so `(int) 9.9 = 9`. The cast `(double) 7` applies only to the literal `7`, promoting it to `7.0` before division, so `7.0 / 2 = 3.5`. Options B and D incorrectly round `9.9` up to `10` instead of truncating. Options C and D result from misreading `(double) 7 / 2` as though the cast wraps the entire division \u2014 `(double)(7 / 2) = (double)(3) = 3.0` \u2014 rather than applying only to `7` before the division.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Which of the following is a primitive data type in Java, as recognized on the AP Computer Science A exam?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`String`"
+      },
+      {
+        "label": "B",
+        "text": "`Integer`"
+      },
+      {
+        "label": "C",
+        "text": "`double`"
+      },
+      {
+        "label": "D",
+        "text": "`Object`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`double` is one of the three AP-tested primitive types (`int`, `double`, `boolean`); its value is stored directly in the variable's memory location. `String` is a class (reference type) from `java.lang` \u2014 a variable holds a reference to a String object, not the characters themselves. `Integer` is a wrapper class that boxes the primitive `int`. `Object` is the root class of all Java classes.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "What is the output of the following code?\n\n```java\nString s = \"Hello\";\ns = s + \" World\";\nSystem.out.println(s);\nString t = \"Java\";\nt.substring(0, 2);\nSystem.out.println(t);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\nHello World\nJava\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\nHello World\nJa\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\nHello\nJava\n```"
+      },
+      {
+        "label": "D",
+        "text": "```\nHello World\nJavaJa\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`s = s + \" World\"` creates a new String `\"Hello World\"` and reassigns `s` to reference it, so `s` correctly prints as `Hello World`. Strings are immutable: `t.substring(0, 2)` returns a new String `\"Ja\"`, but the result is not stored anywhere, so `t` remains `\"Java\"`. Option B incorrectly assumes `substring` modifies `t` in place. Option C ignores the reassignment of `s`. Option D incorrectly appends the discarded return value onto `t`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Determine the values of `a`, `b`, and `c` after the following code runs.\n\n```java\nint n = 2345;\nint a = n % 10;\nint b = n / 10 % 10;\nint c = n / 100 % 10;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a = 5, b = 4, c = 3`"
+      },
+      {
+        "label": "B",
+        "text": "`a = 5, b = 3, c = 4`"
+      },
+      {
+        "label": "C",
+        "text": "`a = 2, b = 3, c = 4`"
+      },
+      {
+        "label": "D",
+        "text": "`a = 5, b = 4, c = 2`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`/` and `%` have equal precedence and associate left-to-right. `a = 2345 % 10 = 5` (ones digit). `b = (2345 / 10) % 10 = 234 % 10 = 4` (tens digit). `c = (2345 / 100) % 10 = 23 % 10 = 3` (hundreds digit). Option B swaps the values of `b` and `c`. Option C uses the thousands digit `2` for `a` instead of the ones digit `5`. Option D uses the thousands digit `2` for `c` instead of the hundreds digit `3`.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "A class needs an instance variable to store the number of goals scored by a player. The value must be a whole number and must not be directly accessible from outside the class. Which of the following declarations is most appropriate?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public int goals;`"
+      },
+      {
+        "label": "B",
+        "text": "`private double goals;`"
+      },
+      {
+        "label": "C",
+        "text": "`private int goals;`"
+      },
+      {
+        "label": "D",
+        "text": "`public double goals;`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`private int goals;` is correct: `private` restricts access to within the class (encapsulation), and `int` is the appropriate type for a whole-number count. Option A uses `public`, allowing direct access from outside the class and violating encapsulation. Option B uses `double`, which is unnecessary for a whole-number count. Option D combines both problems: `public` access and an inappropriate `double` type.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "What is the output of the following code?\n\n```java\nint score = 100;\nString msg = \"You win!\";\nSystem.out.println(\"score\");\nSystem.out.println(score);\nSystem.out.println(\"msg\");\nSystem.out.println(msg);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\nscore\n100\nmsg\nYou win!\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\n100\n100\nYou win!\nYou win!\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\nscore\n100\nYou win!\nYou win!\n```"
+      },
+      {
+        "label": "D",
+        "text": "```\nscore\nscore\nmsg\nmsg\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "A variable name enclosed in double quotes is a String literal \u2014 it is never evaluated as a variable. `println(\"score\")` prints the text `score`; `println(score)` prints the integer value `100`. Likewise, `println(\"msg\")` prints the text `msg` and `println(msg)` prints the value stored in `msg`, which is `You win!`. Option B incorrectly evaluates both quoted identifiers as variable references. Option C correctly handles the first pair but incorrectly evaluates `\"msg\"` as the variable `msg`. Option D treats all four arguments as String literals.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Determine the value of `r` after the following code runs.\n\n```java\nint p = 7;\nint q = 2;\ndouble r = p / q;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3.5`"
+      },
+      {
+        "label": "B",
+        "text": "`3.0`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`4.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The expression `p / q` divides two `int` variables, so Java performs integer division: `7 / 2 = 3` (the remainder is discarded). That `int` value `3` is then widened to `double` when stored in `r`, giving `3.0`. Option A is the mathematically expected result but ignores that both operands are `int`, forcing integer division. Option C has the correct numeric result but `r` is declared `double`, so it holds `3.0`, not the `int` representation `3`. Option D incorrectly rounds up rather than truncating.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Which of the following is a valid Java variable declaration and initialization?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`int 2score = 10;`"
+      },
+      {
+        "label": "B",
+        "text": "`int my score = 10;`"
+      },
+      {
+        "label": "C",
+        "text": "`int myScore = 10;`"
+      },
+      {
+        "label": "D",
+        "text": "`Int myScore = 10;`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "A valid Java identifier must start with a letter (not a digit), contain no spaces, and use the exact primitive-type keyword in lowercase. Option C satisfies all rules. A starts with a digit, B contains a space, and D uses `Int` (capitalized), which is not a Java primitive type \u2014 it would be treated as an unknown class name.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Determine the output of the following code:\n\n```java\nint score = 95;\nSystem.out.println(\"score\");\nSystem.out.println(\"score = \" + score);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\nscore\nscore = score\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\n95\nscore = 95\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\nscore\nscore = 95\n```"
+      },
+      {
+        "label": "D",
+        "text": "```\nscore = 95\nscore = 95\n```"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The first `println` receives the string literal `\"score\"` \u2014 characters inside quotes are printed verbatim, so it prints `score`. The second `println` concatenates the string literal `\"score = \"` with the current value of the variable `score` (95), producing `score = 95`. Putting a variable name inside double quotes prints the literal text, not the variable's value.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 4;\nint b = 3;\nSystem.out.println(a + b + \" is the sum\");\nSystem.out.println(\"the sum is \" + a + b);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\n7 is the sum\nthe sum is 7\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\n7 is the sum\nthe sum is 43\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\n43 is the sum\nthe sum is 43\n```"
+      },
+      {
+        "label": "D",
+        "text": "```\n43 is the sum\nthe sum is 7\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The `+` operator evaluates strictly left-to-right. In `a + b + \" is the sum\"`, both `a` and `b` are `int`, so `a + b` performs integer addition (7) first; then `7 + \" is the sum\"` triggers string concatenation, yielding `\"7 is the sum\"`. In `\"the sum is \" + a + b`, the leftmost `+` sees a `String` on the left, so it concatenates to `\"the sum is 4\"`; the next `+` again has a `String` on the left, appending `b` to get `\"the sum is 43\"`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Determine the value printed by the following code:\n\n```java\nint x = 17;\nint y = 5;\ndouble result = x / y;\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3.4`"
+      },
+      {
+        "label": "B",
+        "text": "`3.0`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`17.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The expression `x / y` is evaluated first using integer division because both operands are `int`, producing the truncated integer `3`. That integer is then widened to `double` when assigned to `result`, giving `3.0`. Option A (`3.4`) is the mathematically exact result but requires at least one `double` operand (e.g., `17.0 / 5`). Option C (`3`) is wrong because `println` on a `double` always appends `.0`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Determine the output of the following code:\n\n```java\ndouble d = 9.7;\nint i = (int) d;\nint j = (int)(d * 2);\nSystem.out.println(i + \" \" + j);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`9 19`"
+      },
+      {
+        "label": "B",
+        "text": "`10 20`"
+      },
+      {
+        "label": "C",
+        "text": "`9 20`"
+      },
+      {
+        "label": "D",
+        "text": "`9.0 19.4`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Casting a `double` to `int` truncates the decimal portion \u2014 it does not round. `(int) 9.7` drops the `.7` and yields `9`. `d * 2` evaluates to `19.4`, and `(int) 19.4` truncates to `19`. The two `int` values are concatenated with a space, printing `9 19`. Option B is wrong because casting truncates, not rounds. Option C is wrong because `(int) 19.4` is `19`, not `20`.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "What is the output of the following code?\n\n```java\nint lives = 3;\nSystem.out.println(\"lives\");\nSystem.out.println(lives);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\nlives\n3\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\n3\n3\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\nlives\nlives\n```"
+      },
+      {
+        "label": "D",
+        "text": "A compile error is produced because `\"lives\"` and `lives` cannot both be valid arguments to `println`."
+      }
+    ],
+    "answer": "A",
+    "explanation": "The first `println` receives the String literal `\"lives\"` and prints the text lives. The second `println` receives the int variable `lives` whose value is 3 and prints 3. Option B results if students think both lines print the variable's numeric value; option C if they think the variable's name is its value; option D is wrong because both a String literal and an int are valid arguments to `println`.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Which of the following is a valid variable declaration and initialization in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`int 1stPlace = 1;`"
+      },
+      {
+        "label": "B",
+        "text": "`double score point = 9.5;`"
+      },
+      {
+        "label": "C",
+        "text": "`boolean isActive = false;`"
+      },
+      {
+        "label": "D",
+        "text": "`boolean result = 0;`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`boolean isActive = false;` is valid: the identifier starts with a letter and `false` is the correct boolean literal. Option A is illegal because identifiers cannot begin with a digit. Option B is illegal because variable names cannot contain spaces. Option D is a compile error because Java does not allow assigning an integer (0) to a `boolean` variable.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Determine the value of `average` after the following code executes.\n\n```java\nint total = 7;\nint count = 2;\ndouble average = total / count;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3.5`"
+      },
+      {
+        "label": "B",
+        "text": "`3.0`"
+      },
+      {
+        "label": "C",
+        "text": "`4.0`"
+      },
+      {
+        "label": "D",
+        "text": "A compile error is produced because an `int` result cannot be stored in a `double` variable."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Both `total` and `count` are `int`, so `total / count` performs integer division: 7 / 2 = 3. That int value is then widened to the double 3.0 when assigned to `average`. Option A incorrectly assumes that declaring the receiving variable as `double` forces floating-point division \u2014 the division happens before the assignment. Option C rounds up rather than truncating. Option D is wrong because Java allows implicit widening from `int` to `double`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "What is the output of the following code?\n\n```java\nint x = 5;\nint y = 2;\nSystem.out.println(\"Sum: \" + x + y);\nSystem.out.println(x + y + \" items\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\nSum: 7\n7 items\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\nSum: 52\n52 items\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\nSum: 7\n52 items\n```"
+      },
+      {
+        "label": "D",
+        "text": "```\nSum: 52\n7 items\n```"
+      }
+    ],
+    "answer": "D",
+    "explanation": "In line 3, the leftmost operand `\"Sum: \"` is a String, so evaluation proceeds left-to-right: `\"Sum: \" + 5 \u2192 \"Sum: 5\"`, then `\"Sum: 5\" + 2 \u2192 \"Sum: 52\"`. In line 4, `x` and `y` are both `int` and appear before any String, so `5 + 2 = 7` (integer addition) before the String is encountered, giving `7 + \" items\" \u2192 \"7 items\"`. Option A adds both pairs as ints. Option B concatenates both pairs as Strings. Option C swaps the two results.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Which of the following best describes how a reference type variable differs from a primitive type variable in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A reference type variable stores the object's data directly in the variable's memory location, while a primitive stores the address of the data."
+      },
+      {
+        "label": "B",
+        "text": "A reference type variable holds a value that cannot be changed after the variable is declared."
+      },
+      {
+        "label": "C",
+        "text": "A reference type variable must always be initialized to a non-null value before it can be used in any expression."
+      },
+      {
+        "label": "D",
+        "text": "A reference type variable stores the memory address of an object rather than the object's value directly."
+      }
+    ],
+    "answer": "D",
+    "explanation": "A reference variable holds the memory address (reference) pointing to an object on the heap, not the object's data itself. Option A reverses the definitions. Option B describes immutability, which is unrelated to the primitive/reference distinction. Option C is wrong because reference variables can legally hold `null`.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "What is the output of the following code?\n\n```java\ndouble price = 8.75;\nint dollars = (int) price;\nSystem.out.println(dollars);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`9`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`8.75`"
+      },
+      {
+        "label": "D",
+        "text": "`8.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Casting a `double` to `int` truncates the fractional part toward zero without rounding, so `(int) 8.75` produces `8`. Option A is wrong because the cast truncates, not rounds up. Option C is wrong because the explicit cast converts the value to an `int` type. Option D is wrong because an `int` variable cannot hold a decimal point; only `double` or `float` variables can.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Determine the output of the following code:\n\n```java\nint score = 8;\nString name = \"score\";\ndouble points = 4.5;\n\nSystem.out.println(name);\nSystem.out.println(\"score\");\nSystem.out.println(\"score = \" + score);\nSystem.out.print(\"points = \" + points);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`score`\n`score`\n`score = 8`\n`points = 4.5`"
+      },
+      {
+        "label": "B",
+        "text": "`name`\n`score`\n`score = score`\n`points = points`"
+      },
+      {
+        "label": "C",
+        "text": "`score score score = 8 points = 4.5`"
+      },
+      {
+        "label": "D",
+        "text": "`8`\n`8`\n`score = 8`\n`points = 4.5`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`name` stores the String value `\"score\"`, and text inside quotation marks is printed literally. Option C ignores the new lines produced by `println`, while B and D confuse variable names with their stored values.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_2",
+    "stem": "Which of the following is a valid Java variable declaration and initialization?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`int 2ndScore = 10;`"
+      },
+      {
+        "label": "B",
+        "text": "`double averageScore = 4;`"
+      },
+      {
+        "label": "C",
+        "text": "`boolean finished = \"false\";`"
+      },
+      {
+        "label": "D",
+        "text": "`String class = \"AP\";`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An `int` value can be stored in a `double` variable as `4.0`. A variable name cannot start with a digit, a `boolean` cannot store a String literal, and `class` is a reserved Java keyword.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  }
+]

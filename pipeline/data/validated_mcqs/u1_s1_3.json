@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 19;\nint y = 5;\nSystem.out.println(x / y);\nSystem.out.println(x % y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3` followed by `3`"
+      },
+      {
+        "label": "B",
+        "text": "`3.8` followed by `4`"
+      },
+      {
+        "label": "C",
+        "text": "`3` followed by `4`"
+      },
+      {
+        "label": "D",
+        "text": "`4` followed by `4`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Integer division 19 / 5 truncates to 3 (5 \u00d7 3 = 15, remainder 4), and 19 % 5 gives that remainder: 4. Option A confuses the modulo result with the quotient. Option B incorrectly applies floating-point division for /. Option D rounds the quotient up instead of truncating.",
+    "difficulty": 1,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 3;\nint b = 4;\nint c = 2;\nSystem.out.println(a + b * c);\nSystem.out.println((a + b) * c);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`11` followed by `14`"
+      },
+      {
+        "label": "B",
+        "text": "`14` followed by `14`"
+      },
+      {
+        "label": "C",
+        "text": "`14` followed by `11`"
+      },
+      {
+        "label": "D",
+        "text": "`11` followed by `11`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In the first expression `*` has higher precedence than `+`, so `b * c = 8` is computed first, then `3 + 8 = 11`. In the second, parentheses force `(a + b) = 7` first, then `7 * 2 = 14`. Option B applies left-to-right evaluation without respecting precedence in line 1. Option D ignores the parentheses in line 2.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 4;\nint y = 7;\nSystem.out.println(x + y + \" is the sum\");\nSystem.out.println(\"The sum is \" + x + y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`11 is the sum` followed by `The sum is 11`"
+      },
+      {
+        "label": "B",
+        "text": "`11 is the sum` followed by `The sum is 47`"
+      },
+      {
+        "label": "C",
+        "text": "`47 is the sum` followed by `The sum is 47`"
+      },
+      {
+        "label": "D",
+        "text": "`47 is the sum` followed by `The sum is 11`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Line 1: `x + y` are both `int`, so integer addition occurs first (4 + 7 = 11), then 11 is concatenated: `\"11 is the sum\"`. Line 2: `\"The sum is \"` is a String, so left-to-right concatenation gives `\"The sum is 4\"` then `\"The sum is 47\"`. Option A incorrectly applies integer addition in line 2. Option C incorrectly concatenates in line 1 instead of adding the two ints.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "What is the output of the following code?\n\n```java\ndouble d = 9.7;\nint n = (int) d;\nSystem.out.println(n);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`9.7`"
+      },
+      {
+        "label": "B",
+        "text": "`9.0`"
+      },
+      {
+        "label": "C",
+        "text": "`10`"
+      },
+      {
+        "label": "D",
+        "text": "`9`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Casting a `double` to `int` in Java truncates toward zero \u2014 it drops the decimal portion without rounding. So `(int) 9.7` produces `9`. Option C is the result of rounding, which casting does not do. Options A and B are wrong because `n` is declared `int`, so its `println` output has no decimal point.",
+    "difficulty": 1,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "What is printed by the following code?\n\n```java\nint a = 7;\nint b = 2;\ndouble result = a / b;\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3.5`"
+      },
+      {
+        "label": "B",
+        "text": "`3.0`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`4.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Because `a` and `b` are both `int`, `a / b` performs integer division first, yielding `3`. That `int` is then widened to `double` when stored in `result`, making it `3.0`. The declaration of `result` as `double` does not promote the division itself to floating-point. Option A would require at least one operand to be `double` before the division. Option D would require rounding.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Determine the values of `c` and `d` after the following code runs:\n\n```java\nint a = 5;\nint b = 2;\ndouble c = (double)(a / b);\ndouble d = (double) a / b;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`c = 2.0, d = 2.5`"
+      },
+      {
+        "label": "B",
+        "text": "`c = 2.5, d = 2.5`"
+      },
+      {
+        "label": "C",
+        "text": "`c = 2.0, d = 2.0`"
+      },
+      {
+        "label": "D",
+        "text": "`c = 2.5, d = 2.0`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "For `c`: the cast is outside the parentheses, so `a / b` executes as integer division first (5 / 2 = 2), then `(double) 2` widens to `2.0`. For `d`: the cast applies only to `a`, making it `5.0`; `5.0 / 2` is then floating-point division, yielding `2.5`. Options B and D incorrectly apply double division for `c`. Option C incorrectly applies integer division for `d`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Consider the following method:\n\n```java\npublic static double fraction(int a, int b) {\n    return a / b;\n}\n```\n\nWhat value does the call `fraction(5, 2)` return?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2.5`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`2.0`"
+      },
+      {
+        "label": "D",
+        "text": "`3.0`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Inside the method, `a` and `b` are `int` parameters, so `a / b` is integer division: 5 / 2 = 2. That `int` is then implicitly widened to `double` on the `return`, producing `2.0`. The declared return type `double` does not change how the division operands are evaluated. Option A would require at least one operand to be `double`. Option D would require rounding up.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Consider the following code intended to compute the average of two scores:\n\n```java\nint score1 = 80;\nint score2 = 90;\ndouble avg = score1 + score2 / 2;\n```\n\nWhat value is stored in `avg`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`85.0`"
+      },
+      {
+        "label": "B",
+        "text": "`45.0`"
+      },
+      {
+        "label": "C",
+        "text": "`170.0`"
+      },
+      {
+        "label": "D",
+        "text": "`125.0`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Because `/` has higher precedence than `+`, `score2 / 2` is evaluated first: 90 / 2 = 45 (exact integer division). Then `score1 + 45 = 125`, which is widened to `125.0`. The intended average requires `(score1 + score2) / 2.0`. Option A is the mathematically correct average but is not what this code computes. Option B is just `score2 / 2` without adding `score1`.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Which of the following expressions evaluates to the **last digit** of a positive integer `n`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`n / 10`"
+      },
+      {
+        "label": "B",
+        "text": "`n % 10`"
+      },
+      {
+        "label": "C",
+        "text": "`n % 100`"
+      },
+      {
+        "label": "D",
+        "text": "`n / 100`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`n % 10` gives the remainder when `n` is divided by 10, which is always the ones digit (e.g., 2567 % 10 = 7). Option A uses integer division to remove the last digit, returning the remaining number. Option C gives the last two digits. Option D removes the last two digits via integer division.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "What happens when the following statement executes in Java?\n\n```java\nint result = 5 / 0;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The result is `0` and execution continues normally."
+      },
+      {
+        "label": "B",
+        "text": "The result is `Infinity` and execution continues normally."
+      },
+      {
+        "label": "C",
+        "text": "An `ArithmeticException` is thrown at run time."
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error is reported and the program will not run."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Integer division by zero throws an `ArithmeticException` at run time. Option B describes floating-point behavior (`5.0 / 0.0` produces `Infinity`), which does not apply to `int` division. Option D is incorrect because the Java compiler does not detect a divide-by-zero with literal values as an error; the exception occurs only during execution.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "What is the value of the expression `\"5\" + 3 + 2` in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`53`"
+      },
+      {
+        "label": "C",
+        "text": "`55`"
+      },
+      {
+        "label": "D",
+        "text": "`532`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The `+` operator is left-associative. First, `\"5\" + 3` concatenates to `\"53\"` (String + int \u2192 String). Then `\"53\" + 2` concatenates to `\"532\"`. Option A treats `\"5\"` as the number 5 and performs numeric addition. Option C is the common mistake of evaluating `3 + 2 = 5` first (right-to-left), then `\"5\" + 5 = \"55\"` \u2014 but Java evaluates left-to-right. Option B stops after the first concatenation and ignores `+ 2`.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "What is the output of the following code?\n\n```java\nint x = 12;\nx += 4;\nx /= 2;\nx -= 3;\nSystem.out.println(x);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`13`"
+      },
+      {
+        "label": "D",
+        "text": "`7`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Tracing sequentially: `x = 12`, then `x += 4` \u2192 `x = 16`, then `x /= 2` \u2192 `x = 8`, then `x -= 3` \u2192 `x = 5`. Option B forgets the final `x -= 3`. Option C skips the `x /= 2` step (12 + 4 \u2212 3 = 13). Option D applies `/=` before `+=` (12 / 2 = 6, 6 + 4 = 10, 10 \u2212 3 = 7), which ignores the sequential top-to-bottom order of the statements.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Determine the value of `z` after the following code executes.\n\n```java\nint x = 13;\nint y = 4;\nint z = x / y + x % y * 2;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`8`"
+      },
+      {
+        "label": "D",
+        "text": "`9`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Multiplicative operators (/, %, *) share the same precedence and associate left-to-right; + is lower precedence. So the expression parses as (x/y) + ((x%y)*2). x/y = 13/4 = 3 (integer division); x%y = 13%4 = 1; 1*2 = 2; z = 3+2 = 5. Option A (3) discards the x%y*2 term entirely. Option C (8) misreads precedence, computing (x/y + x%y)*2 = (3+1)*2 = 8. Option D (9) confuses % with / and computes x%y as 3, giving 3+3*2 = 9.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 4;\nint b = 3;\nSystem.out.println(\"Result: \" + a + b);\nSystem.out.println(a + b + \" is the sum\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\nResult: 43\n7 is the sum\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\nResult: 7\n7 is the sum\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\nResult: 43\n43 is the sum\n```"
+      },
+      {
+        "label": "D",
+        "text": "```\nResult: 7\n43 is the sum\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Concatenation with + evaluates strictly left-to-right. Line 1: \"Result: \" + 4 yields the String \"Result: 4\"; then + 3 appends the digit, giving \"Result: 43\". Line 2: both operands of the first + are int, so 4+3 = 7 (numeric addition); then 7 + \" is the sum\" yields \"7 is the sum\". Option B incorrectly treats line 1 as arithmetic. Option C incorrectly carries the string concatenation behavior into line 2. Option D swaps both behaviors.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Which of the following expressions evaluates to the **ones digit** (last digit) of a positive integer `n`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`n / 10`"
+      },
+      {
+        "label": "B",
+        "text": "`n % 10`"
+      },
+      {
+        "label": "C",
+        "text": "`n % 100`"
+      },
+      {
+        "label": "D",
+        "text": "`n / 100`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The % operator returns the remainder after integer division. n % 10 yields the remainder when n is divided by 10, which is always the ones digit (e.g., 347 % 10 = 7). n / 10 performs integer division, removing the ones digit (e.g., 347 / 10 = 34). n % 100 returns the last two digits. n / 100 removes the last two digits.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Determine the values of `x` and `y` after the following code executes.\n\n```java\nint p = 9;\nint q = 4;\ndouble x = p / q;\ndouble y = (double) p / q;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 2.0, y = 2.25`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 2.25, y = 2.25`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 2.0, y = 2.0`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 2.25, y = 2.0`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "For x: both p and q are int, so p/q = 9/4 = 2 (integer division truncates); the int 2 is then widened to 2.0 when stored in the double variable x. For y: the cast (double)p converts p to 9.0 before the division, making it floating-point: 9.0/4 = 2.25. Option B incorrectly applies floating-point division to x. Option C incorrectly applies integer division to y. Option D swaps the two results.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "A student writes the following code to compute a test score as a percentage. The code compiles but prints `0.0` instead of the expected `70.0`. Which of the following BEST explains the error?\n\n```java\nint total = 50;\nint correct = 35;\ndouble score = correct / total * 100.0;\nSystem.out.println(score);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`score` should be declared as `int` instead of `double` to match the type of `correct` and `total`."
+      },
+      {
+        "label": "B",
+        "text": "`correct / total` performs integer division and evaluates to `0` before being multiplied by `100.0`."
+      },
+      {
+        "label": "C",
+        "text": "The multiplication `* 100.0` must appear before the division to prevent integer overflow."
+      },
+      {
+        "label": "D",
+        "text": "`System.out.println` cannot display `double` values and should be replaced with `System.out.print`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Both `correct` and `total` are declared as int, so `correct / total` = 35/50 = 0 (integer division truncates; 35 < 50, so the quotient is 0). The result 0 is then multiplied by 100.0, yielding 0.0. The fix is `(double) correct / total * 100.0`. Option A is wrong because the declared type of `score` does not change how the right-hand-side expression is evaluated. Option C invents a false overflow concern; reordering the multiplication does not address the integer-division issue. Option D is false; `println` handles double values without issue.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 19;\nint b = 4;\nSystem.out.println(a / b);\nSystem.out.println(a % b);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`\n`3`"
+      },
+      {
+        "label": "B",
+        "text": "`4.75`\n`3`"
+      },
+      {
+        "label": "C",
+        "text": "`5`\n`3`"
+      },
+      {
+        "label": "D",
+        "text": "`4`\n`0`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Integer division `19 / 4` truncates toward zero, yielding `4` (not 4.75). The remainder `19 % 4` equals `3` because 19 = 4 \u00d7 4 + 3. Option B incorrectly applies floating-point division to two `int` operands; option C rounds up instead of truncating; option D incorrectly computes the modulo as 0.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 5;\nint y = 3;\nSystem.out.println(x + y + \" items\");\nSystem.out.println(\"total: \" + x + y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`8 items`\n`total: 53`"
+      },
+      {
+        "label": "B",
+        "text": "`53 items`\n`total: 8`"
+      },
+      {
+        "label": "C",
+        "text": "`8 items`\n`total: 8`"
+      },
+      {
+        "label": "D",
+        "text": "`53 items`\n`total: 53`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The `+` operator evaluates left-to-right. In `x + y + \" items\"`, both `x` and `y` are `int`, so `5 + 3 = 8` first; then `8 + \" items\"` \u2192 `\"8 items\"`. In `\"total: \" + x + y`, the leftmost `+` produces `\"total: 5\"`, then `\"total: 5\" + 3` \u2192 `\"total: 53\"`. Options B and D swap the two rules; option C incorrectly applies numeric addition to both expressions.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Determine the values of `x` and `y` after the following code executes:\n\n```java\nint a = 9;\nint b = 4;\ndouble x = a / b;\ndouble y = (double) a / b;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 2.0, y = 2.25`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 2.25, y = 2.25`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 2.0, y = 2.0`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 2.0, y = 2.5`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In `x = a / b`, both operands are `int`, so integer division occurs first (9 / 4 = 2), and the result is widened to `2.0` when stored in the `double` variable. In `y = (double) a / b`, the cast promotes `a` to `9.0` before division, forcing floating-point arithmetic: `9.0 / 4 = 2.25`. Option B incorrectly treats `x` as a floating-point division; option C applies integer division to both; option D computes the wrong floating-point quotient.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "What is the value of the following Java expression?\n\n`2 + 3 * 4 / 2`",
+    "options": [
+      {
+        "label": "A",
+        "text": "`8`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`14`"
+      },
+      {
+        "label": "D",
+        "text": "`20`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`*` and `/` have higher precedence than `+`, and operators of equal precedence associate left-to-right. Evaluating: `3 * 4 = 12`, then `12 / 2 = 6`, then `2 + 6 = 8`. Option B results from incorrectly applying left-to-right without precedence rules: `(2 + 3) * 4 / 2 = 10`. Option C forgets the `/ 2` step: `2 + 12 = 14`. Option D evaluates `(2 + 3) * 4 = 20` and drops the division entirely.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "What happens when the following code is executed?\n\n```java\nint x = 10;\nint y = 0;\nSystem.out.println(x / y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Prints `0`"
+      },
+      {
+        "label": "B",
+        "text": "Prints `Infinity`"
+      },
+      {
+        "label": "C",
+        "text": "Throws an `ArithmeticException` at runtime"
+      },
+      {
+        "label": "D",
+        "text": "Prints `10`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Integer division by zero throws an `ArithmeticException` at runtime in Java. Option B (`Infinity`) is what floating-point (`double`) division by zero produces \u2014 integer division has no such result and crashes instead. Options A and D are not possible outcomes for integer division by zero.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint n = 4567;\nint tens = n % 100 / 10;\nint hundreds = n / 100 % 10;\nSystem.out.println(tens);\nSystem.out.println(hundreds);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`\n`5`"
+      },
+      {
+        "label": "B",
+        "text": "`6`\n`4`"
+      },
+      {
+        "label": "C",
+        "text": "`7`\n`5`"
+      },
+      {
+        "label": "D",
+        "text": "`5`\n`6`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "For `tens`: `4567 % 100 = 67` (last two digits), then `67 / 10 = 6` (integer division isolates the tens digit). For `hundreds`: `4567 / 100 = 45` (removes last two digits), then `45 % 10 = 5` (extracts the hundreds digit of the original). Option B confuses `45 % 10` with `45 / 10 = 4`; option C returns the ones digit `7` instead of the tens digit `6`; option D reverses the two printed values.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Evaluate the following expression: `18 / 5 + 18 % 5 * 2`",
+    "options": [
+      {
+        "label": "A",
+        "text": "`7`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`9`"
+      },
+      {
+        "label": "D",
+        "text": "`10`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`18 / 5` evaluates to `3` because integer division truncates, and `18 % 5` evaluates to `3`; then `3 + 3 * 2` is `9`. The other choices come from using normal decimal division or applying the operators in the wrong order.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 4;\nint b = 9;\ndouble c = b / a;\nb = b % a + 2;\na = a * b;\nSystem.out.println(\"a=\" + a + \", b=\" + b + \", c=\" + c);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a=12, b=3, c=2.0`"
+      },
+      {
+        "label": "B",
+        "text": "`a=12, b=3, c=2.25`"
+      },
+      {
+        "label": "C",
+        "text": "`a=20, b=5, c=2.0`"
+      },
+      {
+        "label": "D",
+        "text": "`a=20, b=5, c=2.25`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`b / a` is integer division, so `c` becomes `2.0`; then `b` becomes `9 % 4 + 2`, or `3`, and `a` becomes `4 * 3`, or `12`. Choices B and D use decimal division, while C and D miscalculate the remainder assignment.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  }
+]

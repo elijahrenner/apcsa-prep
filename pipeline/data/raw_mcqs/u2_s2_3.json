@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 15;\nif (x < 10)\n{\n    System.out.println(\"small\");\n}\nelse if (x < 20)\n{\n    System.out.println(\"medium\");\n}\nelse\n{\n    System.out.println(\"large\");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`small`"
+      },
+      {
+        "label": "B",
+        "text": "`large`"
+      },
+      {
+        "label": "C",
+        "text": "`small` followed by `medium`"
+      },
+      {
+        "label": "D",
+        "text": "`medium`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "x = 15. The first condition x < 10 is false, so that block is skipped. The second condition x < 20 is true, so \"medium\" is printed and the else block is never reached. Distractor C is impossible because at most one branch of an else if chain executes.",
+    "difficulty": 1,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Which of the following best describes how an `if` / `else if` / `else` chain behaves when more than one condition evaluates to `true`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Every block whose condition is `true` executes in order from top to bottom."
+      },
+      {
+        "label": "B",
+        "text": "Only the block corresponding to the first `true` condition executes; the remaining conditions are not evaluated."
+      },
+      {
+        "label": "C",
+        "text": "Only the block corresponding to the last `true` condition executes."
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because overlapping conditions are not permitted."
+      }
+    ],
+    "answer": "B",
+    "explanation": "In an if/else if/else chain, Java evaluates conditions top to bottom and executes the body of the first condition that is true, then exits the entire chain without testing the remaining conditions. Options A and C describe incorrect behaviors; option D is wrong because Java places no restriction on conditions that overlap.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint score = 82;\nString grade = \"\";\nif (score >= 90)\n    grade = \"A\";\nelse if (score >= 80)\n    grade = \"B\";\nelse if (score >= 70)\n    grade = \"C\";\nelse\n    grade = \"F\";\nSystem.out.println(grade);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`B`"
+      },
+      {
+        "label": "B",
+        "text": "`A`"
+      },
+      {
+        "label": "C",
+        "text": "`C`"
+      },
+      {
+        "label": "D",
+        "text": "`F`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "score = 82. The condition score >= 90 is false (82 < 90). The condition score >= 80 is true, so grade is set to \"B\" and the remaining else if branches are skipped. Distractor C would result if score were between 70 and 79; distractor D would result only if all three conditions were false.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the output of the following code. (Consider which `if` the `else` is paired with.)\n\n```java\nint a = 5;\nint b = 10;\nif (a > 3)\n    if (b > 15)\n        System.out.println(\"X\");\nelse\n    System.out.println(\"Y\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`X`"
+      },
+      {
+        "label": "B",
+        "text": "`Y`"
+      },
+      {
+        "label": "C",
+        "text": "`XY`"
+      },
+      {
+        "label": "D",
+        "text": "Nothing is printed."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The dangling else pairs with the nearest unmatched if \u2014 the inner `if (b > 15)`, not the outer `if (a > 3)`. Because a > 3 is true, the inner if/else is entered; b > 15 is false (10 is not greater than 15), so the inner else executes and prints \"Y\". Distractor D is wrong because the outer if is true, and the inner else does run.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the value of `result` after the following code executes:\n\n```java\nint n = 7;\nint result = 0;\nif (n % 2 == 0)\n{\n    result = 1;\n}\nelse if (n % 3 == 0)\n{\n    result = 2;\n}\nelse if (n % 7 == 0)\n{\n    result = 3;\n}\nelse\n{\n    result = 4;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`result = 1`"
+      },
+      {
+        "label": "B",
+        "text": "`result = 2`"
+      },
+      {
+        "label": "C",
+        "text": "`result = 3`"
+      },
+      {
+        "label": "D",
+        "text": "`result = 4`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "n = 7. Evaluating in order: 7 % 2 = 1 (not 0, so false); 7 % 3 = 1 (not 0, so false); 7 % 7 = 0 (true), so result is set to 3 and the else block is never reached. Distractor D would apply only if none of the three conditions were satisfied.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 6;\nint y = 4;\nif (x > 10)\n{\n    System.out.println(\"A\");\n}\nelse if (x > 4)\n{\n    if (y > 5)\n    {\n        System.out.println(\"B\");\n    }\n    else\n    {\n        System.out.println(\"C\");\n    }\n}\nelse\n{\n    System.out.println(\"D\");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`A`"
+      },
+      {
+        "label": "B",
+        "text": "`B`"
+      },
+      {
+        "label": "C",
+        "text": "`C`"
+      },
+      {
+        "label": "D",
+        "text": "`D`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "x = 6, y = 4. The outer condition x > 10 is false. The else if condition x > 4 is true (6 > 4), so the nested block is entered. Inside, y > 5 is false (4 is not greater than 5), so the inner else executes and prints \"C\". Distractor B would print only if y were greater than 5; distractor D would print only if x were 4 or less.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Suppose `x = 7` and `count = 0` before each segment executes.\n\n**Segment I** \u2014 three independent `if` statements:\n```java\nif (x > 0) count++;\nif (x > 5) count++;\nif (x > 10) count++;\n```\n\n**Segment II** \u2014 an `else if` chain:\n```java\nif (x > 0) count++;\nelse if (x > 5) count++;\nelse if (x > 10) count++;\n```\n\nWhat is the value of `count` after each segment executes?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Segment I: `count = 2`; Segment II: `count = 2`"
+      },
+      {
+        "label": "B",
+        "text": "Segment I: `count = 3`; Segment II: `count = 1`"
+      },
+      {
+        "label": "C",
+        "text": "Segment I: `count = 1`; Segment II: `count = 1`"
+      },
+      {
+        "label": "D",
+        "text": "Segment I: `count = 2`; Segment II: `count = 1`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Segment I has three independent if statements each evaluated separately: x > 0 (true, count = 1), x > 5 (true, count = 2), x > 10 (false, no change) \u2014 final count = 2. Segment II is an else if chain: x > 0 is true so count = 1, and the two else if conditions are never evaluated \u2014 final count = 1. Distractor A incorrectly applies Segment I logic to Segment II; distractor B overcounts Segment I since x > 10 is false.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint temp = 85;\nString weather = \"\";\nif (temp >= 90)\n{\n    weather = \"hot\";\n}\nelse if (temp >= 80)\n{\n    weather = \"warm\";\n}\nelse if (temp >= 70)\n{\n    weather = \"mild\";\n}\nelse\n{\n    weather = \"cold\";\n}\nSystem.out.println(weather);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`warm`"
+      },
+      {
+        "label": "B",
+        "text": "`hot`"
+      },
+      {
+        "label": "C",
+        "text": "`mild`"
+      },
+      {
+        "label": "D",
+        "text": "`cold`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "temp = 85. The condition temp >= 90 is false. The condition temp >= 80 is true (85 >= 80), so weather is set to \"warm\" and the chain exits. Although temp >= 70 is also true, that condition is never evaluated once the second branch is taken. Distractor C is the primary trap for students who think all matching branches execute.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "What is the output of the following code? (Observe the indentation versus the actual block structure.)\n\n```java\nint score = 65;\nif (score >= 70)\n    System.out.println(\"Pass\");\n    System.out.println(\"Good job!\");\nSystem.out.println(\"Done\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Good job!` then `Done`"
+      },
+      {
+        "label": "B",
+        "text": "`Pass` then `Good job!` then `Done`"
+      },
+      {
+        "label": "C",
+        "text": "`Done` only"
+      },
+      {
+        "label": "D",
+        "text": "`Pass` then `Done`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Without braces, only the single next statement \u2014 `System.out.println(\"Pass\")` \u2014 belongs to the if body. Because score = 65 < 70, that statement is skipped. However, `System.out.println(\"Good job!\")` is outside the if body despite its indentation, so it always executes, as does `System.out.println(\"Done\")`. This is the classic missing-braces pitfall.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the output of the following code:\n\n```java\nString day = \"Monday\";\nif (day.equals(\"Saturday\") || day.equals(\"Sunday\"))\n{\n    System.out.println(\"Weekend\");\n}\nelse if (day.equals(\"Monday\"))\n{\n    System.out.println(\"Start of week\");\n}\nelse if (day.equals(\"Friday\"))\n{\n    System.out.println(\"End of week\");\n}\nelse\n{\n    System.out.println(\"Midweek\");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Midweek`"
+      },
+      {
+        "label": "B",
+        "text": "`End of week`"
+      },
+      {
+        "label": "C",
+        "text": "`Weekend`"
+      },
+      {
+        "label": "D",
+        "text": "`Start of week`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "day = \"Monday\". The first condition checks whether day equals \"Saturday\" or \"Sunday\" \u2014 both comparisons return false, so that block is skipped. The else if condition day.equals(\"Monday\") returns true, so \"Start of week\" is printed and the chain exits. Using .equals() is correct here because String content equality is required.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the value of `r` after the following code executes:\n\n```java\nint p = 3;\nint q = 9;\nint r = 0;\nif (p > q)\n{\n    r = p + q;\n}\nelse if (p * 3 == q)\n{\n    r = p * q;\n}\nelse if (q % p == 0)\n{\n    r = q - p;\n}\nelse\n{\n    r = p + q + 1;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`r = 12`"
+      },
+      {
+        "label": "B",
+        "text": "`r = 6`"
+      },
+      {
+        "label": "C",
+        "text": "`r = 27`"
+      },
+      {
+        "label": "D",
+        "text": "`r = 13`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "p = 3, q = 9. The first condition p > q is 3 > 9 = false. The second condition p * 3 == q evaluates to 9 == 9 = true, so r = p * q = 3 * 9 = 27 and the chain exits. Note that the third condition q % p == 0 (9 % 3 = 0) is also true but is never tested once the second branch matches. Distractor B (r = 6 = q \u2212 p) would result from the third branch; distractor D (r = 13) from the else.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 4;\nint y = 6;\nString out = \"\";\nif (x > y)\n{\n    out = \"alpha\";\n}\nelse if (x + y > 9)\n{\n    out = \"beta\";\n}\nelse if (x * y > 20)\n{\n    out = \"gamma\";\n}\nelse\n{\n    out = \"delta\";\n}\nSystem.out.println(out);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`alpha`"
+      },
+      {
+        "label": "B",
+        "text": "`beta`"
+      },
+      {
+        "label": "C",
+        "text": "`gamma`"
+      },
+      {
+        "label": "D",
+        "text": "`betagamma`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "x = 4, y = 6. The condition x > y is 4 > 6 = false. The condition x + y > 9 is 10 > 9 = true, so out is set to \"beta\" and the chain exits without evaluating further conditions. Although x * y = 24 > 20 is also true, that condition is never reached. Distractor C (\"gamma\") is the primary trap for students who believe all true conditions execute; distractor D is impossible because exactly one branch of an else if chain can run.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "What is printed after the following code is executed?\n\n```java\nint score = 85;\nString grade;\nif (score >= 90)\n    grade = \"A\";\nelse if (score >= 80)\n    grade = \"B\";\nelse if (score >= 70)\n    grade = \"C\";\nelse\n    grade = \"F\";\nSystem.out.println(grade);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`A`"
+      },
+      {
+        "label": "B",
+        "text": "`F`"
+      },
+      {
+        "label": "C",
+        "text": "`C`"
+      },
+      {
+        "label": "D",
+        "text": "`B`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "score is 85. The first condition (85 >= 90) is false and is skipped. The second condition (85 >= 80) is true, so grade is assigned \"B\" and the remaining else-if and else branches are never evaluated. A is wrong because 85 < 90; C is wrong because the chain stops at the first true branch before the >= 70 check is ever reached; B is wrong because the >= 80 condition is satisfied.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "What is printed after the following code is executed?\n\n```java\nint n = 12;\nint result = 0;\nif (n % 5 == 0)\n    result = 1;\nelse if (n % 4 == 0)\n    result = 2;\nelse if (n % 3 == 0)\n    result = 3;\nelse\n    result = 4;\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "12 % 5 = 2, not 0, so the first branch is skipped. 12 % 4 = 0, so result is set to 2 and the rest of the chain is bypassed \u2014 even though 12 % 3 = 0 is also true, that branch is never reached because only the first matching branch executes. B is the key trap: students who believe all true branches execute would expect result = 3 (the last truthy assignment). D assumes no condition matched.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Which of the following best describes the execution behavior of a Java `else if` chain?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Conditions are evaluated in order; the first condition that is true causes its branch to execute, and no further conditions in the chain are evaluated."
+      },
+      {
+        "label": "B",
+        "text": "All conditions in the chain are evaluated, and every branch whose condition is true executes."
+      },
+      {
+        "label": "C",
+        "text": "All conditions are evaluated first; then only the branch with the first true condition executes."
+      },
+      {
+        "label": "D",
+        "text": "Conditions are evaluated in order; the last condition that is true determines which branch executes."
+      }
+    ],
+    "answer": "A",
+    "explanation": "In a Java else-if chain, conditions are tested sequentially from top to bottom. The moment one evaluates to true, its branch runs and the remainder of the chain \u2014 including all subsequent conditions \u2014 is entirely skipped. B is wrong because later conditions are not evaluated once a true condition is found. C is wrong because it implies all conditions are checked before any branch runs. D is wrong because it is the first, not the last, true branch that executes.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "What is printed after the following code is executed?\n\n```java\nint a = 6;\nint b = 3;\nString out = \"\";\nif (a > 5)\n{\n    if (b > 4)\n        out += \"X\";\n    else if (b > 2)\n        out += \"Y\";\n    else\n        out += \"Z\";\n}\nelse if (a > 3)\n    out += \"W\";\nelse\n    out += \"V\";\nSystem.out.println(out);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`W`"
+      },
+      {
+        "label": "B",
+        "text": "`Y`"
+      },
+      {
+        "label": "C",
+        "text": "`YW`"
+      },
+      {
+        "label": "D",
+        "text": "`X`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "a = 6 satisfies a > 5, so the outer else-if (a > 3) and else are never reached. Inside the outer if block, b = 3 does not satisfy b > 4 (first inner branch) but does satisfy b > 2 (second inner branch), so out becomes \"Y\". A is wrong because the outer else-if is never evaluated once the outer if is true. C is wrong because two branches in the same else-if chain cannot both execute. D is wrong because b = 3 does not satisfy b > 4.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "What is printed after the following code is executed?\n\n```java\nint x = 7;\nif (x > 5)\n    if (x > 8)\n        System.out.println(\"big\");\nelse\n    System.out.println(\"small\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`big`"
+      },
+      {
+        "label": "B",
+        "text": "Nothing is printed."
+      },
+      {
+        "label": "C",
+        "text": "`small`"
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs due to the ambiguous `else`."
+      }
+    ],
+    "answer": "C",
+    "explanation": "In Java an else always pairs with the nearest preceding unmatched if, regardless of indentation. The else belongs to the inner if (x > 8), not the outer if (x > 5). With x = 7: x > 5 is true so the inner if is evaluated; x > 8 is false so the inner else executes, printing \"small\". B is the classic dangling-else trap \u2014 students who mistakenly pair the else with the outer if conclude that since x > 5 is true, the else will not run. D is wrong because Java compiles this without error.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint score = 85;\nString grade;\nif (score >= 90)\n    grade = \"A\";\nelse if (score >= 80)\n    grade = \"B\";\nelse if (score >= 70)\n    grade = \"C\";\nelse\n    grade = \"F\";\nSystem.out.println(grade);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`A`"
+      },
+      {
+        "label": "B",
+        "text": "`B`"
+      },
+      {
+        "label": "C",
+        "text": "`C`"
+      },
+      {
+        "label": "D",
+        "text": "`F`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "score is 85. The first condition (85 >= 90) is false. The second condition (85 >= 80) is true, so grade is assigned \"B\" and all remaining branches are skipped. A is wrong because 85 < 90. C is wrong because the else-if at >= 80 fires before the >= 70 branch is ever reached. D is wrong because the trailing else only executes when every prior condition is false.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the value of `result` after the following code executes:\n\n```java\nint n = 6;\nint result = 0;\nif (n % 4 == 0)\n    result = 1;\nelse if (n % 3 == 0)\n    result = 2;\nelse if (n % 2 == 0)\n    result = 3;\nelse\n    result = 4;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "n = 6. The first condition 6 % 4 == 0 is false (6 % 4 = 2). The second condition 6 % 3 == 0 is true (6 % 3 = 0), so result = 2 and all remaining branches are skipped. C is the key trap: although 6 is even (6 % 2 == 0), the n % 3 == 0 branch fires first, so the n % 2 == 0 branch is never evaluated.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 5;\nif (x > 10)\n    if (x > 3)\n        System.out.println(\"inner\");\n    else\n        System.out.println(\"outer else\");\nSystem.out.println(\"end\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`inner`\n`end`"
+      },
+      {
+        "label": "B",
+        "text": "`outer else`\n`end`"
+      },
+      {
+        "label": "C",
+        "text": "`end`"
+      },
+      {
+        "label": "D",
+        "text": "`inner`\n`outer else`\n`end`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "x = 5. The outer condition (5 > 10) is false, so Java skips the entire body of the outer if \u2014 including both the inner if and its associated else \u2014 and jumps directly to System.out.println(\"end\"). B is the dangling-else trap: the else pairs with the nearest unmatched if (the inner if, not the outer one), but that distinction is irrelevant here because the outer condition prevents the inner block from being entered at all.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "The following code is intended to assign a letter grade so that a score of 90 or above earns `\"A\"`, 80\u201389 earns `\"B\"`, 70\u201379 earns `\"C\"`, 60\u201369 earns `\"D\"`, and below 60 earns `\"F\"`. When `score` is `95`, the code prints `\"D\"` instead of `\"A\"`. What is the cause of the bug?\n\n```java\nint score = 95;\nString grade;\nif (score >= 60)\n    grade = \"D\";\nelse if (score >= 70)\n    grade = \"C\";\nelse if (score >= 80)\n    grade = \"B\";\nelse if (score >= 90)\n    grade = \"A\";\nelse\n    grade = \"F\";\nSystem.out.println(grade);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The conditions are ordered from lowest threshold to highest; any passing score satisfies the first condition and receives `\"D\"` before the higher thresholds are ever checked."
+      },
+      {
+        "label": "B",
+        "text": "Using `else if` makes all branches after the first unreachable regardless of the order of conditions."
+      },
+      {
+        "label": "C",
+        "text": "The variable `grade` must be initialized to `\"F\"` before the chain so the correct default value is used."
+      },
+      {
+        "label": "D",
+        "text": "The `>=` operators should be replaced with `>` to eliminate overlap between consecutive thresholds."
+      }
+    ],
+    "answer": "A",
+    "explanation": "In an else-if chain the first branch whose condition is true executes and all others are skipped. Because score >= 60 is checked first and 95 >= 60 is true, grade is set to \"D\" immediately. The fix is to order conditions from highest threshold (>= 90) down to lowest so that high scores match the correct branch before lower thresholds can intercept them. B is wrong \u2014 else-if works correctly when conditions are properly ordered. C affects only the unmatched case; it does not fix which branch fires. D is incorrect because >= correctly models inclusive boundaries.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Which of the following correctly describes the execution behavior of a Java `if` / `else if` / `else` chain?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Every branch whose condition evaluates to `true` will execute."
+      },
+      {
+        "label": "B",
+        "text": "The first branch whose condition evaluates to `true` executes; all remaining branches are skipped."
+      },
+      {
+        "label": "C",
+        "text": "All branches are evaluated in order and the last branch whose condition evaluates to `true` executes."
+      },
+      {
+        "label": "D",
+        "text": "All branches always execute from top to bottom regardless of their conditions."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java evaluates the conditions of an else-if chain from top to bottom and executes exactly the body of the first branch whose condition is true, then skips the rest of the chain. A is wrong because only one branch runs. C is wrong because it is the first, not the last, matching condition that wins. D is wrong because the else-if structure is explicitly designed to prevent multiple branches from executing.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 10;\nint b = 20;\nString msg = \"\";\nif (a > b)\n    msg = \"a wins\";\nelse if (a == b)\n    msg = \"tie\";\nelse if (b - a > 5)\n    msg = \"b by a lot\";\nelse\n    msg = \"b barely\";\nSystem.out.println(msg);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a wins`"
+      },
+      {
+        "label": "B",
+        "text": "`tie`"
+      },
+      {
+        "label": "C",
+        "text": "`b by a lot`"
+      },
+      {
+        "label": "D",
+        "text": "`b barely`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "a = 10, b = 20. The first condition (10 > 20) is false. The second (10 == 20) is false. The third evaluates b - a = 10, and 10 > 5 is true, so msg = \"b by a lot\" and the else branch is skipped. D is the trap for students who incorrectly compute the difference or misread the threshold; the actual difference is 10, which clearly exceeds 5.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint score = 84;\nString result = \"\";\n\nif (score >= 90)\n{\n    result += \"A\";\n}\nelse if (score >= 80)\n{\n    result += \"B\";\n    score += 7;\n}\nelse if (score >= 70)\n{\n    result += \"C\";\n}\nelse\n{\n    result += \"D\";\n}\n\nif (score >= 90)\n{\n    result += \"+\";\n}\nelse if (score >= 80)\n{\n    result += \"-\";\n}\nelse\n{\n    result += \"?\";\n}\n\nSystem.out.println(result + \" \" + score);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nB+ 91\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nB- 91\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nA+ 91\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nB 84\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The first matching branch is the `score >= 80` branch, so `B` is added and `score` becomes 91; the second separate conditional then adds `+`. The other choices come from ignoring the score update, rerunning an earlier branch, or stopping before the second conditional.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_3",
+    "stem": "The variable `points` is an `int`. Which of the following code segments correctly assigns `level` to `\"high\"` when `points` is at least 20, `\"medium\"` when `points` is at least 10 but less than 20, and `\"low\"` otherwise?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nif (points >= 20)\n{\n    level = \"high\";\n}\nelse if (points >= 10)\n{\n    level = \"medium\";\n}\nelse\n{\n    level = \"low\";\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nif (points >= 10)\n{\n    level = \"medium\";\n}\nelse if (points >= 20)\n{\n    level = \"high\";\n}\nelse\n{\n    level = \"low\";\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nif (points >= 20)\n{\n    level = \"high\";\n}\nif (points >= 10)\n{\n    level = \"medium\";\n}\nelse\n{\n    level = \"low\";\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nif (points > 20)\n{\n    level = \"high\";\n}\nelse if (points > 10)\n{\n    level = \"medium\";\n}\nelse\n{\n    level = \"low\";\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The conditions must be tested from most restrictive to least restrictive so the first true branch is the correct category. Choice B makes 20 or more medium, choice C can overwrite high with medium, and choice D handles boundary values 20 and 10 incorrectly.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  }
+]

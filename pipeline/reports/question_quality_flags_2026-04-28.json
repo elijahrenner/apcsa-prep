@@ -1,0 +1,141 @@
+{
+  "summary": {
+    "questions": 1265,
+    "issues": 14,
+    "by_severity": {
+      "review": 14
+    },
+    "by_code": {
+      "repeated_method_signature": 11,
+      "short_contextless_stem": 3
+    }
+  },
+  "issues": [
+    {
+      "id": "frq_pr_1_42",
+      "source": "princeton-2025",
+      "type": "frq",
+      "severity": "review",
+      "code": "repeated_method_signature",
+      "detail": "public int roll(); public int runSimulation()",
+      "stem_preview": "This question involves the implementation of a simulation of rolling two dice. A client program will specify the number of rolls of the sample size and the number of faces on each "
+    },
+    {
+      "id": "frq_pr_1_44",
+      "source": "princeton-2025",
+      "type": "frq",
+      "severity": "review",
+      "code": "repeated_method_signature",
+      "detail": "public int getActDate(); public int getStartTime(); public int getEndTime()",
+      "stem_preview": "This question involves the implementation of a travel planner system that is represented by the `TravelPlan` and `Tour` classes. A client will create `Tour` objects that will repre"
+    },
+    {
+      "id": "frq_pr_1_45",
+      "source": "princeton-2025",
+      "type": "frq",
+      "severity": "review",
+      "code": "repeated_method_signature",
+      "detail": "public String getLastName(); public String getFirstName()",
+      "stem_preview": "This question involves the implementation of a class seating chart. A `SeatingChart` object will represent a two-dimensional string array. The number of rows and columns for the ar"
+    },
+    {
+      "id": "frq_pr_2_42",
+      "source": "princeton-2025",
+      "type": "frq",
+      "severity": "review",
+      "code": "repeated_method_signature",
+      "detail": "public boolean isLetterAVowel(String letter); public String convertWord(String word); public String convertPhrase()",
+      "stem_preview": "This question involves writing methods for a `PigLatin` class. The `PigLatin` class stores a phrase in an instance variable and has three methods. The first will detect whether the"
+    },
+    {
+      "id": "frq_pr_2_44",
+      "source": "princeton-2025",
+      "type": "frq",
+      "severity": "review",
+      "code": "repeated_method_signature",
+      "detail": "public int getFactor1(); public int getFactor2(); public ArrayList<FactorPair> buildArrayList(int n)",
+      "stem_preview": "A `factorpair` is constructed from two (possibly non-distinct) numbers whose product is a given number. The `Factors` class constructs and stores all the given `FactorPair` objects"
+    },
+    {
+      "id": "frq_pr_3_42",
+      "source": "princeton-2025",
+      "type": "frq",
+      "severity": "review",
+      "code": "repeated_method_signature",
+      "detail": "public boolean findEmployeeForChild(Child c); public boolean addChild(Child c)",
+      "stem_preview": "A day care has a program to keep track of its employees and which children they teach during the day. An `Employee` has a minimum and maximum age they can teach. The `DayCare` also"
+    },
+    {
+      "id": "frq_pr_3_45",
+      "source": "princeton-2025",
+      "type": "frq",
+      "severity": "review",
+      "code": "repeated_method_signature",
+      "detail": "public boolean parkCar(Car newCar)",
+      "stem_preview": "A city parking lot has a sign that keeps track of how many parking spaces are available in the lot. The class for the parking lot is detailed below.  ```java public class ParkingLo"
+    },
+    {
+      "id": "mcq_pr_2_31",
+      "source": "princeton-2025",
+      "type": "mcq",
+      "severity": "review",
+      "code": "repeated_method_signature",
+      "detail": "public String toString()",
+      "stem_preview": "Questions 32-33 refer to the following class declarations, which are intended to represent performances of plays.  ```java public class Performance {     private String name;     p"
+    },
+    {
+      "id": "mcq_pr_2_32",
+      "source": "princeton-2025",
+      "type": "mcq",
+      "severity": "review",
+      "code": "repeated_method_signature",
+      "detail": "public String toString()",
+      "stem_preview": "Questions 32-33 refer to the following class declarations, which are intended to represent performances of plays.  ```java public class Performance {     private String name;     p"
+    },
+    {
+      "id": "mcq_pr_2_9",
+      "source": "princeton-2025",
+      "type": "mcq",
+      "severity": "review",
+      "code": "short_contextless_stem",
+      "detail": "short stem no code/inline reference",
+      "stem_preview": "Which boolean expression and values demonstrate a short-circuit evaluation?"
+    },
+    {
+      "id": "mcq_pr_3_16",
+      "source": "princeton-2025",
+      "type": "mcq",
+      "severity": "review",
+      "code": "repeated_method_signature",
+      "detail": "public void action()",
+      "stem_preview": "Consider the following two classes.  ```java public class Fish { private FishType fType; private String endokeleton = \"bone\"; Fish (FishType f) { fType = f; } public void action() "
+    },
+    {
+      "id": "mcq_pr_3_19",
+      "source": "princeton-2025",
+      "type": "mcq",
+      "severity": "review",
+      "code": "short_contextless_stem",
+      "detail": "short stem no code/inline reference",
+      "stem_preview": "Which of the following arrays would be sorted the slowest using insertion sort?"
+    },
+    {
+      "id": "mcq_pr_3_20",
+      "source": "princeton-2025",
+      "type": "mcq",
+      "severity": "review",
+      "code": "repeated_method_signature",
+      "detail": "public Fraction multiply(Fraction f)",
+      "stem_preview": "Questions 21-23 refer to the following incomplete class declaration used to represent fractions with integer numerators and denominators.  ```java public class Fraction {     priva"
+    },
+    {
+      "id": "mcq_pr_3_35",
+      "source": "princeton-2025",
+      "type": "mcq",
+      "severity": "review",
+      "code": "short_contextless_stem",
+      "detail": "short stem no code/inline reference",
+      "stem_preview": "Which of the following would NOT cause a run-time exception?"
+    }
+  ]
+}

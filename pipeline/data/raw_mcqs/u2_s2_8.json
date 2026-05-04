@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the output of the following code:\n\n```java\nint result = 0;\nfor (int i = 1; i <= 4; i++) {\n    result += i * 2;\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`12`"
+      },
+      {
+        "label": "C",
+        "text": "`20`"
+      },
+      {
+        "label": "D",
+        "text": "`30`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop adds i*2 for i = 1, 2, 3, 4: 2+4+6+8 = 20. A results from adding i instead of i*2 (1+2+3+4=10). B results from only 3 iterations due to an off-by-one upper bound (2+4+6=12). D results from a fifth iteration with i<=5 (2+4+6+8+10=30).",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the output of the following code:\n\n```java\nfor (int i = 10; i >= 1; i -= 3) {\n    System.out.print(i + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10 7 4 `"
+      },
+      {
+        "label": "B",
+        "text": "`10 7 4 1 `"
+      },
+      {
+        "label": "C",
+        "text": "`10 7 4 1 -2 `"
+      },
+      {
+        "label": "D",
+        "text": "`7 4 1 `"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Starting at i=10 and subtracting 3 each time, i takes values 10, 7, 4, 1 (all satisfy i>=1); the next value -2 fails the condition. A uses a strict condition i>1, stopping before i=1. C incorrectly continues when i=-2. D skips the first iteration as if initialization were i=7.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the values of `a` and `b` after the following code runs:\n\n```java\nint a = 1;\nint b = 0;\nfor (int i = 1; i <= 5; i++) {\n    b = a + b;\n    a = b - a;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a = 2, b = 3`"
+      },
+      {
+        "label": "B",
+        "text": "`a = 3, b = 5`"
+      },
+      {
+        "label": "C",
+        "text": "`a = 5, b = 3`"
+      },
+      {
+        "label": "D",
+        "text": "`a = 5, b = 8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Tracing: after i=1: a=0,b=1; i=2: a=1,b=1; i=3: a=1,b=2; i=4: a=2,b=3; i=5: a=3,b=5. A reflects only 4 iterations (i<=4). C swaps the final values of a and b. D adds a sixth iteration (i<=6), yielding b=3+5=8 and a=8-3=5.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "For the loop `for (int k = 0; k < n; k++) { body; }`, which of the following correctly describes the order of events during each iteration after the first?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The initialization `int k = 0` repeats, then the condition is checked, then the body executes."
+      },
+      {
+        "label": "B",
+        "text": "The condition `k < n` is checked; if true, the body executes, then `k++` runs."
+      },
+      {
+        "label": "C",
+        "text": "The body executes first, then `k++` runs, then `k < n` is checked."
+      },
+      {
+        "label": "D",
+        "text": "`k++` runs first, then the body executes, then `k < n` is checked."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Initialization runs exactly once before the first iteration. On every subsequent iteration the condition is tested first; if true the body executes and then the update expression runs (test \u2192 body \u2192 update). A wrongly re-runs initialization. C and D both place the test after the body, reversing the correct order.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Consider the following `for` loop:\n\n```java\nfor (int i = 0; i < n; i++) {\n    System.out.println(i);\n}\n```\n\nWhich of the following `while` loops is equivalent?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nint i = 0;\nwhile (i < n) {\n    i++;\n    System.out.println(i);\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nint i = 0;\nwhile (i < n) {\n    System.out.println(i);\n    i++;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint i = 0;\nwhile (!(i < n)) {\n    System.out.println(i);\n    i++;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nint i = 0;\ni++;\nwhile (i < n) {\n    System.out.println(i);\n    i++;\n}\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "In a for loop the body runs before the update expression, so the while equivalent prints i then increments\u2014matching output 0 through n-1. A increments before printing, producing output 1 through n. C negates the condition (!(i<n) means i>=n), so the loop never executes when n>0. D increments i before the loop, skipping 0.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the output of the following code:\n\n```java\nint sum = 0;\nfor (int i = 0; i < 5; i++) {\n    if (i % 2 == 0) {\n        sum += i;\n    }\n}\nSystem.out.println(sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`6`"
+      },
+      {
+        "label": "C",
+        "text": "`10`"
+      },
+      {
+        "label": "D",
+        "text": "`12`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Even values of i in [0,4] are 0, 2, and 4; their sum is 6. A adds the odd-indexed values 1 and 3 (confusing == 0 with != 0). C sums all values 0 through 4 without the condition. D includes an extra even value 6, which would require a loop bound of i < 7 (or i <= 6).",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "A student writes the following code intending to print the sum of the integers from 1 to 10, but the code prints `45` instead of `55`. Which of the following best explains the error?\n\n```java\nint sum = 0;\nfor (int i = 1; i < 10; i++) {\n    sum += i;\n}\nSystem.out.println(sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The loop variable `i` should be initialized to `0` instead of `1`."
+      },
+      {
+        "label": "B",
+        "text": "The loop condition should be `i <= 10` instead of `i < 10`."
+      },
+      {
+        "label": "C",
+        "text": "The update expression should be `i += 2` instead of `i++`."
+      },
+      {
+        "label": "D",
+        "text": "The accumulator `sum` should be initialized to `1` instead of `0`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "With i < 10, the loop stops when i reaches 10 without executing the body, so only 1+2+...+9=45 is summed. Changing to i <= 10 includes i=10, giving 55. A initializes i at 0, adding 0 to the total (no change to 45) and still omits 10. C skips every other integer. D initializes sum to 1, producing 1+1+2+...+9=46, not 55.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "What is the value of `p` after the following code executes?\n\n```java\nint p = 1;\nfor (int k = 2; k <= 5; k++) {\n    p *= k;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`14`"
+      },
+      {
+        "label": "B",
+        "text": "`24`"
+      },
+      {
+        "label": "C",
+        "text": "`120`"
+      },
+      {
+        "label": "D",
+        "text": "`720`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop computes 1 \u00d7 2 \u00d7 3 \u00d7 4 \u00d7 5 = 120. A uses addition instead of multiplication: 2+3+4+5=14. B results from an off-by-one upper bound (k<=4): 1\u00d72\u00d73\u00d74=24. D results from one extra iteration (k<=6): 1\u00d72\u00d73\u00d74\u00d75\u00d76=720.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "How many times does the body of the following loop execute?\n\n```java\nfor (int i = 3; i <= 9; i++) {\n    // body\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`7`"
+      },
+      {
+        "label": "C",
+        "text": "`9`"
+      },
+      {
+        "label": "D",
+        "text": "`10`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop runs for i = 3, 4, 5, 6, 7, 8, 9, which is 9 \u2212 3 + 1 = 7 iterations. A forgets to add 1: 9 \u2212 3 = 6. C mistakes the upper bound value for the total iteration count. D counts as if the loop started at 0 (yielding 10 steps to reach 9).",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"hello\";\nString result = \"\";\nfor (int i = 0; i < s.length(); i++) {\n    if (i % 2 == 0) {\n        result += s.substring(i, i + 1);\n    }\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`el`"
+      },
+      {
+        "label": "B",
+        "text": "`hlo`"
+      },
+      {
+        "label": "C",
+        "text": "`hello`"
+      },
+      {
+        "label": "D",
+        "text": "`hl`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Characters of \"hello\" at even indices are: index 0 \u2192 'h', index 2 \u2192 'l', index 4 \u2192 'o', producing \"hlo\". A collects the odd-index characters (index 1 \u2192 'e', index 3 \u2192 'l'), swapping the condition. C omits the condition and appends every character. D reflects a loop bound of i < s.length() - 1, missing the last even index 4.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the output of the following code:\n\n```java\nint count = 0;\nfor (int i = 1; i <= 3; i++) {\n    for (int j = i; j <= 3; j++) {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`6`"
+      },
+      {
+        "label": "C",
+        "text": "`9`"
+      },
+      {
+        "label": "D",
+        "text": "`12`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "When i=1 the inner loop runs for j=1,2,3 (3 times); when i=2 it runs for j=2,3 (2 times); when i=3 it runs for j=3 (1 time). Total: 3+2+1=6. A counts only the outer iterations (3). C assumes the inner loop always runs 3 times regardless of i (rectangular assumption: 3\u00d73=9). D computes 3\u00d74=12, as if the inner loop ran 4 times per outer iteration.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"\";\nfor (int i = 1; i <= 4; i++) {\n    s = i + s;\n}\nSystem.out.println(s);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1234`"
+      },
+      {
+        "label": "B",
+        "text": "`321`"
+      },
+      {
+        "label": "C",
+        "text": "`4321`"
+      },
+      {
+        "label": "D",
+        "text": "`432`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Each iteration prepends i to s: i=1\u2192\"1\"; i=2\u2192\"21\"; i=3\u2192\"321\"; i=4\u2192\"4321\". A results from appending instead of prepending (s = s + i): \"1\",\"12\",\"123\",\"1234\". B reflects stopping after 3 iterations (i<=3): \"1\",\"21\",\"321\". D reflects initializing the loop at i=2 (skipping i=1): \"2\",\"32\",\"432\".",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the output of the following code:\n\n```java\nint total = 0;\nfor (int i = 1; i < 5; i++) {\n    total += i;\n}\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`15`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop runs for i = 1, 2, 3, 4 (condition i < 5 excludes 5), accumulating total = 1 + 2 + 3 + 4 = 10. Option A (6) results from an off-by-one error treating the condition as i < 4 and summing only 1 + 2 + 3. Option C (15) results from using i <= 5, adding an extra iteration. Option D (4) reflects the mistake of writing total = i (plain assignment) instead of total += i (accumulation), leaving total equal to the last value of i.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the values of `a` and `b` after the following code runs:\n\n```java\nint a = 0;\nint b = 1;\nfor (int k = 0; k < 4; k++) {\n    a = a + b;\n    b = b + 1;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a = 10, b = 5`"
+      },
+      {
+        "label": "B",
+        "text": "`a = 6, b = 4`"
+      },
+      {
+        "label": "C",
+        "text": "`a = 15, b = 6`"
+      },
+      {
+        "label": "D",
+        "text": "`a = 10, b = 4`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Tracing all four iterations: k=0 \u2192 a=0+1=1, b=2; k=1 \u2192 a=1+2=3, b=3; k=2 \u2192 a=3+3=6, b=4; k=3 \u2192 a=6+4=10, b=5. Option B (a=6, b=4) reflects only three iterations, an off-by-one from k < 3. Option C (a=15, b=6) reflects five iterations from k <= 4. Option D (a=10, b=4) correctly traces a but forgets to execute the b update on the final iteration.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "How many times does the body of the following loop execute?\n\n```java\nfor (int i = 5; i <= 20; i += 5) {\n    System.out.println(i);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`16`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`5`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "i takes the values 5, 10, 15, 20 before the next update produces 25, which fails the condition i <= 20 \u2014 exactly 4 executions. Option A (3) comes from treating the condition as i < 20 and missing the iteration where i = 20. Option B (16) confuses iteration count with the number of integers in the range 5 to 20. Option D (5) mistakenly counts one extra iteration.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 1;\nfor (int i = 1; i <= 5; i++) {\n    if (i % 2 != 0) {\n        x *= i;\n    }\n}\nSystem.out.println(x);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`120`"
+      },
+      {
+        "label": "D",
+        "text": "`15`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The condition i % 2 != 0 is true only for odd i values: 1, 3, and 5. Starting from x = 1, the products are 1\u00d71=1, 1\u00d73=3, 3\u00d75=15. Option A (3) is an off-by-one error where the loop condition is treated as i <= 4, missing i=5. Option B (8) results from reversing the condition to select even values of i, giving 1\u00d72\u00d74=8. Option C (120) results from ignoring the if-condition entirely and multiplying all integers 1 through 5.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Assuming `word` is a non-empty `String`, which of the following correctly prints each character of `word` on a separate line?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int i = 0; i <= word.length(); i++) {\n    System.out.println(word.substring(i, i + 1));\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int i = 0; i < word.length(); i++) {\n    System.out.println(word.substring(i, i + 1));\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int i = 1; i < word.length(); i++) {\n    System.out.println(word.substring(i, i + 1));\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int i = 0; i < word.length() - 1; i++) {\n    System.out.println(word.substring(i, i + 1));\n}\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Option B iterates i from 0 through word.length()-1 inclusive, extracting each single-character substring correctly. Option A uses i <= word.length(), so when i equals word.length() the call substring(i, i+1) exceeds the valid index range and throws a StringIndexOutOfBoundsException. Option C starts at index 1, silently skipping the first character. Option D uses i < word.length()-1, stopping one position early and omitting the last character.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the output of the following code:\n\n```java\nint sum = 0;\nfor (int i = 1; i <= 5; i++) {\n    sum += i * 2;\n}\nSystem.out.println(sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`20`"
+      },
+      {
+        "label": "B",
+        "text": "`30`"
+      },
+      {
+        "label": "C",
+        "text": "`42`"
+      },
+      {
+        "label": "D",
+        "text": "`15`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop runs for i = 1, 2, 3, 4, 5, adding i*2 each time: 2+4+6+8+10 = 30. A (20) results from an off-by-one using < 5, giving only four iterations (2+4+6+8). C (42) results from using <= 6, giving six iterations (2+4+6+8+10+12). D (15) results from forgetting the *2 factor and computing 1+2+3+4+5.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the output of the following code:\n\n```java\nint p = 1;\nfor (int k = 1; k <= 4; k++) {\n    p = p * k;\n}\nSystem.out.println(p);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`24`"
+      },
+      {
+        "label": "D",
+        "text": "`120`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop multiplies p by k each iteration: p starts at 1, then becomes 1*1=1, 1*2=2, 2*3=6, 6*4=24. A (6) comes from an off-by-one stopping at k=3 (1*2*3=6). B (10) comes from adding instead of multiplying (1+2+3+4=10). D (120) comes from running one extra iteration to k=5 (1*2*3*4*5=120).",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "In a `for` loop with header `for (int i = 0; i < n; i++)`, which component is evaluated exactly once\u2014at the very start of the loop\u2014and never again?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The update expression `i++`"
+      },
+      {
+        "label": "B",
+        "text": "The test condition `i < n`"
+      },
+      {
+        "label": "C",
+        "text": "The initialization `int i = 0`"
+      },
+      {
+        "label": "D",
+        "text": "The loop body"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The initialization (int i = 0) executes exactly once before the first iteration begins and is never revisited. The test condition (i < n) is evaluated before every potential iteration, including the first. The update (i++) runs after every completed iteration. The loop body executes once per iteration as long as the test is true.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Which of the following `for` loop headers does NOT execute the loop body exactly `n` times, assuming `n > 0`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`for (int i = 0; i < n; i++)`"
+      },
+      {
+        "label": "B",
+        "text": "`for (int i = 1; i <= n; i++)`"
+      },
+      {
+        "label": "C",
+        "text": "`for (int i = 0; i <= n; i++)`"
+      },
+      {
+        "label": "D",
+        "text": "`for (int i = n - 1; i >= 0; i--)`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Option C iterates i = 0, 1, 2, ..., n, which is n+1 iterations. The hi-lo+1 formula gives (n-0)+1 = n+1. Options A (i from 0 to n-1), B (i from 1 to n), and D (i from n-1 down to 0) each span exactly n values and execute the body n times.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"ABCD\";\nString r = \"\";\nfor (int i = 0; i < s.length(); i++) {\n    r = s.substring(i, i + 1) + r;\n}\nSystem.out.println(r);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`ABCD`"
+      },
+      {
+        "label": "B",
+        "text": "`DCBA`"
+      },
+      {
+        "label": "C",
+        "text": "`CBA`"
+      },
+      {
+        "label": "D",
+        "text": "`DCB`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Each character is prepended to r: i=0 \u2192 r=\"A\", i=1 \u2192 r=\"BA\", i=2 \u2192 r=\"CBA\", i=3 \u2192 r=\"DCBA\". A (ABCD) results from appending instead of prepending (r = r + ch). C (CBA) results from an off-by-one using i < s.length()-1, which skips the final character 'D'. D (DCB) results from starting the loop at i=1, which skips 'A' entirely.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the output of the following code:\n\n```java\nint total = 0;\nfor (int i = 1; i <= 4; i++) {\n    total += 10 / i;\n}\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`18`"
+      },
+      {
+        "label": "B",
+        "text": "`20`"
+      },
+      {
+        "label": "C",
+        "text": "`21`"
+      },
+      {
+        "label": "D",
+        "text": "`22`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java integer division truncates toward zero: 10/1=10, 10/2=5, 10/3=3 (not 3.33), 10/4=2 (not 2.5); total = 10+5+3+2 = 20. A (18) results from an off-by-one stopping at i=3 (10+5+3=18). C (21) results from rounding 10/4 up to 3 rather than truncating to 2. D (22) results from rounding both 10/3 up to 4 and 10/4 up to 3.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the output of the following code:\n\n```java\nint total = 0;\nfor (int k = 2; k <= 8; k += 2)\n{\n    total += k;\n    System.out.print(total + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 4 6 8 `"
+      },
+      {
+        "label": "B",
+        "text": "`2 6 12 20 `"
+      },
+      {
+        "label": "C",
+        "text": "`0 2 6 12 `"
+      },
+      {
+        "label": "D",
+        "text": "`2 6 12 20 30 `"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop uses k values 2, 4, 6, and 8, adding each to total before printing, so the printed totals are 2, 6, 12, and 20. Choice A prints k instead of total, C prints before adding, and D includes an extra iteration.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_8",
+    "stem": "Determine the values of `x` and `y` after the following code runs.\n\n```java\nint x = 0;\nint y = 1;\nfor (int i = 1; i <= 4; i++)\n{\n    if (i % 2 == 0)\n    {\n        x += i;\n    }\n    else\n    {\n        y *= i;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 6, y = 3`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 2, y = 3`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 6, y = 4`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 10, y = 3`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "For i values 1 and 3, y is multiplied by i, giving y = 3; for i values 2 and 4, x is increased, giving x = 6. The other choices reflect skipping an even value, adding instead of multiplying, or running the loop one extra time.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  }
+]

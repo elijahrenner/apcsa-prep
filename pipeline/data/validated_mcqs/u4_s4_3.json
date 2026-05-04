@@ -1,0 +1,626 @@
+[
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "What is the default value stored in each element immediately after the following array is created?\n\n```java\nint[] scores = new int[5];\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`null`"
+      },
+      {
+        "label": "C",
+        "text": "`1`"
+      },
+      {
+        "label": "D",
+        "text": "`-1`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`int` is a primitive type; Java initializes every element of a newly created `int[]` to `0`. `null` is the default for reference types such as `String[]`, not for primitive arrays. `1` and `-1` are never defaults.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Which of the following correctly retrieves the number of elements in an array named `data`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`data.length()`"
+      },
+      {
+        "label": "B",
+        "text": "`data.length`"
+      },
+      {
+        "label": "C",
+        "text": "`data.size()`"
+      },
+      {
+        "label": "D",
+        "text": "`data.size`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`length` is a public final field on arrays \u2014 no parentheses. `length()` is a method on `String`, not on arrays. `size()` is an `ArrayList` method, and `size` without parentheses does not exist on arrays or `ArrayList`.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] arr = {10, 20, 30, 40, 50};\nSystem.out.println(arr[0] + arr[arr.length - 1]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`50`"
+      },
+      {
+        "label": "C",
+        "text": "`60`"
+      },
+      {
+        "label": "D",
+        "text": "An `ArrayIndexOutOfBoundsException` is thrown"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`arr.length` is `5`, so `arr[arr.length - 1]` is `arr[4]` which equals `50`. Adding `arr[0]` (which is `10`) gives `60`. Index `4` is valid (indices run `0`\u2013`4`), so no exception is thrown.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "An array is declared as follows:\n\n```java\nint[] nums = new int[6];\n```\n\nWhich of the following lists all valid index values for `nums`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0` through `5`"
+      },
+      {
+        "label": "B",
+        "text": "`0` through `6`"
+      },
+      {
+        "label": "C",
+        "text": "`1` through `6`"
+      },
+      {
+        "label": "D",
+        "text": "`1` through `5`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "For an array of length `n`, valid indices are `0` through `n - 1`. With length `6`, valid indices are `0` through `5`. Accessing index `6` would throw `ArrayIndexOutOfBoundsException`; arrays are zero-indexed, so index `1` is the second element, not the first.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "The following code is intended to print every element of array `a`, but it contains a bug. What will happen when the code runs?\n\n```java\nint[] a = {3, 1, 4, 1, 5};\nfor (int i = 0; i <= a.length; i++) {\n    System.out.print(a[i] + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The loop prints all five elements, then prints `0`"
+      },
+      {
+        "label": "B",
+        "text": "The loop prints only the first four elements and stops"
+      },
+      {
+        "label": "C",
+        "text": "An `ArrayIndexOutOfBoundsException` is thrown"
+      },
+      {
+        "label": "D",
+        "text": "The loop prints all five elements correctly"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Using `i <= a.length` means the final iteration runs with `i = 5`. `a[5]` is out of bounds (valid indices are `0`\u2013`4`), so Java throws `ArrayIndexOutOfBoundsException`. The correct bound is `i < a.length`.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Determine the value of `vals[0]` after the following code executes:\n\n```java\nint[] vals = {2, 4, 6, 8};\nfor (int v : vals) {\n    v = v * 2;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`16`"
+      },
+      {
+        "label": "D",
+        "text": "`8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "In an enhanced for loop over a primitive array, `v` receives a copy of each element. Assigning `v = v * 2` modifies only the local copy; the original array is unchanged. `vals[0]` remains `2`. An indexed for loop with `vals[i] = vals[i] * 2` would be needed to modify the array.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] data = {5, 3, 8, 2};\nint result = 0;\nfor (int i = 1; i < data.length; i++) {\n    result += data[i];\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`18`"
+      },
+      {
+        "label": "B",
+        "text": "`13`"
+      },
+      {
+        "label": "C",
+        "text": "`8`"
+      },
+      {
+        "label": "D",
+        "text": "`10`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop initializes `i` to `1`, so `data[0]` (value `5`) is never added. It sums `data[1] + data[2] + data[3]` = `3 + 8 + 2` = `13`. Option A (`18`) would be correct if the loop started at `i = 0`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "After the following declaration, what does `System.out.println(words[0])` print?\n\n```java\nString[] words = new String[4];\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`\"\"` (empty string)"
+      },
+      {
+        "label": "B",
+        "text": "Nothing \u2014 the line is skipped"
+      },
+      {
+        "label": "C",
+        "text": "`null`"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Reference types default to `null` when an array is created with `new`. `System.out.println` safely accepts a `null` argument and prints the four-character string `null`. A `NullPointerException` would occur only if a method were called on the `null` reference, not from merely printing it.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] a = {1, 2, 3, 4, 5};\nfor (int i = 0; i < a.length - 1; i++) {\n    a[i + 1] = a[i + 1] + a[i];\n}\nSystem.out.println(a[4]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`14`"
+      },
+      {
+        "label": "D",
+        "text": "`15`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Each iteration overwrites the next element with its running prefix sum. After i=0: {1,3,3,4,5}; i=1: {1,3,6,4,5}; i=2: {1,3,6,10,5}; i=3: {1,3,6,10,15}. So `a[4]` = 15. Option B (`10`) is the value of `a[3]` after the last full update, a common off-by-one error.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "The following method is intended to return `true` if any element of the array is negative, and `false` otherwise. Which of the following best describes the bug?\n\n```java\npublic static boolean hasNegative(int[] arr) {\n    for (int v : arr) {\n        if (v < 0)\n            return true;\n        else\n            return false;\n    }\n    return false;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The condition `v < 0` should be `v <= 0` to handle zero correctly"
+      },
+      {
+        "label": "B",
+        "text": "The `else return false` causes the method to return after examining only the first element"
+      },
+      {
+        "label": "C",
+        "text": "An enhanced for loop cannot be used in a method with a `boolean` return type"
+      },
+      {
+        "label": "D",
+        "text": "The final `return false` is unreachable and causes a compile error"
+      }
+    ],
+    "answer": "B",
+    "explanation": "If the first element is non-negative, the `else` branch immediately returns `false` without checking any remaining elements. The fix is to remove the `else` so that `return false` appears only after the loop exhausts all elements.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] a = {10, 20, 30, 40, 50};\nint i = 0, j = a.length - 1;\nwhile (i < j) {\n    int temp = a[i];\n    a[i] = a[j];\n    a[j] = temp;\n    i++;\n    j--;\n}\nSystem.out.println(a[0] + \" \" + a[2] + \" \" + a[4]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10 30 50`"
+      },
+      {
+        "label": "B",
+        "text": "`50 30 10`"
+      },
+      {
+        "label": "C",
+        "text": "`50 20 10`"
+      },
+      {
+        "label": "D",
+        "text": "`40 30 20`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The code reverses the array in place. Swap 1 (i=0, j=4): {50,20,30,40,10}. Swap 2 (i=1, j=3): {50,40,30,20,10}. Then i=2, j=2 \u2014 `i < j` is false, loop ends. `a[0]`=50, `a[2]`=30, `a[4]`=10, so the output is `50 30 10`. The middle element is untouched because `i == j` prevents a third swap.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Which of the following is a valid declaration that creates an `int` array initialized to the values `4`, `8`, `15`, and `16`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`int[] arr = {4, 8, 15, 16};`"
+      },
+      {
+        "label": "B",
+        "text": "`int[] arr = new int[4]{4, 8, 15, 16};`"
+      },
+      {
+        "label": "C",
+        "text": "`int arr = new int[]{4, 8, 15, 16};`"
+      },
+      {
+        "label": "D",
+        "text": "`int[] arr = int[]{4, 8, 15, 16};`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "An initializer list `{4, 8, 15, 16}` is valid directly in a declaration \u2014 no `new` is needed. Option B is a compile error because you cannot specify both a size and an initializer list. Option C declares `arr` as a plain `int`, not an array. Option D omits the required `new` keyword for an anonymous array initializer.",
+    "difficulty": 2,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "What is stored in each element of the following array immediately after it is created?\n\n```java\nboolean[] flags = new boolean[4];\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`null`"
+      },
+      {
+        "label": "B",
+        "text": "`0`"
+      },
+      {
+        "label": "C",
+        "text": "`false`"
+      },
+      {
+        "label": "D",
+        "text": "Each element is uninitialized; accessing it before explicit assignment throws an exception."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Java initializes every element of a newly created array to a type-specific default: `false` for `boolean`. `null` is the default for reference types; `0` is the default for `int` and `double` (as `0.0`). Option D is false because Java always initializes array elements automatically.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] nums = {3, 7, 1, 5, 2};\nSystem.out.println(nums[nums.length - 2]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`7`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`nums.length` is 5, so `nums.length - 2` evaluates to 3. `nums[3]` is the fourth element, which is `5`. A common error is treating `length - 2` as the last element (index 4, value `2`) or as index 2 (value `1`).",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Which of the following best describes the result of attempting to compile and run the code below?\n\n```java\nint[] scores = {90, 85, 78};\nint sum = 0;\nfor (int i = 0; i < scores.length(); i++)\n{\n    sum += scores[i];\n}\nSystem.out.println(sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The code compiles and prints `253`."
+      },
+      {
+        "label": "B",
+        "text": "The code compiles but throws `ArrayIndexOutOfBoundsException` at runtime."
+      },
+      {
+        "label": "C",
+        "text": "The code does not compile because `length` is a field of an array, not a method, and cannot be invoked with parentheses."
+      },
+      {
+        "label": "D",
+        "text": "The code compiles and prints `0` because `length()` returns 0 for arrays."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Arrays expose their size through the public field `length`, accessed as `scores.length` (no parentheses). Writing `scores.length()` is a compile-time error. This is a key contrast with `String`, which exposes `length()` as an instance method call.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] a = {10, 20, 30, 40, 50};\na[2] = a[1] + a[3];\na[0] = a[2] - a[4];\nSystem.out.println(a[0] + \" \" + a[2]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`30 60`"
+      },
+      {
+        "label": "B",
+        "text": "`10 60`"
+      },
+      {
+        "label": "C",
+        "text": "`10 30`"
+      },
+      {
+        "label": "D",
+        "text": "`60 10`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "First, `a[2]` is updated to `a[1] + a[3] = 20 + 40 = 60`. Then `a[0]` is updated using the already-changed `a[2]`: `60 - a[4] = 60 - 50 = 10`. The output is `10 60`. Option A reads `a[2]` using its original value of 30; option C uses both original values; option D swaps the two printed fields.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "What is printed by the following code?\n\n```java\nint[] nums = {1, 2, 3, 4, 5};\nfor (int val : nums)\n{\n    val = val * 2;\n}\nSystem.out.println(nums[0] + \" \" + nums[4]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 10`"
+      },
+      {
+        "label": "B",
+        "text": "`1 5`"
+      },
+      {
+        "label": "C",
+        "text": "`1 10`"
+      },
+      {
+        "label": "D",
+        "text": "`2 5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "When the enhanced for loop iterates over a primitive array, `val` receives a copy of each element. Assigning to `val` does not modify the original array. `nums` is unchanged throughout, so `nums[0]` remains `1` and `nums[4]` remains `5`. Option A is the trap for students who incorrectly believe the loop variable aliases the array element.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] nums = {3, 7, 1, 9, 4};\nSystem.out.println(nums[nums.length - 2]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`1`"
+      },
+      {
+        "label": "C",
+        "text": "`9`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`nums.length` is 5, so `nums.length - 2` evaluates to 3. `nums[3]` is `9`. Option D (`4`) is the last element at index 4; option B (`1`) is at index 2. A common mistake is confusing \"second-to-last\" with the element two positions from the start.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] values = {5, 10, 15};\nfor (int v : values) {\n    v = v + 1;\n}\nSystem.out.println(values[1]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`11`"
+      },
+      {
+        "label": "C",
+        "text": "`16`"
+      },
+      {
+        "label": "D",
+        "text": "An `ArrayIndexOutOfBoundsException` is thrown."
+      }
+    ],
+    "answer": "A",
+    "explanation": "In an enhanced for loop over a primitive array, `v` is a local copy of each element. Assigning `v = v + 1` modifies only the copy; the original array slot is not changed. `values[1]` remains `10`. Option B reflects the mistaken belief that the assignment updates the array.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Determine the value printed by the following code:\n\n```java\nint[] data = new int[4];\ndata[0] = 7;\ndata[3] = 2;\nSystem.out.println(data[1] + data[2]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`7`"
+      },
+      {
+        "label": "C",
+        "text": "`9`"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown."
+      }
+    ],
+    "answer": "A",
+    "explanation": "`data[1]` and `data[2]` were never explicitly assigned, so they hold the default value `0` for `int`. `0 + 0 = 0`. A `NullPointerException` would apply to dereferencing a reference-type element (e.g., `String[]`), not a primitive. Option C (`9`) is `data[0] + data[3]` \u2014 the two elements that were assigned.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Which of the following correctly retrieves the number of elements in an array named `arr`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`arr.length()`"
+      },
+      {
+        "label": "B",
+        "text": "`arr.size()`"
+      },
+      {
+        "label": "C",
+        "text": "`arr.length`"
+      },
+      {
+        "label": "D",
+        "text": "`arr.getLength()`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`length` is a public final field on every Java array and is accessed without parentheses. `length()` is a method on `String`, not arrays; `size()` is an `ArrayList` method; `getLength()` does not exist in the AP Java subset. Confusing `arr.length` (field) with `String.length()` (method) is a very common error.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] a = {2, 4, 6, 8};\nint result = 0;\nfor (int i = 0; i < a.length; i += 2) {\n    result += a[i];\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`12`"
+      },
+      {
+        "label": "D",
+        "text": "`20`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop visits only even indices: i=0 adds a[0]=2 (result=2), i=2 adds a[2]=6 (result=8), then i=4 fails 4<4 and the loop exits. Output is `8`. D (`20`) is the sum of all four elements \u2014 the mistake of assuming `i++` instead of `i+=2`. C (`12`) equals a[1]+a[3]=4+8, the odd-indexed elements.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] nums = new int[4];\nnums[1] = 3;\nnums[3] = nums.length + nums[1];\nSystem.out.print(nums[0] + \" \" + nums[2] + \" \" + nums[3]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0 0 7`"
+      },
+      {
+        "label": "B",
+        "text": "`0 3 7`"
+      },
+      {
+        "label": "C",
+        "text": "`null null 7`"
+      },
+      {
+        "label": "D",
+        "text": "`0 0 6`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "A new `int` array is filled with `0` values, so `nums[0]` and `nums[2]` remain `0`. `nums[3]` becomes `4 + 3`, which is `7`; the other choices use wrong defaults or wrong length arithmetic.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_3",
+    "stem": "Consider the following code segment:\n\n```java\nint[] vals = {2, 4, 6};\nfor (int i = 0; i <= vals.length; i++)\n{\n    System.out.print(vals[i] + \" \");\n}\n```\n\nWhich replacement for the loop header prevents an `ArrayIndexOutOfBoundsException` and prints every element of `vals`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`for (int i = 0; i < vals.length; i++)`"
+      },
+      {
+        "label": "B",
+        "text": "`for (int i = 1; i < vals.length; i++)`"
+      },
+      {
+        "label": "C",
+        "text": "`for (int i = 0; i <= vals.length - 1; i += 2)`"
+      },
+      {
+        "label": "D",
+        "text": "`for (int i = vals.length; i > 0; i--)`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Valid indices are `0`, `1`, and `2`, so the loop must use `i < vals.length`. Choice B skips index `0`, choice C skips index `1`, and choice D first tries to access `vals[3]`.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  }
+]

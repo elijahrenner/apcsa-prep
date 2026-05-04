@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<Integer> list = new ArrayList<Integer>();\nlist.add(1);\nlist.add(4);\nlist.add(2);\nlist.add(3);\n\nfor (int i = 0; i < list.size(); i++) {\n    if (list.get(i) % 2 == 0) {\n        list.remove(i);\n    }\n}\nSystem.out.println(list);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`[1, 2, 3]`"
+      },
+      {
+        "label": "B",
+        "text": "`[1, 3]`"
+      },
+      {
+        "label": "C",
+        "text": "`[4, 2]`"
+      },
+      {
+        "label": "D",
+        "text": "`[1, 4, 2, 3]`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Starting with [1, 4, 2, 3]: at i=0 the value 1 is odd so no removal; at i=1 the value 4 is even so list.remove(1) is called, shifting 2 from index 2 to index 1 and producing [1, 2, 3], then i increments to 2; at i=2 the value is 3 (odd), no removal; the loop exits with size 3. Because i skipped over the new index-1 slot after the removal, the value 2 was never examined. Option B would be correct if i were decremented after each removal; option D would result if no removal ever occurred.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Consider the following method, which is intended to remove all single-character strings from its parameter list:\n\n```java\npublic static void removeSingles(ArrayList<String> words) {\n    for (String w : words) {\n        if (w.length() == 1) {\n            words.remove(w);\n        }\n    }\n}\n```\n\nWhat happens when `removeSingles` is called with a list containing at least one single-character string?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method correctly removes all single-character strings and returns normally."
+      },
+      {
+        "label": "B",
+        "text": "The method does not compile because `remove` cannot be called inside an enhanced for loop."
+      },
+      {
+        "label": "C",
+        "text": "The method compiles and runs, but only removes the first single-character string found."
+      },
+      {
+        "label": "D",
+        "text": "The method throws a `ConcurrentModificationException` at runtime when the first element is removed."
+      }
+    ],
+    "answer": "D",
+    "explanation": "Calling `words.remove(w)` structurally modifies the ArrayList (changes its modCount) while the enhanced for loop's internal iterator is active; on the iterator's next advance it detects the change and throws ConcurrentModificationException. The code compiles successfully, ruling out B, and no removal completes before the exception, ruling out A and C.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<String> items = new ArrayList<String>();\nitems.add(\"red\");\nitems.add(\"green\");\nitems.add(\"blue\");\nitems.add(1, \"yellow\");\nitems.remove(2);\nSystem.out.println(items.get(1) + \" \" + items.size());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`yellow 3`"
+      },
+      {
+        "label": "B",
+        "text": "`green 3`"
+      },
+      {
+        "label": "C",
+        "text": "`yellow 4`"
+      },
+      {
+        "label": "D",
+        "text": "`green 4`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "After the three `add` calls the list is [\"red\", \"green\", \"blue\"]. `add(1, \"yellow\")` inserts at index 1 and shifts existing elements right, giving [\"red\", \"yellow\", \"green\", \"blue\"]. `remove(2)` removes the element at index 2 (\"green\"), leaving [\"red\", \"yellow\", \"blue\"] with size 3. `items.get(1)` returns \"yellow\". Option B misreads index 1 as \"green\" by ignoring the shift caused by `add(1, \"yellow\")`; option C forgets that `remove` decrements the size.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Which of the following code segments correctly finds the maximum value in a non-empty `ArrayList<Integer>` named `scores`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nint max = Integer.MIN_VALUE;\nfor (int i = 0; i <= scores.size(); i++) {\n    if (scores.get(i) > max) { max = scores.get(i); }\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nint max = Integer.MIN_VALUE;\nfor (int s : scores) {\n    if (s > max) { max = s; }\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint max = Integer.MIN_VALUE;\nfor (int i = 0; i < scores.size(); i++) {\n    if (scores[i] > max) { max = scores[i]; }\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nint max = scores.get(0);\nfor (int i = 0; i < scores.size(); i++) {\n    if (scores.get(i) > max) { max = i; }\n}\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Option B uses an enhanced for loop that visits every element and correctly updates `max` when a larger value is found. Option A uses `i <= scores.size()`, causing an `IndexOutOfBoundsException` on the final iteration when `i` equals `scores.size()`. Option C uses array bracket notation (`scores[i]`), which is invalid for an ArrayList \u2014 `scores.get(i)` is required. Option D stores the loop index `i` into `max` instead of the element value `scores.get(i)`, producing an index rather than the maximum element.",
+    "difficulty": 2,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<Integer> data = new ArrayList<Integer>();\ndata.add(6);\ndata.add(3);\ndata.add(9);\ndata.add(1);\ndata.add(7);\n\nint result = 0;\nfor (int i = 0; i < data.size() - 1; i++) {\n    if (data.get(i) > data.get(i + 1)) {\n        result++;\n    }\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The list is [6, 3, 9, 1, 7] and `data.size()-1` is 4, so the loop runs for i = 0, 1, 2, 3. The comparisons are: (6>3) true \u2192 result=1; (3>9) false; (9>1) true \u2192 result=2; (1>7) false. The final value of `result` is 2. Option A counts only one descending adjacent pair; option D confuses the number of loop iterations (4) with the count of descending pairs; option C overcounts by one.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Which of the following statements about `ArrayList` algorithms is true?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Using an enhanced for loop to call `remove` on an `ArrayList` during iteration will not throw an exception as long as at most one element is removed."
+      },
+      {
+        "label": "B",
+        "text": "After `list.remove(i)` is called, every element that was at an index greater than `i` shifts to the next lower index."
+      },
+      {
+        "label": "C",
+        "text": "`list.size` (without parentheses) returns the number of elements in an `ArrayList`, analogous to `arr.length` for arrays."
+      },
+      {
+        "label": "D",
+        "text": "An `ArrayList<int>` can be declared to store primitive `int` values directly without using a wrapper class."
+      }
+    ],
+    "answer": "B",
+    "explanation": "When `list.remove(i)` executes, the element at index `i` is deleted and all elements at indices `i+1`, `i+2`, \u2026 shift left by one, so the element formerly at `i+1` is now at `i` \u2014 a critical detail for removal-during-traversal logic. Option A is false \u2014 even a single `remove` call inside an enhanced for loop triggers ConcurrentModificationException on the next iterator step. Option C is false \u2014 `size()` is a method requiring parentheses; `arr.length` is a field. Option D is false \u2014 ArrayList cannot hold primitives; `ArrayList<Integer>` with autoboxing is required.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(4);\nnums.add(7);\nnums.add(2);\nnums.add(7);\nnums.add(5);\n\nint total = 0;\nfor (int i = 0; i < nums.size(); i++)\n{\n    if (nums.get(i) > 5)\n    {\n        total += nums.get(i);\n    }\n}\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`7`"
+      },
+      {
+        "label": "B",
+        "text": "`14`"
+      },
+      {
+        "label": "C",
+        "text": "`18`"
+      },
+      {
+        "label": "D",
+        "text": "`25`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Only the two values greater than 5 are added, so the total is 7 + 7 = 14. The other choices include only one match, include 4, or sum all elements.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Consider the following method.\n\n```java\npublic static void removeSmall(ArrayList<Integer> vals)\n{\n    int i = 0;\n    while (i < vals.size())\n    {\n        if (vals.get(i) < 5)\n        {\n            vals.remove(i);\n        }\n        else\n        {\n            i++;\n        }\n    }\n}\n```\n\nIf `vals` initially contains `3, 4, 6, 2, 8`, which values remain after `removeSmall(vals)` is called?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6, 8`"
+      },
+      {
+        "label": "B",
+        "text": "`4, 6, 8`"
+      },
+      {
+        "label": "C",
+        "text": "`6, 2, 8`"
+      },
+      {
+        "label": "D",
+        "text": "`3, 4, 6, 2, 8`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "When an element is removed, the next element shifts into the same index, so the loop correctly does not increment `i` after a removal. All values less than 5 are removed, leaving 6 and 8.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Which of the following could replace `/* missing code */` so that `countLong` returns the number of strings in `words` whose length is greater than `n`?\n\n```java\npublic static int countLong(ArrayList<String> words, int n)\n{\n    int count = 0;\n    for (String w : words)\n    {\n        /* missing code */\n    }\n    return count;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nif (words.length() > n)\n{\n    count++;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nif (w.length() > n)\n{\n    count++;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nif (words.get(w).length() > n)\n{\n    count++;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nif (w.size() > n)\n{\n    count++;\n}\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The enhanced for loop variable `w` is each `String`, so `w.length()` gives the correct length. `words` is an ArrayList, `w` is not an index, and `String` does not use `size()`.",
+    "difficulty": 2,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Consider the following method.\n\n```java\npublic static boolean hasNegative(ArrayList<Integer> nums)\n{\n    for (int n : nums)\n    {\n        if (n < 0)\n        {\n            return true;\n        }\n        else\n        {\n            return false;\n        }\n    }\n    return false;\n}\n```\n\nWhich statement best describes the method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It correctly returns `true` if any element of `nums` is negative."
+      },
+      {
+        "label": "B",
+        "text": "It only checks the first element of `nums` before returning."
+      },
+      {
+        "label": "C",
+        "text": "It checks every element but returns the opposite boolean value."
+      },
+      {
+        "label": "D",
+        "text": "It causes an `IndexOutOfBoundsException` for every nonempty list."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The `else` branch returns `false` during the first loop iteration when the first value is not negative. A correct search would return `false` only after the loop finishes.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<String> names = new ArrayList<String>();\nnames.add(\"Ann\");\nnames.add(\"Bo\");\nnames.add(\"Cara\");\nnames.add(\"Dee\");\n\nfor (int i = names.size() - 1; i >= 0; i--)\n{\n    if (names.get(i).length() == 3)\n    {\n        System.out.print(names.get(i) + \" \");\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Ann Dee `"
+      },
+      {
+        "label": "B",
+        "text": "`Dee Ann `"
+      },
+      {
+        "label": "C",
+        "text": "`Cara Bo Ann `"
+      },
+      {
+        "label": "D",
+        "text": "`Bo Cara Dee `"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The list is traversed from the last index to the first, and only names of length 3 are printed. `Dee` is found before `Ann`, so the output is `Dee Ann `.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "The method `uniqueAdd` should add `word` to `list` only if an equal string is not already in the list. Which replacement for `/* missing code */` works correctly?\n\n```java\npublic static void uniqueAdd(ArrayList<String> list, String word)\n{\n    boolean found = false;\n    for (String s : list)\n    {\n        /* missing code */\n    }\n    if (!found)\n    {\n        list.add(word);\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nif (s.equals(word))\n{\n    found = true;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nif (s == word)\n{\n    found = true;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nif (list.get(s).equals(word))\n{\n    found = true;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nif (!s.equals(word))\n{\n    found = true;\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`equals` compares the contents of two strings, which is needed to detect an existing equal value. The other choices use reference comparison, use a string as an index, or mark `found` for nonmatching values.",
+    "difficulty": 3,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(2);\nnums.add(4);\nnums.add(6);\nnums.add(8);\nnums.add(10);\n\nfor (int i = 0; i < nums.size(); i++)\n{\n    if (nums.get(i) % 4 == 0)\n    {\n        nums.remove(i);\n    }\n}\n\nfor (int n : nums)\n{\n    System.out.print(n + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 6 10 `"
+      },
+      {
+        "label": "B",
+        "text": "`2 6 8 10 `"
+      },
+      {
+        "label": "C",
+        "text": "`2 4 6 10 `"
+      },
+      {
+        "label": "D",
+        "text": "`2 4 6 8 10 `"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The value 4 is removed, then 8 shifts into index 2 and is skipped when i increments. The other choices reflect removing every multiple of 4, removing the wrong value, or removing nothing.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Determine the values of `sum` and `count` after the following code runs.\n\n```java\nArrayList<Integer> vals = new ArrayList<Integer>();\nvals.add(3);\nvals.add(5);\nvals.add(8);\nvals.add(10);\nvals.add(13);\n\nint sum = 0;\nint count = 0;\nfor (int i = 0; i < vals.size(); i++)\n{\n    if (vals.get(i) % 2 == 1)\n    {\n        sum += vals.get(i);\n        count++;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`sum = 21, count = 3`"
+      },
+      {
+        "label": "B",
+        "text": "`sum = 18, count = 2`"
+      },
+      {
+        "label": "C",
+        "text": "`sum = 39, count = 5`"
+      },
+      {
+        "label": "D",
+        "text": "`sum = 18, count = 3`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The odd values are 3, 5, and 13, so the sum is 21 and three values are counted. The distractors include summing even values, all values, or counting correctly while omitting one odd value.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "The method `removeSmall` is intended to remove all values less than `limit` from `data`. Which replacement for `/* missing code */` works correctly?\n\n```java\npublic static void removeSmall(ArrayList<Integer> data, int limit)\n{\n    /* missing code */\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int i = 0; i < data.size(); i++)\n{\n    if (data.get(i) < limit)\n    {\n        data.remove(i);\n    }\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int i = data.size() - 1; i >= 0; i--)\n{\n    if (data.get(i) < limit)\n    {\n        data.remove(i);\n    }\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (Integer value : data)\n{\n    if (value < limit)\n    {\n        data.remove(value);\n    }\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int i = data.size(); i >= 0; i--)\n{\n    if (data.get(i) < limit)\n    {\n        data.remove(i);\n    }\n}\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Traversing from the end prevents shifted elements from being skipped after a removal. Option A can skip values, option C changes the list during an enhanced for loop, and option D starts at an invalid index.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Which expression should replace `/* condition */` so that the method returns `true` if `words` contains two equal adjacent strings?\n\n```java\npublic static boolean hasDouble(ArrayList<String> words)\n{\n    for (int i = 0; i < words.size() - 1; i++)\n    {\n        if (/* condition */)\n        {\n            return true;\n        }\n    }\n    return false;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`words.get(i).equals(words.get(i + 1))`"
+      },
+      {
+        "label": "B",
+        "text": "`words.get(i) == words.get(i + 1)`"
+      },
+      {
+        "label": "C",
+        "text": "`words.equals(words.get(i + 1))`"
+      },
+      {
+        "label": "D",
+        "text": "`words.get(i).equals(words.get(i - 1))`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The method must compare the contents of adjacent String objects using equals. Option B compares references, option C compares the list to a string, and option D uses the previous index and fails when i is 0.",
+    "difficulty": 2,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<String> words = new ArrayList<String>();\nwords.add(\"to\");\nwords.add(\"be\");\nwords.add(\"or\");\nwords.add(\"not\");\n\nfor (int i = 0; i < words.size(); i++)\n{\n    String w = words.get(i);\n    if (w.length() == 2)\n    {\n        words.set(i, w + w);\n    }\n    else\n    {\n        words.add(i, \"x\");\n        i++;\n    }\n}\n\nfor (String w : words)\n{\n    System.out.print(w + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`toto bebe oror x not `"
+      },
+      {
+        "label": "B",
+        "text": "`toto bebe oror x notnot `"
+      },
+      {
+        "label": "C",
+        "text": "`toto bebe oror notnot `"
+      },
+      {
+        "label": "D",
+        "text": "`x toto x bebe x oror x not `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The first three words have length 2 and are doubled; when not is reached, x is inserted before it and i is advanced so not is not processed again. The other choices reflect doubling not or inserting x before every word.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "The method is intended to return the index of the first negative value in `nums`, or `-1` if there are no negative values. Which implementation is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\npublic static int firstNegative(ArrayList<Integer> nums)\n{\n    for (int i = 0; i < nums.size(); i++)\n    {\n        if (nums.get(i) < 0)\n        {\n            return i;\n        }\n    }\n    return -1;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\npublic static int firstNegative(ArrayList<Integer> nums)\n{\n    for (int i = 0; i <= nums.size(); i++)\n    {\n        if (nums.get(i) < 0)\n        {\n            return i;\n        }\n    }\n    return -1;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\npublic static int firstNegative(ArrayList<Integer> nums)\n{\n    for (int i = 0; i < nums.size(); i++)\n    {\n        if (nums.get(i) < 0)\n        {\n            return nums.get(i);\n        }\n    }\n    return -1;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\npublic static int firstNegative(ArrayList<Integer> nums)\n{\n    for (int n : nums)\n    {\n        if (n < 0)\n        {\n            return n;\n        }\n    }\n    return -1;\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Option A checks every valid index and returns the index of the first negative value. Option B can access index size, while C and D return the negative value itself rather than its index.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(2);\nnums.add(4);\nnums.add(5);\nnums.add(6);\nnums.add(8);\n\nint i = 0;\nwhile (i < nums.size())\n{\n    if (nums.get(i) % 4 == 0)\n    {\n        nums.remove(i);\n    }\n    else\n    {\n        i++;\n    }\n}\n\nfor (int j = 0; j < nums.size(); j++)\n{\n    System.out.print(nums.get(j) + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 5 6 `"
+      },
+      {
+        "label": "B",
+        "text": "`2 5 6 8 `"
+      },
+      {
+        "label": "C",
+        "text": "`4 8 `"
+      },
+      {
+        "label": "D",
+        "text": "`2 4 5 6 8 `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop removes values divisible by 4 and does not increment `i` after a removal because later elements shift left. The remaining values are 2, 5, and 6.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Which of the following could replace `/* missing code */` so that all occurrences of `target` are removed from `words`?\n\n```java\nint i = 0;\n/* missing code */\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nwhile (i < words.size())\n{\n    if (words.get(i).equals(target))\n    {\n        words.remove(i);\n    }\n    else\n    {\n        i++;\n    }\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nwhile (i < words.size())\n{\n    if (words.get(i).equals(target))\n    {\n        words.remove(i);\n    }\n    i++;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (String word : words)\n{\n    if (word.equals(target))\n    {\n        words.remove(i);\n    }\n    i++;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nwhile (i <= words.size())\n{\n    if (words.get(i).equals(target))\n    {\n        words.remove(i);\n    }\n    else\n    {\n        i++;\n    }\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "After a removal, the next element shifts into the same index, so `i` should only increase when no removal occurs. B can skip consecutive matches, C modifies the list during an enhanced for loop, and D can access index `size()`.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Determine the value of `count` after the following code runs.\n\n```java\nArrayList<Integer> values = new ArrayList<Integer>();\nvalues.add(3);\nvalues.add(9);\nvalues.add(12);\nvalues.add(18);\nvalues.add(20);\n\nint count = 0;\nfor (int k = 1; k < values.size(); k++)\n{\n    if (values.get(k) - values.get(k - 1) > 5)\n    {\n        count++;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The differences checked are 6, 3, 6, and 2, so exactly two are greater than 5. The loop starts at index 1 to compare each value with the previous value.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<String> words = new ArrayList<String>();\nwords.add(\"to\");\nwords.add(\"be\");\nwords.add(\"or\");\nwords.add(\"not\");\nwords.add(\"be\");\n\nfor (int i = words.size() - 1; i >= 0; i--)\n{\n    if (words.get(i).length() == 2)\n    {\n        words.remove(i);\n    }\n}\n\nSystem.out.print(words.size() + \" \");\nfor (String w : words)\n{\n    System.out.print(w + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 not `"
+      },
+      {
+        "label": "B",
+        "text": "`2 or not `"
+      },
+      {
+        "label": "C",
+        "text": "`3 to or be `"
+      },
+      {
+        "label": "D",
+        "text": "`5 to be or not be `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Reverse traversal safely removes all strings of length 2: `to`, `be`, `or`, and `be`. Only `not` remains, so the size printed is 1.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "An `ArrayList<Integer>` named `scores` has been initialized. Which code segment correctly computes the sum of all values in `scores`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nint sum = 0;\nfor (int i = 0; i < scores.size(); i++)\n{\n    sum += scores.get(i);\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nint sum = 0;\nfor (int i = 0; i <= scores.size(); i++)\n{\n    sum += scores.get(i);\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint sum = 0;\nfor (Integer score : scores)\n{\n    sum += scores.get(score);\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nint sum = 0;\nfor (int i = 0; i < scores.length; i++)\n{\n    sum += scores[i];\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "An ArrayList uses `size()` for the number of elements and `get(i)` for access. B has an out-of-range index, C treats a value as an index, and D uses array syntax.",
+    "difficulty": 2,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Which statement about common ArrayList algorithms is true?",
+    "options": [
+      {
+        "label": "A",
+        "text": "When removing elements during traversal, iterating from the end toward the beginning can avoid skipping elements."
+      },
+      {
+        "label": "B",
+        "text": "An enhanced for loop should be used when adding or removing elements from an ArrayList."
+      },
+      {
+        "label": "C",
+        "text": "After `remove(i)` is called, elements after index `i` shift one position to the right."
+      },
+      {
+        "label": "D",
+        "text": "The number of elements in an ArrayList is found with `length`."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Removing from the end avoids changing the indices of elements that have not yet been checked. Enhanced for loops should not change list size, removed elements cause later elements to shift left, and ArrayLists use `size()`.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_10",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(2);\nnums.add(4);\nnums.add(6);\nnums.add(8);\nnums.add(10);\nnums.add(12);\n\nint i = 0;\nint total = 0;\nwhile (i < nums.size())\n{\n    if (nums.get(i) % 4 == 0)\n    {\n        total += nums.remove(i);\n    }\n    else\n    {\n        i++;\n    }\n}\nSystem.out.println(total + \" \" + nums.size() + \" \" + nums.get(1));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`24 3 6`"
+      },
+      {
+        "label": "B",
+        "text": "`12 4 6`"
+      },
+      {
+        "label": "C",
+        "text": "`24 3 10`"
+      },
+      {
+        "label": "D",
+        "text": "`36 2 6`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The values 4, 8, and 12 are removed and added to total; after each removal the index is not incremented, so no shifted element is skipped. The remaining list is 2, 6, 10, so the output is 24 3 6.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  }
+]

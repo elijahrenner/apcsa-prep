@@ -1,0 +1,600 @@
+[
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Determine the output of the following code.\n\n```java\nArrayList<String> words = new ArrayList<String>();\nwords.add(\"cat\");\nwords.add(\"dog\");\nwords.add(\"eel\");\nwords.set(1, \"fox\");\nwords.add(0, \"ant\");\nSystem.out.println(words.get(2));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`\"cat\"`"
+      },
+      {
+        "label": "B",
+        "text": "`\"dog\"`"
+      },
+      {
+        "label": "C",
+        "text": "`\"fox\"`"
+      },
+      {
+        "label": "D",
+        "text": "`\"eel\"`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "After the three adds the list is [\"cat\",\"dog\",\"eel\"]. set(1,\"fox\") replaces index 1, giving [\"cat\",\"fox\",\"eel\"]. add(0,\"ant\") inserts at index 0 and shifts every element one position right, giving [\"ant\",\"cat\",\"fox\",\"eel\"]; get(2) returns \"fox\". A is wrong because of an off-by-one confusion (thinking indices start at 1). B is wrong because set(1,\"fox\") replaced \"dog\". D is wrong because add(0,\"ant\") pushed \"eel\" from index 2 to index 3.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "What is printed when the following code runs?\n\n```java\nArrayList<Integer> list = new ArrayList<Integer>();\nfor (int i = 1; i <= 5; i++) {\n    list.add(i * 2);\n}\nlist.remove(0);\nlist.remove(0);\nlist.add(1, 99);\nSystem.out.println(list.size());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`6`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The loop appends [2,4,6,8,10], size=5. Each remove(0) decreases size by 1, leaving size=3 after both calls. add(1,99) inserts one element, bringing size to 4. A forgets the add(1,99) call. B ignores both remove calls. C ignores both removes and counts only the loop (5) plus the insert (1) for 6.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "The following `ArrayList` has already been populated with values:\n\n```java\nArrayList<Integer> scores = new ArrayList<Integer>();\n```\n\nWhich of the following correctly computes the sum of all elements in `scores`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nint sum = 0;\nfor (int i = 0; i <= scores.size(); i++) {\n    sum += scores.get(i);\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nint sum = 0;\nfor (int i = 0; i < scores.size(); i++) {\n    sum += scores.size();\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint sum = 0;\nfor (int i = 0; i < scores.size(); i++) {\n    sum += scores[i];\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nint sum = 0;\nfor (int i = 0; i < scores.size(); i++) {\n    sum += scores.get(i);\n}\n```"
+      }
+    ],
+    "answer": "D",
+    "explanation": "D uses the correct bound `i < scores.size()` and retrieves each element with `scores.get(i)`. A uses `i <= scores.size()`, so the final iteration accesses index `size()`, which is one past the last valid index and throws `IndexOutOfBoundsException`. B accumulates the list's size on every iteration rather than the element values. C uses array bracket notation `scores[i]`, which is a compile error for an ArrayList\u2014element access requires `get(i)`.",
+    "difficulty": 2,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "The following code intends to remove all negative numbers from `list`. What is printed?\n\n```java\nArrayList<Integer> list = new ArrayList<Integer>();\nlist.add(-3);\nlist.add(-1);\nlist.add(5);\nlist.add(-2);\nlist.add(8);\nint i = 0;\nwhile (i < list.size()) {\n    if (list.get(i) < 0) {\n        list.remove(i);\n    }\n    i++;\n}\nSystem.out.println(list.size());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "A `ConcurrentModificationException` is thrown at runtime."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Tracing: i=0 removes -3; list becomes [-1,5,-2,8] and i increments to 1, so -1 (now at index 0) is skipped. i=1 sees 5, no removal. i=2 removes -2; list becomes [-1,5,8], size=3. i=3 fails the while condition and the loop exits. A is wrong because not all three negatives were removed. B is wrong because only the first removal at i=0 would give size 4, missing subsequent ones. D is wrong because ConcurrentModificationException is thrown only when an enhanced for-each loop is used while the collection's size changes; an indexed while loop is safe to use with remove.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Determine the output of the following code.\n\n```java\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(10);\nnums.add(20);\nnums.add(30);\nnums.add(40);\nint total = 0;\nfor (int i = 0; i < nums.size(); i++) {\n    total += nums.remove(0);\n}\nSystem.out.println(total + \" \" + nums.size());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`30 2`"
+      },
+      {
+        "label": "B",
+        "text": "`100 0`"
+      },
+      {
+        "label": "C",
+        "text": "`60 1`"
+      },
+      {
+        "label": "D",
+        "text": "`40 2`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Each call to remove(0) shrinks the list, so nums.size() in the loop condition decreases each iteration. i=0: size=4, 0<4, remove(0) returns 10, list=[20,30,40], total=10, i\u21921. i=1: size=3, 1<3, remove(0) returns 20, list=[30,40], total=30, i\u21922. i=2: size=2, 2<2 is false, loop exits. Prints \"30 2\". B assumes the loop always runs 4 times using the initial size as a fixed bound. C assumes 3 iterations run. D results from misreading remove(0) as remove(i): at i=1 that would remove index 1 (value 30), giving total=10+30=40, but that reading is incorrect\u2014the code explicitly passes 0.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(4);\nnums.add(7);\nnums.add(1, 5);\nnums.set(0, nums.get(2));\nnums.remove(2);\nSystem.out.println(nums);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`[4, 5]`"
+      },
+      {
+        "label": "B",
+        "text": "`[7, 5]`"
+      },
+      {
+        "label": "C",
+        "text": "`[5, 7]`"
+      },
+      {
+        "label": "D",
+        "text": "`[7, 5, 4]`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`add(1, 5)` makes the list `[4, 5, 7]`, then `set(0, nums.get(2))` changes it to `[7, 5, 7]`, and removing index 2 leaves `[7, 5]`. The other choices reflect missing the insertion shift, the set, or the removal.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Determine the values of `a` and `b` after the following code runs.\n\n```java\nArrayList<String> words = new ArrayList<String>();\nwords.add(\"red\");\nwords.add(\"blue\");\nwords.add(\"green\");\nwords.add(1, \"yellow\");\nString a = words.remove(2);\nString b = words.get(2);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a = \"blue\", b = \"green\"`"
+      },
+      {
+        "label": "B",
+        "text": "`a = \"yellow\", b = \"green\"`"
+      },
+      {
+        "label": "C",
+        "text": "`a = \"green\", b = \"blue\"`"
+      },
+      {
+        "label": "D",
+        "text": "`a = \"blue\", b = \"yellow\"`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "After inserting `\"yellow\"` at index 1, the list is `[red, yellow, blue, green]`; removing index 2 returns `\"blue\"` and shifts `\"green\"` to index 2. The distractors use the old indices or forget the shift after removal.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "A class `Student` has a method `getScore()` that returns an `int`. Which of the following correctly counts the number of students in `roster` whose score is at least 90?\n\n```java\nArrayList<Student> roster = new ArrayList<Student>();\nint count = 0;\n/* missing code */\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int i = 0; i <= roster.size(); i++)\n{\n    if (roster.get(i).getScore() >= 90)\n    {\n        count++;\n    }\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (Student s : roster)\n{\n    if (s.getScore() >= 90)\n    {\n        count++;\n    }\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int i = 0; i < roster.size(); i++)\n{\n    if (roster.getScore() >= 90)\n    {\n        count++;\n    }\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (Student s : roster)\n{\n    if (Student.getScore() >= 90)\n    {\n        count++;\n    }\n}\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The enhanced for loop visits each `Student` object and calls `getScore()` on that object. Choice A uses `<=` and will access one index past the end, while C and D call the method on the wrong receiver.",
+    "difficulty": 2,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Which statement about `ArrayList` objects is true?",
+    "options": [
+      {
+        "label": "A",
+        "text": "An `ArrayList<int>` can store primitive `int` values directly."
+      },
+      {
+        "label": "B",
+        "text": "The number of elements in an `ArrayList` is found using the `length` field."
+      },
+      {
+        "label": "C",
+        "text": "An `ArrayList` can grow or shrink as elements are added or removed."
+      },
+      {
+        "label": "D",
+        "text": "Elements of an `ArrayList` are accessed using bracket notation, such as `list[0]`."
+      }
+    ],
+    "answer": "C",
+    "explanation": "An `ArrayList` changes size when elements are added or removed. It stores object types such as `Integer`, uses `size()`, and accesses elements with `get(index)`.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Consider the following method.\n\n```java\npublic static void removeSmall(ArrayList<Integer> nums)\n{\n    int i = 0;\n    while (i < nums.size())\n    {\n        if (nums.get(i) < 10)\n        {\n            nums.remove(i);\n        }\n        else\n        {\n            i++;\n        }\n    }\n}\n```\n\nWhat is the contents of `vals` after the code segment is executed?\n\n```java\nArrayList<Integer> vals = new ArrayList<Integer>();\nvals.add(4);\nvals.add(12);\nvals.add(8);\nvals.add(3);\nvals.add(15);\nremoveSmall(vals);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`[12, 15]`"
+      },
+      {
+        "label": "B",
+        "text": "`[12, 3, 15]`"
+      },
+      {
+        "label": "C",
+        "text": "`[4, 12, 8, 3, 15]`"
+      },
+      {
+        "label": "D",
+        "text": "`[12, 8, 15]`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The index is not incremented after a removal, so each shifted element is checked and all values less than 10 are removed. The other choices reflect skipping shifted elements or not modifying the list.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<String> words = new ArrayList<String>();\nwords.add(\"red\");\nwords.add(\"blue\");\nwords.add(\"green\");\nwords.add(1, \"black\");\nString removed = words.remove(2);\nwords.set(0, removed.substring(0, 2));\nSystem.out.print(words.get(0) + \" \" + words.get(1) + \" \" + words.size());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`bl black 3`"
+      },
+      {
+        "label": "B",
+        "text": "`re black 3`"
+      },
+      {
+        "label": "C",
+        "text": "`bl blue 4`"
+      },
+      {
+        "label": "D",
+        "text": "`blue black 3`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`add(1, \"black\")` inserts and shifts later elements, then `remove(2)` removes `\"blue\"`; `set(0, \"bl\")` replaces `\"red\"`. The other choices confuse the removed item, the shifted indices, or the final size.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "What are the final contents of `nums` after the following code segment runs?\n\n```java\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(1);\nnums.add(2);\nnums.add(2);\nnums.add(3);\nnums.add(2);\n\nfor (int i = 0; i < nums.size(); i++)\n{\n    if (nums.get(i) == 2)\n    {\n        nums.remove(i);\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`[1, 3]`"
+      },
+      {
+        "label": "B",
+        "text": "`[1, 2, 3]`"
+      },
+      {
+        "label": "C",
+        "text": "`[1, 2, 3, 2]`"
+      },
+      {
+        "label": "D",
+        "text": "`[2, 2, 3]`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "After removing the first `2`, the next `2` shifts into that index, but `i` increments past it. Choice A would result from handling shifts correctly, while C and D do not match the actual removals.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Which of the following correctly declares and creates an empty resizable list that can store integer values?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`ArrayList<int> nums = new ArrayList<int>();`"
+      },
+      {
+        "label": "B",
+        "text": "`ArrayList<Integer> nums = new ArrayList<Integer>();`"
+      },
+      {
+        "label": "C",
+        "text": "`int[] nums = new int[0];`"
+      },
+      {
+        "label": "D",
+        "text": "`ArrayList nums = new ArrayList<Integer>();`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An `ArrayList` stores objects, so `Integer` is used for integer values. A uses a primitive type, C creates a fixed-size array, and D omits the type on the variable declaration.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Which of the following could replace `/* missing code */` so that `sum` is assigned the total of all values in `scores`?\n\n```java\nArrayList<Integer> scores = new ArrayList<Integer>();\n/* scores is filled with Integer values */\nint sum = 0;\n\n/* missing code */\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int i = 0; i <= scores.size(); i++)\n{\n    sum += scores.get(i);\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int i = 0; i < scores.size(); i++)\n{\n    sum += scores.get(i);\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int i = 0; i < scores.length; i++)\n{\n    sum += scores[i];\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (Integer score : scores)\n{\n    sum += scores.get(score);\n}\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "ArrayLists use `size()` for the count and `get(i)` for indexed access. A goes one index too far, C uses array syntax, and D treats each value as an index.",
+    "difficulty": 2,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Consider the following code segment.\n\n```java\nArrayList<String> names = new ArrayList<String>();\nnames.add(\"Mia\");\nnames.add(\"Noah\");\nnames.add(\"Lia\");\nString old = names.set(1, \"Ava\");\nnames.add(old);\nSystem.out.print(names.get(1) + \" \" + names.get(3));\n```\n\nWhich of the following represents the output that will be produced?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Ava Noah`"
+      },
+      {
+        "label": "B",
+        "text": "`Noah Ava`"
+      },
+      {
+        "label": "C",
+        "text": "`Ava Lia`"
+      },
+      {
+        "label": "D",
+        "text": "`Noah Lia`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`set(1, \"Ava\")` replaces `\"Noah\"` and returns the old value, which is then appended. Thus index 1 is `\"Ava\"` and index 3 is `\"Noah\"`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Which statement about `ArrayList` objects is true?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The number of elements is accessed using the `length` field."
+      },
+      {
+        "label": "B",
+        "text": "Elements are accessed using bracket notation, such as `list[0]`."
+      },
+      {
+        "label": "C",
+        "text": "Adding an element at a valid index shifts later elements one position to the right."
+      },
+      {
+        "label": "D",
+        "text": "An `ArrayList<double>` is the standard way to store decimal values."
+      }
+    ],
+    "answer": "C",
+    "explanation": "`add(index, value)` inserts at that position and shifts later elements right. A and B describe arrays, and D is invalid because an `ArrayList` uses wrapper types such as `Double`.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<String> words = new ArrayList<String>();\nwords.add(\"cat\");\nwords.add(\"dog\");\nwords.add(1, \"ant\");\nString old = words.set(2, \"eel\");\nwords.remove(0);\nSystem.out.println(old + \" \" + words.get(0) + \" \" + words.size());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`dog ant 2`"
+      },
+      {
+        "label": "B",
+        "text": "`eel ant 2`"
+      },
+      {
+        "label": "C",
+        "text": "`dog cat 3`"
+      },
+      {
+        "label": "D",
+        "text": "`ant dog 2`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`set` returns the old value, `dog`, and after removing index 0 the list contains `ant`, `eel`. The other options confuse the returned value of `set`, the shifted indices, or the final size.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Determine the values of `x`, `y`, and `nums` after the following code runs.\n\n```java\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(4);\nnums.add(8);\nnums.add(1, 6);\nint x = nums.remove(0);\nint y = nums.set(1, nums.get(0) + x);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 4, y = 8, nums contains 6, 10`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 4, y = 10, nums contains 6, 10`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 6, y = 8, nums contains 4, 10`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 4, y = 8, nums contains 10, 8`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "After insertion, `nums` contains `4, 6, 8`; `remove(0)` returns `4`, and `set(1, 10)` returns the old value `8`. The distractors mix up inserted indices or the return value of `set`.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Which of the following code segments correctly removes every occurrence of `\"drop\"` from an `ArrayList<String>` named `items`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (String item : items)\n{\n    if (item.equals(\"drop\"))\n    {\n        items.remove(items.indexOf(item));\n    }\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int i = 0; i <= items.size(); i++)\n{\n    if (items.get(i).equals(\"drop\"))\n    {\n        items.remove(i);\n    }\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint i = 0;\nwhile (i < items.size())\n{\n    if (items.get(i).equals(\"drop\"))\n    {\n        items.remove(i);\n    }\n    else\n    {\n        i++;\n    }\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int i = 0; i < items.size(); i++)\n{\n    if (items.get(i).equals(\"drop\"))\n    {\n        items.remove(i);\n    }\n}\n```"
+      }
+    ],
+    "answer": "C",
+    "explanation": "After a removal, the next element shifts into the same index, so the index should increase only when no removal occurs. Option A changes the list size during an enhanced for loop, B uses an invalid final index, and D can skip adjacent matches.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Which of the following is the proper declaration and initialization for an `ArrayList` that stores whole numbers?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`ArrayList<int> nums = new ArrayList<int>();`"
+      },
+      {
+        "label": "B",
+        "text": "`ArrayList<Integer> nums = new ArrayList<Integer>();`"
+      },
+      {
+        "label": "C",
+        "text": "`int[] nums = new int[];`"
+      },
+      {
+        "label": "D",
+        "text": "`ArrayList nums = new ArrayList<Integer>();`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An `ArrayList` stores object references, so whole numbers should use the wrapper type `Integer`. Option A uses a primitive type as the generic type, C is an array declaration, and D omits the type on the variable.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Consider the following code segment.\n\n```java\nArrayList<String> codes = new ArrayList<String>();\ncodes.add(\"A\");\ncodes.add(\"B\");\ncodes.add(\"C\");\ncodes.add(1, \"D\");\ncodes.remove(2);\nSystem.out.println(codes.get(1) + codes.get(2));\n```\n\nWhich of the following represents the output that will be produced by the code?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`DB`"
+      },
+      {
+        "label": "B",
+        "text": "`DC`"
+      },
+      {
+        "label": "C",
+        "text": "`BC`"
+      },
+      {
+        "label": "D",
+        "text": "`BD`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "After `add(1, \"D\")`, the list is `A, D, B, C`; removing index 2 removes `B`, leaving `A, D, C`. Therefore indices 1 and 2 contain `D` and `C`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "An `ArrayList<Integer>` named `scores` has been initialized. Which code segment correctly computes the sum of all values in `scores`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nint total = 0;\nfor (int i = 0; i < scores.size(); i++)\n{\n    total += scores.get(i);\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nint total = 0;\nfor (int i = 0; i <= scores.size(); i++)\n{\n    total += scores.get(i);\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint total = 0;\nfor (int i = 0; i < scores.length; i++)\n{\n    total += scores[i];\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nint total = 0;\nfor (Integer score : scores)\n{\n    total = score;\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "ArrayLists use `size()` and `get(i)`, with valid indices from `0` through `size() - 1`. B goes one index too far, C uses array syntax, and D overwrites the total instead of accumulating.",
+    "difficulty": 2,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_8",
+    "stem": "Determine the output of the following code segment.\n\n```java\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(3);\nnums.add(1);\nnums.add(4);\nnums.add(1);\nnums.add(2, 5);\n\nint a = nums.remove(1);\nint b = nums.set(2, nums.get(0) + nums.get(1));\n\nSystem.out.print(nums.size() + \" \" + a + \" \" + b + \" \" + nums.get(2));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4 1 4 8`"
+      },
+      {
+        "label": "B",
+        "text": "`5 1 4 8`"
+      },
+      {
+        "label": "C",
+        "text": "`4 1 8 8`"
+      },
+      {
+        "label": "D",
+        "text": "`4 5 4 8`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "After inserting 5 at index 2, removing index 1 returns 1 and leaves four elements; set returns the old value 4 while storing 8 at index 2. The other choices confuse the final size, the return value of set, or the element removed.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  }
+]

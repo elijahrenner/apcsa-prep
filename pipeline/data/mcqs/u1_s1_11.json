@@ -1,0 +1,522 @@
+[
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "Which of the following correctly describes the return type and possible range of `Math.random()`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Returns an `int` in the range [0, 1]"
+      },
+      {
+        "label": "B",
+        "text": "Returns a `double` in the range (0.0, 1.0)"
+      },
+      {
+        "label": "C",
+        "text": "Returns a `double` in the range [0.0, 1.0)"
+      },
+      {
+        "label": "D",
+        "text": "Returns a `double` in the range [0.0, 1.0]"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Math.random() returns a double that is >= 0.0 and strictly < 1.0. A is wrong because the return type is double, not int. B excludes 0.0, which is a possible value. D incorrectly includes 1.0 as reachable.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "Which of the following is the correct syntax for calling the `sqrt` method of the `Math` class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Math m = new Math(); m.sqrt(25);`"
+      },
+      {
+        "label": "B",
+        "text": "`sqrt(25);`"
+      },
+      {
+        "label": "C",
+        "text": "`Math.sqrt(25);`"
+      },
+      {
+        "label": "D",
+        "text": "`Math().sqrt(25);`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Math is a static utility class; its methods are called using the class name: Math.sqrt(25). Math cannot be instantiated with new (rules out A and D), and sqrt is not in scope without the Math. prefix (rules out B).",
+    "difficulty": 1,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "What is printed by the following code?\n\n```java\nint x = -9;\nSystem.out.println(Math.abs(x) - 3);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`-12`"
+      },
+      {
+        "label": "B",
+        "text": "`-6`"
+      },
+      {
+        "label": "C",
+        "text": "`6`"
+      },
+      {
+        "label": "D",
+        "text": "`12`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Math.abs(-9) returns 9, then 9 - 3 = 6. A (-12) treats abs as negation and subtracts (-9 - 3). B skips the abs entirely (-9 + 3 = -6). D adds instead of subtracts (9 + 3 = 12).",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "What is the value of `result` after the following statement executes?\n\n```java\ndouble result = Math.pow(4, 3);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`12.0`"
+      },
+      {
+        "label": "B",
+        "text": "`43.0`"
+      },
+      {
+        "label": "C",
+        "text": "`81.0`"
+      },
+      {
+        "label": "D",
+        "text": "`64.0`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Math.pow(4, 3) computes 4 raised to the power 3 (4 \u00d7 4 \u00d7 4 = 64), returning 64.0 as a double. A multiplies instead of exponentiating (4 \u00d7 3 = 12). B concatenates the digits visually. C swaps base and exponent (3^4 = 81).",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "What is printed by the following code?\n\n```java\ndouble r = Math.sqrt(25);\nSystem.out.println(r);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`5.0`"
+      },
+      {
+        "label": "C",
+        "text": "`12.5`"
+      },
+      {
+        "label": "D",
+        "text": "`625.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Math.sqrt(25) returns 5.0 as a double. When println displays a double whose value is a whole number, it still prints the decimal point and trailing zero (5.0). A would be correct if r were declared as int. C divides 25 by 2. D squares 25 instead of taking its root.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "What are the minimum and maximum possible integer values produced by the following expression?\n\n```java\n(int)(Math.random() * 6) + 1\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "minimum: `0`, maximum: `6`"
+      },
+      {
+        "label": "B",
+        "text": "minimum: `1`, maximum: `6`"
+      },
+      {
+        "label": "C",
+        "text": "minimum: `1`, maximum: `7`"
+      },
+      {
+        "label": "D",
+        "text": "minimum: `0`, maximum: `5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Math.random() is in [0.0, 1.0), so * 6 gives [0.0, 6.0). Casting to int yields 0\u20135, and adding 1 yields 1\u20136. A forgets the +1 offset on the minimum. C incorrectly assumes 6.0 is reachable, pushing the max to 7. D omits the +1 shift entirely.",
+    "difficulty": 2,
+    "stem_pattern": "random_range_calculation"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "Which of the following statements about the `Math` class is true?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The `Math` class must be explicitly imported before its methods can be used."
+      },
+      {
+        "label": "B",
+        "text": "An instance of `Math` must be created with `new` before calling its methods."
+      },
+      {
+        "label": "C",
+        "text": "`Math.pow(double, double)` returns an `int`."
+      },
+      {
+        "label": "D",
+        "text": "All `Math` methods are static and are invoked using the class name."
+      }
+    ],
+    "answer": "D",
+    "explanation": "Every method in the Math class is static and is called as Math.methodName(...). Math is in java.lang, which is automatically imported so no import statement is needed (A is false). No instance is ever required (B is false). Math.pow returns a double, not an int (C is false).",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "What is printed by the following code?\n\n```java\ndouble a = Math.abs(-4.0);\ndouble b = Math.pow(a, 2);\ndouble c = Math.sqrt(b);\nSystem.out.println(c);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2.0`"
+      },
+      {
+        "label": "B",
+        "text": "`4.0`"
+      },
+      {
+        "label": "C",
+        "text": "`16.0`"
+      },
+      {
+        "label": "D",
+        "text": "`-4.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Math.abs(-4.0) = 4.0; Math.pow(4.0, 2) = 16.0; Math.sqrt(16.0) = 4.0. A results from taking sqrt(a) = sqrt(4.0) = 2.0, skipping the pow step. C prints b (the result after pow, before sqrt). D ignores the abs call and propagates the negative.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "Which of the following is NOT a possible value produced by the expression below?\n\n```java\n(int)(Math.random() * 4) + 2\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Math.random() * 4 is in [0.0, 4.0), so casting to int yields 0, 1, 2, or 3. Adding 2 gives 2, 3, 4, or 5. Reaching 6 would require Math.random() to return exactly 1.0, which is excluded from its range. A (2), B (4), and C (5) are all achievable.",
+    "difficulty": 3,
+    "stem_pattern": "random_range_calculation"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "What is printed by the following code?\n\n```java\nint x = (int) Math.sqrt(100);\nint y = (int) Math.pow(2, 3);\nSystem.out.println(x / y + x % y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`3.25`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`2`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Math.sqrt(100) = 10.0, cast to int gives x = 10. Math.pow(2, 3) = 8.0, cast to int gives y = 8. Integer division: 10 / 8 = 1 (remainder discarded). Modulo: 10 % 8 = 2. Sum: 1 + 2 = 3. B treats 10 / 8 as double division (1.25 + 2 = 3.25). C rounds up the quotient to 2 (2 + 2 = 4). D prints only the remainder and ignores the quotient.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "What are the values of `x` and `y` after the following code executes?\n\n```java\ndouble x = Math.pow(3, 2) - Math.abs(-5);\nint y = (int)(x / 2);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 4.0, y = 2`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 4.0, y = 2.0`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 4.0, y = 4`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 14.0, y = 7`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Math.pow(3, 2) = 9.0 and Math.abs(-5) = 5, so x = 9.0 - 5 = 4.0. Then x / 2 = 2.0, and casting to int gives y = 2. B is wrong because y is declared int and cannot hold 2.0. C skips the / 2 step, leaving y as the int cast of x (4). D adds abs(-5) instead of subtracting it (9.0 + 5 = 14.0, 14 / 2 = 7).",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = Math.abs(-8);\nint y = Math.abs(5);\nSystem.out.println(x + y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`-13`"
+      },
+      {
+        "label": "B",
+        "text": "`-3`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`13`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`Math.abs(-8)` returns `8` and `Math.abs(5)` returns `5`; their sum is `13`. B (-3) results from computing -8 + 5 without applying `abs` to -8; C (3) takes the difference of the absolute values; A (-13) negates the correct sum.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "Determine the output of the following code:\n\n```java\ndouble result = Math.pow(2, 4);\nSystem.out.println((int) Math.sqrt(result));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`8`"
+      },
+      {
+        "label": "D",
+        "text": "`16`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`Math.pow(2, 4)` returns `16.0`; `Math.sqrt(16.0)` returns `4.0`; casting to `int` yields `4`. A (2) is the square root of 4, confusing the exponent with the base; C (8) is 16 / 2; D (16) is the value of `result` before `sqrt` is applied.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "What value does the expression `Math.abs(-3.7)` return?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`-3.7`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`3.7`"
+      },
+      {
+        "label": "D",
+        "text": "`4.0`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`Math.abs(double)` returns the absolute value as a `double`, so `-3.7` becomes `3.7`. Option B (`3`) is wrong because `Math.abs` does not truncate the decimal portion. Option D (`4.0`) is wrong because `Math.abs` does not round.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = -7;\ndouble y = 2.0;\nSystem.out.println(Math.abs(x) + Math.pow(y, 3));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`15`"
+      },
+      {
+        "label": "B",
+        "text": "`15.0`"
+      },
+      {
+        "label": "C",
+        "text": "`-15.0`"
+      },
+      {
+        "label": "D",
+        "text": "`1.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`Math.abs(-7)` returns the `int` `7`. `Math.pow(2.0, 3)` returns the `double` `8.0`. Adding `int` `7` and `double` `8.0` promotes the result to `double`, giving `15.0`. Option A (`15`) is wrong because one operand is `double`. Option C forgets that `Math.abs` removes the negative sign. Option D is not derivable from these operands.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "Which of the following expressions evaluates to a value of type `int` rather than `double`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Math.sqrt(4)`"
+      },
+      {
+        "label": "B",
+        "text": "`Math.pow(3, 2)`"
+      },
+      {
+        "label": "C",
+        "text": "`Math.abs(-5)`"
+      },
+      {
+        "label": "D",
+        "text": "`Math.abs(-5.0)`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`Math.abs` is overloaded: when passed an `int` argument, it returns an `int`. So `Math.abs(-5)` returns the `int` `5`. `Math.sqrt` and `Math.pow` always return `double`. `Math.abs(-5.0)` calls the `double` overload and returns the `double` `5.0`.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "Consider the following statement:\n\n```java\nint r = (int)(Math.random() * 6) + 1;\n```\n\nWhat are the minimum and maximum possible values of `r`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "minimum: `0`, maximum: `5`"
+      },
+      {
+        "label": "B",
+        "text": "minimum: `0`, maximum: `6`"
+      },
+      {
+        "label": "C",
+        "text": "minimum: `1`, maximum: `7`"
+      },
+      {
+        "label": "D",
+        "text": "minimum: `1`, maximum: `6`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`Math.random()` returns a value in `[0.0, 1.0)`, so `Math.random() * 6` is in `[0.0, 6.0)`. Casting to `int` truncates, yielding `0` through `5`. Adding `1` shifts the range to `1` through `6`. Option A forgets the `+ 1` offset. Option B includes `6` before adding `1` but forgets the shift. Option C incorrectly uses `6.0` as a reachable pre-cast value (since `1.0` is excluded from `Math.random()`).",
+    "difficulty": 3,
+    "stem_pattern": "random_range_calculation"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "Consider the following code:\n\n```java\nint result = (int)(Math.random() * 5) + 3;\n```\n\nWhich of the following is **not** a possible value of `result`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`6`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "`8`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`Math.random() * 5` is in `[0.0, 5.0)`, so `(int)(Math.random() * 5)` can be `0`, `1`, `2`, `3`, or `4`. Adding `3` gives the possible range `3` through `7`. The value `8` would require `(int)(Math.random() * 5)` to equal `5`, which is impossible because `Math.random()` never returns `1.0`. Options A, B, and C are all achievable within the `[3, 7]` range.",
+    "difficulty": 4,
+    "stem_pattern": "random_range_calculation"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "Determine the output of the following code segment:\n\n```java\nint x = -3;\ndouble y = Math.pow(x, 2);\ndouble z = Math.sqrt(49);\nint result = (int)(Math.abs(-4.8) + z);\nSystem.out.print((int)y + \" \" + result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`9 11`"
+      },
+      {
+        "label": "B",
+        "text": "`9 12`"
+      },
+      {
+        "label": "C",
+        "text": "`-9 11`"
+      },
+      {
+        "label": "D",
+        "text": "`9.0 11`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`Math.pow(-3, 2)` is `9.0`, which is cast to `9`; `Math.abs(-4.8) + Math.sqrt(49)` is `11.8`, which casts to `11`. The other choices reflect rounding, keeping the negative sign, or printing the uncased double.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_11",
+    "stem": "Consider the following assignment:\n\n```java\nint n = (int)(Math.random() * 8) + 4;\n```\n\nWhich of the following lists all possible values of `n`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4, 5, 6, 7, 8, 9, 10, 11`"
+      },
+      {
+        "label": "B",
+        "text": "`4, 5, 6, 7, 8, 9, 10, 11, 12`"
+      },
+      {
+        "label": "C",
+        "text": "`0, 1, 2, 3, 4, 5, 6, 7`"
+      },
+      {
+        "label": "D",
+        "text": "`5, 6, 7, 8, 9, 10, 11, 12`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`Math.random() * 8` is at least `0.0` and less than `8.0`, so the cast gives integers `0` through `7`; adding `4` gives `4` through `11`. `12` is not possible, and the offset cannot be ignored.",
+    "difficulty": 2,
+    "stem_pattern": "random_range_calculation"
+  }
+]

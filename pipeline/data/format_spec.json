@@ -1,0 +1,931 @@
+{
+  "schema_version": 1,
+  "exam_overview": {
+    "mcq_count": 42,
+    "mcq_minutes": 90,
+    "mcq_choices_per_q": 4,
+    "mcq_weight_pct": 55,
+    "frq_count": 4,
+    "frq_minutes": 90,
+    "frq_total_points": 25,
+    "frq_weight_pct": 45,
+    "calculator_allowed": false,
+    "java_quick_reference_methods": [
+      "String.length()",
+      "String.substring(int from)",
+      "String.substring(int from, int to)",
+      "String.indexOf(String s)",
+      "String.equals(String other)",
+      "String.compareTo(String other)",
+      "String concatenation via +",
+      "Math.abs(int)",
+      "Math.abs(double)",
+      "Math.pow(double, double)",
+      "Math.sqrt(double)",
+      "Math.random()",
+      "Integer(int)",
+      "Integer.intValue()",
+      "Integer.MIN_VALUE",
+      "Integer.MAX_VALUE",
+      "Integer.parseInt(String)",
+      "Double(double)",
+      "Double.doubleValue()",
+      "Double.parseDouble(String)",
+      "Object.equals(Object)",
+      "Object.toString()",
+      "ArrayList.size()",
+      "ArrayList.add(E)",
+      "ArrayList.add(int, E)",
+      "ArrayList.get(int)",
+      "ArrayList.set(int, E)",
+      "ArrayList.remove(int)",
+      "ArrayList.contains(E)",
+      "ArrayList.indexOf(E)",
+      "new File(String pathname)",
+      "new Scanner(File f)",
+      "new Scanner(String s)",
+      "Scanner.hasNext()",
+      "Scanner.hasNextInt()",
+      "Scanner.hasNextDouble()",
+      "Scanner.next()",
+      "Scanner.nextInt()",
+      "Scanner.nextDouble()",
+      "Scanner.nextLine()",
+      "Scanner.close()"
+    ],
+    "scoring_notes": {
+      "mcq": "1 point per correct answer, 0 for blank or wrong; no penalty for guessing",
+      "frq": "Each rubric point awarded independently; wrong part (a) does not block part (b) credit",
+      "digital_platform": "Fully digital via College Board Bluebook app; scratch paper provided; not adaptive"
+    }
+  },
+  "unit_weights": {
+    "1": [
+      15,
+      25
+    ],
+    "2": [
+      25,
+      35
+    ],
+    "3": [
+      10,
+      18
+    ],
+    "4": [
+      30,
+      40
+    ]
+  },
+  "frq_archetypes": [
+    {
+      "id": "methods_control",
+      "name": "Methods and Control Structures",
+      "frq_position": 1,
+      "total_points": 7,
+      "structure": "Always split into part (a) and part (b). A complete class skeleton with private instance fields, a constructor, and stub methods is provided. Part (a) asks the student to write a smaller helper method (worth 3\u20134 points); part (b) asks for a driver or simulation method that MUST call the part-(a) method for full credit (worth 3\u20134 points). A 'Class information for this question' block listing all visible members appears after each part prompt.",
+      "typical_topics": [
+        "Writing a method that uses Math.random() to simulate a random event (e.g., rolling a die), requiring correct range scaling and int cast",
+        "Writing a loop that executes exactly a specified number of times (numSampleSize, sample size) and accumulates a count or sum",
+        "Returning a percentage or ratio computed from a count, requiring avoidance of integer division (cast numerator or denominator to double, then multiply by 100)",
+        "Parsing a String word-by-word using indexOf(' ') and substring to split on spaces",
+        "Applying a three-case conditional (starts with vowel / starts with one consonant / starts with two consonants) using a delegated helper method",
+        "Traversing an ArrayList of objects and calling a boolean test method (canTeach, checkForConflicts) on each element",
+        "Returning true/false from a search loop: true on first successful match, false after exhausting the list",
+        "Using a precondition (null check before empty-string check) to guard early return"
+      ],
+      "rubric_pattern": [
+        {
+          "point_label": "Random-number generation (part a)",
+          "what_to_award": "Award if Math.random() or the Random class is used to produce a pseudo-random value. Must appear in the method body. Seen in exam1.frq#1 part (a) roll() method."
+        },
+        {
+          "point_label": "Correct range scaling and int cast (part a)",
+          "what_to_award": "Award if the random value is multiplied by the correct range (e.g., numFaces) and shifted by the correct offset (e.g., +1) so the result spans [1, numFaces] inclusive, AND the result is cast to int before return. Off-by-one in the multiplier loses this point. Seen in exam1.frq#1."
+        },
+        {
+          "point_label": "String character extraction via substring (part a)",
+          "what_to_award": "Award if individual characters are extracted using substring(i, i+1), NOT charAt (which is not on the Quick Reference). Applies to PigLatin convertWord (exam2.frq#1) and Name.countVowels (exam3.frq#3)."
+        },
+        {
+          "point_label": "Loop executes the correct number of times (part b)",
+          "what_to_award": "Award if the loop iterates exactly the required count with correct bounds: e.g., for (int i = 0; i < numSampleSize; i++). Using <= instead of < or initializing at 1 instead of 0 loses this point. Seen in exam1.frq#1 part (b)."
+        },
+        {
+          "point_label": "Accumulator or comparison logic correct (part b)",
+          "what_to_award": "Award if the loop body correctly identifies the event of interest (e.g., die1 == die2 for a double, employee.childrenAssigned() < maxRatio AND employee.canTeach(age) for a valid assignment) and updates a counter or flag correctly. Seen in exam1.frq#1, exam3.frq#1."
+        },
+        {
+          "point_label": "Required helper method called, not reimplemented (part b)",
+          "what_to_award": "Award ONLY if part (b) explicitly calls the method written in part (a) (e.g., roll(), isLetterAVowel(), findEmployeeForChild()). Reimplementing the helper logic in part (b) forfeits this point. Explicitly enforced in exam1.frq#1, exam2.frq#1, exam3.frq#1."
+        },
+        {
+          "point_label": "Return value correct type, avoids integer division",
+          "what_to_award": "Award if the method returns the correct declared type (int percentage, String, boolean) with the correct computed value. For percentage: cast or promote to double before division, then multiply by 100. For boolean: return true on success, false after the loop if nothing was found. Seen across all three FRQ-1 problems."
+        }
+      ],
+      "common_pitfalls": [
+        "Integer division truncation: writing (int)(matches / total * 100) instead of (int)((double)matches / total * 100)",
+        "Off-by-one in loop bound: <= numSampleSize instead of < numSampleSize",
+        "Failing to call the part-(a) helper in part (b) and instead reimplementing its logic",
+        "Checking for empty string before null: must check null first or a NullPointerException results",
+        "Using String.charAt() which is not on the Java Quick Reference; must use substring(i, i+1)",
+        "Forgetting to declare and initialize local variables (die1, die2, count) before the loop",
+        "Returning void or the wrong type instead of the declared return type",
+        "Not assigning the child to the employee before returning true (exam3.frq#1)"
+      ]
+    },
+    {
+      "id": "class_writing",
+      "name": "Class Design",
+      "frq_position": 2,
+      "total_points": 7,
+      "structure": "No part (a)/(b) split. The entire class must be written from scratch. A specification table lists method names, sample calls, parameter values, and expected return values or printed output. No class skeleton is given. The student must supply: the class header, all private instance fields, all constructors (including overloaded constructors when specified), and all specified methods. The problem description always names specific method signatures (addMeal, addMiles, getStatusInfo, toString, setRole) and specifies exact return types.",
+      "typical_topics": [
+        "Declaring multiple private instance fields of mixed primitive and reference types (int, double, String, boolean)",
+        "Writing a constructor whose header matches exactly the class name and whose body initializes every field from parameters",
+        "Writing overloaded constructors: one with all parameters, one with fewer parameters that defaults missing fields to 0, 0.0, or empty string",
+        "Writing void mutator methods that update one or more instance fields from parameters (addMeal, addMiles, setRole)",
+        "Writing a boolean predicate method that compares an instance field to a limit and returns true or false (onTrack)",
+        "Writing a toString() method that concatenates field values with literal labels and Java string escape sequences (\\n for newlines)",
+        "Writing a getStatusInfo() or similar method that returns a formatted String, branching on a status-level integer to select the correct label ('frequent flyer member' vs. 'platinum member')",
+        "Maintaining all fields encapsulated as private; no public fields"
+      ],
+      "rubric_pattern": [
+        {
+          "point_label": "Class header",
+          "what_to_award": "Award if the class is declared public with exactly the specified class name, e.g., public class CalorieCount, public class FrequentFlyerMember, public class Employee. Seen in exam1.frq#2, exam2.frq#2, exam3.frq#2."
+        },
+        {
+          "point_label": "Private instance variables",
+          "what_to_award": "Award if ALL required instance fields are declared private with the correct types and in correct number. Losing this point if any required field is omitted, declared public, or declared static when not warranted. Exam1.frq#2: 5 fields (limit int, intake int, protein int, carbs int, fat int). Exam2.frq#2: 4 fields (flyerNumber int, name String, lifeTimeMiles int, statusLevel int). Exam3.frq#2: 3 fields (name String, role String, salary int)."
+        },
+        {
+          "point_label": "Constructor header(s)",
+          "what_to_award": "Award if each required constructor uses the correct class name as the constructor name, the correct number of parameters, and the correct parameter types in the correct order as specified in the problem table. For overloaded constructors, each counts separately."
+        },
+        {
+          "point_label": "Constructor body initializes all fields",
+          "what_to_award": "Award if every instance field is assigned either from a constructor parameter or from an appropriate default value (0 for numeric types, empty string for String) inside the constructor body. Exam3.frq#2: second constructor must default salary to 0. Missing any field initialization loses this point."
+        },
+        {
+          "point_label": "Mutator method header",
+          "what_to_award": "Award if each mutator (addMeal, addMiles, setRole/changeRole) has the correct return type (void), the correct method name, and the correct parameter list (types and count) as specified. Seen across exam1.frq#2, exam2.frq#2, exam3.frq#2."
+        },
+        {
+          "point_label": "Mutator method body updates fields correctly",
+          "what_to_award": "Award if the mutator correctly updates the relevant instance field(s) using the parameter: e.g., numCaloriesIntake += calories (exam1.frq#2), lifeTimeMiles += miles (exam2.frq#2), role = newRole (exam3.frq#2). Must use += (accumulate) not = (overwrite) where accumulation is specified."
+        },
+        {
+          "point_label": "Accessor / toString / getStatusInfo method",
+          "what_to_award": "Award if the method returns the correctly formatted value. For boolean accessor (onTrack): return numCaloriesIntake <= numCaloriesLimit. For getStatusInfo: conditionally selects label based on statusLevel integer value and concatenates all four fields. For toString: uses \\n between fields, substitutes 'unknown' when role field holds empty string. Award requires correct return type (boolean or String) and no System.out.print calls inside the method."
+        }
+      ],
+      "common_pitfalls": [
+        "Declaring instance fields as public instead of private",
+        "Omitting one of the overloaded constructors entirely",
+        "Second (shorter) constructor not explicitly defaulting the missing field to 0 or empty string",
+        "toString using System.out.println instead of returning a String",
+        "toString missing \\n between field lines, producing a single-line string",
+        "toString not substituting 'unknown' (or the specified label) when the role field is empty string",
+        "getStatusInfo hard-coding one branch's label instead of branching on the statusLevel field",
+        "addMeal using = instead of += for accumulating calories, losing the cumulative history",
+        "Adding extraneous System.out.print calls in any method that is specified to return a value"
+      ]
+    },
+    {
+      "id": "arraylist",
+      "name": "Data Analysis with ArrayList",
+      "frq_position": 3,
+      "total_points": 5,
+      "structure": "Always split into part (a) and part (b). Two related classes are provided; at least one contains a private ArrayList field. Partial class declarations (with some method stubs marked 'implementation not shown') are given. Part (a) asks for a constructor or a method that builds or populates the ArrayList (2\u20133 points). Part (b) asks for a method that operates on the ArrayList and MUST call the part-(a) method for full credit (2 points). A 'Class information for this question' block is appended after each part. No 2D arrays or raw arrays appear in this FRQ.",
+      "typical_topics": [
+        "Writing a constructor that initializes an ArrayList field with new ArrayList<Type>()",
+        "Writing a method that builds an ArrayList by looping and conditionally adding elements (factor pairs, tour objects)",
+        "Avoiding duplicate entries: iterating only up to n/i (where n % i == 0 and i <= n/i) to prevent symmetric duplicates in exam2.frq#3",
+        "Calling a pre-existing boolean helper (checkForConflicts, findEmployeeForChild) before adding an element to the list",
+        "Returning true when an element was successfully added, false otherwise",
+        "Traversing an ArrayList with an enhanced for loop or indexed for loop to compute a result (size comparison, sum, concatenated string)",
+        "Comparing two ArrayList sizes and returning the number with the larger size, or -1 if tied",
+        "Using String.indexOf(' ') and String.substring() to parse a phrase into individual words and process each word via a helper"
+      ],
+      "rubric_pattern": [
+        {
+          "point_label": "ArrayList field initialized correctly",
+          "what_to_award": "Award if the ArrayList field is initialized with new ArrayList<CorrectType>() either in the constructor body or field declaration. Leaving it null or using the wrong generic type loses this point. Seen in exam1.frq#3 part (a) TravelPlan constructor."
+        },
+        {
+          "point_label": "Loop iterates over all elements without bounds error",
+          "what_to_award": "Award if the loop (for, enhanced-for, or while) iterates over the correct range: e.g., 1 through n for factor finding, or all elements of an ArrayList using < list.size(). Off-by-one (using <= size() or skipping the last element) loses this point."
+        },
+        {
+          "point_label": "Core selection or construction logic correct",
+          "what_to_award": "Award if the condition controlling which elements enter the ArrayList is correct: e.g., n % i == 0 && i <= n/i to find factor pairs without duplicates (exam2.frq#3); checkForConflicts returns false before adding a Tour (exam1.frq#3); each word in the phrase is correctly extracted and passed to convertWord (exam3.frq#3 part b analogy)."
+        },
+        {
+          "point_label": "Required helper method called, not reimplemented",
+          "what_to_award": "Award ONLY if part (b) explicitly delegates to the method written or described in part (a): buildArrayList in findMostPairs (exam2.frq#3), checkForConflicts in addTour (exam1.frq#3). Reimplementing the logic directly in part (b) forfeits this point."
+        },
+        {
+          "point_label": "Return value correct",
+          "what_to_award": "Award if the method returns the correct value: true if an element was added, false if it was not (exam1.frq#3); the number with more pairs or -1 if tied (exam2.frq#3); the correctly built ArrayList or String (exam3.frq#3). Must use objectName.number (not just the number literal) when returning the winning number in exam2.frq#3."
+        }
+      ],
+      "common_pitfalls": [
+        "Forgetting to instantiate the ArrayList, leaving the field null",
+        "Using array bracket notation (list[i]) on an ArrayList instead of list.get(i)",
+        "Writing list.size instead of list.size() (missing parentheses)",
+        "Using <= list.size() as the loop bound instead of < list.size()",
+        "Reimplementing the part-(a) helper logic inside part (b) instead of calling the method",
+        "Failing to check null before empty string when the precondition mentions null input",
+        "Adding symmetric duplicate pairs by looping from 1 to n instead of stopping at n/i",
+        "Returning the ArrayList size instead of the number field value in findMostPairs"
+      ]
+    },
+    {
+      "id": "array_2d",
+      "name": "2D Array",
+      "frq_position": 4,
+      "total_points": 6,
+      "structure": "Typically a single method or constructor to implement (exam3.frq#4 is one method; exam1.frq#4 is a constructor; exam2.frq#4 is a single static method). No part (a)/(b) split in most problems. A class skeleton with a private 2D array field (String[][], int[][], Car[][]) is always provided. Other methods (openSpaces, toString) may be marked 'implementation not shown' but are available for use. All 6 rubric points correspond to distinct, independently scorable algorithmic milestones. Static methods appear (exam2.frq#4 buildMatrix, eliminateDuplicateRows).",
+      "typical_topics": [
+        "Allocating a 2D array with specified rows and columns: new Type[rows][cols]",
+        "Using nested for loops for row-major traversal (outer: rows, inner: cols)",
+        "Placing an element in the first null cell found and stopping (parkCar pattern from exam3.frq#4)",
+        "Generating a unique random flat index and deriving row (index / cols) and column (index % cols) from it",
+        "Ensuring all names are placed and no name is placed twice (tracking used indices), from exam1.frq#4",
+        "Initializing unused cells to empty string (not null) as required by the postcondition",
+        "Detecting duplicate rows by comparing every element in two rows, then building a smaller new 2D array without duplicates",
+        "Returning a new 2D array from a static method without modifying the parameter array",
+        "Calling a pre-existing method (openSpaces) to guard the main logic"
+      ],
+      "rubric_pattern": [
+        {
+          "point_label": "2D array allocated with correct dimensions",
+          "what_to_award": "Award if the 2D array instance field (or local variable) is allocated using the parameter values for rows and columns: new String[rows][cols], new Car[rows][cols], new int[uniqueCount][]. Hardcoding dimensions or swapping rows/cols loses this point. Seen in exam1.frq#4 and exam3.frq#4."
+        },
+        {
+          "point_label": "Nested for loops / traversal structure correct",
+          "what_to_award": "Award if nested for loops are used to traverse all cells without bounds errors: outer loop over row indices (0 to rows-1 or 0 to array.length-1), inner loop over column indices (0 to cols-1 or 0 to array[0].length-1). Seen in exam2.frq#4 eliminateDuplicateRows and exam3.frq#4 parkCar."
+        },
+        {
+          "point_label": "Correct cell-selection condition",
+          "what_to_award": "Award if the condition for selecting which cell to write is correct: lot[r][c] == null for parkCar (exam3.frq#4); arrays-equal row comparison for eliminateDuplicateRows (exam2.frq#4); unique random index generation within [0, rows*cols-1] for SeatingChart (exam1.frq#4)."
+        },
+        {
+          "point_label": "Value stored in cell correctly",
+          "what_to_award": "Award if the correct value is written to the selected cell: the Car reference (lot[r][c] = newCar) for parkCar; the new car is assigned to exactly one cell and the method does not continue placing after the first successful assignment; 'lastName, firstName' formatted string for SeatingChart; non-duplicate row copied element-by-element for eliminateDuplicateRows. Seen across exam1.frq#4, exam2.frq#4, exam3.frq#4."
+        },
+        {
+          "point_label": "Input parameter not modified (postcondition)",
+          "what_to_award": "Award if the original 2D array parameter (arrWithDups in exam2.frq#4) is never written to; all modifications go into a new local 2D array. Explicitly required in exam2.frq#4 rubric: 'Parameter arrWithDups is not modified.'"
+        },
+        {
+          "point_label": "Return value / completion correct",
+          "what_to_award": "Award if the method terminates correctly: returns true on first successful placement and false if no null cell exists (exam3.frq#4); returns the new deduplicated 2D array (exam2.frq#4); initializes unused cells to empty string not null (exam1.frq#4, explicitly checked as a rubric point: 'any unused spaces...should be initialized to the empty string (not null)')."
+        }
+      ],
+      "common_pitfalls": [
+        "Swapping row and column indices: writing chart[col][row] instead of chart[row][col]",
+        "Using array.length for both dimensions instead of array.length for rows and array[0].length for columns",
+        "Failing to initialize unused cells to empty string, leaving them as Java's default null",
+        "Modifying the parameter array instead of building and returning a new array (exam2.frq#4)",
+        "Continuing to place the car or element after the first successful insertion instead of returning immediately",
+        "Not calling the guard method (openSpaces()) before the nested loops, losing that rubric point",
+        "Using [i, j] notation instead of [i][j] for 2D element access (syntactically illegal in Java)",
+        "Forgetting to stop the outer loop once a placement is made, potentially placing into multiple cells"
+      ]
+    }
+  ],
+  "mcq_stem_patterns": [
+    {
+      "id": "code_trace_output",
+      "description": "A self-contained Java code segment of 8\u201325 lines is shown, typically involving nested if/else conditionals and/or a for/while loop. The student must mentally execute the code, tracking variable mutations through each branch and iteration, and identify the exact string or numeric value printed to the console by System.out.print or System.out.println.",
+      "frequency_weight": 0.28,
+      "examples_from_pr": [
+        "exam1.mcq#8",
+        "exam1.mcq#13",
+        "exam1.mcq#42",
+        "exam2.mcq#42"
+      ]
+    },
+    {
+      "id": "code_trace_value",
+      "description": "A code segment with nested conditionals or a loop is shown. The student must determine the final values of one or two named variables after the code finishes executing, not the printed output. Questions use phrasing like 'Determine the values of x and y after the following code runs.'",
+      "frequency_weight": 0.17,
+      "examples_from_pr": [
+        "exam1.mcq#7",
+        "exam3.mcq#33"
+      ]
+    },
+    {
+      "id": "boolean_short_circuit",
+      "description": "A boolean expression combining &&, ||, and/or ! is presented in isolation or inside an if/while condition. The student must determine the conditions under which the expression evaluates to true, apply De Morgan's laws, or recognize that short-circuit evaluation prevents a divide-by-zero or similar side effect from occurring.",
+      "frequency_weight": 0.1,
+      "examples_from_pr": [
+        "exam2.mcq#9",
+        "exam1.mcq#13"
+      ]
+    },
+    {
+      "id": "arraylist_traversal",
+      "description": "An ArrayList<SomeType> is declared and the student must identify or choose the code segment that correctly traverses it. Distractors include: using the wrong loop variable type in an enhanced-for (ArrayList r instead of SalesRep r), calling a method on the ArrayList object instead of the retrieved element, using an incorrect loop bound (<=size() instead of <size()), and using class-name dot-notation instead of instance dot-notation.",
+      "frequency_weight": 0.12,
+      "examples_from_pr": [
+        "exam2.mcq#5",
+        "exam2.mcq#33"
+      ]
+    },
+    {
+      "id": "string_reference_equality",
+      "description": "Two or more String variables are created (sometimes with new String(...), sometimes as string literals). They are compared with both == (reference equality) and .equals() (value equality). The student must predict which comparisons return true, distinguishing between two references pointing to the same object vs. two objects with identical content.",
+      "frequency_weight": 0.08,
+      "examples_from_pr": [
+        "exam1.mcq#10",
+        "exam2.mcq#42"
+      ]
+    },
+    {
+      "id": "2d_array_trace",
+      "description": "A static or instance method that accepts a 2D int array is shown, and a specific call with a concrete literal array is made. The student must trace the nested loops, computing index arithmetic, to determine the contents of the returned 1D or 2D array.",
+      "frequency_weight": 0.1,
+      "examples_from_pr": [
+        "exam2.mcq#27"
+      ]
+    },
+    {
+      "id": "random_range_calculation",
+      "description": "An expression using Math.random() scaled by an integer multiplier and offset by an additive constant, then cast to int, is shown. The student must determine the minimum possible value, maximum possible value, or whether a specific target value is reachable. Often two random variables are subtracted or added to form a range question.",
+      "frequency_weight": 0.07,
+      "examples_from_pr": [
+        "exam2.mcq#23"
+      ]
+    },
+    {
+      "id": "oop_design_and_access",
+      "description": "A class design scenario is described in prose or a partial class is shown. The student must identify the correct field declaration (choosing among public/private, static/instance, int/double, final/non-final), or must identify the correct syntax for calling an instance method (objectName.method()) vs. a static method (ClassName.method()), or must identify which implementation violates OOP principles such as encapsulation.",
+      "frequency_weight": 0.08,
+      "examples_from_pr": [
+        "exam1.mcq#20",
+        "exam3.mcq#22",
+        "exam3.mcq#38"
+      ]
+    }
+  ],
+  "distractor_patterns": [
+    {
+      "id": "off_by_one",
+      "description": "An option reflects the result of a loop iterating one too many or one too few times, produced by using < vs. <= in the loop condition, or by starting the index at 1 instead of 0 or vice versa. Especially common in while-loop questions where the exit condition involves two variables converging.",
+      "applicability": [
+        "for loops",
+        "while loops",
+        "array traversal",
+        "ArrayList traversal",
+        "loop-count questions"
+      ]
+    },
+    {
+      "id": "equals_vs_double_equals_strings",
+      "description": "A distractor shows output consistent with == returning false for two distinct String objects with equal character content, or true for reference-equal objects, exploiting student confusion between reference equality and value equality. Options typically differ only in which line prints 'same' vs. 'not the same'. Seen as the trap in exam1.mcq#10 option D and exam2.mcq#42 option B.",
+      "applicability": [
+        "String comparison",
+        "object reference questions",
+        "== operator on objects"
+      ]
+    },
+    {
+      "id": "int_division_truncation",
+      "description": "A distractor gives the mathematically correct non-integer result (e.g., 0.5) or rounded result, while the code performs integer division because both operands are int literals or int variables, truncating toward zero. The inverse also appears: a distractor claims an exception or 0 when the programmer actually cast to double first.",
+      "applicability": [
+        "arithmetic expressions",
+        "percentage calculations",
+        "mixed int-double expressions",
+        "Math.random() scaling"
+      ]
+    },
+    {
+      "id": "boolean_operator_swap_demorgan",
+      "description": "A distractor gives the truth value that would result if && and || were swapped, or if ! were distributed without applying De Morgan's laws (incorrectly negating both operands without flipping the operator). A second variant claims the expression is always true or always false when it is actually conditionally true.",
+      "applicability": [
+        "boolean expressions",
+        "compound conditionals",
+        "De Morgan's law questions",
+        "short-circuit evaluation"
+      ]
+    },
+    {
+      "id": "wrong_receiver_for_method_call",
+      "description": "An option calls a method on the wrong object: calling a getter on the ArrayList itself instead of on the element retrieved from the ArrayList (e.g., list.get.getYtdSales() or SalesRep.get(i).getYtdSales()), or accessing a private field directly (p.starringActor) instead of via its public getter (p.getStarringActor()). Seen in exam2.mcq#5 options A and C, and exam2.mcq#33 options A and D.",
+      "applicability": [
+        "ArrayList method calls",
+        "object accessor methods",
+        "static vs. instance method syntax",
+        "encapsulation enforcement"
+      ]
+    },
+    {
+      "id": "exception_that_does_not_occur",
+      "description": "A distractor claims an ArithmeticException (divide-by-zero) or NullPointerException is thrown at runtime when in fact short-circuit evaluation of && prevents the division from being evaluated, or a null check guards the operation. Seen as option D in exam1.mcq#13.",
+      "applicability": [
+        "short-circuit evaluation",
+        "boolean conditions with &&",
+        "division inside a conditional"
+      ]
+    },
+    {
+      "id": "scope_and_field_shadowing",
+      "description": "A distractor reflects the behavior of code where a local variable or constructor parameter shadows an instance field (missing this. qualifier), causing the field to remain uninitialized at its default value (0, null, false) instead of being set from the argument. Also appears when a local variable is used outside its declared scope.",
+      "applicability": [
+        "constructor bodies",
+        "method parameters vs. instance fields",
+        "local variable declaration",
+        "class design questions"
+      ]
+    }
+  ],
+  "stem_format": {
+    "code_block_language": "java",
+    "median_stem_chars": 260,
+    "p90_stem_chars": 645,
+    "uses_inline_backticks_for_identifiers": true,
+    "options_use_backticks_for_code": true,
+    "line_numbers_in_code": "Present in approximately half of sampled MCQ code blocks (e.g., exam1.mcq#8 lines 1-20, exam1.mcq#10 lines 1-19, exam1.mcq#13 lines 1-8); absent in the other half (exam1.mcq#7, exam1.mcq#42, exam2.mcq#23). Line numbers appear as plain integers flush-left before the code, not as comments.",
+    "options_format": "Each option is a single uppercase letter A through D followed by a period and a space. Options may be: a single inline code value wrapped in backticks (e.g., `x = 0, y = 0`), a multi-line Java code block, or a plain English phrase. All four options appear at the same hierarchical level with no sub-labels.",
+    "typical_stem_question_phrasings": [
+      "Determine the output of the following code:",
+      "Determine the values of `x` and `y` after the following code runs.",
+      "Which of the following represents the output that will be produced by the code?",
+      "Which of the following could be used to replace /* missing code */ so that [goal]?",
+      "Which of the following is not possible to be printed after the code is executed?",
+      "How many times will the following loop execute?",
+      "What would be the proper declaration for this field?",
+      "Which of the following would be the LEAST effective way of [goal]?"
+    ],
+    "frq_class_info_table": "Each FRQ part concludes with a 'Class information for this question' block listing every visible member of each class relevant to the question: field declarations (type and name only), constructor signature, and method signatures (return type, name, parameter list) \u2014 no bodies. This is provided as reference even for methods whose implementations are shown in the question.",
+    "frq_sample_table_format": "Sample calls are displayed in a two-column table. Left column header is 'Statements and Expressions' or 'Code segments'. Right column header is 'Value Returned', 'Value Returned / Comment', or 'Comment'. Each row is one method call or statement, with its return value or behavioral description in the right column. Blank right cells indicate void methods.",
+    "frq_method_prompt_format": "Each part presents the Javadoc comment block (/** ... */) and the method signature line, then the line /* to be implemented in part (x) */ or Complete method [name] below. The student writes only the method body.",
+    "digital_delivery": "Fully digital via College Board Bluebook app on Windows/Mac/iPad/Chromebook. Not adaptive. Scratch paper is provided. Answers are entered directly into the app. The Mark for Review flag is available for MCQ. No smartphone testing."
+  },
+  "hard_rules": [
+    "Exactly 4 options labeled A, B, C, D \u2014 never 3, never 5, never labeled 1/2/3/4 or with other symbols.",
+    "No `extends`, `super`, `instanceof`, or `interface` keywords anywhere in stems, options, or FRQ prompts \u2014 these topics were removed from the 2025-26 CED. Do not write any question that requires knowledge of inheritance, polymorphism, abstract classes, or interfaces.",
+    "No writing recursive methods \u2014 recursion appears only as a trace-what-does-this-method-return MCQ item. Students are never asked to write a recursive method on FRQ.",
+    "No `String.charAt()` \u2014 it is not on the Java Quick Reference. All single-character extraction must use `substring(i, i+1)`. Any question stem or answer that uses charAt is invalid.",
+    "Java Quick Reference is the ONLY allowed standard-library surface area. Do not reference any class or method not listed (e.g., no Collections, Arrays, Iterator, HashMap, LinkedList, StringBuilder, Character).",
+    "FRQ 1 = Methods and Control Structures (7 pts). FRQ 2 = Class Design (7 pts). FRQ 3 = Data Analysis with ArrayList (5 pts, NO raw arrays). FRQ 4 = 2D Array (6 pts). Raw total = 25 points; no deviation.",
+    "MCQ: no partial credit. 1 point per correct answer, 0 for blank or wrong. No penalty for guessing.",
+    "FRQ: rubric points are awarded independently. A wrong or blank part (a) does not block earning points in part (b).",
+    "Unless a question explicitly tests System.out.print side effects, FRQ methods must NEVER output to the console \u2014 only return values. Writing System.out.print in a method that should return causes a 1-point penalty.",
+    "Preconditions stated in Javadoc comments may be assumed true; do not write code to validate preconditions unless explicitly asked.",
+    "Assume all parameters are non-null and preconditions are satisfied unless the question explicitly states otherwise (e.g., convertPhrase(null) is an explicit stated test case).",
+    "All code in question stems, options, and FRQ skeletons must be valid Java from the AP Java subset. No generics syntax beyond ArrayList<Type>.",
+    "Variables and method calls not prefixed with an object or class name are assumed to be within the context of an enclosing class, per College Board exam directions.",
+    "Classes listed in the Java Quick Reference are assumed to be imported where appropriate; no explicit import statements are required in MCQ stems or FRQ answers."
+  ],
+  "removed_from_new_ced": [
+    "Inheritance: no subclass/superclass relationships, no is-a hierarchy questions",
+    "Polymorphism: no questions requiring dynamic dispatch or overriding behavior",
+    "Abstract classes",
+    "Interfaces",
+    "The keywords extends, super, instanceof",
+    "Writing recursive methods: students are no longer asked to produce a recursive method; tracing a given recursive method is still testable in MCQ",
+    "Comparable interface and compareTo in a polymorphism context",
+    "The Object class's role in the class hierarchy beyond the methods listed in the Quick Reference"
+  ],
+  "added_in_new_ced": [
+    "Reading text files using the File class: new File(String pathname)",
+    "Scanner constructed from a File object: new Scanner(File f) \u2014 enables file I/O",
+    "Scanner constructed from a String: new Scanner(String s) \u2014 enables tokenizing string data",
+    "Scanner.hasNext(), Scanner.hasNextInt(), Scanner.hasNextDouble() \u2014 loop guards for token-by-token reading",
+    "Scanner.next(), Scanner.nextInt(), Scanner.nextDouble(), Scanner.nextLine() \u2014 token and line reading",
+    "Scanner.close() \u2014 closing a Scanner after use",
+    "Data analysis workflows: reading structured input (CSV-style or whitespace-delimited) line-by-line or token-by-token, parsing tokens into primitives with Integer.parseInt or Double.parseDouble, accumulating results in ArrayLists or primitive accumulators"
+  ],
+  "topic_alignment": {
+    "u1_s1_1": {
+      "name": "Why Programming?",
+      "unit": 1,
+      "section": "1.1",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_2": {
+      "name": "Variables",
+      "unit": 1,
+      "section": "1.2",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_3": {
+      "name": "Expressions and Assignment",
+      "unit": 1,
+      "section": "1.3",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_4": {
+      "name": "Compound Assignment",
+      "unit": 1,
+      "section": "1.4",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_5": {
+      "name": "Casting and Ranges of Variables",
+      "unit": 1,
+      "section": "1.5",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_6": {
+      "name": "Increment / Decrement",
+      "unit": 1,
+      "section": "1.6",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_7": {
+      "name": "APIs and Libraries",
+      "unit": 1,
+      "section": "1.7",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_8": {
+      "name": "Comments",
+      "unit": 1,
+      "section": "1.8",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_9": {
+      "name": "Method Signatures",
+      "unit": 1,
+      "section": "1.9",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_10": {
+      "name": "Calling Class (Static) Methods",
+      "unit": 1,
+      "section": "1.10",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_11": {
+      "name": "The Math Class",
+      "unit": 1,
+      "section": "1.11",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_12": {
+      "name": "Objects: Instances of Classes",
+      "unit": 1,
+      "section": "1.12",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_13": {
+      "name": "Creating and Initializing Objects: Constructors",
+      "unit": 1,
+      "section": "1.13",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_14": {
+      "name": "Calling Instance Methods",
+      "unit": 1,
+      "section": "1.14",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u1_s1_15": {
+      "name": "Strings",
+      "unit": 1,
+      "section": "1.15",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u2_s2_1": {
+      "name": "If Statements",
+      "unit": 2,
+      "section": "2.1",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u2_s2_2": {
+      "name": "If/Else Statements",
+      "unit": 2,
+      "section": "2.2",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u2_s2_3": {
+      "name": "Else If",
+      "unit": 2,
+      "section": "2.3",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u2_s2_4": {
+      "name": "Comparison Operators",
+      "unit": 2,
+      "section": "2.4",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u2_s2_5": {
+      "name": "Compound Booleans",
+      "unit": 2,
+      "section": "2.5",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u2_s2_6": {
+      "name": "Comparing Booleans / De Morgan's",
+      "unit": 2,
+      "section": "2.6",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u2_s2_7": {
+      "name": "While Loops",
+      "unit": 2,
+      "section": "2.7",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u2_s2_8": {
+      "name": "For Loops",
+      "unit": 2,
+      "section": "2.8",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u2_s2_9": {
+      "name": "Loop Algorithms (count, sum, avg, max/min)",
+      "unit": 2,
+      "section": "2.9",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u2_s2_10": {
+      "name": "Strings and Loops",
+      "unit": 2,
+      "section": "2.10",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u2_s2_11": {
+      "name": "Nested Loops",
+      "unit": 2,
+      "section": "2.11",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u2_s2_12": {
+      "name": "Informal Code Analysis (run-time)",
+      "unit": 2,
+      "section": "2.12",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u3_s3_1": {
+      "name": "Abstraction and Program Design",
+      "unit": 3,
+      "section": "3.1",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u3_s3_2": {
+      "name": "Impacts of Computing",
+      "unit": 3,
+      "section": "3.2",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u3_s3_3": {
+      "name": "Anatomy of a Class",
+      "unit": 3,
+      "section": "3.3",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u3_s3_4": {
+      "name": "Constructors",
+      "unit": 3,
+      "section": "3.4",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u3_s3_5": {
+      "name": "Methods",
+      "unit": 3,
+      "section": "3.5",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u3_s3_6": {
+      "name": "Method References (call chains, parameter passing)",
+      "unit": 3,
+      "section": "3.6",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u3_s3_7": {
+      "name": "Static Variables and Methods",
+      "unit": 3,
+      "section": "3.7",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u3_s3_8": {
+      "name": "Scope and Access",
+      "unit": 3,
+      "section": "3.8",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u3_s3_9": {
+      "name": "this Keyword",
+      "unit": 3,
+      "section": "3.9",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_1": {
+      "name": "Data Ethics",
+      "unit": 4,
+      "section": "4.1",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_2": {
+      "name": "Working with Data Sets",
+      "unit": 4,
+      "section": "4.2",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_3": {
+      "name": "Array Basics",
+      "unit": 4,
+      "section": "4.3",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_4": {
+      "name": "Array Traversal",
+      "unit": 4,
+      "section": "4.4",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_5": {
+      "name": "Array Algorithms",
+      "unit": 4,
+      "section": "4.5",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_6": {
+      "name": "Reading Input Files",
+      "unit": 4,
+      "section": "4.6",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_7": {
+      "name": "Wrapper Classes (Integer, Double)",
+      "unit": 4,
+      "section": "4.7",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_8": {
+      "name": "ArrayLists",
+      "unit": 4,
+      "section": "4.8",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_9": {
+      "name": "ArrayList Traversal",
+      "unit": 4,
+      "section": "4.9",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_10": {
+      "name": "ArrayList Algorithms",
+      "unit": 4,
+      "section": "4.10",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_11": {
+      "name": "2D Arrays",
+      "unit": 4,
+      "section": "4.11",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_12": {
+      "name": "2D Array Traversal",
+      "unit": 4,
+      "section": "4.12",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_13": {
+      "name": "2D Array Algorithms",
+      "unit": 4,
+      "section": "4.13",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_14": {
+      "name": "Searching (linear / binary)",
+      "unit": 4,
+      "section": "4.14",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_15": {
+      "name": "Sorting (selection / insertion / merge)",
+      "unit": 4,
+      "section": "4.15",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_16": {
+      "name": "Recursion (tracing)",
+      "unit": 4,
+      "section": "4.16",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    },
+    "u4_s4_17": {
+      "name": "Ethics of Algorithms",
+      "unit": 4,
+      "section": "4.17",
+      "pr_drill_ids": [],
+      "pr_exam_item_refs": [],
+      "key_concepts_for_questions": []
+    }
+  },
+  "generated_at": "2026-04-26T22:04:29.968091+00:00"
+}

@@ -1,0 +1,392 @@
+[
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"47\";\nSystem.out.println(s + 3);\nSystem.out.println(Integer.parseInt(s) + 3);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`50` followed by `50`"
+      },
+      {
+        "label": "B",
+        "text": "`473` followed by `50`"
+      },
+      {
+        "label": "C",
+        "text": "`50` followed by `473`"
+      },
+      {
+        "label": "D",
+        "text": "`473` followed by `473`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "In the first `println`, `s` is a `String`, so `s + 3` uses string concatenation, producing `\"473\"`. In the second, `Integer.parseInt(s)` returns the `int` 47, so `47 + 3` is arithmetic addition yielding `50`. The distinction illustrates why converting a String to a numeric type before arithmetic is necessary.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "Which of the following statements about `Integer.MAX_VALUE` is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It is a method and must be called with parentheses, as in `Integer.MAX_VALUE()`"
+      },
+      {
+        "label": "B",
+        "text": "It is a `public static final int` constant equal to `2147483647`, the largest possible `int` value"
+      },
+      {
+        "label": "C",
+        "text": "It stores the value `2147483648.0` as a `double`"
+      },
+      {
+        "label": "D",
+        "text": "Its value can be changed by assigning a larger value to it in a program"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`Integer.MAX_VALUE` is a constant field, not a method, so no parentheses are used. Its value is exactly `2147483647` and its type is `int`, not `double`. Being declared `final`, it cannot be reassigned in any program.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "Determine the output of the following code:\n\n```java\nString a = \"9\";\nString b = \"4\";\ndouble result = Integer.parseInt(a) / Integer.parseInt(b);\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2.25`"
+      },
+      {
+        "label": "B",
+        "text": "`2.0`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "`9.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`Integer.parseInt` returns `int`, so both operands are `int`. Integer division `9 / 4` truncates to `2`. That `int` value `2` is widened to `2.0` when assigned to the `double` variable `result`, so `println` prints `2.0`. The declared type of `result` does not make the division itself floating-point \u2014 the division happens first with both operands as `int`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "What happens when the following code is executed?\n\n```java\nInteger x = null;\nint n = x;\nSystem.out.println(n);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0` is printed because `int` variables have a default value of `0`"
+      },
+      {
+        "label": "B",
+        "text": "`null` is printed"
+      },
+      {
+        "label": "C",
+        "text": "A `NumberFormatException` is thrown"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Assigning a `null` `Integer` to an `int` variable triggers unboxing, which internally calls `x.intValue()` on a null reference, causing a `NullPointerException` at runtime. The `int` default of `0` applies only to uninitialized instance fields and array elements \u2014 not to the result of unboxing a `null` wrapper object.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<Integer> scores = new ArrayList<Integer>();\nscores.add(80);\nscores.add(90);\nscores.add(70);\nint total = 0;\nfor (int s : scores) {\n    total += s;\n}\nSystem.out.println(total / scores.size());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`80.0`"
+      },
+      {
+        "label": "B",
+        "text": "`80`"
+      },
+      {
+        "label": "C",
+        "text": "`240`"
+      },
+      {
+        "label": "D",
+        "text": "`90`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The enhanced-for loop unboxes each `Integer` to `int`; `total` accumulates `80 + 90 + 70 = 240`. `total / scores.size()` divides two `int` values (`240 / 3 = 80`) using integer division, yielding the `int` `80`. No decimal is printed. Option A incorrectly assumes the result is a `double`; option C prints the sum before dividing.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "What is the value of `r` after the following code executes?\n\n```java\nInteger p = 12;\nint q = p;\nInteger r = q + 3;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`12`"
+      },
+      {
+        "label": "B",
+        "text": "`15`"
+      },
+      {
+        "label": "C",
+        "text": "A `NullPointerException` is thrown because `p` is a wrapper object, not a primitive"
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs because an `int` expression cannot be assigned to an `Integer` variable"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Autoboxing converts the `int` literal `12` to an `Integer` for `p`. Unboxing converts `p` to the `int` `12` for `q`. `q + 3 = 15` is arithmetic on primitives. Autoboxing then converts `15` back to an `Integer` for `r`. Java handles all three conversions automatically \u2014 no runtime exception or compile error occurs.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<Double> vals = new ArrayList<Double>();\nString[] data = {\"2.5\", \"3.0\", \"4.5\"};\nfor (String t : data) {\n    vals.add(Double.parseDouble(t));\n}\ndouble total = 0.0;\nfor (int i = 0; i < vals.size(); i++) {\n    total += vals.get(i);\n}\nSystem.out.println((int)(total / vals.size()));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3.3333333333333335`"
+      },
+      {
+        "label": "B",
+        "text": "`10.0`"
+      },
+      {
+        "label": "C",
+        "text": "`10`"
+      },
+      {
+        "label": "D",
+        "text": "`3`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The first loop parses each `String` to `double` and autoboxes it into `vals`. The second loop unboxes each `Double` and sums: `total = 2.5 + 3.0 + 4.5 = 10.0`. `vals.size()` returns `int` 3; `10.0 / 3` is double division yielding approximately `3.333`. Casting to `int` truncates to `3`. Option A omits the `(int)` cast; option B is the result if the loop is skipped and `total` is printed directly; option C applies the `(int)` cast to `total` without dividing.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "Which of the following explains why `ArrayList<double>` is a compile-time error, but `ArrayList<Double>` is valid?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`double` values cannot be compared with `==`, so they cannot be stored in a list"
+      },
+      {
+        "label": "B",
+        "text": "Generic type parameters must be reference types; `double` is a primitive, while `Double` is the corresponding wrapper class object"
+      },
+      {
+        "label": "C",
+        "text": "`ArrayList` can only store values that were produced by `Double.parseDouble`"
+      },
+      {
+        "label": "D",
+        "text": "`Double` stores a wider range of values than `double`, making it safer for use in collections"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java generics require reference types (objects) as type parameters; primitives such as `double` are not permitted. `Double` is the wrapper class that represents a `double` as an object, allowing it to serve as a generic type argument. Autoboxing then handles automatic conversion between `double` and `Double`. The other options misstate the actual restriction.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "Determine the output of the following code:\n\n```java\nArrayList<Integer> vals = new ArrayList<Integer>();\nvals.add(3);\nvals.add(7);\nvals.add(2);\nint result = 0;\nfor (int v : vals)\n{\n    if (v > result)\n    {\n        result = v;\n    }\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "`12`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The enhanced for loop unboxes each `Integer` to `int` automatically. Starting with `result = 0`: 3 > 0 so result becomes 3; 7 > 3 so result becomes 7; 2 > 7 is false so result stays 7. The loop finds the maximum, printing `7`. Option A would result if no element exceeded 0. Option B would result if the loop returned after the first element. Option D (12) would result if the loop accumulated a sum rather than tracking the maximum.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "Which of the following calls to `Integer.parseInt` will throw a `NumberFormatException` at runtime?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Integer.parseInt(\"0\")`"
+      },
+      {
+        "label": "B",
+        "text": "`Integer.parseInt(\"-12\")`"
+      },
+      {
+        "label": "C",
+        "text": "`Integer.parseInt(\"3.0\")`"
+      },
+      {
+        "label": "D",
+        "text": "`Integer.parseInt(\"100\")`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`Integer.parseInt` only accepts strings representing whole integers; a leading minus sign is permitted, but a decimal point is not. `\"3.0\"` contains a decimal point, causing a `NumberFormatException`. `\"0\"`, `\"-12\"`, and `\"100\"` are all valid integer strings and parse without error.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "Which of the following best describes autoboxing in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Java automatically converts a primitive `int` to an `Integer` object when an object reference is required"
+      },
+      {
+        "label": "B",
+        "text": "Java automatically converts a `String` to an `Integer` whenever the two types appear in the same expression"
+      },
+      {
+        "label": "C",
+        "text": "Java automatically truncates a `double` to an `int` when the two types appear in an arithmetic expression"
+      },
+      {
+        "label": "D",
+        "text": "Java automatically wraps every primitive in an array so it can be stored in a collection"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Autoboxing is the automatic conversion of a primitive (e.g., `int`) to its corresponding wrapper object (e.g., `Integer`) when the context requires a reference type, such as when calling `add` on an `ArrayList<Integer>`. Option B describes explicitly calling `Integer.parseInt`, not autoboxing. Option C describes a narrowing cast, which requires an explicit cast operator. Option D is fabricated.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "Which of the following explains why the declaration `ArrayList<int> counts = new ArrayList<int>();` causes a compiler error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Java generics require a reference type; `int` is a primitive and cannot be used as a type parameter"
+      },
+      {
+        "label": "B",
+        "text": "`ArrayList` can only hold elements that share a common supertype declared in `java.lang`, and `int` has none"
+      },
+      {
+        "label": "C",
+        "text": "The primitive type `int` has no default value and therefore cannot be stored in a resizable structure"
+      },
+      {
+        "label": "D",
+        "text": "`ArrayList` requires the type parameter to have a `toString` method, which primitives do not provide"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Java generics are restricted to reference types. Because `int` is a primitive, it cannot appear as a type argument. The correct declaration is `ArrayList<Integer>`, using the wrapper class; autoboxing then handles int-to-Integer conversion automatically. Options B, C, and D each describe fabricated rules that do not exist in Java.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "Determine the output of the following code:\n\n```java\nString[] tokens = {\"-5\", \"-10\", \"-3\"};\nint max = Integer.MIN_VALUE;\nfor (String t : tokens)\n{\n    int val = Integer.parseInt(t);\n    if (val > max)\n    {\n        max = val;\n    }\n}\nSystem.out.println(max);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`-10`"
+      },
+      {
+        "label": "B",
+        "text": "`-5`"
+      },
+      {
+        "label": "C",
+        "text": "`0`"
+      },
+      {
+        "label": "D",
+        "text": "`-3`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`Integer.MIN_VALUE` is the most negative possible `int`, so every element beats it initially. Tracing: `-5 > MIN_VALUE` \u2192 `max = -5`; `-10 > -5` is false; `-3 > -5` \u2192 `max = -3`. The maximum of {-5, -10, -3} is `-3`. Option A (`-10`) is the minimum, confusing max with min. Option B (`-5`) is only the first value stored in `max`. Option C (`0`) would result only if `max` were initialized to `0`, preventing any negative element from updating it.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "Determine the output of the following code:\n\n```java\nInteger x = new Integer(50);\nInteger y = new Integer(50);\nSystem.out.println(x == y);\nSystem.out.println(x.equals(y));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true` followed by `true`"
+      },
+      {
+        "label": "B",
+        "text": "`false` followed by `true`"
+      },
+      {
+        "label": "C",
+        "text": "`false` followed by `false`"
+      },
+      {
+        "label": "D",
+        "text": "`true` followed by `false`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`x == y` compares object references. Because `x` and `y` are created with separate `new Integer(50)` calls, they are distinct objects in memory, so `==` returns `false`. `x.equals(y)` compares the wrapped `int` values (both `50`), returning `true`. Option A incorrectly assumes `==` performs value comparison on wrapper objects. Option C incorrectly applies reference semantics to `equals` as well. Option D inverts the two results.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_7",
+    "stem": "Consider the following code segment.\n\n```java\nArrayList<Integer> vals = new ArrayList<Integer>();\nvals.add(4);\nvals.add(Integer.parseInt(\"6\"));\n\nInteger x = vals.get(0);\nint y = vals.get(1);\nvals.set(0, y + x.intValue());\n\nSystem.out.println(vals.get(0) + \" \" + vals.get(1));\n```\n\nWhat will be printed after the code is executed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4 6`"
+      },
+      {
+        "label": "B",
+        "text": "`10 6`"
+      },
+      {
+        "label": "C",
+        "text": "`46 6`"
+      },
+      {
+        "label": "D",
+        "text": "The code does not compile because an `int` cannot be stored in an `ArrayList<Integer>`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "`Integer.parseInt(\"6\")` gives the int value 6, and `y + x.intValue()` is 10, which is stored at index 0. Choice C treats numeric addition as string concatenation, and D ignores autoboxing.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  }
+]

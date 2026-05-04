@@ -1,0 +1,841 @@
+{
+  "label": "Princeton Review 2025  -  Practice Test 1",
+  "source": "princeton-2025",
+  "format": "new-2025-26-ced",
+  "mcq_section": [
+    {
+      "stem": "Evaluate the following expression: `4 + 6 % 12 / 4`",
+      "options": [
+        "`1`",
+        "`2`",
+        "`4.5`",
+        "`5`"
+      ],
+      "answer": "D",
+      "explanation": "Modulus division and division have the same order of precedence. Going from left to right, modulus `(%)` is first: `6 % 12` is `6`.Division (/) is next and will be handled as integer division, since both terms of the operation are integers: `6 / 4` is `1`. Finally, do the addition: `4 + 1 = 5`. The correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q1",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Which of the following expressions does NOT evaluate to `0.2`?",
+      "options": [
+        "`2.0 / 10`",
+        "`(double) 2 / 10`",
+        "`(double)(2 / 10)`",
+        "`Math.sqrt(4) / Math.sqrt(100)`"
+      ],
+      "answer": "C",
+      "explanation": "Any time a `double` data type is used in an operation, the result will yield a `double.` In (A) `(2.0)`, and (B) `((double) 2),` the numerators are all `2.0`.Choice (D) also yields `2.0`, since the `Math.sqrt` method returns a `double.` Choice (C) attempts to cast to `double` too late. The expression inside the parentheses `(2 / 10)` yields `0` before it can be cast to a `double.`",
+      "difficulty": 3,
+      "source_qid": "sec_1-q2",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Choose the code used to print the following:\n\n```java\n\"Friends\"\n```",
+      "options": [
+        "`System.out.print(\"\"Friends\"\");`",
+        "`System.out.print(\"//\"Friends//\"\");`",
+        "`System.out.print(\"/\"Friends/\"\");`",
+        "`System.out.print(\"\\\"Friends\\\"\");`"
+      ],
+      "answer": "D",
+      "explanation": "First off, every string literal will be enclosed in quotation marks `(\"\")`. Next, to print a character that serves as a control character with specific meanings in Java, characters like `\\, \",` or `n` to indicate a new line, each character will have to be preceded by its own `\\.` Thus, to print `\"Friends\",` each `\"` that's printed will require its own `\\.` Choices (A), (B), and (C) are missing the backslashes.Choice (D) is the correct answer because a backslash is used to indicate each control break.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q3",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Determine the output of the following code.\n\n```java\nString animal1 = \"elephant\";\nString animal2 = \"lion\";\nswap(animal1, animal2);\nanimal1.toUpperCase();\nanimal2.toLowerCase();\nSystem.out.println(animal1 + \" \" + animal2);\npublic static void swap(String a1, String a2) {\n    String hold = a1;\n    a1 = a2;\n    a2 = hold;\n}\n```",
+      "options": [
+        "`elephant lion`",
+        "`ELEPHANT lion`",
+        "`lion elephant`",
+        "`LION elephant`"
+      ],
+      "answer": "A",
+      "explanation": "The `String` class is immutable. Without additional assignment statements to change the values of `animal1` and `animal2`, they will retain the values assigned in the first two lines.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q4",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 5-6 refer to the `Constellation` class below.\n\n```java\npublic class Constellation\n{\n    private String name;\n    private String month;\n    private int northernLatitude;\n    private int southernLatitude;\n\n    Constellation(String n, String m)\n    {\n        name = n;\n        month = m;\n        northernLatitude = 0;\n        southernLatitude = 0;\n    }\n\n    Constellation(String n, String m, int nLat, int sLat)\n    {\n        name = n;\n        month = m;\n        northernLatitude = nLat;\n        southernLatitude = sLat;\n    }\n\n    public void chgMonth(String m)\n    {\n        String month = m;\n    }\n}\n```\n\nUsing the `Constellation` class, which of the following will cause a compiler error?",
+      "options": [
+        "`Constellation c1 = new Constellation(\"Hercules\", \"July\");`",
+        "`Constellation c2 = new Constellation(\"Pisces\", \"Nov\", 90, 65);`",
+        "`Constellation c3 = new Constellation(\"Aquarius\", \"Oct\", 65.0, 90.0);`",
+        "`Constellation c4 = new Constellation(\"Leo\", \"4\", 0, 0);`"
+      ],
+      "answer": "C",
+      "explanation": "Choices (B) and (D) both pass `String, String, int, int` as arguments to the second `Constellation` constructor.Choice (A) passes two strings to the first constructor.Choice (C) is the correct answer, as a double cannot be passed to a parameter of type `int` because there may be a loss of precision.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q5",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 5-6 refer to the `Constellation` class below.\n\n```java\npublic class Constellation\n{\n    private String name;\n    private String month;\n    private int northernLatitude;\n    private int southernLatitude;\n\n    Constellation(String n, String m)\n    {\n        name = n;\n        month = m;\n        northernLatitude = 0;\n        southernLatitude = 0;\n    }\n\n    Constellation(String n, String m, int nLat, int sLat)\n    {\n        name = n;\n        month = m;\n        northernLatitude = nLat;\n        southernLatitude = sLat;\n    }\n\n    public void chgMonth(String m)\n    {\n        String month = m;\n    }\n}\n```\n\nA programmer has attempted to add three mutator methods to the `Constellation` class.\n\n```java\nI.\npublic void chgLatitude(String direction, int latitude)\n{\n    if (direction.toUpperCase().equals(\"N\"))\n        northernLatitude = latitude;\n    else if (direction.toUpperCase().equals(\"S\"))\n        southernLatitude = latitude;\n}\n\nII.\npublic void chgLatitude(int nLatitude, int sLatitude)\n{\n    northernLatitude = nLatitude;\n    southernLatitude = sLatitude;\n}\n\nIII.\npublic void chgLatitude(double nLatitude, double sLatitude)\n{\n    northernLatitude = (int) nLatitude;\n    southernLatitude = (int) sLatitude;\n}\n```\n\nWhich of the three will compile without a compiler error?",
+      "options": [
+        "I only",
+        "II only",
+        "I and II only",
+        "I, II, and III"
+      ],
+      "answer": "D",
+      "explanation": "Segments I and II will use an `int` parameter to update the instance field(s) of type `int.` Segment III will cast the `double` to `int` before updating the instance field of type `int.` There may be a loss of precision, but it would be a logic error, not a compiler error. The correct answer is (D), as all options will compile correctly.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q6",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Determine the values of `x` and `y` after the following code runs.\n\n```java\nint x = 10;\nint y = 5;\nif (x == 10)\n{\n    if (y <= 5)\n        y++;\n    else if (y < 4)\n        x = 3;\n    else\n        y += 6;\n}\nif (y > 5)\n{\n    if (x != 10)\n    {\n        x = 0;\n        y = 0;\n    }\n    else\n        x = -5;\n}\n```",
+      "options": [
+        "`x = 0, y = 0`",
+        "`x = –5, y = 6`",
+        "`x = 10, y = 5`",
+        "None of the above"
+      ],
+      "answer": "B",
+      "explanation": "Trace the code:\n\nThe correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q7",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "A programmer intended to write code to print three words in ascending lexicographical order. Follow the code and determine the printed output.\n\n```java\n1  String word1 = \"frog\";\n2  String word2 = \"dog\";\n3  String word3 = \"cat\";\n\n5  if (word1.compareTo(word2) < 0)\n6      if (word2.compareTo(word3) < 0)\n7          System.out.println(word1 + \" \" + word2 + \" \" + word3);\n8  else\n9      System.out.println(word1 + \" \" + word3 + \" \" + word2);\n10 else\n11     if (word1.compareTo(word2) > 0)\n12         if (word2.compareTo(word3) < 0)\n13             System.out.println(word1 + \" \" + word2 + \" \" + word3);\n14 else\n15     System.out.println(word1 + \" \" + word3 + \" \" + word2);\n16 else\n17     if (word2.equals(word3))\n18         System.out.println( \"all the words are the same\");\n19 else\n20     System.out.println( \"word1 and word2 are duplicates\");\n```",
+      "options": [
+        "`frog cat dog`",
+        "`dog frog cat`",
+        "`frog dog cat`",
+        "`dog cat frog`"
+      ],
+      "answer": "A",
+      "explanation": "The rules of `compareTo` are as follows: if `string1.compareTo(string2) < 0,` then the strings are in lexicographical order, whereas if `string1.compareTo(string2) > 0,` then the strings are in reversed order.\n\nThe correct answer is (A).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q8",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "A data set contains information about the population of each country in the world for the years 2022 and 2023. Each entry contains\n\nThe name of the country\n\nThe name of its continent\n\nThe 2022 population\n\nThe 2023 population\n\nWhich of the following cannot be determined from the data set, either directly or by performing calculations using the data?",
+      "options": [
+        "The country with the largest population",
+        "The total population of the world",
+        "The population density for each country",
+        "The change in each country's population from 2022 and 2023"
+      ],
+      "answer": "C",
+      "explanation": "Choice (A) can be retrieved right from the data set.Choices (B) and (D) can be calculated using information contained in the data set. In order to calculate population density, it is necessary to know the area of the country, which is not part of the data set. The correct answer is (C).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q9",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following code:\n\n```java\n1  String dog1 = new String(\"Poodle\");\n2  String dog2 = new String(\"Beagle\");\n3  dog1 = dog2;\n4  String dog3 = new String(\"Beagle\");\n\n6  if (dog1 == dog2)\n7      System.out.println(\"dog1 and dog2 are one and the same dog\");\n8  else\n9      System.out.println(\"dog1 and dog2 are not the same dog\");\n\n11 if (dog1 == dog3)\n12     System.out.println(\"dog1 and dog3 are one and the same dog\");\n13 else\n14     System.out.println(\"dog1 and dog3 are not the same dog\");\n\n16 if (dog1.equals(dog3))\n17     System.out.println(\"dog1 and dog3 are the same breed\");\n18 else\n19     System.out.println(\"dog1 and dog3 are not the same breed\");\n```\n\nWhich of the following represents the output that will be produced by the code?",
+      "options": [
+        "```java\ndog1 and dog2 are one and the same dog\ndog1 and dog3 are one and the same dog\ndog1 and dog3 are the same breed\n```",
+        "```java\ndog1 and dog2 are one and the same dog\ndog1 and dog3 are not the same dog\ndog1 and dog3 are the same breed\n```",
+        "```java\ndog1 and dog2 are one and the same dog\ndog1 and dog3 are not the same dog\ndog1 and dog3 are not the same breed\n```",
+        "```java\ndog1 and dog2 are not the same dog\ndog1 and dog3 are not the same dog\ndog1 and dog3 are the same breed\n```"
+      ],
+      "answer": "B",
+      "explanation": "Line 3 assigns `dog2`'s object reference to `dog1.` These two object variables are now pointing at the same object, the contents of which is `\"Beagle\".` Thus, the result of `if (dog1 == dog2)` on line 6 is `true`. Line 4 creates another object whose contents are `\"Beagle\".` Thus, the result of `if (dog1 == dog3)` on line 11 is `false`. The == is comparing whether the variables refer to the same object, not whether the content of the objects is the same. The result of `if (dog1.equals(dog3))` on line 16 is `true`. The method `.equals` compares the contents of the two objects: they both contain `\"Beagle\".` The correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q10",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Choose the correct option to complete lines 3 and 4 such that `str2` will contain the letters of `str1` in reverse order.\n\n```java\n1 String str1 = \"banana\";\n2 String str2 = \"\";\n3 // missing code\n4 // missing code\n5 {\n6     str2 += str1.substring(i, i + 1);\n7     i--;\n8 }\n```",
+      "options": [
+        "```java\nint i = 0;\nwhile (i < str1.length)\n```",
+        "```java\nint i = str1.length();\nwhile (i >= 0)\n```",
+        "```java\nint i = str1.length() - 1;\nwhile (i >= 0)\n```",
+        "```java\nint i = str1.length() - 1;\nwhile (i > 0)\n```"
+      ],
+      "answer": "C",
+      "explanation": "Choice (A) starts at `0` and will decrement to a negative index, causing an out of bounds exception.Choice (B) starts the index at `str1.length,` which is out of bounds. The last character in a string should be referenced by `length - 1.` Choice (D) correctly starts at `length - 1`; however, the loop only continues while the index is greater than 0, missing the first character of `str1.` The correct answer is (C).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q11",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following code excerpt:\n\n```java\n9  int n = /* some integer greater than zero */;\n10 int count = 0;\n11 int p = 0;\n12 int q = 0;\n13 for (p = 1; p < n; p++)\n14     for (q = 1; q <= n; q++)\n15         count++;\n```\n\nWhat will be the final value of `count`?",
+      "options": [
+        "`n n`",
+        "`n 2 – 1`",
+        "`(n – 1) 2`",
+        "`n(n – 1)`"
+      ],
+      "answer": "D",
+      "explanation": "Analytical problems of this type are more easily solved by selecting a value and testing the results. In this case, substitute a small number such as `3` for `n,` and then trace the code. The outer loop executes from `1` to `2`, which is 2 times. The inner loop will execute from `1` to `3`, which is 3 times. The code inside the loops is simply counting by 1. The inner loop will be executed (2 times 3) 6 times, thereby adding `6` to `count.`\n\nNow, substitute `3` for `n` in all the possible answers.\n\nThus, the answer to this problem is (D), `n(n - 1).` Analytically, you could have looked at the first loop processing from `1` to `n – 1` and the second loop processing from `1` to `n`, and made the same assessment.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q12",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Given the following code excerpt, determine the output.\n\n```java\n1 int x = 0;\n2 for (int j = 1; j < 4; j++)\n3 {\n4     if (x != 0 && j / x > 0)\n5         System.out.print(j / x + \" \");\n6     else\n7         System.out.print(j * x + \" \");\n8 }\n```",
+      "options": [
+        "`0 0 0`",
+        "`1 2 3`",
+        "`1 0 2 0 3 0`",
+        "`ArithmeticException: Divide by Zero`"
+      ],
+      "answer": "A",
+      "explanation": "Choice (D) is eliminated with short-circuit. Line 4 looks to determine whether `x != 0`, but it IS `0`, so logic immediately branches to the `else` statement on line 7. Variable `x` is initialized to `0`, and `j` is initialized to `1`, so line 7 multiplies `j (1)` times `x (0) = 0` and prints the result. This eliminates (B) and (C).Choice (A) is all zeros. Line 2 specifies `j` will start at `1` and end at `3`, thus printing three `0`s. The correct answer is (A).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q13",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following code:\n\n```java\n1  String space = \" \";\n2  String symbol = \"*\";\n3  int num = 5;\n4  for (int i = 1; i <= num; i++)\n5  {\n6      System.out.print(symbol);\n7  }\n8  System.out.print(\"\\n\");\n9  for (int i = 1; i <= num; i++)\n10 {\n11     for (int j = num - i; j > 0; j--)\n12     {\n13         System.out.print(space);\n14     }\n15     System.out.println(symbol);\n16 }\n17 for (int i = 1; i <= num; i++)\n18 {\n19     System.out.print(symbol);\n20 }\n```\n\nWhich of the following represents the output?",
+      "options": [
+        "```java\n*****\n****\n***\n**\n*\n*****\n```",
+        "```java\n*****\n*\n**\n***\n****\n*****\n```",
+        "```java\n*****\n    *\n   *\n  *\n *\n*\n*****\n```",
+        "```java\n*****\n*\n*\n*\n*\n*\n*****\n```"
+      ],
+      "answer": "C",
+      "explanation": "The loop located at lines 4–7 prints `symbol` (*) 5 times.\n\nLine 8 is a control break to the next line.\n\nThe loop located at lines 9–16 is executed 5 times. The inner loop at lines 11–14 prints `5` – `j` spaces, so the first time through it will print 4 spaces, next time 3 spaces, and so on. (Note: this eliminates all answers except for (C).) After the spaces are printed on each line, a single `symbol` (*) is printed with `println` (which will then move to the next line).\n\nThe loop at 17–20 is the same as the first loop, printing `symbol` (*) 5 times. The correct answer is (C).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q14",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "What will be printed as a result of the following code excerpt?\n\n```java\nint sum = 0;\nfor (int i = 1; i < 2; i++)\n    for (int j = 1; j <= 3; j++)\n        for (int k = 1; k < 4; k++)\n            sum += (i * j * k);\nSystem.out.println(sum);\n```",
+      "options": [
+        "`18`",
+        "`36`",
+        "`45`",
+        "`60`"
+      ],
+      "answer": "B",
+      "explanation": "`i` will have only the value `1`, `j` will range from `1` to `3`, and `k` will range from `1` to `3`. The three variables will be multiplied by each other and then added to the sum. The results will look like this:\n\n`i * j * k`\n\n`1 * 1 * 1 = 1`\n\n`1 * 1 * 2 = 2`\n\n`1 * 1 * 3 = 3`\n\n`1 * 2 * 1 = 2`\n\n`1 * 2 * 2 = 4`\n\n`1 * 2 * 3 = 6`\n\n`1 * 3 * 1 = 3`\n\n`1 * 3 * 2 = 6`\n\n`1 * 3 * 3 = 9`: The sum of which is `36`.\n\nThe correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q15",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Consider the following code:\n\n```java\n1  int j = 0;\n2  String s = \"map\";\n3  while ( j < s.length())\n4  {\n5      int k = s.length();\n6      while ( k > j )\n7      {\n8          System.out.println(s.substring(j, k));\n9          k--;\n10     }\n11     j++;\n12 }\n```\n\nWhich of the following represents the output?",
+      "options": [
+        "```java\nmap\nma\nm\nap\na\n```",
+        "```java\nmap\nma\nm\nap\na\np\n```",
+        "```java\nmap\nap\np\nap\np\np\n```",
+        "```java\nm\nma\nmap\na\nap\np\n```"
+      ],
+      "answer": "B",
+      "explanation": "The `substring()` method has two parameters. The first specifies where to start, the second how far to go (up to but NOT including).\n\nThe outer loop at lines 3–12 is controlled by `j. j` starts off at `0`, eventually ending at `2`.\n\nThe inner loop at lines 5–10 is controlled by `k. k` starts off at `3` and will execute as long as it is greater than `j.`\n\nThe first time through the outer loop the following will be printed:\n\nThe second time through the outer loop the following will be printed:\n\nThe final time through the outer loop the following will be printed:\n\nThe correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q16",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "A factorial is shown by an exclamation point(!) following a number. The factorial of 5, or 5!, is calculated by (5)(4)(3)(2)(1) = 120.\n\nAssuming `n` is an integer greater than 1, choose the method that will return `n!`.\n\n```java\npublic static int f(int n) {\n    int factorial = 1;\n    for (int i = n; i > 0 ; i-- ) {\n        factorial *= n;\n    }\n    return factorial;\n}\n```\n\n```java\npublic static int f(int n) {\n    int factorial = 1;\n    int j = 1;\n    while (j <= n) {\n        factorial *= j;\n        j++;\n    }\n    return factorial;\n}\n```\n\n```java\npublic static int f(int n) {\n    if (n == 1)\n        return n;\n    return n * f(n - 1);\n}\n```",
+      "options": [
+        "I only",
+        "II only",
+        "II and III only",
+        "I, II, and III"
+      ],
+      "answer": "C",
+      "explanation": "Once again, it is helpful to choose a value for `n` to analyze the code. Choosing `3` for `n,` analyze the code.\n\nI - Each time through the loop, factorial will be multiplied by `3`. This does not follow the definition of a factorial.Eliminate (A) and (D), which include I.\n\nSince both remaining choices include II, there is no need to check this option. Go straight to III.\n\nIII - A recursive solution that sends `n (3)` to the function\n\nThe only remaining answer is (C).\n\nTo see why II does work, note that the loop is controlled by `j`, which will range from 1 to `n`, in this case 3. Each time through the loop, factorial is multiplied by `j`, thereby producing a result of `1 × 2 × 3`, which is correct. The answer is (C).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q17",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 18-20 refer to the code excerpt for the Tile class below:\n\n```java\npublic class Tile\n{\n    private int styleNumber;\n    private String color;\n    private double width;\n    private double height;\n    private String material;\n    private double price;\n    Tile(int style, String col)\n    {\n        styleNumber = style;\n        color = col;\n    }\n    Tile(int style, String col, double w, double h, String mat, double price)\n    {\n        styleNumber = style;\n        color = col;\n        width = w;\n        height = h;\n        material = mat;\n        price = price;\n    }\n    Tile(int style, String col, String mat, double price)\n    {\n        styleNumber = style;\n        color = col;\n        material = mat;\n        price = price;\n    }\n    public void chgMaterial(String mat)\n    {\n        String material = mat;\n    }\n    public String toString()\n    {\n        return (styleNumber + \" \" + color + \" \" + width + \" \" + height + \" \" +\n        material + \" \" + price);\n    }\n}\n```\n\nWhat is the output after the following client code is executed?\n\n```java\nTile t1 = new Tile(785, \"grey\", \"ceramic\", 6.95);\nt1.chgMaterial(\"marble\");\nSystem.out.print(t1.toString());\n```",
+      "options": [
+        "`785 grey 0.0 0.0 marble 0.0`",
+        "`785 grey 0.0 0.0 ceramic 0.0`",
+        "`785 grey 0.0 0.0 ceramic 6.95`",
+        "`785 grey 0.0 0.0 marble 6.95`"
+      ],
+      "answer": "B",
+      "explanation": "When a local variable is created, the local variable is used instead of the instance variable. When the constructor is invoked, line 28 updates the local variable `price` rather than the instance variable `price`. Without specifying `this.price = price,` the local variable is assigned the same value it already holds, rather than being assigned the value of the instance variable. Thus, (C) and (D) are eliminated. The `chgMaterial(mat)` method at line 30 creates a new local variable `material` rather than updating the instance variable of the same name, eliminating (A). The correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q18",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 18-20 refer to the code excerpt for the Tile class below:\n\n```java\npublic class Tile\n{\n    private int styleNumber;\n    private String color;\n    private double width;\n    private double height;\n    private String material;\n    private double price;\n    Tile(int style, String col)\n    {\n        styleNumber = style;\n        color = col;\n    }\n    Tile(int style, String col, double w, double h, String mat, double price)\n    {\n        styleNumber = style;\n        color = col;\n        width = w;\n        height = h;\n        material = mat;\n        price = price;\n    }\n    Tile(int style, String col, String mat, double price)\n    {\n        styleNumber = style;\n        color = col;\n        material = mat;\n        price = price;\n    }\n    public void chgMaterial(String mat)\n    {\n        String material = mat;\n    }\n    public String toString()\n    {\n        return (styleNumber + \" \" + color + \" \" + width + \" \" + height + \" \" +\n        material + \" \" + price);\n    }\n}\n```\n\nWhat is the output after the following client code is executed?\n\n```java\nTile t2 = new Tile(101, \"blue\");\nSystem.out.print(t2);\n```",
+      "options": [
+        "`Tile@5ccd43c2`",
+        "`101 blue 0.0 0.0 null 0.0`",
+        "`Type mismatch error`",
+        "`NullPointerException`"
+      ],
+      "answer": "B",
+      "explanation": "If a print statement is passed an object, its `toString()` method will be invoked. This eliminates all answers except (B), which is the correct answer.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q19",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 18-20 refer to the code excerpt for the Tile class below:\n\n```java\npublic class Tile\n{\n    private int styleNumber;\n    private String color;\n    private double width;\n    private double height;\n    private String material;\n    private double price;\n    Tile(int style, String col)\n    {\n        styleNumber = style;\n        color = col;\n    }\n    Tile(int style, String col, double w, double h, String mat, double price)\n    {\n        styleNumber = style;\n        color = col;\n        width = w;\n        height = h;\n        material = mat;\n        price = price;\n    }\n    Tile(int style, String col, String mat, double price)\n    {\n        styleNumber = style;\n        color = col;\n        material = mat;\n        price = price;\n    }\n    public void chgMaterial(String mat)\n    {\n        String material = mat;\n    }\n    public String toString()\n    {\n        return (styleNumber + \" \" + color + \" \" + width + \" \" + height + \" \" +\n        material + \" \" + price);\n    }\n}\n```\n\nThe `Tile class` is going to be used for an application built for a small independent tile store. The owner wants the programmer to add a field for the number of unopened boxes of tile he has for each style of tile he has in stock and a method to change the value. What would be the proper declaration for this field?",
+      "options": [
+        "`public static int inventory;`",
+        "`private static double inventory;`",
+        "`final int inventory;`",
+        "`private int inventory;`"
+      ],
+      "answer": "D",
+      "explanation": "A static variable would be used for something that would belong to the entire class. Since inventory needs to exist for each style, it cannot be static, but it must be an instance of the class, eliminating (A) and (B).Choice (C) is eliminated because the keyword `final` is used only for constants that do not change value, but the owner has also asked for a method to change the value. The correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q20",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Given the following code excerpt:\n\n```java\nint[] nums = {11, 22, 33, 44, 55, 66};\nfor (int i = 0; i < nums.length; i++)\n    nums[nums[i] / 11] = nums[i];\n```\n\nDetermine the final contents of `nums``.`",
+      "options": [
+        "`1, 2, 3, 4, 5, 6`",
+        "`11, 11, 33, 33, 55, 55`",
+        "`11, 11, 22, 33, 44, 55`",
+        "`11, 22, 22, 33, 33, 55`"
+      ],
+      "answer": "B",
+      "explanation": "The array is initialized as `{11, 22, 33, 44, 55, 66};`\n\nFirst pass:\n\nSecond pass:\n\nThird pass:\n\nFourth pass:\n\nFifth pass:\n\nSixth pass:\n\nThe correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q21",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "A program needs to read a file of five letter words and save each word in an ArrayList:\n\n```java\nFile f = new File(\"fiveLetterWords.txt\");\nScanner scan = new Scanner(f);\nArrayList<String> words = new\nArrayList<String>();\n/* missing code */\n```\n\nWhich of the following should replace `/* missing code */` so that the program works as intended?",
+      "options": [
+        "```java\nwhile (scan.hasNext())\n{\n    words.add(scan.next());\n    scan.close();\n}\n```",
+        "```java\nwhile (scan.hasNext())\n    words.add(scan.next());\nscan.close();\n```",
+        "```java\nwhile (f.hasNext())\n    words.add(f.next());\nscan.close();\n```",
+        "```java\nwhile (scan.next())\n    words.add(scan.next());\nscan.close();\n```"
+      ],
+      "answer": "B",
+      "explanation": "Choice (A) includes `scan.close()` inside the `while` loop; the scanner should be closed after all the input is read from the file.Choice (C) should use `scan.hasNext()` for the `while` loop condition and `scan.next()` to read the next `String` from the file.Choice (D) uses `scan.next()` instead of `scan.hasNext()` for the `while` loop condition. The correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q22",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Given the following code excerpt:\n\n```java\nint[] arr3 = {1, 2, 3, 4, 5, 6};\nfor (int element : arr3)\n{\n    element *= 2;\n    System.out.print(element + \" \");\n}\nSystem.out.println(\" \");\nfor (int element : arr3)\n    System.out.print(element + \" \");\n```\n\nDetermine the statement below that reflects the resulting output.",
+      "options": [
+        "```java\n1 2 3 4 5 6\n1 2 3 4 5 6\n```",
+        "```java\n2 4 6 8 10 12\n1 2 3 4 5 6\n```",
+        "```java\n2 4 6 8 10 12\n2 4 6 8 10 12\n```",
+        "A compiler error will occur."
+      ],
+      "answer": "B",
+      "explanation": "The `for` loop on line 29 creates a local variable named `element` which will hold each value of `arr3` without having to use an index. Modifying this local variable does not modify the individual contents within the array. The loop multiplies each element by 2, printing it as it does so.\n\n`2, 4, 6, 8, 10, 12`\n\nThe loop at line 36 prints the contents of the array, which remain unchanged:\n\n`1, 2, 3, 4, 5, 6`\n\nThe correct answer is (B).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q23",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Given an array `numbers` containing a variety of integers and the following code excerpt:\n\n```java\nint holdSmallest = Integer.MAX_VALUE;\nint holdLargest = 0;\nint a = 0;\nint b = 0;\nfor (int i = 0; i < numbers.length; i++)\n{\n    if (numbers[i] <= holdSmallest)\n    {\n        holdSmallest = numbers[i];\n        a = i;\n    }\n    if (numbers[i] >= holdLargest)\n    {\n        holdLargest = numbers[i];\n        b = i;\n    }\n}\nSystem.out.println(a + \" \" + b);\n```\n\nDetermine the statement below that reflects the most successful outcome.",
+      "options": [
+        "The code will print the smallest and largest values in the `numbers` array.",
+        "The code will print the locations of the smallest and largest values in the `numbers` array.",
+        "The code will print the locations of the smallest value in the `numbers` array and the largest non-negative value in the `numbers` array.",
+        "The code will print the locations of the smallest non-negative value in the `numbers` array and the largest value in the `numbers` array."
+      ],
+      "answer": "C",
+      "explanation": "Since index `i` is assigned to variables `a` and `b`, it is locations that are being printed. This eliminates (A). Scan the remaining answers and make a chart to help you understand the possibilities.\n\nThe variable `holdSmallest` is initialized with `Integer.MAX_VALUE,` which is the largest integer an `int` field may hold. Thus, the code will work to find the smallest number in the array even if it is a negative number. This eliminates (D). The variable `holdLargest` is initialized to `0`, so when looking for a larger integer, it will only be replaced if it is larger than `0`, or in other words, a non-negative integer. This eliminates (B). The correct answer is (C).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q24",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Choose the missing code below that will accurately find the average of the values in the `sales` array.\n\n```java\nint i = 0;\nint sum = 0;\nfor (int element : sales)\n    // Missing code\n```",
+      "options": [
+        "```java\n{\n    sum += element;\n}\ndouble avg = (double) sum / sales.length;\n```",
+        "```java\n{\n    sum += sales[i];\n}\ndouble avg = (double) sum / sales.length;\n```",
+        "```java\n{\n    sum += sales;\n}\ndouble avg = (double) sum / sales.length;\n```",
+        "```java\n{\n    sum += sales[element];\n}\ndouble avg = (double) sum / sales.length;\n```"
+      ],
+      "answer": "A",
+      "explanation": "Choice (B) is eliminated because there is no increment to variable `i`.Choice (C) is eliminated because without an index, it implies the entire array (not each element) is being added to `sum` over and over.Choice (D) cannot use `element,` because it will contain the contents of a location within the array, rather than a location.Choice (A) is correct because it uses the temporary variable `element,` which will actually hold the contents of each location within the array.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q25",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "A programmer has written two different methods for a client program to swap the elements of one array with those of another array.\n\n```java\npublic static void swap1(int[] a1, int[] a2)\n{\n    for (int i = 0; i < a1.length; i++)\n    {\n        int arrhold = a1[i];\n        a1[i] = a2[i];\n        a2[i] = arrhold;\n    }\n}\npublic static void swap2(int[] a1, int[] a2)\n{\n    int [] arrhold = a1;\n    a1 = a2;\n    a2 = arrhold;\n}\n```\n\nWhich of the following statements best reflects the outcomes of the two methods?",
+      "options": [
+        "Both methods will swap the contents of the two arrays correctly in all cases.",
+        "`swap1` will swap the contents of the two arrays correctly only if both arrays have the same number of elements, whereas `swap2` will work correctly for all cases.",
+        "`swap1` will swap the contents of the two arrays correctly only if both arrays have the same number of elements, whereas `swap2` will never work correctly.",
+        "`swap1` will swap the contents of the two arrays correctly only if both arrays have the same number of elements or `a2` has more elements, whereas `swap2` will work correctly for all cases."
+      ],
+      "answer": "B",
+      "explanation": "Examining the code of `swap1`, you can see it will work only if the arrays are the same length. There is no accommodation for one array being longer than the other. In fact, if `a1` is longer, there will be an out of bounds error on the second array. This eliminates (A) and (D). The code of `swap2` works as well. In this method, the object references are being shifted. The `arrhold` array is assigned the object reference of `a1`, `a1` is assigned the object reference of `a2`, and finally `a2` is assigned the object reference of `arrhold` (which was holding the reference of the original `a1`). The method `swap2` will work for any size arrays, thus, (C) is eliminated and (B) is correct.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q26",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Which code has declared and properly populated the given `ArrayList`?\n\n```java\nArrayList <String> alist1 = new ArrayList<String>();\nalist1.add(\"4.5\");\n```\n\n```java\nArrayList <Integer> alist2 = new ArrayList<Integer>();\nalist1.add((int) 4.5);\n```\n\n```java\nArrayList <Double> alist3;\nalist3 = new ArrayList<Double>();\nalist3.add(4.5);\n```",
+      "options": [
+        "I only",
+        "I and II",
+        "II and III",
+        "I, II, and III"
+      ],
+      "answer": "D",
+      "explanation": "Segment I declares an `ArrayList` of type `String` and then adds `\"4.5\"`, which is a `String.` It is correct.Eliminate (C), which does not include I.\n\nSegment II declares an `ArrayList` of type `Integer` and then casts `4.5` to an `int` before adding it to the `ArrayList`, which is acceptable. It is correct.Eliminate (A).\n\nSegment III declares an `ArrayList` variable and then completes the declaration of the `ArrayList` as type `double` on the next line. It then adds a double to the `ArrayList`, which is correct.Eliminate (B).\n\nThe correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q27",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Given the following code excerpt:\n\n```java\nArrayList <Integer> alist1 = new ArrayList<Integer>();\nint [] a1 = {2, 4, 6, 7, 8, 10, 11};\nfor (int a : a1) {\n    alist1.add(a);\n}\nfor (int i = 0; i < alist1.size(); i++) {\n    if (alist1.get(i) % 2 == 0){\n        alist1.remove(i);\n    }\n}\nSystem.out.println(alist1);\n```\n\nDetermine the output.",
+      "options": [
+        "`[4, 7, 10, 11]`",
+        "`[2, 7, 10, 11]`",
+        "`[7, 11]`",
+        "`An IndexOutOfBoundsException will occur.`"
+      ],
+      "answer": "A",
+      "explanation": "The first loop loads the contents of the array into the `ArrayList`. The next loop begins to remove elements if those elements are even. The loop will continue to run until it reaches the size of the `ArrayList`. As elements of the `ArrayList` are removed, the size will decrease, so there is no risk of going out of bounds.Eliminate (D). However, the index `i` will occasionally skip elements because of the renumbering that takes place.\n\n`i = 0` The `2` is even, so it is removed; the array is now\n\n`i = 1` Notice the `4` will now be skipped. The `6` is even, so it is removed; the array is now\n\n`i = 2` The `8` is even, so it is removed; the array is now\n\n`i = 3` The `10` has been skipped. The `11` is odd, so the array stays the same:\n\nThe correct answer is (A).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q28",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 29-30 refer to the following code excerpt.\n\n```java\nArrayList <Integer> alist5 = new ArrayList<Integer>();\nint [] a1 = {21, 6, 2, 8, 1};\nfor (int a : a1)\n{\n    alist5.add(a);\n}\nfor (int k = 0; k < alist5.size() - 1; k++)\n{\n    for (int i = 0; i < alist5.size() - 2; i++)\n    {\n        if (alist5.get(i) > alist5.get(i + 1))\n        {\n            int hold = alist5.remove(i);\n            alist5.add(i + 1, hold);\n        }\n    }\n}\nSystem.out.println(alist5);\n```\n\nHow many times will line 11 be executed?",
+      "options": [
+        "12 times",
+        "15 times",
+        "16 times",
+        "20 times"
+      ],
+      "answer": "A",
+      "explanation": "The size of the array is `5`, so `size – 1` is `4`. The outer loop executes 4 times `(0–3)`.\n\n`size – 2` is `3`. The inner loop executes 3 times `(0–2)`.\n\nSince line 11 is executed every time the inner loop is executed, it will be executed (4)(3) = 12 times.\n\nThe correct answer is (A).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q29",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 29-30 refer to the following code excerpt.\n\n```java\nArrayList <Integer> alist5 = new ArrayList<Integer>();\nint [] a1 = {21, 6, 2, 8, 1};\nfor (int a : a1)\n{\n    alist5.add(a);\n}\nfor (int k = 0; k < alist5.size() - 1; k++)\n{\n    for (int i = 0; i < alist5.size() - 2; i++)\n    {\n        if (alist5.get(i) > alist5.get(i + 1))\n        {\n            int hold = alist5.remove(i);\n            alist5.add(i + 1, hold);\n        }\n    }\n}\nSystem.out.println(alist5);\n```\n\nWhat will be the final output after the code executes?",
+      "options": [
+        "`[21, 8, 6, 2, 1]`",
+        "`[6, 2, 8, 21, 1]`",
+        "`[2, 6, 8, 21, 1]`",
+        "`[1, 2, 6, 8, 21]`"
+      ],
+      "answer": "C",
+      "explanation": "The inner loop does not go far enough to process the entire array. `size` is `5`, and `size – 1` is `4`, so the index can only be less than `4`, stopping at index `3`. The last entry in the `ArrayList` will never be sorted. The sort makes 4 passes through the `ArrayList`. The passes will look as follows:\n\n`0 [6, 21, 2, 8, 1]`\n\n`1 [6, 2, 21, 8, 1]`\n\n`2 [6, 2, 8, 21, 1]`\n\n`3 [2, 6, 8, 21, 1]`\n\nThe correct answer is (C).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q30",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Given `arr2d` - a rectangular, but not necessarily square, two-dimensional array of integers - consider the following code intended to print the array:\n\n```java\n1  int [][] arr2d = {{1, 2, 3, 4}, {5, 6, 7, 8}};\n2  String s = \"\";\n3  for (int a = 0; a < arr2d[0].length; a++)\n4  {\n5      for (int b = 0; b < arr2d.length; b++)\n6      {\n7          s += arr2d [b][a] + \" \";\n8      }\n9      s += \"\\n\";\n10 }\n11 System.out.print(s);\n```\n\nDetermine the resulting output.",
+      "options": [
+        "```java\n1 2 3 4\n5 6 7 8\n```",
+        "```java\n1 5 2 6\n3 7 4 8\n```",
+        "```java\n1 2\n3 4\n5 6\n7 8\n```",
+        "```java\n1 5\n2 6\n3 7\n4 8\n```"
+      ],
+      "answer": "D",
+      "explanation": "The array is printed in column-major order. The outer loop runs from 0 to row length – 1 (the number of columns). The inner loop runs from 0 to the length of the array (which means the number of rows).\n\nThe original array is\n\n`1 2 3 4`\n\n`5 6 7 8`\n\nThe outer loop starts with column 0, prints `[0] [0]: 1 [1] [0]: 5`\n\nThe outer loop increments to column 1 `[0] [1]: 2 [1] [1]: 6`\n\nThe outer loop increments to column 2 `[0] [2]: 3 [1] [2]: 7`\n\nThe outer loop increments to column 3 `[0] [3]: 4 [1] [3]: 8`\n\nThe correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q31",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Given `nums` - a rectangular, two-dimensional array of integers - choose the code to print the entire array.\n\n```java\nfor (int r = 0; r < nums.length; r++ )\n{\n    for (int c = 0; c < nums[0].length; c++)\n    {\n        System.out.print(nums[r][c]);\n    }\n    System.out.print(\"\\n\");\n}\n```\n\n```java\nfor (int [] row : nums)\n{\n    for (int col : row)\n    {\n        System.out.print(col + \" \");\n    }\n    System.out.println(\"\");\n}\n```\n\n```java\nfor (int r = 0; r < nums[0].length; r++)\n{\n    for (int c = 0; c < nums.length; c++ )\n    {\n        System.out.print(nums[r][c] + \" \");\n    }\n    System.out.print(\"\\n\");\n}\n```",
+      "options": [
+        "I and II only",
+        "I and III only",
+        "II and III only",
+        "I, II, and III"
+      ],
+      "answer": "A",
+      "explanation": "Segment III will go out of bounds. The `r` (rows) will iterate as many times as there are columns. If there are fewer rows than columns, the index will go out of bounds. The correct answer is (A).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q32",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 33-37 refer to the Instrument class below.\n\n```java\nimport java.util.ArrayList;\npublic class Instrument {\n    private String name;\n    private String classification;\n    private double weight;\n    Instrument(String n, String c, double w)\n    {\n        name = n;\n        classification = c;\n        weight = w;\n    }\n    public String getName()\n    {\n        return name;\n    }\n    public double getWeight()\n    {\n        return weight;\n    }\n    public String compareTo(Instrument other)\n    {\n        /* missing code */\n    }\n    public static ArrayList<Instrument> getSubset(ArrayList<Instrument> bandInstruments, String c)\n    {\n        ArrayList <Instrument> subset = new ArrayList<Instrument>();\n        for (Instrument b: bandInstruments)\n            if (b.classification.equals(c)) {\n            subset.add(b);\n        }\n        return subset;\n    }\n}\n```\n\nWhich of the following will not compile correctly within a client program?",
+      "options": [
+        "`Instrument inst1 = new Instrument(\"electronic keyboard\", \"keyboard\", 25);`",
+        "`Instrument inst1 = new Instrument(\"guitar\", \"string\", 15.0);`",
+        "`Instrument inst1 = new Instrument(\"trumpet\", \"brass\", 5.0);`",
+        "`Instrument inst1 = new Instrument(3.0, \"flute\", \"woodwind\");`"
+      ],
+      "answer": "D",
+      "explanation": "The Instrument constructor expects three parameters of data types: String, String, double - in that order. These data types are provided by (B) and (C), so these two choices will compile.Choice (A) provides a String, String, and int field, but this will compile because an int number can be assigned to a double variable.Choice (D) provides three parameters; however, it is in the wrong order (double, String, String) so it will not compile.Choice (D) is the correct answer.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q33",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 33-37 refer to the Instrument class below.\n\n```java\nimport java.util.ArrayList;\npublic class Instrument {\n    private String name;\n    private String classification;\n    private double weight;\n    Instrument(String n, String c, double w)\n    {\n        name = n;\n        classification = c;\n        weight = w;\n    }\n    public String getName()\n    {\n        return name;\n    }\n    public double getWeight()\n    {\n        return weight;\n    }\n    public String compareTo(Instrument other)\n    {\n        /* missing code */\n    }\n    public static ArrayList<Instrument> getSubset(ArrayList<Instrument> bandInstruments, String c)\n    {\n        ArrayList <Instrument> subset = new ArrayList<Instrument>();\n        for (Instrument b: bandInstruments)\n            if (b.classification.equals(c)) {\n            subset.add(b);\n        }\n        return subset;\n    }\n}\n```\n\nThe `compareTo()` method in the `Instrument` class is intended to allow a client program to compare two `Instrument` objects such that a String will be returned describing which instrument weighs more or if both instruments weigh the same. Use the Java instructions residing in a client program in the table below to observe the behavior of the method.\n\nStatements and Expressions\n\nValue Returned\n\nComment\n\n`Instrument instr1 = new Instrument (\"tuba\", \"brass\", 30);`\n\nCreates an `instr1` object\n\nname: tuba\n\nclassification: brass\n\nweight: 30\n\n`Instrument instr2 = new Instrument (\"bugle\", \"brass\", 2);`\n\nCreates an `instr2` object\n\nname: bugle\n\nclassification: brass\n\nweight: 2\n\n`Instrument instr3 = new Instrument (\"clarinet\", \"woodwind\", 2);`\n\nCreates an `instr3` object\n\nname: clarinet\n\nclassification: woodwind\n\nweight: 2\n\n`Instrument instr4 = new Instrument (\"drum\", \"percussion\", 10);`\n\nCreates an `instr4` object\n\nname: drum\n\nclassification: percussion\n\nweight: 10\n\n`instr1.compareTo(instr2);`\n\nThe tuba weighs more than the bugle\n\n`instr2.compareTo(instr3);`\n\nThe bugle and clarinet weigh the same amount\n\n`instr2.compareTo(instr4);`\n\nThe drum weighs more than the bugle\n\nChoose the `/* missing code */` to correctly implement this method.\n\n```java\nif (Instrument.weight > other.weight)\n    return \"The \" + this.name + \" weighs more than the \" + other.name;\nelse if (other.weight > Instrument.weight)\n    return \"The \" + other.name + \" weighs more than the \" + this.name;\nelse\n    return \"The \" + this.name + \" and \"+ other.name + \" weigh the same amount\";\n```\n\n```java\nif (this.weight > other.weight)\n    return \"The \" + this.name + \" weighs more than the \" + other.name;\nelse if (other.weight > this.weight)\n    return \"The \" + other.name + \" weighs more than the \" + this.name;\nelse\n    return \"The \" + this.name + \" and \"+ other.name + \" weigh the same amount\";\n```\n\n```java\nif (this.getWeight() > other.getWeight() )\n    return \"The \" + this.name + \" weighs more than the \" + other.name;\nelse if (other.getWeight() > this.getWeight() )\n    return \"The \" + other.name + \" weighs more than the \" + this.name;\nelse\n    return \"The \" + this.name + \" and \"+ other.name + \" weigh the same amount\";\n```",
+      "options": [
+        "I only",
+        "III only",
+        "I and II only",
+        "II and III only"
+      ],
+      "answer": "D",
+      "explanation": "The `compareTo()` method is invoked on an Instrument object to compare the weight of this object to the weight of another object being sent as a parameter to the method. There are two ways to access the weight of this object: `this.weight` (which will work because both weight and the `compareTo` method are located in the Instrument class), or `this.getWeight()` (which is a method also in the Instrument class). `Instrument.weight` is an invalid reference and so the code from (I) cannot be used.Thus (D) is the correct choice.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q34",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 33-37 refer to the Instrument class below.\n\n```java\nimport java.util.ArrayList;\npublic class Instrument {\n    private String name;\n    private String classification;\n    private double weight;\n    Instrument(String n, String c, double w)\n    {\n        name = n;\n        classification = c;\n        weight = w;\n    }\n    public String getName()\n    {\n        return name;\n    }\n    public double getWeight()\n    {\n        return weight;\n    }\n    public String compareTo(Instrument other)\n    {\n        /* missing code */\n    }\n    public static ArrayList<Instrument> getSubset(ArrayList<Instrument> bandInstruments, String c)\n    {\n        ArrayList <Instrument> subset = new ArrayList<Instrument>();\n        for (Instrument b: bandInstruments)\n            if (b.classification.equals(c)) {\n            subset.add(b);\n        }\n        return subset;\n    }\n}\n```\n\nA client program intends to build an array list named `brassSection`, composed only of brass instruments by calling the static `getSubset` method. Choose the correct code excerpt to create `brassSection`.",
+      "options": [
+        "`ArrayList <Instrument> brassSection = new ArrayList<Instrument>();\nbrassSection = Instrument.getSubset(band1, \"brass\");`",
+        "`ArrayList <Instrument> brassSection = Instrument.getSubset(band1, \"brass\");`",
+        "Both A and B",
+        "Neither option is appropriate because a static method cannot be called from a client program."
+      ],
+      "answer": "C",
+      "explanation": "The `getSubset` method in the Instrument class returns an `ArrayList` of type Instrument.Both (A) and (B) declare an `arrayList` named `brassSection`, then assign the `arrayList` returned from `getSubset` to the `brassSection`. Since both (A) and (B) will work, (C) is correct.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q35",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 33-37 refer to the Instrument class below.\n\n```java\nimport java.util.ArrayList;\npublic class Instrument {\n    private String name;\n    private String classification;\n    private double weight;\n    Instrument(String n, String c, double w)\n    {\n        name = n;\n        classification = c;\n        weight = w;\n    }\n    public String getName()\n    {\n        return name;\n    }\n    public double getWeight()\n    {\n        return weight;\n    }\n    public String compareTo(Instrument other)\n    {\n        /* missing code */\n    }\n    public static ArrayList<Instrument> getSubset(ArrayList<Instrument> bandInstruments, String c)\n    {\n        ArrayList <Instrument> subset = new ArrayList<Instrument>();\n        for (Instrument b: bandInstruments)\n            if (b.classification.equals(c)) {\n            subset.add(b);\n        }\n        return subset;\n    }\n}\n```\n\nA client program needs to compare the contents of two Instrument objects to determine if both objects contain the exact same values in all fields (name, classification, and weight). What is the appropriate way to accomplish this task?",
+      "options": [
+        "In the client program, use the `getName()` and `getWeight()` methods from the Instrument class to determine if the contents are the same.",
+        "In the client program, use the `.equals()` method from the `Object` class to determine if the contents are the same.",
+        "In the `Instrument` class, a method should be written to individually compare each of the instance fields to determine if the contents of the of the objects are the same.",
+        "In the `Instrument` class, use the `.equals()` method from the `Object` class to determine if the contents are the same."
+      ],
+      "answer": "C",
+      "explanation": "Choice (A) does not make provision to compare the classification field of the objects.Eliminate (A).Choices (B) and (D) would only compare the object references of the objects (they would only be deemed the same if they were pointing to the same object, not two separate objects), so eliminate (B) and (D).Choice (C) is correct as it would be able to compare all three instance fields in the Instrument class.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q36",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Questions 33-37 refer to the Instrument class below.\n\n```java\nimport java.util.ArrayList;\npublic class Instrument {\n    private String name;\n    private String classification;\n    private double weight;\n    Instrument(String n, String c, double w)\n    {\n        name = n;\n        classification = c;\n        weight = w;\n    }\n    public String getName()\n    {\n        return name;\n    }\n    public double getWeight()\n    {\n        return weight;\n    }\n    public String compareTo(Instrument other)\n    {\n        /* missing code */\n    }\n    public static ArrayList<Instrument> getSubset(ArrayList<Instrument> bandInstruments, String c)\n    {\n        ArrayList <Instrument> subset = new ArrayList<Instrument>();\n        for (Instrument b: bandInstruments)\n            if (b.classification.equals(c)) {\n            subset.add(b);\n        }\n        return subset;\n    }\n}\n```\n\nA client program needs to determine the average weight of all the instruments stored in an arrayList named `band`. Which of the following correctly calculates the average weight?",
+      "options": [
+        "```java\nint sum = 0;\ndouble average = 0;\nfor (Instrument b: band) {\n    sum += b.getWeight();\n}\naverage = sum / band.size();\n```",
+        "```java\nint sum = 0;\ndouble count = 0;\ndouble average = 0;\nfor (int i = 0; i < band.size(); i++) {\n    sum += band.getWeight();\n    count++;\n}\naverage = sum / count;\n```",
+        "```java\nint sum = 0;\ndouble count = 0;\ndouble average = 0;\nfor (int i = 0; i < band.size(); i++) {\n    sum += band[i].getWeight();\n    count++;\n}\naverage = sum / count;\n```",
+        "```java\nint sum = 0;\ndouble count = 0;\ndouble average = 0;\nfor (int i = 0; i < band.length; i++) {\n    sum += band.get(i).getWeight();\n    count++;\n}\naverage = sum / count;\n```"
+      ],
+      "answer": "D",
+      "explanation": "The variable average is a data type double but (A) is performing integer division.Eliminate (A).Choice (B) is using `band.getWeight()` to access the weight of each instrument, but because band is an `arrayList`, it should be using a `get()` method with an index.Eliminate (B).Choice (C) is using `band[i].getWeight()` to access the weight of each instrument, which is notation for an array, not an `arrayList`.Eliminate (C).Choice (D) utilizes this correct notation `(band.get(i).getWeight())` and is, therefore, the correct answer.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q37",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "The following `pow` method was written to return `b` raised to the `x`th power where `x > 0`, but it does not work properly. Choose the changes that should be made to the method below so that it works properly.\n\n```java\n1 public double pow(double b, int x)\n2 {\n3     if (x == 0)\n4         return 1;\n5     else\n6         return b + pow(b, x - 1);\n7 }\n```",
+      "options": [
+        "Change lines 3 and 4 to:\n\n`3 if (x == 1)`\n\n`4 return 1;`",
+        "Change lines 3 and 4 to:\n\n`3 if (x == 1)`\n\n`4 return b;`",
+        "Change line 6 to:\n\n`6 return b * pow(b, x - 1);`",
+        "Both (B) and (C)"
+      ],
+      "answer": "D",
+      "explanation": "Try substituting numbers for the variables. Try finding 32 by making `b = 3, x = 2.` The solution is found by multiplying 3 × 3.\n\nThe base case will be 3 (when the exponent is 1). This should imply that the `if` statement at line 3 should be\n\n`if (x == 1) return b;`\n\nThere is another error on line 6. Line 6 is using addition, when raising to a power is multiplying the base `x` times. Thus, the + sign should be changed to multiplication.\n\nAfter making the changes in the code, it is advisable to test it to ensure it works:\n\nThe correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q38",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "What is the output given the following code excerpt?\n\n```java\npublic static int f(int n)\n{\n    if (n == 0)\n        return 0;\n    else\n        return f(n / 10) + n % 10;\n}\nSystem.out.println(f(8765));\n```",
+      "options": [
+        "`5678`",
+        "`8765`",
+        "`58`",
+        "`26`"
+      ],
+      "answer": "D",
+      "explanation": "It is best to walk the code.\n\nThe correct answer is (D).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q39",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Choose the best solution to complete the missing code such that the code will implement a binary search to find the variable `number in arr`.\n\n```java\n// precondition: elements in arr are sorted in ascending order\nint number = < some number in arr >;\nSystem.out.println(search(arr, 0, arr.length - 1, number));\npublic int search(int[] a, int first, int last, int sought) {\n    int mid = (first + last) / 2;\n    if (< missing code >) {\n        last = mid - 1;\n        return search(a, first, last, sought);\n    }\n    else if (< missing code >)) {\n        first = mid + 1;\n        return search(a, first, last, sought);\n    }\n    return mid;\n}\n```",
+      "options": [
+        "`a[mid] > sought a[mid] < sought`",
+        "`a[mid] + 1 > sought a[mid] < sought`",
+        "`a[mid] > sought a[mid] - 1 < sought`",
+        "`a[mid] + 1 > sought a[mid] - 1 < sought`"
+      ],
+      "answer": "A",
+      "explanation": "If `sought` is less than the element at index `mid`, the beginning of the array should be searched. The location of the middle of the array, `mid – 1`, should be assigned to `last`. If `sought` is greater than the element at index `mid`, `mid + 1` should be assigned to `first` so that the latter half of the array can be searched. This process should be repeated until `sought` is found. The correct answer is (A).",
+      "difficulty": 3,
+      "source_qid": "sec_1-q40",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Summarize the conditions that will yield a true outcome given `!(!(x < 0 ) || ( y >= 0) )`.",
+      "options": [
+        "`x < 0 && y < 0`",
+        "`x >=0 && y < 0`",
+        "`x < 0 || y < 0`",
+        "`x >=0 || y < 0`"
+      ],
+      "answer": "A",
+      "explanation": "Using DeMorgan's law, we can simplify the requirements to obtain a true value from the expression:\n\n`!(!(x < 0 ) || ( y >= 0) )`\n\nThe `!` is applied to both conditions and the `||` is changed to `&&`.\n\n`!!( x < 0 ) && !( y >= 0))`\n\nThe `!!` cancels each other out so the first condition remains `(x < 0)`\n\nThe `!` is applied to the `>=` operator in the second condition, changing it to `(y < 0)`\n\nChoice (A) is correct.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q41",
+      "pre_2025_format": false,
+      "topic_tags": []
+    },
+    {
+      "stem": "Determine the output of the following code:\n\n```java\nint x = 30;\nint y = 20;\nif (y > 0)\n{\n    if (x > 30)\n    {\n        y = x * 2;\n        if ( y < 50)\n            x = x * 2;\n    }\n    else\n        y = -x;\n}\nelse\n    y = x + 10;\nSystem.out.print(x + \" \" + y);\n```",
+      "options": [
+        "`60 60`",
+        "`30 60`",
+        "`30 -30`",
+        "`-20 20`"
+      ],
+      "answer": "C",
+      "explanation": "Tracing through the code, the lines that are executed are in bold with comments to the right expressing the values in `x` and `y`.Choice (C) is correct.",
+      "difficulty": 3,
+      "source_qid": "sec_1-q42",
+      "pre_2025_format": false,
+      "topic_tags": []
+    }
+  ],
+  "frq_section": [
+    {
+      "prompt": "This question involves the implementation of a simulation of rolling two dice. A client program will specify the number of rolls of the sample size and the number of faces on each of the two dice. A method will return the percentage of times the roll results in a double. Double in this case means when two dice match or have the same value (not a data type).\n\nYou will write two of the methods in this class.\n\n```java\npublic class DiceSimulation {\n    /** Sample size of simulation */\n    private int numSampleSize;\n    /** Number of faces on each die */\n    private int numFaces;\n    /** Constructs a DiceSimulation where sampleSize is the number of rolls to be simulated and\n    * faces is the number of faces on each die (some dice have more or fewer than 6 faces)\n    */\n    public DiceSimulation(int numSamples, int faces) {\n        numSampleSize = numSamples;\n        numFaces = faces;\n    }\n    /** Returns an integer from 1 to the number of faces to simulate a die roll */\n    public int roll() {\n        /* to be implemented in part (a) */\n    }\n    /** Simulates rolling two dice with the number of faces given, for the number of sample size\n    * rolls. Returns the percentage of matches that were rolled\n    * as an integer (eg. 0.50 would be 50 ).\n    */\n    public int runSimulation() {\n        /* to be implemented in part (b) */\n    }\n}\n```\n\nThe following table contains sample code and the expected results.\n\nStatements and Expressions\n\nValue Returned / Comment\n\n`DiceSimulation s1 = new`\n\n`DiceSimulation(10, 6)`\n\n(no value returned) A `DiceSimulation s1` is declared and instantiated.\n\n`s1.runSimulation()`\n\n10 rolls are simulated; only the percentage of matches is displayed. See further explanation below.\n\nThe 10 rolls might look like this (nothing is printed at this time)\n\n```java\nDie1: 3\nDie2: 4\nDie1: 1\nDie2: 5\nDie1: 2\nDie2: 2\nDie1: 3\nDie2: 4\nDie1: 6\nDie2: 6\nDie1: 3\nDie2: 4\nDie1: 3\nDie2: 3\nDie1: 6\nDie2: 4\nDie1: 3\nDie2: 1\nDie1: 5\nDie2: 5\n```\n\nThe percentage the method would return is `40`.\n\nWrite the `roll` method to simulate the roll of one die.\n\n```java\n/** Returns an integer from 1 to number of faces to simulate a die roll */\npublic int roll()\n```\n\nBegin your response at the top of a new page in the separate Free Response booklet and fill in the appropriate circle at the top of each page to indicate the question number. If there are multiple parts to this question, write the part letter with your response.\n\nClass information for this question\n\n```java\npublic class DiceSimulation\nprivate int numSampleSize;\nprivate int numFaces;\npublic DiceSimulation (int numSamples, int faces)\npublic int roll()\npublic int runSimulation()\n```\n\nWrite the `runSimulation` method.\n\n```java\n/** Simulates rolling two dice with the number of faces given, for the number of sample size\n* rolls. Returns the percentage of matches that were rolled\n* as an integer (eg. 0.50 would be 50 ).\n*/\npublic int runSimulation() {\n    /* to be implemented in part (b) */\n```\n\nBegin your response at the top of a new page in the separate Free Response booklet and fill in the appropriate circle at the top of each page to indicate the question number. If there are multiple parts to this question, write the part letter with your response.\n\nClass information for this question\n\n```java\npublic class DiceSimulation\nprivate int numSampleSize;\nprivate int numFaces;\npublic DiceSimulation (int numSamples, int faces)\npublic int roll()\npublic int runSimulation()\n```\n\nGo to Question 1 in Practice Test 1: Diagnostic Answer Key and Explanations, Section II: Free-Response Questions",
+      "parts": [
+        {
+          "label": "a",
+          "prompt": "Write the `roll` method to simulate the roll of one die.\n\n```java\n/** Returns an integer from 1 to number of faces to simulate a die roll */\npublic int roll()\n```"
+        },
+        {
+          "label": "b",
+          "prompt": "Write the `runSimulation` method.\n\n```java\n/** Simulates rolling two dice with the number of faces given, for the number of sample size\n* rolls. Returns the percentage of matches that were rolled\n* as an integer (eg. 0.50 would be 50 ).\n*/\npublic int runSimulation() {\n    /* to be implemented in part (b) */\n```"
+        }
+      ],
+      "reference_solution": "`DiceSimulation` - Canonical Solution\n\n\n**Part (a)**\n\n```java\npublic int roll() {\n    return (int)(Math.random() * numFaces + 1);\n}\n```\n\n\n**Part (b)**\n\n```java\npublic int runSimulation()\n{\n    int die1 = 0;\n    int die2 = 0;\n    int countDouble = 0;\n    for (int i = 0; i < numSampleSize; i++) {\n        die1 = roll();\n        die2 = roll();\n        if (die1 == die2) {\n            countDouble++;\n        }\n    }\n    return 1.0 * countDouble / numSampleSize;\n}\n```",
+      "rubric": [
+        {
+          "point": "+0",
+          "criterion": "Part (a)"
+        },
+        {
+          "point": "+3",
+          "criterion": "`roll` method\n\n+1: `Math.random()` or the `Random` class is used\n\n+1: multiplied by `numFaces + 1`\n\n+1: result of computation is cast to `int` appropriately and returned"
+        },
+        {
+          "point": "+1",
+          "criterion": "`Math.random()` or the `Random` class is used"
+        },
+        {
+          "point": "+1",
+          "criterion": "multiplied by `numFaces + 1`"
+        },
+        {
+          "point": "+1",
+          "criterion": "result of computation is cast to `int` appropriately and returned"
+        },
+        {
+          "point": "+0",
+          "criterion": "Part (b)"
+        },
+        {
+          "point": "+4",
+          "criterion": "`runSimulation` method\n\n+1: local variables are declared and initialized for the two dice, `roll` is used to assign the dice values\n\n+1: a loop is used to execute sample size times (no more, no less)\n\n+1: the values of `die1` and `die2` are compared with `==`, doubles are counted appropriately\n\n+1: the percentage of doubles is calculated (avoiding integer division), multiplied by 100"
+        },
+        {
+          "point": "+1",
+          "criterion": "local variables are declared and initialized for the two dice, `roll` is used to assign the dice values"
+        },
+        {
+          "point": "+1",
+          "criterion": "a loop is used to execute sample size times (no more, no less)"
+        },
+        {
+          "point": "+1",
+          "criterion": "the values of `die1` and `die2` are compared with `==`, doubles are counted appropriately"
+        },
+        {
+          "point": "+1",
+          "criterion": "the percentage of doubles is calculated (avoiding integer division), multiplied by 100"
+        }
+      ],
+      "total_points": 7,
+      "source_qid": "sec_1-qq1"
+    },
+    {
+      "prompt": "This question involves the implementation of a calorie counter system that is represented by the `CalorieCount` class. A `CalorieCount` object is created with one parameter and five instance variables.\n\nDaily calories limit - the recommended number of calories per day\n\nDaily calories intake - the number of calories a person has eaten in a day\n\nGrams of protein per day\n\nGrams of carbohydrate per day\n\nGrams of fat per day\n\nThe `CalorieCount` class provides a constructor and the following methods:\n\n`addMeal` - takes in calories, grams of protein, grams of carbs, and grams of fat from a meal and updates corresponding instance fields\n\n`onTrack` - returns `true` if the calorie intake does not exceed the daily calories limit, otherwise returns `false`\n\nThe following table contains sample code and the expected results.\n\nStatements and Expressions\n\nValue Returned (blank if no value)\n\nComment\n\n`CalorieCount sunday = new CalorieCount(1500);`\n\nCreates an instance with a 1500-calorie limit\n\n`sunday.addMeal(716, 38, 38, 45);`\n\nAdds 716 calories, 38 grams of protein, 38 grams of carbs, 45 grams of fat to the appropriate instance fields\n\n`sunday.addMeal(230, 16, 8, 16);`\n\nAdds 230 calories, 16 grams of protein, 8 grams of carbs, 16 grams of fat to the appropriate instance fields\n\n`sunday.addMeal(568, 38, 50, 24);`\n\nAdds 568 calories, 38 grams of protein, 50 grams of carbs, 24 grams of fat to the appropriate instance fields\n\n`onTrack()`\n\n`false`\n\nReturns `true` if calorie intake does not exceed calorie limit\n\nWrite the entire `CalorieCount` class. Your implementation must meet all specifications and conform to all examples.\n\nBegin your response at the top of a new page in the separate Free Response booklet and fill in the appropriate circle at the top of each page to indicate the question number. If there are multiple parts to this question, write the part letter with your response.\n\nGo to Question 2 in Practice Test 1: Diagnostic Answer Key and Explanations, Section II: Free-Response Questions",
+      "parts": [],
+      "reference_solution": "`CalorieCount` - Canonical Solution\n\n```java\npublic class CalorieCount {\n    private int numCaloriesLimit;\n    private int numCaloriesIntake;\n    private int gramsProtein;\n    private int gramsCarbohydrate;\n    private int gramsFat;\n    public CalorieCount (int calorieLimit) {\n        numCaloriesLimit = colorieLimit;\n        numCaloriesIntake = 0;\n        gramsProtein = 0;\n        gramsCarbohydrate = 0;\n        gramsFat = 0;\n    }\n    public void addMeal(int calories, int protein, int carbs, int fat) {\n        numCaloriesIntake += calories;\n        gramsProtein += protein;\n        gramsCarbohydrate += carbs;\n        gramsFat += fat;\n    }\n    public boolean onTrack() {\n        return numCaloriesIntake <= numCaloriesLimit;\n    }\n}\n```",
+      "rubric": [
+        {
+          "point": "+1",
+          "criterion": "Declares all appropriate `private` instance variables"
+        },
+        {
+          "point": "+2",
+          "criterion": "Constructor\n\n+1: declares header: `public CalorieCount (int calorieLimit)`\n\n+1: uses parameters and appropriate values to initialize instance variables"
+        },
+        {
+          "point": "+1",
+          "criterion": "declares header: `public CalorieCount (int calorieLimit)`"
+        },
+        {
+          "point": "+1",
+          "criterion": "uses parameters and appropriate values to initialize instance variables"
+        },
+        {
+          "point": "+2",
+          "criterion": "`addMeal` method\n\n+1: declares header: `public void addMeal(int calories, int protein, int carbs, int fat)`\n\n+1: updates instance variables appropriately"
+        },
+        {
+          "point": "+1",
+          "criterion": "declares header: `public void addMeal(int calories, int protein, int carbs, int fat)`"
+        },
+        {
+          "point": "+1",
+          "criterion": "updates instance variables appropriately"
+        },
+        {
+          "point": "+2",
+          "criterion": "`onTrack` method\n\n+1: declares header: `public boolean onTrack()`\n\n+1: correctly returns `true` or `false`\n\ne.g., `return numCaloriesIntake <= numCaloriesLimit;`"
+        },
+        {
+          "point": "+1",
+          "criterion": "declares header: `public boolean onTrack()`"
+        },
+        {
+          "point": "+1",
+          "criterion": "correctly returns `true` or `false`\n\ne.g., `return numCaloriesIntake <= numCaloriesLimit;`"
+        }
+      ],
+      "total_points": 7,
+      "source_qid": "sec_1-qq2"
+    },
+    {
+      "prompt": "This question involves the implementation of a travel planner system that is represented by the `TravelPlan` and `Tour` classes. A client will create `Tour` objects that will represent tours or activities of interest. Each `Tour` object is made up of an activity date, start time, end time, and name of the activity. The client will also create a `TravelPlan` object comprised of a destination and an `ArrayList` of `Tours`.\n\nA partial declaration of the `Tour` class is shown below.\n\n```java\npublic class Tour {\n    private int actDate;\n    private int startTime; // times are represented in military format\n    private int endTime; // 1430 for 2:30 pm\n    private String activity;\n    /* Constructs a Tour\n    * All instance fields are initialized from parameters\n    */\n    Tour(int actDate, int startTime, int endTime, String activity)\n    {\n        /* implementation not shown */\n    }\n    public int getActDate() { return actDate; }\n    public int getStartTime() { return startTime; }\n    public int getEndTime() { return endTime; }\n    public String getActivity() { return activity; }\n```\n\nA partial declaration of the `TravelPlan` class is shown below.\n\n```java\nimport java.util.ArrayList;\npublic class TravelPlan {\n    private String destination;\n    private ArrayList <Tour> plans;\n    /* Constructs a TravelPlan\n    * All instance fields are initialized from parameters\n    */\n    TravelPlan(String destination)\n    {\n        /* to be implemented in part (a) */\n    }\n    /* Returns true if the timeframe overlaps with another Tour in plans;\n    * otherwise false\n    */\n    public boolean checkForConflicts(Tour t)\n    {\n        /* implementation not shown */\n    }\n    /* Calls checkForConflicts , if checkForConflicts returns false\n    * (the timeframe does not overlap), adds the tour to plans , returns true\n    * otherwise returns false\n    * Must call checkForConflicts for full credit\n    */\n    public boolean addTour(Tour t)\n    {\n        /* to be implemented in part (b) */\n    }\n```\n\nThe following table contains sample code and the expected results.\n\nStatements and Expressions\n\nValue Returned (blank if no value)\n\nComment\n\n`TravelPlan p1 = new`\n\n`TravelPlan(\"Capetown\");`\n\nCreates an instance with a destination `\"CapeTown\"` and an empty `ArrayList` of type `Tour`\n\n`Tour t1 = new Tour(1312020, 800, 1230, \"Bungee jumping\");`\n\nCreates a `Tour` instance with date, start time, end time, and activity\n\n`Tour t2 = new Tour(1312020, 900, 1430, \"Body surfing\");`\n\nCreates a `Tour` instance with date, start time, end time, and activity\n\n`p1.addTour(t1)`\n\n`true`\n\nChecks for conflicts in `plans`; since there are none, adds the `Tour` object, returns `true`\n\n`p1.addTour(t2)`\n\n`false`\n\nChecks for conflicts in `plans`; since there is a conflict, returns `false`\n\n`Tour t3 = new Tour(2012020, 900, 1200, \"Shark cage diving\");`\n\nCreates a `Tour` instance with date, start time, end time, and activity\n\n`p1.addTour(t3)`\n\n`true`\n\nChecks for conflicts in `plans`; since there are none, adds the `Tour` object, returns `true`\n\nWrite the `TravelPlan` constructor. The constructor should initialize the destination and the ``plans` ArrayList.\n\nBegin your response at the top of a new page in the separate Free Response booklet and fill in the appropriate circle at the top of each page to indicate the question number. If there are multiple parts to this question, write the part letter with your response.\n\nClass information for this question\n\n```java\npublic class Tour\nprivate int actDate\nprivate int startTime\nprivate int endTime\nprivate String activity\nTour(int actDate, int startTime, int endTime, String activity)\npublic int getActDate()\npublic int getStartTime()\npublic int getEndTime()\npublic String getActivity()\npublic class TravelPlan\nprivate String destination;\nprivate ArrayList <Tour> plans;\npublic TravelPlan(String destination)\npublic boolean addTour(Tour t)\npublic boolean checkForConflicts(Tour t)\n```\n\nWrite the `addTour` method.\n\nBegin your response at the top of a new page in the separate Free Response booklet and fill in the appropriate circle at the top of each page to indicate the question number. If there are multiple parts to this question, write the part letter with your response.\n\nClass information for this question\n\n```java\npublic class Tour\nprivate int actDate\nprivate int startTime\nprivate int endTime\nprivate String activity\nTour(int actDate, int startTime, int endTime, String activity)\npublic int getActDate()\npublic int getStartTime()\npublic int getEndTime()\npublic String getActivity()\npublic class TravelPlan\nprivate String destination;\nprivate ArrayList <Tour> plans;\npublic TravelPlan(String destination)\npublic boolean addTour(Tour t)\npublic boolean checkForConflicts(Tour t)\n```\n\nGo to Question 3 in Practice Test 1: Diagnostic Answer Key and Explanations, Section II: Free-Response Questions",
+      "parts": [
+        {
+          "label": "a",
+          "prompt": "Write the `TravelPlan` constructor. The constructor should initialize the destination and the ``plans` ArrayList."
+        },
+        {
+          "label": "b",
+          "prompt": "Write the `addTour` method."
+        }
+      ],
+      "reference_solution": "**Part (a)**\n\n```java\nTravelPlan(String destination){\n    this.destination = destination;\n    plans = new ArrayList<Tour>();\n}\n```\n\n\n**Part (b)**\n\n```java\npublic boolean addTour(Tour t) {\n    if (checkForConflicts(t)) {\n        return false;\n    }\n    plans.add(t);\n    return true;\n}\n```",
+      "rubric": [
+        {
+          "point": "+0",
+          "criterion": "Part (a)"
+        },
+        {
+          "point": "+3",
+          "criterion": "Constructor\n\n+1: constructor uses class name `TravelPlan`\n\n+1: updates `destination` instance field appropriately (uses `this.)`\n\n+1: creates `ArrayList` appropriately"
+        },
+        {
+          "point": "+1",
+          "criterion": "constructor uses class name `TravelPlan`"
+        },
+        {
+          "point": "+1",
+          "criterion": "updates `destination` instance field appropriately (uses `this.)`"
+        },
+        {
+          "point": "+1",
+          "criterion": "creates `ArrayList` appropriately"
+        },
+        {
+          "point": "+0",
+          "criterion": "Part (b)"
+        },
+        {
+          "point": "+2",
+          "criterion": "`addTour` method\n\n+1: calls `checkForConflict` method to determine whether there is a conflict (loses this point if it instead writes the logic to determine whether there is a conflict in this method), adds tour if there is no conflict\n\n+1: returns `true` if tour is added, or `false` if tour is not added"
+        },
+        {
+          "point": "+1",
+          "criterion": "calls `checkForConflict` method to determine whether there is a conflict (loses this point if it instead writes the logic to determine whether there is a conflict in this method), adds tour if there is no conflict"
+        },
+        {
+          "point": "+1",
+          "criterion": "returns `true` if tour is added, or `false` if tour is not added"
+        }
+      ],
+      "total_points": 5,
+      "source_qid": "sec_1-qq3"
+    },
+    {
+      "prompt": "This question involves the implementation of a class seating chart. A `SeatingChart` object will represent a two-dimensional string array. The number of rows and columns for the array will be sent as parameters, as well as a one-dimensional array of type `Name`. You may assume there will be enough rows and columns to accommodate all the entries from the array.\n\nThe declaration of the `Name` class is shown.\n\n```java\npublic class Name\n{\n    private String lastName;\n    private String firstName;\n    Name(String lName, String fName){ <implementation not shown> }\n    public String getLastName() {return lastName;}\n    public String getFirstName() {return firstName;}\n}\n```\n\nA partial declaration of the `SeatingChart` class is shown below.\n\n```java\npublic class SeatingChart {\n    private String [][] chart;\n    /** Constructs a SeatingChart having r rows and c columns. All elements contained in the\n    * names array should be placed randomly in the chart array using the format: `lastName, firstName` (e.g. Jolie, Angelina ).\n    * Any locations not used in the chart should be\n    * initialized to the empty string.\n    */\n    SeatingChart(Name[] names, int rows, int cols){\n        /* to be implemented */\n    }\n```\n\nThe following table contains sample code and the expected results.\n\nStatements and Expressions\n\nValue Returned / Comment\n\n`SeatingChart msJones = new`\n\n`SeatingChart(theNames, 4, 3);`\n\n(no value returned) A two-dimensional array is initialized with 4 rows and 3 columns. Every element in `theNames` is placed randomly in the chart in the following format: `lastname, firstname` (e.g., `Washington, George`). Empty string is placed in any unused locations.\n\n`System.out.println(msJones.toString());`\n\nPrints the names in the chart in row-major order. Because placement is random, the exact order may vary.\n\nWrite the `SeatingChart` constructor.\n\nBegin your response at the top of a new page in the separate Free Response booklet and fill in the appropriate circle at the top of each page to indicate the question number. If there are multiple parts to this question, write the part letter with your response.\n\nClass information for this question\n\n```java\npublic class Name\nprivate String lastName;\nprivate String firstName;\nName(String lName, String fName)\npublic String getLastName() {return lastName;}\npublic String getFirstName() {return firstName;}\npublic class SeatingChart\nprivate String [][] chart;\nSeatingChart(Name[] names, int rows, int cols)\n```\n\nGo to Question 4 in Practice Test 1: Diagnostic Answer Key and Explanations, Section II: Free-Response Questions",
+      "parts": [],
+      "reference_solution": "`SeatingChart` - Canonical Solution\n\n```java\nSeatingChart(Name[] names, int r, int c)\n{\n    chart = new String[r][c];\n    for (int i = 0; i < chart.length; i++)\n    {\n        for (int j = 0; j < chart[0].length; j++)\n        {\n            chart[i][j] = \"\";\n        }\n    }\n    int count = 0;\n    int i = (int) (Math.random() * names.length);\n    int row = i / c;\n    int col = i % c;\n    while (count < names.length) {\n        while (!chart[row][col].equals(\"\"))\n        {\n            i = (int) (Math.random() * names.length);\n            row = i / c;\n            col = i % c;\n        }\n        chart[row][col]= names[count].getLastName() + \", \" + names[count].getFirstName();\n        count ++;\n    }\n}\n```",
+      "rubric": [
+        {
+          "point": "+6",
+          "criterion": "Constructor\n\n+1: chart is initialized using rows and columns passed in parameters\n\n+1: random numbers are generated in the correct range\n\n+1: a unique random number is used each time to place the name in the 2D array (duplicate names are avoided) and all names are placed (none are skipped)\n\n+1: row and column in the seating chart are derived properly from the random number\n\n+1: the name is stored in `chart` as a string (last name, (comma), first name), e.g., `Washington, George`\n\n+1: any unused spaces left in the array should be initialized to the empty string (not `null`)"
+        },
+        {
+          "point": "+1",
+          "criterion": "chart is initialized using rows and columns passed in parameters"
+        },
+        {
+          "point": "+1",
+          "criterion": "random numbers are generated in the correct range"
+        },
+        {
+          "point": "+1",
+          "criterion": "a unique random number is used each time to place the name in the 2D array (duplicate names are avoided) and all names are placed (none are skipped)"
+        },
+        {
+          "point": "+1",
+          "criterion": "row and column in the seating chart are derived properly from the random number"
+        },
+        {
+          "point": "+1",
+          "criterion": "the name is stored in `chart` as a string (last name, (comma), first name), e.g., `Washington, George`"
+        },
+        {
+          "point": "+1",
+          "criterion": "any unused spaces left in the array should be initialized to the empty string (not `null`)"
+        }
+      ],
+      "total_points": 6,
+      "source_qid": "sec_1-qq4"
+    }
+  ]
+}

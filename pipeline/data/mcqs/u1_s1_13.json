@@ -1,0 +1,470 @@
+[
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "Which of the following is true about a constructor in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A constructor must declare a return type of `void`."
+      },
+      {
+        "label": "B",
+        "text": "A constructor must have the same name as the class in which it is defined."
+      },
+      {
+        "label": "C",
+        "text": "A class may define at most one constructor."
+      },
+      {
+        "label": "D",
+        "text": "A constructor must have at least one parameter."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Constructors have no return type (not even `void`) and must exactly match the class name. A class may define multiple constructors through overloading, and a constructor may take zero or more parameters, ruling out options A, C, and D.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "What is the result of calling an instance method on a variable whose value is `null`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method executes normally, treating all instance variable values as their type defaults (0, `false`, or `null`)."
+      },
+      {
+        "label": "B",
+        "text": "The compiler reports a syntax error and the program cannot be compiled."
+      },
+      {
+        "label": "C",
+        "text": "A `NullPointerException` is thrown at run time."
+      },
+      {
+        "label": "D",
+        "text": "The program prints the word `null` and continues executing."
+      }
+    ],
+    "answer": "C",
+    "explanation": "A `null` reference holds no object, so any attempt to invoke a method through it at run time causes a `NullPointerException`. The compiler cannot statically detect all null-dereference situations, ruling out option B.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "A class named `Student` has the following constructor:\n\n```java\npublic Student(String name, int grade) { ... }\n```\n\nWhich of the following correctly creates a `Student` object?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Student s = Student(\"Alice\", 10);`"
+      },
+      {
+        "label": "B",
+        "text": "`Student s = new Student(10, \"Alice\");`"
+      },
+      {
+        "label": "C",
+        "text": "`Student s = new Student(\"Alice\", 10);`"
+      },
+      {
+        "label": "D",
+        "text": "`new Student s = Student(\"Alice\", 10);`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Object creation requires `new ClassName(args)` with arguments matching the declared parameter types in order (String first, then int). Option A omits `new`; option B reverses the argument order, passing an `int` where a `String` is expected; option D contains invalid syntax.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "Which of the following best describes **constructor overloading**?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A constructor that calls a method in a different class to complete initialization of its fields."
+      },
+      {
+        "label": "B",
+        "text": "A class that defines more than one constructor, each distinguished by a different parameter list."
+      },
+      {
+        "label": "C",
+        "text": "A constructor that uses a loop to initialize a variable number of instance fields."
+      },
+      {
+        "label": "D",
+        "text": "A constructor whose name differs from the class name to indicate which fields it initializes."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Overloading means a class defines multiple constructors with different parameter lists (differing in number, type, or order). The compiler selects the correct constructor at the call site based on the provided arguments. Constructors must always share the class name exactly, ruling out option D.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "Consider the following class definition.\n\n```java\npublic class Counter {\n    private int count;\n\n    public Counter(int count) {\n        count = count;\n    }\n\n    public int getCount() { return count; }\n}\n```\n\nWhat is printed by the following client code?\n\n```java\nCounter c = new Counter(10);\nSystem.out.println(c.getCount());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`0`"
+      },
+      {
+        "label": "C",
+        "text": "A compile-time error occurs."
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The statement `count = count` assigns the constructor parameter to itself, never touching the instance field. The instance field `count` keeps its default value of 0. The fix is `this.count = count`. Option A would be correct after that fix; C and D do not apply to this code.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "What is the output of the following code?\n\n```java\npublic class Temperature {\n    private double degrees;\n\n    public Temperature() {\n        degrees = 98.6;\n    }\n\n    public Temperature(double d) {\n        degrees = d;\n    }\n\n    public double getDegrees() { return degrees; }\n}\n\nTemperature t1 = new Temperature();\nTemperature t2 = new Temperature(100.0);\nSystem.out.println(t1.getDegrees() + \" \" + t2.getDegrees());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0.0 0.0`"
+      },
+      {
+        "label": "B",
+        "text": "`98.6 100.0`"
+      },
+      {
+        "label": "C",
+        "text": "`100.0 98.6`"
+      },
+      {
+        "label": "D",
+        "text": "`98.6 98.6`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`t1` uses the no-argument constructor, setting `degrees` to 98.6. `t2` uses the one-argument constructor, setting `degrees` to 100.0. The output is `98.6 100.0`. Option A would apply if neither constructor initialized the field; option C swaps the objects; option D incorrectly applies the no-arg constructor to both.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "A programmer intends `Rectangle(int l, int w)` to be a constructor, but the class behaves unexpectedly. Which of the following best explains the problem?\n\n```java\npublic class Rectangle {\n    private int length;\n    private int width;\n\n    public void Rectangle(int l, int w) {\n        length = l;\n        width = w;\n    }\n\n    public int area() { return length * width; }\n}\n\nRectangle r = new Rectangle(5, 3);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`r.area()` returns 0 because `length` and `width` are never assigned by any constructor."
+      },
+      {
+        "label": "B",
+        "text": "The class fails to compile because `void` is not a permitted keyword before a method named after the class."
+      },
+      {
+        "label": "C",
+        "text": "The client code fails to compile because no constructor matching `Rectangle(int, int)` exists in the class."
+      },
+      {
+        "label": "D",
+        "text": "`r.area()` throws a `NullPointerException` because the object is not properly initialized."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Because it carries a return type (`void`), `public void Rectangle(int l, int w)` is a regular instance method, not a constructor. The class compiles; Java supplies an implicit no-argument constructor. Calling `new Rectangle(5, 3)` is a compile-time error because no two-parameter constructor exists. Option B is wrong because the class itself compiles fine; options A and D misidentify where the error occurs.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "Determine the values of `x` and `y` after the following code executes.\n\n```java\npublic class Point {\n    private int x;\n    private int y;\n\n    public Point(int x, int y) {\n        this.x = x + 1;\n        this.y = y * 2;\n    }\n\n    public int getX() { return x; }\n    public int getY() { return y; }\n}\n\nPoint p = new Point(3, 4);\nint x = p.getX();\nint y = p.getY();\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 3, y = 4`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 4, y = 8`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 4, y = 4`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 3, y = 8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The constructor assigns `this.x = 3 + 1 = 4` and `this.y = 4 * 2 = 8`. Option A ignores the arithmetic entirely; option C correctly computes x but forgets to double y; option D skips the addition to x but correctly doubles y.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "What is the output of the following code?\n\n```java\npublic class Ticket {\n    private String event;\n    private int price;\n\n    public Ticket(String e) {\n        event = e;\n        price = 50;\n    }\n\n    public Ticket(String e, int p) {\n        event = e;\n        price = p;\n    }\n\n    public String getInfo() {\n        return event + \": $\" + price;\n    }\n}\n\nTicket t1 = new Ticket(\"Concert\");\nTicket t2 = new Ticket(\"Game\", 75);\nSystem.out.println(t1.getInfo());\nSystem.out.println(t2.getInfo());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Concert: $0` followed by `Game: $0`"
+      },
+      {
+        "label": "B",
+        "text": "`Concert: $50` followed by `Game: $75`"
+      },
+      {
+        "label": "C",
+        "text": "`Concert: $75` followed by `Game: $50`"
+      },
+      {
+        "label": "D",
+        "text": "`Concert: $50` followed by `Game: $50`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`t1` matches the one-parameter constructor, which hard-codes `price = 50`. `t2` matches the two-parameter constructor, setting `price = 75`. Output is `Concert: $50` then `Game: $75`. Option A assumes neither constructor set `price`; option C swaps the prices between the objects; option D incorrectly applies the one-parameter constructor to both.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "What is the output of the following code?\n\n```java\npublic class Jar {\n    private int cookies;\n\n    public Jar() {\n        cookies = 0;\n    }\n\n    public Jar(int n) {\n        cookies = n;\n    }\n\n    public void add(int n) { cookies += n; }\n    public int getCookies() { return cookies; }\n}\n\nJar j1 = new Jar(5);\nJar j2 = new Jar();\nj1.add(3);\nj2.add(j1.getCookies());\nSystem.out.println(j1.getCookies() + \" \" + j2.getCookies());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5 8`"
+      },
+      {
+        "label": "B",
+        "text": "`8 8`"
+      },
+      {
+        "label": "C",
+        "text": "`8 3`"
+      },
+      {
+        "label": "D",
+        "text": "`5 5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`j1` starts at 5; after `j1.add(3)` it holds 8. `j2` starts at 0; `j2.add(j1.getCookies())` passes the current value 8, so `j2` also holds 8. The output is `8 8`. Option A assumes `j1` was not modified before its value was read; option C assumes `j2.add` received the original 3 rather than the current count; option D assumes both jars share state.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "Which of the following correctly describes a Java constructor?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A constructor must declare a return type of `void`."
+      },
+      {
+        "label": "B",
+        "text": "A constructor is invoked using the `new` keyword and must have the same name as its class."
+      },
+      {
+        "label": "C",
+        "text": "A constructor is a static method that initializes class fields."
+      },
+      {
+        "label": "D",
+        "text": "A class may define at most one constructor."
+      }
+    ],
+    "answer": "B",
+    "explanation": "A constructor has no declared return type (not even void), must match the class name exactly, and is invoked with `new`. A is wrong because constructors declare no return type at all \u2014 not even `void`. C is wrong because constructors are not static; they belong to instances, not the class itself. D is wrong because a class may have multiple overloaded constructors with different parameter lists.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "Which of the following is a valid constructor header for a class named `Product`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public void Product(String name, double price)`"
+      },
+      {
+        "label": "B",
+        "text": "`public Product(String name, double price)`"
+      },
+      {
+        "label": "C",
+        "text": "`public static Product(String name, double price)`"
+      },
+      {
+        "label": "D",
+        "text": "`public int Product(String name, double price)`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "A valid constructor header uses the class name and declares no return type. B is the only option with no return type keyword before `Product`. A declares a `void` return type, C includes the `static` modifier (constructors cannot be static), and D declares an `int` return type \u2014 each making those headers invalid as constructors.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "Consider the following class definition.\n\n```java\npublic class Lamp\n{\n    private String color;\n    private boolean on;\n\n    public Lamp(String c)\n    {\n        color = c;\n        on = false;\n    }\n\n    public Lamp(String c, boolean state)\n    {\n        color = c;\n        on = state;\n    }\n\n    public String status()\n    {\n        return color + \": \" + on;\n    }\n}\n```\n\nDetermine the output of the following code.\n\n```java\nLamp x = new Lamp(\"green\", false);\nLamp y = new Lamp(\"yellow\");\nSystem.out.println(x.status());\nSystem.out.println(y.status());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`green: false`\n`yellow: false`"
+      },
+      {
+        "label": "B",
+        "text": "`green: true`\n`yellow: false`"
+      },
+      {
+        "label": "C",
+        "text": "`green: false`\n`yellow: true`"
+      },
+      {
+        "label": "D",
+        "text": "`false`\n`false`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`x` is created with the two-argument constructor, setting `color = \"green\"` and `on = false` (the argument passed). `y` is created with the one-argument constructor, which hardcodes `on = false`. `status()` returns `color + \": \" + on`, so both lines print the color followed by `false`. B incorrectly assumes the two-argument constructor defaults `on` to `true` regardless of the argument. C incorrectly assumes the one-argument constructor defaults `on` to `true`. D omits the `color` field from the concatenation.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "Consider the following class definition.\n\n```java\npublic class Rectangle\n{\n    private int width;\n    private int height;\n\n    public Rectangle(int width, int height)\n    {\n        width = width;\n        height = height;\n    }\n\n    public int getArea()\n    {\n        return width * height;\n    }\n}\n```\n\nDetermine the output of the following code.\n\n```java\nRectangle r = new Rectangle(4, 7);\nSystem.out.println(r.getArea());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`11`"
+      },
+      {
+        "label": "C",
+        "text": "`28`"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown at runtime."
+      }
+    ],
+    "answer": "A",
+    "explanation": "The constructor parameters `width` and `height` shadow the instance fields of the same names. The statements `width = width;` and `height = height;` each assign a parameter to itself, so the instance fields are never updated and retain their default value of `0`. Therefore `getArea()` returns `0 * 0 = 0`. The fix is to write `this.width = width;` and `this.height = height;`. C (`28`) is the correct area if the fields had been properly initialized. B (`11`) is the sum of the constructor arguments, not the product.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "A class named `Lamp` has one private instance variable `isOn` of type `boolean`. Which of the following is a valid constructor header for `Lamp` that accepts a `boolean` parameter?\n",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public void Lamp(boolean isOn)`"
+      },
+      {
+        "label": "B",
+        "text": "`public boolean Lamp(boolean isOn)`"
+      },
+      {
+        "label": "C",
+        "text": "`public Lamp(boolean state)`"
+      },
+      {
+        "label": "D",
+        "text": "`public static Lamp(boolean state)`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "A constructor has no return type and must use the class name. Option A adds `void`, making it an ordinary method rather than a constructor. Option B declares a `boolean` return type, which is also illegal for a constructor. Option D uses `static`; constructors cannot be static. Option C correctly omits the return type, uses the class name `Lamp`, and accepts a `boolean` parameter\u2014the parameter name `state` need not match the field name `isOn`.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "Consider the following class and code segment.\n\n```java\npublic class Circle {\n    private double radius;\n\n    public Circle(double radius) {\n        radius = radius;\n    }\n\n    public double getRadius() {\n        return radius;\n    }\n}\n```\n\n```java\nCircle c = new Circle(3.5);\nSystem.out.println(c.getRadius());\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3.5`"
+      },
+      {
+        "label": "B",
+        "text": "`7.0`"
+      },
+      {
+        "label": "C",
+        "text": "`0.0`"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown at runtime."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Inside the constructor, `radius = radius` assigns the parameter to itself because the unqualified name `radius` resolves to the local parameter, shadowing the instance field. The instance field `this.radius` is never written and retains the default value `0.0` for `double`. The fix is `this.radius = radius;`. Option A would be correct if the bug were absent. Option B has no basis. Option D is wrong because `double` is a primitive and cannot be `null`.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "Which of the following will be printed after the code segment below is executed?\n\n```java\nString s = new String(\"morning\");\nString t = new String(\"morning\");\nSystem.out.println(s == t);\nSystem.out.println(s.equals(t));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\ntrue\ntrue\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\nfalse\nfalse\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\ntrue\nfalse\n```"
+      },
+      {
+        "label": "D",
+        "text": "```\nfalse\ntrue\n```"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Each `new String(...)` call invokes the `String` constructor and allocates a distinct object on the heap, so `s` and `t` hold references to two different objects. The `==` operator compares references and evaluates to `false`. The `.equals()` method compares character content; since both objects contain `\"morning\"`, it evaluates to `true`. If the strings had been assigned as literals without `new` (e.g., `String s = \"morning\";`), the JVM might intern them to the same object and `==` could return `true`.",
+    "difficulty": 2,
+    "stem_pattern": "string_reference_equality"
+  },
+  {
+    "topic_id": "u1_s1_13",
+    "stem": "Consider the following class and code segment.\n\n```java\npublic class Timer {\n    private int minutes;\n    private int seconds;\n\n    public Timer(int minutes, int seconds) {\n        this.minutes = minutes;\n        this.seconds = seconds;\n    }\n\n    public Timer(int totalSeconds) {\n        this.minutes = totalSeconds / 60;\n        this.seconds = totalSeconds % 60;\n    }\n\n    public int getMinutes() { return minutes; }\n    public int getSeconds() { return seconds; }\n}\n```\n\n```java\nTimer t = new Timer(90);\nSystem.out.println(t.getMinutes() + \" \" + t.getSeconds());\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`90 0`"
+      },
+      {
+        "label": "B",
+        "text": "`1 30`"
+      },
+      {
+        "label": "C",
+        "text": "`0 90`"
+      },
+      {
+        "label": "D",
+        "text": "`1 90`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`new Timer(90)` passes one `int` argument, so Java selects the one-parameter constructor `Timer(int totalSeconds)`. Integer division `90 / 60` yields `1`; `90 % 60` yields `30`. In the print statement, `1 + \" \"` produces `\"1 \"` (int + String triggers concatenation), then `\"1 \" + 30` produces `\"1 30\"`. Option A would result if `minutes` were set to `90` directly. Option C results from skipping the division entirely. Option D correctly computes `minutes` but uses `90` for `seconds` instead of applying `%`.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  }
+]

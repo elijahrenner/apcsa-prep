@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Consider the following code.\n\n```java\npublic static int triple(int n) {\n    return n * 3;\n}\n\npublic static void main(String[] args) {\n    int x = 4;\n    int y = triple(x) + 2;\n    System.out.println(y);\n}\n```\n\nWhat is printed when `main` runs?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`14`"
+      },
+      {
+        "label": "B",
+        "text": "`12`"
+      },
+      {
+        "label": "C",
+        "text": "`18`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "triple(4) returns 12, and y = 12 + 2 = 14. B is triple(x) alone, forgetting the + 2. C results from mistakenly passing x + 2 as the argument: triple(6) = 18. D would result from triple(2), an incorrect argument value.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "A class named `Converter` contains a static method with header `public static int convert(int n)`. Which of the following correctly calls this method from code outside the `Converter` class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`new Converter().convert(42)`"
+      },
+      {
+        "label": "B",
+        "text": "`Converter.convert(42)`"
+      },
+      {
+        "label": "C",
+        "text": "`Converter().convert(42)`"
+      },
+      {
+        "label": "D",
+        "text": "`convert.Converter(42)`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Static methods are invoked with ClassName.methodName(args) \u2014 no object instance is required. A unnecessarily creates a Converter object first; even if it compiled, it defeats the purpose of a static method. C is a syntax error (missing `new`). D reverses the class name and method name.",
+    "difficulty": 1,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Consider the following static method.\n\n```java\npublic static int compute(int a, int b) {\n    return a / b + a % b;\n}\n```\n\nWhat value is printed by the following statement?\n\n```java\nSystem.out.println(compute(10, 3));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`1`"
+      },
+      {
+        "label": "D",
+        "text": "`10`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Integer division 10 / 3 = 3 (truncated) and 10 % 3 = 1; the method returns 3 + 1 = 4. B returns only the division part. C returns only the modulo part. D would result only if the method incorrectly returned the first parameter a.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Consider the following code.\n\n```java\npublic static void addFive(int n) {\n    n = n + 5;\n}\n\npublic static void main(String[] args) {\n    int num = 10;\n    addFive(num);\n    System.out.println(num);\n}\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`15`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`10`"
+      },
+      {
+        "label": "D",
+        "text": "`0`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Java passes primitives by value: addFive receives a copy of num. Reassigning n inside the method does not affect num in main, which prints as 10. A is the local value of n inside addFive, but that change never propagates back. B and D do not result from any standard execution of this code.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "What is printed by the following statement?\n\n```java\nSystem.out.println(Math.pow(3, 2) + Math.abs(-5));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`9.0`"
+      },
+      {
+        "label": "B",
+        "text": "`14.0`"
+      },
+      {
+        "label": "C",
+        "text": "`11.0`"
+      },
+      {
+        "label": "D",
+        "text": "`5.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Math.pow(3, 2) returns 9.0 and Math.abs(-5) returns 5; the sum 9.0 + 5 = 14.0 is printed. A is only the Math.pow result. D is only the Math.abs result. C results from mistakenly computing Math.pow(3, 2) as 3 * 2 = 6, giving 6 + 5 = 11.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "The following static method is defined in a class.\n\n```java\npublic static double half(int n) {\n    return n / 2.0;\n}\n```\n\nWhich of the following will cause a compile error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`System.out.println(half(6));`"
+      },
+      {
+        "label": "B",
+        "text": "`double r = half(10);`"
+      },
+      {
+        "label": "C",
+        "text": "`half(8);`"
+      },
+      {
+        "label": "D",
+        "text": "`double r = half();`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "half() is called with no arguments, but the method signature requires exactly one int parameter; the mismatch is a compile error. A, B, and C all supply one int argument and are valid; note that C discards the return value, which is legal in Java.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Consider the two overloaded static methods below.\n\n```java\npublic static String describe(int n) {\n    return \"int: \" + n;\n}\n\npublic static String describe(double n) {\n    return \"double: \" + n;\n}\n```\n\nWhat is printed when the following statements execute?\n\n```java\nSystem.out.println(describe(5));\nSystem.out.println(describe(5.0));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\nint: 5\ndouble: 5.0\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\ndouble: 5.0\ndouble: 5.0\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\nint: 5\nint: 5\n```"
+      },
+      {
+        "label": "D",
+        "text": "A compile error \u2014 two methods cannot share the same name in one class."
+      }
+    ],
+    "answer": "A",
+    "explanation": "The literal 5 is an int, so describe(int) is called and returns \"int: 5\"; the literal 5.0 is a double, so describe(double) is called and returns \"double: 5.0\". B would occur if both calls resolved to the double overload. C would occur if both resolved to the int overload. D is wrong \u2014 overloading (same name, different parameter types) is valid Java.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Consider the following code.\n\n```java\npublic static int doubleIt(int x) {\n    return x * 2;\n}\n\npublic static void main(String[] args) {\n    int a = 3;\n    int b = doubleIt(a) + doubleIt(2);\n    System.out.println(b);\n}\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`6`"
+      },
+      {
+        "label": "C",
+        "text": "`8`"
+      },
+      {
+        "label": "D",
+        "text": "`10`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "doubleIt(3) returns 6 and doubleIt(2) returns 4; b = 6 + 4 = 10. A is simply a + 2 = 5 with no doubling applied. B is only doubleIt(a) = 6, ignoring the second call. C results from computing doubleIt(a) + 2 = 8, forgetting to apply doubleIt to the second argument.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "What is printed by the following code?\n\n```java\nString numStr = \"15\";\nint value = Integer.parseInt(numStr);\nSystem.out.println(value * 3);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`15`"
+      },
+      {
+        "label": "B",
+        "text": "`153`"
+      },
+      {
+        "label": "C",
+        "text": "`45`"
+      },
+      {
+        "label": "D",
+        "text": "A run-time error \u2014 `\"15\"` cannot be converted to an `int`."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Integer.parseInt is a static method that converts the String \"15\" to the int 15; 15 * 3 = 45. A prints value without multiplication. B results from treating parseInt as a no-op and imagining String concatenation: \"15\" + \"3\" = \"153\". D is incorrect \u2014 \"15\" is a well-formed integer string and parses successfully.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Consider the following code.\n\n```java\npublic static int addThree(int n) {\n    n = n + 3;\n    return n;\n}\n\npublic static void main(String[] args) {\n    int x = 7;\n    System.out.print(addThree(x));\n    System.out.print(\" \");\n    System.out.print(x);\n}\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10 10`"
+      },
+      {
+        "label": "B",
+        "text": "`10 7`"
+      },
+      {
+        "label": "C",
+        "text": "`7 7`"
+      },
+      {
+        "label": "D",
+        "text": "`7 10`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "addThree(7) assigns n = 10 locally, then returns 10, which is printed first. Because Java uses pass-by-value, the original variable x in main is unmodified and prints as 7. A would be correct if Java passed primitives by reference. C ignores that the return value of addThree is 10, not 7. D reverses the order of the two printed values.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Consider the following code.\n\n```java\npublic static void printSquare(int n) {\n    System.out.println(n * n);\n}\n\npublic static void main(String[] args) {\n    int result = printSquare(5);\n    System.out.println(result);\n}\n```\n\nWhat happens when this code is compiled and run?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The output is `25` followed by `0`."
+      },
+      {
+        "label": "B",
+        "text": "The output is `25` followed by `25`."
+      },
+      {
+        "label": "C",
+        "text": "A compile error occurs because `printSquare` has return type `void` and its result cannot be assigned to `int result`."
+      },
+      {
+        "label": "D",
+        "text": "A run-time error occurs when `printSquare(5)` is called."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Assigning the result of a void method to a variable is a compile-time error; the program never runs. A and B describe run-time outputs that are unreachable because compilation fails first. D is incorrect \u2014 the failure occurs at compile time, before any execution.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Consider the following code.\n\n```java\npublic static int half(int n) {\n    return n / 2;\n}\n\npublic static int twice(int n) {\n    return n * 2;\n}\n\npublic static void main(String[] args) {\n    int a = 9;\n    System.out.println(half(twice(a)));\n    System.out.println(twice(half(a)));\n}\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\n9\n9\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\n18\n4\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\n8\n9\n```"
+      },
+      {
+        "label": "D",
+        "text": "```\n9\n8\n```"
+      }
+    ],
+    "answer": "D",
+    "explanation": "First line: twice(9) = 18, then half(18) = 9 (18 / 2 = 9). Second line: half(9) = 4 (integer division 9 / 2 truncates to 4), then twice(4) = 8. A incorrectly assumes both compositions cancel to 9 \u2014 the integer division trap makes the second result 8, not 9. B prints the intermediate results instead of the composed values. C reverses the two output lines.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Which keyword in a method header indicates that a method is a class method and should be called using the class name rather than an object reference?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`public`"
+      },
+      {
+        "label": "B",
+        "text": "`void`"
+      },
+      {
+        "label": "C",
+        "text": "`static`"
+      },
+      {
+        "label": "D",
+        "text": "`final`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The `static` keyword causes a method to belong to the class itself rather than to any instance; such methods are called as `ClassName.methodName()`. `public` controls visibility, `void` specifies no return value, and `final` (outside the AP subset) prevents overriding\u2014none of these makes a method a class method.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "A class named `StringHelper` contains the following method:\n\n```java\npublic static String shout(String s) {\n    return s + \"!!!\";\n}\n```\n\nWhich of the following correctly calls this method from a *different* class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`StringHelper.shout(\"hello\")`"
+      },
+      {
+        "label": "B",
+        "text": "`StringHelper().shout(\"hello\")`"
+      },
+      {
+        "label": "C",
+        "text": "`shout(\"hello\")`"
+      },
+      {
+        "label": "D",
+        "text": "`StringHelper.shout()`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`StringHelper.shout(\"hello\")` is correct: class name, dot, method name, and the required `String` argument. Option B omits `new` before the parentheses and is not valid syntax. Option C drops the class name, which only works inside `StringHelper` itself. Option D omits the required argument, causing a compile error.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class MathOps {\n    public static int doubleIt(int n) {\n        return n * 2;\n    }\n\n    public static int halveIt(int n) {\n        return n / 2;\n    }\n\n    public static void main(String[] args) {\n        int a = doubleIt(7);\n        int b = halveIt(a);\n        System.out.println(a + b);\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`14`"
+      },
+      {
+        "label": "B",
+        "text": "`17`"
+      },
+      {
+        "label": "C",
+        "text": "`147`"
+      },
+      {
+        "label": "D",
+        "text": "`21`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`doubleIt(7)` returns 14, so `a = 14`. `halveIt(a)` = `halveIt(14)` returns 7 (exact integer division), so `b = 7`. `a + b` is int arithmetic: 14 + 7 = 21. Option A prints only `a`. Option B results from mistakenly passing the original argument 7 to `halveIt` (7 / 2 = 3 via integer division, then 14 + 3 = 17). Option C treats `a + b` as string concatenation, but both operands are `int` so `+` performs addition.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Which of the following statements about static (class) methods in Java is true?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A static method can only be called from within the class in which it is defined."
+      },
+      {
+        "label": "B",
+        "text": "A static method must have `void` as its return type."
+      },
+      {
+        "label": "C",
+        "text": "A static method is called using the class name, such as `ClassName.methodName()`."
+      },
+      {
+        "label": "D",
+        "text": "A static method is called using an object reference, such as `obj.methodName()`."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Static methods belong to the class and are properly invoked with `ClassName.methodName()` (or simply `methodName()` from within the same class). They can be declared `public` and called from anywhere, may return any type including non-void types, and require no object instance\u2014ruling out options A, B, and D.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "A programmer writes the following two classes. Which line contains a compile-time error?\n\n```java\n1  public class Converter {\n2      public static double toCelsius(double f) {\n3          return (f - 32) * 5.0 / 9.0;\n4      }\n5  }\n6\n7  public class Demo {\n8      public static void main(String[] args) {\n9          double tempC = toCelsius(212.0);\n10         System.out.println(tempC);\n11     }\n12 }\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Line 3, because `5.0 / 9.0` causes a loss-of-precision compile error."
+      },
+      {
+        "label": "B",
+        "text": "Line 9, because `toCelsius` must be called as `Converter.toCelsius(212.0)` from a different class."
+      },
+      {
+        "label": "C",
+        "text": "Line 9, because the literal `212.0` cannot be passed to a parameter declared as `double`."
+      },
+      {
+        "label": "D",
+        "text": "Line 10, because `System.out.println` cannot accept a `double` argument."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Because `toCelsius` is defined in `Converter`, calling it as bare `toCelsius(212.0)` inside `Demo` is a compile error\u2014the compiler finds no such method in scope. The correct call is `Converter.toCelsius(212.0)`. Line 3 is valid `double` arithmetic with no integer-division issue. `212.0` is a perfectly valid `double` literal for a `double` parameter. `System.out.println` accepts `double`.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Which of the following correctly describes how a static (class) method is invoked from outside the class in which it is defined?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`objectName.methodName(args)` \u2014 the method is called on a specific instance created with `new`"
+      },
+      {
+        "label": "B",
+        "text": "`ClassName.methodName(args)` \u2014 the method is called directly on the class"
+      },
+      {
+        "label": "C",
+        "text": "`new ClassName.methodName(args)` \u2014 the `new` keyword is always required before calling a static method"
+      },
+      {
+        "label": "D",
+        "text": "`methodName.ClassName(args)` \u2014 the class name follows the method name using dot notation"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Static methods belong to the class rather than to any individual object, so they are invoked with the class name as the receiver: `ClassName.methodName(args)`. Option A describes instance method syntax. Options C and D are syntactically invalid Java.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "A class `Converter` is defined as follows:\n\n```java\npublic class Converter {\n    public static int celsiusToFahrenheit(int celsius) {\n        return celsius * 9 / 5 + 32;\n    }\n}\n```\n\nWhich of the following correctly calls this method from outside the `Converter` class and stores the result?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`int temp = Converter.celsiusToFahrenheit(100);`"
+      },
+      {
+        "label": "B",
+        "text": "`int temp = celsiusToFahrenheit.Converter(100);`"
+      },
+      {
+        "label": "C",
+        "text": "`Converter temp = celsiusToFahrenheit(100);`"
+      },
+      {
+        "label": "D",
+        "text": "`int temp = Converter(celsiusToFahrenheit(100));`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Static methods from another class are called as `ClassName.methodName(args)`, and the return type is `int`, so the result is stored in an `int` variable. Option B reverses the dot-notation order. Option C uses the class name as a variable type for an incompatible value and omits the class prefix. Option D attempts to invoke the class name as though it were a method.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = Math.abs(-8);\ndouble y = Math.pow(2.0, 3.0);\nSystem.out.println(x + \" \" + (int) y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`8 8.0`"
+      },
+      {
+        "label": "B",
+        "text": "`-8 8`"
+      },
+      {
+        "label": "C",
+        "text": "`8 8`"
+      },
+      {
+        "label": "D",
+        "text": "`8.0 8.0`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`Math.abs(-8)` returns the `int` 8. `Math.pow(2.0, 3.0)` returns the `double` 8.0; casting to `int` yields 8. The expression `8 + \" \" + 8` produces `\"8 8\"`. Option A is wrong because `(int) y` drops the decimal. Option B is wrong because `Math.abs` returns the positive value. Option D is wrong because `x` is declared `int` and prints without a decimal point.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Which of the following statements about static methods in Java is true?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A static method can only be invoked after an object of its class has been created with `new`."
+      },
+      {
+        "label": "B",
+        "text": "When calling a static method from within the same class, the class name prefix is required."
+      },
+      {
+        "label": "C",
+        "text": "A static method can directly read and modify instance variables of the class in which it is defined."
+      },
+      {
+        "label": "D",
+        "text": "When calling a static method from within the same class, the method may be called by name alone without the class name prefix."
+      }
+    ],
+    "answer": "D",
+    "explanation": "Within the class where a static method is defined, it can be called with just `methodName(args)` \u2014 the class prefix is optional. Option A is false: static methods are invoked on the class, not on an instance. Option B is false: the prefix is not required inside the same class. Option C is false: static methods cannot directly access instance variables, which belong to individual objects.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Consider the following static method:\n\n```java\npublic static int compute(int n) {\n    int a = Math.abs(n);\n    int b = (int) Math.sqrt(a);\n    return a + b;\n}\n```\n\nWhat value is returned by the call `compute(-4)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`-2`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`2`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`Math.abs(-4)` returns `4`, stored in `a`. `Math.sqrt(4)` returns `2.0`; casting to `int` gives `2`, stored in `b`. The method returns `4 + 2 = 6`. Option B (-2) results from skipping `Math.abs` and computing `n + (int)Math.sqrt(Math.abs(n))` = -4 + 2. Option C (4) reflects returning only `a`. Option D (2) reflects returning only `b`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Consider the following code:\n\n```java\npublic class MathHelper {\n    public static int doubleIt(int n) {\n        return n * 2;\n    }\n\n    public static void main(String[] args) {\n        int x = 5;\n        MathHelper.doubleIt(x);\n        System.out.println(x);\n    }\n}\n```\n\nThe programmer expected the output to be `10`, but the code prints `5`. Which of the following correctly identifies the error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`MathHelper.doubleIt(x)` should be written as `doubleIt(MathHelper, x)` to supply the class as an explicit argument."
+      },
+      {
+        "label": "B",
+        "text": "The return value of `doubleIt(x)` is discarded and never assigned back to `x`, so `x` retains its original value of `5`."
+      },
+      {
+        "label": "C",
+        "text": "A static method cannot receive a local variable as an argument; `x` must be declared as a field of `MathHelper`."
+      },
+      {
+        "label": "D",
+        "text": "The return type of `doubleIt` should be `void` because the method's result is not stored in a variable."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java passes arguments by value. Calling `MathHelper.doubleIt(x)` computes and returns `10`, but because the return value is not captured (e.g., `x = MathHelper.doubleIt(x);`), `x` remains `5`. Options A and C describe invalid Java syntax or nonexistent restrictions. Option D confuses the fix (assign the return value) with changing the method signature; making it `void` would only prevent a return value from existing at all.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Determine the output of the following code:\n\n```java\npublic class Helper\n{\n    public static int twice(int n)\n    {\n        return n * 2;\n    }\n\n    public static double mix(int a, int b)\n    {\n        return Math.pow(a, 2) + twice(b);\n    }\n\n    public static void main(String[] args)\n    {\n        int x = 3;\n        int y = 4;\n        System.out.print(mix(x, y));\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`14`"
+      },
+      {
+        "label": "B",
+        "text": "`17`"
+      },
+      {
+        "label": "C",
+        "text": "`17.0`"
+      },
+      {
+        "label": "D",
+        "text": "`24.0`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`Math.pow(3, 2)` returns `9.0`, and `twice(4)` returns `8`, so the printed double value is `17.0`. The other choices reflect adding the wrong values or ignoring that `Math.pow` returns a double.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_10",
+    "stem": "Consider the following class declaration:\n\n```java\npublic class ChangeUtil\n{\n    public static int centsToDollars(int cents)\n    {\n        return cents / 100;\n    }\n}\n```\n\nA different class contains the variable declaration `int totalCents = 275;`. Which of the following correctly calls the static method and stores its return value?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`int dollars = ChangeUtil.centsToDollars(totalCents);`"
+      },
+      {
+        "label": "B",
+        "text": "`int dollars = centsToDollars.ChangeUtil(totalCents);`"
+      },
+      {
+        "label": "C",
+        "text": "`int dollars = totalCents.centsToDollars();`"
+      },
+      {
+        "label": "D",
+        "text": "`int dollars = ChangeUtil.centsToDollars();`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "A static method is called with the class name followed by the method name, and the required argument must be supplied. The other choices use the wrong receiver or omit the required `int` argument.",
+    "difficulty": 1,
+    "stem_pattern": "oop_design_and_access"
+  }
+]

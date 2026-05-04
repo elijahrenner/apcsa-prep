@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Which `Scanner` method returns `true` if there is another token in the input, and `false` otherwise \u2014 without consuming any input?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`next()`"
+      },
+      {
+        "label": "B",
+        "text": "`hasNext()`"
+      },
+      {
+        "label": "C",
+        "text": "`nextLine()`"
+      },
+      {
+        "label": "D",
+        "text": "`close()`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`hasNext()` is a predicate that peeks at the input without consuming it. `next()` consumes and returns the next whitespace-delimited token; `nextLine()` consumes and returns the rest of the current line; `close()` releases the scanner's underlying resource.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Determine the output of the following code:\n\n```java\nScanner sc = new Scanner(\"4 8 6 2\");\nint sum = 0;\nwhile (sc.hasNextInt()) {\n    sum += sc.nextInt();\n}\nsc.close();\nSystem.out.println(sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`18`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "`20`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`hasNextInt()` returns true for all four tokens, so `nextInt()` is called four times: 4 + 8 + 6 + 2 = 20. Option A reflects the misconception that the loop body runs only once; option B reflects summing only the first three tokens (off-by-one); option C reflects printing only the last token read.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "What must be added to the following method signature so that the code compiles without error?\n\n```java\npublic static void readData() {\n    Scanner sc = new Scanner(new File(\"data.txt\"));\n    while (sc.hasNext()) {\n        System.out.println(sc.next());\n    }\n    sc.close();\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method must be declared `private`"
+      },
+      {
+        "label": "B",
+        "text": "The method must declare `throws IOException`"
+      },
+      {
+        "label": "C",
+        "text": "The method must return a `Scanner`"
+      },
+      {
+        "label": "D",
+        "text": "No change is needed; the code compiles as written"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`new Scanner(new File(...))` can throw `FileNotFoundException`, a checked exception that is a subtype of `IOException`. Without a `throws IOException` declaration (or a surrounding try-catch), the compiler reports an unhandled checked exception. Access modifier and return type are irrelevant to this requirement.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "The following code is intended to print every integer stored in the file `\"scores.txt\"`, but it does not behave as intended. Which of the following best explains why?\n\n```java\nScanner sc = new Scanner(\"scores.txt\");\nwhile (sc.hasNextInt()) {\n    System.out.println(sc.nextInt());\n}\nsc.close();\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`sc.hasNextInt()` should be `sc.hasNext()` to process all tokens"
+      },
+      {
+        "label": "B",
+        "text": "`new Scanner(\"scores.txt\")` creates a Scanner that tokenizes the literal String `\"scores.txt\"`, not the file"
+      },
+      {
+        "label": "C",
+        "text": "`Scanner` cannot read integers from a file"
+      },
+      {
+        "label": "D",
+        "text": "`sc.close()` causes the loop to terminate before all values are read"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Passing a `String` to the `Scanner` constructor sets that string as the input source. Since `\"scores.txt\"` contains no integer tokens, `hasNextInt()` returns false immediately and nothing is printed. To read from a file, the constructor must receive a `File` object: `new Scanner(new File(\"scores.txt\"))`. Changing the guard to `hasNext()` would only expose the bug further by reading the non-integer string token.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Determine the output of the following code:\n\n```java\nScanner sc = new Scanner(\"alpha beta gamma delta\");\nint count = 0;\nwhile (sc.hasNext()) {\n    String word = sc.next();\n    if (word.length() > 4) {\n        count++;\n    }\n}\nsc.close();\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The four tokens and their lengths: \"alpha\" (5), \"beta\" (4), \"gamma\" (5), \"delta\" (5). The condition `word.length() > 4` is true for \"alpha\", \"gamma\", and \"delta\"; \"beta\" has length exactly 4, which does not satisfy `> 4`. Final count is 3. Option D reflects using `>= 4` instead of `> 4`; option B reflects missing one of the three qualifying words.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Determine the output of the following code:\n\n```java\nScanner sc = new Scanner(\"6,9,4\");\nString line = sc.nextLine();\nString[] parts = line.split(\",\");\nint product = 1;\nfor (String p : parts) {\n    product *= Integer.parseInt(p);\n}\nSystem.out.println(product);\nsc.close();\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`19`"
+      },
+      {
+        "label": "C",
+        "text": "`216`"
+      },
+      {
+        "label": "D",
+        "text": "A `NumberFormatException` is thrown"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`sc.nextLine()` reads the entire string `\"6,9,4\"`. `split(\",\")` produces `[\"6\", \"9\", \"4\"]`. The loop computes 1 \u00d7 6 \u00d7 9 \u00d7 4 = 216. Option B reflects addition instead of multiplication (6 + 9 + 4 = 19); option A reflects exiting after the first token only; option D is wrong because each part is a valid integer string, so `parseInt` succeeds.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A file contains a mix of integer and non-integer tokens. Which `Scanner` method should serve as the loop guard so that `nextInt()` can be called safely on each iteration without risking an exception?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`hasNext()`"
+      },
+      {
+        "label": "B",
+        "text": "`hasNextInt()`"
+      },
+      {
+        "label": "C",
+        "text": "`hasNextDouble()`"
+      },
+      {
+        "label": "D",
+        "text": "`nextLine()`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`hasNextInt()` returns `true` only when the next token can be interpreted as an `int`, so calling `nextInt()` immediately after is guaranteed not to throw `InputMismatchException`. Using `hasNext()` as the guard would return `true` even for non-integer tokens, causing `nextInt()` to throw. `hasNextDouble()` guards `nextDouble()`, not `nextInt()`; `nextLine()` is not a boolean predicate.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Determine the output of the following code:\n\n```java\nScanner sc = new Scanner(\"3\\n7\\n1\\n9\\n5\");\nint max = Integer.MIN_VALUE;\nwhile (sc.hasNextInt()) {\n    int val = sc.nextInt();\n    if (val > max) {\n        max = val;\n    }\n}\nSystem.out.println(max);\nsc.close();\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "`9`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Tokens in order: 3, 7, 1, 9, 5. `max` starts at `Integer.MIN_VALUE` and is updated whenever `val > max`: 3 replaces MIN_VALUE, then 7 replaces 3, then 9 replaces 7; 1 and 5 do not update `max`. Final value is 9. Option B reflects printing the last token read; option C reflects the second-largest value; option A reflects printing only the first token.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Which of the following best describes the object created by `new Scanner(\"Hello 42\")`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A `Scanner` that reads from a file named `\"Hello 42\"`"
+      },
+      {
+        "label": "B",
+        "text": "A `Scanner` that throws `FileNotFoundException` at runtime because no such file exists"
+      },
+      {
+        "label": "C",
+        "text": "A `Scanner` that reads from standard input, ignoring the argument"
+      },
+      {
+        "label": "D",
+        "text": "A `Scanner` that tokenizes the literal `String` `\"Hello 42\"` as its input source"
+      }
+    ],
+    "answer": "D",
+    "explanation": "When a `String` is passed to the `Scanner` constructor, the scanner uses that string as its entire input source, tokenizing its characters. No file is accessed and no exception is thrown. To read from a file, a `File` object must be passed: `new Scanner(new File(\"Hello 42\"))`. This distinction is a common source of bugs.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Determine the output of the following code:\n\n```java\nScanner sc = new Scanner(\"5 10 15 20\");\nint count = 0;\nint sum = 0;\nwhile (sc.hasNextInt()) {\n    sum += sc.nextInt();\n    count++;\n}\nSystem.out.println(sum / count);\nsc.close();\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`12`"
+      },
+      {
+        "label": "B",
+        "text": "`12.5`"
+      },
+      {
+        "label": "C",
+        "text": "`50`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop reads 5, 10, 15, 20; sum = 50 and count = 4. Both variables are `int`, so `sum / count` performs integer division: 50 / 4 = 12 (the fractional 0.5 is truncated toward zero). Option B gives the mathematically exact decimal result, which would require at least one operand to be `double`; option C prints the sum before dividing; option D prints only the count.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "What exception is thrown at runtime by the call `Integer.parseInt(\"abc\")`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`IOException`"
+      },
+      {
+        "label": "B",
+        "text": "`InputMismatchException`"
+      },
+      {
+        "label": "C",
+        "text": "`NumberFormatException`"
+      },
+      {
+        "label": "D",
+        "text": "`NullPointerException`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`Integer.parseInt` throws `NumberFormatException` when the argument string cannot be parsed as a valid integer. `IOException` relates to file I/O operations. `InputMismatchException` is thrown by `Scanner` methods (e.g., `nextInt()`) when the next token is the wrong type. `NullPointerException` would result from passing `null` rather than a non-numeric string.",
+    "difficulty": 2,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Determine the output of the following code:\n\n```java\nScanner sc = new Scanner(\"Math 88\\nScience 74\\nHistory 91\");\nint total = 0;\nint count = 0;\nwhile (sc.hasNextLine()) {\n    String line = sc.nextLine();\n    String[] parts = line.split(\" \");\n    total += Integer.parseInt(parts[1]);\n    count++;\n}\nSystem.out.println(total / count);\nsc.close();\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`84`"
+      },
+      {
+        "label": "B",
+        "text": "`84.33`"
+      },
+      {
+        "label": "C",
+        "text": "`253`"
+      },
+      {
+        "label": "D",
+        "text": "`3`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The three lines yield scores 88, 74, and 91; total = 253, count = 3. Both variables are `int`, so `total / count` performs integer division: 253 / 3 = 84 (the repeating decimal 84.33... is truncated). Option B gives the exact decimal result, which would require a `double` cast on either operand; option C prints the un-divided total; option D prints only the count.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Which of the following correctly constructs a `Scanner` object that reads data from the file `\"scores.txt\"`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Scanner sc = new Scanner(\"scores.txt\");`"
+      },
+      {
+        "label": "B",
+        "text": "`Scanner sc = new Scanner(new File(\"scores.txt\"));`"
+      },
+      {
+        "label": "C",
+        "text": "`Scanner sc = File.open(\"scores.txt\");`"
+      },
+      {
+        "label": "D",
+        "text": "`Scanner sc = new Scanner(File.read(\"scores.txt\"));`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Passing a `File` object to the `Scanner` constructor directs it to read from the file on disk. Option A passes the literal String `\"scores.txt\"` as input to tokenize\u2014the Scanner reads those twelve characters, not any file. Options C and D invoke methods that do not exist on the `File` class.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "The following `main` method is intended to open `\"data.txt\"` and print its first integer. Which of the following identifies the error that prevents this code from compiling?\n\n```java\npublic static void main(String[] args) {\n    Scanner sc = new Scanner(new File(\"data.txt\"));\n    System.out.println(sc.nextInt());\n    sc.close();\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`sc.close()` must be called before `sc.nextInt()` to prepare the stream."
+      },
+      {
+        "label": "B",
+        "text": "The method signature must include `throws IOException`."
+      },
+      {
+        "label": "C",
+        "text": "`new File(\"data.txt\")` must be assigned to a named variable before being passed to `Scanner`."
+      },
+      {
+        "label": "D",
+        "text": "`sc.nextInt()` cannot appear as an argument directly inside `System.out.println()`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Constructing a `Scanner` from a `File` may throw `FileNotFoundException`, a checked subtype of `IOException`. Because checked exceptions must be declared or caught, the method signature must include `throws IOException`. Passing `new File(...)` inline (option C) is perfectly legal Java. Options A and D are not real compilation errors.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Determine the output of the following code:\n\n```java\nScanner sc = new Scanner(\"3 1 4 1 5\");\nint count = 0;\nwhile (sc.hasNext()) {\n    int val = sc.nextInt();\n    if (val > 3) {\n        count++;\n    }\n}\nsc.close();\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The five tokens are 3, 1, 4, 1, 5. Only 4 and 5 are strictly greater than 3, so `count` is incremented exactly twice. Option A results from counting only values greater than 4; option C from using `>=` instead of `>` (which would also include 4 and 5 but not the two 1s \u2014 actually 4 and 5 pass `>= 3`, giving 2 \u2014 wait that's still 2; option C would result from also counting 3 itself if the condition were `>= 3`, giving 3 results: 3, 4, 5); option D counts all five tokens regardless of value.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A `Scanner` named `sc` (declared with `throws IOException`) is opened on a file whose complete contents are:\n```\nAlice,90\nBob,74\nCarol,86\n```\nWhat is the value of `total` after the following loop finishes?\n\n```java\nint total = 0;\nwhile (sc.hasNext()) {\n    String line = sc.nextLine();\n    String[] parts = line.split(\",\");\n    total += Integer.parseInt(parts[1]);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`90`"
+      },
+      {
+        "label": "B",
+        "text": "`164`"
+      },
+      {
+        "label": "C",
+        "text": "`250`"
+      },
+      {
+        "label": "D",
+        "text": "`0`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Each `nextLine()` call reads one row; `split(\",\")` places the score string in `parts[1]`; `Integer.parseInt` converts it to an int. The loop accumulates 90 + 74 + 86 = 250. Option A results from exiting after the first row; option B from exiting after two rows; option D from never updating `total`.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A `Scanner` named `sc` is constructed from the `String` `\"10 hello 20\"`. The following two statements are then executed:\n\n```java\nSystem.out.println(sc.hasNextInt());\nsc.nextInt();\nSystem.out.println(sc.hasNextInt());\n```\n\nWhat is the output?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true` then `true`"
+      },
+      {
+        "label": "B",
+        "text": "`true` then `false`"
+      },
+      {
+        "label": "C",
+        "text": "`false` then `true`"
+      },
+      {
+        "label": "D",
+        "text": "`false` then `false`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Before any reading the next token is `10`, which is parseable as an integer, so the first `hasNextInt()` returns `true`. After `nextInt()` consumes `10`, the next token is `\"hello\"`, which cannot be parsed as an integer, so the second `hasNextInt()` returns `false`. Options C and D incorrectly identify the initial state; option A incorrectly claims `\"hello\"` satisfies `hasNextInt()`.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Which of the following correctly constructs a `Scanner` to read from a text file named `\"scores.txt\"`? (Assume the enclosing method declares `throws IOException`.)",
+    "options": [
+      {
+        "label": "A",
+        "text": "`new Scanner(\"scores.txt\")`"
+      },
+      {
+        "label": "B",
+        "text": "`new Scanner(new File(\"scores.txt\"))`"
+      },
+      {
+        "label": "C",
+        "text": "`new File(new Scanner(\"scores.txt\"))`"
+      },
+      {
+        "label": "D",
+        "text": "`new Scanner(File(\"scores.txt\"))`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "new Scanner(new File(\"scores.txt\")) constructs a Scanner that reads from the file on disk. Option A \u2014 new Scanner(\"scores.txt\") \u2014 creates a Scanner that tokenizes the String literal \"scores.txt\" as its input source, not the file. Option C reverses the constructor relationship (File does not accept a Scanner argument). Option D omits the required `new` keyword before `File`.",
+    "difficulty": 2,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Determine the output of the following code:\n\n```java\nScanner sc = new Scanner(\"10 20 30\");\nint sum = 0;\nwhile (sc.hasNextInt())\n{\n    sum += sc.nextInt();\n}\nsc.close();\nSystem.out.println(sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`60`"
+      },
+      {
+        "label": "D",
+        "text": "`102030`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "new Scanner(String) tokenizes the string \"10 20 30\" into three integer tokens. hasNextInt() returns true three times; nextInt() reads 10, then 20, then 30, accumulating sum = 0 + 10 + 20 + 30 = 60. Option A would result if the loop never executed. Option B would result if only the first token were added. Option D results from treating the tokens as strings and concatenating them rather than parsing and adding.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A student writes the following method:\n\n```java\npublic static void printLines()\n{\n    File f = new File(\"data.txt\");\n    Scanner sc = new Scanner(f);\n    while (sc.hasNext())\n    {\n        System.out.println(sc.nextLine());\n    }\n    sc.close();\n}\n```\n\nWhich of the following best explains why this code will not compile?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A `File` object cannot be passed directly to the `Scanner` constructor; a `String` pathname must be used instead."
+      },
+      {
+        "label": "B",
+        "text": "The method must declare `throws IOException` because constructing a `Scanner` from a `File` may throw a checked exception."
+      },
+      {
+        "label": "C",
+        "text": "`sc.close()` must be placed inside the `while` loop body rather than after it for the code to compile."
+      },
+      {
+        "label": "D",
+        "text": "`hasNext()` cannot be used when reading line-by-line; `hasNextLine()` must be used instead."
+      }
+    ],
+    "answer": "B",
+    "explanation": "new Scanner(File) declares that it throws FileNotFoundException, a checked exception (subtype of IOException). Java's compiler requires the calling method to either handle it with try-catch or propagate it with `throws IOException`; omitting this declaration is a compile error. The other options are incorrect: a File object is a valid Scanner constructor argument, the placement of close() after the loop is fine, and hasNext() works with any Scanner source including files.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Determine the output of the following code:\n\n```java\nString line = \"Alice,85,92,78\";\nString[] parts = line.split(\",\");\nint total = 0;\nfor (int i = 1; i < parts.length; i++)\n{\n    total += Integer.parseInt(parts[i]);\n}\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`85`"
+      },
+      {
+        "label": "B",
+        "text": "`177`"
+      },
+      {
+        "label": "C",
+        "text": "`255`"
+      },
+      {
+        "label": "D",
+        "text": "`857892`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "split(\",\") produces the array [\"Alice\", \"85\", \"92\", \"78\"] (length 4). The loop runs for i = 1, 2, 3, calling Integer.parseInt on \"85\", \"92\", and \"78\" and accumulating total = 85 + 92 + 78 = 255. Option A gives only the value at index 1. Option B adds only the first two numeric tokens (85 + 92 = 177), as if the loop bound were i < 3. Option D results from concatenating the string tokens instead of parsing and adding them as integers.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A file `\"temps.txt\"` contains exactly the following on a single line:\n\n```\n80.5 70.0 75.3 69.9\n```\n\nConsider the following code (the method declares `throws IOException`):\n\n```java\nScanner sc = new Scanner(new File(\"temps.txt\"));\nint count = 0;\nwhile (sc.hasNextDouble())\n{\n    double t = sc.nextDouble();\n    if (t > 70.0)\n        count++;\n}\nsc.close();\nSystem.out.println(count);\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`1`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The four tokens are 80.5, 70.0, 75.3, and 69.9. The condition t > 70.0 is true for 80.5 (count becomes 1) and 75.3 (count becomes 2); it is false for 70.0 (not strictly greater than) and 69.9. So count = 2. Option B (3) would result if the condition were t >= 70.0, which would also include 70.0. Option C (1) would result if only the largest value were counted. Option D (4) would result if all values satisfied the condition.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A file `\"students.txt\"` contains the following two lines:\n\n```\nAlice 90\nBob 75\n```\n\nDetermine the output of the following code (the method declares `throws IOException`):\n\n```java\nScanner sc = new Scanner(new File(\"students.txt\"));\nArrayList<String> names = new ArrayList<String>();\nint total = 0;\nwhile (sc.hasNext())\n{\n    String name = sc.next();\n    int score = sc.nextInt();\n    names.add(name);\n    total += score;\n}\nsc.close();\nSystem.out.println(names.get(0) + \" \" + total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Alice 90`"
+      },
+      {
+        "label": "B",
+        "text": "`Alice 165`"
+      },
+      {
+        "label": "C",
+        "text": "`Bob 165`"
+      },
+      {
+        "label": "D",
+        "text": "`Alice 9075`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The Scanner reads whitespace-delimited tokens: next() returns \"Alice\", nextInt() returns 90 (names = [\"Alice\"], total = 90); next() returns \"Bob\", nextInt() returns 75 (names = [\"Alice\", \"Bob\"], total = 165). names.get(0) is \"Alice\" and total is 165, so \"Alice 165\" is printed. Option A gives only the first student's score rather than the accumulated total. Option C retrieves the name at index 1 (\"Bob\") instead of index 0. Option D results from treating 90 and 75 as strings concatenated by the + operator rather than adding them as integers.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Determine the output of the following code:\n\n```java\nString data = \"12 blue\\n18 green\\ncat 5\";\nScanner scan = new Scanner(data);\nint count = 0;\nint sum = 0;\n\nwhile (scan.hasNext())\n{\n    if (scan.hasNextInt())\n    {\n        sum += scan.nextInt();\n        count++;\n    }\n    else\n    {\n        scan.next();\n    }\n}\nscan.close();\nSystem.out.print(count + \" \" + sum);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 30`"
+      },
+      {
+        "label": "B",
+        "text": "`3 35`"
+      },
+      {
+        "label": "C",
+        "text": "`6 35`"
+      },
+      {
+        "label": "D",
+        "text": "`3 30`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`hasNextInt()` is true for the tokens `12`, `18`, and `5`, so three integers are counted and their sum is 35. The other options either skip the final integer, count all tokens, or omit one integer from the sum.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A file contains whitespace-separated tokens. Which of the following could replace `/* missing code */` so that `total` is the sum of all integer tokens in the file, while non-integer tokens are ignored?\n\n```java\nScanner scan = new Scanner(new File(\"data.txt\"));\nint total = 0;\n\n/* missing code */\n\nscan.close();\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nwhile (scan.hasNext())\n{\n    if (scan.hasNextInt())\n    {\n        total += scan.nextInt();\n    }\n    else\n    {\n        scan.next();\n    }\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nwhile (scan.hasNextInt())\n{\n    total += scan.nextInt();\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nwhile (scan.hasNext())\n{\n    total += scan.nextInt();\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nwhile (scan.hasNext())\n{\n    if (scan.hasNextInt())\n    {\n        total += scan.nextInt();\n    }\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Choice A reads integer tokens with `nextInt()` and consumes non-integer tokens with `next()`, so the loop always makes progress. Choice B stops at the first non-integer token, choice C tries to read every token as an integer, and choice D can loop forever on a non-integer token.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  }
+]

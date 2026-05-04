@@ -1,0 +1,626 @@
+[
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Which of the following is a required precondition for binary search to produce correct results on an array?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The array must contain no duplicate values."
+      },
+      {
+        "label": "B",
+        "text": "The array must have an odd number of elements."
+      },
+      {
+        "label": "C",
+        "text": "The array must be sorted."
+      },
+      {
+        "label": "D",
+        "text": "The array must store only positive integers."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Binary search works by repeatedly comparing the target to the middle element and eliminating half the remaining array. This strategy is valid only when data is sorted, because the algorithm assumes all values to one side of mid are definitively smaller or larger. Duplicate values, even-length arrays, and negative integers do not prevent binary search from working correctly.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] arr = {4, 9, 2, 7, 5};\nint target = 7;\nint result = -1;\nfor (int i = 0; i < arr.length; i++) {\n    if (arr[i] == target) {\n        result = i;\n    }\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`-1`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop checks every element. At i=3, arr[3]=7 equals target, so result is set to 3. The loop continues to i=4 but arr[4]=5 does not match, leaving result as 3. Output is 3. Option A (-1) would be correct if target were absent. Option C (7) confuses the value with the index. Option D (4) is arr.length-1, not a match index.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Determine the output of the following code:\n\n```java\nint[] arr = {10, 20, 30, 40, 50};\nint target = 35;\nint result = -1;\nfor (int i = 0; i < arr.length; i++) {\n    if (arr[i] == target) {\n        result = i;\n    }\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`35`"
+      },
+      {
+        "label": "D",
+        "text": "`-1`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "35 does not appear in the array, so the condition arr[i]==target is never true and result retains its initial value of -1. Option A (0) is the default int value but result is explicitly initialized to -1. Option B (4) is the last valid index. Option C (35) confuses the target value for the return value.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "A student writes the following linear search method:\n\n```java\npublic static boolean contains(int[] arr, int target) {\n    for (int val : arr) {\n        if (val == target)\n            return true;\n        else\n            return false;\n    }\n    return false;\n}\n```\n\nWhich of the following best describes the error in this method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The enhanced for loop cannot iterate over a primitive `int[]` array."
+      },
+      {
+        "label": "B",
+        "text": "The method returns `false` after checking only the first element, so it incorrectly reports that `target` is absent when it appears later in the array."
+      },
+      {
+        "label": "C",
+        "text": "The method should throw an exception instead of returning `false` when `target` is not found."
+      },
+      {
+        "label": "D",
+        "text": "The return type should be `int` rather than `boolean`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The `else return false` inside the loop causes the method to exit after examining only arr[0]; if arr[0] doesn't match, false is returned without checking the rest of the array. The fix is to remove the else branch so that `return false` executes only after the loop completes. Option A is wrong: enhanced for can iterate over primitive int[]. Options C and D misidentify the nature of the bug.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "The following binary search method contains a bug:\n\n```java\npublic static int binarySearch(int[] a, int target) {\n    int lo = 0, hi = a.length;\n    while (lo <= hi) {\n        int mid = (lo + hi) / 2;\n        if (a[mid] == target) return mid;\n        else if (a[mid] < target) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    return -1;\n}\n```\n\nWhich of the following identifies the bug and the correct fix?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`int mid = (lo + hi) / 2;` should be `int mid = (lo + hi) * 2;`"
+      },
+      {
+        "label": "B",
+        "text": "`hi` should be initialized to `a.length - 1` instead of `a.length`"
+      },
+      {
+        "label": "C",
+        "text": "`lo = mid + 1` should be `lo = mid`"
+      },
+      {
+        "label": "D",
+        "text": "`while (lo <= hi)` should be `while (lo < hi)`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Valid array indices run from 0 to a.length-1. Initializing hi to a.length means mid can compute to a.length, and a[a.length] throws ArrayIndexOutOfBoundsException. Setting hi = a.length - 1 keeps all accesses in bounds. Option A produces a nonsensical mid. Option C would cause an infinite loop in some cases. Option D would cause the algorithm to miss single-element subarrays.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Consider the following binary search method:\n\n```java\npublic static int binarySearch(int[] a, int target) {\n    int lo = 0, hi = a.length - 1;\n    while (lo <= hi) {\n        int mid = (lo + hi) / 2;\n        if (a[mid] == target) return mid;\n        else if (a[mid] < target) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    return -1;\n}\n```\n\nWhat value is returned by `binarySearch(new int[]{1, 3, 5, 7, 9, 11, 13}, 7)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`7`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`-1`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "lo=0, hi=6. mid=(0+6)/2=3. a[3]=7 equals target, so return 3 immediately. Option B (7) confuses the target value with its index. Option C (4) would result from miscounting the midpoint. Option D (-1) would indicate target not found.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Consider the following binary search method:\n\n```java\npublic static int binarySearch(int[] a, int target) {\n    int lo = 0, hi = a.length - 1;\n    while (lo <= hi) {\n        int mid = (lo + hi) / 2;\n        if (a[mid] == target) return mid;\n        else if (a[mid] < target) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    return -1;\n}\n```\n\nWhat value is returned by `binarySearch(new int[]{2, 5, 8, 12, 16, 23, 38, 56, 72, 91}, 23)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`6`"
+      },
+      {
+        "label": "D",
+        "text": "`-1`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Iteration 1: lo=0, hi=9, mid=4, a[4]=16 < 23, lo=5. Iteration 2: lo=5, hi=9, mid=7, a[7]=56 > 23, hi=6. Iteration 3: lo=5, hi=6, mid=5, a[5]=23 == target, return 5. Option A (4) is the mid from iteration 1. Option C (6) is the value of hi entering iteration 3. Option D (-1) would indicate not found.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Consider the following binary search method:\n\n```java\npublic static int binarySearch(int[] a, int target) {\n    int lo = 0, hi = a.length - 1;\n    while (lo <= hi) {\n        int mid = (lo + hi) / 2;\n        if (a[mid] == target) return mid;\n        else if (a[mid] < target) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    return -1;\n}\n```\n\nWhat value is returned by `binarySearch(new int[]{1, 4, 7, 10, 15}, 6)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`1`"
+      },
+      {
+        "label": "C",
+        "text": "`0`"
+      },
+      {
+        "label": "D",
+        "text": "`-1`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "lo=0, hi=4: mid=2, a[2]=7 > 6, hi=1. lo=0, hi=1: mid=0, a[0]=1 < 6, lo=1. lo=1, hi=1: mid=1, a[1]=4 < 6, lo=2. lo=2 > hi=1: loop exits, return -1. Options A, B, and C are indices of elements examined during the search, but 6 is not present in the array.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "A sorted array contains 1,000 integers. Which of the following most accurately states the worst-case number of element comparisons required by each algorithm to conclude that a target value is not present?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Binary search: approximately 500; linear search: approximately 1,000"
+      },
+      {
+        "label": "B",
+        "text": "Binary search: approximately 10; linear search: approximately 1,000"
+      },
+      {
+        "label": "C",
+        "text": "Binary search: approximately 100; linear search: approximately 1,000"
+      },
+      {
+        "label": "D",
+        "text": "Binary search: approximately 10; linear search: approximately 500"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Binary search halves the search space at each step, requiring at most log\u2082(1000) \u2248 10 comparisons. Linear search must examine every element in the worst case: 1,000 comparisons. Option A gives 500 for binary search, which is linear search's average case, not binary search's worst case. Option C overstates binary search's cost at 100. Option D gives 500 for linear search, which is only its average case.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Consider an `ArrayList<String> words` and a `String target`. Which of the following code segments correctly returns the index of the first element equal to `target`, or `-1` if `target` is not present?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int i = 0; i <= words.size(); i++) {\n    if (words.get(i).equals(target)) return i;\n}\nreturn -1;\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int i = 0; i < words.size(); i++) {\n    if (words.get(i) == target) return i;\n}\nreturn -1;\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int i = 0; i < words.size(); i++) {\n    if (words.get(i).equals(target)) return i;\n}\nreturn -1;\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int i = 0; i < words.size(); i++) {\n    if (words.equals(target)) return i;\n}\nreturn -1;\n```"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Option C correctly uses i < words.size() to avoid an out-of-bounds access and calls .equals() on each retrieved element for value-based String comparison. Option A uses i <= words.size(), causing IndexOutOfBoundsException on the final iteration. Option B uses == which tests reference identity, not value equality, and may fail to find strings that are equal but distinct objects. Option D calls .equals() on the ArrayList object itself rather than on the retrieved element, so the condition is always false.",
+    "difficulty": 3,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "A programmer applies binary search to an array that has not been sorted. Which of the following best describes the result?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The program throws an `ArrayIndexOutOfBoundsException` when it accesses an out-of-range index."
+      },
+      {
+        "label": "B",
+        "text": "The program throws an `IllegalArgumentException` indicating that the sorted precondition is violated."
+      },
+      {
+        "label": "C",
+        "text": "Binary search may return an incorrect result\u2014either a wrong index or -1\u2014even when the target is present."
+      },
+      {
+        "label": "D",
+        "text": "Binary search still finds the correct result but may require more comparisons than on a sorted array."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Binary search assumes sorted order to safely discard half the remaining elements at each step. On unsorted data the algorithm may search the wrong half and miss the target entirely, producing an incorrect index or -1 with no exception thrown. Java has no built-in check for the sorted precondition, so Options A and B describe exceptions that do not occur. Option D is incorrect because correctness\u2014not just efficiency\u2014is compromised on unsorted data.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Consider the following recursive method:\n\n```java\npublic static int bSearch(int[] a, int lo, int hi, int target) {\n    if (lo > hi) return -1;\n    int mid = (lo + hi) / 2;\n    if (a[mid] == target) return mid;\n    else if (target < a[mid]) return bSearch(a, lo, mid - 1, target);\n    else return bSearch(a, mid + 1, hi, target);\n}\n```\n\nWhat value is returned by `bSearch(new int[]{3, 6, 9, 12, 15}, 0, 4, 12)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`-1`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`12`"
+      },
+      {
+        "label": "D",
+        "text": "`2`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Call 1: lo=0, hi=4, mid=2, a[2]=9 < 12, so call bSearch(a, 3, 4, 12). Call 2: lo=3, hi=4, mid=3, a[3]=12 == target, return 3. Option A (-1) would indicate not found. Option C (12) confuses the target value for the returned index. Option D (2) is the mid value computed in the first call.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Which of the following correctly compares the worst-case number of element comparisons for linear search and binary search on a sorted array of n elements?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Linear search: approximately n/2 comparisons; binary search: approximately n comparisons"
+      },
+      {
+        "label": "B",
+        "text": "Linear search: approximately n comparisons; binary search: approximately log\u2082n comparisons"
+      },
+      {
+        "label": "C",
+        "text": "Linear search: approximately log\u2082n comparisons; binary search: approximately n comparisons"
+      },
+      {
+        "label": "D",
+        "text": "Linear search: approximately n comparisons; binary search: approximately n/2 comparisons"
+      }
+    ],
+    "answer": "B",
+    "explanation": "In the worst case, linear search examines all n elements before reporting the target absent. Binary search halves the search space at each step, needing at most approximately log\u2082n comparisons. Option A reverses the two figures and also gives the wrong value for binary search. Option C swaps which algorithm has which complexity. Option D gives n/2 for binary search, which is still proportional to n and far too large.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Consider the following binary search method:\n\n```java\npublic static int binarySearch(int[] a, int target) {\n    int lo = 0, hi = a.length - 1;\n    while (lo <= hi) {\n        int mid = (lo + hi) / 2;\n        if (a[mid] == target) return mid;\n        else if (a[mid] < target) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    return -1;\n}\n```\n\nWhat value is returned by `binarySearch(new int[]{1, 3, 5, 7, 9, 11, 13, 15}, 15)`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`15`"
+      },
+      {
+        "label": "B",
+        "text": "`6`"
+      },
+      {
+        "label": "C",
+        "text": "`8`"
+      },
+      {
+        "label": "D",
+        "text": "`7`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Trace: lo=0, hi=7, mid=3, a[3]=7 < 15, lo=4. lo=4, hi=7, mid=5, a[5]=11 < 15, lo=6. lo=6, hi=7, mid=6, a[6]=13 < 15, lo=7. lo=7, hi=7, mid=7, a[7]=15 == target, return 7. Option A (15) is the target value, not the index. Option B (6) is the mid computed in the third iteration. Option C (8) is out of range for this array.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "The following binary search method contains a bug:\n\n```java\npublic static int binarySearch(int[] a, int target) {\n    int lo = 0, hi = a.length - 1;\n    while (lo <= hi) {\n        int mid = (lo + hi) / 2;\n        if (a[mid] == target) return mid;\n        else if (a[mid] < target) lo = mid;\n        else hi = mid - 1;\n    }\n    return -1;\n}\n```\n\nWhat happens when this method is called with a target larger than every element in the array?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method returns `-1` after one extra iteration compared to the correct version."
+      },
+      {
+        "label": "B",
+        "text": "The method throws `ArrayIndexOutOfBoundsException`."
+      },
+      {
+        "label": "C",
+        "text": "The method enters an infinite loop."
+      },
+      {
+        "label": "D",
+        "text": "The method returns the index of the largest element."
+      }
+    ],
+    "answer": "C",
+    "explanation": "When a[mid] < target, the correct step is lo = mid + 1 to advance past mid. Writing lo = mid means that once lo equals mid, lo never increases; the loop repeats the same state forever. For a target larger than all elements, lo eventually equals mid and cannot advance, producing an infinite loop. Option A is wrong: there is no exit. Option B is wrong because no index leaves the valid range. Option D misidentifies the return value.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Consider the following code segment:\n\n```java\nint[] a = {10, 20, 30, 40, 50, 60, 70, 80};\nint lo = 0, hi = a.length - 1;\nint target = 45;\nwhile (lo <= hi) {\n    int mid = (lo + hi) / 2;\n    if (a[mid] == target) return mid;\n    else if (a[mid] < target) lo = mid + 1;\n    else hi = mid - 1;\n}\n```\n\nAfter the `while` loop exits, what are the values of `lo` and `hi`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`lo = 3, hi = 4`"
+      },
+      {
+        "label": "B",
+        "text": "`lo = 4, hi = 4`"
+      },
+      {
+        "label": "C",
+        "text": "`lo = 5, hi = 3`"
+      },
+      {
+        "label": "D",
+        "text": "`lo = 4, hi = 3`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Trace (a={10,20,30,40,50,60,70,80}, target=45): Iteration 1\u2014lo=0, hi=7, mid=3, a[3]=40 < 45, lo=4. Iteration 2\u2014lo=4, hi=7, mid=5, a[5]=60 > 45, hi=4. Iteration 3\u2014lo=4, hi=4, mid=4, a[4]=50 > 45, hi=3. Now lo=4 > hi=3, loop exits. Option A reverses lo and hi. Option B captures the state at the start of iteration 3 before hi is updated. Option C results from a miscalculation of the mid adjustment in iteration 2.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Which of the following is a required precondition for binary search that is NOT required for linear search?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The array must contain at least one element."
+      },
+      {
+        "label": "B",
+        "text": "The target value must be present in the array."
+      },
+      {
+        "label": "C",
+        "text": "The array must be sorted."
+      },
+      {
+        "label": "D",
+        "text": "The array must contain only unique elements."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Binary search repeatedly compares the target with the middle element and discards half the remaining elements; this produces a correct result only when the array is sorted. Linear search checks elements sequentially and works on any ordering. Neither algorithm requires the target to be present \u2014 both return -1 (or an equivalent sentinel) when the search fails.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Determine the value of `result` after the following code executes.\n\n```java\nint[] scores = {42, 17, 95, 8, 63, 37};\nint result = -1;\nfor (int i = 0; i < scores.length; i++)\n{\n    if (scores[i] > 60)\n    {\n        result = i;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`63`"
+      },
+      {
+        "label": "D",
+        "text": "`-1`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop does not return early \u2014 it scans every element. scores[2]=95 satisfies the condition and sets result=2, but scores[4]=63 also satisfies it and later overwrites result with 4, which is the final value. Option A reflects the common mistake of assuming the search stops at the first match. Option C confuses the element value with the index. Option D would be correct only if no element exceeded 60.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Determine the output produced by the following code segment.\n\n```java\nint[] data = {5, 12, 19, 27, 34, 48, 61};\nint lo = 0;\nint hi = data.length - 1;\nint target = 48;\nwhile (lo <= hi)\n{\n    int mid = (lo + hi) / 2;\n    if (data[mid] == target)\n    {\n        System.out.println(\"Found: \" + mid);\n        lo = hi + 1;\n    }\n    else if (data[mid] < target)\n    {\n        lo = mid + 1;\n    }\n    else\n    {\n        hi = mid - 1;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Found: 4`"
+      },
+      {
+        "label": "B",
+        "text": "`Found: 5`"
+      },
+      {
+        "label": "C",
+        "text": "`Found: 6`"
+      },
+      {
+        "label": "D",
+        "text": "Nothing is printed."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Iteration 1: lo=0, hi=6, mid=3, data[3]=27 < 48, so lo becomes 4. Iteration 2: lo=4, hi=6, mid=5, data[5]=48 == 48, prints \"Found: 5\" and sets lo=7 to force loop exit. Option A corresponds to index 4 (data[4]=34), which was skipped over. Option C is the index of data[6]=61, the last element. Option D is wrong because 48 is present at index 5.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "The following method is intended to search `arr` for `target` and return its index, or `-1` if not found. Which statement best describes the bug?\n\n```java\npublic static int search(int[] arr, int target)\n{\n    for (int i = 0; i < arr.length; i++)\n    {\n        if (arr[i] == target)\n        {\n            return i;\n        }\n        else\n        {\n            return -1;\n        }\n    }\n    return -1;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The loop bound should be `i <= arr.length - 1` to ensure the last element is checked."
+      },
+      {
+        "label": "B",
+        "text": "The `else return -1` statement causes the method to exit after examining only the first element, even when the target is elsewhere in the array."
+      },
+      {
+        "label": "C",
+        "text": "The method should use an enhanced for loop so the index variable is not needed."
+      },
+      {
+        "label": "D",
+        "text": "The loop variable `i` should be initialized to `1` so the first comparison is not duplicated."
+      }
+    ],
+    "answer": "B",
+    "explanation": "If arr[0] does not equal target the else branch immediately returns -1 without checking any remaining elements. The fix is to remove the else clause entirely and place `return -1` only after the loop completes. Option A is incorrect because `i < arr.length` and `i <= arr.length - 1` produce identical behavior. Options C and D describe changes that do not address the actual early-exit problem.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "A program stores 10,000 student IDs in an `int[]` array in the order students registered \u2014 the array is not sorted. A method must determine whether a given ID is present. Which of the following statements about algorithm choice is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Binary search should be used because it is always faster than linear search on large arrays."
+      },
+      {
+        "label": "B",
+        "text": "Binary search should be used because searching for a target by comparing with the middle element works regardless of order."
+      },
+      {
+        "label": "C",
+        "text": "Linear search must be used because binary search requires the array to be sorted to produce a correct result."
+      },
+      {
+        "label": "D",
+        "text": "Linear search must be used because binary search cannot be applied to primitive `int` arrays."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Binary search discards the half of the array that does not contain the middle element; this reasoning is only valid when the data is sorted. On an unsorted array, binary search may eliminate the half that actually contains the target and return -1 incorrectly. Linear search checks every element in sequence and is correct regardless of ordering. Option A is wrong because applying binary search to unsorted data gives incorrect results, not just slower ones. Option D is false; binary search works on any array whose elements support comparison.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "The method below performs a standard iterative binary search. Determine the value returned by the call `binarySearch(new int[]{1, 4, 7, 10, 14, 18, 21, 29}, 13)`.\n\n```java\npublic static int binarySearch(int[] a, int target)\n{\n    int lo = 0, hi = a.length - 1;\n    while (lo <= hi)\n    {\n        int mid = (lo + hi) / 2;\n        if (a[mid] == target) return mid;\n        else if (a[mid] < target) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    return -1;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`-1`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`5`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "13 is not in the array, so -1 is returned. Full trace: lo=0,hi=7 \u2192 mid=3, a[3]=10 < 13, lo=4. lo=4,hi=7 \u2192 mid=5, a[5]=18 > 13, hi=4. lo=4,hi=4 \u2192 mid=4, a[4]=14 > 13, hi=3. Now lo=4 > hi=3, loop exits, return -1. Option B (3) is the mid index from iteration 1. Option C (4) is the final value of lo when the loop terminates \u2014 a plausible trap for students who think the search returns the \"nearest\" index. Option D (5) is the mid index from iteration 2.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Determine the output of the following code segment.\n\n```java\nint[] nums = {2, 5, 8, 12, 16, 23, 38};\nint target = 16;\nint lo = 0;\nint hi = nums.length - 1;\n\nwhile (lo <= hi)\n{\n    int mid = (lo + hi) / 2;\n    System.out.print(nums[mid] + \" \");\n\n    if (nums[mid] == target)\n    {\n        lo = hi + 1;\n    }\n    else if (nums[mid] < target)\n    {\n        lo = mid + 1;\n    }\n    else\n    {\n        hi = mid - 1;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`12 23 16 `"
+      },
+      {
+        "label": "B",
+        "text": "`12 16 `"
+      },
+      {
+        "label": "C",
+        "text": "`16 `"
+      },
+      {
+        "label": "D",
+        "text": "`12 23 `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The middle values examined are 12, then 23, then 16. The other options skip one of the binary search comparisons or assume the target is checked first.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_14",
+    "stem": "Which of the following could be used to replace `/* missing code */` so that `linearSearch` returns the index of the first occurrence of `target`, or `-1` if `target` is not in `a`?\n\n```java\npublic static int linearSearch(int[] a, int target)\n{\n    /* missing code */\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int i = 0; i < a.length; i++)\n{\n    if (a[i] == target)\n    {\n        return i;\n    }\n}\nreturn -1;\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int i = 0; i <= a.length; i++)\n{\n    if (a[i] == target)\n    {\n        return i;\n    }\n}\nreturn -1;\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int i = 0; i < a.length; i++)\n{\n    if (a[i] == target)\n    {\n        return i;\n    }\n    else\n    {\n        return -1;\n    }\n}\nreturn -1;\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int i = 1; i < a.length; i++)\n{\n    if (a[i] == target)\n    {\n        return i;\n    }\n}\nreturn -1;\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Choice A checks every valid index and returns only after finding the target or finishing the loop. Choice B can access index `a.length`, choice C returns `-1` after checking only the first element, and choice D skips index 0.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  }
+]

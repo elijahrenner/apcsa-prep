@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "A `while` loop whose boolean condition evaluates to `false` the very first time it is checked will execute its body",
+    "options": [
+      {
+        "label": "A",
+        "text": "exactly once before checking the condition"
+      },
+      {
+        "label": "B",
+        "text": "zero times"
+      },
+      {
+        "label": "C",
+        "text": "indefinitely, until the program is terminated"
+      },
+      {
+        "label": "D",
+        "text": "once, then re-evaluate the condition"
+      }
+    ],
+    "answer": "B",
+    "explanation": "A while loop evaluates its condition before every execution of the body, including the very first. If the condition is false initially, the body is skipped entirely and the loop executes zero times. A and D describe do-while behavior, not while behavior.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 1;\nwhile (x <= 5) {\n    System.out.print(x + \" \");\n    x += 2;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 3 5 `"
+      },
+      {
+        "label": "B",
+        "text": "`1 2 3 4 5 `"
+      },
+      {
+        "label": "C",
+        "text": "`1 3 5 7 `"
+      },
+      {
+        "label": "D",
+        "text": "`3 5 `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "x starts at 1 and increases by 2 each iteration: x=1 (print, x\u21923), x=3 (print, x\u21925), x=5 (print, x\u21927). When x=7 the condition 7<=5 is false and the loop exits, so 7 is never printed. B results from x++ instead of x+=2. C incorrectly includes 7 as if x=7 still satisfies the condition. D skips the first iteration.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Which of the following `while` loop segments is equivalent to the `for` loop below?\n\n```java\nfor (int i = 1; i <= n; i++) {\n    System.out.println(i);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nint i = 0;\nwhile (i <= n) {\n    System.out.println(i);\n    i++;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nint i = 1;\nwhile (i < n) {\n    System.out.println(i);\n    i++;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint i = 1;\nwhile (i <= n) {\n    System.out.println(i);\n    i++;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nint i = 1;\nwhile (i <= n) {\n    i++;\n    System.out.println(i);\n}\n```"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The for loop initializes i=1, runs while i<=n, prints i, then increments. C mirrors this exactly. A starts at i=0 so it prints an extra 0. B uses i<n so it never prints n (off-by-one at the end). D increments i before printing, so it prints values 2 through n+1 instead of 1 through n.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "The following code is intended to print all integers from `1` to `n` inclusive, but it contains a bug. Which change corrects the bug?\n\n```java\nint i = 1;\nwhile (i < n) {\n    System.out.println(i);\n    i++;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Change `i = 1` to `i = 0`"
+      },
+      {
+        "label": "B",
+        "text": "Change `i < n` to `i <= n`"
+      },
+      {
+        "label": "C",
+        "text": "Move `i++` before `System.out.println(i)`"
+      },
+      {
+        "label": "D",
+        "text": "Change `i++` to `i--`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The condition i < n causes the loop to exit before printing n, so the output is 1 through n-1. Changing to i <= n includes n. A would print 0 through n-1 (still missing n, adding an unwanted 0). C would print 2 through n (shifted by one because i increments before the print). D would decrement i from 1, causing an infinite loop.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the values of `lo` and `hi` after the following code finishes executing.\n\n```java\nint lo = 1;\nint hi = 10;\nwhile (lo < hi) {\n    lo++;\n    hi--;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`lo = 5, hi = 6`"
+      },
+      {
+        "label": "B",
+        "text": "`lo = 5, hi = 5`"
+      },
+      {
+        "label": "C",
+        "text": "`lo = 6, hi = 5`"
+      },
+      {
+        "label": "D",
+        "text": "`lo = 6, hi = 6`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Each iteration increments lo and decrements hi. After 5 iterations: lo goes 1\u21922\u21923\u21924\u21925\u21926 and hi goes 10\u21929\u21928\u21927\u21926\u21925. After the fifth iteration lo=6 and hi=5; since 6 < 5 is false the loop exits. A is the state after only 4 iterations (one short). B is impossible here because lo+hi=11 is always odd, so they can never be equal. D would require both to reach the same value, which cannot happen with an odd sum.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the output of the following code:\n\n```java\nint i = 2;\nint total = 1;\nwhile (i <= 4) {\n    total *= i;\n    i++;\n}\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`120`"
+      },
+      {
+        "label": "D",
+        "text": "`24`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Starting with total=1, the loop multiplies by i for i=2, 3, 4: 1*2=2, 2*3=6, 6*4=24. Output is 24. A=6 results from a condition of i<4 (missing the last multiply by 4: 1*2*3=6). B=10 results from using += instead of *=: 1+2+3+4=10 (int-division-truncation-style mistake on the operator). C=120 results from running one extra iteration to i<=5: 1*2*3*4*5=120.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Which of the following best describes the behavior of the code below?\n\n```java\nint count = 0;\nint n = 1;\nwhile (n < 10) {\n    if (n % 2 == 0) {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The loop runs infinitely because `n` is never updated inside the loop body"
+      },
+      {
+        "label": "B",
+        "text": "The code prints `0` because `n % 2 == 0` is never true when `n` equals `1`"
+      },
+      {
+        "label": "C",
+        "text": "The code prints `4` because there are four even integers between 1 and 9"
+      },
+      {
+        "label": "D",
+        "text": "The code causes a compile-time error because `count` is used before it is initialized"
+      }
+    ],
+    "answer": "A",
+    "explanation": "n is initialized to 1 and never modified inside the loop body, so n < 10 is always true and the loop never terminates. B describes what count would equal if the loop somehow stopped, but the program never reaches the println. C describes the correct output of a properly written loop that increments n. D is wrong; count is initialized to 0 before the loop.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Which of the following while loops will result in an infinite loop?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nint x = 10;\nwhile (x > 0) {\n    x--;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nint x = 0;\nwhile (x != 15) {\n    x += 3;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint x = 1;\nwhile (x <= 100) {\n    x += 7;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nint x = 1;\nwhile (x > 0) {\n    x *= 2;\n}\n```"
+      }
+    ],
+    "answer": "D",
+    "explanation": "In D, x starts at 1 and doubles each iteration (1, 2, 4, 8, \u2026), always remaining positive, so x > 0 is never false. A terminates as x decrements from 10 to 0. B terminates because x hits exactly 15 (0, 3, 6, 9, 12, 15). C terminates because x eventually exceeds 100 (1, 8, 15, \u2026, 99, 106).",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the output of the following code:\n\n```java\nint n = 523;\nint result = 0;\nwhile (n > 0) {\n    result = result * 10 + n % 10;\n    n /= 10;\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`325`"
+      },
+      {
+        "label": "B",
+        "text": "`523`"
+      },
+      {
+        "label": "C",
+        "text": "`32`"
+      },
+      {
+        "label": "D",
+        "text": "`10`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Each iteration strips the last digit of n and appends it to result. Iter 1: result=0*10+3=3, n=52. Iter 2: result=3*10+2=32, n=5. Iter 3: result=32*10+5=325, n=0. Loop exits; output is 325 (the digits of 523 reversed). B incorrectly returns the original value. C results from stopping when n>10 instead of n>0, processing only two digits (3 and 2). D is the digit sum 5+2+3=10.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"banana\";\nint i = 0;\nint count = 0;\nwhile (i < s.length()) {\n    if (s.substring(i, i + 1).equals(\"a\")) {\n        count++;\n    }\n    i++;\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "\"banana\" has characters b(0), a(1), n(2), a(3), n(4), a(5). The loop tests each position with substring(i, i+1).equals(\"a\"), finding matches at indices 1, 3, and 5 for a total count of 3. A=2 results from an off-by-one error that skips index 5 (e.g., using i < s.length()-1). C=4 overcounts by one. D=6 is simply the length of the string.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the values of `a` and `b` after the following code finishes executing.\n\n```java\nint a = 2;\nint b = 32;\nwhile (a < b) {\n    a *= 2;\n    b -= 4;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a = 32, b = 16`"
+      },
+      {
+        "label": "B",
+        "text": "`a = 64, b = 12`"
+      },
+      {
+        "label": "C",
+        "text": "`a = 16, b = 20`"
+      },
+      {
+        "label": "D",
+        "text": "`a = 32, b = 20`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Tracing: (2,32)\u2192(4,28)\u2192(8,24)\u2192(16,20)\u2192(32,16). After the fourth iteration a=32 and b=16; since 32 < 16 is false the loop exits. C is the state after only three iterations (one short). B results from applying one extra iteration beyond the exit condition (32\u219264, 16\u219212). D results from updating a correctly in the final step but forgetting to decrement b (b stays at 20).",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 1;\nint y = 0;\nwhile (x <= 4) {\n    if (x % 2 == 0) {\n        y += x;\n    } else {\n        y -= 1;\n    }\n    x++;\n}\nSystem.out.println(y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Tracing each iteration: x=1 (odd)\u2192y=0-1=-1; x=2 (even)\u2192y=-1+2=1; x=3 (odd)\u2192y=1-1=0; x=4 (even)\u2192y=0+4=4; x=5 exits. Output: 4. A=6 results from adding only the even values (2+4=6) and ignoring both -1 subtractions for odd x. B=2 results from swapping the branches (subtracting on even, adding on odd). C=5 results from applying only one subtraction instead of two, treating one odd iteration as if it were even.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the output of the following code:\n\n```java\nint n = 16;\nint count = 0;\nwhile (n > 1) {\n    n /= 2;\n    count++;\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`16`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`n` is halved each iteration using integer division: 16\u21928\u21924\u21922\u21921. The condition `n > 1` is false when `n` equals 1, so the loop body executes exactly 4 times and `count` reaches 4. Option A reflects exiting one iteration too early (misreading the condition as `n > 2`). Option C adds a spurious extra iteration. Option D confuses the printed variable with the original value of `n`.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the values of `a` and `b` after the following code runs:\n\n```java\nint a = 10;\nint b = 0;\nwhile (a > 2) {\n    b += a;\n    a /= 2;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a = 2, b = 15`"
+      },
+      {
+        "label": "B",
+        "text": "`a = 1, b = 17`"
+      },
+      {
+        "label": "C",
+        "text": "`a = 2, b = 10`"
+      },
+      {
+        "label": "D",
+        "text": "`a = 2, b = 18`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Iteration 1: b = 0 + 10 = 10, a = 10 / 2 = 5. Iteration 2: b = 10 + 5 = 15, a = 5 / 2 = 2 (integer division truncates). Now a = 2, and 2 > 2 is false, so the loop exits with a = 2 and b = 15. Option B results from misreading the condition as `a > 1` and running one extra iteration. Option C only counts the first iteration. Option D assumes 5 / 2 rounds up to 3 rather than truncating to 2, causing a third iteration.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "A student writes the following code intending to compute the product 1 \u00d7 2 \u00d7 3 \u00d7 4 \u00d7 5 = 120, but the program does not print `120`.\n\n```java\nint count = 0;\nint product = 1;\nwhile (count < 5) {\n    product *= count;\n    count++;\n}\nSystem.out.println(product);\n```\n\nWhich of the following best describes the error in the code?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The loop condition should be `count <= 5` instead of `count < 5`."
+      },
+      {
+        "label": "B",
+        "text": "`count` is initialized to `0`, so the first iteration multiplies `product` by `0`, making `product` permanently `0`."
+      },
+      {
+        "label": "C",
+        "text": "`product` should be initialized to `0` instead of `1`."
+      },
+      {
+        "label": "D",
+        "text": "The update `count++` should be `count--` to correctly traverse the values."
+      }
+    ],
+    "answer": "B",
+    "explanation": "When count = 0, the body executes `product *= 0`, setting product to 0. Every subsequent multiplication by any value keeps product at 0, so the code prints 0 rather than 120. Initializing count to 1 would fix the bug. Option A changes the loop bound but still multiplies by 0 on the first iteration, producing the same error. Option C would make product start at 0, which is even worse. Option D would create an infinite loop decrementing count away from the exit condition.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Which of the following correctly describes the condition under which the body of a `while` loop executes **zero** times?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The boolean condition in the loop header evaluates to `false` before the first iteration begins."
+      },
+      {
+        "label": "B",
+        "text": "The update statement inside the loop body is missing."
+      },
+      {
+        "label": "C",
+        "text": "The boolean condition becomes `false` after exactly one iteration."
+      },
+      {
+        "label": "D",
+        "text": "The loop control variable is initialized to `0`."
+      }
+    ],
+    "answer": "A",
+    "explanation": "A `while` loop evaluates its condition before executing the body each time. If the condition is initially false, the body is skipped entirely and the loop runs zero times \u2014 this is a key distinction from a do-while loop. Option B describes a common cause of an infinite loop, not zero executions. Option C describes a loop that executes exactly once. Option D is incorrect because initializing a variable to 0 does not by itself prevent any iterations; it depends on the condition.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the output of the following code:\n\n```java\nint i = 1;\nint j = 10;\nwhile (i < j) {\n    i *= 2;\n    j--;\n}\nSystem.out.println(i + \" \" + j);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4 8`"
+      },
+      {
+        "label": "B",
+        "text": "`8 7`"
+      },
+      {
+        "label": "C",
+        "text": "`16 6`"
+      },
+      {
+        "label": "D",
+        "text": "`8 8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Tracing each iteration \u2014 (i=1, j=10): 1 < 10 true \u2192 i=2, j=9; (i=2, j=9): 2 < 9 true \u2192 i=4, j=8; (i=4, j=8): 4 < 8 true \u2192 i=8, j=7; (i=8, j=7): 8 < 7 false \u2192 exit. The printed output is `8 7`. Option A exits one iteration too early. Option C runs one extra iteration past when i first meets or exceeds j. Option D incorrectly assumes j does not decrement during the final true iteration.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the output of the following code:\n\n```java\nint n = 10;\nint count = 0;\nwhile (n > 1) {\n    n = n / 2;\n    count++;\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`10`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Integer division traces as 10\u21925 (count=1), 5\u21922 (count=2), 2\u21921 (count=3), then 1>1 is false so the loop exits printing 3. A (2) results from stopping one iteration early; C (4) adds a spurious extra iteration; D confuses the final value of n with count.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "How many times will the following `while` loop execute?\n\n```java\nint x = 1;\nwhile (x * x < 50) {\n    x++;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "6 times"
+      },
+      {
+        "label": "B",
+        "text": "7 times"
+      },
+      {
+        "label": "C",
+        "text": "8 times"
+      },
+      {
+        "label": "D",
+        "text": "49 times"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The condition is true for x = 1 through 7 (squares 1, 4, 9, 16, 25, 36, 49 are all < 50) and false for x = 8 (64 \u2265 50), so the body executes 7 times. A (6) mistakes 36 for the last qualifying square; C (8) counts the failing check as an iteration; D confuses the threshold value 49 with the iteration count.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the values of `x` and `y` after the following code runs:\n\n```java\nint x = 123;\nint y = 0;\nwhile (x > 0) {\n    y += x % 10;\n    x /= 10;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 1, y = 5`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 0, y = 5`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 0, y = 6`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 0, y = 123`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop extracts digits right-to-left: 123%10=3 (y=3, x=12), 12%10=2 (y=5, x=1), 1%10=1 (y=6, x=0); then 0>0 is false. A stops one iteration early leaving x=1 and missing the final digit. B correctly reduces x to 0 but misses the last digit, giving y=5. D assigns x's original value to y instead of accumulating digits.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Which of the following `while` loops will execute its body exactly zero times?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nint k = 5;\nwhile (k > 0) {\n    k--;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nint k = 0;\nwhile (k > 0) {\n    k--;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint k = -1;\nwhile (k < 0) {\n    k++;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nint k = 1;\nwhile (k != 0) {\n    k--;\n}\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "A `while` loop tests its condition before the first iteration; if the condition is initially false the body never executes. In B, k=0 makes k>0 immediately false. In A, k=5>0 is true (runs 5 times). In C, k=-1<0 is true (runs once). In D, k=1\u22600 is true (runs once, then k=0 exits).",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "A student writes the following code intending to print the integers 1 through 5 on separate lines, but the value `5` never appears in the output. Which change fixes the bug?\n\n```java\nint k = 1;\nwhile (k < 5) {\n    System.out.println(k);\n    k++;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Change the initialization to `int k = 0`"
+      },
+      {
+        "label": "B",
+        "text": "Change the condition to `k <= 5`"
+      },
+      {
+        "label": "C",
+        "text": "Change the update to `k += 2`"
+      },
+      {
+        "label": "D",
+        "text": "Move `k++` to before `System.out.println(k)`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The condition k<5 becomes false when k reaches 5, so 5 is never printed; changing it to k<=5 allows one more iteration that prints 5 before k becomes 6 and the loop exits. A would print 0 through 4 instead of 1 through 5. C would skip even numbers (printing 1, 3, 5 only). D would print 2 through 5, omitting 1.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 2;\nint b = 6;\nwhile (a < b) {\n    if (b % a == 0) {\n        a++;\n        b--;\n    } else {\n        b++;\n        a--;\n    }\n}\nSystem.out.println(a + \" \" + b);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3 5`"
+      },
+      {
+        "label": "B",
+        "text": "`4 4`"
+      },
+      {
+        "label": "C",
+        "text": "`5 3`"
+      },
+      {
+        "label": "D",
+        "text": "The loop runs an infinite number of times and nothing is printed."
+      }
+    ],
+    "answer": "D",
+    "explanation": "Tracing: a=2, b=6: 6%2==0 \u2192 a=3, b=5; then 5%3=2\u22600 \u2192 b=6, a=2 \u2014 the variables return to their initial values and the cycle repeats forever, so a<b is never made false and `println` is never reached. A, B, and C all assume the loop terminates, which it does not.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Determine the output of the following code:\n\n```java\nint value = 2461;\nint total = 0;\n\nwhile (value > 0)\n{\n    int digit = value % 10;\n    if (digit % 2 == 0)\n    {\n        total += digit;\n    }\n    value /= 10;\n}\n\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`12`"
+      },
+      {
+        "label": "C",
+        "text": "`13`"
+      },
+      {
+        "label": "D",
+        "text": "`2461`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop examines digits from right to left and adds only even digits: 6 + 4 + 2 = 12. The other choices come from skipping a digit, adding odd digits, or not tracing the loop.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_7",
+    "stem": "Which of the following could replace `/* missing code */` so that the loop prints `5 3 1 `?\n\n```java\nint k = 5;\n\nwhile (k > 0)\n{\n    System.out.print(k + \" \");\n    /* missing code */\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`k--;`"
+      },
+      {
+        "label": "B",
+        "text": "`k -= 2;`"
+      },
+      {
+        "label": "C",
+        "text": "`k += 2;`"
+      },
+      {
+        "label": "D",
+        "text": "`k = k / 2;`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`k -= 2` changes k from 5 to 3 to 1, then to -1 so the loop stops. Choice A prints every integer down to 1, C creates an infinite loop, and D would print `5 2 1` before stopping.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  }
+]

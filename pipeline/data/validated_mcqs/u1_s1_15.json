@@ -1,0 +1,548 @@
+[
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "What is the output of the following code?\n\n```java\nString s = \"computer\";\nSystem.out.println(s.substring(2, 5));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`mpu`"
+      },
+      {
+        "label": "B",
+        "text": "`mput`"
+      },
+      {
+        "label": "C",
+        "text": "`omp`"
+      },
+      {
+        "label": "D",
+        "text": "`put`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`substring(2, 5)` returns characters at indices 2, 3, and 4 \u2014 'm', 'p', 'u' \u2014 giving \"mpu\". Option B is an off-by-one error (mistakenly including index 5); C would be `substring(1, 4)`; D would be `substring(3, 6)`.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "What is the output of the following code?\n\n```java\nString a = \"hello\";\nString b = new String(\"hello\");\nString c = a;\nSystem.out.println(a == b);\nSystem.out.println(a == c);\nSystem.out.println(b.equals(c));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`false` / `true` / `true`"
+      },
+      {
+        "label": "B",
+        "text": "`true` / `true` / `true`"
+      },
+      {
+        "label": "C",
+        "text": "`false` / `false` / `true`"
+      },
+      {
+        "label": "D",
+        "text": "`false` / `true` / `false`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`a == b` is false because `new String(\"hello\")` allocates a distinct object; `==` compares references, not content. `a == c` is true because `c = a` copies the reference, so both point to the same object. `b.equals(c)` is true because both contain the character sequence \"hello\".",
+    "difficulty": 3,
+    "stem_pattern": "string_reference_equality"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "What is the output of the following code?\n\n```java\nint p = 2;\nint q = 3;\nSystem.out.println(p + q + \" is the sum\");\nSystem.out.println(\"The sum is \" + p + q);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5 is the sum` / `The sum is 5`"
+      },
+      {
+        "label": "B",
+        "text": "`5 is the sum` / `The sum is 23`"
+      },
+      {
+        "label": "C",
+        "text": "`23 is the sum` / `The sum is 23`"
+      },
+      {
+        "label": "D",
+        "text": "`23 is the sum` / `The sum is 5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "In the first `println`, `p + q` is evaluated as integer addition (2 + 3 = 5) before reaching the String operand, yielding \"5 is the sum\". In the second `println`, the String literal appears first, so `+` triggers left-to-right concatenation: \"The sum is \" + 2 \u2192 \"The sum is 2\", then + 3 \u2192 \"The sum is 23\".",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "What is the output of the following code?\n\n```java\nString word = \"hello\";\nword.substring(1, 4);\nSystem.out.println(word);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`ell`"
+      },
+      {
+        "label": "B",
+        "text": "`hell`"
+      },
+      {
+        "label": "C",
+        "text": "`ello`"
+      },
+      {
+        "label": "D",
+        "text": "`hello`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "Strings in Java are immutable. `substring(1, 4)` returns a new String \"ell\", but the result is discarded because it is never assigned to a variable. `word` still references the original, unchanged String \"hello\".",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "Determine the values of `a` and `b` after the following code runs.\n\n```java\nString s = \"programming\";\nint a = s.indexOf(\"gram\");\nint b = s.indexOf(\"xyz\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a = 3, b = -1`"
+      },
+      {
+        "label": "B",
+        "text": "`a = 4, b = -1`"
+      },
+      {
+        "label": "C",
+        "text": "`a = 3, b = 0`"
+      },
+      {
+        "label": "D",
+        "text": "`a = -1, b = -1`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In \"programming\" (p=0, r=1, o=2, g=3, r=4, a=5, m=6, m=7, i=8, n=9, g=10), the substring \"gram\" begins at index 3. `indexOf` returns the starting index of the first match, so `a = 3`. \"xyz\" does not appear in the string, so `indexOf` returns -1 and `b = -1`. Option B is an off-by-one error on the starting index.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "A student wants to check whether the `String` variable `name` begins with the letter `\"A\"`. Which of the following correctly performs this check?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`name.substring(0, 1) == \"A\"`"
+      },
+      {
+        "label": "B",
+        "text": "`name.indexOf(\"A\") == 1`"
+      },
+      {
+        "label": "C",
+        "text": "`name.substring(0, 1).equals(\"A\")`"
+      },
+      {
+        "label": "D",
+        "text": "`name.indexOf(\"A\") >= 0`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "C correctly extracts the first character as a one-character String with `substring(0, 1)` and compares content using `equals`. A uses `==`, which tests reference equality rather than character content and is unreliable for Strings. B checks whether \"A\" is at index 1 (the second position), not the first. D checks whether \"A\" appears anywhere in `name`, not specifically at index 0.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "Determine the value of `part` after the following code runs.\n\n```java\nString word = \"elephant\";\nint n = word.length();\nString part = word.substring(n - 4);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`\"phant\"`"
+      },
+      {
+        "label": "B",
+        "text": "`\"hant\"`"
+      },
+      {
+        "label": "C",
+        "text": "`\"elep\"`"
+      },
+      {
+        "label": "D",
+        "text": "`\"lephant\"`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "\"elephant\" has 8 characters so `n = 8`, and `n - 4 = 4`. `substring(4)` returns characters from index 4 to the end: h(4), a(5), n(6), t(7) \u2192 \"hant\". Option A would be `substring(3)` = \"phant\"; C is `substring(0, 4)` = \"elep\"; D is `substring(1)` = \"lephant\".",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "Which of the following correctly describes the value returned by `s1.compareTo(s2)` when `s1` comes before `s2` in lexicographic (alphabetical) order?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It returns `true`."
+      },
+      {
+        "label": "B",
+        "text": "It returns a negative integer."
+      },
+      {
+        "label": "C",
+        "text": "It returns `0`."
+      },
+      {
+        "label": "D",
+        "text": "It always returns `-1`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "`compareTo` returns a negative integer when the calling String precedes the argument alphabetically, zero when the two strings are equal, and a positive integer when the calling String follows the argument. It does not return a boolean (A), and while D would be negative, the method is not guaranteed to return exactly -1 \u2014 the magnitude depends on the character difference.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "What is the output of the following code?\n\n```java\nString s = \"Hello, World!\";\nint idx = s.indexOf(\"o\");\nString t = s.substring(0, idx);\nSystem.out.println(t + \" \" + t.length());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Hello 5`"
+      },
+      {
+        "label": "B",
+        "text": "`Hell 4`"
+      },
+      {
+        "label": "C",
+        "text": "`Hell 5`"
+      },
+      {
+        "label": "D",
+        "text": "`Hello, 6`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`indexOf(\"o\")` returns 4 (the first 'o' appears at index 4 in \"Hello, World!\"). `substring(0, 4)` returns characters at indices 0\u20133: \"Hell\". `\"Hell\".length()` is 4, so the output is \"Hell 4\". Option A mistakenly includes index 4 (the 'o' itself); C has the correct substring but an off-by-one length.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "A student wants to store the single character at index `i` of `String s` into a new `String` variable `ch`. Which of the following correctly accomplishes this using only methods from the Java Quick Reference?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`String ch = s.substring(i);`"
+      },
+      {
+        "label": "B",
+        "text": "`String ch = s.substring(i, i + 1);`"
+      },
+      {
+        "label": "C",
+        "text": "`String ch = s.indexOf(i);`"
+      },
+      {
+        "label": "D",
+        "text": "`String ch = s.substring(i - 1, i);`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`substring(i, i + 1)` returns exactly the one-character String at index `i`. Option A returns all characters from index `i` through the end of the string. C is incorrect because `indexOf` takes a `String` argument and returns an `int`, so assigning it to a `String` variable would cause a compile error. D returns the character at index `i - 1`, not index `i`.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "What is the output of the following code?\n\n```java\nSystem.out.println(1 + 2 + \"3\");\nSystem.out.println(\"1\" + 2 + 3);\nSystem.out.println(\"1\" + (2 + 3));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`33` / `123` / `15`"
+      },
+      {
+        "label": "B",
+        "text": "`6` / `123` / `15`"
+      },
+      {
+        "label": "C",
+        "text": "`33` / `123` / `123`"
+      },
+      {
+        "label": "D",
+        "text": "`33` / `15` / `15`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Line 1: `1 + 2` evaluates first as integer addition (= 3), then `3 + \"3\"` triggers concatenation \u2192 \"33\". Line 2: `\"1\" + 2` triggers concatenation immediately \u2192 \"12\", then `\"12\" + 3` \u2192 \"123\". Line 3: parentheses force `2 + 3 = 5` as integer addition first, then `\"1\" + 5` \u2192 \"15\". Option B incorrectly sums all three integers in line 1; D misreads line 2 as if parentheses were present.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 3;\nint y = 7;\nSystem.out.println(x + y + \" total\");\nSystem.out.println(\"result: \" + x + y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10 total`\n`result: 37`"
+      },
+      {
+        "label": "B",
+        "text": "`10 total`\n`result: 10`"
+      },
+      {
+        "label": "C",
+        "text": "`37 total`\n`result: 37`"
+      },
+      {
+        "label": "D",
+        "text": "`37 total`\n`result: 10`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In `x + y + \" total\"`, the `+` operators evaluate left-to-right: `3 + 7 = 10` (int + int), then `10 + \" total\" = \"10 total\"`. In `\"result: \" + x + y`, the first `+` produces `\"result: 3\"` (String + int), then the second appends `y` giving `\"result: 37\"` \u2014 `x` and `y` are never grouped. Option B traps students who incorrectly group `x + y` before the String in the second expression. Option C traps students who assume the presence of any String operand makes all `+` operators in the expression perform concatenation.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "Consider the following code:\n\n```java\nString a = \"hello\";\nString b = new String(\"hello\");\nSystem.out.println(a.equals(b));\nSystem.out.println(a == b);\n```\n\nWhich of the following represents the output?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true`\n`false`"
+      },
+      {
+        "label": "B",
+        "text": "`true`\n`true`"
+      },
+      {
+        "label": "C",
+        "text": "`false`\n`false`"
+      },
+      {
+        "label": "D",
+        "text": "`false`\n`true`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`a.equals(b)` compares character content; both strings contain `\"hello\"`, so it returns `true`. `a == b` compares object references; because `b` was constructed with `new String(...)`, it is a distinct object in memory, so `==` returns `false`. Option B incorrectly treats `==` as a content comparison. Option C incorrectly treats `equals` as a reference comparison. Option D reverses both results.",
+    "difficulty": 2,
+    "stem_pattern": "string_reference_equality"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "Which of the following statements about Java `String` objects is accurate?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The `substring` method modifies the original `String` in place by removing the specified characters."
+      },
+      {
+        "label": "B",
+        "text": "Once created, the content of a `String` object cannot be changed; operations such as `substring` and string concatenation with `+` produce new `String` objects rather than altering the original."
+      },
+      {
+        "label": "C",
+        "text": "Two `String` variables initialized with the same literal value using `=` always refer to different objects in memory."
+      },
+      {
+        "label": "D",
+        "text": "The `+` operator concatenates two `String` values but causes a compile-time error if one operand is an `int` or `double`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Strings in Java are immutable: no operation changes the characters of an existing `String` object. Methods like `substring` and the `+` operator return brand-new `String` objects. Option A is wrong because `substring` never mutates the original. Option C is wrong because the JVM interns string literals, so two variables holding the same literal typically reference the same object. Option D is wrong because `+` automatically converts `int` and `double` operands to their `String` representations.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"abracadabra\";\nint i = s.indexOf(\"cad\");\nSystem.out.println(s.substring(0, i));\nSystem.out.println(s.substring(i + 3));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`abra`\n`abra`"
+      },
+      {
+        "label": "B",
+        "text": "`abr`\n`dabra`"
+      },
+      {
+        "label": "C",
+        "text": "`abra`\n`dabra`"
+      },
+      {
+        "label": "D",
+        "text": "`abra`\n`bra`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`\"abracadabra\"` has indices 0\u201310: a,b,r,a,c,a,d,a,b,r,a. `indexOf(\"cad\")` matches at index 4 (s[4]='c', s[5]='a', s[6]='d'), so `i = 4`. `substring(0, 4)` returns chars 0\u20133 = `\"abra\"`. `substring(i + 3)` = `substring(7)` returns chars 7\u201310 = `\"abra\"`. Option B uses `i = 3` (off-by-one), giving `substring(0,3) = \"abr\"` and `substring(6) = \"dabra\"`. Option C correctly finds `i = 4` but uses offset `i + 2` (as if `\"cad\"` were 2 characters), giving `substring(6) = \"dabra\"`. Option D correctly computes `i + 3 = 7` but misapplies `substring` as if it skips index 7, starting at 8 and returning `\"bra\"`.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 3;\nint y = 4;\nSystem.out.println(\"Result: \" + x + y);\nSystem.out.println(x + y + \" is the sum\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Result: 7`\n`34 is the sum`"
+      },
+      {
+        "label": "B",
+        "text": "`Result: 34`\n`7 is the sum`"
+      },
+      {
+        "label": "C",
+        "text": "`Result: 7`\n`7 is the sum`"
+      },
+      {
+        "label": "D",
+        "text": "`Result: 34`\n`34 is the sum`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The `+` operator evaluates left-to-right: `\"Result: \" + x` produces `\"Result: 3\"`, then `+ y` appends 4 to yield `\"Result: 34\"`. In the second line, `x + y` is evaluated as integer addition (7) before a `String` is encountered, giving `\"7 is the sum\"`. Option A swaps the two behaviors. Option C applies integer addition to both lines. Option D applies String concatenation throughout both lines.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "Determine the output of the following code:\n\n```java\nString a = \"hello\";\nString b = new String(\"hello\");\nSystem.out.println(a.equals(b));\nSystem.out.println(a == b);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true`\n`true`"
+      },
+      {
+        "label": "B",
+        "text": "`false`\n`false`"
+      },
+      {
+        "label": "C",
+        "text": "`true`\n`false`"
+      },
+      {
+        "label": "D",
+        "text": "`false`\n`true`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`a.equals(b)` compares character content and returns `true` because both hold `\"hello\"`. `a == b` compares object references; `b` was created with `new String(...)`, so it is a distinct heap object and `a == b` is `false`. Option A incorrectly assumes `==` tests content equality. Option D swaps the behaviors of the two operators. Option B incorrectly claims `.equals()` returns `false`.",
+    "difficulty": 3,
+    "stem_pattern": "string_reference_equality"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"catalog\";\nint i = s.indexOf(\"a\");\nSystem.out.println(s.substring(i + 1, i + 3));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`ta`"
+      },
+      {
+        "label": "B",
+        "text": "`at`"
+      },
+      {
+        "label": "C",
+        "text": "`lo`"
+      },
+      {
+        "label": "D",
+        "text": "`tal`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`\"catalog\"` has indices 0\u20136; `indexOf(\"a\")` returns 1 (the first `'a'`). With `i = 1`, `substring(2, 4)` returns characters at indices 2 and 3 \u2014 `'t'` and `'a'` \u2014 giving `\"ta\"`. Option B results from treating `i` as 0 (incorrectly assuming `indexOf` returns the index before the first `'a'`). Option C results from treating `i` as 3 (the second `'a'`). Option D results from misreading the second argument of `substring` as a length rather than an exclusive end index.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "Consider the following code:\n\n```java\nString s1 = \"apple\";\nString s2 = \"cherry\";\nint result = s1.compareTo(s2);\n```\n\nWhich of the following best describes the value of `result`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`, because both strings contain at least five characters"
+      },
+      {
+        "label": "B",
+        "text": "A negative integer, because `\"apple\"` comes before `\"cherry\"` alphabetically"
+      },
+      {
+        "label": "C",
+        "text": "A positive integer, because `\"apple\"` has fewer characters than `\"cherry\"`"
+      },
+      {
+        "label": "D",
+        "text": "`true`, because `\"apple\"` is lexicographically less than `\"cherry\"`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`compareTo` compares strings character by character; at index 0, `'a'` (Unicode 97) is less than `'c'` (Unicode 99), so a negative integer is returned. Option A is wrong because `compareTo` returns 0 only when the strings are equal. Option C incorrectly bases the sign on string length rather than lexicographic order. Option D gives the wrong return type \u2014 `compareTo` returns an `int`, not a `boolean`.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "Determine the output of the following code:\n\n```java\nString word = \"computer\";\nString part = word.substring(1, 4);\nString result = part.substring(0, 1) + word.indexOf(\"t\") + word.substring(6);\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`o5er`"
+      },
+      {
+        "label": "B",
+        "text": "`omp5er`"
+      },
+      {
+        "label": "C",
+        "text": "`o6er`"
+      },
+      {
+        "label": "D",
+        "text": "`o5ter`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`part` is `\"omp\"`, so `part.substring(0, 1)` is `\"o\"`; `\"t\"` is at index 5 and `word.substring(6)` is `\"er\"`. The other choices use too much of `part`, an off-by-one index, or start the final substring too early.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_15",
+    "stem": "Which of the following represents the output that will be produced by the code?\n\n```java\nString a = \"book\";\nString b = new String(\"book\");\nString c = a;\nSystem.out.println((a == b) + \" \" + a.equals(b) + \" \" + (a == c));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true true true`"
+      },
+      {
+        "label": "B",
+        "text": "`false true true`"
+      },
+      {
+        "label": "C",
+        "text": "`false false true`"
+      },
+      {
+        "label": "D",
+        "text": "`true true false`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`a == b` is false because `b` refers to a different String object, but `a.equals(b)` is true because the text matches. `a == c` is true because `c` refers to the same object as `a`.",
+    "difficulty": 2,
+    "stem_pattern": "string_reference_equality"
+  }
+]

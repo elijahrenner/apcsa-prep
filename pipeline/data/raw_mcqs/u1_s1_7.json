@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "In Java, a library is best described as which of the following?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A special keyword used to make external code available in a program"
+      },
+      {
+        "label": "B",
+        "text": "A collection of pre-written classes that programmers can use in their programs"
+      },
+      {
+        "label": "C",
+        "text": "A built-in method that sends output to the console"
+      },
+      {
+        "label": "D",
+        "text": "A file that stores only primitive data values for later retrieval"
+      }
+    ],
+    "answer": "B",
+    "explanation": "A library is a collection of pre-written classes; its API documents how to use them. Option A describes the `import` statement. Option C describes `System.out.println`. Option D describes a data file, not a library.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 4;\nint y = 3;\nSystem.out.println(\"Result: \" + x + y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Result: 7`"
+      },
+      {
+        "label": "B",
+        "text": "`Result: 43`"
+      },
+      {
+        "label": "C",
+        "text": "`Result: 34`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because `int` values cannot be concatenated with a `String`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "String concatenation evaluates left-to-right. `\"Result: \" + x` produces `\"Result: 4\"` (a String), then `\"Result: 4\" + y` produces `\"Result: 43\"`. Option A would require parentheses `(x + y)` to force integer addition first. Option C reverses the order of x and y. Option D is incorrect; Java automatically converts any primitive to a String when concatenated with one.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "What is printed when the following code segment runs?\n\n```java\nString s = \"hello\";\ns.substring(1, 4);\nSystem.out.println(s);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`ell`"
+      },
+      {
+        "label": "B",
+        "text": "`hello`"
+      },
+      {
+        "label": "C",
+        "text": "`hell`"
+      },
+      {
+        "label": "D",
+        "text": "A run-time error is thrown because `substring` cannot be called without assigning the result."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Strings are immutable in Java. `s.substring(1, 4)` returns a new String `\"ell\"` but does not modify `s`. Because the return value is not assigned, it is discarded, and `s` still refers to `\"hello\"`. Option A is the value returned by `substring`, not what `s` holds. Option C is the result of `substring(0, 4)`. Option D is incorrect; discarding a return value is legal Java.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "What is the value of `result` after the following code runs?\n\n```java\nString word = \"programming\";\nint idx = word.indexOf(\"gram\");\nString result = word.substring(idx, idx + 4);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`\"prog\"`"
+      },
+      {
+        "label": "B",
+        "text": "`\"gram\"`"
+      },
+      {
+        "label": "C",
+        "text": "`\"ogra\"`"
+      },
+      {
+        "label": "D",
+        "text": "`\"ramm\"`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "In `\"programming\"` the characters are p(0)r(1)o(2)g(3)r(4)a(5)m(6)m(7)i(8)n(9)g(10). `indexOf(\"gram\")` returns 3 because g,r,a,m begins at index 3. `substring(3, 7)` yields characters at indices 3\u20136: `\"gram\"`. Option A is `substring(0, 4)`. Option C results from starting at index 2. Option D results from starting at index 4 (off by one from `idx`).",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "What is printed when the following code segment runs?\n\n```java\nSystem.out.print(\"AP \");\nSystem.out.println(\"CS\");\nSystem.out.print(\"A\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`AP CS A` on a single line"
+      },
+      {
+        "label": "B",
+        "text": "`AP ` on the first line, `CS` on the second line, `A` on the third line"
+      },
+      {
+        "label": "C",
+        "text": "`AP CS` on the first line, then `A` on the second line"
+      },
+      {
+        "label": "D",
+        "text": "`AP` on the first line, then `CS A` on the second line"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`System.out.print` outputs its argument without a trailing newline. `System.out.println` outputs its argument and then moves to a new line. Therefore `\"AP \"` and `\"CS\"` appear together on the first line (with `println` supplying the newline after `\"CS\"`), and `\"A\"` appears at the start of the second line. Option B incorrectly assumes `print` also advances to a new line.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Consider the following code:\n\n```java\nString s1 = \"hello\";\nString s2 = new String(\"hello\");\nSystem.out.println(s1.equals(s2));\nSystem.out.println(s1 == s2);\n```\n\nWhat is the output?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true`\n`true`"
+      },
+      {
+        "label": "B",
+        "text": "`false`\n`false`"
+      },
+      {
+        "label": "C",
+        "text": "`true`\n`false`"
+      },
+      {
+        "label": "D",
+        "text": "`false`\n`true`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`s1.equals(s2)` compares character content and returns `true` because both strings contain `\"hello\"`. `s1 == s2` compares object references: `s1` points to the interned string literal while `s2` points to a separately allocated object created with `new`, so `==` returns `false`. Option A incorrectly assumes `==` also tests content. Option D reverses both results.",
+    "difficulty": 3,
+    "stem_pattern": "string_reference_equality"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Consider the following expression:\n\n```java\nint result = (int)(Math.random() * 6) + 1;\n```\n\nWhich of the following correctly states the range of possible values for `result`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "0 to 5, inclusive"
+      },
+      {
+        "label": "B",
+        "text": "1 to 6, inclusive"
+      },
+      {
+        "label": "C",
+        "text": "0 to 6, inclusive"
+      },
+      {
+        "label": "D",
+        "text": "1 to 7, inclusive"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`Math.random()` returns a value in [0.0, 1.0), so multiplying by 6 gives [0.0, 6.0). Casting to `int` truncates to {0, 1, 2, 3, 4, 5}. Adding 1 shifts the set to {1, 2, 3, 4, 5, 6}. Option A omits the +1 offset. Option C incorrectly includes 6 before the offset is applied (the cast can never produce 6 from [0.0, 6.0)). Option D results from thinking the maximum of `Math.random() * 6` can equal 6.0.",
+    "difficulty": 3,
+    "stem_pattern": "random_range_calculation"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "What is printed when the following code segment runs?\n\n```java\ndouble x = Math.pow(2, 4);\ndouble y = Math.sqrt(x);\nSystem.out.println((int) y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`4.0`"
+      },
+      {
+        "label": "D",
+        "text": "`16`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`Math.pow(2, 4)` returns `16.0`. `Math.sqrt(16.0)` returns `4.0`. Casting `4.0` to `int` yields the integer `4`, which `println` prints as `4` (not `4.0`). Option C would appear if the cast to `int` were absent. Option D is the value of `x` before the square root. Option A confuses the base of the exponentiation with the result.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "A programmer has a `String` variable named `word`. Which of the following correctly calls the `length` method on `word`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`String.length(word)`"
+      },
+      {
+        "label": "B",
+        "text": "`word.length()`"
+      },
+      {
+        "label": "C",
+        "text": "`length(word)`"
+      },
+      {
+        "label": "D",
+        "text": "`word.length`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Instance methods are called using dot notation: `objectName.methodName()`. Option A incorrectly treats `length` as a static method of the `String` class (static methods belong to no particular instance). Option C omits the receiver object entirely. Option D is missing the parentheses required for a method call, making it look like a field access rather than a method invocation.",
+    "difficulty": 1,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "What is the value of `len` after the following code runs?\n\n```java\nString s = \"computer science\";\nint n = s.indexOf(\"science\");\nString t = s.substring(0, n - 1);\nint len = t.length();\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`7`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`9`"
+      },
+      {
+        "label": "D",
+        "text": "`16`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "In `\"computer science\"`, `indexOf(\"science\")` returns 9 (the `'s'` of `\"science\"` is at index 9). `substring(0, 9 - 1)` = `substring(0, 8)` extracts characters at indices 0\u20137, yielding `\"computer\"`. `\"computer\".length()` is 8. Option A results from using `n - 2` as the end bound. Option C results from using `n` (which would include the space before `\"science\"`). Option D is the total length of the original string.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "A programmer writes the following code to test whether a `String` variable `name` holds `\"Alice\"`:\n\n```java\nif (name == \"Alice\") {\n    System.out.println(\"Found\");\n}\n```\n\nWhich of the following best explains why this code is problematic?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`==` causes a compile-time error when applied to `String` variables."
+      },
+      {
+        "label": "B",
+        "text": "`==` compares object references rather than String content, so the result is unreliable."
+      },
+      {
+        "label": "C",
+        "text": "String literals must be enclosed in single quotes, not double quotes."
+      },
+      {
+        "label": "D",
+        "text": "`System.out.println` cannot appear inside an `if` block."
+      }
+    ],
+    "answer": "B",
+    "explanation": "`==` tests whether two variables refer to the same object in memory. A `String` variable holding `\"Alice\"` may or may not share the same reference as the literal `\"Alice\"` depending on JVM string interning, making the comparison unreliable. The correct approach is `name.equals(\"Alice\")`. Options A and D describe non-existent Java restrictions; Option C is false \u2014 Java String literals always use double quotes.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "What is printed when the following code runs?\n\n```java\nint a = 2;\nint b = 3;\nSystem.out.println(a + b + \" is the answer\");\nSystem.out.println(\"The answer is \" + a + b);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5 is the answer`\n`The answer is 5`"
+      },
+      {
+        "label": "B",
+        "text": "`5 is the answer`\n`The answer is 23`"
+      },
+      {
+        "label": "C",
+        "text": "`23 is the answer`\n`The answer is 5`"
+      },
+      {
+        "label": "D",
+        "text": "`23 is the answer`\n`The answer is 23`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The `+` operator evaluates left-to-right. Line 1: `a + b` is evaluated first as integer addition (2 + 3 = 5) because both operands are `int`, then `5 + \" is the answer\"` concatenates to `\"5 is the answer\"`. Line 2: `\"The answer is \" + a` produces `\"The answer is 2\"` (String concat), then appending `b` yields `\"The answer is 23\"`. The position of the String operand relative to the integers controls whether `+` performs arithmetic or concatenation.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Which of the following best describes an API in the context of a Java library?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A type of syntax error produced when a method is called with the wrong number of arguments"
+      },
+      {
+        "label": "B",
+        "text": "A specification that documents the classes, methods, and parameters a library provides so programmers know how to use them"
+      },
+      {
+        "label": "C",
+        "text": "An integrated development environment used to compile and run Java programs"
+      },
+      {
+        "label": "D",
+        "text": "A special keyword used to bring an external package into scope"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An API (Application Programming Interface) is a specification describing what a library offers and how to call it \u2014 not the implementation itself. An IDE (C) is the editing/compiling tool; the keyword in D is `import`; A describes a compiler error, not an API.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Which package is automatically imported in every Java program, making classes such as `String`, `Math`, `Integer`, and `Double` available without an explicit `import` statement?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`java.util`"
+      },
+      {
+        "label": "B",
+        "text": "`java.io`"
+      },
+      {
+        "label": "C",
+        "text": "`java.lang`"
+      },
+      {
+        "label": "D",
+        "text": "`java.awt`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`java.lang` is the one package imported automatically in every Java program. `java.util` (ArrayList, Scanner), `java.io` (File, IOException), and `java.awt` all require explicit import statements.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"programming\";\nint idx = s.indexOf(\"gram\");\nSystem.out.println(s.substring(idx, idx + 4));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`prog`"
+      },
+      {
+        "label": "B",
+        "text": "`gram`"
+      },
+      {
+        "label": "C",
+        "text": "`gramm`"
+      },
+      {
+        "label": "D",
+        "text": "`ramm`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`indexOf(\"gram\")` returns 3 (the index where `\"gram\"` first appears in `\"programming\"`). `substring(3, 7)` returns characters at indices 3\u20136, which is `\"gram\"`. Option A results from taking `substring(0, idx)`. Option C uses end index `idx + 5` instead of `idx + 4`. Option D results from a start-index off-by-one of `idx + 1`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Which of the following is the correct syntax for calling the `sqrt` method from the `Math` class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Math m = new Math(); double r = m.sqrt(16.0);`"
+      },
+      {
+        "label": "B",
+        "text": "`double r = Math.sqrt(16.0);`"
+      },
+      {
+        "label": "C",
+        "text": "`double r = sqrt(16.0);`"
+      },
+      {
+        "label": "D",
+        "text": "`double r = math.sqrt(16.0);`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`Math` provides only static methods, all called via `ClassName.methodName()` \u2014 no instance is needed or expected. Option A incorrectly attempts to instantiate `Math`. Option C omits the required class-name prefix. Option D uses `math` (lowercase), which is not the class name; Java identifiers are case-sensitive.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "A student writes the following code intending to count the integers stored in `\"numbers.txt\"`:\n\n```java\nFile f = new File(\"numbers.txt\");\nScanner sc = new Scanner(f);\nint count = 0;\nwhile (f.hasNextInt()) {\n    sc.nextInt();\n    count++;\n}\nsc.close();\nSystem.out.println(count);\n```\n\nWhich of the following identifies the error in this code?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`sc.close()` must be called before the `while` loop begins."
+      },
+      {
+        "label": "B",
+        "text": "`f.hasNextInt()` should be `sc.hasNextInt()` because `hasNextInt` is a `Scanner` method, not a `File` method."
+      },
+      {
+        "label": "C",
+        "text": "`count` should be initialized to `1` because the first integer is consumed before the loop runs."
+      },
+      {
+        "label": "D",
+        "text": "`sc.nextInt()` should be replaced with `sc.next()` because integers cannot be read directly from a file scanner."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The `File` class has no `hasNextInt()` method; token-reading methods (`hasNextInt()`, `nextInt()`, `hasNext()`, `next()`) all belong to `Scanner`. The loop guard must be `sc.hasNextInt()`. Option A is wrong \u2014 closing the scanner before reading would prevent any input from being consumed. Option C is wrong \u2014 `count` correctly starts at 0 since no integer has been read yet. Option D is wrong \u2014 `nextInt()` is a valid `Scanner` method on the Java Quick Reference and correctly reads integer tokens.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Which of the following best describes an API (Application Programming Interface) in the context of a Java library?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The compiled `.class` bytecode files that make up a Java library"
+      },
+      {
+        "label": "B",
+        "text": "A specification that describes the available classes and methods in a library and how to use them"
+      },
+      {
+        "label": "C",
+        "text": "The IDE plugin that provides syntax highlighting and code completion for a library"
+      },
+      {
+        "label": "D",
+        "text": "The compiler settings that determine which library version is linked to a program"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An API documents how to use a library \u2014 its available classes, method signatures, parameters, and return values \u2014 without revealing the internal implementation. The compiled bytecode (A) is the implementation itself, not the API. An IDE plugin (C) is a development tool. Compiler/linker settings (D) are build configuration, not an API.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Which of the following packages is automatically imported into every Java program, making classes such as `String`, `Math`, and `System` available without an explicit `import` statement?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`java.util`"
+      },
+      {
+        "label": "B",
+        "text": "`java.io`"
+      },
+      {
+        "label": "C",
+        "text": "`java.lang`"
+      },
+      {
+        "label": "D",
+        "text": "`java.awt`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`java.lang` is automatically imported into every Java program and contains foundational classes like `String`, `Math`, `Integer`, `Double`, `System`, and `Object`. `java.util` (Scanner, ArrayList), `java.io` (file I/O), and `java.awt` (GUI) all require explicit `import` statements.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "A programmer wants to compute the square root of the `double` variable `num`. Which of the following correctly calls the appropriate method from the `Math` class?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`Math m = new Math(); double result = m.sqrt(num);`"
+      },
+      {
+        "label": "B",
+        "text": "`double result = sqrt(num);`"
+      },
+      {
+        "label": "C",
+        "text": "`double result = Math.sqrt(num);`"
+      },
+      {
+        "label": "D",
+        "text": "`double result = num.sqrt();`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`Math.sqrt` is a static method, so it is called using the class name as a qualifier: `Math.sqrt(num)`. Option A incorrectly attempts to instantiate `Math` with `new Math()` \u2014 the `Math` class has no public constructor. Option B omits the required class-name qualifier. Option D uses `num`, a `double` primitive, as if it were an object with an instance method `sqrt`, which is not valid.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"programming\";\nSystem.out.println(s.length());\nSystem.out.println(s.substring(3, 7));\nSystem.out.println(s.indexOf(\"gram\"));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`11`\n`gram`\n`3`"
+      },
+      {
+        "label": "B",
+        "text": "`10`\n`gramm`\n`3`"
+      },
+      {
+        "label": "C",
+        "text": "`11`\n`gram`\n`4`"
+      },
+      {
+        "label": "D",
+        "text": "`11`\n`ramm`\n`3`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "\"programming\" has 11 characters (indices 0\u201310), so `length()` returns 11. `substring(3, 7)` returns characters at indices 3, 4, 5, 6 \u2014 'g', 'r', 'a', 'm' \u2014 giving \"gram\" (the to-index 7 is excluded). `indexOf(\"gram\")` returns 3, the starting index of the first match. Option B uses 10 (off-by-one for length) and \"gramm\" (treating the endpoint as inclusive). Option C gives `indexOf` as 4 (off-by-one). Option D starts `substring` at index 4 instead of 3, yielding \"ramm\".",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Determine the values of `part` and `pos` after the following code runs.\n\n```java\nString word = \"butterfly\";\nString part = word.substring(0, 4);\nint pos = word.indexOf(\"fly\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`part = \"butt\"`, `pos = 6`"
+      },
+      {
+        "label": "B",
+        "text": "`part = \"butte\"`, `pos = 6`"
+      },
+      {
+        "label": "C",
+        "text": "`part = \"butt\"`, `pos = 7`"
+      },
+      {
+        "label": "D",
+        "text": "`part = \"butter\"`, `pos = -1`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In \"butterfly\" (indices 0\u20138), `substring(0, 4)` returns characters at indices 0\u20133 \u2014 'b', 'u', 't', 't' \u2014 giving \"butt\" (to-index 4 is excluded). The substring \"fly\" begins at index 6 ('f'=6, 'l'=7, 'y'=8), so `indexOf(\"fly\")` returns 6. Option B treats the endpoint as inclusive (returning 5 characters). Option C returns `pos = 7`, one index too high. Option D incorrectly concludes \"fly\" is absent (returning -1).",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Determine the output of the following code:\n\n```java\ndouble x = Math.pow(4, 2);\nSystem.out.println(x);\nSystem.out.println((int) x);\nSystem.out.println(Math.sqrt(x));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`16.0`\n`16`\n`4.0`"
+      },
+      {
+        "label": "B",
+        "text": "`16`\n`16`\n`4`"
+      },
+      {
+        "label": "C",
+        "text": "`16.0`\n`16.0`\n`4.0`"
+      },
+      {
+        "label": "D",
+        "text": "`16.0`\n`16`\n`4`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`Math.pow(4, 2)` returns `16.0` (always a `double`), so the first `println` prints `16.0`. Casting `(int) x` converts 16.0 to the integer 16, so the second `println` prints `16`. `Math.sqrt(16.0)` returns `4.0` (always a `double`), so the third `println` prints `4.0`. Option B ignores that `Math.pow` and `Math.sqrt` return `double`. Option C ignores the `(int)` cast, printing `16.0` instead of `16` on the second line. Option D correctly handles the first two lines but incorrectly prints `4` for `Math.sqrt`, which always returns `double`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Which statement best describes a Java library and its API?",
+    "options": [
+      {
+        "label": "A",
+        "text": "A library is a collection of prewritten classes, and an API describes how programmers can use those classes."
+      },
+      {
+        "label": "B",
+        "text": "A library is the source code for one class, and an API is the bytecode produced by the compiler."
+      },
+      {
+        "label": "C",
+        "text": "A library is used only for printing output, and an API is used only for reading input."
+      },
+      {
+        "label": "D",
+        "text": "A library is a syntax error report, and an API is a run-time error report."
+      }
+    ],
+    "answer": "A",
+    "explanation": "A library provides reusable classes, and an API documents how to call their constructors and methods. The other choices confuse libraries and APIs with compilation, input/output, or error reporting.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_7",
+    "stem": "Determine the output of the following code:\n\n```java\ndouble x = Math.pow(2, 3);\nint y = Math.abs(-5);\ndouble z = Math.sqrt(16);\n\nSystem.out.print(x + \" \");\nSystem.out.print(y + z);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`8 9`"
+      },
+      {
+        "label": "B",
+        "text": "`8.0 9.0`"
+      },
+      {
+        "label": "C",
+        "text": "`6.0 9.0`"
+      },
+      {
+        "label": "D",
+        "text": "`8.0 54.0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`Math.pow(2, 3)` returns `8.0`, `Math.abs(-5)` returns `5`, and `Math.sqrt(16)` returns `4.0`, so `y + z` is `9.0`. The other options use incorrect return types, arithmetic, or string concatenation order.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  }
+]

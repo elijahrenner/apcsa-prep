@@ -1,0 +1,600 @@
+[
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "What is printed as a result of executing the following code?\n\n```java\nArrayList<String> names = new ArrayList<String>();\nnames.add(\"Ana\");\nnames.add(\"Bob\");\nnames.add(\"Cal\");\n\nfor (String s : names) {\n    System.out.print(s.substring(0, 1));\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`AnaBobCal`"
+      },
+      {
+        "label": "B",
+        "text": "`A B C`"
+      },
+      {
+        "label": "C",
+        "text": "`ABC`"
+      },
+      {
+        "label": "D",
+        "text": "`A`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`s.substring(0, 1)` extracts only the first character of each String, and `System.out.print` (not `println`) appends them without spaces or newlines, so all three elements produce \"ABC\" consecutively. A would result if the full name were printed; B adds spaces the code never produces; D implies the loop exited after only the first element.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "A class `Item` has an instance method `getValue()` that returns an `int`. An `ArrayList<Item>` named `inventory` has been declared and populated. Which of the following correctly computes the sum of all values in `inventory`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nint sum = 0;\nfor (Item it : inventory) {\n    sum += it.getValue();\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nint sum = 0;\nfor (Item it : inventory) {\n    sum += inventory.getValue();\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint sum = 0;\nfor (int i = 0; i <= inventory.size(); i++) {\n    sum += inventory.get(i).getValue();\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nint sum = 0;\nfor (Item it : inventory) {\n    sum += Item.getValue();\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Option A correctly calls `getValue()` on each retrieved `Item` element `it`. Option B calls `getValue()` on the `ArrayList` object itself, which has no such method. Option C uses `<= inventory.size()` so when `i` reaches `inventory.size()`, `inventory.get(i)` throws an `IndexOutOfBoundsException`. Option D attempts to invoke `getValue()` as a static method using the class name, which is invalid for an instance method.",
+    "difficulty": 3,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "What are the contents of `list` after the following code executes?\n\n```java\nArrayList<Integer> list = new ArrayList<Integer>();\nlist.add(1);\nlist.add(2);\nlist.add(2);\nlist.add(3);\n\nfor (int i = 0; i < list.size(); i++) {\n    if (list.get(i) % 2 == 0) {\n        list.remove(i);\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`[1, 3]`"
+      },
+      {
+        "label": "B",
+        "text": "`[1, 2, 3]`"
+      },
+      {
+        "label": "C",
+        "text": "`[1, 2, 2, 3]`"
+      },
+      {
+        "label": "D",
+        "text": "An `IndexOutOfBoundsException` is thrown"
+      }
+    ],
+    "answer": "B",
+    "explanation": "When `i = 1`, `list.get(1)` is `2` (even), so `list.remove(1)` executes and the second `2` shifts from index 2 to index 1. `i` then increments to 2, where `list.get(2)` is now `3`, so the shifted second `2` is never examined. The final list is `[1, 2, 3]`. Option A is what a correct removal loop would produce; C results if no elements are removed; D is wrong because `i < list.size()` dynamically adapts as the list shrinks, preventing out-of-bounds access.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "An `ArrayList<Integer>` named `data` contains five elements. Which of the following loop headers will cause an `IndexOutOfBoundsException` at runtime when `data.get(i)` is called inside the loop body?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`for (int i = 0; i < data.size(); i++)`"
+      },
+      {
+        "label": "B",
+        "text": "`for (int i = 0; i <= data.size() - 1; i++)`"
+      },
+      {
+        "label": "C",
+        "text": "`for (int i = 0; i <= data.size(); i++)`"
+      },
+      {
+        "label": "D",
+        "text": "`for (int i = data.size() - 1; i >= 0; i--)`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Valid indices for a 5-element ArrayList are 0 through 4. Option C uses `i <= data.size()` (i.e., `i <= 5`), so when `i` reaches 5, `data.get(5)` throws `IndexOutOfBoundsException`. Options A and B are equivalent\u2014both stop at the last valid index 4 (`data.size() - 1`). Option D correctly traverses in reverse from index 4 down to 0 without ever going out of bounds.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "What is printed as a result of executing the following code?\n\n```java\nArrayList<Integer> vals = new ArrayList<Integer>();\nvals.add(3);\nvals.add(7);\nvals.add(2);\nvals.add(8);\nvals.add(1);\n\nint count = 0;\nfor (int i = 0; i < vals.size() - 1; i++) {\n    if (vals.get(i) > vals.get(i + 1)) {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "An `IndexOutOfBoundsException` is thrown"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop runs for `i` = 0, 1, 2, 3 (stopping when `i < 4`). Comparing adjacent pairs: 3 > 7? No; 7 > 2? Yes (count = 1); 2 > 8? No; 8 > 1? Yes (count = 2). The bound `i < vals.size() - 1` ensures `vals.get(i + 1)` is always a valid access. Option A reflects finding only one descending pair; C overcounts; D is wrong because the loop bound prevents any out-of-bounds index.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Which of the following most accurately describes when a `ConcurrentModificationException` is thrown during ArrayList traversal?",
+    "options": [
+      {
+        "label": "A",
+        "text": "An element is accessed at an index equal to `list.size()` using `list.get()`"
+      },
+      {
+        "label": "B",
+        "text": "A `null` element is retrieved from the ArrayList and a method is called on it"
+      },
+      {
+        "label": "C",
+        "text": "An element is added to or removed from the ArrayList while an enhanced for loop is iterating over it"
+      },
+      {
+        "label": "D",
+        "text": "An element is added to or removed from the ArrayList while a standard indexed for loop is iterating over it"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Java's enhanced for loop uses an internal iterator that detects structural changes (additions or removals that alter the list's size) and immediately throws `ConcurrentModificationException`. Option A causes `IndexOutOfBoundsException`; Option B causes `NullPointerException`; Option D is incorrect\u2014structural modifications inside a standard indexed for loop do not throw this exception, though they may cause elements to be inadvertently skipped.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Determine the output of the following code segment.\n\n```java\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(3);\nnums.add(6);\nnums.add(9);\nnums.add(12);\n\nfor (int i = 0; i < nums.size(); i++)\n{\n    if (nums.get(i) % 6 == 0)\n    {\n        nums.set(i, nums.get(i) / 3);\n    }\n}\n\nSystem.out.print(nums);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`[3, 2, 9, 4]`"
+      },
+      {
+        "label": "B",
+        "text": "`[1, 2, 3, 4]`"
+      },
+      {
+        "label": "C",
+        "text": "`[3, 6, 9, 12]`"
+      },
+      {
+        "label": "D",
+        "text": "`[2, 4]`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Only values divisible by 6 are changed, so 6 becomes 2 and 12 becomes 4. The other options either change all values, change none, or keep only the changed values.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Determine the output of the following code segment.\n\n```java\nArrayList<String> words = new ArrayList<String>();\nwords.add(\"at\");\nwords.add(\"be\");\nwords.add(\"cat\");\nwords.add(\"do\");\nwords.add(\"egg\");\n\nfor (int i = 0; i < words.size(); i++)\n{\n    if (words.get(i).length() == 2)\n    {\n        words.remove(i);\n    }\n}\n\nSystem.out.print(words);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`[cat, egg]`"
+      },
+      {
+        "label": "B",
+        "text": "`[be, cat, egg]`"
+      },
+      {
+        "label": "C",
+        "text": "`[cat, do, egg]`"
+      },
+      {
+        "label": "D",
+        "text": "`[at, be, cat, do, egg]`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "After `at` is removed, `be` shifts to index 0 and is skipped when `i` increments to 1. `do` is later removed, leaving `[be, cat, egg]`.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Which of the following can replace `/* missing code */` so that `count` is the number of strings in `items` that start with `\"a\"`?\n\n```java\nArrayList<String> items = new ArrayList<String>();\nitems.add(\"ant\");\nitems.add(\"bear\");\nitems.add(\"apple\");\nitems.add(\"cat\");\n\nint count = 0;\n/* missing code */\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (String s : items)\n{\n    if (s.substring(0, 1).equals(\"a\"))\n    {\n        count++;\n    }\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (String s : items)\n{\n    if (items.get(0).substring(0, 1).equals(\"a\"))\n    {\n        count++;\n    }\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int i = 1; i < items.size(); i++)\n{\n    if (items.get(i).substring(0, 1).equals(\"a\"))\n    {\n        count++;\n    }\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int i = 0; i < items.size() - 1; i++)\n{\n    if (items.get(i).equals(\"a\"))\n    {\n        count++;\n    }\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Option A correctly visits every element and checks its first one-character substring. B checks only the first element repeatedly, C skips index 0, and D compares the whole string to `\"a\"` and skips the last element.",
+    "difficulty": 3,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Consider the following method.\n\n```java\npublic static int findFirstLong(ArrayList<String> list)\n{\n    for (int i = 0; i < list.size(); i++)\n    {\n        if (list.get(i).length() > 4)\n        {\n            return i;\n        }\n    }\n    return -1;\n}\n```\n\nWhat is returned by `findFirstLong` when `list` contains `[\"sun\", \"moon\", \"stars\", \"sky\"]`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`-1`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`\"stars\"` is the first string whose length is greater than 4, and it is at index 2. The other options reflect the position of shorter strings or missing the match.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Which statement about traversing an `ArrayList<Integer>` is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "An indexed `for` loop can access both an element and its index."
+      },
+      {
+        "label": "B",
+        "text": "An enhanced `for` loop gives direct access to each element's index."
+      },
+      {
+        "label": "C",
+        "text": "`list.length` gives the number of elements in an `ArrayList`."
+      },
+      {
+        "label": "D",
+        "text": "`list[i]` is used to access the element at index `i`."
+      }
+    ],
+    "answer": "A",
+    "explanation": "An indexed loop uses `i`, so it can use both `i` and `list.get(i)`. Enhanced loops do not provide the index, and ArrayLists use `size()` and `get(i)`, not `length` or bracket access.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Determine the value of `sum` after the following code segment runs.\n\n```java\nArrayList<Integer> vals = new ArrayList<Integer>();\nvals.add(4);\nvals.add(7);\nvals.add(10);\nvals.add(13);\n\nint sum = 0;\nfor (Integer n : vals)\n{\n    if (n % 2 == 0)\n    {\n        sum += n;\n    }\n    n = 0;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`14`"
+      },
+      {
+        "label": "C",
+        "text": "`21`"
+      },
+      {
+        "label": "D",
+        "text": "`34`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop adds only the even values, 4 and 10, for a sum of 14. Assigning `n = 0` changes only the loop variable, not the elements in `vals`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Determine the output of the following code segment.\n\n```java\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(2);\nnums.add(5);\nnums.add(4);\nnums.add(7);\n\nfor (int i = 0; i < nums.size(); i++)\n{\n    if (nums.get(i) % 2 == 0)\n    {\n        System.out.print(nums.get(i) + \" \");\n    }\n    else\n    {\n        nums.set(i, nums.get(i) - 1);\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 4 `"
+      },
+      {
+        "label": "B",
+        "text": "`2 5 4 7 `"
+      },
+      {
+        "label": "C",
+        "text": "`2 4 4 6 `"
+      },
+      {
+        "label": "D",
+        "text": "`4 6 `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Only the original even values at indices 0 and 2 are printed. Odd values are changed with set, but they are not printed during those iterations.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Which of the following could replace `/* missing code */` so that `total` stores the sum of all values in `scores`?\n\n```java\nArrayList<Integer> scores = new ArrayList<Integer>();\nscores.add(8);\nscores.add(3);\nscores.add(6);\nint total = 0;\n\n/* missing code */\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int i = 0; i <= scores.size(); i++)\n{\n    total += scores.get(i);\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int i = 0; i < scores.size(); i++)\n{\n    total += scores.get(i);\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (Integer i : scores)\n{\n    total += scores.get(i);\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int i = 0; i < scores.length; i++)\n{\n    total += scores.get(i);\n}\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An ArrayList is traversed with indices from 0 through size() - 1, using get(i). Choice A goes one index too far, C treats each value as an index, and D uses array length syntax.",
+    "difficulty": 2,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "The following method is intended to remove every negative value from `vals`.\n\n```java\npublic static void removeNegatives(ArrayList<Integer> vals)\n{\n    int i = 0;\n    while (i < vals.size())\n    {\n        if (vals.get(i) < 0)\n        {\n            vals.remove(i);\n        }\n        else\n        {\n            i++;\n        }\n    }\n}\n```\n\nIf `vals` initially contains `4, -1, -3, 6, -2`, which values remain after the method is called?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4, 6`"
+      },
+      {
+        "label": "B",
+        "text": "`4, -3, 6`"
+      },
+      {
+        "label": "C",
+        "text": "`4, -1, 6`"
+      },
+      {
+        "label": "D",
+        "text": "`-1, -3, -2`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "When a negative value is removed, the next value shifts into the same index, so the code correctly does not increment `i` in that case. All negative values are removed.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "A `Book` class has a method `public int getPages()`. Given `ArrayList<Book> shelf`, which code segment correctly counts how many books have more than 300 pages?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nint count = 0;\nfor (Book b : shelf)\n{\n    if (b.getPages() > 300)\n    {\n        count++;\n    }\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nint count = 0;\nfor (ArrayList<Book> b : shelf)\n{\n    if (b.getPages() > 300)\n    {\n        count++;\n    }\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint count = 0;\nfor (int i = 0; i < shelf.size(); i++)\n{\n    if (shelf.getPages() > 300)\n    {\n        count++;\n    }\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nint count = 0;\nfor (int i = 1; i <= shelf.size(); i++)\n{\n    if (shelf.get(i).getPages() > 300)\n    {\n        count++;\n    }\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The enhanced for loop variable should be a `Book`, and the method is called on each `Book`. The other choices use the wrong loop variable type, call the method on the list, or use incorrect index bounds.",
+    "difficulty": 2,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Determine the output of the following code segment.\n\n```java\nArrayList<String> letters = new ArrayList<String>();\nletters.add(\"A\");\nletters.add(\"B\");\nletters.add(\"C\");\nletters.add(\"D\");\n\nfor (int i = letters.size() - 1; i >= 0; i--)\n{\n    if (i % 2 == 0)\n    {\n        System.out.print(letters.get(i));\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`AC`"
+      },
+      {
+        "label": "B",
+        "text": "`CA`"
+      },
+      {
+        "label": "C",
+        "text": "`DB`"
+      },
+      {
+        "label": "D",
+        "text": "`BD`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The traversal starts at index 3 and moves backward. The even indices encountered are 2 and then 0, so the printed values are `C` followed by `A`.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Determine the output of the following code segment.\n\n```java\nArrayList<String> words = new ArrayList<String>();\nwords.add(\"a\");\nwords.add(\"bb\");\nwords.add(\"c\");\nwords.add(\"dd\");\n\nfor (int i = 0; i < words.size(); i++)\n{\n    if (words.get(i).length() == 1)\n    {\n        words.remove(i);\n    }\n}\n\nfor (String w : words)\n{\n    System.out.print(w + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`bb dd `"
+      },
+      {
+        "label": "B",
+        "text": "`bb c dd `"
+      },
+      {
+        "label": "C",
+        "text": "`a bb dd `"
+      },
+      {
+        "label": "D",
+        "text": "`bb `"
+      }
+    ],
+    "answer": "A",
+    "explanation": "After removing `\"a\"`, `\"bb\"` shifts to index 0 and the loop moves to index 1, so `\"c\"` is then removed. The remaining elements are `\"bb\"` and `\"dd\"`; the other options reflect skipped or extra removals.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Assume `names` is an `ArrayList<String>` containing only nonempty strings. Which of the following code segments correctly counts the number of strings in `names` that begin with `\"A\"`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nint count = 0;\nfor (String n : names)\n{\n    if (n.substring(0, 1).equals(\"A\"))\n    {\n        count++;\n    }\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nint count = 0;\nfor (int i = 0; i <= names.size(); i++)\n{\n    if (names.get(i).substring(0, 1).equals(\"A\"))\n    {\n        count++;\n    }\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nint count = 0;\nfor (String n : names)\n{\n    if (names.substring(0, 1).equals(\"A\"))\n    {\n        count++;\n    }\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nint count = 0;\nfor (String n : names)\n{\n    if (n.substring(0, 1) == \"A\")\n    {\n        count++;\n    }\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Option A traverses each element and uses `.equals` to compare string contents. Option B goes out of bounds, option C calls `substring` on the list instead of an element, and option D uses reference equality for strings.",
+    "difficulty": 2,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Determine the final values of `total` and `nums` after the following code segment runs.\n\n```java\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(2);\nnums.add(4);\nnums.add(6);\nnums.add(8);\n\nint total = 0;\nfor (int i = nums.size() - 1; i >= 0; i--)\n{\n    if (nums.get(i) % 4 == 0)\n    {\n        nums.remove(i);\n    }\n    else\n    {\n        total += nums.get(i);\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`total = 8, nums = [2, 6]`"
+      },
+      {
+        "label": "B",
+        "text": "`total = 20, nums = [2, 4, 6, 8]`"
+      },
+      {
+        "label": "C",
+        "text": "`total = 6, nums = [2, 6]`"
+      },
+      {
+        "label": "D",
+        "text": "`total = 12, nums = [2, 4]`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop traverses backward, removing `8` and `4` while adding `6` and `2` to `total`. The final list is `[2, 6]`, and the sum is `8`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Which of the following code segments correctly removes all negative values from `values`, an `ArrayList<Integer>`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int i = values.size() - 1; i >= 0; i--)\n{\n    if (values.get(i) < 0)\n    {\n        values.remove(i);\n    }\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (Integer v : values)\n{\n    if (v < 0)\n    {\n        values.remove(v);\n    }\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int i = 0; i < values.size(); i++)\n{\n    if (values.get(i) < 0)\n    {\n        values.remove(i);\n    }\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int i = 0; i <= values.size(); i++)\n{\n    if (values.get(i) < 0)\n    {\n        values.remove(i);\n    }\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Traversing backward prevents removals from shifting unvisited elements into skipped positions. Option B changes the list during enhanced traversal, option C can skip consecutive negatives, and option D can access an invalid index.",
+    "difficulty": 3,
+    "stem_pattern": "arraylist_traversal"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Determine the output of the following code segment.\n\n```java\nArrayList<String> codes = new ArrayList<String>();\ncodes.add(\"AX\");\ncodes.add(\"B\");\ncodes.add(\"CY\");\ncodes.add(\"D\");\n\nString result = \"\";\nfor (int i = 0; i < codes.size(); i++)\n{\n    String current = codes.get(i);\n    if (current.length() == 1)\n    {\n        result += current;\n    }\n    else\n    {\n        result += current.substring(1);\n    }\n}\n\nSystem.out.print(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`XBYD`"
+      },
+      {
+        "label": "B",
+        "text": "`ABCD`"
+      },
+      {
+        "label": "C",
+        "text": "`AXBCYD`"
+      },
+      {
+        "label": "D",
+        "text": "`BYD`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "For two-character strings, the code appends the substring starting at index 1; for one-character strings, it appends the whole string. This produces `XBYD`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_9",
+    "stem": "Determine the output of the following code segment.\n\n```java\nArrayList<Integer> nums = new ArrayList<Integer>();\nnums.add(2);\nnums.add(4);\nnums.add(8);\nnums.add(10);\n\nfor (int k = 0; k < nums.size(); k++)\n{\n    if (nums.get(k) % 4 == 0)\n    {\n        nums.remove(k);\n    }\n}\n\nfor (int k = 0; k < nums.size(); k++)\n{\n    System.out.print(nums.get(k) + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 10 `"
+      },
+      {
+        "label": "B",
+        "text": "`2 8 10 `"
+      },
+      {
+        "label": "C",
+        "text": "`2 4 8 10 `"
+      },
+      {
+        "label": "D",
+        "text": "`4 8 `"
+      }
+    ],
+    "answer": "B",
+    "explanation": "When `4` is removed at index 1, `8` shifts into index 1, but `k` is then incremented to 2, so `8` is skipped. The remaining values printed are `2 8 10 `.",
+    "difficulty": 3,
+    "stem_pattern": "arraylist_traversal"
+  }
+]

@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "What is the output of the following code segment?\n\n```java\nString s = \"hello\";\nString result = \"\";\nfor (int i = 0; i < s.length(); i++) {\n    result = s.substring(i, i + 1) + result;\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`hello`"
+      },
+      {
+        "label": "B",
+        "text": "`olleh`"
+      },
+      {
+        "label": "C",
+        "text": "`lohel`"
+      },
+      {
+        "label": "D",
+        "text": "`lelho`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Each iteration prepends the character at index i to result, building the string in reverse: after 5 iterations result becomes \"olleh\". Option A results from appending (result += ch) rather than prepending; options C and D are not producible by any systematic execution of this loop.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "What is the output of the following code segment?\n\n```java\nString word = \"programming\";\nint count = 0;\nfor (int i = 0; i < word.length(); i++) {\n    String ch = word.substring(i, i + 1);\n    if (ch.equals(\"a\") || ch.equals(\"e\") || ch.equals(\"i\") ||\n            ch.equals(\"o\") || ch.equals(\"u\")) {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`11`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The string \"programming\" contains exactly three lowercase vowels: 'o' at index 2, 'a' at index 5, and 'i' at index 8, so count reaches 3. Option A reflects missing one vowel; option C reflects an overcount; option D is the total length of the string.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "Consider the following code segment:\n\n```java\nString s = \"Java\";\nfor (int i = 0; i <= s.length(); i++) {\n    System.out.print(s.substring(i, i + 1));\n}\n```\n\nWhich of the following best describes the behavior of this code?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The code prints `Java` with no errors."
+      },
+      {
+        "label": "B",
+        "text": "The code prints `Java` followed by an empty string."
+      },
+      {
+        "label": "C",
+        "text": "The code throws an exception at runtime because the loop condition uses `<=` instead of `<`."
+      },
+      {
+        "label": "D",
+        "text": "The code prints `avaJ`."
+      }
+    ],
+    "answer": "C",
+    "explanation": "When i equals s.length() (4 for \"Java\"), the call substring(4, 5) attempts to use an endpoint of 5 on a string of length 4, causing a StringIndexOutOfBoundsException. The correct bound is i < s.length(). Option D would require a reverse traversal (decrementing i).",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "What is the value of `count` after the following code executes?\n\n```java\nString s = \"banana\";\nint count = 0;\nint i = 0;\nwhile (i < s.length()) {\n    if (s.substring(i, i + 1).equals(\"a\")) {\n        count++;\n    }\n    i++;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The string \"banana\" has 'a' at indices 1, 3, and 5, so count is incremented three times. Option A reflects an undercount of one occurrence; option D is the total length of the string.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "The AP Java Quick Reference does not include `String.charAt()`. Which of the following correctly extracts the single character at index `i` from a String variable `s`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`s.charAt(i)`"
+      },
+      {
+        "label": "B",
+        "text": "`s.indexOf(i)`"
+      },
+      {
+        "label": "C",
+        "text": "`s.substring(i)`"
+      },
+      {
+        "label": "D",
+        "text": "`s.substring(i, i + 1)`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`substring(i, i + 1)` returns the one-character String at index i. Option A uses charAt, which is not on the Quick Reference. Option B requires a String argument, not an int index. Option C returns the suffix from index i all the way to the end of the string.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "What is the output of the following code segment?\n\n```java\nString s = \"abcde\";\nString result = \"\";\nfor (int i = 0; i < s.length(); i += 2) {\n    result += s.substring(i, i + 1);\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`abcde`"
+      },
+      {
+        "label": "B",
+        "text": "`bd`"
+      },
+      {
+        "label": "C",
+        "text": "`ace`"
+      },
+      {
+        "label": "D",
+        "text": "`ac`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop visits i = 0, 2, 4, collecting characters 'a', 'c', and 'e', producing \"ace\". Option A results from incrementing i by 1 instead of 2. Option B results from starting at i = 1 (odd indices). Option D results from using i < s.length() - 1 as the bound, which stops one iteration too soon.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "What is the output of the following code segment?\n\n```java\nString s = \"mississippi\";\nint count = 0;\nfor (int i = 0; i < s.length() - 1; i++) {\n    if (s.substring(i, i + 2).equals(\"ss\")) {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop checks every consecutive two-character pair. In \"mississippi\", the pair \"ss\" appears at index 2 and again at index 5, so count reaches 2. Option D likely reflects counting all four 's' characters individually rather than the specific two-character substring \"ss\".",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "What is the output of the following code segment?\n\n```java\nString s = \"Hello, World!\";\nString vowels = \"\";\nfor (int i = 0; i < s.length(); i++) {\n    String ch = s.substring(i, i + 1);\n    if (ch.equals(\"a\") || ch.equals(\"e\") || ch.equals(\"i\") ||\n            ch.equals(\"o\") || ch.equals(\"u\") ||\n            ch.equals(\"A\") || ch.equals(\"E\") || ch.equals(\"I\") ||\n            ch.equals(\"O\") || ch.equals(\"U\")) {\n        vowels += ch;\n    }\n}\nSystem.out.println(vowels);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`eo`"
+      },
+      {
+        "label": "B",
+        "text": "`eoo`"
+      },
+      {
+        "label": "C",
+        "text": "`Eoo`"
+      },
+      {
+        "label": "D",
+        "text": "`eooO`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The string \"Hello, World!\" contains vowels 'e' (index 1), 'o' (index 4 in \"Hello\"), and 'o' (index 8 counting from start, inside \"World\"), yielding \"eoo\". Option A omits the second 'o'. Option C incorrectly capitalizes 'e'; note 'H' is not a vowel check. Option D invents a capital 'O' not present in the string.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "What does the expression `\"computer\".substring(3)` evaluate to?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`\"comp\"`"
+      },
+      {
+        "label": "B",
+        "text": "`\"put\"`"
+      },
+      {
+        "label": "C",
+        "text": "`\"puter\"`"
+      },
+      {
+        "label": "D",
+        "text": "`\"compu\"`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`substring(from)` returns every character from index `from` through the end of the string. In \"computer\", index 3 holds 'p', so the result is \"puter\". Option A would require substring(0, 3). Option B would require substring(3, 6). Option D would require substring(0, 5).",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "What is the output of the following code segment?\n\n```java\nString s = \"ABRACADABRA\";\nint count = 0;\nfor (int i = 0; i < s.length(); i++) {\n    if (s.substring(i, i + 1).equals(\"A\")) {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`6`"
+      },
+      {
+        "label": "D",
+        "text": "`11`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "In \"ABRACADABRA\" (length 11), 'A' appears at indices 0, 3, 5, 7, and 10 for a total of 5 occurrences. Option A reflects an off-by-one undercount. Option D is the total string length, which a student might print if they accidentally printed s.length() instead of count.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "A programmer intends to print the reverse of `\"apple\"` but the code below contains a bug:\n\n```java\nString s = \"apple\";\nString reversed = \"\";\nfor (int i = s.length(); i >= 0; i--) {\n    reversed += s.substring(i, i + 1);\n}\nSystem.out.println(reversed);\n```\n\nWhich of the following best describes what actually happens when this code runs?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The code prints `elppa` as intended."
+      },
+      {
+        "label": "B",
+        "text": "The code prints `apple` because the loop traverses in the wrong direction."
+      },
+      {
+        "label": "C",
+        "text": "The code throws an exception at runtime because `i` is initialized to `s.length()` instead of `s.length() - 1`."
+      },
+      {
+        "label": "D",
+        "text": "The code prints an empty string because `reversed` is never updated inside the loop."
+      }
+    ],
+    "answer": "C",
+    "explanation": "When i is initialized to s.length() (5 for \"apple\"), the first call substring(5, 6) uses an endpoint of 6 on a 5-character string, causing a StringIndexOutOfBoundsException before any output is produced. The fix is to initialize i to s.length() - 1.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "What is the output of the following code segment?\n\n```java\nString phrase = \"one two three\";\nint count = 0;\nint idx = phrase.indexOf(\" \");\nwhile (idx != -1) {\n    count++;\n    phrase = phrase.substring(idx + 1);\n    idx = phrase.indexOf(\" \");\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`13`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Each iteration finds the first space, increments count, and trims the phrase up to that space. After iteration 1: count=1, phrase=\"two three\". After iteration 2: count=2, phrase=\"three\", indexOf returns -1 and the loop ends. Option C confuses the number of words with the number of spaces. Option D is the original string length.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"code\";\nString result = \"\";\nfor (int i = 0; i < s.length(); i++) {\n    result = s.substring(i, i + 1) + result;\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`code`"
+      },
+      {
+        "label": "B",
+        "text": "`edoc`"
+      },
+      {
+        "label": "C",
+        "text": "`edo`"
+      },
+      {
+        "label": "D",
+        "text": "`doc`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Each iteration prepends the current character to `result`. Over four iterations (i = 0..3), characters c, o, d, e are prepended in order, building \"edoc\". Option A results from appending (`result += ch`) instead of prepending. Option C results from starting the loop at i = 1, skipping \"c\" and stopping after three iterations. Option D results from using i < s.length() - 1 so the loop runs only three times, never prepending \"e\".",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"abcdefg\";\nString result = \"\";\nfor (int i = 0; i < s.length(); i += 2) {\n    result += s.substring(i, i + 1);\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`abcdefg`"
+      },
+      {
+        "label": "B",
+        "text": "`aceg`"
+      },
+      {
+        "label": "C",
+        "text": "`ace`"
+      },
+      {
+        "label": "D",
+        "text": "`bdf`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop increments i by 2 each time, visiting indices 0, 2, 4, 6. Because s.length() is 7, the condition i < 7 is satisfied at i = 6, so the character at index 6 (\"g\") is included, producing \"aceg\". Option A results from using i++ instead of i += 2. Option C results from confusing s.length() (7) with the last valid index (6) and concluding i = 6 fails the test. Option D results from initializing i to 1 instead of 0, visiting indices 1, 3, 5.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "The method below is intended to count how many times the single-character String `target` appears in String `s`. Which of the following correctly identifies the bug?\n\n```java\npublic static int countChar(String s, String target) {\n    int count = 0;\n    for (int i = 0; i <= s.length(); i++) {\n        if (s.substring(i, i + 1).equals(target)) {\n            count++;\n        }\n    }\n    return count;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The loop condition `i <= s.length()` should be `i < s.length()`, because when `i` equals `s.length()`, calling `s.substring(i, i + 1)` throws a `StringIndexOutOfBoundsException`."
+      },
+      {
+        "label": "B",
+        "text": "The comparison `.equals(target)` should be `== target`, because single-character strings must be compared with `==`."
+      },
+      {
+        "label": "C",
+        "text": "The variable `count` should be initialized to `1` instead of `0` to account for zero-based indexing."
+      },
+      {
+        "label": "D",
+        "text": "The loop should start at `i = 1` to skip the first character, which is always at index 0."
+      }
+    ],
+    "answer": "A",
+    "explanation": "When i equals s.length(), substring(s.length(), s.length() + 1) requests an endIndex greater than the string's length, throwing a StringIndexOutOfBoundsException. The fix is i < s.length(). Option B is wrong: .equals() is the correct way to compare String content; == tests reference equality. Option C is wrong: the accumulator should start at 0. Option D is wrong: the character at index 0 must be examined.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "Determine the value printed by the following code:\n\n```java\nString s = \"banana\";\nint count = 0;\nfor (int i = 0; i < s.length(); i++) {\n    if (s.substring(i, i + 1).equals(\"a\")) {\n        count += 2;\n    } else {\n        count--;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`6`"
+      },
+      {
+        "label": "D",
+        "text": "`-3`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "\"banana\" has three 'a' characters (indices 1, 3, 5) contributing +2 each, and three non-'a' characters (indices 0, 2, 4) contributing -1 each. Running the trace: count goes 0 \u2192 -1 \u2192 1 \u2192 0 \u2192 2 \u2192 1 \u2192 3. Total: 3(+2) + 3(-1) = 6 - 3 = 3. Option A (0) reflects an arithmetic error in the trace. Option C (6) counts only the +2 additions, ignoring the decrements. Option D (-3) counts only the decrements, ignoring the additions.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "A program must examine each character of a String `word` one at a time using `substring(i, i + 1)` inside a `for` loop. Which of the following loop headers correctly visits every valid character index of `word` without causing a `StringIndexOutOfBoundsException`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`for (int i = 0; i < word.length(); i++)`"
+      },
+      {
+        "label": "B",
+        "text": "`for (int i = 0; i <= word.length(); i++)`"
+      },
+      {
+        "label": "C",
+        "text": "`for (int i = 1; i < word.length(); i++)`"
+      },
+      {
+        "label": "D",
+        "text": "`for (int i = 0; i < word.length() - 1; i++)`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Valid indices for a String of length n are 0 through n - 1, so the loop must use i < word.length(). Option B uses <=, which lets i reach word.length(); calling substring(word.length(), word.length() + 1) then throws a StringIndexOutOfBoundsException. Option C starts at 1, skipping the character at index 0. Option D stops one iteration early by using word.length() - 1 as the bound, missing the last character.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"hello\";\nString result = \"\";\nfor (int i = 0; i < s.length(); i++)\n{\n    result = s.substring(i, i + 1) + result;\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`hello`"
+      },
+      {
+        "label": "B",
+        "text": "`olleh`"
+      },
+      {
+        "label": "C",
+        "text": "`ehlol`"
+      },
+      {
+        "label": "D",
+        "text": "`hlleo`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Each iteration prepends the current character to `result` via `s.substring(i, i+1) + result`. Starting from `\"\"`, the values are: i=0 \u2192 \"h\", i=1 \u2192 \"eh\", i=2 \u2192 \"leh\", i=3 \u2192 \"lleh\", i=4 \u2192 \"olleh\". Option A is the original string, which would result from appending (`result += s.substring(i, i+1)`) rather than prepending.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "Determine the output of the following code:\n\n```java\nString word = \"banana\";\nint count = 0;\nfor (int i = 0; i < word.length(); i++)\n{\n    if (word.substring(i, i + 1).equals(\"a\"))\n    {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "\"banana\" is b(0) a(1) n(2) a(3) n(4) a(5); the letter 'a' appears at indices 1, 3, and 5, so `count` increments three times. Option A results from stopping one iteration early; option C overcounts by one; option D is the total length of the string.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "Determine the value of `result` after the following code segment runs:\n\n```java\nString s = \"computer\";\nString result = \"\";\nint i = 0;\nwhile (i < s.length())\n{\n    if (i % 2 == 0)\n    {\n        result += s.substring(i, i + 1);\n    }\n    i++;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`\"optr\"`"
+      },
+      {
+        "label": "B",
+        "text": "`\"cmue\"`"
+      },
+      {
+        "label": "C",
+        "text": "`\"computer\"`"
+      },
+      {
+        "label": "D",
+        "text": "`\"mue\"`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "\"computer\" has indices 0\u20137; characters at even indices 0,2,4,6 are 'c','m','u','e', so `result` becomes \"cmue\". Option A gives the odd-indexed characters ('o','p','t','r'). Option C would result if every character were appended. Option D would result if `i` were incorrectly initialized to 1, causing the characters at even indices 2,4,6 to be selected instead.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "The following code is intended to count how many times `'l'` appears in `\"hello\"`, but it contains a bug. Which of the following best identifies the error?\n\n```java\nString s = \"hello\";\nint count = 0;\nfor (int i = 0; i <= s.length(); i++)\n{\n    if (s.substring(i, i + 1).equals(\"l\"))\n    {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The loop should start at `i = 1` instead of `i = 0`."
+      },
+      {
+        "label": "B",
+        "text": "The loop condition should be `i < s.length()` instead of `i <= s.length()`."
+      },
+      {
+        "label": "C",
+        "text": "`.equals(\"l\")` should be replaced with `== \"l\"`."
+      },
+      {
+        "label": "D",
+        "text": "`count` should be initialized to `1` instead of `0`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "When `i` equals `s.length()` (5 for \"hello\"), `s.substring(5, 6)` throws a `StringIndexOutOfBoundsException` because valid indices are 0\u20134; the fix is `i < s.length()`. Option A would skip the character at index 0 (which is 'h', not 'l', so it happens not to matter here, but it is still a logic error). Option C is incorrect because `==` on String objects tests reference identity, not character content. Option D incorrectly pre-counts one occurrence before the loop begins.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"mississippi\";\nint count = 0;\nfor (int i = 0; i < s.length() - 1; i++)\n{\n    if (s.substring(i, i + 1).equals(s.substring(i + 1, i + 2)))\n    {\n        count++;\n    }\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop checks each adjacent pair of characters in \"mississippi\" (m i s s i s s i p p i). The equal adjacent pairs are: s-s at indices 2\u20133, s-s at indices 5\u20136, and p-p at indices 8\u20139, giving a total of 3. Option A misses one pair; option C would result from double-counting each matching pair; option D reflects the total number of 's' characters in the string.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "Which of the following correctly returns the last character of a non-empty String `s` as a single-character String?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`s.substring(s.length())`"
+      },
+      {
+        "label": "B",
+        "text": "`s.substring(s.length() - 1)`"
+      },
+      {
+        "label": "C",
+        "text": "`s.substring(s.length() - 1, s.length() - 1)`"
+      },
+      {
+        "label": "D",
+        "text": "`s.substring(s.length(), s.length() + 1)`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`substring(int from)` returns all characters from index `from` through the end of the string; since the last character is at index `s.length() - 1`, option B returns exactly that one character. Option A calls `substring(s.length())`, which returns an empty string because `from` equals the length. Option C passes identical start and end indices so also returns an empty string. Option D passes an out-of-bounds end index and throws a `StringIndexOutOfBoundsException`.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"balloon\";\nString result = \"\";\n\nfor (int i = 0; i < s.length(); i++)\n{\n    String ch = s.substring(i, i + 1);\n    if (i % 2 == 0 && !ch.equals(\"l\"))\n    {\n        result += ch;\n    }\n}\n\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`bon`"
+      },
+      {
+        "label": "B",
+        "text": "`balon`"
+      },
+      {
+        "label": "C",
+        "text": "`bo`"
+      },
+      {
+        "label": "D",
+        "text": "`alo`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop checks even indices 0, 2, 4, and 6, but skips index 2 because that character is `l`, so the result is `bon`. The other choices include odd-index characters, omit the final `n`, or ignore the even-index test.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_10",
+    "stem": "What value is returned by the call `mystery(\"COMPUTER\")`?\n\n```java\npublic static String mystery(String word)\n{\n    String ans = \"\";\n    for (int k = word.length(); k > 0; k -= 2)\n    {\n        ans += word.substring(k - 1, k);\n    }\n    return ans;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`RTPO`"
+      },
+      {
+        "label": "B",
+        "text": "`REU`"
+      },
+      {
+        "label": "C",
+        "text": "`CPTR`"
+      },
+      {
+        "label": "D",
+        "text": "`RETUPMOC`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop starts at the end of the string and appends characters at indices 7, 5, 3, and 1, producing `RTPO`. The distractors reflect using the wrong starting index, moving forward, or reversing every character.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  }
+]

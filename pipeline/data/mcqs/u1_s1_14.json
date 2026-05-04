@@ -1,0 +1,522 @@
+[
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Determine the output of the following code:\n\n```java\nString word = \"computer\";\nSystem.out.println(word.length());\nSystem.out.println(word.substring(3, 7));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\n8\nput\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\n8\npute\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\n7\npute\n```"
+      },
+      {
+        "label": "D",
+        "text": "```\n8\nuter\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "\"computer\" has 8 characters (c=0,o=1,m=2,p=3,u=4,t=5,e=6,r=7), so `length()` returns 8. `substring(3, 7)` returns characters at indices 3\u20136 ('p','u','t','e') \u2192 \"pute\"; index 7 is excluded. Option A is off by one at the end of the range; C uses wrong length; D shifts the start index to 4.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Determine the value of `x` after the following code runs:\n\n```java\nString s = \"programming\";\nint x = s.length() - s.indexOf(\"gram\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`7`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`3`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "\"programming\" has 11 characters, so `s.length()` returns 11. Tracing character by character: p=0,r=1,o=2,g=3,r=4,a=5,m=6; the substring \"gram\" begins at index 3, so `s.indexOf(\"gram\")` returns 3. Therefore x = 11 \u2212 3 = 8. Option D is the indexOf result alone; C is the length of \"gram\" itself; A is a common arithmetic slip.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "The following code is intended to print the number of characters in `msg`. Which of the following correctly identifies the bug?\n\n```java\nString msg = \"Hello\";\nint n = msg.Length();\nSystem.out.println(n);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`String` variables cannot store capital letters such as `'H'`."
+      },
+      {
+        "label": "B",
+        "text": "`Length` is not a defined method; the correct name is `length()` with a lowercase `'l'`."
+      },
+      {
+        "label": "C",
+        "text": "`length()` returns a `double`, so storing it in an `int` causes a compile-time error."
+      },
+      {
+        "label": "D",
+        "text": "String methods can only be called on objects created with the `new` keyword."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java identifiers are case-sensitive. The String class defines `length()` with a lowercase 'l'; `Length()` does not exist, causing a compile-time \"method not found\" error. String literals may contain any characters including uppercase. `length()` returns `int`, not `double`. String literals are fully valid objects that support method calls without `new`.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Which of the following could be used to replace `/* missing code */` so that `score` holds the value returned by `p`'s `getScore()` method?\n\n```java\nPlayer p = new Player(\"Alex\", 100);\n/* missing code */\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`int score = Player.getScore();`"
+      },
+      {
+        "label": "B",
+        "text": "`int score = p.getScore();`"
+      },
+      {
+        "label": "C",
+        "text": "`int score = p.getScore;`"
+      },
+      {
+        "label": "D",
+        "text": "`int score = getScore(p);`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Instance methods are called on an object using dot notation with parentheses: `p.getScore()`. Option A uses the class name as the receiver (valid only for static methods). Option C omits the parentheses required to invoke a method \u2014 `p.getScore` is not valid Java syntax. Option D passes `p` as an argument to a free-standing function, which is not how instance methods are called in Java.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Determine the output of the following code:\n\n```java\nString a = \"java\";\nString b = \"JAVA\";\nSystem.out.println(a.equals(b));\nSystem.out.println(a.equals(\"java\"));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```\ntrue\ntrue\n```"
+      },
+      {
+        "label": "B",
+        "text": "```\nfalse\nfalse\n```"
+      },
+      {
+        "label": "C",
+        "text": "```\nfalse\ntrue\n```"
+      },
+      {
+        "label": "D",
+        "text": "```\ntrue\nfalse\n```"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`equals` performs a case-sensitive comparison. \"java\" vs. \"JAVA\" differ in case at every character, so the first call returns `false`. \"java\" vs. \"java\" match exactly, so the second call returns `true`. Option A wrongly assumes `equals` is case-insensitive; B marks both false; D reverses which call returns true.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Determine the value of `pos` after the following code runs:\n\n```java\nString city = \"San Francisco\";\nString part = city.substring(4, 7);\nint pos = city.indexOf(part);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "`-1`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "\"San Francisco\": S=0,a=1,n=2,' '=3,F=4,r=5,a=6,n=7,... `city.substring(4, 7)` returns characters at indices 4,5,6: 'F','r','a' \u2192 \"Fra\". `city.indexOf(\"Fra\")` scans \"San Francisco\" and finds the first (and only) match starting at index 4. Option A is the space character's index; C is the end bound of the substring call; D would indicate not found.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "What happens when the following code is executed?\n\n```java\nString name = null;\nint len = name.length();\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`len` is assigned `0` because a `null` String is treated as an empty string."
+      },
+      {
+        "label": "B",
+        "text": "`len` is assigned `-1` as a sentinel value indicating no object."
+      },
+      {
+        "label": "C",
+        "text": "A `NullPointerException` is thrown at run time."
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs because `null` is not a valid value for a `String` variable."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Calling an instance method on a `null` reference throws a `NullPointerException` at run time; there is no object in memory to dispatch the call to. `null` is a valid value for any reference type in Java, so the declaration compiles without error. Options A and B invent behaviors that `length()` does not exhibit for null receivers.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Determine the value of `n` after the following code runs:\n\n```java\nString s = \"banana\";\nint i = s.indexOf(\"an\");\nString t = s.substring(i + 1, i + 3);\nint n = t.length() + s.indexOf(t);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "s = \"banana\": b=0,a=1,n=2,a=3,n=4,a=5. `s.indexOf(\"an\")` returns 1 (first match: a=1,n=2). So i=1. `t = s.substring(2, 4)` returns characters at indices 2,3: 'n','a' \u2192 \"na\". `t.length()` = 2. `s.indexOf(\"na\")` finds 'n' at index 2 followed by 'a' \u2192 returns 2. n = 2 + 2 = 4. Option A results from using i directly as the indexOf result; C comes from incorrectly placing \"na\" at index 3; D doubles the length.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "A class `BankAccount` has an instance method `getBalance()` that returns the current balance of the account. An object of type `BankAccount` named `acct` has been created. Which of the following correctly calls `getBalance()` on `acct`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`BankAccount.getBalance(acct)`"
+      },
+      {
+        "label": "B",
+        "text": "`acct.getBalance()`"
+      },
+      {
+        "label": "C",
+        "text": "`getBalance.acct()`"
+      },
+      {
+        "label": "D",
+        "text": "`getBalance(BankAccount acct)`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Instance methods are invoked using the dot operator on the object reference: `objectName.methodName()`. Option A is the syntax for a static (class) method call, not an instance method. Option C reverses the object and method names. Option D is a method header declaration, not a method call.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Determine the output of the following code:\n\n```java\nString word = \"sunflower\";\nString piece = word.substring(3, 6);\nSystem.out.println(piece);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`sun`"
+      },
+      {
+        "label": "B",
+        "text": "`flow`"
+      },
+      {
+        "label": "C",
+        "text": "`flo`"
+      },
+      {
+        "label": "D",
+        "text": "`lower`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "In `\"sunflower\"`, the characters at indices 3, 4, and 5 are `'f'`, `'l'`, and `'o'`, so `substring(3, 6)` returns `\"flo\"` (the endpoint 6 is excluded). Option A would result from `substring(0, 3)`. Option B is an off-by-one error using an endpoint of 7. Option D would result from `substring(4)`.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Determine the value of `result` after the following code runs:\n\n```java\nString text = \"abcdefgh\";\nString s1 = text.substring(2, 5);\nString s2 = s1.substring(1);\nint result = s2.length();\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`text.substring(2, 5)` extracts indices 2\u20134 from `\"abcdefgh\"`, producing `\"cde\"` (3 characters). Calling `s1.substring(1)` on `\"cde\"` starts at index 1, producing `\"de\"`. Finally, `\"de\".length()` is `2`. Option C is the length of `s1` before the second `substring` call; option D is the endpoint passed to the first `substring` call.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "What happens when the following code is executed?\n\n```java\nString s = null;\nSystem.out.println(s.length());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0` is printed because a `null` String has zero length"
+      },
+      {
+        "label": "B",
+        "text": "`-1` is printed to indicate that no object is present"
+      },
+      {
+        "label": "C",
+        "text": "A compile error occurs because `null` cannot be assigned to a `String` variable"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown at runtime"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`s` holds `null`, meaning it does not reference any `String` object. Invoking the instance method `length()` on `null` throws a `NullPointerException` at runtime. Options A and B are incorrect because Java defines no length or special return value for `null`. Option C is wrong because assigning `null` to a reference variable is valid Java syntax and compiles without error.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Which of the following is the correct syntax for calling an instance method named `deposit` with argument `100` on an object `acct` of type `BankAccount`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`BankAccount.deposit(100)`"
+      },
+      {
+        "label": "B",
+        "text": "`deposit(acct, 100)`"
+      },
+      {
+        "label": "C",
+        "text": "`acct.deposit(100)`"
+      },
+      {
+        "label": "D",
+        "text": "`acct -> deposit(100)`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Instance methods are invoked using the dot operator on the object reference: objectReference.methodName(arguments). Option A uses class-name dot notation, which is reserved for static methods. Options B and D are not valid Java syntax for calling instance methods.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Consider the following class definition:\n\n```java\npublic class Thermometer {\n    private double tempCelsius;\n\n    public Thermometer(double c) {\n        tempCelsius = c;\n    }\n\n    public double toFahrenheit() {\n        return tempCelsius * 9.0 / 5.0 + 32;\n    }\n}\n```\n\nWhich of the following correctly prints the Fahrenheit equivalent of 100 degrees Celsius?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`System.out.println(Thermometer.toFahrenheit());`"
+      },
+      {
+        "label": "B",
+        "text": "`System.out.println(new Thermometer(100).toFahrenheit());`"
+      },
+      {
+        "label": "C",
+        "text": "`System.out.println(toFahrenheit(100));`"
+      },
+      {
+        "label": "D",
+        "text": "`System.out.println(Thermometer(100).toFahrenheit());`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`toFahrenheit()` is an instance method, so it must be called on a `Thermometer` object using the dot operator. Option B correctly constructs an object with `new` and immediately calls the method on it. Option A uses class-name syntax valid only for static methods. Option C invents a standalone function that does not exist. Option D is missing the required `new` keyword before the constructor call.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Determine the output of the following code:\n\n```java\nString city = \"Boston\";\nSystem.out.println(city.length());\nSystem.out.println(city.substring(0, 3));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6` followed by `Bos`"
+      },
+      {
+        "label": "B",
+        "text": "`5` followed by `Bos`"
+      },
+      {
+        "label": "C",
+        "text": "`6` followed by `Bost`"
+      },
+      {
+        "label": "D",
+        "text": "`6` followed by `ost`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`\"Boston\"` contains 6 characters, so `city.length()` returns 6. `city.substring(0, 3)` returns characters at indices 0, 1, and 2 \u2014 `\"Bos\"` \u2014 because the ending index is exclusive. Option B results from an off-by-one error on `length()`. Option C incorrectly includes the character at index 3. Option D would result from calling `substring(1, 4)` instead.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "A student writes the following code intending to find the position of `\"e\"` in the string `\"students\"`:\n\n```java\nString word = \"students\";\nint idx = String.indexOf(\"e\");\nSystem.out.println(idx);\n```\n\nWhich of the following best describes the error in this code?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`indexOf` must be called on the object `word` using `word.indexOf(\"e\")`, because it is an instance method, not a static method of the `String` class."
+      },
+      {
+        "label": "B",
+        "text": "`indexOf` requires two arguments: the target string and a starting index."
+      },
+      {
+        "label": "C",
+        "text": "The result of `indexOf` should be stored as a `String`, not an `int`."
+      },
+      {
+        "label": "D",
+        "text": "The argument should be `'e'` instead of `\"e\"`, because `indexOf` only accepts a `char`."
+      }
+    ],
+    "answer": "A",
+    "explanation": "`indexOf` is an instance method of `String` and must be invoked on a `String` object using the dot operator: `word.indexOf(\"e\")`. Writing `String.indexOf(\"e\")` treats it as a static method call, which is a compile error. Option B is wrong because single-argument `indexOf(String)` is valid per the Quick Reference. Option C is wrong because `indexOf` correctly returns `int`. Option D is wrong because the AP Quick Reference lists `indexOf(String)`, not `indexOf(char)`.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = \"programming\";\nString t = s.substring(s.indexOf(\"gram\"), s.indexOf(\"gram\") + 4);\nSystem.out.println(t + \" \" + t.length());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`gram 4`"
+      },
+      {
+        "label": "B",
+        "text": "`gram 3`"
+      },
+      {
+        "label": "C",
+        "text": "`prog 4`"
+      },
+      {
+        "label": "D",
+        "text": "`gramm 5`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In `\"programming\"`, `indexOf(\"gram\")` returns 3 because the subsequence g-r-a-m begins at index 3. `substring(3, 7)` then returns `\"gram\"`. Concatenating with `\" \"` and `t.length()` (which is 4) produces `\"gram 4\"`. Option B has the length wrong. Option C would result from `substring(0, 4)`. Option D would require `substring(3, 8)`, yielding `\"gramm\"`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Determine the values of `x` and `y` after the following code executes:\n\n```java\nString s = \"abcdef\";\nint x = s.indexOf(\"cd\");\nString sub = s.substring(x, x + 3);\nint y = sub.indexOf(\"e\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 2, y = 2`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 2, y = 4`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 3, y = 1`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 2, y = -1`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`\"cd\"` first appears at index 2 in `\"abcdef\"`, so `x = 2`. `sub = s.substring(2, 5)` produces `\"cde\"`. Within `sub`, `\"e\"` appears at index 2 (c=0, d=1, e=2), so `y = 2`. Option B confuses `sub.indexOf(\"e\")` with the index of `\"e\"` in the original string `s` (which is 4). Option D is wrong because `\"e\"` is present in `sub`, so -1 is never returned. Option C has an off-by-one on `x`.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "Determine the output of the following code:\n\n```java\nString word = \"program\";\nString part = word.substring(1, 4);\nint loc = word.indexOf(\"r\");\nword.substring(3);\nSystem.out.print(part + loc + word.length());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`rog17`"
+      },
+      {
+        "label": "B",
+        "text": "`rog8`"
+      },
+      {
+        "label": "C",
+        "text": "`gram17`"
+      },
+      {
+        "label": "D",
+        "text": "`rog1program`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`substring(1, 4)` returns `\"rog\"`, `indexOf(\"r\")` returns `1`, and `length()` returns `7`, so string concatenation produces `rog17`. The ignored `substring(3)` call does not change `word`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_14",
+    "stem": "A `Player` object has a `void` method `addPoints(int amount)` and an `int` method `getScore()`. Which code segment correctly adds 5 points to the object referenced by `p` and then prints the updated score?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\np.addPoints(5);\nSystem.out.println(p.getScore());\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nPlayer.addPoints(5);\nSystem.out.println(Player.getScore());\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nSystem.out.println(p.addPoints(5));\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\np.getScore(5);\nSystem.out.println(p.addPoints());\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Instance methods are called with an object reference, and the `void` method must be used as a standalone statement. The other choices use the class name as the receiver, try to print a `void` call, or use the wrong argument lists.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  }
+]

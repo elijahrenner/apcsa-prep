@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "What is printed after the following code executes?\n\n```java\nint[][] table = {{5, 1, 4}, {2, 7, 3}, {6, 9, 8}};\nint total = 0;\nfor (int c = 0; c < table[0].length; c++) {\n    total += table[1][c];\n}\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`12`"
+      },
+      {
+        "label": "C",
+        "text": "`23`"
+      },
+      {
+        "label": "D",
+        "text": "`17`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop iterates c = 0, 1, 2 and accumulates table[1][c]: 2 + 7 + 3 = 12. A (10) is the row 0 sum\u2014student uses row index 0 instead of 1. C (23) is the row 2 sum\u2014an off-by-one on the row index. D (17) results from swapping the subscripts to table[c][1], which sums column 1: 1 + 7 + 9 = 17.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Determine the value of `max` after the following code finishes executing.\n\n```java\nint[][] scores = {{80, 90}, {70, 60}, {95, 85}};\nint max = scores[0][0];\nfor (int r = 0; r < scores.length; r++) {\n    for (int c = 0; c < scores[0].length; c++) {\n        if (scores[r][c] > max) {\n            max = scores[r][c];\n        }\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`80`"
+      },
+      {
+        "label": "B",
+        "text": "`90`"
+      },
+      {
+        "label": "C",
+        "text": "`85`"
+      },
+      {
+        "label": "D",
+        "text": "`95`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The nested loops visit all six elements in row-major order. Starting from max = 80: 90 > 80 sets max = 90; then 95 > 90 sets max = 95; 85 does not exceed 95. Final value is 95. A (80) reflects no updates occurring. B (90) reflects stopping after row 0. C (85) is the last element visited, not the largest.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Which of the following best describes the error in the method below?\n\n```java\npublic static int sumColumn(int[][] arr, int col) {\n    int sum = 0;\n    for (int r = 0; r < arr.length; r++) {\n        sum += arr[col][r];\n    }\n    return sum;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "The loop bound should be `r < arr[0].length` instead of `r < arr.length`."
+      },
+      {
+        "label": "B",
+        "text": "The expression `arr[col][r]` should be `arr[r][col]`."
+      },
+      {
+        "label": "C",
+        "text": "`sum` should be initialized to `Integer.MIN_VALUE` instead of `0`."
+      },
+      {
+        "label": "D",
+        "text": "The method should use an enhanced for loop to avoid index errors."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The row and column subscripts are swapped: arr[col][r] treats col as the row index and r as the column index, computing the sum of row col rather than column col. The fix is arr[r][col]. A is wrong\u2014iterating r over arr.length (number of rows) is the correct bound for column traversal. C applies to max/min algorithms, not sum. D does not address the index swap.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "What is printed after the following code executes?\n\n```java\nint[][] mat = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};\nfor (int r = 0; r < mat.length; r++) {\n    for (int c = 0; c < mat[0].length; c++) {\n        if (r == c) {\n            System.out.print(mat[r][c] + \" \");\n        }\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 5 9`"
+      },
+      {
+        "label": "B",
+        "text": "`3 5 7`"
+      },
+      {
+        "label": "C",
+        "text": "`1 4 7`"
+      },
+      {
+        "label": "D",
+        "text": "`1 2 3 4 5 6 7 8 9`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The condition r == c selects the main diagonal: (0,0)=1, (1,1)=5, (2,2)=9. B (3 5 7) is the anti-diagonal where r + c == mat.length - 1, a common confusion with the == condition. C (1 4 7) is column 0, produced by the condition c == 0. D results from removing the if condition entirely.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Consider a 2D array declared as `int[][] grid = new int[4][3]` containing nonzero values. Which of the following code segments correctly prints every element in column 2?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int i = 0; i < grid.length; i++) {\n    System.out.print(grid[2][i] + \" \");\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int i = 0; i < grid[0].length; i++) {\n    System.out.print(grid[i][2] + \" \");\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int i = 0; i < grid.length; i++) {\n    System.out.print(grid[i][2] + \" \");\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int i = 0; i < grid[2].length; i++) {\n    System.out.print(grid[i][2] + \" \");\n}\n```"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Column 2 has one element per row (rows 0 through 3), so the loop must iterate i from 0 to grid.length - 1 = 3, accessing grid[i][2] each time. Option C does exactly this. Option A accesses row 2 (indices swapped). Options B and D use grid[0].length or grid[2].length (both equal 3, the number of columns) as the upper bound, iterating only 3 times and omitting row 3.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "What does the following method return when called with the argument `new int[][]{{3, 1, 4}, {1, 5, 9}, {2, 6, 5}}`?\n\n```java\npublic static int maxRowSum(int[][] arr) {\n    int maxSum = 0;\n    for (int r = 0; r < arr.length; r++) {\n        int rowSum = 0;\n        for (int c = 0; c < arr[0].length; c++) {\n            rowSum += arr[r][c];\n        }\n        if (rowSum > maxSum) {\n            maxSum = rowSum;\n        }\n    }\n    return maxSum;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`8`"
+      },
+      {
+        "label": "B",
+        "text": "`1`"
+      },
+      {
+        "label": "C",
+        "text": "`13`"
+      },
+      {
+        "label": "D",
+        "text": "`15`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The three row sums are 3+1+4=8, 1+5+9=15, and 2+6+5=13. maxSum starts at 0; row 0 updates it to 8; row 1 updates it to 15; row 2 (sum 13) does not exceed 15. The method returns 15. A (8) is row 0's sum. B (1) is the row index of the maximum-sum row\u2014a confusion between returning the sum value vs. its row index. C (13) is the last row's sum.",
+    "difficulty": 4,
+    "stem_pattern": "2d_array_trace"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Determine the output of the following code:\n\n```java\nint[][] nums = { {2, 4, 6}, {1, 3, 5} };\nint total = 0;\n\nfor (int r = 0; r < nums.length; r++)\n{\n    for (int c = 0; c < nums[0].length; c++)\n    {\n        if ((r + c) % 2 == 0)\n        {\n            total += nums[r][c];\n        }\n        else\n        {\n            total -= nums[r][c];\n        }\n    }\n}\n\nSystem.out.print(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`-1`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`21`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The values at positions where `r + c` is even are added and the others are subtracted: `2 - 4 + 6 - 1 + 3 - 5 = 1`. The other choices result from ignoring signs or making an off-by-one tracing error.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Determine the values of `bestRow` and `bestSum` after the following code runs.\n\n```java\nint[][] data = { {3, 5, -1}, {4, 0, 2}, {1, 1, 10} };\nint bestRow = 0;\nint bestSum = 0;\n\nfor (int r = 0; r < data.length; r++)\n{\n    int sum = 0;\n    for (int c = 0; c < data[0].length; c++)\n    {\n        sum += data[r][c];\n    }\n    if (sum > bestSum)\n    {\n        bestSum = sum;\n        bestRow = r;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`bestRow = 0, bestSum = 7`"
+      },
+      {
+        "label": "B",
+        "text": "`bestRow = 1, bestSum = 6`"
+      },
+      {
+        "label": "C",
+        "text": "`bestRow = 2, bestSum = 12`"
+      },
+      {
+        "label": "D",
+        "text": "`bestRow = 3, bestSum = 12`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The row sums are `7`, `6`, and `12`, so the largest sum is in row index `2`. Choice D uses a 1-based row number instead of the array index.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "The following method is intended to count the number of times `target` appears in `grid`.\n\n```java\npublic static int countTarget(int[][] grid, int target)\n{\n    int count = 0;\n    for (int r = 0; r < grid.length; r++)\n    {\n        for (int c = 0; c < grid[0].length; c++)\n        {\n            /* missing code */\n        }\n    }\n    return count;\n}\n```\n\nWhich of the following can replace `/* missing code */` so the method works as intended?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nif (grid[r][c] == target)\n{\n    count++;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nif (grid[c][r] == target)\n{\n    count++;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nif (grid[r] == target)\n{\n    count++;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nif (grid[r][c] = target)\n{\n    count++;\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`grid[r][c]` accesses the element in row `r` and column `c`, and `==` correctly compares two `int` values. Choice B swaps row and column indices, choice C compares a row array to an `int`, and choice D uses assignment instead of comparison.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Consider the following method.\n\n```java\npublic static boolean hasEvenInColumn(int[][] grid, int col)\n{\n    for (int r = 0; r < grid.length; r++)\n    {\n        if (grid[r][col] % 2 == 0)\n        {\n            return true;\n        }\n    }\n    return false;\n}\n```\n\nWhich statement best describes the method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It returns `true` if at least one value in column `col` is even."
+      },
+      {
+        "label": "B",
+        "text": "It returns `true` only if every value in column `col` is even."
+      },
+      {
+        "label": "C",
+        "text": "It returns `true` if at least one value in row `col` is even."
+      },
+      {
+        "label": "D",
+        "text": "It always checks only the first row of `grid`."
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop checks each row at the fixed column index `col` and returns `true` as soon as it finds one even value. It does not require all values to be even, and it is not traversing a row.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Consider the following method.\n\n```java\npublic static int[][] makeMirror(int[][] a)\n{\n    int[][] result = new int[a.length][a[0].length];\n    for (int r = 0; r < a.length; r++)\n    {\n        for (int c = 0; c < a[0].length; c++)\n        {\n            result[r][c] = a[r][a[0].length - 1 - c];\n        }\n    }\n    return result;\n}\n```\n\nWhat is returned by `makeMirror(vals)` when `vals` is initialized as follows?\n\n```java\nint[][] vals = { {1, 2, 3}, {4, 5, 6} };\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`{ {3, 2, 1}, {6, 5, 4} }`"
+      },
+      {
+        "label": "B",
+        "text": "`{ {4, 5, 6}, {1, 2, 3} }`"
+      },
+      {
+        "label": "C",
+        "text": "`{ {6, 5, 4}, {3, 2, 1} }`"
+      },
+      {
+        "label": "D",
+        "text": "`{ {1, 4}, {2, 5}, {3, 6} }`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Each row is copied in reverse column order, so `{1, 2, 3}` becomes `{3, 2, 1}` and `{4, 5, 6}` becomes `{6, 5, 4}`. The rows are not swapped, and the array is not transposed.",
+    "difficulty": 3,
+    "stem_pattern": "2d_array_trace"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "A method is intended to return the sum of all values in column `col` of a rectangular 2D array `grid`. Which of the following implementations is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\npublic static int columnSum(int[][] grid, int col)\n{\n    int sum = 0;\n    for (int r = 0; r < grid.length; r++)\n    {\n        sum += grid[r][col];\n    }\n    return sum;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\npublic static int columnSum(int[][] grid, int col)\n{\n    int sum = 0;\n    for (int r = 0; r < grid[0].length; r++)\n    {\n        sum += grid[r][col];\n    }\n    return sum;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\npublic static int columnSum(int[][] grid, int col)\n{\n    int sum = 0;\n    for (int r = 0; r < grid.length; r++)\n    {\n        sum += grid[col][r];\n    }\n    return sum;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\npublic static int columnSum(int[][] grid, int col)\n{\n    int sum = 0;\n    for (int r = 0; r <= grid.length; r++)\n    {\n        sum += grid[r][col];\n    }\n    return sum;\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "To sum a column, the row index must vary from `0` to `grid.length - 1` while the column index stays fixed. Choice B uses the number of columns as the row bound, choice C swaps row and column indices, and choice D goes one index too far.",
+    "difficulty": 3,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Determine the output of the following code segment.\n\n```java\nint[][] data = { {3, 1, 4},\n                 {1, 5, 9} };\n\nfor (int col = 0; col < data[0].length; col++)\n{\n    int total = 0;\n    for (int row = 0; row < data.length; row++)\n    {\n        total += data[row][col];\n    }\n    System.out.println(total);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\n4\n6\n13\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\n8\n15\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\n3\n1\n4\n1\n5\n9\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\n4\n6\n8\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The outer loop processes columns, so the printed values are column sums: 3 + 1, 1 + 5, and 4 + 9. The other choices reflect row sums, row-major traversal, or an arithmetic error.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Consider the following method.\n\n```java\npublic static int findRow(int[][] nums)\n{\n    int bestRow = 0;\n    int bestSum = 0;\n\n    for (int col = 0; col < nums[0].length; col++)\n    {\n        bestSum += nums[0][col];\n    }\n\n    for (int row = 1; row < nums.length; row++)\n    {\n        int sum = 0;\n        for (int col = 0; col < nums[0].length; col++)\n        {\n            sum += nums[row][col];\n        }\n        if (sum > bestSum)\n        {\n            bestSum = sum;\n            bestRow = row;\n        }\n    }\n\n    return bestRow;\n}\n```\n\nWhat is returned by `findRow(arr)` for the following array?\n\n```java\nint[][] arr = { {4, 1, 0},\n                {2, 2, 2},\n                {3, 3, 0} };\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`1`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Rows 1 and 2 both have sum 6, but the method only updates when `sum > bestSum`, so the first row with the largest sum is kept. Choice D gives the largest sum instead of its row index.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Which of the following could replace `/* missing code */` so that `contains` returns `true` if `target` appears anywhere in `grid` and returns `false` otherwise?\n\n```java\npublic static boolean contains(int[][] grid, int target)\n{\n    for (int row = 0; row < grid.length; row++)\n    {\n        for (int col = 0; col < grid[0].length; col++)\n        {\n            /* missing code */\n        }\n    }\n    return false;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nif (grid[row][col] == target)\n{\n    return true;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nif (grid[row][col] == target)\n{\n    return true;\n}\nelse\n{\n    return false;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nif (grid[col][row] == target)\n{\n    return true;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nif (grid[row] == target)\n{\n    return true;\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The method should return `true` when a match is found and wait until all cells have been checked before returning `false`. Choice B returns too early, choice C swaps row and column indices, and choice D compares a row array to an int.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Consider the following method.\n\n```java\npublic static int[][] change(int[][] nums)\n{\n    int[][] result = new int[nums.length][nums[0].length];\n\n    for (int row = 0; row < nums.length; row++)\n    {\n        for (int col = 0; col < nums[0].length; col++)\n        {\n            result[row][col] = nums[row][col] + row - col;\n        }\n    }\n\n    return result;\n}\n```\n\nWhat are the contents of the array returned by `change(values)`?\n\n```java\nint[][] values = { {5, 5, 5},\n                   {2, 4, 6} };\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`{ {5, 4, 3}, {3, 4, 5} }`"
+      },
+      {
+        "label": "B",
+        "text": "`{ {5, 6, 7}, {1, 4, 7} }`"
+      },
+      {
+        "label": "C",
+        "text": "`{ {5, 5, 5}, {2, 4, 6} }`"
+      },
+      {
+        "label": "D",
+        "text": "`{ {5, 4}, {6, 4}, {7, 6} }`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Each element is copied into the same position with `row - col` added. Choice B reverses the subtraction, choice C ignores the update, and choice D has the wrong dimensions.",
+    "difficulty": 3,
+    "stem_pattern": "2d_array_trace"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "A rectangular 2D array `scores` has been initialized. Which expression gives the number of elements in one column of `scores`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`scores.length`"
+      },
+      {
+        "label": "B",
+        "text": "`scores[0].length`"
+      },
+      {
+        "label": "C",
+        "text": "`scores.length()`"
+      },
+      {
+        "label": "D",
+        "text": "`scores[0].length()`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The number of elements in a column is the number of rows, which is `scores.length`. The expression `scores[0].length` gives the number of columns, and array length is a field, not a method.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Consider the following method.\n\n```java\npublic static int countBorder(int[][] nums, int target)\n{\n    int count = 0;\n\n    for (int row = 0; row < nums.length; row++)\n    {\n        for (int col = 0; col < nums[0].length; col++)\n        {\n            if ((row == 0 || row == nums.length - 1 ||\n                 col == 0 || col == nums[0].length - 1) &&\n                nums[row][col] == target)\n            {\n                count++;\n            }\n        }\n    }\n\n    return count;\n}\n```\n\nWhat is returned by `countBorder(grid, 7)`?\n\n```java\nint[][] grid = { {7, 1, 7, 7},\n                 {2, 7, 3, 7},\n                 {7, 7, 7, 4} };\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5`"
+      },
+      {
+        "label": "B",
+        "text": "`6`"
+      },
+      {
+        "label": "C",
+        "text": "`7`"
+      },
+      {
+        "label": "D",
+        "text": "`8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The border 7s are at positions `(0,0)`, `(0,2)`, `(0,3)`, `(1,3)`, `(2,0)`, and `(2,2)`. The 7s at `(1,1)` and `(2,1)` are not both target and border matches in the needed way; `(1,1)` is interior.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Determine the output of the following code:\n\n```java\nint[][] grid = { {3, 1, 4},\n                 {1, 5, 9},\n                 {2, 6, 5} };\nint total = 0;\n\nfor (int row = 0; row < grid.length; row++)\n{\n    for (int col = 0; col < grid[0].length; col++)\n    {\n        if (row % 2 == 0)\n        {\n            total += grid[row][col];\n        }\n        else\n        {\n            total -= grid[row][col];\n        }\n    }\n}\n\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`-6`"
+      },
+      {
+        "label": "C",
+        "text": "`21`"
+      },
+      {
+        "label": "D",
+        "text": "`36`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Rows 0 and 2 are added for 8 + 13, and row 1 is subtracted for 15, giving 6. The other choices reflect adding all values, subtracting the wrong rows, or missing one row's contribution.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Determine the values of `bestCol` and `bestSum` after the following code runs.\n\n```java\nint[][] data = { {2, 7, 1},\n                 {4, 0, 5},\n                 {3, 6, 2} };\nint bestCol = 0;\nint bestSum = Integer.MIN_VALUE;\n\nfor (int col = 0; col < data[0].length; col++)\n{\n    int sum = 0;\n    for (int row = 0; row < data.length; row++)\n    {\n        sum += data[row][col];\n    }\n    if (sum > bestSum)\n    {\n        bestSum = sum;\n        bestCol = col;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`bestCol = 0, bestSum = 9`"
+      },
+      {
+        "label": "B",
+        "text": "`bestCol = 1, bestSum = 13`"
+      },
+      {
+        "label": "C",
+        "text": "`bestCol = 1, bestSum = 15`"
+      },
+      {
+        "label": "D",
+        "text": "`bestCol = 2, bestSum = 8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The column sums are 9, 13, and 8, so column 1 has the largest sum. Choice C is a row sum, not a column sum.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "The method `hasEvenInEachRow` should return `true` if every row of `nums` contains at least one even value and should return `false` otherwise. Which of the following could replace `/* missing code */`?\n\n```java\npublic static boolean hasEvenInEachRow(int[][] nums)\n{\n    for (int row = 0; row < nums.length; row++)\n    {\n        boolean found = false;\n        for (int col = 0; col < nums[0].length; col++)\n        {\n            /* missing code */\n        }\n        if (!found)\n        {\n            return false;\n        }\n    }\n    return true;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nif (nums[row][col] % 2 == 0)\n{\n    found = true;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nif (nums[row][col] % 2 == 0)\n{\n    return true;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nif (nums[col][row] % 2 == 0)\n{\n    found = true;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nif (nums[row][col] % 2 != 0)\n{\n    found = true;\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The flag should be set when an even value is found in the current row, and the method should only return true after all rows are checked. Choice B returns too early, C swaps row and column indices, and D checks for odd values.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Consider the following method.\n\n```java\npublic static int[] rowTotals(int[][] nums)\n{\n    int[] totals = new int[nums.length];\n\n    for (int row = 0; row < nums.length; row++)\n    {\n        for (int col = 0; col < nums[0].length; col++)\n        {\n            totals[row] += nums[row][col];\n        }\n    }\n\n    return totals;\n}\n```\n\nWhat is returned by the call `rowTotals(values)` when `values` is initialized as follows?\n\n```java\nint[][] values = { {4, 1, 3},\n                   {2, 8, 0},\n                   {5, 5, 6},\n                   {7, 2, 1} };\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`{8, 10, 16, 10}`"
+      },
+      {
+        "label": "B",
+        "text": "`{18, 16, 10}`"
+      },
+      {
+        "label": "C",
+        "text": "`{4, 2, 5, 7}`"
+      },
+      {
+        "label": "D",
+        "text": "`{8, 10, 16}`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The method creates one total per row, giving 4+1+3, 2+8+0, 5+5+6, and 7+2+1. Choice B gives column totals, and choice D omits the final row.",
+    "difficulty": 2,
+    "stem_pattern": "2d_array_trace"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Which of the following code segments correctly sets every element in column `c` of the rectangular 2D array `grid` to `0`? Assume `c` is a valid column index.",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int row = 0; row < grid.length; row++)\n{\n    grid[row][c] = 0;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int col = 0; col < grid[0].length; col++)\n{\n    grid[c][col] = 0;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int row = 0; row <= grid.length; row++)\n{\n    grid[row][c] = 0;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int row = 0; row < grid[0].length; row++)\n{\n    grid[row][c] = 0;\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "To change one column, the row index must vary from 0 through `grid.length - 1` while the column index stays `c`. Choice B changes row `c`, C goes out of bounds, and D uses the number of columns as the row bound.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Determine the output of the following code:\n\n```java\nint[][] nums = { {6, 2, 9, 1},\n                 {3, 8, 4, 5} };\nint count = 0;\n\nfor (int col = 0; col < nums[0].length; col++)\n{\n    if (nums[0][col] > nums[1][col])\n    {\n        count++;\n    }\n}\n\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The top row is greater than the bottom row in columns 0 and 2 only, so the count is 2. The other choices result from comparing rows incorrectly or counting too many columns.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_13",
+    "stem": "Consider the following method.\n\n```java\npublic static int findRow(int[][] nums)\n{\n    int bestRow = 0;\n    int bestSum = 0;\n\n    for (int col = 0; col < nums[0].length; col++)\n    {\n        bestSum += nums[0][col];\n    }\n\n    for (int row = 1; row < nums.length; row++)\n    {\n        int sum = 0;\n        for (int col = 0; col < nums[row].length; col++)\n        {\n            sum += nums[row][col];\n        }\n        if (sum > bestSum)\n        {\n            bestSum = sum;\n            bestRow = row;\n        }\n    }\n\n    return bestRow;\n}\n```\n\nWhat value is returned by the following call?\n\n```java\nint[][] grid = { {4, -1, 2},\n                 {3, 3, -1},\n                 {0, 5, 0},\n                 {2, 2, 2} };\nfindRow(grid);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`1`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "`3`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The row sums are 5, 5, 5, and 6, so row index 3 has the greatest sum. Options A, B, and C reflect rows that tie the initial best sum but do not replace it because the condition uses >, not >=.",
+    "difficulty": 3,
+    "stem_pattern": "2d_array_trace"
+  }
+]

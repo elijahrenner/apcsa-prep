@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Which of the following is the correct interpretation of the statement `x++` in Java?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It multiplies `x` by itself and stores the result in `x`."
+      },
+      {
+        "label": "B",
+        "text": "It adds `1` to `x` and stores the result in `x`."
+      },
+      {
+        "label": "C",
+        "text": "It evaluates `x + 1` without modifying `x`."
+      },
+      {
+        "label": "D",
+        "text": "It subtracts `1` from `x` and stores the result in `x`."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The post-increment operator `x++` is equivalent to `x = x + 1`; it updates `x` in place. Option C is wrong because no assignment occurs \u2014 the expression is evaluated but the result is discarded. Option D describes `x--`. Option A describes `x = x * x`.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Which of the following statements is equivalent to `count--`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`count = count + 1`"
+      },
+      {
+        "label": "B",
+        "text": "`count = count * 2`"
+      },
+      {
+        "label": "C",
+        "text": "`count = count - 1`"
+      },
+      {
+        "label": "D",
+        "text": "`count = count - 2`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The decrement operator `--` subtracts 1 from its operand, so `count--` is exactly equivalent to `count = count - 1`. Option A is the increment operator. Option B doubles the value. Option D subtracts 2.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the values of `x` and `y` after the following code runs.\n\n```java\nint x = 4;\nint y = 9;\nx++;\ny--;\ny--;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 4, y = 7`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 5, y = 7`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 5, y = 8`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 4, y = 8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`x++` increments x from 4 to 5. The first `y--` decrements y from 9 to 8; the second `y--` decrements y from 8 to 7. Final values: x = 5, y = 7. Option C applies only one `y--`. Options A and D forget `x++` entirely.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the output of the following code.\n\n```java\nint n = 0;\nn++;\nn++;\nn++;\nn--;\nSystem.out.println(n);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`1`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "`3`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Starting at 0, three increments yield n = 3, then one decrement yields n = 2. Output is 2. Option D forgets the final `n--`. Option B miscounts the net change (three increments minus one decrement is +2, not +1). Option A ignores all operations.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "A student writes the following code intending to print a countdown from 5 to 1. Which change would make the code work as intended?\n\n```java\nint x = 5;\nwhile (x > 0) {\n    System.out.println(x);\n    x++;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Change `x > 0` to `x >= 0`."
+      },
+      {
+        "label": "B",
+        "text": "Change `x++` to `x--`."
+      },
+      {
+        "label": "C",
+        "text": "Change `int x = 5` to `int x = 1`."
+      },
+      {
+        "label": "D",
+        "text": "Move `System.out.println(x)` to after the loop body."
+      }
+    ],
+    "answer": "B",
+    "explanation": "With `x++`, x grows without bound and `x > 0` is always true, causing an infinite loop. Replacing `x++` with `x--` causes x to decrease from 5 toward 0, printing 5, 4, 3, 2, 1 before the condition becomes false. Options A, C, and D do not eliminate the infinite loop.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Which of the following is NOT equivalent to `score += 1`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`score = score + 1`"
+      },
+      {
+        "label": "B",
+        "text": "`score++`"
+      },
+      {
+        "label": "C",
+        "text": "`score = 1 + score`"
+      },
+      {
+        "label": "D",
+        "text": "`score = score + score`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`score += 1` adds 1 to the current value of score. Options A and C are algebraically identical rewrites. Option B is the post-increment operator, also equivalent. Option D doubles score by adding score to itself, which differs from adding 1 whenever score \u2260 1.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the values of `a` and `b` after the following code runs.\n\n```java\nint a = 2;\nint b = 6;\na++;\nb--;\nb--;\na += b;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a = 7, b = 4`"
+      },
+      {
+        "label": "B",
+        "text": "`a = 6, b = 4`"
+      },
+      {
+        "label": "C",
+        "text": "`a = 8, b = 5`"
+      },
+      {
+        "label": "D",
+        "text": "`a = 9, b = 6`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`a++` raises a to 3. Two `b--` operations lower b from 6 to 4. Then `a += b` sets a to 3 + 4 = 7. Option B forgets `a++` before the addition (2 + 4 = 6). Option C applies only one `b--`, giving b = 5 and a = 3 + 5 = 8. Option D skips both `b--` operations (b stays 6, a = 3 + 6 = 9).",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the output of the following code.\n\n```java\nint count = 8;\nwhile (count > 4) {\n    count--;\n}\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`8`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop decrements count each iteration. It executes for count = 8, 7, 6, and 5; when count reaches 4 the condition 4 > 4 is false and the loop exits. Output is 4. Option C results from an off-by-one error (exiting one decrement too early). Option A would require the condition `count > 3`. Option D is the untouched initial value.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the output of the following code.\n\n```java\nint p = 10;\nint q = 3;\np--;\np--;\nq++;\nSystem.out.println(p + \" \" + q);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`8 3`"
+      },
+      {
+        "label": "B",
+        "text": "`8 4`"
+      },
+      {
+        "label": "C",
+        "text": "`9 4`"
+      },
+      {
+        "label": "D",
+        "text": "`10 4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Two `p--` operations lower p from 10 to 8. One `q++` raises q from 3 to 4. Output is `8 4`. Option A forgets `q++` (q remains 3). Option C applies only one `p--` (p = 9). Option D forgets both `p--` operations (p remains 10).",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the values of `x` and `y` after the following code runs.\n\n```java\nint x = 0;\nint y = 8;\nwhile (x < y) {\n    x++;\n    y--;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 3, y = 5`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 4, y = 4`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 5, y = 3`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 4, y = 5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Each iteration increments x and decrements y. After 4 iterations x = 4 and y = 4; the condition 4 < 4 is false so the loop exits. Option A is the state after only 3 iterations (one too few). Option C would require a 5th iteration, but 4 < 4 never triggers one. Option D comes from applying `x++` but forgetting `y--` on the final iteration.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the output of the following code.\n\n```java\nint n = 1;\nint total = 0;\nwhile (n <= 5) {\n    total++;\n    n++;\n    n++;\n}\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Because there are two `n++` statements per iteration, n advances by 2 each time. The loop body executes when n = 1 (n becomes 3), n = 3 (n becomes 5), and n = 5 (n becomes 7, exiting on the next check). That is 3 iterations, so total = 3. Option D would be correct if n incremented by only 1 per iteration. Option C overcounts by one extra iteration.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the output of the following code.\n\n```java\nint x = 1;\nint y = 10;\nwhile (x < y) {\n    x++;\n    y--;\n    x++;\n}\nSystem.out.println(x + \" \" + y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`7 7`"
+      },
+      {
+        "label": "B",
+        "text": "`6 7`"
+      },
+      {
+        "label": "C",
+        "text": "`6 5`"
+      },
+      {
+        "label": "D",
+        "text": "`9 6`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Each full iteration adds 2 to x and subtracts 1 from y. Tracing: (1,10)\u2192(3,9); (3,9)\u2192(5,8); (5,8)\u2192(7,7). The condition 7 < 7 is false, so the loop exits and prints `7 7`. Option B results from a misconception that the loop condition is re-evaluated mid-body, halting after the first `x++` and `y--` of the third iteration (x=6, y=7). Option C comes from treating the body as having only one `x++` per iteration, causing convergence to x=6, y=5 after 5 iterations. Option D results from using `<=` instead of `<`, running one extra iteration that yields x=9, y=6.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Which of the following is equivalent to the statement `score++;`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`score = score - 1;`"
+      },
+      {
+        "label": "B",
+        "text": "`score = score + 1;`"
+      },
+      {
+        "label": "C",
+        "text": "`score = score * 2;`"
+      },
+      {
+        "label": "D",
+        "text": "`score = score + score;`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The post-increment operator `++` adds exactly 1 to the variable, making `score++` identical to `score = score + 1`. Option A describes the decrement operator `--`. Options C and D both double the value rather than adding 1.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the value of `x` after the following code runs.\n\n```java\nint x = 4;\nx++;\nx++;\nx--;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Starting at 4, the first `x++` produces 5, the second `x++` produces 6, then `x--` reduces it to 5. Option D forgets the final decrement. Option B is the original value (no net change is a plausible but incorrect belief when two increments and one decrement are applied). Option A would require two decrements with no increments.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the output of the following code:\n\n```java\nint val = 1;\nfor (int j = 0; j < 3; j++) {\n    val++;\n    System.out.print(val + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 2 3`"
+      },
+      {
+        "label": "B",
+        "text": "`2 3 4`"
+      },
+      {
+        "label": "C",
+        "text": "`3 4 5`"
+      },
+      {
+        "label": "D",
+        "text": "`2 3 4 5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop runs for j = 0, 1, 2. Each iteration increments val before printing: j=0 \u2192 val=2, prints 2; j=1 \u2192 val=3, prints 3; j=2 \u2192 val=4, prints 4. Option A is wrong because it prints val before the increment (confusing the order of statements). Option C mistakenly treats val as starting at 2. Option D adds a fourth value, confusing `j < 3` with `j <= 3`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 6;\nint y = 3;\nx--;\nx--;\ny++;\nSystem.out.println(x + \" \" + y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5 4`"
+      },
+      {
+        "label": "B",
+        "text": "`4 4`"
+      },
+      {
+        "label": "C",
+        "text": "`4 3`"
+      },
+      {
+        "label": "D",
+        "text": "`8 2`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "x starts at 6 and is decremented twice (6 \u2192 5 \u2192 4). y starts at 3 and is incremented once (3 \u2192 4). The output is `4 4`. Option A applies only one decrement to x (off by one). Option C correctly decrements x but forgets to apply y++. Option D swaps the operators, incrementing x twice and decrementing y.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "A student wants to write code that prints the integers 5, 4, 3, 2, and 1, each on a separate line. Which of the following correctly accomplishes this goal?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int k = 5; k > 0; k--) {\n    System.out.println(k);\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int k = 5; k > 0; k++) {\n    System.out.println(k);\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int k = 5; k >= 0; k--) {\n    System.out.println(k);\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int k = 5; k > 1; k--) {\n    System.out.println(k);\n}\n```"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Option A starts k at 5, prints it, decrements, and stops when k reaches 0 (condition k > 0 fails), correctly printing 5 4 3 2 1. Option B uses k++, so k only grows and the loop never terminates. Option C uses k >= 0, so it also prints 0 (one extra value). Option D uses k > 1, which causes the loop to exit before k reaches 1, printing only 5 4 3 2.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Which of the following statements is equivalent to `count--;`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`count = count - 1;`"
+      },
+      {
+        "label": "B",
+        "text": "`count = count + 1;`"
+      },
+      {
+        "label": "C",
+        "text": "`count - 1;`"
+      },
+      {
+        "label": "D",
+        "text": "`count = -1;`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`count--` is the decrement operator and is exactly equivalent to `count = count - 1`. B is the increment equivalent. C evaluates count - 1 as an expression but discards the result, leaving count unchanged. D assigns the literal value -1 to count regardless of its current value.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the values of `x` and `y` after the following code runs.\n\n```java\nint x = 3;\nint y = 7;\nx++;\ny--;\ny--;\nx++;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`x = 4, y = 6`"
+      },
+      {
+        "label": "B",
+        "text": "`x = 5, y = 5`"
+      },
+      {
+        "label": "C",
+        "text": "`x = 4, y = 5`"
+      },
+      {
+        "label": "D",
+        "text": "`x = 5, y = 6`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Executing in order: x++ makes x = 4, y-- makes y = 6, y-- makes y = 5, x++ makes x = 5. Final values are x = 5 and y = 5. A counts only one x++ (stops at 4). C counts only one x++ and two y--. D counts two x++ but only one y--.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the output of the following code.\n\n```java\nint n = 10;\nn--;\nn--;\nn++;\nSystem.out.println(n);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`10`"
+      },
+      {
+        "label": "B",
+        "text": "`9`"
+      },
+      {
+        "label": "C",
+        "text": "`8`"
+      },
+      {
+        "label": "D",
+        "text": "`11`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "n starts at 10, decrements to 9 (n--), decrements to 8 (n--), then increments back to 9 (n++), so 9 is printed. A ignores all three operations. C applies the two decrements but ignores the final n++. D mistakenly applies all three operations as increments.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the output of the following code.\n\n```java\nint x = 10;\nint y = 0;\nwhile (x > 6) {\n    x--;\n    y++;\n}\nSystem.out.println(x + \" \" + y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6 4`"
+      },
+      {
+        "label": "B",
+        "text": "`7 3`"
+      },
+      {
+        "label": "C",
+        "text": "`6 3`"
+      },
+      {
+        "label": "D",
+        "text": "`7 4`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop body runs while x > 6. Starting at x=10, y=0: iteration 1 gives x=9, y=1; iteration 2 gives x=8, y=2; iteration 3 gives x=7, y=3; iteration 4 gives x=6, y=4. Now 6 > 6 is false, so the loop exits and prints '6 4'. B stops one iteration early (off-by-one on the condition). C has the correct x=6 but counts only three iterations for y. D incorrectly keeps x=7, stopping before the fourth decrement.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "A student writes the following code intending to print the integers 1 through 5 in ascending order. What is the result when the code is executed?\n\n```java\nint n = 1;\nwhile (n <= 5) {\n    System.out.println(n);\n    n--;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "Prints 1, 2, 3, 4, 5 on separate lines"
+      },
+      {
+        "label": "B",
+        "text": "Prints only 1, then stops"
+      },
+      {
+        "label": "C",
+        "text": "Prints 5, 4, 3, 2, 1 on separate lines"
+      },
+      {
+        "label": "D",
+        "text": "Runs forever without terminating"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The bug is `n--` instead of `n++`. Each iteration decrements n (1 \u2192 0 \u2192 -1 \u2192 \u2026), so n \u2264 5 is always true and the loop never exits. A would be correct if `n++` were used. B is wrong because the loop condition remains true well past n=1. C would require starting at n=5 and using n-- with the condition n >= 1.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the output of the following code.\n\n```java\nint a = 0;\nint b = 5;\nfor (int i = 0; i < 3; i++) {\n    a++;\n    b--;\n}\nSystem.out.println(a + \" \" + b);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3 2`"
+      },
+      {
+        "label": "B",
+        "text": "`4 1`"
+      },
+      {
+        "label": "C",
+        "text": "`3 3`"
+      },
+      {
+        "label": "D",
+        "text": "`2 3`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop executes exactly 3 times (i = 0, 1, 2). Each iteration increments a and decrements b, so a goes 0\u21921\u21922\u21923 and b goes 5\u21924\u21923\u21922, producing output '3 2'. B applies an off-by-one error (loop counted 4 times, yielding a=4, b=1). C decrements b only twice (b=3). D swaps the final values of a and b.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 4;\nint y = 1;\n\nx++;\ny--;\nx = x + y;\ny++;\n\nSystem.out.println(x + \" \" + y);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`4 1`"
+      },
+      {
+        "label": "B",
+        "text": "`5 0`"
+      },
+      {
+        "label": "C",
+        "text": "`5 1`"
+      },
+      {
+        "label": "D",
+        "text": "`6 1`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`x++` changes `x` to 5, `y--` changes `y` to 0, so `x = x + y` leaves `x` as 5; then `y++` changes `y` to 1. The other choices miss one of these updates or add an extra 1 to `x`.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u1_s1_6",
+    "stem": "Determine the values of `total` and `n` after the following code runs.\n\n```java\nint total = 0;\nint n = 5;\n\nwhile (n > 1)\n{\n    total++;\n    n--;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`total = 3, n = 2`"
+      },
+      {
+        "label": "B",
+        "text": "`total = 4, n = 1`"
+      },
+      {
+        "label": "C",
+        "text": "`total = 5, n = 0`"
+      },
+      {
+        "label": "D",
+        "text": "`total = 5, n = 1`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop runs for `n` values 5, 4, 3, and 2, increasing `total` four times and stopping when `n` becomes 1. The other choices reflect stopping one iteration early or running one iteration too many.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  }
+]

@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Consider the following code segment:\n\n```java\nint[] arr = {3, 6, 9, 12};\nfor (int val : arr)\n{\n    val = val / 3;\n}\nfor (int val : arr)\n{\n    System.out.print(val + \" \");\n}\n```\n\nDetermine the output of the following code:",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 2 3 4`"
+      },
+      {
+        "label": "B",
+        "text": "`3 6 9 12`"
+      },
+      {
+        "label": "C",
+        "text": "`1 2 3 4 3 6 9 12`"
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs."
+      }
+    ],
+    "answer": "B",
+    "explanation": "In an enhanced for loop over a primitive array, the loop variable `val` is a local copy of the element's value. Assigning `val = val / 3` modifies only that copy; the original array is unchanged. The second loop therefore prints the original values `3 6 9 12`. A results from incorrectly assuming the first loop mutates the array. C confuses two separate loops modifying then reprinting distinct values. D is wrong because the code is syntactically valid and runs without error.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Consider the following code segment:\n\n```java\nint[] scores = {85, 90, 78, 92, 88};\nint sum = 0;\nfor (int i = 0; i <= scores.length; i++)\n{\n    sum += scores[i];\n}\nSystem.out.println(sum);\n```\n\nWhich of the following best describes what happens when this code runs?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The code prints `433`."
+      },
+      {
+        "label": "B",
+        "text": "The code prints `0`."
+      },
+      {
+        "label": "C",
+        "text": "An `ArrayIndexOutOfBoundsException` is thrown."
+      },
+      {
+        "label": "D",
+        "text": "An `ArithmeticException` is thrown."
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop condition `i <= scores.length` allows `i` to reach `5` on the final iteration, but valid indices for a 5-element array are `0` through `4`. Accessing `scores[5]` throws `ArrayIndexOutOfBoundsException`. The correct bound is `i < scores.length`. A is the value that would print if the loop were correct, but the exception prevents it. B is wrong for the same reason. D is wrong because no integer division or modulo by zero occurs anywhere.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Consider the following code segment:\n\n```java\nint[] data = {2, 4, 6, 8, 10};\nfor (int i = data.length - 1; i >= 0; i--)\n{\n    if (i % 2 == 0)\n    {\n        System.out.print(data[i] + \" \");\n    }\n}\n```\n\nDetermine the output of the following code:",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 6 10`"
+      },
+      {
+        "label": "B",
+        "text": "`10 8 6 4 2`"
+      },
+      {
+        "label": "C",
+        "text": "`4 8`"
+      },
+      {
+        "label": "D",
+        "text": "`10 6 2`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The loop runs from index 4 down to 0, printing `data[i]` only when `i` is even. The even indices encountered in reverse order are 4, 2, 0, yielding `data[4]=10`, `data[2]=6`, `data[0]=2` \u2014 output `10 6 2`. A gives those same values in forward (ascending index) order, the result of confusing the traversal direction. B prints every element in reverse, ignoring the even-index guard. C prints elements at the odd indices 1 and 3 (`data[1]=4`, `data[3]=8`), which is what the condition `i % 2 != 0` would produce.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Which of the following statements about traversing a primitive `int` array with an enhanced for loop is correct?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The loop variable holds a reference to the array slot, so assigning to it updates the original array element."
+      },
+      {
+        "label": "B",
+        "text": "The loop variable provides direct access to the index of the current element."
+      },
+      {
+        "label": "C",
+        "text": "Modifying the loop variable inside the loop body permanently changes the corresponding array element."
+      },
+      {
+        "label": "D",
+        "text": "The loop variable holds a copy of the current element's value; assigning to it does not change the array."
+      }
+    ],
+    "answer": "D",
+    "explanation": "For a primitive array, the enhanced for loop variable is initialized to a copy of each element in turn. Assignments to that variable have no effect on the underlying array. A and C both incorrectly describe the loop variable as linked to the array storage \u2014 that is false for primitives. B is wrong because the enhanced for loop exposes no index; an indexed `for` loop is required when the index is needed.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Consider the following code segment:\n\n```java\nint[] nums = {5, 3, 8, 2, 7, 4, 6};\nint count = 0;\nint total = 0;\nfor (int n : nums)\n{\n    if (n > 4)\n    {\n        count++;\n        total += n;\n    }\n}\n```\n\nDetermine the values of `count` and `total` after the code executes.",
+    "options": [
+      {
+        "label": "A",
+        "text": "`count = 3, total = 21`"
+      },
+      {
+        "label": "B",
+        "text": "`count = 4, total = 26`"
+      },
+      {
+        "label": "C",
+        "text": "`count = 5, total = 30`"
+      },
+      {
+        "label": "D",
+        "text": "`count = 7, total = 35`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The elements strictly greater than 4 are 5, 8, 7, and 6 \u2014 four elements with sum 26. Note that 4 itself does not satisfy `n > 4`. A (3, 21) comes from mistakenly using `n > 5`, which selects only 8, 7, 6. C (5, 30) comes from using `n >= 4`, which also includes the element 4 (5+8+7+4+6=30). D (7, 35) results from ignoring the condition entirely and accumulating all seven elements.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Consider the following method, which is intended to return `true` if any element of `arr` is negative and `false` otherwise.\n\n```java\npublic static boolean hasNegative(int[] arr)\n{\n    for (int val : arr)\n    {\n        if (val < 0)\n            return true;\n        else\n            return false;\n    }\n    return false;\n}\n```\n\nWhich of the following best describes the bug in this method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The method should use a standard indexed `for` loop because an enhanced for loop cannot return from inside its body."
+      },
+      {
+        "label": "B",
+        "text": "The method exits after examining only the first element, so it may return `false` when the first element is non-negative even if a later element is negative."
+      },
+      {
+        "label": "C",
+        "text": "The method will throw `ArrayIndexOutOfBoundsException` if `arr` contains no elements."
+      },
+      {
+        "label": "D",
+        "text": "The condition `val < 0` should be `val <= 0` to correctly detect negative values."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The `else return false;` forces the method to return on the very first iteration regardless of whether a negative element exists later in the array. The fix is to remove the `else` branch so that `return false` is reached only after all elements have been checked. A is wrong \u2014 `return` inside an enhanced for loop is perfectly legal. C is wrong \u2014 an empty array bypasses the loop entirely and falls through to the final `return false` without exception. D is wrong \u2014 `val < 0` correctly identifies strictly negative values; changing it to `val <= 0` would also flag zero, which contradicts the specification.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Determine the output of the following code.\n\n```java\nint[] nums = {3, 1, 4, 1, 5};\nint total = 0;\n\nfor (int i = 0; i < nums.length; i += 2)\n{\n    total += nums[i];\n}\n\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`8`"
+      },
+      {
+        "label": "B",
+        "text": "`9`"
+      },
+      {
+        "label": "C",
+        "text": "`12`"
+      },
+      {
+        "label": "D",
+        "text": "`14`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop visits indices 0, 2, and 4, adding 3 + 4 + 5 for a total of 12. The other choices result from including skipped elements or missing one visited index.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Determine the output of the following code.\n\n```java\nint[] vals = {2, 4, 6};\n\nfor (int v : vals)\n{\n    v = v + 1;\n}\n\nSystem.out.println(vals[0] + \" \" + vals[2]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2 6`"
+      },
+      {
+        "label": "B",
+        "text": "`3 7`"
+      },
+      {
+        "label": "C",
+        "text": "`2 7`"
+      },
+      {
+        "label": "D",
+        "text": "`3 6`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In an enhanced for loop over primitive values, `v` is a copy of each array element, so assigning to `v` does not change the array. The array remains `{2, 4, 6}`.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Consider the following method.\n\n```java\npublic static boolean contains(int[] data, int target)\n{\n    for (int n : data)\n    {\n        if (n == target)\n        {\n            return true;\n        }\n        /* missing code */\n    }\n    return false;\n}\n```\n\nWhich replacement for `/* missing code */` makes the method return `true` when `target` appears anywhere in `data` and `false` otherwise?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`return false;`"
+      },
+      {
+        "label": "B",
+        "text": "`else return false;`"
+      },
+      {
+        "label": "C",
+        "text": "`n++;`"
+      },
+      {
+        "label": "D",
+        "text": "`// no statement is needed`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The method should return `false` only after every element has been checked. Choices A and B return after the first nonmatching element, and C changes only the loop variable copy.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Determine the values of `first` and `last` after the following code runs.\n\n```java\nint[] a = {10, 20, 30, 40};\n\nfor (int i = 0; i < a.length / 2; i++)\n{\n    int temp = a[i];\n    a[i] = a[a.length - 1 - i];\n    a[a.length - 1 - i] = temp;\n}\n\nint first = a[0];\nint last = a[a.length - 1];\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`first = 10, last = 40`"
+      },
+      {
+        "label": "B",
+        "text": "`first = 20, last = 30`"
+      },
+      {
+        "label": "C",
+        "text": "`first = 30, last = 20`"
+      },
+      {
+        "label": "D",
+        "text": "`first = 40, last = 10`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "The loop swaps matching elements from the front and back, reversing the array to `{40, 30, 20, 10}`. Therefore `first` is 40 and `last` is 10.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Which loop correctly prints every element of `arr` in reverse order without causing an array index error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int i = arr.length; i >= 0; i--)\n{\n    System.out.println(arr[i]);\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int i = arr.length - 1; i >= 0; i--)\n{\n    System.out.println(arr[i]);\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int i = arr.length - 1; i > 0; i--)\n{\n    System.out.println(arr[i]);\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int i = 0; i < arr.length; i--)\n{\n    System.out.println(arr[i]);\n}\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The last valid index is `arr.length - 1`, and index 0 must also be included. Choice A starts out of bounds, C skips index 0, and D moves away from the valid range.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Determine the output of the following code.\n\n```java\nint[] data = {5, 2, 8, 2, 1};\nint count = 0;\n\nfor (int i = 1; i < data.length; i++)\n{\n    if (data[i] < data[i - 1])\n    {\n        count++;\n    }\n}\n\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The comparisons are 2 < 5, 8 < 2, 2 < 8, and 1 < 2; three of these are true. Choice B misses one decrease, and D counts every comparison.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Determine the output of the following code.\n\n```java\nint[] nums = {3, 1, 4, 1, 5};\nint total = 0;\n\nfor (int i = 0; i < nums.length; i++)\n{\n    if (i % 2 == 0)\n    {\n        total += nums[i];\n    }\n    else\n    {\n        total -= nums[i];\n    }\n}\n\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6`"
+      },
+      {
+        "label": "B",
+        "text": "`10`"
+      },
+      {
+        "label": "C",
+        "text": "`14`"
+      },
+      {
+        "label": "D",
+        "text": "`4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop adds values at indices 0, 2, and 4 and subtracts values at indices 1 and 3, giving 3 - 1 + 4 - 1 + 5 = 10. The other choices reflect adding or subtracting the wrong elements.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Determine the contents of `data` after the following code runs.\n\n```java\nint[] data = {2, 4, 6};\n\nfor (int val : data)\n{\n    val = val + 10;\n}\n\nfor (int i = 0; i < data.length; i++)\n{\n    data[i] = data[i] + i;\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`{2, 5, 8}`"
+      },
+      {
+        "label": "B",
+        "text": "`{12, 15, 18}`"
+      },
+      {
+        "label": "C",
+        "text": "`{12, 14, 16}`"
+      },
+      {
+        "label": "D",
+        "text": "`{2, 4, 6}`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Assigning to the enhanced-for variable `val` does not change the array, so only the indexed loop modifies the elements to 2, 5, and 8. Choices B and C treat the first loop as if it changed the array, and D ignores the second loop.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Consider the following method.\n\n```java\npublic static boolean containsValue(int[] nums, int target)\n{\n    for (int n : nums)\n    {\n        if (n == target)\n        {\n            return true;\n        }\n        else\n        {\n            return false;\n        }\n    }\n    return false;\n}\n```\n\nWhich statement best describes the method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It returns `true` only when every element equals `target`."
+      },
+      {
+        "label": "B",
+        "text": "It returns `true` only when the first element equals `target`."
+      },
+      {
+        "label": "C",
+        "text": "It always checks every element before returning."
+      },
+      {
+        "label": "D",
+        "text": "It causes an `ArrayIndexOutOfBoundsException` for a nonempty array."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The method returns during the first loop iteration, so only the first element is checked. A and C assume the loop continues, and D is wrong because enhanced-for traversal does not use an invalid index here.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Which of the following could replace `/* missing code */` so that every element of `scores` is increased by 5?\n\n```java\nint[] scores = {71, 83, 90, 64};\n\n/* missing code */\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "```java\nfor (int s : scores)\n{\n    s += 5;\n}\n```"
+      },
+      {
+        "label": "B",
+        "text": "```java\nfor (int i = 0; i < scores.length; i++)\n{\n    scores[i] += 5;\n}\n```"
+      },
+      {
+        "label": "C",
+        "text": "```java\nfor (int i = 1; i < scores.length; i++)\n{\n    scores[i] += 5;\n}\n```"
+      },
+      {
+        "label": "D",
+        "text": "```java\nfor (int i = 0; i <= scores.length; i++)\n{\n    scores[i] += 5;\n}\n```"
+      }
+    ],
+    "answer": "B",
+    "explanation": "An indexed loop can assign directly to each array element from index 0 through `scores.length - 1`. A changes only a copy, C skips index 0, and D tries to access `scores[scores.length]`.",
+    "difficulty": 2,
+    "stem_pattern": "array_traversal"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Determine the output of the following code.\n\n```java\nint[] a = {4, 7, 2, 9};\nint result = 0;\n\nfor (int i = a.length - 1; i >= 0; i--)\n{\n    if (a[i] > i)\n    {\n        result += a[i] - i;\n    }\n}\n\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`13`"
+      },
+      {
+        "label": "B",
+        "text": "`16`"
+      },
+      {
+        "label": "C",
+        "text": "`19`"
+      },
+      {
+        "label": "D",
+        "text": "`22`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop visits indices 3, 2, 1, and 0, adding 6, 0, 6, and 4 for a total of 16? Actually at index 2, `a[2] > 2` is false because 2 is not greater than 2, so the total is 6 + 6 + 4 = 16.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Which replacement for `/* condition */` correctly traverses `items` from the last element to the first without causing an error?\n\n```java\nString[] items = {\"pencil\", \"pen\", \"marker\"};\n\nfor (int i = items.length - 1; /* condition */; i--)\n{\n    System.out.print(items[i] + \" \");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`i > 0`"
+      },
+      {
+        "label": "B",
+        "text": "`i >= 0`"
+      },
+      {
+        "label": "C",
+        "text": "`i <= items.length`"
+      },
+      {
+        "label": "D",
+        "text": "`i < items.length - 1`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The valid indices are 0 through `items.length - 1`, so reverse traversal should continue while `i >= 0`. A skips index 0, C keeps going after `i` becomes negative, and D is false before the first iteration.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Determine the output of the following code.\n\n```java\nint[] nums = {4, 1, 3, 7, 2};\nint total = 0;\n\nfor (int i = 0; i < nums.length; i++)\n{\n    if (i % 2 == 0)\n    {\n        total += nums[i];\n    }\n    else\n    {\n        total -= nums[i];\n    }\n}\n\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`17`"
+      },
+      {
+        "label": "C",
+        "text": "`9`"
+      },
+      {
+        "label": "D",
+        "text": "`-1`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Elements at even indices are added and elements at odd indices are subtracted: 4 - 1 + 3 - 7 + 2 = 1. The other choices come from summing all elements, using element parity instead of index parity, or stopping before the last element.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Determine the output of the following code.\n\n```java\nint[] vals = {6, 2, 9, 3};\n\nfor (int i = vals.length - 1; i > 0; i--)\n{\n    System.out.print(vals[i]);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3926`"
+      },
+      {
+        "label": "B",
+        "text": "`392`"
+      },
+      {
+        "label": "C",
+        "text": "`6293`"
+      },
+      {
+        "label": "D",
+        "text": "`293`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The loop starts at index 3 and stops after index 1 because the condition is `i > 0`, so it prints 3, 9, and 2. Choice A includes index 0, and choices C and D use forward order.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Determine the values of `count` and `last` after the following code runs.\n\n```java\nint[] data = {5, 8, 6, 8, 3};\nint count = 0;\nint last = -1;\n\nfor (int i = 0; i < data.length; i++)\n{\n    if (data[i] % 2 == 0)\n    {\n        count++;\n        last = i;\n    }\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`count = 2, last = 3`"
+      },
+      {
+        "label": "B",
+        "text": "`count = 3, last = 3`"
+      },
+      {
+        "label": "C",
+        "text": "`count = 3, last = 4`"
+      },
+      {
+        "label": "D",
+        "text": "`count = 5, last = 4`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The even values are 8, 6, and 8 at indices 1, 2, and 3, so `count` becomes 3 and `last` becomes 3. The wrong choices confuse values with indices or count all elements.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Which of the following could replace `/* missing condition */` so that the loop traverses every valid index of `arr` exactly once?\n\n```java\nint[] arr = {10, 20, 30, 40};\n\nfor (int i = 0; /* missing condition */; i++)\n{\n    System.out.println(arr[i]);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`i <= arr.length`"
+      },
+      {
+        "label": "B",
+        "text": "`i < arr.length`"
+      },
+      {
+        "label": "C",
+        "text": "`i < arr.length - 1`"
+      },
+      {
+        "label": "D",
+        "text": "`i <= arr.length - 1 && i > 0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Valid array indices are 0 through `arr.length - 1`, so `i < arr.length` visits all of them. Choice A goes out of bounds, choice C skips the last element, and choice D skips index 0.",
+    "difficulty": 1,
+    "stem_pattern": "array_traversal"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Consider the following method.\n\n```java\npublic static boolean contains(int[] nums, int target)\n{\n    for (int n : nums)\n    {\n        if (n == target)\n        {\n            return true;\n        }\n        else\n        {\n            return false;\n        }\n    }\n    return false;\n}\n```\n\nFor which call does the method return an incorrect result?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`contains(new int[] {4, 5, 6}, 4)`"
+      },
+      {
+        "label": "B",
+        "text": "`contains(new int[] {4, 5, 6}, 5)`"
+      },
+      {
+        "label": "C",
+        "text": "`contains(new int[] {4, 5, 6}, 7)`"
+      },
+      {
+        "label": "D",
+        "text": "`contains(new int[] {4}, 4)`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The method returns `false` immediately when the first element is not the target, so it never checks the later 5. The other calls happen to return the correct result because the target is first, absent, or the only element.",
+    "difficulty": 4,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "What is printed by the following code?\n\n```java\nint[] nums = {1, 2, 3};\n\nfor (int n : nums)\n{\n    n = n * 2;\n}\n\nfor (int i = 0; i < nums.length; i++)\n{\n    System.out.print(nums[i]);\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`123`"
+      },
+      {
+        "label": "B",
+        "text": "`246`"
+      },
+      {
+        "label": "C",
+        "text": "`112233`"
+      },
+      {
+        "label": "D",
+        "text": "`000`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "In an enhanced `for` loop over an `int` array, the loop variable is a copy, so assigning to `n` does not change the array. Choice B assumes the array elements are updated.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_4",
+    "stem": "Determine the output of the following code.\n\n```java\nint[] nums = {2, 4, 6, 8};\n\nfor (int n : nums)\n{\n    n = n + 1;\n}\n\nfor (int i = 0; i < nums.length; i += 2)\n{\n    nums[i] = nums[i] + nums[i + 1];\n}\n\nSystem.out.println(nums[0] + \" \" + nums[1] + \" \" + nums[2] + \" \" + nums[3]);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`6 4 14 8`"
+      },
+      {
+        "label": "B",
+        "text": "`7 5 15 9`"
+      },
+      {
+        "label": "C",
+        "text": "`8 5 16 9`"
+      },
+      {
+        "label": "D",
+        "text": "`2 4 6 8`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The enhanced for loop changes only the loop variable, so the array remains `{2, 4, 6, 8}`. The indexed loop then sets `nums[0]` to `6` and `nums[2]` to `14`, giving `6 4 14 8`.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  }
+]

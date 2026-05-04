@@ -1,0 +1,782 @@
+[
+  {
+    "archetype": "array_2d",
+    "topic_id": "u4_s4_11",
+    "prompt": "A climate research team records daily high temperatures for multiple cities. The TemperatureGrid class stores these readings in a private 2D double array named grid, where rows correspond to days and columns correspond to cities. Temperature data is supplied as a flat one-dimensional array in row-major order: the first cities values are the readings for day 0, the next cities values are for day 1, and so on. The class also stores the number of days and the number of cities as private int instance variables.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the TemperatureGrid constructor that takes int days, int cities, and double[] readings as parameters. The constructor must store the parameters in the appropriate instance variables, allocate grid as a two-dimensional double array of size days-by-cities, and assign grid[r][c] = readings[r * cities + c] for every valid row r and column c."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method cityAverage that takes an int parameter cityIndex and returns, as a double, the average of all values stored in column cityIndex of grid across all rows."
+      }
+    ],
+    "reference_solution": "public class TemperatureGrid {\n    private double[][] grid;\n    private int days;\n    private int cities;\n\n    public TemperatureGrid(int days, int cities, double[] readings) {\n        this.days = days;\n        this.cities = cities;\n        grid = new double[days][cities];\n        for (int r = 0; r < days; r++) {\n            for (int c = 0; c < cities; c++) {\n                grid[r][c] = readings[r * cities + c];\n            }\n        }\n    }\n\n    public double cityAverage(int cityIndex) {\n        double sum = 0.0;\n        for (int r = 0; r < days; r++) {\n            sum += grid[r][cityIndex];\n        }\n        return sum / days;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "2D array allocated with correct dimensions",
+        "criterion": "Constructor allocates new double[days][cities]; row and column dimensions are not swapped and are not hardcoded",
+        "points": 1
+      },
+      {
+        "point_label": "Nested loops traverse all cells without bounds errors",
+        "criterion": "Outer loop runs r from 0 to days-1 inclusive; inner loop runs c from 0 to cities-1 inclusive with no off-by-one",
+        "points": 1
+      },
+      {
+        "point_label": "Correct flat-to-2D index formula",
+        "criterion": "Source array indexed as readings[r * cities + c] or an algebraically equivalent expression",
+        "points": 1
+      },
+      {
+        "point_label": "Value stored in correct cell",
+        "criterion": "Assignment targets grid[r][c]; indices are not transposed to grid[c][r]",
+        "points": 1
+      },
+      {
+        "point_label": "cityAverage accumulates the correct column",
+        "criterion": "Loop iterates r from 0 to days-1 and adds grid[r][cityIndex] to a running sum variable",
+        "points": 1
+      },
+      {
+        "point_label": "cityAverage returns correct result",
+        "criterion": "Returns sum / days (double division) after completing the loop; does not return sum alone or use integer division",
+        "points": 1
+      }
+    ],
+    "total_points": 6,
+    "test_cases": [
+      {
+        "description": "3-day 2-city grid; verify city 0 average",
+        "setup_java": "double[] r = {70.0, 80.0, 65.0, 75.0, 72.0, 78.0};\nTemperatureGrid tg = new TemperatureGrid(3, 2, r);\nSystem.out.println(tg.cityAverage(0));",
+        "expected_output": "69.0"
+      },
+      {
+        "description": "2-day 3-city grid; verify last column average",
+        "setup_java": "double[] r = {10.0, 20.0, 30.0, 40.0, 50.0, 60.0};\nTemperatureGrid tg = new TemperatureGrid(2, 3, r);\nSystem.out.println(tg.cityAverage(2));",
+        "expected_output": "45.0"
+      },
+      {
+        "description": "Single-day 4-city grid; boundary check with one row",
+        "setup_java": "double[] r = {100.0, 200.0, 300.0, 400.0};\nTemperatureGrid tg = new TemperatureGrid(1, 4, r);\nSystem.out.println(tg.cityAverage(1));",
+        "expected_output": "200.0"
+      }
+    ]
+  },
+  {
+    "archetype": "array_2d",
+    "topic_id": "u4_s4_11",
+    "prompt": "A school uses a digital seating chart system for classroom management. The ClassroomSeating class stores student names in a private 2D String array named seats, where rows and columns correspond to physical seat positions. Unoccupied seats are represented by the empty string \"\". The class also stores the number of rows and columns as private int instance variables.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the ClassroomSeating constructor that takes int rows and int cols. The constructor must store these values in the appropriate instance variables, allocate seats as a two-dimensional String array of size rows-by-cols, and initialize every cell to the empty string \"\"."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method assignSeat that takes a String parameter studentName. The method scans seats in row-major order and assigns studentName to the first cell that equals \"\", then immediately returns true. If no empty cell exists, the method returns false without modifying seats."
+      }
+    ],
+    "reference_solution": "public class ClassroomSeating {\n    private String[][] seats;\n    private int rows;\n    private int cols;\n\n    public ClassroomSeating(int rows, int cols) {\n        this.rows = rows;\n        this.cols = cols;\n        seats = new String[rows][cols];\n        for (int r = 0; r < rows; r++) {\n            for (int c = 0; c < cols; c++) {\n                seats[r][c] = \"\";\n            }\n        }\n    }\n\n    public boolean assignSeat(String studentName) {\n        for (int r = 0; r < rows; r++) {\n            for (int c = 0; c < cols; c++) {\n                if (seats[r][c].equals(\"\")) {\n                    seats[r][c] = studentName;\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "2D array allocated with correct dimensions",
+        "criterion": "Constructor allocates new String[rows][cols]; row and column dimensions are not swapped",
+        "points": 1
+      },
+      {
+        "point_label": "Initialization loops traverse all cells",
+        "criterion": "Nested loops in constructor cover every cell: outer loop r from 0 to rows-1, inner loop c from 0 to cols-1, no off-by-one",
+        "points": 1
+      },
+      {
+        "point_label": "Each cell initialized to empty string, not null",
+        "criterion": "seats[r][c] is set to \"\" (the empty string literal) inside the constructor loops; null or any other value does not earn this point",
+        "points": 1
+      },
+      {
+        "point_label": "assignSeat traversal in row-major order",
+        "criterion": "Nested loops scan seats row by row; outer loop iterates over rows, inner loop iterates over columns",
+        "points": 1
+      },
+      {
+        "point_label": "Correct cell-selection, assignment, and early return",
+        "criterion": "Condition tests seats[r][c].equals(\"\"); on a match, assigns studentName to that cell and immediately returns true before continuing the loop",
+        "points": 1
+      },
+      {
+        "point_label": "Returns false when no empty seat exists",
+        "criterion": "Method returns false after the nested loops complete without finding an empty cell; does not throw an exception or return true",
+        "points": 1
+      }
+    ],
+    "total_points": 6,
+    "test_cases": [
+      {
+        "description": "2x2 grid: fill all four seats then attempt a fifth",
+        "setup_java": "ClassroomSeating cs = new ClassroomSeating(2, 2);\nSystem.out.println(cs.assignSeat(\"Alice\"));\nSystem.out.println(cs.assignSeat(\"Bob\"));\nSystem.out.println(cs.assignSeat(\"Carol\"));\nSystem.out.println(cs.assignSeat(\"Dave\"));\nSystem.out.println(cs.assignSeat(\"Eve\"));",
+        "expected_output": "true\ntrue\ntrue\ntrue\nfalse"
+      },
+      {
+        "description": "1x1 grid: first assignment succeeds, second fails",
+        "setup_java": "ClassroomSeating cs = new ClassroomSeating(1, 1);\nSystem.out.println(cs.assignSeat(\"Ana\"));\nSystem.out.println(cs.assignSeat(\"Ben\"));",
+        "expected_output": "true\nfalse"
+      },
+      {
+        "description": "1x3 grid: fill all three seats then attempt a fourth",
+        "setup_java": "ClassroomSeating cs = new ClassroomSeating(1, 3);\nSystem.out.println(cs.assignSeat(\"X\"));\nSystem.out.println(cs.assignSeat(\"Y\"));\nSystem.out.println(cs.assignSeat(\"Z\"));\nSystem.out.println(cs.assignSeat(\"W\"));",
+        "expected_output": "true\ntrue\ntrue\nfalse"
+      }
+    ]
+  },
+  {
+    "archetype": "array_2d",
+    "topic_id": "u4_s4_11",
+    "prompt": "A data-processing utility operates on 2D int arrays representing survey responses, where each row is one respondent's set of answers. You will write two static methods for the GridUtils class. The first is a private helper used by the second. Assume every row in any input array has the same length and the array contains at least one row.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the private static method rowsEqual that takes two int array parameters, row1 and row2. The method returns true if and only if the arrays have the same length and every pair of corresponding elements is equal. Otherwise it returns false."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the static method eliminateDuplicateRows that takes a 2D int array parameter grid and returns a new 2D int array containing only the first occurrence of each distinct row from grid, in the order those rows first appear. Two rows are considered equal if rowsEqual returns true for them. The parameter grid must not be modified."
+      }
+    ],
+    "reference_solution": "public class GridUtils {\n    private static boolean rowsEqual(int[] row1, int[] row2) {\n        if (row1.length != row2.length) {\n            return false;\n        }\n        for (int i = 0; i < row1.length; i++) {\n            if (row1[i] != row2[i]) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    public static int[][] eliminateDuplicateRows(int[][] grid) {\n        int uniqueCount = 0;\n        for (int i = 0; i < grid.length; i++) {\n            boolean isDup = false;\n            for (int j = 0; j < i; j++) {\n                if (rowsEqual(grid[i], grid[j])) {\n                    isDup = true;\n                }\n            }\n            if (!isDup) {\n                uniqueCount++;\n            }\n        }\n        int[][] result = new int[uniqueCount][grid[0].length];\n        int nextRow = 0;\n        for (int i = 0; i < grid.length; i++) {\n            boolean isDup = false;\n            for (int j = 0; j < i; j++) {\n                if (rowsEqual(grid[i], grid[j])) {\n                    isDup = true;\n                }\n            }\n            if (!isDup) {\n                for (int c = 0; c < grid[i].length; c++) {\n                    result[nextRow][c] = grid[i][c];\n                }\n                nextRow++;\n            }\n        }\n        return result;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "rowsEqual length guard",
+        "criterion": "Returns false when row1.length != row2.length before entering the element loop",
+        "points": 1
+      },
+      {
+        "point_label": "rowsEqual element comparison loop",
+        "criterion": "Iterates all indices 0 to row1.length-1; returns false on the first mismatched element; returns true only after all elements are confirmed equal",
+        "points": 1
+      },
+      {
+        "point_label": "Result array allocated with correct dimensions",
+        "criterion": "Allocates new int[uniqueCount][grid[0].length] using the computed count of unique rows; dimensions are not hardcoded or swapped",
+        "points": 1
+      },
+      {
+        "point_label": "Correct duplicate detection using rowsEqual",
+        "criterion": "For each row i, compares it against every earlier row j (where j < i) using rowsEqual; marks the row as a duplicate only if at least one earlier row matches",
+        "points": 1
+      },
+      {
+        "point_label": "Non-duplicate rows copied element by element into result",
+        "criterion": "Each unique row is copied via an inner loop assigning result[nextRow][c] = grid[i][c] for each column c; nextRow is incremented after each copied row",
+        "points": 1
+      },
+      {
+        "point_label": "Parameter not modified and new array returned",
+        "criterion": "No element of grid is ever assigned a new value; the method returns result, the newly constructed array",
+        "points": 1
+      }
+    ],
+    "total_points": 6,
+    "test_cases": [
+      {
+        "description": "3-row grid with one duplicate; result contains 2 unique rows",
+        "setup_java": "int[][] g = {{1, 2}, {3, 4}, {1, 2}};\nint[][] r = GridUtils.eliminateDuplicateRows(g);\nSystem.out.println(r.length);\nSystem.out.println(r[0][0] + \" \" + r[0][1]);\nSystem.out.println(r[1][0] + \" \" + r[1][1]);",
+        "expected_output": "2\n1 2\n3 4"
+      },
+      {
+        "description": "3-row grid with no duplicates; all 3 rows preserved",
+        "setup_java": "int[][] g = {{1, 0}, {0, 1}, {1, 1}};\nint[][] r = GridUtils.eliminateDuplicateRows(g);\nSystem.out.println(r.length);",
+        "expected_output": "3"
+      },
+      {
+        "description": "3-row grid where every row is identical; result has exactly 1 row",
+        "setup_java": "int[][] g = {{5, 5}, {5, 5}, {5, 5}};\nint[][] r = GridUtils.eliminateDuplicateRows(g);\nSystem.out.println(r.length);\nSystem.out.println(r[0][0] + \" \" + r[0][1]);",
+        "expected_output": "1\n5 5"
+      }
+    ]
+  },
+  {
+    "archetype": "array_2d",
+    "topic_id": "u4_s4_11",
+    "prompt": "A digital art application stores images as a 2D grid of color names. Each cell in the grid holds a String representing the color of that pixel. The PixelGrid class (shown below) manages such a grid.\n\npublic class PixelGrid {\n    private String[][] grid;\n\n    // Constructor \u2014 to be implemented in part (a)\n    public PixelGrid(int rows, int cols) { /* implementation not shown */ }\n\n    // Sets the color of the pixel at the given row and column\n    public void setPixel(int row, int col, String color) { /* implementation not shown */ }\n\n    // Part (b) \u2014 to be implemented\n    public int countColor(String color) { /* implementation not shown */ }\n\n    // Part (c) \u2014 to be implemented\n    public void replaceColor(String oldColor, String newColor) { /* implementation not shown */ }\n}",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the constructor PixelGrid(int rows, int cols). The constructor should allocate the 2D array grid with the given number of rows and columns, then initialize every cell to the String \"white\"."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method countColor(String color). The method should return the number of cells in grid whose value equals color. For example, if a 3-by-3 grid has exactly two cells equal to \"red\", then countColor(\"red\") returns 2."
+      },
+      {
+        "label": "(c)",
+        "prompt": "Write the method replaceColor(String oldColor, String newColor). The method should change every cell in grid whose value equals oldColor to newColor. Cells whose value does not equal oldColor are left unchanged."
+      }
+    ],
+    "reference_solution": "public class PixelGrid {\n    private String[][] grid;\n\n    public PixelGrid(int rows, int cols) {\n        grid = new String[rows][cols];\n        for (int r = 0; r < rows; r++) {\n            for (int c = 0; c < cols; c++) {\n                grid[r][c] = \"white\";\n            }\n        }\n    }\n\n    public void setPixel(int row, int col, String color) {\n        grid[row][col] = color;\n    }\n\n    public int countColor(String color) {\n        int count = 0;\n        for (int r = 0; r < grid.length; r++) {\n            for (int c = 0; c < grid[0].length; c++) {\n                if (grid[r][c].equals(color)) {\n                    count++;\n                }\n            }\n        }\n        return count;\n    }\n\n    public void replaceColor(String oldColor, String newColor) {\n        for (int r = 0; r < grid.length; r++) {\n            for (int c = 0; c < grid[0].length; c++) {\n                if (grid[r][c].equals(oldColor)) {\n                    grid[r][c] = newColor;\n                }\n            }\n        }\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Array allocation",
+        "criterion": "Constructor allocates grid as new String[rows][cols] with rows and cols in the correct order (not swapped); hardcoding dimensions or reversing row/col order does not earn this point",
+        "points": 1
+      },
+      {
+        "point_label": "Initialization loop",
+        "criterion": "Constructor uses nested loops to assign \"white\" to every cell; all grid.length * grid[0].length cells are initialized so that no cell remains null after construction",
+        "points": 1
+      },
+      {
+        "point_label": "countColor traversal bounds",
+        "criterion": "countColor uses nested loops with outer bound grid.length and inner bound grid[0].length (or equivalent), visiting every cell exactly once without an off-by-one error",
+        "points": 1
+      },
+      {
+        "point_label": "countColor logic and return",
+        "criterion": "countColor uses .equals(color) to compare each cell (not ==), increments an accumulator for each matching cell, and returns the correct total count",
+        "points": 1
+      },
+      {
+        "point_label": "replaceColor condition",
+        "criterion": "replaceColor checks each cell using .equals(oldColor) inside correctly bounded nested loops; cells not matching oldColor are never modified",
+        "points": 1
+      },
+      {
+        "point_label": "replaceColor assignment",
+        "criterion": "replaceColor assigns newColor to grid[r][c] for each cell that satisfies the condition; every qualifying cell is updated and no non-qualifying cell is overwritten",
+        "points": 1
+      }
+    ],
+    "total_points": 6,
+    "test_cases": [
+      {
+        "description": "basic \u2014 set two pixels to red, verify counts, then replace red with blue",
+        "setup_java": "PixelGrid pg = new PixelGrid(3, 3);\npg.setPixel(0, 0, \"red\");\npg.setPixel(1, 2, \"red\");\nSystem.out.println(pg.countColor(\"red\"));\nSystem.out.println(pg.countColor(\"white\"));\npg.replaceColor(\"red\", \"blue\");\nSystem.out.println(pg.countColor(\"blue\"));\nSystem.out.println(pg.countColor(\"red\"));",
+        "expected_output": "2\n7\n2\n0"
+      },
+      {
+        "description": "no matching color \u2014 countColor returns 0 and replaceColor changes nothing",
+        "setup_java": "PixelGrid pg2 = new PixelGrid(2, 2);\nSystem.out.println(pg2.countColor(\"green\"));\npg2.replaceColor(\"green\", \"yellow\");\nSystem.out.println(pg2.countColor(\"white\"));",
+        "expected_output": "0\n4"
+      },
+      {
+        "description": "replace entire grid \u2014 all cells are the same color",
+        "setup_java": "PixelGrid pg3 = new PixelGrid(2, 3);\npg3.replaceColor(\"white\", \"black\");\nSystem.out.println(pg3.countColor(\"black\"));\nSystem.out.println(pg3.countColor(\"white\"));",
+        "expected_output": "6\n0"
+      }
+    ]
+  },
+  {
+    "archetype": "array_2d",
+    "topic_id": "u4_s4_11",
+    "prompt": "A teacher's grading tool stores exam scores as a 2D array where each row represents one student and each column represents one exam question. The ScoreMatrix class provides static utility methods for analyzing these score grids.\n\npublic class ScoreMatrix {\n\n    // Part (a) \u2014 to be implemented\n    public static int rowSum(int[][] scores, int row) { /* implementation not shown */ }\n\n    // Part (b) \u2014 to be implemented\n    // Precondition: scores has at least one row and all rows have the same length\n    public static int[][] keepStrongRows(int[][] scores, int threshold) { /* implementation not shown */ }\n}",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the static method rowSum(int[][] scores, int row). The method should return the sum of all values in the specified row of scores. For example, if scores[2] is {80, 70, 90}, then rowSum(scores, 2) returns 240."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the static method keepStrongRows(int[][] scores, int threshold). The method should return a new 2D int array containing only those rows of scores whose row sum (as returned by rowSum) is greater than or equal to threshold, preserving their relative order. The original scores array must not be modified."
+      }
+    ],
+    "reference_solution": "public class ScoreMatrix {\n    public static int rowSum(int[][] scores, int row) {\n        int sum = 0;\n        for (int c = 0; c < scores[row].length; c++) {\n            sum += scores[row][c];\n        }\n        return sum;\n    }\n\n    public static int[][] keepStrongRows(int[][] scores, int threshold) {\n        int count = 0;\n        for (int r = 0; r < scores.length; r++) {\n            if (rowSum(scores, r) >= threshold) {\n                count++;\n            }\n        }\n        int[][] result = new int[count][scores[0].length];\n        int idx = 0;\n        for (int r = 0; r < scores.length; r++) {\n            if (rowSum(scores, r) >= threshold) {\n                for (int c = 0; c < scores[r].length; c++) {\n                    result[idx][c] = scores[r][c];\n                }\n                idx++;\n            }\n        }\n        return result;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "rowSum traversal",
+        "criterion": "rowSum loops over columns using scores[row].length (or scores[0].length) as the upper bound, without an off-by-one error; iterating over the wrong dimension or using scores.length for columns does not earn this point",
+        "points": 1
+      },
+      {
+        "point_label": "rowSum accumulation and return",
+        "criterion": "rowSum correctly accumulates each element of the specified row into a running sum and returns that sum; returning a partial sum or the wrong variable does not earn this point",
+        "points": 1
+      },
+      {
+        "point_label": "keepStrongRows qualifying-row count",
+        "criterion": "keepStrongRows makes a pass over all rows and counts exactly how many satisfy rowSum(scores, r) >= threshold before allocating the result array",
+        "points": 1
+      },
+      {
+        "point_label": "Result array allocation",
+        "criterion": "keepStrongRows allocates the result array as new int[count][scores[0].length] using the computed count of qualifying rows and the correct column size; swapping dimensions or using scores.length does not earn this point",
+        "points": 1
+      },
+      {
+        "point_label": "Row copy inner loop",
+        "criterion": "keepStrongRows copies each qualifying row element-by-element with an inner loop (result[idx][c] = scores[r][c]) and advances idx only after a full row is copied; skipping the inner loop or advancing idx unconditionally does not earn this point",
+        "points": 1
+      },
+      {
+        "point_label": "Original not modified and correct return",
+        "criterion": "No element of the original scores array is ever overwritten (all writes target result), and the method returns result containing exactly the qualifying rows in their original relative order",
+        "points": 1
+      }
+    ],
+    "total_points": 6,
+    "test_cases": [
+      {
+        "description": "basic \u2014 three rows, two qualify at threshold 200; verify original unmodified",
+        "setup_java": "int[][] s = {{80, 90, 70}, {40, 30, 50}, {95, 85, 90}};\nSystem.out.println(ScoreMatrix.rowSum(s, 0));\nSystem.out.println(ScoreMatrix.rowSum(s, 1));\nint[][] strong = ScoreMatrix.keepStrongRows(s, 200);\nSystem.out.println(strong.length);\nSystem.out.println(strong[0][0] + \" \" + strong[0][1] + \" \" + strong[0][2]);\nSystem.out.println(s[1][0]);",
+        "expected_output": "240\n120\n2\n80 90 70\n40"
+      },
+      {
+        "description": "all rows qualify \u2014 result has same row count as input",
+        "setup_java": "int[][] s2 = {{10, 20}, {30, 40}, {50, 60}};\nint[][] all = ScoreMatrix.keepStrongRows(s2, 20);\nSystem.out.println(all.length);\nSystem.out.println(all[2][0] + \" \" + all[2][1]);",
+        "expected_output": "3\n50 60"
+      },
+      {
+        "description": "no rows qualify \u2014 result is empty; original unchanged",
+        "setup_java": "int[][] s3 = {{5, 3}, {2, 1}};\nint[][] none = ScoreMatrix.keepStrongRows(s3, 100);\nSystem.out.println(none.length);\nSystem.out.println(s3[0][0]);",
+        "expected_output": "0\n5"
+      }
+    ]
+  },
+  {
+    "archetype": "array_2d",
+    "topic_id": "u4_s4_11",
+    "prompt": "A garden plot is represented by a 2D array of integers, where each cell holds the height (in centimeters) of a plant growing in that location. A height of 0 means the cell is empty. The Garden class manages such a plot.\n\npublic class Garden {\n    private int[][] plot;\n\n    public Garden(int rows, int cols) {\n        plot = new int[rows][cols];\n    }\n\n    /** Returns the height stored at row r, column c. */\n    public int getHeight(int r, int c) { return plot[r][c]; }\n\n    /** Sets the height at row r, column c to h. */\n    public void setHeight(int r, int c, int h) { plot[r][c] = h; }\n\n    /** Method to be implemented in part (a). */\n    public int tallestInRow(int row) { /* implementation */ }\n\n    /** Method to be implemented in part (b). */\n    public int countTallPlants(int threshold) { /* implementation */ }\n}\n\nWrite both methods.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the method tallestInRow(int row) that returns the maximum plant height in the given row. If the row contains only empty cells (all zeros), return 0."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method countTallPlants(int threshold) that returns the total number of cells in the plot whose height is strictly greater than threshold."
+      }
+    ],
+    "reference_solution": "public class Garden {\n    private int[][] plot;\n\n    public Garden(int rows, int cols) {\n        plot = new int[rows][cols];\n    }\n\n    public int getHeight(int r, int c) { return plot[r][c]; }\n\n    public void setHeight(int r, int c, int h) { plot[r][c] = h; }\n\n    public int tallestInRow(int row) {\n        int max = 0;\n        for (int c = 0; c < plot[row].length; c++) {\n            if (plot[row][c] > max) {\n                max = plot[row][c];\n            }\n        }\n        return max;\n    }\n\n    public int countTallPlants(int threshold) {\n        int count = 0;\n        for (int r = 0; r < plot.length; r++) {\n            for (int c = 0; c < plot[r].length; c++) {\n                if (plot[r][c] > threshold) {\n                    count++;\n                }\n            }\n        }\n        return count;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "tallestInRow header and traversal",
+        "criterion": "Method has signature public int tallestInRow(int row) and uses a single loop over columns of plot[row] (or plot[row].length) without bounds errors.",
+        "points": 1
+      },
+      {
+        "point_label": "tallestInRow max tracking",
+        "criterion": "Initializes max appropriately (0 or plot[row][0]) and updates it whenever a larger value is encountered.",
+        "points": 1
+      },
+      {
+        "point_label": "tallestInRow return",
+        "criterion": "Returns the computed maximum after the loop; returns 0 when the row is all zeros.",
+        "points": 1
+      },
+      {
+        "point_label": "countTallPlants nested traversal",
+        "criterion": "Uses nested for loops with outer over plot.length and inner over plot[r].length (not hardcoded dimensions).",
+        "points": 1
+      },
+      {
+        "point_label": "countTallPlants conditional check",
+        "criterion": "Compares each cell to threshold using strict greater-than (plot[r][c] > threshold) and increments a counter on match.",
+        "points": 1
+      },
+      {
+        "point_label": "countTallPlants return",
+        "criterion": "Returns the total count after both loops complete.",
+        "points": 1
+      }
+    ],
+    "total_points": 6,
+    "test_cases": [
+      {
+        "description": "basic row max and count",
+        "setup_java": "Garden g = new Garden(2, 3);\ng.setHeight(0, 0, 5); g.setHeight(0, 1, 12); g.setHeight(0, 2, 7);\ng.setHeight(1, 0, 3); g.setHeight(1, 1, 9); g.setHeight(1, 2, 12);\nSystem.out.println(g.tallestInRow(0));\nSystem.out.println(g.tallestInRow(1));\nSystem.out.println(g.countTallPlants(6));",
+        "expected_output": "12\n12\n4"
+      },
+      {
+        "description": "empty row returns zero",
+        "setup_java": "Garden g = new Garden(3, 4);\ng.setHeight(2, 1, 8);\nSystem.out.println(g.tallestInRow(0));\nSystem.out.println(g.tallestInRow(1));\nSystem.out.println(g.countTallPlants(0));",
+        "expected_output": "0\n0\n1"
+      },
+      {
+        "description": "threshold boundary",
+        "setup_java": "Garden g = new Garden(2, 2);\ng.setHeight(0, 0, 10); g.setHeight(0, 1, 10);\ng.setHeight(1, 0, 11); g.setHeight(1, 1, 9);\nSystem.out.println(g.countTallPlants(10));\nSystem.out.println(g.countTallPlants(9));\nSystem.out.println(g.tallestInRow(1));",
+        "expected_output": "1\n3\n11"
+      }
+    ]
+  },
+  {
+    "archetype": "array_2d",
+    "topic_id": "u4_s4_11",
+    "prompt": "A theater seating section is represented by a 2D array of strings, where each cell either contains a patron's name or the empty string \"\" if the seat is unoccupied. The Theater class is partially shown below.\n\npublic class Theater {\n    private String[][] seats;\n\n    /** Constructs a Theater with the given number of rows and columns.\n     *  Every seat is initialized to the empty string \"\" (not null). */\n    public Theater(int numRows, int numCols) { /* implementation in part (a) */ }\n\n    /** Returns true if the seat at (r, c) is currently empty. */\n    public boolean isEmpty(int r, int c) { return seats[r][c].equals(\"\"); }\n\n    /** Attempts to seat a patron with the given name in the first empty seat found,\n     *  scanning row 0 left-to-right, then row 1 left-to-right, and so on.\n     *  Returns true if seated, or false if the section is full.\n     *  Implementation in part (b). */\n    public boolean seatPatron(String name) { /* implementation in part (b) */ }\n}",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the constructor Theater(int numRows, int numCols). It must allocate the 2D array seats with the given dimensions and initialize every cell to the empty string \"\" (not null)."
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method seatPatron(String name). It must scan the seats in row-major order (row 0 left to right, then row 1, etc.) and place name in the first cell whose value is the empty string. As soon as a patron is seated, the method must return true and stop scanning. If no empty seat exists, the method returns false and the array is unchanged."
+      }
+    ],
+    "reference_solution": "public class Theater {\n    private String[][] seats;\n\n    public Theater(int numRows, int numCols) {\n        seats = new String[numRows][numCols];\n        for (int r = 0; r < numRows; r++) {\n            for (int c = 0; c < numCols; c++) {\n                seats[r][c] = \"\";\n            }\n        }\n    }\n\n    public boolean isEmpty(int r, int c) {\n        return seats[r][c].equals(\"\");\n    }\n\n    public boolean seatPatron(String name) {\n        for (int r = 0; r < seats.length; r++) {\n            for (int c = 0; c < seats[r].length; c++) {\n                if (seats[r][c].equals(\"\")) {\n                    seats[r][c] = name;\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n\n    public String getSeat(int r, int c) {\n        return seats[r][c];\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Array allocated with parameter dimensions",
+        "criterion": "Constructor allocates seats = new String[numRows][numCols] using the parameters (not hardcoded values, no swapped indices).",
+        "points": 1
+      },
+      {
+        "point_label": "Cells initialized to empty string",
+        "criterion": "Constructor uses nested loops to assign \"\" (not null) to every cell of seats.",
+        "points": 1
+      },
+      {
+        "point_label": "seatPatron nested traversal",
+        "criterion": "Uses nested for loops with outer over seats.length and inner over seats[r].length to scan in row-major order.",
+        "points": 1
+      },
+      {
+        "point_label": "Empty-cell condition",
+        "criterion": "Tests each cell with seats[r][c].equals(\"\") (or equivalent) to detect the first empty seat.",
+        "points": 1
+      },
+      {
+        "point_label": "Assignment and early return",
+        "criterion": "On the first empty seat found, assigns name to that cell and immediately returns true so no further cells are overwritten.",
+        "points": 1
+      },
+      {
+        "point_label": "Returns false when full",
+        "criterion": "After both loops finish without finding an empty seat, returns false and the array is unchanged.",
+        "points": 1
+      }
+    ],
+    "total_points": 6,
+    "test_cases": [
+      {
+        "description": "seat first three patrons",
+        "setup_java": "Theater t = new Theater(2, 2);\nSystem.out.println(t.seatPatron(\"Ana\"));\nSystem.out.println(t.seatPatron(\"Ben\"));\nSystem.out.println(t.seatPatron(\"Cleo\"));\nSystem.out.println(t.getSeat(0, 0));\nSystem.out.println(t.getSeat(0, 1));\nSystem.out.println(t.getSeat(1, 0));\nSystem.out.println(t.getSeat(1, 1));",
+        "expected_output": "true\ntrue\ntrue\nAna\nBen\nCleo\n"
+      },
+      {
+        "description": "theater full returns false",
+        "setup_java": "Theater t = new Theater(1, 2);\nt.seatPatron(\"X\");\nt.seatPatron(\"Y\");\nSystem.out.println(t.seatPatron(\"Z\"));\nSystem.out.println(t.getSeat(0, 0));\nSystem.out.println(t.getSeat(0, 1));",
+        "expected_output": "false\nX\nY"
+      },
+      {
+        "description": "empty cells initialized correctly",
+        "setup_java": "Theater t = new Theater(2, 3);\nSystem.out.println(t.isEmpty(0, 0));\nSystem.out.println(t.isEmpty(1, 2));\nt.seatPatron(\"Sam\");\nSystem.out.println(t.isEmpty(0, 0));\nSystem.out.println(t.isEmpty(0, 1));",
+        "expected_output": "true\ntrue\nfalse\ntrue"
+      }
+    ]
+  },
+  {
+    "archetype": "array_2d",
+    "topic_id": "u4_s4_11",
+    "prompt": "A school maintains a seating arrangement for a classroom as a 2D grid of student names. The class is represented by the SeatingArrangement class shown below.\n\npublic class SeatingArrangement {\n    /** A 2D array of student names; unused seats hold the empty string \"\" (never null). */\n    private String[][] seats;\n\n    /** Constructs a SeatingArrangement with the given list of names placed into a grid\n     *  with the given number of rows and columns. See part (a). */\n    public SeatingArrangement(String[] names, int rows, int cols) { /* implementation in part (a) */ }\n\n    /** Returns the name (or \"\") seated at row r, column c. */\n    public String getSeat(int r, int c) { return seats[r][c]; }\n}\n\nWrite the constructor SeatingArrangement(String[] names, int rows, int cols). The constructor must:\n  - Create the seats field as a new 2D String array with the given number of rows and columns. You may assume rows * cols >= names.length and that rows and cols are both positive.\n  - Fill the grid in row-major order (left to right within a row, top row first) with the names from the names array, in the order they appear in names.\n  - Initialize any unused cells (cells not filled by a name) to the empty string \"\" \u2014 NOT null.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the SeatingArrangement constructor as described above."
+      }
+    ],
+    "reference_solution": "public class SeatingArrangement {\n    private String[][] seats;\n\n    public SeatingArrangement(String[] names, int rows, int cols) {\n        seats = new String[rows][cols];\n        int idx = 0;\n        for (int r = 0; r < rows; r++) {\n            for (int c = 0; c < cols; c++) {\n                if (idx < names.length) {\n                    seats[r][c] = names[idx];\n                    idx++;\n                } else {\n                    seats[r][c] = \"\";\n                }\n            }\n        }\n    }\n\n    public String getSeat(int r, int c) {\n        return seats[r][c];\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "2D array allocated with correct dimensions",
+        "criterion": "seats is assigned new String[rows][cols] using the parameter values (not hardcoded, not swapped).",
+        "points": 1
+      },
+      {
+        "point_label": "Nested for loops with correct bounds",
+        "criterion": "Outer loop iterates rows from 0 to rows-1; inner loop iterates cols from 0 to cols-1.",
+        "points": 1
+      },
+      {
+        "point_label": "Index tracking for names array",
+        "criterion": "A counter (e.g., idx) is initialized to 0 and incremented exactly once for each name placed.",
+        "points": 1
+      },
+      {
+        "point_label": "Correct cell-selection condition",
+        "criterion": "Code uses idx < names.length (or equivalent) to decide whether the current cell receives a name or the empty string.",
+        "points": 1
+      },
+      {
+        "point_label": "Row-major name placement",
+        "criterion": "When idx < names.length, seats[r][c] is assigned names[idx] (correct subscript order; not seats[c][r]).",
+        "points": 1
+      },
+      {
+        "point_label": "Unused cells initialized to empty string (not null)",
+        "criterion": "When idx >= names.length, seats[r][c] is explicitly set to \"\" rather than left as null.",
+        "points": 1
+      }
+    ],
+    "total_points": 6,
+    "test_cases": [
+      {
+        "description": "partial fill leaves trailing empty seats",
+        "setup_java": "String[] names = {\"Alice\", \"Bob\", \"Carol\"};\nSeatingArrangement sa = new SeatingArrangement(names, 2, 2);\nSystem.out.println(\"[\" + sa.getSeat(0,0) + \"][\" + sa.getSeat(0,1) + \"]\");\nSystem.out.println(\"[\" + sa.getSeat(1,0) + \"][\" + sa.getSeat(1,1) + \"]\");",
+        "expected_output": "[Alice][Bob]\n[Carol][]"
+      },
+      {
+        "description": "exact fit with no empty seats",
+        "setup_java": "String[] names = {\"X\", \"Y\", \"Z\", \"W\"};\nSeatingArrangement sa = new SeatingArrangement(names, 2, 2);\nSystem.out.println(sa.getSeat(0,0) + \",\" + sa.getSeat(0,1) + \",\" + sa.getSeat(1,0) + \",\" + sa.getSeat(1,1));",
+        "expected_output": "X,Y,Z,W"
+      },
+      {
+        "description": "empty names array \u2014 all cells must be the empty string, not null",
+        "setup_java": "String[] names = {};\nSeatingArrangement sa = new SeatingArrangement(names, 1, 3);\nSystem.out.println(\"'\" + sa.getSeat(0,0) + \"','\" + sa.getSeat(0,1) + \"','\" + sa.getSeat(0,2) + \"'\");",
+        "expected_output": "'','',''"
+      }
+    ]
+  },
+  {
+    "archetype": "array_2d",
+    "topic_id": "u4_s4_11",
+    "prompt": "A weather research group stores daily temperature readings as a 2D int array, where each row represents one weather station's readings for several days. The group wants to filter out stations whose total weekly temperature does not exceed a given threshold.\n\npublic class GridUtils {\n    /** Returns a new 2D int array containing only those rows of grid whose sum of\n     *  elements is strictly greater than threshold. The returned array's rows must\n     *  appear in the same relative order as in grid, and each returned row must be\n     *  a copy of the original row (same length, same values). The parameter grid\n     *  must NOT be modified. You may assume grid is non-null, has at least one row,\n     *  and every row has the same length (>= 1). */\n    public static int[][] filterRows(int[][] grid, int threshold) { /* implement */ }\n}\n\nWrite the static method filterRows as described in the comment.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Implement GridUtils.filterRows(int[][] grid, int threshold) so that it returns a new 2D array containing only the rows whose sum strictly exceeds threshold, preserving order and without modifying the input array."
+      }
+    ],
+    "reference_solution": "public class GridUtils {\n    public static int[][] filterRows(int[][] grid, int threshold) {\n        int count = 0;\n        for (int r = 0; r < grid.length; r++) {\n            int sum = 0;\n            for (int c = 0; c < grid[r].length; c++) {\n                sum += grid[r][c];\n            }\n            if (sum > threshold) {\n                count++;\n            }\n        }\n\n        int[][] result = new int[count][];\n        int idx = 0;\n        for (int r = 0; r < grid.length; r++) {\n            int sum = 0;\n            for (int c = 0; c < grid[r].length; c++) {\n                sum += grid[r][c];\n            }\n            if (sum > threshold) {\n                int[] copy = new int[grid[r].length];\n                for (int c = 0; c < grid[r].length; c++) {\n                    copy[c] = grid[r][c];\n                }\n                result[idx] = copy;\n                idx++;\n            }\n        }\n        return result;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Result 2D array allocated with correct row count",
+        "criterion": "A new int[][] is allocated whose first dimension equals the number of rows whose sum exceeds threshold (e.g., new int[count][] after a counting pass, or equivalent).",
+        "points": 1
+      },
+      {
+        "point_label": "Nested traversal computes each row's sum",
+        "criterion": "Nested for loops are used to iterate every cell, with inner bounds grid[r].length, and a per-row accumulator is correctly initialized inside the outer loop.",
+        "points": 1
+      },
+      {
+        "point_label": "Correct row-selection condition",
+        "criterion": "A row is selected only when its computed sum is strictly greater than threshold (uses >, not >=).",
+        "points": 1
+      },
+      {
+        "point_label": "Row contents copied element-by-element",
+        "criterion": "For each selected row, a new int[] of the same length is allocated and each element of grid[r] is copied into it (or result[idx] holds an independent copy, not the same reference as grid[r]).",
+        "points": 1
+      },
+      {
+        "point_label": "Parameter grid not modified",
+        "criterion": "No assignment is ever made into grid[r][c]; all writes are to the new local result array.",
+        "points": 1
+      },
+      {
+        "point_label": "Return value correct and rows in original order",
+        "criterion": "The method returns the populated result array, with selected rows appearing in the same relative order as in grid; index advances by exactly one per selection.",
+        "points": 1
+      }
+    ],
+    "total_points": 6,
+    "test_cases": [
+      {
+        "description": "mixed grid: only one row exceeds threshold",
+        "setup_java": "int[][] g = {{1,2,3},{10,20,30},{0,0,0}};\nint[][] r = GridUtils.filterRows(g, 10);\nSystem.out.println(r.length);\nfor (int i = 0; i < r.length; i++) {\n    String s = \"\";\n    for (int j = 0; j < r[i].length; j++) {\n        if (j > 0) s += \",\";\n        s += r[i][j];\n    }\n    System.out.println(s);\n}",
+        "expected_output": "1\n10,20,30"
+      },
+      {
+        "description": "no row passes; original array must be untouched",
+        "setup_java": "int[][] g = {{1,2},{3,4}};\nint[][] r = GridUtils.filterRows(g, 100);\nSystem.out.println(r.length);\nSystem.out.println(g[0][0] + \",\" + g[0][1] + \",\" + g[1][0] + \",\" + g[1][1]);",
+        "expected_output": "0\n1,2,3,4"
+      },
+      {
+        "description": "all rows pass and order is preserved",
+        "setup_java": "int[][] g = {{5,5},{6,6},{7,7}};\nint[][] r = GridUtils.filterRows(g, 0);\nSystem.out.println(r.length);\nfor (int i = 0; i < r.length; i++) {\n    System.out.println(r[i][0] + \" \" + r[i][1]);\n}",
+        "expected_output": "3\n5 5\n6 6\n7 7"
+      }
+    ]
+  },
+  {
+    "archetype": "array_2d",
+    "topic_id": "u4_s4_11",
+    "prompt": "A garden plot is represented by a 2D array of integers, where each cell holds the height (in centimeters) of a single plant. The Garden class shown below stores this information.\n\npublic class Garden {\n    private int[][] plants;\n    // Constructor and other methods not shown.\n    // Returns the underlying 2D array.\n    public int[][] getPlants() { return plants; }\n}\n\nWrite the static method tallestPerRow that, given a 2D int array plants, returns a new 1D int array whose kth element is the height of the tallest plant in row k of plants. You may assume plants has at least one row and that every row has at least one column. Rows are not required to all have the same length.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the static method tallestPerRow described above. Complete the method below.\n\npublic static int[] tallestPerRow(int[][] plants)"
+      }
+    ],
+    "reference_solution": "public class Garden {\n    private int[][] plants;\n\n    public Garden(int[][] p) {\n        plants = p;\n    }\n\n    public int[][] getPlants() {\n        return plants;\n    }\n\n    public static int[] tallestPerRow(int[][] plants) {\n        int[] result = new int[plants.length];\n        for (int r = 0; r < plants.length; r++) {\n            int max = plants[r][0];\n            for (int c = 1; c < plants[r].length; c++) {\n                if (plants[r][c] > max) {\n                    max = plants[r][c];\n                }\n            }\n            result[r] = max;\n        }\n        return result;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "Result array allocated with correct length",
+        "criterion": "Allocates new int[plants.length] (or equivalent) sized to the number of rows.",
+        "points": 1
+      },
+      {
+        "point_label": "Outer loop traverses every row",
+        "criterion": "Outer for loop runs r from 0 to plants.length - 1 inclusive.",
+        "points": 1
+      },
+      {
+        "point_label": "Inner loop bounds correct per row",
+        "criterion": "Inner loop uses plants[r].length (not plants[0].length or a hardcoded value), correctly handling jagged rows.",
+        "points": 1
+      },
+      {
+        "point_label": "Max initialized correctly",
+        "criterion": "Max-tracking variable is initialized so the first element of the row is considered (e.g. set to plants[r][0] or to a value that compares correctly against every element).",
+        "points": 1
+      },
+      {
+        "point_label": "Conditional update of max",
+        "criterion": "Inside the inner loop, the max is reassigned to plants[r][c] when plants[r][c] is greater than the current max.",
+        "points": 1
+      },
+      {
+        "point_label": "Stores per-row max and returns array",
+        "criterion": "Assigns result[r] = max for each row and returns the result array.",
+        "points": 1
+      }
+    ],
+    "total_points": 6,
+    "test_cases": [
+      {
+        "description": "rectangular grid",
+        "setup_java": "int[][] g = {{3, 7, 2}, {9, 1, 5}, {4, 4, 4}};\nint[] out = Garden.tallestPerRow(g);\nfor (int v : out) System.out.println(v);",
+        "expected_output": "7\n9\n4"
+      },
+      {
+        "description": "jagged rows",
+        "setup_java": "int[][] g = {{10}, {2, 8, 6, 11}, {5, 5}};\nint[] out = Garden.tallestPerRow(g);\nfor (int v : out) System.out.println(v);",
+        "expected_output": "10\n11\n5"
+      },
+      {
+        "description": "single row with negatives",
+        "setup_java": "int[][] g = {{-3, -7, -2, -10}};\nint[] out = Garden.tallestPerRow(g);\nfor (int v : out) System.out.println(v);",
+        "expected_output": "-2"
+      }
+    ]
+  },
+  {
+    "archetype": "array_2d",
+    "topic_id": "u4_s4_11",
+    "prompt": "A photographer stores a grayscale image as a 2D array of int pixel values, where each value is between 0 and 255 inclusive. The Image class shown below stores this information.\n\npublic class Image {\n    private int[][] pixels;\n    // Constructor not shown.\n    public int[][] getPixels() { return pixels; }\n}\n\nWrite the static method invert that, given a 2D int array pixels representing a grayscale image, returns a new 2D int array of the same dimensions in which every pixel value v has been replaced with 255 - v (its photographic negative). The original parameter array must not be modified. You may assume pixels has at least one row and one column and that every row has the same length.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the static method invert described above. Complete the method below.\n\npublic static int[][] invert(int[][] pixels)"
+      }
+    ],
+    "reference_solution": "public class Image {\n    private int[][] pixels;\n\n    public Image(int[][] p) {\n        pixels = p;\n    }\n\n    public int[][] getPixels() {\n        return pixels;\n    }\n\n    public static int[][] invert(int[][] pixels) {\n        int rows = pixels.length;\n        int cols = pixels[0].length;\n        int[][] result = new int[rows][cols];\n        for (int r = 0; r < rows; r++) {\n            for (int c = 0; c < cols; c++) {\n                result[r][c] = 255 - pixels[r][c];\n            }\n        }\n        return result;\n    }\n}",
+    "rubric": [
+      {
+        "point_label": "New 2D array allocated with correct dimensions",
+        "criterion": "Allocates new int[pixels.length][pixels[0].length] (or equivalent) \u2014 does not swap rows and columns or hardcode sizes.",
+        "points": 1
+      },
+      {
+        "point_label": "Outer loop traverses rows",
+        "criterion": "Outer for loop runs r from 0 to pixels.length - 1 inclusive.",
+        "points": 1
+      },
+      {
+        "point_label": "Inner loop traverses columns",
+        "criterion": "Inner for loop runs c from 0 to pixels[0].length - 1 inclusive.",
+        "points": 1
+      },
+      {
+        "point_label": "Correct inverted value computed",
+        "criterion": "Computes 255 - pixels[r][c] for each cell.",
+        "points": 1
+      },
+      {
+        "point_label": "Value written to new array, parameter not modified",
+        "criterion": "Stores the inverted value in result[r][c]; the parameter pixels array is never assigned to.",
+        "points": 1
+      },
+      {
+        "point_label": "Returns the new 2D array",
+        "criterion": "Method returns the newly built result array after both loops complete.",
+        "points": 1
+      }
+    ],
+    "total_points": 6,
+    "test_cases": [
+      {
+        "description": "small 2x3 image",
+        "setup_java": "int[][] pix = {{0, 100, 255}, {50, 128, 200}};\nint[][] out = Image.invert(pix);\nfor (int r = 0; r < out.length; r++) {\n    for (int c = 0; c < out[0].length; c++) {\n        System.out.print(out[r][c] + \" \");\n    }\n    System.out.println();\n}",
+        "expected_output": "255 155 0 \n205 127 55 \n"
+      },
+      {
+        "description": "parameter unmodified",
+        "setup_java": "int[][] pix = {{10, 20}, {30, 40}};\nint[][] out = Image.invert(pix);\nSystem.out.println(pix[0][0] + \",\" + pix[0][1] + \",\" + pix[1][0] + \",\" + pix[1][1]);\nSystem.out.println(out[0][0] + \",\" + out[0][1] + \",\" + out[1][0] + \",\" + out[1][1]);",
+        "expected_output": "10,20,30,40\n245,235,225,215"
+      },
+      {
+        "description": "single pixel",
+        "setup_java": "int[][] pix = {{200}};\nint[][] out = Image.invert(pix);\nSystem.out.println(out[0][0]);",
+        "expected_output": "55"
+      }
+    ]
+  },
+  {
+    "archetype": "array_2d",
+    "topic_id": "u4_s4_11",
+    "prompt": "A small fulfillment center stores boxed items on a rectangular grid of shelves. The grid is represented by the Warehouse class shown below. Each cell of the 2D array inventory holds the name of the item stored at that shelf location, or null if the shelf is empty.\n\npublic class Warehouse {\n    /** The grid of shelves; inventory[r][c] is the item at row r, column c, or null if empty. */\n    private String[][] inventory;\n\n    /** Constructs a new Warehouse with the given number of rows and columns of empty shelves. */\n    public Warehouse(int rows, int cols) { /* to implement in part (a) */ }\n\n    /** Attempts to place item on the first empty shelf, scanning rows top-to-bottom and within each row left-to-right.\n     *  Returns true if the item was placed; returns false if the warehouse was already full.\n     *  Postcondition: at most one shelf has been changed by this call. */\n    public boolean addItem(String item) { /* to implement in part (b) */ }\n\n    /** Returns the item at row r, column c (or null if that shelf is empty). Implementation not shown. */\n    public String getItem(int r, int c) { return inventory[r][c]; }\n}\n\nWrite the constructor and method as specified.",
+    "parts": [
+      {
+        "label": "(a)",
+        "prompt": "Write the constructor Warehouse(int rows, int cols). The constructor must initialize the instance variable inventory so that it has the given number of rows and columns and every shelf is empty. (Recall that a freshly allocated reference-type 2D array has all cells equal to null.)"
+      },
+      {
+        "label": "(b)",
+        "prompt": "Write the method addItem(String item). The method must scan the shelves in row-major order (row 0 first, then row 1, and so on; within each row from column 0 to the last column) and store item in the first empty shelf it finds, then return true. If every shelf is already occupied, the method must not modify inventory and must return false."
+      }
+    ],
+    "reference_solution": "public class Warehouse {\n    private String[][] inventory;\n\n    public Warehouse(int rows, int cols) {\n        inventory = new String[rows][cols];\n    }\n\n    public boolean addItem(String item) {\n        for (int r = 0; r < inventory.length; r++) {\n            for (int c = 0; c < inventory[0].length; c++) {\n                if (inventory[r][c] == null) {\n                    inventory[r][c] = item;\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n\n    public String getItem(int r, int c) {\n        return inventory[r][c];\n    }\n}\n",
+    "rubric": [
+      {
+        "point_label": "Constructor allocates 2D array with correct dimensions",
+        "criterion": "Inside the constructor, inventory is assigned new String[rows][cols] using the parameter values (not hardcoded, not swapped).",
+        "points": 1
+      },
+      {
+        "point_label": "Nested traversal structure",
+        "criterion": "addItem uses nested for loops with the outer loop iterating over row indices from 0 to inventory.length - 1 and the inner loop iterating over column indices from 0 to inventory[0].length - 1 (or equivalent) with no out-of-bounds access.",
+        "points": 1
+      },
+      {
+        "point_label": "Cell-selection condition",
+        "criterion": "The body of the inner loop tests inventory[r][c] == null to identify an empty shelf.",
+        "points": 1
+      },
+      {
+        "point_label": "Value stored in cell correctly",
+        "criterion": "When an empty shelf is found, the code assigns inventory[r][c] = item using the correct row index, column index, and parameter.",
+        "points": 1
+      },
+      {
+        "point_label": "Stops after first successful placement",
+        "criterion": "After a successful assignment the method returns true (or otherwise breaks out of both loops) so that no further shelf is modified by the call.",
+        "points": 1
+      },
+      {
+        "point_label": "Returns false when full",
+        "criterion": "If both loops complete without finding a null cell, the method returns false and inventory is left unchanged.",
+        "points": 1
+      }
+    ],
+    "total_points": 6,
+    "test_cases": [
+      {
+        "description": "basic: place three items in a 2x2 warehouse, verify row-major order and that the unused shelf stays null",
+        "setup_java": "Warehouse w = new Warehouse(2, 2);\nSystem.out.println(w.addItem(\"apple\"));\nSystem.out.println(w.addItem(\"banana\"));\nSystem.out.println(w.addItem(\"cherry\"));\nSystem.out.println(w.getItem(0,0) + \",\" + w.getItem(0,1) + \",\" + w.getItem(1,0) + \",\" + w.getItem(1,1));",
+        "expected_output": "true\ntrue\ntrue\napple,banana,cherry,null"
+      },
+      {
+        "description": "edge: fill a 1x3 warehouse completely, then attempt one more item which must return false",
+        "setup_java": "Warehouse w = new Warehouse(1, 3);\nw.addItem(\"X\");\nw.addItem(\"Y\");\nw.addItem(\"Z\");\nSystem.out.println(w.addItem(\"W\"));\nSystem.out.println(w.getItem(0,0) + w.getItem(0,1) + w.getItem(0,2));",
+        "expected_output": "false\nXYZ"
+      },
+      {
+        "description": "boundary: a single addItem on a 3x2 warehouse must place into [0][0] only and leave [0][1] null",
+        "setup_java": "Warehouse w = new Warehouse(3, 2);\nSystem.out.println(w.addItem(\"first\"));\nSystem.out.println(w.getItem(0,0));\nSystem.out.println(w.getItem(0,1));\nSystem.out.println(w.getItem(2,1));",
+        "expected_output": "true\nfirst\nnull\nnull"
+      }
+    ]
+  }
+]

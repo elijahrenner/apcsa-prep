@@ -1,0 +1,600 @@
+[
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Which of the following best describes *procedural abstraction* in object-oriented programming?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Storing data in private instance variables so it cannot be accessed directly from outside the class"
+      },
+      {
+        "label": "B",
+        "text": "Breaking a complex behavior into smaller, more focused helper methods"
+      },
+      {
+        "label": "C",
+        "text": "Naming a process (method) so that callers can use it without needing to know how it is implemented"
+      },
+      {
+        "label": "D",
+        "text": "Declaring the types of all variables before they are used in a program"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Procedural abstraction names a process (a method) so it can be called without knowing its internal implementation. A describes encapsulation, B describes method decomposition, and D describes variable declaration conventions.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class and code segment.\n\n```java\npublic class Adjuster {\n    public static void addTen(int n) {\n        n = n + 10;\n    }\n}\n```\n\n```java\nint x = 5;\nAdjuster.addTen(x);\nSystem.out.println(x);\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`5`"
+      },
+      {
+        "label": "C",
+        "text": "`10`"
+      },
+      {
+        "label": "D",
+        "text": "`15`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Primitive arguments are passed by value: `addTen` receives a copy of `x`, modifies only its local parameter `n`, and leaves the caller's variable `x` unchanged at 5. D is the result students get if they incorrectly believe the original variable is modified by the method.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class:\n\n```java\npublic class Rectangle {\n    private int width;\n    private int height;\n\n    public Rectangle(int width, int height) {\n        width = width;\n        height = height;\n    }\n\n    public int getArea() {\n        return width * height;\n    }\n}\n```\n\nWhat is printed by the following code segment?\n\n```java\nRectangle r = new Rectangle(5, 3);\nSystem.out.println(r.getArea());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`15`"
+      },
+      {
+        "label": "D",
+        "text": "A compile error occurs."
+      }
+    ],
+    "answer": "A",
+    "explanation": "In the constructor, `width = width` assigns the parameter to itself \u2014 the instance field is shadowed and never updated. Both `this.width` and `this.height` remain at their default value of 0, so `getArea()` returns 0 * 0 = 0. C is the result students expect if they assume `this.width` and `this.height` were properly assigned; the fix is to write `this.width = width`.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class and static method.\n\n```java\npublic class Counter {\n    private int count;\n\n    public Counter(int c) { count = c; }\n    public void increment() { count++; }\n    public int getCount() { return count; }\n}\n```\n\n```java\npublic static void bump(Counter c) {\n    c.increment();\n    c.increment();\n}\n```\n\nWhat is the value of `myCount.getCount()` after the following code executes?\n\n```java\nCounter myCount = new Counter(3);\nbump(myCount);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1`"
+      },
+      {
+        "label": "B",
+        "text": "`2`"
+      },
+      {
+        "label": "C",
+        "text": "`3`"
+      },
+      {
+        "label": "D",
+        "text": "`5`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "When an object is passed as a parameter, the method receives a copy of the reference that still points to the same object. Both calls to `c.increment()` mutate the same `Counter` that `myCount` refers to, incrementing `count` from 3 to 5. C is a common distractor from students who mistakenly apply call-by-value reasoning to objects.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class:\n\n```java\npublic class Roster {\n    private ArrayList<String> names;\n\n    public Roster() {\n        names = new ArrayList<String>();\n    }\n\n    public ArrayList<String> getNames() {\n        return names;\n    }\n}\n```\n\nWhat is printed by the following code segment?\n\n```java\nRoster r = new Roster();\nArrayList<String> list = r.getNames();\nlist.add(\"Alice\");\nlist.add(\"Bob\");\nSystem.out.println(r.getNames().size());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`1`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown."
+      }
+    ],
+    "answer": "C",
+    "explanation": "`getNames()` returns the actual reference to the private `names` field, not a copy. `list` becomes an alias for the same `ArrayList`, so both `add` calls modify `r`'s internal list. `r.getNames().size()` therefore returns 2. A would be correct only if `getNames()` returned a defensive copy each time.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class and code segment.\n\n```java\npublic class Tally {\n    private int count;\n    public Tally() { count = 0; }\n    public void tick() { count++; }\n    public int getCount() { return count; }\n}\n```\n\n```java\nTally a = new Tally();\nTally b = a;\na.tick();\na.tick();\nb.tick();\nSystem.out.println(a.getCount());\n```\n\nWhat is printed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`1`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "`3`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`Tally b = a` copies the reference, so `a` and `b` point to the same single object. All three `tick()` calls increment the same `count` field: 0 \u2192 1 \u2192 2 \u2192 3. C is the distractor for students who count only the `a.tick()` calls and overlook that `b.tick()` operates on the same object.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class:\n\n```java\npublic class Name {\n    private String first;\n    private String last;\n\n    public Name(String f, String l) {\n        first = f;\n        last = l;\n    }\n\n    public String getFullName() {\n        return first + \" \" + last;\n    }\n}\n```\n\nWhat is printed by the following statement?\n\n```java\nName n = new Name(\"Ada\", \"Lovelace\");\nSystem.out.println(n.getFullName().length());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`3`"
+      },
+      {
+        "label": "B",
+        "text": "`8`"
+      },
+      {
+        "label": "C",
+        "text": "`11`"
+      },
+      {
+        "label": "D",
+        "text": "`12`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`getFullName()` returns `\"Ada Lovelace\"` (3 chars + 1 space + 8 chars = 12). Calling `.length()` on that returned `String` via the method chain yields 12. C is the off-by-one distractor produced by forgetting to count the space character between the two names.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "The following code segment is intended to compute the total number of characters across all strings in `words`, but it does not compile. Which of the following best identifies the error?\n\n```java\nArrayList<String> words = new ArrayList<String>();\nwords.add(\"hi\");\nwords.add(\"hello\");\nint total = 0;\nfor (int i = 0; i < words.size(); i++) {\n    total += words.length();\n}\nSystem.out.println(total);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`words.size()` in the loop condition should be `words.length`."
+      },
+      {
+        "label": "B",
+        "text": "The loop bound should use `<=` instead of `<`."
+      },
+      {
+        "label": "C",
+        "text": "`words.length()` should be `words.get(i).length()`."
+      },
+      {
+        "label": "D",
+        "text": "`total` should be declared as `double` instead of `int`."
+      }
+    ],
+    "answer": "C",
+    "explanation": "`ArrayList` has no `length()` method, so the code does not compile. The fix is `words.get(i).length()`, which first retrieves the `String` element at index `i` and then calls `length()` on it. A is a distractor because `size()` is the correct `ArrayList` method; `length` without parentheses is the syntax for arrays, not `ArrayList`.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following `Student` class in which `grade` is a private instance variable:\n\n```java\npublic class Student {\n    private String name;\n    private int grade;\n\n    public Student(String name, int grade) {\n        this.name = name;\n        this.grade = grade;\n    }\n\n    public boolean sameGrade(Student other) {\n        return this.grade == other.grade;\n    }\n}\n```\n\nWhy does `other.grade` compile without error even though `grade` is declared `private`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The `private` modifier only prevents access from outside the package, not from within the same source file."
+      },
+      {
+        "label": "B",
+        "text": "The method `sameGrade` is declared inside the same class as the type of `other`, so it may access `other`'s private fields."
+      },
+      {
+        "label": "C",
+        "text": "Parameters are exempt from access restrictions because they are not instance variables of the current object."
+      },
+      {
+        "label": "D",
+        "text": "It would not compile; a public getter such as `other.getGrade()` must be used instead."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java enforces access control at the class level, not the object level. Any method inside `Student` can read or write private fields of any `Student` object, including a parameter whose declared type is `Student`. D is incorrect \u2014 direct access to `other.grade` within the declaring class is perfectly valid Java.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class and static method.\n\n```java\npublic class Box {\n    private int val;\n    public Box(int v) { val = v; }\n    public int getVal() { return val; }\n    public void setVal(int v) { val = v; }\n}\n```\n\n```java\npublic static void process(Box b) {\n    b.setVal(b.getVal() * 3);\n    b = new Box(0);\n}\n```\n\nWhat is the value of `myBox.getVal()` after the following code executes?\n\n```java\nBox myBox = new Box(4);\nprocess(myBox);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`4`"
+      },
+      {
+        "label": "C",
+        "text": "`12`"
+      },
+      {
+        "label": "D",
+        "text": "`36`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`b.setVal(b.getVal() * 3)` calls `setVal(12)` on the same `Box` object that `myBox` references, updating its `val` to 12. Then `b = new Box(0)` only reassigns the local parameter \u2014 it does not change what `myBox` points to. So `myBox.getVal()` returns 12. A is the trap for students who think reassigning `b` overwrites `myBox`; B is the trap for students who mistakenly apply call-by-value reasoning to object mutation.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class:\n\n```java\npublic class Calculator {\n    private int value;\n\n    public Calculator(int v) {\n        value = v;\n    }\n\n    public int doubled() {\n        return value * 2;\n    }\n\n    public int tripled() {\n        return add(doubled(), doubled());\n    }\n\n    public int add(int a, int b) {\n        return a + b;\n    }\n}\n```\n\nWhat is printed by the following statement?\n\n```java\nCalculator calc = new Calculator(4);\nSystem.out.println(calc.tripled());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`8`"
+      },
+      {
+        "label": "B",
+        "text": "`12`"
+      },
+      {
+        "label": "C",
+        "text": "`16`"
+      },
+      {
+        "label": "D",
+        "text": "`32`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`doubled()` returns 4 * 2 = 8. `tripled()` calls `add(doubled(), doubled())` = `add(8, 8)` = 16. B is the classic name-trap: students see the method called `tripled` and compute 4 * 3 = 12 without tracing the actual body, which passes `doubled()` as both arguments to `add`.",
+    "difficulty": 5,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following code segment.\n\n```java\npublic static void addFive(int n) {\n    n = n + 5;\n    System.out.println(n);\n}\n\nint x = 10;\naddFive(x);\nSystem.out.println(x);\n```\n\nWhat output is produced when the code segment is executed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`15` followed by `15`"
+      },
+      {
+        "label": "B",
+        "text": "`15` followed by `10`"
+      },
+      {
+        "label": "C",
+        "text": "`10` followed by `10`"
+      },
+      {
+        "label": "D",
+        "text": "`10` followed by `15`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java passes primitives by value: `addFive` receives a copy of `x`, adds 5 to the copy (making it 15) and prints it, but the caller's variable `x` remains 10 and is printed second. Distractor A assumes the mutation inside the method propagates back to `x`. C assumes the print inside `addFive` also sees the original 10. D inverts the order of the two prints.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Assume the following class and method are defined.\n\n```java\npublic class Counter {\n    private int count;\n    public Counter(int c) { count = c; }\n    public void increment() { count++; }\n    public int getCount() { return count; }\n}\n\npublic static void bump(Counter c) {\n    c.increment();\n    c.increment();\n    c.increment();\n}\n```\n\nWhat is printed by the following code segment?\n\n```java\nCounter obj = new Counter(2);\nbump(obj);\nSystem.out.println(obj.getCount());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`bump` receives a copy of the reference stored in `obj`, so parameter `c` and `obj` point to the same `Counter` object. Three `increment()` calls raise `count` from 2 to 5. A assumes objects are passed by value so the original is never changed. B forgets the initial value of 2 and counts only the 3 increments. D adds one extra increment.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Assume the following class and method are defined.\n\n```java\npublic class Box {\n    private int value;\n    public Box(int v) { value = v; }\n    public int getValue() { return value; }\n}\n\npublic static void replace(Box b) {\n    b = new Box(99);\n}\n```\n\nWhat is printed by the following code segment?\n\n```java\nBox myBox = new Box(7);\nreplace(myBox);\nSystem.out.println(myBox.getValue());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`7`"
+      },
+      {
+        "label": "B",
+        "text": "`99`"
+      },
+      {
+        "label": "C",
+        "text": "`0`"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown at runtime."
+      }
+    ],
+    "answer": "A",
+    "explanation": "Java passes the object reference by value. Inside `replace`, reassigning local parameter `b` to a new `Box(99)` only changes the local copy of the reference; it has no effect on `myBox` in the caller. `myBox` still refers to the original object holding 7. B is the most common mistake \u2014 confusing reassigning a parameter with mutating the object. C would be the default `int` field value if the constructor were never called. D is incorrect because `myBox` is never null.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "A class `Product` has an instance method `getLabel()` that returns a `String` representing the product's name. `p` is a declared variable of type `Product` that refers to a valid object. Which of the following correctly retrieves the number of characters in `p`'s label?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`p.length()`"
+      },
+      {
+        "label": "B",
+        "text": "`Product.getLabel().length()`"
+      },
+      {
+        "label": "C",
+        "text": "`p.getLabel().length()`"
+      },
+      {
+        "label": "D",
+        "text": "`getLabel(p).length()`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`p.getLabel()` calls the instance method on `p` and returns a `String`; chaining `.length()` on that returned `String` gives the character count. A calls `length()` directly on a `Product` object, which defines no such method. B incorrectly calls the instance method `getLabel()` using the class name as if it were static. D invents a standalone-function syntax that does not exist in Java.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class.\n\n```java\npublic class Rectangle {\n    private int width;\n    private int height;\n\n    public Rectangle(int w, int h) {\n        width = w;\n        height = h;\n    }\n\n    public boolean sameArea(Rectangle other) {\n        return width * height == other.width * other.height;\n    }\n}\n```\n\nWhich of the following correctly describes the `sameArea` method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It does not compile because `other.width` and `other.height` are `private` and cannot be accessed outside their own object instance."
+      },
+      {
+        "label": "B",
+        "text": "It compiles and runs correctly; a method may access the `private` fields of a parameter whose declared type is the same class as the enclosing class."
+      },
+      {
+        "label": "C",
+        "text": "It compiles but `other.width` and `other.height` always evaluate to `0` because `private` fields cannot be read through a parameter reference."
+      },
+      {
+        "label": "D",
+        "text": "It compiles but returns `true` only when `other` is the exact same object as the receiver (i.e., when `other == this`)."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java's access control is class-based, not object-based. Any method inside `Rectangle` can read or write the `private` fields of any `Rectangle` instance, including one received as a parameter. A incorrectly applies a per-object access rule that Java does not enforce. C is false \u2014 there is no runtime restriction on reading `private` fields within the declaring class. D confuses area equality (the method's actual logic) with reference equality.",
+    "difficulty": 3,
+    "stem_pattern": "oop_design_and_access"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following code segment.\n\n```java\npublic class Box {\n    private int size;\n\n    public Box(int s) { size = s; }\n\n    public void resize(int s) {\n        s = s * 2;\n        System.out.println(s);\n    }\n}\n```\n\n```java\nBox b = new Box(3);\nint x = 7;\nb.resize(x);\nSystem.out.println(x);\n```\n\nWhat output is produced when the code segment above is executed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`14` followed by `14`"
+      },
+      {
+        "label": "B",
+        "text": "`7` followed by `14`"
+      },
+      {
+        "label": "C",
+        "text": "`14` followed by `7`"
+      },
+      {
+        "label": "D",
+        "text": "`7` followed by `7`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "When `b.resize(x)` is called, Java passes a copy of `x` (which is 7) into the parameter `s`. Inside the method, `s` is doubled to 14 and printed. The original variable `x` in the calling code is never modified, so the second `println` prints 7. Distractor A assumes `x` was also updated; distractor B reverses the order; distractor D assumes the printed value inside the method stays at the original value.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class and static method.\n\n```java\npublic class Counter {\n    private int count;\n\n    public Counter(int c) { count = c; }\n\n    public void increment() { count++; }\n\n    public int getCount() { return count; }\n}\n```\n\n```java\npublic static void tripleIncrement(Counter c) {\n    c.increment();\n    c.increment();\n    c.increment();\n}\n```\n\nWhat is printed when the following statements execute?\n\n```java\nCounter myCount = new Counter(2);\ntripleIncrement(myCount);\nSystem.out.println(myCount.getCount());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`5`"
+      },
+      {
+        "label": "D",
+        "text": "`6`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "When `tripleIncrement(myCount)` is called, the parameter `c` holds a copy of the reference pointing to the same `Counter` object as `myCount`. Each call to `c.increment()` mutates that shared object, increasing `count` from 2 to 3, 4, and finally 5. Distractor A assumes the object is unchanged (confusing object-reference semantics with primitive semantics); distractor B assumes only one increment ran; distractor D assumes four increments occurred.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class.\n\n```java\npublic class Circle {\n    private double radius;\n\n    public Circle(double radius) {\n        radius = radius;\n    }\n\n    public double getRadius() { return radius; }\n}\n```\n\nWhat is the result of evaluating `new Circle(5.0).getRadius()`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`5.0`"
+      },
+      {
+        "label": "B",
+        "text": "`10.0`"
+      },
+      {
+        "label": "C",
+        "text": "`0.0`"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error is produced."
+      }
+    ],
+    "answer": "C",
+    "explanation": "Inside the constructor, `radius = radius` assigns the constructor parameter `radius` to itself; the instance variable `radius` is never updated and retains its default value of `0.0`. The fix is `this.radius = radius;`. Distractor A is what the programmer intended; distractor B would result from a doubling operation; distractor D is wrong because the code compiles without error \u2014 this is a logical bug, not a syntax error.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class.\n\n```java\npublic class Phrase {\n    private String text;\n\n    public Phrase(String t) { text = t; }\n\n    public String getText() { return text; }\n\n    public int getLength() { return text.length(); }\n}\n```\n\nDetermine the value of `n` after the following statements execute.\n\n```java\nPhrase p = new Phrase(\"hello\");\nint n = p.getLength() - p.getText().indexOf(\"l\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`2`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`4`"
+      },
+      {
+        "label": "D",
+        "text": "`5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`p.getLength()` returns 5 (the length of `\"hello\"`). `p.getText()` returns the String `\"hello\"`, and calling `.indexOf(\"l\")` on it returns 2 (the first `'l'` is at index 2). So `n = 5 - 2 = 3`. Distractor A is just the `indexOf` result alone; distractor C would result from subtracting 1 from the actual answer (an off-by-one error); distractor D is just the length.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class.\n\n```java\npublic class Student {\n    private String name;\n    private int grade;\n\n    public Student(String n, int g) {\n        name = n;\n        grade = g;\n    }\n\n    public boolean hasSameGrade(Student other) {\n        return grade == other.grade;\n    }\n}\n```\n\nWhich of the following correctly describes the `hasSameGrade` method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "It does not compile because `other.grade` accesses a `private` field from outside the declaring class."
+      },
+      {
+        "label": "B",
+        "text": "It compiles correctly; a method may access the `private` fields of a parameter whose declared type is the same class."
+      },
+      {
+        "label": "C",
+        "text": "It compiles correctly only if `grade` is changed from `private` to `public`."
+      },
+      {
+        "label": "D",
+        "text": "It compiles correctly but throws an exception at runtime whenever `other.grade` is read."
+      }
+    ],
+    "answer": "B",
+    "explanation": "In Java, access control is enforced at the class level, not the object instance level. Code inside `Student` may freely access the `private` members of any `Student` object, including one passed as a parameter. Distractor A confuses object-level with class-level visibility; distractor C is incorrect because no visibility change is needed; distractor D fabricates a runtime exception that does not exist.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "Consider the following class and static method.\n\n```java\npublic class Tag {\n    private String label;\n\n    public Tag(String l) { label = l; }\n\n    public String getLabel() { return label; }\n}\n```\n\n```java\npublic static void replaceTag(Tag t) {\n    t = new Tag(\"new\");\n}\n```\n\nWhat is printed when the following statements execute?\n\n```java\nTag original = new Tag(\"old\");\nreplaceTag(original);\nSystem.out.println(original.getLabel());\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`new`"
+      },
+      {
+        "label": "B",
+        "text": "`old`"
+      },
+      {
+        "label": "C",
+        "text": "`null`"
+      },
+      {
+        "label": "D",
+        "text": "A `NullPointerException` is thrown."
+      }
+    ],
+    "answer": "B",
+    "explanation": "Java passes object references by value: the parameter `t` inside `replaceTag` is a copy of the reference held by `original`. Reassigning `t` to a new `Tag` object changes only that local copy; the caller's variable `original` still points to the original `Tag` object, which was never modified. So `original.getLabel()` returns `\"old\"`. Distractor A is what a programmer might expect if Java passed references by reference; distractor C would only occur if the field itself were set to null; distractor D fabricates an exception.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u3_s3_6",
+    "stem": "A class `Player` has a private instance variable `score` and the following methods.\n\n```java\npublic int getScore()\n{\n    return score;\n}\n\npublic void addPoints(int pts)\n{\n    score += pts;\n}\n```\n\nA class `Game` has a private instance variable `currentPlayer` of type `Player`. Which of the following correctly adds 5 points to the current player's score from inside a non-static method of `Game`?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`currentPlayer.addPoints(5);`"
+      },
+      {
+        "label": "B",
+        "text": "`Player.addPoints(5);`"
+      },
+      {
+        "label": "C",
+        "text": "`currentPlayer.score += 5;`"
+      },
+      {
+        "label": "D",
+        "text": "`Game.currentPlayer.addPoints(5);`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`addPoints` is an instance method, so it must be called on a `Player` object such as `currentPlayer`. The other options use class-name notation for instance data or attempt direct access to a private field.",
+    "difficulty": 2,
+    "stem_pattern": "oop_design_and_access"
+  }
+]

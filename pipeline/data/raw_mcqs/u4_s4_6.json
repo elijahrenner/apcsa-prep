@@ -1,0 +1,652 @@
+[
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A program needs to read every word from a file into an ArrayList.\n\nFile f = new File(\"words.txt\");\nScanner scan = new Scanner(f);\nArrayList<String> words = new ArrayList<String>();\n/* missing code */\n\nWhich replacement correctly reads all tokens and closes the Scanner?",
+    "options": [
+      {
+        "label": "A",
+        "text": "while (scan.hasNext())\n{\n  words.add(scan.next());\n}\nscan.close();"
+      },
+      {
+        "label": "B",
+        "text": "while (scan.hasNext())\n{\n  words.add(scan.next());\n  scan.close();\n}"
+      },
+      {
+        "label": "C",
+        "text": "while (scan.next())\n{\n  words.add(scan.hasNext());\n}\nscan.close();"
+      },
+      {
+        "label": "D",
+        "text": "scan.close();\nwhile (scan.hasNext())\n{\n  words.add(scan.next());\n}"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop should use hasNext to test for another token, next to read it, and close the Scanner after all input has been read.",
+    "difficulty": 2,
+    "stem_pattern": "identify_correct_code"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Which code segment correctly creates a File object for \"students.txt\" and then creates a Scanner to read from that file?",
+    "options": [
+      {
+        "label": "A",
+        "text": "File f = new File(\"students.txt\");\nScanner scan = new Scanner(f);"
+      },
+      {
+        "label": "B",
+        "text": "File f = \"students.txt\";\nScanner scan = new Scanner(f);"
+      },
+      {
+        "label": "C",
+        "text": "File f = new File(\"students.txt\");\nScanner scan = Scanner(f);"
+      },
+      {
+        "label": "D",
+        "text": "File f = new File();\nScanner scan = new Scanner(\"students.txt\");"
+      }
+    ],
+    "answer": "A",
+    "explanation": "A File is constructed with new File(\"students.txt\"), and the Scanner is constructed with new Scanner(f).",
+    "difficulty": 2,
+    "stem_pattern": "identify_correct_code"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A method contains this statement:\n\nScanner scan = new Scanner(new File(\"data.txt\"));\n\nWhich method header is most appropriate for the method that contains this statement?",
+    "options": [
+      {
+        "label": "A",
+        "text": "public static void readData() throws IOException"
+      },
+      {
+        "label": "B",
+        "text": "public static void readData()"
+      },
+      {
+        "label": "C",
+        "text": "public static void readData(IOException)"
+      },
+      {
+        "label": "D",
+        "text": "public static IOException readData()"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Constructing a Scanner with a File can throw an IOException, so the method header should include throws IOException.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Consider the following code.\n\nFile f = new File(\"names.txt\");\nScanner scan = new Scanner(f);\nArrayList<String> names = new ArrayList<String>();\nwhile (scan.hasNext())\n{\n  names.add(scan.next());\n  scan.close();\n}\n\nWhat is the best description of the error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The Scanner is closed inside the loop, before all input is read."
+      },
+      {
+        "label": "B",
+        "text": "The File object must be closed instead of the Scanner."
+      },
+      {
+        "label": "C",
+        "text": "The call to scan.next() should be before the while loop."
+      },
+      {
+        "label": "D",
+        "text": "The ArrayList must be constructed after the loop."
+      }
+    ],
+    "answer": "A",
+    "explanation": "The Scanner should remain open while the loop is reading from the file. The close call belongs after the loop.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "The file colors.txt contains the following text.\n\nred blue\ngreen yellow\n\nWhat is printed by this code?\n\nScanner scan = new Scanner(new File(\"colors.txt\"));\nint count = 0;\nwhile (scan.hasNext())\n{\n  scan.next();\n  count++;\n}\nscan.close();\nSystem.out.println(count);",
+    "options": [
+      {
+        "label": "A",
+        "text": "2"
+      },
+      {
+        "label": "B",
+        "text": "3"
+      },
+      {
+        "label": "C",
+        "text": "4"
+      },
+      {
+        "label": "D",
+        "text": "5"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The next method reads one token at a time. The four tokens are red, blue, green, and yellow.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "The file data.txt contains the following text.\n\ncat dog\nfish bird\n\nWhat is printed by this code?\n\nScanner scan = new Scanner(new File(\"data.txt\"));\nArrayList<String> lines = new ArrayList<String>();\nwhile (scan.hasNext())\n{\n  lines.add(scan.nextLine());\n}\nscan.close();\nSystem.out.println(lines.size());",
+    "options": [
+      {
+        "label": "A",
+        "text": "1"
+      },
+      {
+        "label": "B",
+        "text": "2"
+      },
+      {
+        "label": "C",
+        "text": "4"
+      },
+      {
+        "label": "D",
+        "text": "0"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Each call to nextLine reads an entire line, so the ArrayList receives two strings.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Each line of a file has the form word:syn1,syn2,syn3. Which code correctly stores the part before the colon in key and the comma-separated synonyms in an array named vals?",
+    "options": [
+      {
+        "label": "A",
+        "text": "String line = scan.nextLine();\nString[] parts = line.split(\":\");\nString key = parts[0];\nString[] vals = parts[1].split(\",\");"
+      },
+      {
+        "label": "B",
+        "text": "String line = scan.next();\nString[] parts = line.split(\",\");\nString key = parts[1];\nString[] vals = parts[0].split(\":\");"
+      },
+      {
+        "label": "C",
+        "text": "String line = scan.nextLine();\nString key = line.split(\":\");\nString[] vals = key.split(\",\");"
+      },
+      {
+        "label": "D",
+        "text": "String line = scan.nextLine();\nString[] parts = line.split(\",\");\nString key = parts[0];\nString[] vals = parts[1].split(\":\");"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The line is first split at the colon. The first piece is the word, and the second piece is split at commas to get the synonyms.",
+    "difficulty": 3,
+    "stem_pattern": "identify_correct_code"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "The file nums.txt contains the following text.\n\n4 7 2\n\nWhat is printed by this code?\n\nScanner scan = new Scanner(new File(\"nums.txt\"));\nint total = 0;\nwhile (scan.hasNext())\n{\n  total += scan.nextInt();\n}\nscan.close();\nSystem.out.println(total);",
+    "options": [
+      {
+        "label": "A",
+        "text": "4"
+      },
+      {
+        "label": "B",
+        "text": "7"
+      },
+      {
+        "label": "C",
+        "text": "13"
+      },
+      {
+        "label": "D",
+        "text": "472"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The loop reads the three integers 4, 7, and 2, and their sum is 13.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A file contains one book title per line, and some titles contain spaces. Which code best reads each title as one String into titles?",
+    "options": [
+      {
+        "label": "A",
+        "text": "while (scan.hasNext())\n{\n  titles.add(scan.nextLine());\n}\nscan.close();"
+      },
+      {
+        "label": "B",
+        "text": "while (scan.hasNext())\n{\n  titles.add(scan.next());\n}\nscan.close();"
+      },
+      {
+        "label": "C",
+        "text": "while (scan.nextLine())\n{\n  titles.add(scan.hasNext());\n}\nscan.close();"
+      },
+      {
+        "label": "D",
+        "text": "scan.close();\nwhile (scan.hasNext())\n{\n  titles.add(scan.nextLine());\n}"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Because a title may contain spaces, nextLine is needed to read the whole line as one String. The Scanner is closed after reading.",
+    "difficulty": 3,
+    "stem_pattern": "identify_correct_code"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A file items.txt contains this text.\n\npencil,12\npen,8\n\nInside a loop, line stores one line from the file. Which code correctly prints the item name from that line?",
+    "options": [
+      {
+        "label": "A",
+        "text": "String[] parts = line.split(\",\");\nSystem.out.println(parts[0]);"
+      },
+      {
+        "label": "B",
+        "text": "String[] parts = line.split(\":\");\nSystem.out.println(parts[0]);"
+      },
+      {
+        "label": "C",
+        "text": "String[] parts = line.split(\",\");\nSystem.out.println(parts[1]);"
+      },
+      {
+        "label": "D",
+        "text": "String[] parts = scan.split(\",\");\nSystem.out.println(parts[0]);"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The line uses a comma as the separator, and the item name appears before the comma, at index 0.",
+    "difficulty": 2,
+    "stem_pattern": "identify_correct_code"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Which statement about this code is true?\n\npublic static ArrayList<String> load() throws IOException\n{\n  Scanner scan = new Scanner(new File(\"words.txt\"));\n  ArrayList<String> list = new ArrayList<String>();\n  while (scan.hasNext())\n  {\n    list.add(scan.next());\n  }\n  scan.close();\n  return list;\n}",
+    "options": [
+      {
+        "label": "A",
+        "text": "It reads all tokens from words.txt into list."
+      },
+      {
+        "label": "B",
+        "text": "It reads only the first token because close is inside the loop."
+      },
+      {
+        "label": "C",
+        "text": "It will not compile because throws IOException is missing."
+      },
+      {
+        "label": "D",
+        "text": "It creates a Scanner, but it never creates a File."
+      }
+    ],
+    "answer": "A",
+    "explanation": "The Scanner is constructed from a File, the loop reads all tokens, and close is correctly placed after the loop.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Which code segment should replace /* missing code */ to read all lines from a file into an ArrayList named lines?\n\nFile f = new File(\"log.txt\");\nScanner scan = new Scanner(f);\nArrayList<String> lines = new ArrayList<String>();\n/* missing code */",
+    "options": [
+      {
+        "label": "A",
+        "text": "while (scan.hasNext())\n{\n  lines.add(scan.nextLine());\n}\nscan.close();"
+      },
+      {
+        "label": "B",
+        "text": "while (scan.hasNext())\n{\n  lines.add(scan.next());\n  scan.close();\n}"
+      },
+      {
+        "label": "C",
+        "text": "if (scan.hasNext())\n{\n  lines.add(scan.nextLine());\n}\nscan.close();"
+      },
+      {
+        "label": "D",
+        "text": "while (scan.nextLine())\n{\n  lines.add(scan.hasNext());\n}\nscan.close();"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop continues while there is input remaining, nextLine reads each complete line, and close is after the loop.",
+    "difficulty": 3,
+    "stem_pattern": "identify_correct_code"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A method opens a file using this code.\n\nFile f = new File(\"scores.txt\");\nScanner scan = new Scanner(f);\n\nWhich header is most appropriate for the method?",
+    "options": [
+      {
+        "label": "A",
+        "text": "public static void readScores() throws IOException"
+      },
+      {
+        "label": "B",
+        "text": "public static void readScores() throws Scanner"
+      },
+      {
+        "label": "C",
+        "text": "public static File readScores() throws Scanner"
+      },
+      {
+        "label": "D",
+        "text": "public static void readScores(IOException)"
+      }
+    ],
+    "answer": "A",
+    "explanation": "A method that constructs a Scanner from a File should include throws IOException in its header.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "The file pets.txt contains the following text.\n\ncat dog fish\nbird\n\nWhat is printed?\n\nScanner scan = new Scanner(new File(\"pets.txt\"));\nArrayList<String> pets = new ArrayList<String>();\nwhile (scan.hasNext())\n{\n  pets.add(scan.next());\n}\nscan.close();\nSystem.out.println(pets.get(2));",
+    "options": [
+      {
+        "label": "A",
+        "text": "cat"
+      },
+      {
+        "label": "B",
+        "text": "dog"
+      },
+      {
+        "label": "C",
+        "text": "fish"
+      },
+      {
+        "label": "D",
+        "text": "bird"
+      }
+    ],
+    "answer": "C",
+    "explanation": "The tokens are stored in order: cat at index 0, dog at index 1, fish at index 2, and bird at index 3.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "The file pairs.txt contains this line.\n\nblue:sky,ocean\n\nWhat is the value of parts[1] after the following code runs?\n\nScanner scan = new Scanner(new File(\"pairs.txt\"));\nString line = scan.nextLine();\nString[] parts = line.split(\":\");\nscan.close();",
+    "options": [
+      {
+        "label": "A",
+        "text": "blue"
+      },
+      {
+        "label": "B",
+        "text": "sky,ocean"
+      },
+      {
+        "label": "C",
+        "text": "sky"
+      },
+      {
+        "label": "D",
+        "text": "ocean"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Splitting blue:sky,ocean at the colon produces parts[0] as blue and parts[1] as sky,ocean.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A file contains one integer score per line. Which code correctly counts how many scores are greater than 90?",
+    "options": [
+      {
+        "label": "A",
+        "text": "int count = 0;\nwhile (scan.hasNext())\n{\n  if (scan.nextInt() > 90)\n  {\n    count++;\n  }\n}\nscan.close();"
+      },
+      {
+        "label": "B",
+        "text": "int count = 0;\nwhile (scan.nextInt() > 90)\n{\n  count++;\n}\nscan.close();"
+      },
+      {
+        "label": "C",
+        "text": "int count = 0;\nwhile (scan.hasNext())\n{\n  if (scan.hasNext() > 90)\n  {\n    count++;\n  }\n}\nscan.close();"
+      },
+      {
+        "label": "D",
+        "text": "int count = 0;\nscan.close();\nwhile (scan.hasNext())\n{\n  if (scan.nextInt() > 90)\n  {\n    count++;\n  }\n}"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The loop checks whether another value exists, reads it with nextInt, and increments count only when the value is greater than 90.",
+    "difficulty": 3,
+    "stem_pattern": "identify_correct_code"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Which code segment correctly opens the file words.txt without first storing the File object in a variable?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Scanner scan = new Scanner(new File(\"words.txt\"));"
+      },
+      {
+        "label": "B",
+        "text": "Scanner scan = new Scanner(File(\"words.txt\"));"
+      },
+      {
+        "label": "C",
+        "text": "Scanner scan = new File(new Scanner(\"words.txt\"));"
+      },
+      {
+        "label": "D",
+        "text": "Scanner scan = Scanner(new File(\"words.txt\"));"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The File object may be created directly as the argument to the Scanner constructor.",
+    "difficulty": 2,
+    "stem_pattern": "identify_correct_code"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "The file words.txt contains this text.\n\napple banana cherry\n\nWhat is printed?\n\nScanner scan = new Scanner(new File(\"words.txt\"));\nString result = \"\";\nwhile (scan.hasNext())\n{\n  result += scan.next() + \"!\";\n}\nscan.close();\nSystem.out.println(result);",
+    "options": [
+      {
+        "label": "A",
+        "text": "apple!"
+      },
+      {
+        "label": "B",
+        "text": "apple!banana!cherry!"
+      },
+      {
+        "label": "C",
+        "text": "apple banana cherry!"
+      },
+      {
+        "label": "D",
+        "text": "applebanana cherry!"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Each token is read by next and followed by an exclamation point in result.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A file has lines in this form:\n\nname,grade\n\nWhich code correctly reads each line and adds only the name to an ArrayList<String> names?",
+    "options": [
+      {
+        "label": "A",
+        "text": "while (scan.hasNext())\n{\n  String line = scan.nextLine();\n  String[] pieces = line.split(\",\");\n  names.add(pieces[0]);\n}\nscan.close();"
+      },
+      {
+        "label": "B",
+        "text": "while (scan.hasNext())\n{\n  String line = scan.next();\n  String[] pieces = line.split(\":\");\n  names.add(pieces[1]);\n}\nscan.close();"
+      },
+      {
+        "label": "C",
+        "text": "while (scan.hasNext())\n{\n  String[] pieces = scan.nextLine();\n  names.add(pieces[0]);\n}\nscan.close();"
+      },
+      {
+        "label": "D",
+        "text": "while (scan.hasNext())\n{\n  String line = scan.nextLine();\n  names.add(line.split(\",\"));\n}\nscan.close();"
+      }
+    ],
+    "answer": "A",
+    "explanation": "Each line is read, split at the comma, and the name before the comma is added to the ArrayList.",
+    "difficulty": 3,
+    "stem_pattern": "identify_correct_code"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "The file list.txt contains this text.\n\none two\nthree\n\nWhat is printed?\n\nScanner scan = new Scanner(new File(\"list.txt\"));\nSystem.out.println(scan.next());\nSystem.out.println(scan.nextLine());\nscan.close();",
+    "options": [
+      {
+        "label": "A",
+        "text": "one\ntwo"
+      },
+      {
+        "label": "B",
+        "text": "one\n two"
+      },
+      {
+        "label": "C",
+        "text": "one two\nthree"
+      },
+      {
+        "label": "D",
+        "text": "two\nthree"
+      }
+    ],
+    "answer": "B",
+    "explanation": "The first call to next reads one. The following nextLine reads the rest of that same line, including the space before two.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Which code segment contains a compile-time error?",
+    "options": [
+      {
+        "label": "A",
+        "text": "File f = new File(\"words.txt\");\nScanner scan = new Scanner(f);"
+      },
+      {
+        "label": "B",
+        "text": "Scanner scan = new Scanner(new File(\"words.txt\"));"
+      },
+      {
+        "label": "C",
+        "text": "File f = \"words.txt\";\nScanner scan = new Scanner(f);"
+      },
+      {
+        "label": "D",
+        "text": "File f = new File(\"words.txt\");\nScanner scan = new Scanner(f);\nscan.close();"
+      }
+    ],
+    "answer": "C",
+    "explanation": "A String literal cannot be assigned directly to a File variable. A File object must be constructed with new File(...).",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A method is intended to return an ArrayList containing every token in fileName. Which replacement for /* missing code */ is correct?\n\npublic static ArrayList<String> load(String fileName) throws IOException\n{\n  Scanner scan = new Scanner(new File(fileName));\n  ArrayList<String> vals = new ArrayList<String>();\n  /* missing code */\n}",
+    "options": [
+      {
+        "label": "A",
+        "text": "while (scan.hasNext())\n{\n  vals.add(scan.next());\n}\nscan.close();\nreturn vals;"
+      },
+      {
+        "label": "B",
+        "text": "while (scan.hasNext())\n{\n  vals.add(scan.hasNext());\n}\nscan.close();\nreturn vals;"
+      },
+      {
+        "label": "C",
+        "text": "scan.close();\nwhile (scan.hasNext())\n{\n  vals.add(scan.next());\n}\nreturn vals;"
+      },
+      {
+        "label": "D",
+        "text": "while (scan.next())\n{\n  vals.add(fileName);\n}\nscan.close();\nreturn vals;"
+      }
+    ],
+    "answer": "A",
+    "explanation": "The correct code reads each token with next, adds it to vals, closes the Scanner after the loop, and returns the list.",
+    "difficulty": 3,
+    "stem_pattern": "identify_correct_code"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "The file foods.txt contains this line.\n\nrice,beans,corn\n\nWhat is printed?\n\nScanner scan = new Scanner(new File(\"foods.txt\"));\nString line = scan.nextLine();\nString[] foods = line.split(\",\");\nscan.close();\nSystem.out.println(foods.length);",
+    "options": [
+      {
+        "label": "A",
+        "text": "1"
+      },
+      {
+        "label": "B",
+        "text": "2"
+      },
+      {
+        "label": "C",
+        "text": "3"
+      },
+      {
+        "label": "D",
+        "text": "4"
+      }
+    ],
+    "answer": "C",
+    "explanation": "Splitting the line at commas produces three strings: rice, beans, and corn.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "A file contains one phrase per line. A student writes this code.\n\nwhile (scan.hasNext())\n{\n  phrases.add(scan.next());\n}\nscan.close();\n\nThe phrases may contain spaces. What change is needed?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Use scan.nextLine() instead of scan.next()."
+      },
+      {
+        "label": "B",
+        "text": "Move scan.close() inside the loop."
+      },
+      {
+        "label": "C",
+        "text": "Use scan.nextInt() instead of scan.next()."
+      },
+      {
+        "label": "D",
+        "text": "Construct the ArrayList after the loop."
+      }
+    ],
+    "answer": "A",
+    "explanation": "next reads a single token, so it stops at spaces. nextLine reads the entire phrase line.",
+    "difficulty": 2,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u4_s4_6",
+    "stem": "Which statement best explains why scan.close() should usually appear after a file-reading loop?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Closing the Scanner before or during the loop can prevent the rest of the file from being read."
+      },
+      {
+        "label": "B",
+        "text": "Closing the Scanner changes all remaining file tokens into lines."
+      },
+      {
+        "label": "C",
+        "text": "Closing the Scanner is required before each call to next."
+      },
+      {
+        "label": "D",
+        "text": "Closing the Scanner creates the File object."
+      }
+    ],
+    "answer": "A",
+    "explanation": "The Scanner must remain open while input is being read. It should be closed after the reading loop is complete.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  }
+]

@@ -1,0 +1,574 @@
+[
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Determine the output of the following code:\n\n```java\nString s1 = new String(\"hello\");\nString s2 = new String(\"hello\");\nSystem.out.println(s1 == s2);\nSystem.out.println(s1.equals(s2));\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true`\n`true`"
+      },
+      {
+        "label": "B",
+        "text": "`false`\n`false`"
+      },
+      {
+        "label": "C",
+        "text": "`true`\n`false`"
+      },
+      {
+        "label": "D",
+        "text": "`false`\n`true`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`s1 == s2` compares object references; each `new String(...)` allocates a separate heap object, so `==` returns `false`. `.equals()` compares character content, which is identical, so it returns `true`.",
+    "difficulty": 3,
+    "stem_pattern": "string_reference_equality"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Determine the value of `result` after the following code runs:\n\n```java\nint a = 7;\nboolean result = a % 2 == 0;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true`"
+      },
+      {
+        "label": "B",
+        "text": "`false`"
+      },
+      {
+        "label": "C",
+        "text": "`1`"
+      },
+      {
+        "label": "D",
+        "text": "`0`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`a % 2` evaluates to `1` because 7 is odd; `1 == 0` is `false`, so `result` holds `false`. Options C and D are `int` values, not valid `boolean` results.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Which of the following expressions correctly tests whether an integer `n` is evenly divisible by 5?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`n / 5 == 0`"
+      },
+      {
+        "label": "B",
+        "text": "`n % 5 == 0`"
+      },
+      {
+        "label": "C",
+        "text": "`n % 5 == 5`"
+      },
+      {
+        "label": "D",
+        "text": "`n == 5`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`n % 5` yields the remainder when `n` is divided by 5; a remainder of `0` means no remainder, i.e., evenly divisible. Option A is true only when `n < 5` (integer division gives 0). Option C is impossible because `n % 5` is always in `[0, 4]`. Option D only matches `n = 5` exactly.",
+    "difficulty": 1,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Determine the output of the following code:\n\n```java\nint score = 85;\nString grade;\nif (score >= 90)\n    grade = \"A\";\nelse if (score >= 80)\n    grade = \"B\";\nelse if (score >= 70)\n    grade = \"C\";\nelse\n    grade = \"F\";\nSystem.out.println(grade);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`A`"
+      },
+      {
+        "label": "B",
+        "text": "`B`"
+      },
+      {
+        "label": "C",
+        "text": "`C`"
+      },
+      {
+        "label": "D",
+        "text": "`F`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`score >= 90` is false (85 < 90), so the first branch is skipped. `score >= 80` is true (85 \u2265 80), so `grade` is assigned `\"B\"` and the remaining `else if` and `else` branches are all skipped.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Determine the output of the following code:\n\n```java\nString s = null;\nif (s != null && s.equals(\"hello\"))\n    System.out.println(\"match\");\nelse\n    System.out.println(\"no match\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`match`"
+      },
+      {
+        "label": "B",
+        "text": "`no match`"
+      },
+      {
+        "label": "C",
+        "text": "A `NullPointerException` is thrown at runtime"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error occurs"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`s != null` evaluates to `false`; because `&&` short-circuits, `s.equals(\"hello\")` is never reached and no `NullPointerException` is thrown. The `else` branch executes and prints `\"no match\"`.",
+    "difficulty": 3,
+    "stem_pattern": "boolean_short_circuit"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "A student writes the following code expecting to print `same` when two strings have identical content. What is the actual output?\n\n```java\nString a = new String(\"java\");\nString b = new String(\"java\");\nif (a == b)\n    System.out.println(\"same\");\nelse\n    System.out.println(\"different\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`same`, because `==` compares character content for `String` objects"
+      },
+      {
+        "label": "B",
+        "text": "`different`, because `==` compares object references, not content"
+      },
+      {
+        "label": "C",
+        "text": "`same`, because both strings share the same reference in the string pool"
+      },
+      {
+        "label": "D",
+        "text": "A compile-time error, because `==` cannot be applied to `String` objects"
+      }
+    ],
+    "answer": "B",
+    "explanation": "Each `new String(\"java\")` allocates a distinct object on the heap; `==` checks whether the two references point to the same object, which they do not. Option C is wrong because string-pool interning only applies to string literals, not objects created with `new`. `.equals()` must be used to compare string content.",
+    "difficulty": 3,
+    "stem_pattern": "identify_bug"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Determine the output of the following code:\n\n```java\nint x = 6;\nint y = 4;\nif (x > y)\n{\n    if (x % y == 0)\n        System.out.println(\"A\");\n    else\n        System.out.println(\"B\");\n}\nelse\n    System.out.println(\"C\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`A`"
+      },
+      {
+        "label": "B",
+        "text": "`B`"
+      },
+      {
+        "label": "C",
+        "text": "`C`"
+      },
+      {
+        "label": "D",
+        "text": "Nothing is printed"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`x > y` (6 > 4) is `true`, so the outer `else` printing `\"C\"` is skipped. Inside the block, `x % y` = `6 % 4` = `2`; `2 == 0` is `false`, so the inner `else` fires and `\"B\"` is printed.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Which of the following correctly tests whether an object reference `obj` does NOT point to any object (i.e., is uninitialized)?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`obj == false`"
+      },
+      {
+        "label": "B",
+        "text": "`obj != null`"
+      },
+      {
+        "label": "C",
+        "text": "`obj == null`"
+      },
+      {
+        "label": "D",
+        "text": "`obj.equals(null)`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`obj == null` returns `true` precisely when `obj` holds no reference. Option B checks that `obj` IS non-null (the opposite). Option A mixes a reference type with a `boolean` literal and will not compile as a meaningful null check. Option D would throw a `NullPointerException` if `obj` is actually `null` before `.equals()` can be called.",
+    "difficulty": 2,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Determine the output of the following code:\n\n```java\nint a = 15;\nint b = 4;\nboolean x = a % b == 3;\nboolean y = a / b >= 3;\nif (x && y)\n    System.out.println(\"both\");\nelse if (x)\n    System.out.println(\"first\");\nelse if (y)\n    System.out.println(\"second\");\nelse\n    System.out.println(\"neither\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`both`"
+      },
+      {
+        "label": "B",
+        "text": "`first`"
+      },
+      {
+        "label": "C",
+        "text": "`second`"
+      },
+      {
+        "label": "D",
+        "text": "`neither`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`a % b` = `15 % 4` = `3`; `3 == 3` is `true`, so `x` is `true`. `a / b` = `15 / 4` = `3` (integer division truncates toward zero, not 3.75); `3 >= 3` is `true`, so `y` is `true`. `x && y` is `true` and `\"both\"` is printed. A common distractor is believing integer division yields 3.75, which would still satisfy `>= 3`\u2014but integer division is key to knowing the exact value.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Determine the output of the following code:\n\n```java\nint p = 8;\nint q = 12;\nif (p > q)\n    System.out.print(\"A\");\nelse\n    System.out.print(\"B\");\nif (p != q)\n    System.out.print(\"C\");\nif (q >= 12)\n    System.out.print(\"D\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`ACD`"
+      },
+      {
+        "label": "B",
+        "text": "`BCD`"
+      },
+      {
+        "label": "C",
+        "text": "`BD`"
+      },
+      {
+        "label": "D",
+        "text": "`BC`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "p > q is 8 > 12, which is false, so the else branch fires and 'B' prints. p != q is 8 != 12, which is true, so 'C' prints. q >= 12 is 12 >= 12, which is true because >= includes the equal case, so 'D' prints. Output is BCD. Option A incorrectly fires the > branch. Option C omits 'C' by treating != 12 as false. Option D omits 'D' by treating >= as strictly greater-than.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Determine the output of the following code:\n\n```java\nString s1 = new String(\"Java\");\nString s2 = new String(\"Java\");\nString s3 = s1;\n\nif (s1 == s2)\n    System.out.print(\"1 \");\nif (s1 == s3)\n    System.out.print(\"2 \");\nif (s1.equals(s2))\n    System.out.print(\"3\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`1 2 3`"
+      },
+      {
+        "label": "B",
+        "text": "`3`"
+      },
+      {
+        "label": "C",
+        "text": "`2 3`"
+      },
+      {
+        "label": "D",
+        "text": "`1 3`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "s1 == s2 is false because new String() allocates two distinct heap objects and == tests reference identity, not content. s1 == s3 is true because s3 = s1 makes s3 an alias (both hold the exact same reference). s1.equals(s2) is true because both objects contain identical characters. Output is '2 3'. Option A wrongly fires '1 ' by assuming == compares content. Option B misses '2 ' by ignoring that aliases make == true. Option D fires '1 ' by incorrectly treating two separately allocated objects as reference-equal.",
+    "difficulty": 3,
+    "stem_pattern": "string_reference_equality"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Which relational operator evaluates to `true` when two operand values are NOT equal to each other?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`=`"
+      },
+      {
+        "label": "B",
+        "text": "`==`"
+      },
+      {
+        "label": "C",
+        "text": "`<=`"
+      },
+      {
+        "label": "D",
+        "text": "`!=`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`!=` is the not-equal-to operator; it returns true whenever the operands differ. `=` is the assignment operator, not a comparison. `==` tests equality and returns true when operands are equal. `<=` tests less-than-or-equal, which has nothing to do with inequality testing.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Determine the output of the following code:\n\n```java\nint num = 7;\nint den = 2;\ndouble quotient = num / den;\nif (quotient == 3.5)\n    System.out.print(\"match\");\nelse\n    System.out.print(\"no match\");\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`match`"
+      },
+      {
+        "label": "B",
+        "text": "`no match`"
+      },
+      {
+        "label": "C",
+        "text": "A compile error occurs because `double` cannot be compared to a `double` literal with `==`."
+      },
+      {
+        "label": "D",
+        "text": "A runtime `ArithmeticException` is thrown."
+      }
+    ],
+    "answer": "B",
+    "explanation": "The expression num / den is integer division because both operands are int, producing 3 (not 3.5). The int value 3 is then widened to 3.0 when stored in the double variable quotient. Since 3.0 != 3.5, the else branch executes and 'no match' is printed. Option A incorrectly assumes that declaring quotient as double causes the division itself to be floating-point; the division occurs first, before the assignment. Options C and D are wrong: the code compiles cleanly and runs without exceptions.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "A student writes the following code to test whether two `int` variables hold the same numeric value:\n\n```java\nint x = 5;\nint y = 5;\nif (x == y)\n    System.out.print(\"equal\");\n```\n\nThe student's partner claims this code is wrong and that `.equals()` should be used instead of `==`. Which of the following is the most accurate assessment?",
+    "options": [
+      {
+        "label": "A",
+        "text": "The partner is correct; `==` should never be used for comparison in Java."
+      },
+      {
+        "label": "B",
+        "text": "The partner is correct; `==` compares memory addresses rather than stored values, even for primitive `int` variables."
+      },
+      {
+        "label": "C",
+        "text": "The code is correct as written; `==` compares stored values directly when applied to primitive types such as `int`."
+      },
+      {
+        "label": "D",
+        "text": "The code is incorrect; `int` values must be wrapped in `Integer` objects before any comparison can be performed."
+      }
+    ],
+    "answer": "C",
+    "explanation": "For primitive types (int, double, boolean, etc.) == compares the actual stored values, so the code correctly detects that x and y both equal 5 and prints 'equal'. The .equals() method is needed for reference types like String, where == tests object identity rather than content. Options A and B incorrectly apply the reference-equality rule to primitives, which have no heap address. Option D is false; primitive values can be compared directly without boxing into Integer.",
+    "difficulty": 3,
+    "stem_pattern": "conceptual"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "When the `==` operator is applied to two variables of a reference type (such as `String`), which of the following best describes what it tests?",
+    "options": [
+      {
+        "label": "A",
+        "text": "Whether the two variables refer to the same object in memory"
+      },
+      {
+        "label": "B",
+        "text": "Whether the two objects have identical contents"
+      },
+      {
+        "label": "C",
+        "text": "Whether the two variables were declared with the same type"
+      },
+      {
+        "label": "D",
+        "text": "Whether both variables are non-null"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`==` on reference types compares the references themselves (i.e., memory addresses stored in the variables), not object contents. To compare contents, `.equals()` must be used. Options B, C, and D all describe different\u2014and incorrect\u2014behaviors.",
+    "difficulty": 1,
+    "stem_pattern": "vocabulary"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "What is the output of the following code?\n\n```java\nint score = 85;\nif (score >= 90)\n{\n    System.out.println(\"A\");\n}\nelse if (score >= 80)\n{\n    System.out.println(\"B\");\n}\nelse\n{\n    System.out.println(\"C\");\n}\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`A`"
+      },
+      {
+        "label": "B",
+        "text": "`B`"
+      },
+      {
+        "label": "C",
+        "text": "`C`"
+      },
+      {
+        "label": "D",
+        "text": "`AB`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`score` is 85. The first condition `85 >= 90` is false. The second condition `85 >= 80` is true, so `\"B\"` is printed and the chain exits. In an if-else-if chain only the first true branch executes. Option D is wrong because only one branch ever runs.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Consider the following code:\n\n```java\nString s1 = new String(\"hello\");\nString s2 = new String(\"hello\");\nSystem.out.println(s1 == s2);\nSystem.out.println(s1.equals(s2));\n```\n\nWhat is the output?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`true` then `true`"
+      },
+      {
+        "label": "B",
+        "text": "`true` then `false`"
+      },
+      {
+        "label": "C",
+        "text": "`false` then `false`"
+      },
+      {
+        "label": "D",
+        "text": "`false` then `true`"
+      }
+    ],
+    "answer": "D",
+    "explanation": "`s1 == s2` compares references. Because both were created with `new String(...)`, they are two distinct objects, so `==` returns `false`. `s1.equals(s2)` compares character content, which is identical (`\"hello\"`), so it returns `true`. Option A would require `s2 = s1` (an alias). Option C incorrectly claims `.equals()` also returns false.",
+    "difficulty": 3,
+    "stem_pattern": "string_reference_equality"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "After the following code executes, what are the values of `a`, `b`, and `c`?\n\n```java\nint n = 12;\nboolean a = n % 4 == 0;\nboolean b = n % 5 == 0;\nboolean c = n % 3 == 0;\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`a = true`, `b = false`, `c = true`"
+      },
+      {
+        "label": "B",
+        "text": "`a = true`, `b = true`, `c = true`"
+      },
+      {
+        "label": "C",
+        "text": "`a = false`, `b = false`, `c = true`"
+      },
+      {
+        "label": "D",
+        "text": "`a = true`, `b = false`, `c = false`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`12 % 4 = 0` so `a = true`; `12 % 5 = 2` (not 0) so `b = false`; `12 % 3 = 0` so `c = true`. Option B is wrong because 12 is not divisible by 5. Option C incorrectly marks `a` false. Option D incorrectly marks `c` false.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_value"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "What is the output of the following code?\n\n```java\nint x = 15;\nString result = \"\";\nif (x % 2 == 0)\n{\n    result += \"E\";\n}\nif (x % 3 == 0)\n{\n    result += \"T\";\n}\nif (x % 5 == 0)\n{\n    result += \"F\";\n}\nSystem.out.println(result);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`ETF`"
+      },
+      {
+        "label": "B",
+        "text": "`EF`"
+      },
+      {
+        "label": "C",
+        "text": "`TF`"
+      },
+      {
+        "label": "D",
+        "text": "`F`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`15 % 2 = 1` (not 0), so `\"E\"` is not appended. `15 % 3 = 0`, so `\"T\"` is appended. `15 % 5 = 0`, so `\"F\"` is appended. Result is `\"TF\"`. These are three independent `if` statements, not an if-else-if chain, so all three conditions are evaluated. Option A incorrectly assumes 15 is even.",
+    "difficulty": 3,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "What is the output of the following code?\n\n```java\nint a = 10;\nint b = 20;\nint c = 10;\nint count = 0;\nif (a == c)    count++;\nif (b > a + c) count++;\nif (a != b)    count++;\nSystem.out.println(count);\n```",
+    "options": [
+      {
+        "label": "A",
+        "text": "`0`"
+      },
+      {
+        "label": "B",
+        "text": "`1`"
+      },
+      {
+        "label": "C",
+        "text": "`2`"
+      },
+      {
+        "label": "D",
+        "text": "`3`"
+      }
+    ],
+    "answer": "C",
+    "explanation": "`a == c` \u2192 `10 == 10` \u2192 true, count becomes 1. `b > a + c` \u2192 `20 > 20` \u2192 false (strictly greater than, not \u2265), count stays 1. `a != b` \u2192 `10 != 20` \u2192 true, count becomes 2. Output is `2`. Option D results from mistaking `>` for `>=` in the second condition.",
+    "difficulty": 4,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Consider the following code segment.\n\n```java\nint x = 12;\nint y = 5;\nint z = 2;\n\nif (x / y == z)\n{\n    System.out.print(\"A\");\n}\nelse\n{\n    System.out.print(\"B\");\n}\n\nif (x % y <= z)\n{\n    System.out.print(\"C\");\n}\nelse\n{\n    System.out.print(\"D\");\n}\n```\n\nWhat is printed as a result of executing the code segment?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`AC`"
+      },
+      {
+        "label": "B",
+        "text": "`AD`"
+      },
+      {
+        "label": "C",
+        "text": "`BC`"
+      },
+      {
+        "label": "D",
+        "text": "`BD`"
+      }
+    ],
+    "answer": "A",
+    "explanation": "`x / y` uses integer division, so `12 / 5` is `2`, making the first comparison true. Also, `12 % 5` is `2`, and `2 <= 2` is true, so `C` is printed after `A`.",
+    "difficulty": 2,
+    "stem_pattern": "code_trace_output"
+  },
+  {
+    "topic_id": "u2_s2_4",
+    "stem": "Consider the following code segment.\n\n```java\nString first = new String(\"blue\");\nString second = new String(\"blue\");\nString third = first;\n\nSystem.out.println(first == second);\nSystem.out.println(first.equals(second));\nSystem.out.println(first == third);\n```\n\nWhich of the following represents the output produced by the code segment?",
+    "options": [
+      {
+        "label": "A",
+        "text": "`false false true`"
+      },
+      {
+        "label": "B",
+        "text": "`false true true`"
+      },
+      {
+        "label": "C",
+        "text": "`true true true`"
+      },
+      {
+        "label": "D",
+        "text": "`true false false`"
+      }
+    ],
+    "answer": "B",
+    "explanation": "`first` and `second` refer to different String objects, so `first == second` is false, but their contents are equal. `third` is assigned to refer to the same object as `first`, so `first == third` is true.",
+    "difficulty": 3,
+    "stem_pattern": "string_reference_equality"
+  }
+]
